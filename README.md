@@ -10,7 +10,8 @@ This is the base area where the code (main tpl file) lives.
 all of the modeling work has been undertaken. 
 
 ## "jjmR" directory
-This directory jjmR contains the R package code for evaluating model results 
+This directory jjmR contains the R package code for evaluating model results. This is in its on repo her
+https://github.com/SPRFMO/jjmr
 
 ## Docs
 Contains the main documents used for the meeting. The subdirectories of this are self-explanatory.
