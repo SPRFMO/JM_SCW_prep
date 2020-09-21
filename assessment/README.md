@@ -3,15 +3,21 @@ Jack mackerel assessment
 =================================
 ## 2020 SC08 Model runs
 ### Notes
-Data files with annotations found in Excel spreadsheet in [`SPRFMO Teams/sharepoint`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE) folder. R file to run the models and plot diagnostics can be found in `SC07.R` in [`jjm/R`](https://www.github.com/SPRFMO/jjm/assessment/R/).
+Data files with annotations found in Excel spreadsheet in 
+[`SPRFMO Teams/sharepoint`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE) 
+folder. R file to run the models and plot diagnostics can be found in `SC07.R` in 
+[`jjm/assessment/R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R).
+
 ### Naming convention
 Model      | Description
 -----------|--------------
 **Models 0.x**| **Data introductions**
-mod0.00     | 	Exact 2019 model and data set through 2019 (mod??? from SC07)
+mod0.00     | 	Exact 2019 (single stock Ho) model and data set through 2019 (mod??? from SC07)
+mod0.01     | 	as mod0.00 but updated to 2020 and catches
 
 **Models 1.x**	|	**Configuration sensitivities**
-mod1.00			|	As mod0.17? data file but model (i.e., selectivity changes) updated to 2020
+mod1.00			|	As mod0.xx? data file but model (i.e., selectivity changes) updated to 2020
+
 mod1.00.ll	 |	As mod1.00 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
 mod1.00.ls	 |	As mod1.00 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
 mod1.00.hl	 |	As mod1.00 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))
