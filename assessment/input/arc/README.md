@@ -1,3 +1,0 @@
-# Datafile section
-
-mod0.6.dat same as mod0.4.dat but with same average weight in offshore as for SC Chile in 2014 and 2015...
