@@ -3,7 +3,7 @@ Jack mackerel assessment
 =================================
 ## 2020 SC08 Model runs
 ### Notes
-Data files with annotations found in Excel spreadsheet in [`jjm/data`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE) folder. R file to run the models and plot diagnostics can be found in `SC07.R` in [`jjm/R`](https://www.github.com/SPRFMO/jjm/assessment/R/).
+Data files with annotations found in Excel spreadsheet in [`SPRFMO Teams/sharepoint`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE) folder. R file to run the models and plot diagnostics can be found in `SC07.R` in [`jjm/R`](https://www.github.com/SPRFMO/jjm/assessment/R/).
 ### Naming convention
 Model      | Description
 -----------|--------------

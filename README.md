@@ -27,9 +27,10 @@ will run the jjm model with input/mods1.ctl file and store results in arc direct
 assessment/arc directory.
 
 ## Data directory
-Contains information from intersessional work and data submitted during the meeting. 
+Deprecated and now resides on SPRFMO Sharepoint
 
 ## HCR
+Deprecated and available on jjm_2019 repository.
 Contains software for doing the harvest control rule analysis (note .rdata files need to be generated locally)
 
 
