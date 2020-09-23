@@ -1,11 +1,11 @@
 # ------------------------------------------------------------------------
-# Script for SC07---------------------------------------------------------
-# 2019 JM  ---------------------------------------------------------------
+# Script for SC08---------------------------------------------------------
+# 2020 JM  ---------------------------------------------------------------
 # ------------------------------------------------------------------------
 #install.packages("devtools")
 #
 # MAKE SURE TO UPDATE
-devtools::install_github("sprfmo/jjmr")
+# devtools::install_github("sprfmo/jjmr")
 
 library(jjmR)
 
@@ -15,32 +15,33 @@ library(jjmR)
 # setwd(file.path(getwd(), "assessment"))
 pwd <- getwd()
 if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
-  stop(paste("Set working directory to assessment folder in jjm"))
+  stop(paste("Set working directory to jjm/assessment"))
 }
-source("R/rename.R")
+source("R/rename.R") # add this to jjmR package
 
 #-------------------------
 # Model configuration runs
 #-------------------------
 
 # Check models are the same
-
-#mod0.00 <- runit("mod0.00",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-mod0.00 <- readJJM("mod0.00", path = "config", input = "input")
-setwd("SC06")
-mod2018 <- readJJM("mod1.5", path = "config", input = "input")
+hyp <- "h1"
+geth <- function(mod,h=hyp) paste0(h,"_", mod)
+mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
+setwd("../../jjm_2019/assessment/SC07")
+mod_prev <- readJJM(geth("1.00"), path = "config", input = "input")
 setwd(pwd)
 
-oldnewMods <- combineModels(mod0.00,mod2018)
-plot(mod0.00,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(mod0.00,combine=T,what="biomass",stack=F,main="Biomass")
-plot(mod0.00,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+oldnewMods <- combineModels(mod0.00,mod_prev)
+plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
+plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 
 #----------------
 # Data increments
 #----------------
-# mod0.01 <- runit("mod0.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.01 <- runit("h1_0.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.02 <- runit("mod0.02",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.03 <- runit("mod0.03",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.04 <- runit("mod0.04",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
@@ -59,27 +60,27 @@ plot(mod0.00,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 # mod0.17<- runit("mod0.17",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.18<- runit("mod0.18",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
-mod0.00 <- readJJM("mod0.00", path = "config", input = "input")
-mod0.01 <- readJJM("mod0.01", path = "config", input = "input")
-mod0.02 <- readJJM("mod0.02", path = "config", input = "input")
-mod0.03 <- readJJM("mod0.03", path = "config", input = "input")
-mod0.04 <- readJJM("mod0.04", path = "config", input = "input")
-mod0.05 <- readJJM("mod0.05", path = "config", input = "input")
-mod0.06 <- readJJM("mod0.06", path = "config", input = "input")
-mod0.07 <- readJJM("mod0.07", path = "config", input = "input")
-mod0.08 <- readJJM("mod0.08", path = "config", input = "input")
-mod0.09 <- readJJM("mod0.09", path = "config", input = "input")
-mod0.10 <- readJJM("mod0.10", path = "config", input = "input")
-mod0.11 <- readJJM("mod0.11", path = "config", input = "input")
-mod0.12 <- readJJM("mod0.12", path = "config", input = "input")
-mod0.13 <- readJJM("mod0.13", path = "config", input = "input")
-mod0.14 <- readJJM("mod0.14", path = "config", input = "input")
-mod0.15 <- readJJM("mod0.15", path = "config", input = "input")
-mod0.16 <- readJJM("mod0.16", path = "config", input = "input")
-mod0.17 <- readJJM("mod0.17", path = "config", input = "input")
-mod0.18 <- readJJM("mod0.18", path = "config", input = "input")
+mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
+mod0.01 <- readJJM(geth("0.01"), path = "config", input = "input")
+mod0.02 <- readJJM(geth("0.02"), path = "config", input = "input")
+mod0.03 <- readJJM(geth("0.03"), path = "config", input = "input")
+mod0.04 <- readJJM(geth("0.04"), path = "config", input = "input")
+mod0.05 <- readJJM(geth("0.05"), path = "config", input = "input")
+mod0.06 <- readJJM(geth("0.06"), path = "config", input = "input")
+mod0.07 <- readJJM(geth("0.07"), path = "config", input = "input")
+mod0.08 <- readJJM(geth("0.08"), path = "config", input = "input")
+mod0.09 <- readJJM(geth("0.09"), path = "config", input = "input")
+mod0.10 <- readJJM(geth("0.10"), path = "config", input = "input")
+mod0.11 <- readJJM(geth("0.11"), path = "config", input = "input")
+mod0.12 <- readJJM(geth("0.12"), path = "config", input = "input")
+mod0.13 <- readJJM(geth("0.13"), path = "config", input = "input")
+mod0.14 <- readJJM(geth("0.14"), path = "config", input = "input")
+mod0.15 <- readJJM(geth("0.15"), path = "config", input = "input")
+mod0.16 <- readJJM(geth("0.16"), path = "config", input = "input")
+mod0.17 <- readJJM(geth("0.17"), path = "config", input = "input")
+mod0.18 <- readJJM(geth("0.18"), path = "config", input = "input")
 
-CatchMods <- combineModels(mod0.16,mod0.17,mod0.18)
+CatchMods <- combineModels(mod0.02,mod0.01)
 plot(CatchMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(CatchMods,combine=T,what="biomass",stack=F,main="Biomass")
 plot(CatchMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")

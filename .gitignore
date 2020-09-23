@@ -63,8 +63,9 @@ meval.dat
 sims
 # ss files
 *.ss*
-jjm.Rproj
+*.Rproj
 **/*.exe
 **/.DS_Store
 **/*.cor
 assessment/test/
+assessment/results/

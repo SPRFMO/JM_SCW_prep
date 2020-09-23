@@ -7,20 +7,18 @@ Data files with annotations found in Excel spreadsheet in
 folder. R file to run the models and plot diagnostics can be found in `SC07.R` in 
 [`jjm/assessment/R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R).
 
+Naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
+
 ### Naming convention
 Model      | Description
 -----------|--------------
 **Models 0.x**| **Data introductions**
-mod0.00     | 	Exact 2019 (single stock Ho) model and data set through 2019 (mod??? from SC07)
-mod0.01     | 	as mod0.00 but updated to 2020 and catches
+0.00     | 	Exact 2019 (single stock H1) model and data set through 2019 (mod1.0 from SC07)
+0.01     | 	Data file as 0.0 with revised catches through 2019 (currently still estimates); 2019 model
+-----------|--------------
+0.* 	|	Remove Chinese CPUE (as opposed to completely downweight)
+1.*		|	Chile CPUE (lognormal vs Tweedie)
 
-**Models 1.x**	|	**Configuration sensitivities**
-mod1.00			|	As mod0.xx? data file but model (i.e., selectivity changes) updated to 2020
-
-mod1.00.ll	 |	As mod1.00 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
-mod1.00.ls	 |	As mod1.00 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
-mod1.00.hl	 |	As mod1.00 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))
-mod1.00.hs	 |	As mod1.00 but **h**igh steepness and **s**hort recruitment time series (2000-2015)
 
 ## 2019 SC07 Model runs
 ### Notes

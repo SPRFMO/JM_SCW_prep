@@ -1,7 +1,7 @@
-#dataFile_2019_final
-mod0.00.dat 
+#dataFile
+0.01.dat 
 #modelName 
-Model_1.0 
+Model_h1.0.01
 #nStocks 
 1 
 #nameStock 
