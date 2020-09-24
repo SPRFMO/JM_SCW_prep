@@ -612,7 +612,7 @@ DATA_SECTION
   {
     for (r=2;r<=nreg(s);r++)
     {
-      for (i=reg_shift(s,r-1);i<=endyr+nproj_yrs;i++)
+      for (i=reg_shift(s,r-1);i<=endyr+1;i++)
       {
         yy_sr(s,i) = r;
       }
@@ -1644,12 +1644,12 @@ PARAMETER_SECTION
   3darray catch_future(1,nstk,1,4,styr_fut,endyr_fut); // Note, don't project for F=0 (it will bomb)
   //sdreport_matrix SSB_fut(1,5,styr_fut,endyr_fut) //Ojo
   3darray SSB_fut(1,nstk,1,5,styr_fut,endyr_fut) //Ojo
-  !! int endyr_proj; if (nproj_yrs>0) endyr_proj=endyr+nproj_yrs; else endyr_proj=endyr-1;
-  sdreport_matrix SSB_fut_1(1,nstk,styr_fut,endyr_proj)
-  sdreport_matrix SSB_fut_2(1,nstk,styr_fut,endyr_proj)
-  sdreport_matrix SSB_fut_3(1,nstk,styr_fut,endyr_proj)
-  sdreport_matrix SSB_fut_4(1,nstk,styr_fut,endyr_proj)
-  sdreport_matrix SSB_fut_5(1,nstk,styr_fut,endyr_proj)
+  // !! int endyr_proj; if (nproj_yrs>0) endyr_proj=endyr+nproj_yrs; else endyr_proj=endyr-1;
+  sdreport_matrix SSB_fut_1(1,nstk,styr_fut,endyr_fut)
+  sdreport_matrix SSB_fut_2(1,nstk,styr_fut,endyr_fut)
+  sdreport_matrix SSB_fut_3(1,nstk,styr_fut,endyr_fut)
+  sdreport_matrix SSB_fut_4(1,nstk,styr_fut,endyr_fut)
+  sdreport_matrix SSB_fut_5(1,nstk,styr_fut,endyr_fut)
   !! write_input_log <<"logRzero "<<log_Rzero<<endl;
   !! write_input_log <<"logmeanrec "<<mean_log_rec<<endl;
   !! write_input_log<< "exp(log_sigmarprior "<<exp(log_sigmarprior)<<endl;
@@ -2482,7 +2482,8 @@ FUNCTION Get_Fishery_Predictions
 
 FUNCTION Calc_Dependent_Vars
   get_msy();
-  if (phase_proj>0) Future_projections();
+  if (phase_proj>0) 
+	  Future_projections();
   N_NoFsh.initialize();
   dvar_matrix Nnext(1,nstk,1,nages);
   Nnext.initialize();
@@ -2624,7 +2625,9 @@ FUNCTION evaluate_the_objective_function
   obj_comps(10) = sum(fpen);
   obj_comps(11) = sum(post_priors_indq);
   obj_comps(12) = sum(post_priors);
+	//if (last_phase()) cout<<obj_comps<<endl;
   obj_fun     += sum(obj_comps);
+	//if (last_phase()) cout<<obj_fun<<endl;
 FUNCTION Cat_Like
   // Eases into the catch-biomass likelihoods.  If too far off to start, full constraint to fit can be too aggressive
   catch_like.initialize();
@@ -2684,7 +2687,7 @@ FUNCTION Rec_Like
         {
           if (last_phase())
             pred_rec(s)(yy_shift_st(s,r),yy_shift_end(s,r)) = SRecruit(Sp_Biom(s)(yy_shift_st(s,r)-rec_age,yy_shift_end(s,r)-rec_age).shift(yy_shift_st(s,r))(yy_shift_st(s,r),yy_shift_end(s,r)),cum_regs(s)+r)(yy_shift_st(s,r),yy_shift_end(s,r));
-          else 
+          else
             pred_rec(s)(yy_shift_st(s,r),yy_shift_end(s,r)) = .1+SRecruit(Sp_Biom(s)(yy_shift_st(s,r)-rec_age,yy_shift_end(s,r)-rec_age).shift(yy_shift_st(s,r))(yy_shift_st(s,r),yy_shift_end(s,r)),cum_regs(s)+r)(yy_shift_st(s,r),yy_shift_end(s,r));
         }
       }
@@ -2712,6 +2715,7 @@ FUNCTION Rec_Like
           int istk = stk_reg_map(1,r);
           int ireg = stk_reg_map(2,r);
           rec_like(istk,1) += (SSQRec(r)+ m_sigmarsq(r)/2.)/(2*sigmarsq(r)) + nrecs_est_shift(r)*log_sigmar(rec_map(istk,ireg)); 
+					//  cout <<"Rl1 "<<rec_like(istk,1)<<endl;
         }
       else
         for (r=1;r<=nregs;r++)
@@ -2748,6 +2752,7 @@ FUNCTION Rec_Like
               rec_like(s,4) += .5*norm2( rec_dev(s)(yr_rec_est(iregs,j)+1,yr_rec_est(iregs,j+1)-1) )/sigmarsq(iregs) + ((yr_rec_est(iregs,j+1)-1)-(yr_rec_est(iregs,j)+1))*log(sigmar(rec_map(s,r))) ;
           }
         }
+				// cout <<"Rl4 "<<rec_like(s,4)<<endl;
       }
     }
     else // JNI comment next line
@@ -2761,7 +2766,6 @@ FUNCTION Rec_Like
         }
       }
     }
-
     for (s=1;s<=nstk;s++)
     {
       rec_like(s,2) += norm2( rec_dev(s)(styr_rec_est(s,1),endyr) ) ;
@@ -2777,6 +2781,7 @@ FUNCTION Rec_Like
       }
     }
   }
+
 FUNCTION Compute_priors
   post_priors.initialize();
   post_priors_indq.initialize();
@@ -3058,7 +3063,8 @@ FUNCTION Oper_Model
         Z_future(s,i)   = F_future(1,i) + mean(M(s));
         S_future(s,i)   = mfexp(-Z_future(s,i));
         // Jim removed cumulative regimes from future projections
-        nage_future(s,i,1)  = SRecruit( Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,i) ) * mfexp(rec_dev_future(s,i)) ;     
+        nage_future(s,i,1)  = SRecruit( Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,i) );
+				//nage_future(s,i,1) *= mfexp(rec_dev_future(s,i)) ;     
         // nage_future(s,i,1)  = SRecruit( Sp_Biom_future(s,i-rec_age),cum_regs(s)) * mfexp(rec_dev_future(s,i)) ;     
         //nage_future(s,i,1)  = SRecruit( Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,i) ) * mfexp(rec_dev_future(s,i)) ;     
         Sp_Biom_future(s,i) = wt_mature(s) * elem_prod(nage_future(s,i),pow(S_future(s,i),spmo_frac)) ;
@@ -3109,7 +3115,8 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
     seltmp.initialize();
     for (k=1;k<=nfsh;k++) seltmp(k) = (sel_fsh(k,endyr));
 
-    for (k=1;k<=nfsh;k++) F_fut_tmp(k) = F(k,endyr);
+    for (k=1;k<=nfsh;k++) F_fut_tmp(k) = 0.05;//  F(k,endyr);
+		/*
     switch (iscenario)
     {
       case 1:
@@ -3149,19 +3156,20 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
         f_tmp = 0.0;
         F_fut_tmp = 0.0;
         break;
-      /* case 6:
+      // case 6:
       // 15% increase...but doesn't seem to be working yet...
-        p_lastyr.initialize();
-        for (int k=1;k<=nfsh;k++) p_lastyr(k) = catch_lastyr(k)/sum(catch_lastyr) ;
-        catch_lastyr = p_lastyr * 680. ; //591+0.15* 591.; OjO THIS NEEDS CHANGING AFTER 2019...
-        f_tmp.initialize();
-        f_tmp = SolveF2(endyr, catch_lastyr ,s);
-        for (int k=1;k<=nfsh;k++) 
-          F_fut_tmp(k) = f_tmp(k)*seltmp(k);
-        cout<<catch_lastyr<<endl;// <<F_fut_tmp<<endl;exit(1);
-        break;
-        */
+        //p_lastyr.initialize();
+        //for (int k=1;k<=nfsh;k++) p_lastyr(k) = catch_lastyr(k)/sum(catch_lastyr) ;
+        //catch_lastyr = p_lastyr * 680. ; //591+0.15* 591.; OjO THIS NEEDS CHANGING AFTER 2019...
+        //f_tmp.initialize();
+        //f_tmp = SolveF2(endyr, catch_lastyr ,s);
+        //for (int k=1;k<=nfsh;k++) 
+          //F_fut_tmp(k) = f_tmp(k)*seltmp(k);
+        //cout<<catch_lastyr<<endl;// <<F_fut_tmp<<endl;exit(1);
+        //break;
+        
     }
+		*/
     Z_future(s,i) = M(s,endyr);
     for (k=1;k<=nfsh;k++)
     {
@@ -3190,24 +3198,32 @@ FUNCTION Future_projections
     {
      // Future Sp_Biom set equal to estimated Sp_Biom w/ right lag
       // Sp_Biom_future(s)(styr_fut-rec_age,styr_fut-1) = Sp_Biom(s)(endyr-rec_age+1,endyr);
+	/*
+	*/
       for (i=styr_fut-rec_age;i<styr_fut;i++)
+			{
         Sp_Biom_future(s,i) = wt_mature(s) * elem_prod(natage(s,i),pow(S(s,i),spmo_frac)) ;
+				// cout << i<<" "<<Sp_Biom_future(s,i)<<endl;
+			}
 
       nage_future(s,styr_fut)(2,nages) = ++elem_prod(natage(s,endyr)(1,nages-1),S(s,endyr)(1,nages-1));
-      nage_future(s,styr_fut,nages)  += natage(s,endyr,nages)*S(s,endyr,nages);
+      nage_future(s,styr_fut,nages)   += natage(s,endyr,nages)*S(s,endyr,nages);
       Sp_Biom_future(s,styr_fut)       = wt_mature(s) * elem_prod(nage_future(s,styr_fut),pow(S_future(s,styr_fut),spmo_frac)) ;
       // Future Recruitment (and Sp_Biom)
       for (i=styr_fut;i<endyr_fut;i++)
       {
-        nage_future(s,i,1)  = SRecruit( Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,endyr) ) * mfexp(rec_dev_future(s,i)) ;     
+        nage_future(s,i,1)  = SRecruit( Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,endyr) ) ;     
+				//nage_future(s,i,1) *= mfexp(rec_dev_future(s,i)) ;     
         get_future_Fs(s,i,iscen);
         // Now graduate for the next year....
         nage_future(s,i+1)(2,nages) = ++elem_prod(nage_future(s,i)(1,nages-1),S_future(s,i)(1,nages-1));
         nage_future(s,i+1,nages)   += nage_future(s,i,nages)*S_future(s,i,nages);
         Sp_Biom_future(s,i) = wt_mature(s) * elem_prod(nage_future(s,i),pow(S_future(s,i),spmo_frac)) ;
       }
-      nage_future(s,endyr_fut,1)  = SRecruit( Sp_Biom_future(s,endyr_fut-rec_age),cum_regs(s)+yy_sr(s,endyr) ) * mfexp(rec_dev_future(s,endyr_fut)) ;     
+      nage_future(s,endyr_fut,1)  = SRecruit( Sp_Biom_future(s,endyr_fut-rec_age),cum_regs(s)+yy_sr(s,endyr) ) ;     
+		  //nage_future(s,endyr_fut,1) *= mfexp(rec_dev_future(s,endyr_fut)) ;     
       get_future_Fs(s,endyr_fut,iscen);
+
       Sp_Biom_future(s,endyr_fut)  = wt_mature(s) * elem_prod(nage_future(s,endyr_fut),pow(S_future(s,endyr_fut),spmo_frac)) ;
       if (iscen==1)
       {
@@ -3259,14 +3275,10 @@ FUNCTION Future_projections
           case 5:
             SSB_fut_5(s,i) = Sp_Biom_future(s,i);
             break;
-          /* case 6:
-            SSB_fut_6(s,i) = Sp_Biom_future(s,i);
-            break;
-            */
         }
       }
     }   //End of loop over F's
-    Sp_Biom(s,styr_fut) = Sp_Biom_future(s,styr_fut);
+    // Sp_Biom(s,styr_fut) = Sp_Biom_future(s,styr_fut);
   }
 
 FUNCTION get_msy
@@ -3852,7 +3864,7 @@ FUNCTION write_mceval_hdr
 
 //+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+ 
 REPORT_SECTION
-  if (last_phase())
+	if (last_phase())
   {
     save_gradients(gradients);
     int nvar1=initial_params::nvarcalc(); // get the number of active parameters
@@ -3926,6 +3938,8 @@ REPORT_SECTION
     // log_param(sel50_ind);
     // log_param(seld50_ind);
   }
+  /* 
+  */ 
     
   if (oper_mod)
     Oper_Model();
