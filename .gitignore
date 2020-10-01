@@ -69,3 +69,5 @@ sims
 **/*.cor
 assessment/test/
 assessment/results/
+assessment/R/SC08.rmd
+assessment/R/SC08.html

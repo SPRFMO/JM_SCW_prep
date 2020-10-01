@@ -54,7 +54,6 @@ mod1.00.hl	 |	As mod1.00 (i.e., **h**igh steepness and **l**ong recruitment time
 mod1.00.hs	 |	As mod1.00 but **h**igh steepness and **s**hort recruitment time series (2000-2015)
 
 
-=================================
 ## 2018 SC06 Model runs
 ### Notes
 Data files with annotations found in Excel spreadsheet in [`jjm/data`](https://www.github.com/SPRFMO/jjm/data/) folder. R file to run the models and plot diagnostics can be found in `SC06.R` in [`jjm/R`](https://www.github.com/SPRFMO/jjm/R/).
