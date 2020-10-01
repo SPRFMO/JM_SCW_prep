@@ -14,7 +14,11 @@ Model      | Description
 -----------|--------------
 **Models 0.x**| **Data introductions**
 0.00     | 	Exact 2019 (single stock H1) model and data set through 2019 (mod1.0 from SC07)
-0.01     | 	Data file as 0.0 with revised catches through 2019 (currently still estimates); 2019 model
+0.01     | 	Data file as 0.00 with revised catches through 2019 (currently still estimates)
+0.02     | 	Updated 2019 fishery age composition and weight-at-age for N_Chile, SC_Chile, and Offshore_Trawl
+0.03     | 	Updated 2019 fishery length composition for FarNorth
+0.04     | 	Updated Offshore CPUE Index to 2019
+0.05     | 	Update catch to projected 2020 estimates
 -----------|--------------
 0.* 	|	Remove Chinese CPUE (as opposed to completely downweight)
 1.*		|	Chile CPUE (lognormal vs Tweedie)
