@@ -4,7 +4,7 @@ Jack mackerel assessment
 ### Notes
 Data files with annotations found in Excel spreadsheet in 
 [`SPRFMO Teams/sharepoint`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE) 
-folder. R file to run the models and plot diagnostics can be found in `SC07.R` in 
+folder. R file to run the models and plot diagnostics can be found in `SC08.R` in 
 [`jjm/assessment/R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R).
 
 Naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
@@ -13,12 +13,21 @@ Naming conventions have been changed to reflect the stock structure hypotheses a
 Model      | Description
 -----------|--------------
 **Models 0.x**| **Data introductions**
-0.00     | 	Exact 2019 (single stock H1) model and data set through 2019 (mod1.0 from SC07)
+0.00     | 	Exact 2019 (single stock `h1` and two-stock `h2`) model and data set through 2019 (mod1.0 from SC07)
 0.01     | 	Data file as 0.00 with revised catches through 2019 (currently still estimates)
-0.02     | 	Updated 2019 fishery age composition and weight-at-age for N_Chile, SC_Chile, and Offshore_Trawl
-0.03     | 	Updated 2019 fishery length composition for FarNorth
-0.04     | 	Updated Offshore CPUE Index to 2019
-0.05     | 	Update catch to projected 2020 estimates
+0.02     | 	Update 2019 fishery age composition and weight-at-age for N_Chile, SC_Chile (+CPUE), and Offshore_Trawl (+CPUE)
+0.03     | 	Update 2019 fishery length composition for FarNorth
+0.04     | 	Update Offshore CPUE Index to 2019
+0.05     | 	Update catches to projected 2020 estimates; 2019 CTL file
+0.06     | 	Update 2020 fishery age composition and weight-at-age for N_Chile and SC_Chile (+CPUE)
+0.07     | 	Update 2020 fishery length composition for FarNorth
+0.08	 |	Update 2020 Chile_AcousN index, age composition, and weight-at-age
+0.09     | 	Replace SC_Chile_CPUE index
+0.10     | 	Replace Peru_CPUE index
+0.11     | 	Correct Chile_AcousN 2018 data point
+-----------|--------------
+**Models 1.x**| **Control file configurations**
+1.00     | 	Update model (selectivity changes, recruitment) to 2020
 -----------|--------------
 0.* 	|	Remove Chinese CPUE (as opposed to completely downweight)
 1.*		|	Chile CPUE (lognormal vs Tweedie)
@@ -48,7 +57,7 @@ mod0.13		|	As 0.12 but with updated Chile CPUE weight-at-age
 mod0.14		|	As 0.13 but with updated Peru CPUE weight-at-age
 mod0.15		|	As 0.14 but with updated Offshore CPUE weight-at-age
 mod0.16		|	As 0.15 but with updated FarNorth length composition data (to 2019)
-mod0.17		|	As 0.16 but with averaged weight-at-age data for 2015 SC_Chile (avg(2014,2016)), and 2015 (avg(2014,2016)) and 2018/2018 (avg(2014,2016,2017)) Offshore
+mod0.17		|	As 0.16 but with averaged weight-at-age data for 2015 SC_Chile (avg(2014,2016)), and 2015 (avg(2014,2016)) and 2018/2019 (avg(2014,2016,2017)) Offshore
 mod0.18		|	As 0.17 but with downweighted (/10) age composition data for 2015 SC_Chile, and 2015+2018 Offshore
 **Models 1.x**	|	**Configuration sensitivities**
 mod1.00			|	As mod0.17 data file but model (i.e., selectivity changes) updated to 2019

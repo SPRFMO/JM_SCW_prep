@@ -6,6 +6,7 @@
 #
 # MAKE SURE TO UPDATE
 # devtools::install_github("sprfmo/jjmr")
+# Remember to recompile jjms as needed
 
 library(jjmR)
 
@@ -24,7 +25,7 @@ geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 #-------------------------
 
 # Check models are the same
-hyp <- "h1"
+hyp <- "h2"
 
 # mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
@@ -41,17 +42,17 @@ plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 #----------------
 # Data increments
 #----------------
-# mod0.01 <- runit(geth("0.01"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.02 <- runit(geth("0.02"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.03 <- runit(geth("0.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.04 <- runit(geth("0.04"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.05 <- runit(geth("0.05"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.06 <- runit(geth("0.06"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.07 <- runit(geth("0.07"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.08 <- runit(geth("0.08"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.09 <- runit(geth("0.09"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.10<- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.11<- runit(geth("0.11"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.01 <- runit(geth("0.01"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.02 <- runit(geth("0.02"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.03 <- runit(geth("0.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.04 <- runit(geth("0.04"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.05 <- runit(geth("0.05"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.06 <- runit(geth("0.06"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.07 <- runit(geth("0.07"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.08 <- runit(geth("0.08"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.09 <- runit(geth("0.09"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.11 <- runit(geth("0.11"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.12<- runit(geth("0.12"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.13<- runit(geth("0.13"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.14<- runit(geth("0.14"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
@@ -81,10 +82,10 @@ plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 # mod0.18 <- readJJM(geth("0.18"), path = "config", input = "input")
 
 
-CatchMods <- combineModels(mod0.00,mod0.01)
-plot(temp,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(temp,combine=T,what="biomass",stack=F,main="Biomass")
-plot(temp,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+CatchMods <- compareModels(geth(c("0.00","0.01")))
+plot(CatchMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+plot(CatchMods,combine=T,what="biomass",stack=F,main="Biomass")
+plot(CatchMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 Dat2018 <- combineModels(mod0.01,mod0.02,mod0.03,mod0.04,mod0.05,mod0.06)
 plot(Dat2018,combine=T,what="recruitment",stack=F,main="Recruitment")
@@ -122,7 +123,7 @@ dev.off()
 #--------------------
 # Full model
 #--------------------
-# mod1.00 <- runit("mod1.00",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod1.00 <- runit(geth("1.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 mod1.00 <- readJJM("mod1.00", path = "config", input = "input")
 
