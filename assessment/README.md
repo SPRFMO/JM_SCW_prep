@@ -2,7 +2,7 @@ Jack mackerel assessment
 =================================
 ## 2020 SC08 Model runs
 ### Notes
-Data files with annotations found in Excel spreadsheet in 
+Data files with annotations found in the Excel spreadsheet `JM Data files for SC08.xlsx` on 
 [`SPRFMO Teams/sharepoint`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE) 
 folder. R file to run the models and plot diagnostics can be found in `SC08.R` in 
 [`jjm/assessment/R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R).
@@ -19,18 +19,19 @@ Model      | Description
 0.03     | 	Update 2019 fishery length composition for FarNorth
 0.04     | 	Update Offshore CPUE Index to 2019
 0.05     | 	Update catches to projected 2020 estimates; 2019 CTL file
-0.06     | 	Update 2020 fishery age composition and weight-at-age for N_Chile and SC_Chile (+CPUE)
+0.06     | 	Update 2020 fishery age composition and weight-at-age for N_Chile and SC_Chile (+CPUE); downweighted
 0.07     | 	Update 2020 fishery length composition for FarNorth
 0.08	 |	Update 2020 Chile_AcousN index, age composition, and weight-at-age
-0.09     | 	Replace SC_Chile_CPUE index
+0.09     | 	Replace SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.10     | 	Replace Peru_CPUE index
 0.11     | 	Correct Chile_AcousN 2018 data point
+0.12     | 	2019/2020 N_Chile weight-at-age set to mean(2016,2017,2018)
 -----------|--------------
-**Models 1.x**| **Control file configurations**
+**Models 1.x**| **Updated Model and Sensitivities**
 1.00     | 	Update model (selectivity changes, recruitment) to 2020
+1.01    | 	Replace SC_Chile_CPUE with CPUE index by set
 -----------|--------------
 0.* 	|	Remove Chinese CPUE (as opposed to completely downweight)
-1.*		|	Chile CPUE (lognormal vs Tweedie)
 
 
 ## 2019 SC07 Model runs

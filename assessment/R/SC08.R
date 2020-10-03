@@ -25,7 +25,7 @@ geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 #-------------------------
 
 # Check models are the same
-hyp <- "h2"
+hyp <- "h1"
 
 # mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
@@ -53,7 +53,7 @@ plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
  mod0.09 <- runit(geth("0.09"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
  mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
  mod0.11 <- runit(geth("0.11"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.12<- runit(geth("0.12"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+ mod0.12 <- runit(geth("0.12"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.13<- runit(geth("0.13"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.14<- runit(geth("0.14"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.15<- runit(geth("0.15"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
@@ -87,38 +87,7 @@ plot(CatchMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(CatchMods,combine=T,what="biomass",stack=F,main="Biomass")
 plot(CatchMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
-Dat2018 <- combineModels(mod0.01,mod0.02,mod0.03,mod0.04,mod0.05,mod0.06)
-plot(Dat2018,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(Dat2018,combine=T,what="biomass",stack=F,main="Biomass")
-plot(Dat2018,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
-Dat2019 <- combineModels(mod0.06,mod0.07,mod0.08,mod0.09,mod0.10,mod0.11,mod0.12)
-plot(Dat2019,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(Dat2019,combine=T,what="biomass",stack=F,main="Biomass")
-plot(Dat2019,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-
-WtAtAgeMods <- combineModels(mod0.12,mod0.13,mod0.14,mod0.15)
-plot(WtAtAgeMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(WtAtAgeMods,combine=T,what="biomass",stack=F,main="Biomass")
-plot(WtAtAgeMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-
-AvgWtAtAgeMods <- combineModels(mod0.16,mod0.17,mod0.18)
-plot(AvgWtAtAgeMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(AvgWtAtAgeMods,combine=T,what="biomass",stack=F,main="Biomass")
-plot(AvgWtAtAgeMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-
-AllDatMods <- combineModels(mod0.00,mod0.01,mod0.02,mod0.03,mod0.04,mod0.05,mod0.06,mod0.07,mod0.08,mod0.09,mod0.10,mod0.11,mod0.12,mod0.13,mod0.14,mod0.15,mod0.16,mod0.17,mod0.18)
-plot(AllDatMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(AllDatMods,combine=T,what="biomass",stack=F,main="Biomass")
-plot(AllDatMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-
-FinalDatMods <- combineModels(mod0.00,mod0.17)
-dims <- c(7,9)
-pdf(file.path("results", "UpdatedDat.pdf"), height = dims[1],width = dims[2])
-plot(FinalDatMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(FinalDatMods,combine=T,what="biomass",stack=F,main="Biomass")
-plot(FinalDatMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-dev.off()
 
 #--------------------
 # Full model
