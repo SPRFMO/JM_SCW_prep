@@ -431,7 +431,7 @@ plot(Dat_Fix,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ## Averaging Weight-at-Age
-Using the average weights-at-age of 2016, 2017, and 2018 for N_Chile for 2019 and 2020 to account for low sample sizes in those years. Made no difference, really, so keep these changes.
+Using the average weights-at-age of 2016, 2017, and 2018 for N_Chile for 2019 and 2020 to account for low sample sizes in those years. Made no difference, really, so discard these changes, and discard this model run.
 
 ```{r}
 mods2compare <- c("0.11","0.12")
@@ -501,7 +501,7 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 This just shows the final data update, using the exact same model (i.e., with the same control files).
 
 ```{r}
-mods2compare <- c("0.00","0.12")
+mods2compare <- c("0.00","0.11")
 ```
 ### Single-stock hypothesis {.tabset}
 #### Biomass
