@@ -25,7 +25,6 @@ assessment/jjm
 *.tex.bak
 auto/
 # jjm files
-#*.yld
 *.prj
 assessment/arc/*
 # R files
@@ -40,7 +39,7 @@ Rplots.pdf
 # ADMB standard output files
 *.b0*
 *.bar
-#*.cor
+*.cor
 *.cov
 *.dep
 *.ecm
@@ -52,6 +51,7 @@ Rplots.pdf
 *.p0*
 *.psv
 *.hst
+*.pdf
 #*.par
 #*.rep
 *.r0*
@@ -68,5 +68,7 @@ sims
 **/.DS_Store
 **/*.cor
 assessment/test/
-assessment/results/
+!*.yld
+!*.R.rep
+!*.par
 assessment/R/SC08.html
