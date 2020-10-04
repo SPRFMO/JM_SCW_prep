@@ -3147,10 +3147,9 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
       case 4:
         // for (int k=1;k<=nfsh;k++) f_tmp(k) = .25*mean(F(k,endyr));
         // F_fut_tmp *= 0.5;
-        f_tmp = F35;
         // ftmp2 = SolveF3(endyr, nage_future(1,i), 1150., 1);
-        for (k=1;k<=nfsh;k++)
-          F_fut_tmp(k) = f_tmp(k)*Fratio(k)*sel_fsh(k,endyr);
+        // for (k=1;k<=nfsh;k++) F_fut_tmp(k) = f_tmp(k)*Fratio(k)*sel_fsh(k,endyr);
+        for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = seltmp(k)*Fratio(k)*Fmsy(s); // mean(F(k,endyr));
         break;
 		/*
 		*/
