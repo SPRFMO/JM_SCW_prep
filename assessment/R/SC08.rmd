@@ -66,6 +66,10 @@ library(jjmR)
 library(tidyverse)
 library(kableExtra)
 
+# MP note: normally I never use setwd in rmarkdown because it has unexpected behaviour. 
+# I thought you would always end up in the jjm rootdirectory if you start up the markdown file?
+# I cannot change the working directory by using setwd() ??
+
 pwd <- getwd()
 if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
   stop(paste("Set working directory to jjm/assessment"))
