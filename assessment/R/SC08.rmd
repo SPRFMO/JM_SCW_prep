@@ -45,7 +45,9 @@ Model      | Description
 0.12     | 	2019/2020 N_Chile weight-at-age set to mean(2016,2017,2018)
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00     | 	Update model (selectivity changes, recruitment) to 2020
+1.00     | 	Update model (selectivity changes, recruitment) to 2020; 0.11 data file
+-----------|--------------
+**Models 1.x**| **For Benchmark**
 1.01    | 	Replace SC_Chile_CPUE with CPUE index by set
 
 Make sure that the `jjmR` package is updated with `devtools::install_github("SPRFMO/jjmR")`. `jjms` will need to be updated as well if you decide to run the models on your own.
@@ -654,9 +656,11 @@ plot(New_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 # Other Business
 ## General
 * Reweighting of data for Chile CPUE, Offshore CPUE?
+	- Use sample sizes to weight the age data
 * Age-0 data
 * Where to store results? Push to Github?
 * Anything that stands out? Any particularly egregious errors?
+* How to do projection for h2?
 
 ## Other models to run
 * Remove Chinese CPUE (as opposed to completely downweight)

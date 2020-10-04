@@ -1,7 +1,5 @@
-#dataFile_2019_final
-0.00.dat 
-#modelName 
-Model_h1.0.00 
+0.00.dat
+h1_0.00 # As model 1.0 from SC07
 #	Number	of	stocks
 1
 #	Names	of	stocks
