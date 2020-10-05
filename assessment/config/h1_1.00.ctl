@@ -1,5 +1,5 @@
 1.00.dat
-h1_1.00 # As model 1.0 from SC07
+h1_1.00 # Updated model for SC08
 #	Number	of	stocks
 1
 #	Names	of	stocks
