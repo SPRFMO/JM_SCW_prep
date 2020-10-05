@@ -1,0 +1,548 @@
+---
+output: 
+  word_document:
+    reference_docx:  report_template_v1.7.dotx
+---
+
+```{r setup, include=FALSE}
+
+# ==================================================================
+# SPRFMO Catch template reader (SC8 2020)
+#
+# 11/10/2019: first coding
+# 03/10/2020: finalized coding for 2019 and 2020 data
+# 04/10/2020: also available for earlier data now
+# 05/10/2020: uploaded to jjm github
+# ==================================================================
+
+# Reset lists
+# rm(list=ls())
+
+# general libraries
+library(readxl)        # excel reader from hadley; much quicker than the java based excel readers
+library(lubridate)     # data and time functions
+library(stringr)       # string manipulation
+library(pander)        # for tables
+library(reshape2)      # cast and melt dataframes
+library(scales)        # pretty scales
+library(tidyverse)     # data manipulation and piping
+
+# source utilities
+source("my utils.R")
+
+# 2017
+# data_path <- "D:/Dropbox/jurel/archiv/SC06_2018/Assessment data for CJM/ALK2017"
+# fn        <- "ALK data 2017 SC6.RData"
+
+# 2018
+# data_path <- "D:/Dropbox/jurel/SC07_2019/Assessment data for CJM/ALK2018"
+# fn        <- "ALK data 2018 SC7.RData"
+
+# 2019
+data_path <- file.path("C:/Users/Martin Pastoors/PFA/SPRFMO SC8 - Documents/Jack Mackerel/04 Data/ALK2019")
+fn        <- "ALK data 2019 SC8.RData"
+
+# Create file list for import 
+file.list   <- c(
+  list.files(path = data_path,recursive  = FALSE,pattern = "xls",full.names = TRUE,ignore.case= TRUE) )
+# file.list   <- c(
+#   list.files(path = "C:/Users/Martin Pastoors/PFA/SPRFMO SC8 - Documents/Jack Mackerel/04 Data/ALK2019",
+#              recursive  = FALSE,pattern = "xls",full.names = TRUE,ignore.case= TRUE),
+#   list.files(path = "C:/Users/Martin Pastoors/PFA/SPRFMO SC8 - Documents/Jack Mackerel/04 Data/ALK2019",
+#              recursive  = FALSE,pattern = "xls",full.names = TRUE,ignore.case= TRUE) )
+file.list <- file.list[!grepl("\\~",file.list)]
+
+
+# read_catch function -------------------------------------------------------------------
+# i <- 5
+# ws<-"catch data"
+
+read_catch <- function(file, ws, member, species, year) {
+  
+  t1 <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "B12:M13")) %>% 
+    t() %>% 
+    data.frame(stringsAsFactors = FALSE) %>%
+    setNames(c("quarter", "year")) %>% 
+    mutate(quarter = as.numeric(stringr::str_match_all(quarter, "[0-9]+")) ) %>%
+    zoo::na.locf(.)                       # fill the empty values with previous values
+  
+  t <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "B15:M20", .name_repair = "minimal")) %>% 
+    t() %>% 
+    data.frame(stringsAsFactors = FALSE) %>% 
+    setNames(c("variable","unit","F1","F2","F3","F4")) %>%
+    bind_cols(t1) %>% 
+    gather(key=fleet, value=value, 3:6) %>% 
+    filter(!is.na(value)) %>% 
+    mutate(unit = gsub("[[:punct:]]", "", tolower(unit))) %>% 
+    mutate(variable = tolower(variable)) %>% 
+    mutate(member=member, species=species, year=as.integer(year), file=basename(file))  %>% 
+    mutate(value = as.numeric(value))
+  
+
+  # generate dataframe is not all empty
+  if (nrow(t) > 0) {
+    print(ws)
+    return(t)
+  }
+  
+} # end of function
+
+# i <- 1
+# ws = "sampling"
+# file = file.list[i]
+
+# read_sampling function -------------------------------------------------------------------
+
+read_sampling <- function(file, ws, member, species, year) {
+  
+  t1 <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "B8:Q8")) %>% 
+    t() %>% 
+    data.frame(stringsAsFactors = FALSE) %>%
+    setNames(c("quarter")) %>%
+    mutate(quarter = as.numeric(stringr::str_match_all(quarter, "[0-9]+")),
+           quarter = ifelse(quarter > 4, NA, quarter),
+           year    = year) %>%
+    zoo::na.locf(.)                        # fill the empty values with previous values
+
+  t <- 
+    read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "B9:Q14", .name_repair = "minimal") %>% 
+    t() %>% 
+    data.frame(stringsAsFactors = FALSE) %>% 
+    setNames(c("variable","unit","F1","F2","F3","F4")) %>%
+    bind_cols(t1) %>% 
+    gather(key=fleet, value=value, 3:6) %>% 
+    mutate(unit = gsub("[[:punct:]]", "", tolower(unit))) %>% 
+    mutate(member=member, species=species, year=year, file=basename(file))  %>% 
+    filter(!is.na(value)) %>% 
+    mutate(value = as.numeric(value))
+  
+  # generate dataframe is not all empty
+  if (nrow(t) > 0) {
+    print(ws)
+    return(t)
+  }
+  
+} # end of function
+
+# read_length function -------------------------------------------------------------------
+
+read_length <- function(file, ws, member, species, year) {
+  
+  # fleet      <- gsub("LEN ","", ws)
+  fleet      <- stringr::word(ws, 2)
+  lengthtype <- as.character(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "A8", .name_repair = "minimal"))
+  lengthunit <- as.character(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "A9", .name_repair = "minimal"))
+  unit       <- as.character(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "F5", .name_repair = "minimal"))
+
+  t <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "A10:E109", .name_repair = "minimal")) %>% 
+    setNames(c("length","quarter1","quarter2","quarter3","quarter4")) %>%
+    gather(key=quarter, value=value, quarter1:quarter4) %>% 
+    mutate(member=member, species=species, year=year, file=basename(file), fleet=fleet, unit=unit,
+           lengthtype=lengthtype, lengthunit = lengthunit)  %>% 
+    mutate(quarter = as.numeric(stringr::str_match_all(quarter, "[0-9]+")) ) %>%
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) %>% 
+    mutate(length  = as.numeric(length)) %>% 
+    mutate(unit = gsub("[[:punct:]]", "", tolower(unit))) %>% 
+    mutate(lengthunit = gsub("[[:punct:]]", "", tolower(lengthunit))) %>% 
+    filter(!is.na(value)) %>% 
+    
+    mutate(value = ifelse(unit == "individuals", value/1000, value),
+           unit  = ifelse(unit == "individuals", "thousands", unit)) %>% 
+    mutate(value = ifelse(unit == "millions", value*1000, value),
+           unit  = ifelse(unit == "millions", "thousands", unit)) %>%
+    
+    group_by(member, fleet, species, year, quarter, lengthtype) %>% 
+    arrange(member, fleet, species, year, quarter, lengthtype, length) %>% 
+    mutate(prop = value / sum(value)) %>% 
+    mutate(cumvalue = cumsum(value),
+           cumprop = cumsum(prop)) %>% 
+    ungroup()
+  
+  
+  # generate dataframe is not all empty
+  if (nrow(t) > 0) {
+    print(ws)
+    return(t)
+  }
+  
+} # end of function
+
+
+# read_alk function -------------------------------------------------------------------
+
+# file       <- file.list[1]
+# worksheets <- excel_sheets(file)
+# ws         <- worksheets[grepl("ALK", worksheets)][1]
+# member     <- as.character(read_excel(file, sheet = 1, col_names = FALSE, col_types = "text", range = "F6"))
+# species    <- as.character(read_excel(file, sheet = 1, col_names = FALSE, col_types = "text", range = "F5"))
+# year       <- as.integer  (read_excel(file, sheet = 1, col_names = FALSE, col_types = "numeric", range = "K3"))
+# i <- 3
+# ws = "ALK F2"
+# file = file.list[i]
+
+read_alk <- function(file, ws, member, species, year) {
+  
+  # fleet      <- gsub("ALK ","", ws)
+  fleet      <- stringr::word(ws, 2)
+  lengthtype <- as.character(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "A10", .name_repair = "minimal") )
+  lengthunit <- as.character(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "A11", .name_repair = "minimal") )
+
+  # ages
+  a <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "B11:N11"))  %>% 
+    mutate_all( ~ paste0("age",.)) %>% 
+    as.character() 
+  
+  t1 <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "A12:N111", .name_repair = "minimal")) %>% 
+    setNames(c("length",all_of(a))) %>%
+    mutate(quarter=1) %>% 
+    gather(key=age, value=value, all_of(a)) %>% 
+    filter(!is.na(value)) %>% 
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) 
+  
+  t2 <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "P12:AC111", .name_repair = "minimal")) %>% 
+    setNames(c("length",all_of(a))) %>%
+    mutate(quarter=2) %>% 
+    gather(key=age, value=value, all_of(a)) %>% 
+    filter(!is.na(value)) %>% 
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) 
+  
+  t3 <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "AE12:AR111", .name_repair = "minimal")) %>% 
+    setNames(c("length",all_of(a))) %>%
+    mutate(quarter=3) %>% 
+    gather(key=age, value=value, all_of(a)) %>% 
+    filter(!is.na(value)) %>% 
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) 
+  
+  t4 <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "AT12:BG111", .name_repair = "minimal")) %>% 
+    setNames(c("length",all_of(a))) %>%
+    mutate(quarter=4) %>% 
+    gather(key=age, value=value, all_of(a)) %>% 
+    filter(!is.na(value)) %>% 
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) 
+
+  t <-
+    bind_rows(t1, t2, t3, t4) %>% 
+    mutate(member=member, species=species, year=year, file=basename(file), fleet=fleet,
+           lengthtype=lengthtype, lengthunit = lengthunit)  %>% 
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) %>% 
+    mutate(length  = as.numeric(length)) %>% 
+    mutate(age     = as.integer(gsub("age","",age))) %>% 
+    mutate(lengthunit = gsub("[[:punct:]]", "", tolower(lengthunit))) %>% 
+    group_by(member, fleet, species, year, quarter, length) %>% 
+    mutate(prop = value / sum(value)) %>% 
+    ungroup()
+    
+
+  # generate dataframe is not all empty
+  if (nrow(t) > 0) {
+    
+    print(ws)
+    return(t)
+  }
+  
+} # end of function
+
+
+# read_canum function -------------------------------------------------------------------
+
+# ws <- "CN F1"
+
+read_canum <- function(file, ws, member, species, year) {
+  
+  # fleet      <- gsub("CN ","", ws)
+  fleet      <- stringr::word(ws, 2)
+  unit       <- as.character(read_excel(file, sheet = ws, col_names = FALSE, col_types = "text", range = "C11:N11", .name_repair = "minimal") )
+  
+  t <- 
+    suppressMessages(read_excel(file, sheet = ws, col_names = FALSE, na="NA", col_types = "text", range = "B12:N24", .name_repair = "minimal")) %>% 
+    setNames(c("age","canum_1","meanlength_1","meanweight_1","canum_2","meanlength_2","meanweight_2",
+                     "canum_3","meanlength_3","meanweight_3","canum_4","meanlength_4","meanweight_4")) %>%
+    mutate(age = as.integer(gsub("\\+","",age))) %>% 
+    pivot_longer(names_to = "tosplit", values_to="value", canum_1:meanweight_4) %>%
+    mutate(unit=rep(unit,13)) %>% 
+    separate(tosplit, into=c("variable","quarter"), sep="_") %>% 
+    filter(!is.na(value)) %>% 
+    mutate(unit = gsub("[[:punct:]]", "", tolower(unit))) %>% 
+    mutate(member=member, species=species, year=year, file=basename(file), fleet=fleet)  %>% 
+    mutate(value   = as.numeric(gsub("\\s+", "", value) )) %>% 
+    
+    mutate(value = ifelse(unit == "individuals", value/1000, value),
+           unit  = ifelse(unit == "individuals", "thousands", unit)) %>% 
+    mutate(value = ifelse(unit == "millions", value*1000, value),
+           unit  = ifelse(unit == "millions", "thousands", unit)) %>%
+    
+    arrange(variable, quarter, age) %>% 
+    ungroup()
+  
+  
+  # generate dataframe is not all empty
+  if (nrow(t) > 0) {
+    
+    print(ws)
+    return(t)
+  }
+  
+} # end of function
+
+
+
+
+# create empty dataframes
+catch <- sampling <- length <- alk <- canum <- data.frame(stringsAsFactors = FALSE)
+
+i    <- 3
+file <- file.list[i]
+# ws   <- "catch data"
+
+# start file reading loop
+for (i in 1:length(file.list)){                                           
+
+  
+  # get name and number of worksheets in the file
+  file        <- file.list[i]
+  worksheets  <- excel_sheets(file)
+  nworksheets <- length(worksheets)
+  
+  print(paste(i, basename(file), sep=" "))
+  
+  # generic information
+  member <- as.character(read_excel(file, sheet = "START HERE", col_names = FALSE, col_types = "text", range = "F6", .name_repair = "minimal"))
+  species<- as.character(read_excel(file, sheet = "START HERE", col_names = FALSE, col_types = "text", range = "F5", .name_repair = "minimal"))
+  year   <- as.integer  (read_excel(file, sheet = "START HERE", col_names = FALSE, col_types = "numeric", range = "K3", .name_repair = "minimal"))
+  
+  # catch
+  for (ws in worksheets[grepl("catch", worksheets)]) {
+    catch <- bind_rows(catch, read_catch(file=file, ws=ws, member=member, species=species, year=year)) }
+  
+  # sampling
+  for (ws in worksheets[grepl("sampling", worksheets)]) {
+    sampling <- bind_rows(sampling, read_sampling(file=file, ws=ws, member=member, species=species, year=year)) }
+
+  # length
+  for (ws in worksheets[grepl("LEN", worksheets)]) {
+    length <- bind_rows(length, read_length(file=file, ws=ws, member=member, species=species, year=year)) }
+
+  # alk
+  for (ws in worksheets[grepl("ALK", worksheets)]) {
+    alk <- bind_rows(alk, read_alk(file=file, ws=ws, member=member, species=species, year=year)) }
+  
+  # canum
+  for (ws in worksheets[grepl("CN", worksheets)]) {
+    canum <- bind_rows(canum, read_canum(file=file, ws=ws, member=member, species=species, year=year)) }
+  
+} # end of i loop
+
+# save(catch, sampling, length, alk, canum, file=file.path("D:/TEMP",fn))
+save(catch, sampling, length, alk, canum, file=file.path("D:/TEMP",fn))
+
+```
+
+8th MEETING OF THE SCIENTIFIC COMMITTEE
+
+**Catch template reader.rmd**
+
+Corresponding author: mpastoors@pelagicfish.eu
+
+`r format(Sys.time(), '%d/%m/%Y')`
+
+Overview of catch templates 2019 through automated reading and processing
+
+Files read
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+print(basename(file.list))
+
+```
+
+Catch by quarter
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+# plot catch
+catch %>%
+  mutate(value=as.numeric(value)) %>% 
+  mutate(quarter = paste0("Q", quarter)) %>% 
+  mutate(yearquarter = paste0(year, quarter)) %>% 
+  
+  ggplot(aes(x=yearquarter, y=value, group=member)) + 
+  theme_publication() +
+  theme(panel.spacing     = unit(2, "mm"),
+        legend.key.width  = unit(1, "cm"),
+        legend.title      = element_blank(),
+        panel.grid.minor  = element_blank(),
+        # legend.position = "null",
+        text              = element_text(size=12) ) +
+  
+  labs(x = "quarter", y = "catch") +
+  
+  geom_bar(aes(fill=member), stat="identity", alpha=1) +
+  facet_grid(fleet~.)
+# facet_grid(.~quarter)
+
+```
+
+##### page break
+
+Number of length measurements
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+# plot sampled ages
+sampling %>%
+  filter(variable=="measured") %>% 
+  mutate(value=as.numeric(value)) %>% 
+  mutate(quarter = paste0("Q", quarter)) %>% 
+  mutate(yearquarter = paste0(year, quarter)) %>% 
+  
+  ggplot(aes(x=yearquarter, y=value, group=member)) + 
+  theme_publication() +
+  theme(panel.spacing     = unit(2, "mm"),
+        legend.key.width  = unit(1, "cm"),
+        legend.title      = element_blank(),
+        panel.grid.minor  = element_blank(),
+        # legend.position = "null",
+        text              = element_text(size=12) ) +
+  
+  labs(x = "quarter", y = "catch") +
+  
+  geom_bar(aes(fill=member), stat="identity", alpha=1) +
+  facet_grid(fleet~.)
+# facet_grid(.~quarter)
+
+```
+
+##### page break
+
+Number of age measurements
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+# plot sampled ages
+sampling %>%
+  filter(variable=="aged") %>% 
+  mutate(value=as.numeric(value)) %>% 
+  mutate(quarter = paste0("Q", quarter)) %>% 
+  mutate(yearquarter = paste0(year, quarter)) %>% 
+  
+  ggplot(aes(x=yearquarter, y=value, group=member)) + 
+  theme_publication() +
+  theme(panel.spacing     = unit(2, "mm"),
+        legend.key.width  = unit(1, "cm"),
+        legend.title      = element_blank(),
+        panel.grid.minor  = element_blank(),
+        # legend.position = "null",
+        text              = element_text(size=12) ) +
+  
+  labs(x = "quarter", y = "catch") +
+  
+  geom_bar(aes(fill=member), stat="identity", alpha=1) +
+  facet_grid(fleet~.)
+# facet_grid(.~quarter)
+
+```
+
+##### page break
+
+
+Cumulative length proportions 
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+# plot cumulative proportions at length
+length %>%   
+  filter(tolower(lengthtype) == "fork length") %>% 
+  mutate(quarter = paste0("Q", quarter)) %>% 
+  mutate(yearquarter = paste0(year, quarter)) %>% 
+  
+  ggplot(aes(x=length, y=cumprop, group=member)) + 
+  theme_publication() +
+  theme(panel.spacing     = unit(2, "mm"),
+        legend.key.width  = unit(1, "cm"),
+        legend.title      = element_blank(),
+        panel.grid.minor  = element_blank(),
+        # legend.position = "null",
+        text              = element_text(size=12) ) +
+  
+  labs(x = "length", y = "prop") +
+  
+  geom_line(aes(colour=member, group=member), alpha=1) +
+  facet_grid(fleet~yearquarter)
+  # facet_grid(.~quarter)
+
+```
+
+##### page break
+
+ALK
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+# plot age-length keys
+alk %>%   
+  # filter(year == 2019) %>% 
+  mutate(quarter = paste0("Q", quarter)) %>% 
+  mutate(yearquarter = paste0(year, quarter)) %>% 
+  
+  ggplot(aes(x=length, y=age, group=quarter)) + 
+  theme_publication() +
+  theme(panel.spacing     = unit(2, "mm"),
+        legend.key.width  = unit(1, "cm"),
+        legend.title      = element_blank(),
+        panel.grid.minor  = element_blank(),
+        # legend.position = "null",
+        text              = element_text(size=12) ) +
+  
+  labs(x = "length", y = "age") +
+  
+  geom_point(aes(size=prop, colour=member), alpha=0.5) +
+  # facet_grid(fleet~quarter)
+  facet_grid(year~quarter)
+
+```
+
+##### page break
+
+CANUM
+
+```{r echo=FALSE, fig.asp=1.0, fig.align="center", message=FALSE, warning=FALSE}
+
+# plot canum
+canum %>%   
+  # filter(year == myyear) %>%
+  filter(variable == "canum") %>% 
+  mutate(quarter = paste0("Q", quarter)) %>% 
+  mutate(yearquarter = paste0(year, quarter)) %>% 
+  
+  ggplot(aes(x=age, y=value, group=member)) + 
+  theme_publication() +
+  theme(panel.spacing     = unit(2, "mm"),
+        legend.key.width  = unit(1, "cm"),
+        legend.title      = element_blank(),
+        panel.grid.minor  = element_blank(),
+        # legend.position = "null",
+        text              = element_text(size=12) ) +
+  
+  labs(x = "age", y = "canum") +
+  
+  geom_bar(aes(fill=member, group=member), stat="identity", alpha=1) +
+  facet_grid(fleet~yearquarter)
+# facet_grid(.~quarter)
+
+
+
+
+
+```
+
+##### page break
+
