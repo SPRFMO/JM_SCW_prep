@@ -55,19 +55,20 @@ Rplots.pdf
 #*.par
 #*.rep
 *.r0*
-#*.std
+*.std
 *_in.ctl
 *_in.dat
 variance
 meval.dat
 sims
 # ss files
-*.ss*
+*.ss*result
 *.Rproj
 **/*.exe
 **/.DS_Store
 **/*.cor
 assessment/test/
+assessment/result/
 !*.yld
 !*.R.rep
 !*.par
