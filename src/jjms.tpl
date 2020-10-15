@@ -1172,14 +1172,14 @@ DATA_SECTION
     endyr_rec_est(s,nreg(s)) = endyr_rec_est(s,nreg(s)) - retro;
   }
   endyr         = endyr - retro;
-   if (nproj_yrs>0)
-   {
+   // if (nproj_yrs>0)
+   // {
      styr_fut      = endyr+1;
-   }
-   else
-   {
-     styr_fut      = endyr;
-   }
+   // }
+   // else
+   // {
+     // styr_fut      = endyr;
+   // }
   endyr_fut     = endyr + nproj_yrs; 
   endyr_sp      = endyr   - rec_age - 1;// endyr year of (main) spawning biomass
   log_input(styr_fut);
