@@ -21,7 +21,7 @@ This document was compiled in `RMarkdown`, and shows the incremental results of 
 
 Annoted data files can be found in the Excel spreadsheet `JM Data files for SC08.xlsx` on [`SPRFMO Teams/sharepoint`](https://southpacificrfmo.sharepoint.com/:f:/s/SPRFMOSC8/EojhefvAJq9KhLVw4AqPUPYBXrW_eBaOTt9-tc3fGwtN_w?e=tek4yE).
 
-Currently, the files resulting from the model runs are not on the Github site, so this `.rmd` file cannot be recompiled without first running the code found in `jjm/assessment/R/SC08.R` to run all the models. Prior to doing this, please compile the latest `jjm/src/jjms.tpl`.
+Currently, the files resulting from the model runs are not on the Github site, so this `.rmd` file cannot be recompiled without first running some code found in `jjm/assessment/R/SC08.R` to run all the models. Prior to doing this, please compile the latest `jjm/src/jjms.tpl`.
 
 
 # Model Naming Convention

@@ -5,12 +5,12 @@ h1_1.00.hl # Updated model for SC08
 #	Names	of	stocks
 Stock
 # Selectivity sharing vector (number_fisheries + number_surveys)  
-#Fsh_1 Fsh_2 Fsh_3 Fsh_4 Srv_1 Srv_2 Srv_3 Srv_4 Srv_5 Srv_6 Srv_7 Srv_8  
-#N_Chile_Fsh CS_Chile_Fsh FarNorth_Fsh Offshore_Trawl_Fsh Chile_AcousCS Chile_AcousN Chilean_CPUE DEPM Peru_Acoustic Peru_CPUE Chinese_CPUE Offshore_CPUE #  
-# 2 3 4 1 2 3 4 5 6 7 8
-1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 2 2 1 2 1 1 1 1
-1 2 3 4 1 2 2 4 3 3 4 4
+#Fsh_1 Fsh_2 Fsh_3 Fsh_4 Srv_1 Srv_2 Srv_3 Srv_4 Srv_5 Srv_6 Srv_7
+#N_Chile_Fsh CS_Chile_Fsh FarNorth_Fsh Offshore_Trawl_Fsh Chile_AcousCS Chile_AcousN Chilean_CPUE DEPM Peru_Acoustic Peru_CPUE Offshore_CPUE #  
+# 2 3 4 1 2 3 4 5 6 7
+1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 2 2 1 2 1 1 1
+1 2 3 4 1 2 2 4 3 3 4
 #Number of regimes (by stock)
 1
 #Sr_type 
@@ -79,17 +79,17 @@ Stock
 #Random_walk_M_sigmas blank if nyrs==0
 
 #catchability 
-1.143881847	0.029045376	0.000159487	0.519171913	0.002284038	0.007987171	0.00033275	0.033884372
-12  12  12  12  12  12  12  12 
-3  5  3  3  3  4  4  4
+1.143881847	0.029045376	0.000159487	0.519171913	0.002284038	0.007987171	0.033884372
+12  12  12  12  12  12  12
+3  5  3  3  3  4  4
 #q_power                    
-1  1  1  1  1  1  1  1 
-1.2  1.2  1.2  1.2  1.2  1.2  1.2  1.2
--1  -1  -1  -1  -1  -1  -1  -1
+1  1  1  1  1  1  1
+1.2  1.2  1.2  1.2  1.2  1.2  1.2
+-1  -1  -1  -1  -1  -1  -1
 #Random_walk_q_phases                    
-1  -1  1  -1  1  -1  -1  -1
+1  -1  1  -1  1  -1  -1
 #Nyrs_Random_walk_q
-1  0  1  0  0  0  0  0
+1  0  1  0  0  0  0
 #Random_walk_q_yrs blank if nyrs==0
 2002 
 2000
@@ -97,9 +97,9 @@ Stock
 2.0
 2.0
 #q_agemin                    
-2  2  2  2  2  2  2  2
+2  2  2  2  2  2  2
 #q_agemax                    
-10  10  10  10  10  10  10  10
+10  10  10  10  10  10  10
 #use vb wt age                    
 0
 #n_proj_yrs                    
@@ -230,15 +230,6 @@ Stock
 100  
 0 
 0.04 0.43 0.93 1 1 1 1 1 1 1 1 1  
-#---------------------------------------------------------
-# Index number 8 EU_CPUE  
-1  
-10  
--5  
-0.25  
-100  
-0
-0.04 0.43 0.93 1 1 1 1 1 1 1 1 1
 #---------------------------------------------------------
 #Population	Weight	at	Age	1000																																							
 0.051	0.0884	0.134	0.195	0.2612	0.328	0.4184	0.5344	0.6814	0.8426	1.0705	1.4589

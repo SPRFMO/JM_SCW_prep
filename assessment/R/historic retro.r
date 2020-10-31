@@ -4,6 +4,7 @@
 # 27/09/2017 first version
 # 15/09/2018 SC06 2018. Now includes historical plot of reference points as well. 
 # 09/10/2019 SC07 2019. Updated during SC meeting
+# 25/10/2020 SC08 2020. Updated for new Github file system and annex plots
 # -----------------------------------------------------------------------------------------------
 
 library(tidyverse)
@@ -13,7 +14,7 @@ library(scales)
 library(readxl)
 
 # Load publication template
-source("assessment/utils/theme_publication.r")
+source("hist_retro/theme_publication.r")
 
 # lowcase function
 lowcase <- function(df) {
@@ -21,9 +22,12 @@ lowcase <- function(df) {
   df
 }
 
+if(!"plotCount" %in% ls())
+  plotCount <- 0
+
 # load the data
 d <-
-  read.csv("assessment/utils/SPRFMO historical retro.csv", header=TRUE) %>%
+  read.csv("hist_retro/SPRFMO historical retro.csv", header=TRUE) %>%
   lowcase() %>% 
   
   filter(!(assessmenttype %in% c("benchmark", "mod1.4"))) %>% 
@@ -161,11 +165,12 @@ plot_grid(p1 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=1, align = 'h', rel_widths = c(3,3,3))
 
 # generate pdf
-pdf("assessment/results/HistoricRetro.pdf",height=5,width=15)
-plot_grid(p1 + theme(legend.position = "none", axis.title = element_blank()), 
+pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro.pdf"),height=10,width=7)
+pg <- plot_grid(p1 + theme(legend.position = "none", axis.title = element_blank()), 
           p2 + theme(legend.position = "none", axis.title = element_blank()),
           p3 + theme(legend.position = "none", axis.title = element_blank()),
-          ncol=3, align = 'h', rel_widths = c(3,3,3))
+          ncol=1, align = 'h', rel_widths = c(3,3,3))
+print(pg)
 dev.off()
 
 
@@ -313,13 +318,15 @@ plot_grid(p4 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=2, align = 'hv', rel_widths = c(3,3), rel_heights = c(3,3))
 
 
+plotCount <- plotCount+1
 # generate pdf
-pdf("assessment/results/HistoricRetro2.pdf",height=10,width=10)
-plot_grid(p4 + theme(legend.position = "none", axis.title = element_blank()), 
+pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro2.pdf"),height=10,width=10)
+pg2 <- plot_grid(p4 + theme(legend.position = "none", axis.title = element_blank()), 
           p5 + theme(legend.position = "none", axis.title = element_blank()),
           p6 + theme(legend.position = "none", axis.title = element_blank()),
           p7 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=2, align = 'hv', rel_widths = c(3,3), rel_heights = c(3,3))
+print(pg2)
 dev.off()
 
 

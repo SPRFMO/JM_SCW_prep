@@ -59,7 +59,7 @@ for(i in 1:length(naInd)){
 
 
 Table_9 <- nj %>% data.frame() %>% set_colnames(c('Year','Chile (1)','Chile (2)','Chile (3)','Chile (4)','Peru(2)',
-                                                  'Peru(3)','China','Offshore') )
+                                                  'Peru(3)','Offshore') )
 
 Table_10 <- path.m$output$Stock_1$wt_fsh_1 %>% data.frame() %>% set_colnames(c('Year', seq(1,12))) 
 

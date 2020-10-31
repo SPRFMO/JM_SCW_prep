@@ -1,7 +1,7 @@
 #dataFile_2019_final
 0.04.dat
 #modelName 
-Model_h2.0.04
+h2_0.04
 #nStocks
 2
 #nameStock

@@ -35,19 +35,30 @@ fixed_bmsy <- function(mod,refpt=5500){
 #-------------------------
 
 # Check models are the same
-hyp <- "h1"
 
 # mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
-# setwd("../../jjm_2019/assessment/SC07")
+
+# setwd("../../jjm_2019/assessment/SC07") # only works on LQ's computer at the moment
 # mod_prev <- readJJM("mod1.00", path = "config", input = "input")
 # setwd(pwd)
-# 
-# oldnewMods <- combineModels(mod0.00,mod_prev)
-# plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-# plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
-# plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
+mod0.00 <- readJJM(geth("0.00","h1"), path = "config", input = "input")
+# loads last year's model as mod_prev
+load("results/mod_prev_h1.Rdat")
+
+oldnewMods <- combineModels(mod0.00,mod_prev)
+plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
+plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+
+mod0.00 <- readJJM(geth("0.00","h2"), path = "config", input = "input")
+# loads last year's model as mod_prev
+load("results/mod_prev_h2.Rdat")
+
+oldnewMods <- combineModels(mod0.00,mod_prev)
+plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
+plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 #----------------
 # Data increments
@@ -64,6 +75,7 @@ hyp <- "h1"
 # mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.11 <- runit(geth("0.11"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.12 <- runit(geth("0.12"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.13 <- runit(geth("0.13"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 # mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
 # mod0.01 <- readJJM(geth("0.01"), path = "config", input = "input")
@@ -78,6 +90,7 @@ hyp <- "h1"
 # mod0.10 <- readJJM(geth("0.10"), path = "config", input = "input")
 # mod0.11 <- readJJM(geth("0.11"), path = "config", input = "input")
 # mod0.12 <- readJJM(geth("0.12"), path = "config", input = "input")
+# mod0.13 <- readJJM(geth("0.13"), path = "config", input = "input")
 
 #--------------------
 # Full model
@@ -100,10 +113,10 @@ hyp <- "h1"
 FinModName <- "1.00"
 FinMod <- readJJM(geth(FinModName,"h1"),path="config",input="input")
 
-# modhl  <- runit(paste0(FinModName,".hl"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modll  <- runit(paste0(FinModName,".ll"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modhs  <- runit(paste0(FinModName,".hs"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modls  <- runit(paste0(FinModName,".ls"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modhl  <- runit(paste0(geth(FinModName,"h1"),".hl"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modll  <- runit(paste0(geth(FinModName,"h1"),".ll"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modhs  <- runit(paste0(geth(FinModName,"h1"),".hs"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modls  <- runit(paste0(geth(FinModName,"h1"),".ls"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 h1_modhl <- readJJM(paste0(geth(FinModName,"h1"),".hl"),path="config",input="input")
 h1_modll <- readJJM(paste0(geth(FinModName,"h1"),".ll"),path="config",input="input")
@@ -131,10 +144,11 @@ h1_modll[[1]]$output[[1]]$msy_mt[,10] <- 5500
 report(h1_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 kobe(h1_modls)
-FinMod_msy <- fixed_bmsy(h1_FinMod)
+FinMod_msy <- fixed_bmsy(FinMod)
 FinMod_msy
+kobe(FinMod_msy)
 
-report(FinMod_msy, format="pdf", output="risk_tables/")
+report(FinMod_msy, format="word", output="risk_tables/")
 
 # 20 year projection table
 summary(FinMod_msy, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
@@ -145,10 +159,10 @@ summary(FinMod_msy, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 FinMod <- readJJM(geth(FinModName,"h2"),path="config",input="input")
 
-# modhl  <- runit(paste0(FinModName,".hl"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modll  <- runit(paste0(FinModName,".ll"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modhs  <- runit(paste0(FinModName,".hs"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modls  <- runit(paste0(FinModName,".ls"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modhl  <- runit(paste0(geth(FinModName,"h2"),".hl"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modll  <- runit(paste0(geth(FinModName,"h2"),".ll"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modhs  <- runit(paste0(geth(FinModName,"h2"),".hs"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# modls  <- runit(paste0(geth(FinModName,"h2"),".ls"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 h2_modhl <- readJJM(paste0(geth(FinModName,"h2"),".hl"),path="config",input="input")
 h2_modll <- readJJM(paste0(geth(FinModName,"h2"),".ll"),path="config",input="input")
@@ -162,6 +176,8 @@ report(h2_modhs, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 
 report(h2_modhl, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 report(h2_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+
+report(FinMod, format="word", output="risk_tables/")
 
 kobe(h2_modls)
 
@@ -177,7 +193,7 @@ summary(h2_modls, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 source("R/constructor_input_tables.R")
 
-construct_input_tables(modname=geth("1.00","h1"),docname="Input_Tables_SC08")
+construct_input_tables(modname=geth(FinModName,"h1"),docname="Input_Tables_SC08")
 
 # Summary data
 FinMod <- readJJM(geth(FinModName,"h1"),path="config",input="input")
@@ -302,7 +318,7 @@ final.modname <- readJJM(geth(FinModName,"h1"),path="config",input="input")   # 
 repfile <- final.modname[[1]]$output[[1]]
 assessmenttype <- "update"
 
-old.table <- read.csv("../../jjm_2019/assessment/utils/SPRFMO historical retro.csv",header = T)
+old.table <- read.csv("hist_retro/SPRFMO historical retro.csv",header = T)
 vars2pull <- colnames(old.table)
 Nvars <- length(vars2pull)
 Nyrs <- length(repfile$Yr)
@@ -341,32 +357,33 @@ write.csv(as.data.frame(new.table), file = "SPRFMO historical retro.csv", quote 
 # and do devtools::load_all()
 # doesn't work in current stage..
 #-------------------------------------------
-# library(foreach)
-# library(doParallel)
-# registerDoParallel(5)
-# 
-# mod1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
-# mod1.00r <- mod1.00
-# names(mod1.00r) <- geth("1.00","h1")
-# Npeels<-5
-# 
-#  dir.jjmR <- "../../jjmR"
-#  dir.jjm <- getwd()
-#  setwd(dir.jjmR)
-#  devtools::load_all()
-#  setwd(dir.jjm)
-#  ret1 <- retro(model = mod1.00r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
-# 
-# load("results/mod1.00_retrospective.RData")
-# ret1<-output
-# pdf("results/1.00Retro.pdf")
-# plot(ret1) # all plots
-# dev.off()
-# 
-# plot(ret1, var="SSB") # only SSB
-# #install.packages("icesAdvice")
-# #Calculation of Mohn's Rho courtesy of Arni Magnusson
-# icesAdvice::mohn(ret1$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
+#library(foreach)
+#library(doParallel)
+#registerDoParallel(5)
+#dir.jjmR <- "../../jjmR"
+#dir.jjm <- getwd()
+#setwd(dir.jjmR)
+#devtools::load_all()
+#setwd(dir.jjm)
+
+FinMod <- geth(FinModName,"h1")
+#mod1.00 <- readJJM(FinModName, path = "config", input = "input")
+#mod1.00r <- mod1.00
+#names(mod1.00r) <- FinModName
+#Npeels<-5
+#
+#ret1 <- retro(model = mod1.00r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
+
+load(paste0("results/",FinMod,"_retrospective.RData"))
+ret1<-output
+pdf(paste0("results/",FinMod,"_Retro.pdf"))
+plot(ret1) # all plots
+dev.off()
+
+plot(ret1, var="SSB") # only SSB
+#install.packages("icesAdvice")
+#Calculation of Mohn's Rho courtesy of Arni Magnusson
+icesAdvice::mohn(ret1$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
 
 
 

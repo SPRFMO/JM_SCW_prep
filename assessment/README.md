@@ -14,24 +14,27 @@ Model      | Description
 -----------|--------------
 **Models 0.x**| **Data introductions**
 0.00     | 	Exact 2019 (single stock `h1` and two-stock `h2`) model and data set through 2019 (mod1.0 from SC07)
-0.01     | 	Data file as 0.00 with revised catches through 2019 (currently still estimates)
-0.02     | 	Update 2019 fishery age composition and weight-at-age for N_Chile, SC_Chile (+CPUE), and Offshore_Trawl (+CPUE)
-0.03     | 	Update 2019 fishery length composition for FarNorth
-0.04     | 	Update Offshore CPUE Index to 2019
-0.05     | 	Update catches to projected 2020 estimates; 2019 CTL file
-0.06     | 	Update 2020 fishery age composition and weight-at-age for N_Chile and SC_Chile (+CPUE); downweighted
-0.07     | 	Update 2020 fishery length composition for FarNorth
-0.08	 |	Update 2020 Chile_AcousN index, age composition, and weight-at-age
-0.09     | 	Replace SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
-0.10     | 	Replace Peru_CPUE index
-0.11     | 	Correct Chile_AcousN 2018 data point
-0.12     | 	2019/2020 N_Chile weight-at-age set to mean(2016,2017,2018)
+0.01     | 	As 0.00 but with revised catches through 2019 (currently still estimates)
+0.02     | 	As 0.01 but with updated 2019 fishery age composition and weight-at-age for N_Chile, SC_Chile (+CPUE), and Offshore_Trawl (+CPUE)
+0.03     | 	As 0.02 but with updated 2019 fishery length composition for FarNorth
+0.04     | 	As 0.03 but with updated Offshore CPUE Index to 2019
+0.05     | 	As 0.04 but with updated catches to projected 2020 estimates; 2019 CTL file
+0.06     | 	As 0.05 but with updated 2020 fishery age composition and weight-at-age for N_Chile and SC_Chile (+CPUE); downweighted
+0.07     | 	As 0.06 but with updated 2020 fishery length composition for FarNorth
+0.08	 |	As 0.07 but with updated 2020 Chile_AcousN index, age composition, and weight-at-age
+0.09     | 	As 0.08 but with replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.10     | 	As 0.09 but with replaced Peru_CPUE index
+0.11     | 	As 0.10 but with correct Chile_AcousN 2018 data point
+0.12     | 	As 0.11 but with 2019/2020 N_Chile weight-at-age set to mean(2016,2017,2018); ignored
+0.13 	 |	As 0.11 but remove Chinese CPUE (as opposed to completely downweight) from both data and control files
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00     | 	Update model (selectivity changes, recruitment) to 2020
-1.01    | 	Replace SC_Chile_CPUE with CPUE index by set
------------|--------------
-0.* 	|	Remove Chinese CPUE (as opposed to completely downweight)
+**1.00**     | 	Update model (selectivity changes, recruitment) to 2020; 0.13 data file
+1.00.ll	 	 |	As 1.00 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
+1.00.ls	 	 |	As 1.00 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+1.00.hl	 	 |	As 1.00 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))
+1.00.hs	 	 |	As 1.00 but **h**igh steepness and **s**hort recruitment time series (2000-2015)
+
 
 
 ## 2019 SC07 Model runs
@@ -61,7 +64,7 @@ mod0.16		|	As 0.15 but with updated FarNorth length composition data (to 2019)
 mod0.17		|	As 0.16 but with averaged weight-at-age data for 2015 SC_Chile (avg(2014,2016)), and 2015 (avg(2014,2016)) and 2018/2019 (avg(2014,2016,2017)) Offshore
 mod0.18		|	As 0.17 but with downweighted (/10) age composition data for 2015 SC_Chile, and 2015+2018 Offshore
 **Models 1.x**	|	**Configuration sensitivities**
-mod1.00			|	As mod0.17 data file but model (i.e., selectivity changes) updated to 2019
+**mod1.00**			|	As mod0.17 data file but model (i.e., selectivity changes) updated to 2019
 mod1.00.ll	 |	As mod1.00 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
 mod1.00.ls	 |	As mod1.00 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
 mod1.00.hl	 |	As mod1.00 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))

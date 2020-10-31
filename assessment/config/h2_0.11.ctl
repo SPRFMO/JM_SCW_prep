@@ -1,7 +1,7 @@
 #dataFile
 0.11.dat
 #modelName 
-Model_h2.0.11
+h2_0.11
 #nStocks
 2
 #nameStock

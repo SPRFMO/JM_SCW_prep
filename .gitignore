@@ -51,7 +51,7 @@ Rplots.pdf
 *.p0*
 *.psv
 *.hst
-*.pdf
+#*.pdf
 #*.par
 #*.rep
 *.r0*
@@ -73,3 +73,7 @@ assessment/result/
 !*.R.rep
 !*.par
 assessment/R/SC08.html
+assessment/risk_tables/
+*.txt
+*.doc
+assessment/annex\ plots

@@ -1,6 +1,4 @@
-setwd("C:/Users/leeqi/Desktop/SPRFMO/jjm/assessment/config")
-dir.base <- getwd()
-require(gtools)
+dir.base <- here::here("assessment","config")
 ctl.files <- list.files(getwd())
 Nctls <- length(ctl.files)
 
@@ -28,7 +26,7 @@ for(i in 1:Nctls) {
 	print(new.ctl[lineNos[3]])
 	new.ctl <- new.ctl[-(lineNos[2:3])]
 
-	ask("Continue?")
+	gtools::ask("Continue?")
 	writeLines(new.ctl, ctl.files[i])
 	}
 	else {print(paste0(ctl.files[i], " didn't change."))
