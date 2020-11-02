@@ -42,9 +42,13 @@ round(h1.mod[[1]]$output$Stock_1$SSB[yrs[1]:yrs[2],2])
 
 # Estimated begin-year numbers at age
 h1.mod[[1]]$output$Stock_1$N
+h2.mod[[1]]$output$Stock_1$N
+h2.mod[[1]]$output$Stock_2$N
 
 # Estimated total fishing mortality at age
-h1.mod[[1]]$output$Stock_1$N
+h1.mod[[1]]$output$Stock_1$TotF
+h2.mod[[1]]$output$Stock_1$TotF
+h2.mod[[1]]$output$Stock_2$TotF
 
 # Summary of results
 y_ind <- h1.mod[[1]]$output[[1]]$SSB[,1] %in% h1.mod[[1]]$output[[1]]$msy_mt[,1]
@@ -82,3 +86,40 @@ res.h2.2 <- data.frame(yr  = h1.mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                     ssbmsy    = round(h2.mod[[1]]$output[[2]]$msy_mt[,10], 0),
                     )
 res.h2.2
+
+
+#########
+# To get fished over unfished total biomass
+#########
+h1.uf.b <- h1.mod[[1]]$output[[1]]$TotBiom_NoFish[dim(h1.mod[[1]]$output[[1]]$TotBiom_NoFish)[1],2]
+h1.f.b <- h1.mod[[1]]$output[[1]]$TotBiom[dim(h1.mod[[1]]$output[[1]]$TotBiom)[1],2]
+
+h1.f.b / h1.uf.b
+
+h2.1.uf.b <- h2.mod[[1]]$output[[1]]$TotBiom_NoFish[dim(h2.mod[[1]]$output[[1]]$TotBiom_NoFish)[1],2]
+h2.1.f.b <- h2.mod[[1]]$output[[1]]$TotBiom[dim(h2.mod[[1]]$output[[1]]$TotBiom)[1],2]
+
+h2.1.f.b / h2.1.uf.b
+
+h2.2.uf.b <- h2.mod[[1]]$output[[2]]$TotBiom_NoFish[dim(h2.mod[[1]]$output[[2]]$TotBiom_NoFish)[1],2]
+h2.2.f.b <- h2.mod[[1]]$output[[2]]$TotBiom[dim(h2.mod[[1]]$output[[2]]$TotBiom)[1],2]
+
+h2.2.f.b / h2.2.uf.b
+
+#########
+# Current SSB (year, SSB, SSB.sd, lower bound, upper bound)
+#########
+h1.mod[[1]]$output[[1]]$SSB
+
+h2.mod[[1]]$output[[1]]$SSB
+h2.mod[[1]]$output[[2]]$SSB
+
+
+######
+# Estimated b/bmsy
+# Yr Fspr 1-Fspr F/Fmsy Fmsy F Fsprmsy MSY MSYL Bmsy Bzero SSB B/Bmsy
+######
+h1.mod[[1]]$output[[1]]$msy_mt
+
+h2.mod[[1]]$output[[1]]$msy_mt
+h2.mod[[1]]$output[[2]]$msy_mt

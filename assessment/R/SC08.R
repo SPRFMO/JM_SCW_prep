@@ -129,6 +129,7 @@ h1_modls <- readJJM(paste0(geth(FinModName,"h1"),".ls"),path="config",input="inp
 
 h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
 h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
+report(h1_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 report(h1_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 h1_modhs[[1]]$output[[1]]$msy_mt[,13] <- h1_modhs[[1]]$output[[1]]$msy_mt[,12]/ 5500
@@ -170,6 +171,7 @@ h2_modhs <- readJJM(paste0(geth(FinModName,"h2"),".hs"),path="config",input="inp
 h2_modls <- readJJM(paste0(geth(FinModName,"h2"),".ls"),path="config",input="input")
 
 report(h2_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+report(h2_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 report(h2_modhs, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
