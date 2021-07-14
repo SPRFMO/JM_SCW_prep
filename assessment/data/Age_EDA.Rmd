@@ -42,14 +42,17 @@ geom_bar(stat='identity',position="dodge2") + theme_few() + facet_grid(Year~.)
 ```
 
 # Weight-at-age
-```{r}
-
+```{r First wt-age view, echo=TRUE}
+# Combine assessment w/ new file
+# 
 # Average wt age
-df_age %>% filter(Age<8,Year>2010,grepl('Fleet 1',Zone)) %>% group_by(Method,Year,Age) %>% 
-  summarise(Age=as.factor(Age),Catch_wt=sum(Catch_wt),Catch_no=(sum(Catch_no)),awt=1e6*Catch_wt/Catch_no) %>% 
+tmp1 <- df_age %>% filter(Age<8,Year>2010,grepl('Fleet 2',Zone)) %>% group_by(Method,Year,Age) %>% 
+  summarise(Age=as.factor(Age),Catch_wt=sum(Catch_wt),Catch_no=(sum(Catch_no)),awt=1e6*Catch_wt/Catch_no) %>% transmute(Year,Method,Age,awt)
+tmp2 <- df_age_in %>% filter(as.numeric(age)<8,type=='wtage',Year>2010,Fleet==2) %>%  
+  transmute(Year,Method="assessment",Age=as.factor(as.numeric(age)),awt=value*1000)
+rbind(tmp1,tmp2) %>% 
   ggplot(aes(x=Year,y=awt,color=Age,shape=Method,type=Method)) + geom_point(size=2) + geom_line() + theme_few() +
   facet_grid(Method~.)
-
 ```
 
 
