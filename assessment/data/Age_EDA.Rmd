@@ -10,20 +10,30 @@ This is an exploration of current data used in the assessment compared with new 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
 ```{r LoadData, echo=FALSE}
+
 library(tidyverse)
 library(ggplot2)
 library(ggthemes)
+library(patchwork)
+
+options(dplyr.summarise.inform = FALSE)
+
+knitr::opts_chunk$set(echo = FALSE,	message = FALSE,	warning = FALSE,	comment = "",	crop = TRUE )
+knitr::opts_chunk$set(fig.width=10) 
 
 # Read in new data 
-df_age <- read.csv("All_Age_Data_Chile.csv") 
+df_age <- 
+  read.csv("All_Age_Data_Chile.csv", header=TRUE, stringsAsFactors = FALSE, fileEncoding="UTF-8-BOM") %>% 
+  mutate(fleet = stringr::str_extract(Zone, "(\\d)+")) %>% 
+  mutate(quarter = stringr::str_extract(Trimester, "(\\d)+"))
 head(df_age)
-# Read in data that is in the assessment model for same sources 
-df_age_in <- read.csv("AgeDataInAssessment.csv") 
 
-# Make a plot of currently used wt-at-age for S-C Chile
-# 
-names(df_age_in) <- c("Year","Fleet","type","Label",1:12)
-df_age_in <- df_age_in %>% pivot_longer(cols =5:16,names_to="age")
+# Read in data that is in the assessment model for same sources 
+df_age_in <- 
+  read.csv("AgeDataInAssessment.csv") %>% 
+  setNames(c("Year","Fleet","type","Label",1:12)) %>% 
+  pivot_longer(cols =5:16,names_to="age")
+
 head(df_age_in)
 
 ```
@@ -33,15 +43,48 @@ Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by press
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
-```{r}
-df_age %>% filter(Year>2010,grepl('Fleet 1',Zone)) %>% group_by(Method,Year) %>% mutate(Catch_tot=sum(Catch_no)) %>% ungroup() %>%
-group_by(Method,Year,Age) %>% summarise(Proportion=sum(Catch_no)/Catch_tot) %>%
-ggplot(aes(x=Age,y=Proportion,fill=Method,group=Year)) +
-geom_bar(stat='identity',position="dodge2") + theme_few() + facet_grid(Year~.)
+
+```{r, echo=FALSE, fig.asp=1.2, fig.align="center", message=FALSE, warning=FALSE}
+
+# df_age %>% filter(Year>2010,grepl('Fleet 1',Zone)) %>% group_by(Method,Year) %>% mutate(Catch_tot=sum(Catch_no)) %>% ungroup() %>%
+# group_by(Method,Year,Age) %>% summarise(Proportion=sum(Catch_no)/Catch_tot) %>%
+# ggplot(aes(x=Age,y=Proportion,fill=Method,group=Year)) +
+# geom_bar(stat='identity',position="dodge2") + theme_few() + facet_grid(Year~quarter)
+
+plist <- list()
+
+plist[[1]] <-
+  df_age %>% 
+  filter(Year>2010,grepl('Fleet 1',Zone)) %>% 
+  
+  ggplot(aes(x=Age,y=Proportion,fill=Method,group=Method)) +
+  theme_few() + 
+  theme(legend.position="none") +
+  geom_bar(stat='identity',position = position_dodge2(width = 0.9, preserve = "single"), alpha=0.5) + 
+  geom_line(aes(colour=Method), size=1) +
+  labs(title="Fleet 1") +
+  facet_grid(quarter~Year)
+
+plist[[2]] <-
+  df_age %>% 
+  filter(Year>2010,grepl('Fleet 2',Zone)) %>% 
+  
+  ggplot(aes(x=Age,y=Proportion,fill=Method,group=Method)) +
+  theme_few() + 
+  theme(legend.position="bottom") +
+  geom_bar(stat='identity',position = position_dodge2(width = 0.9, preserve = "single"), alpha=0.5) + 
+  geom_line(aes(colour=Method), size=1) +
+  labs(title="Fleet 2") +
+  facet_grid(quarter~Year)
+
+print(patchwork::wrap_plots(plist) + 
+  patchwork::plot_layout(ncol = 1, heights = c(0.45, 0.55)) +
+  patchwork::plot_annotation() & theme(plot.tag = element_text(size = 8)))
 
 ```
 
 # Weight-at-age
+
 ```{r First wt-age view, echo=TRUE}
 # Combine assessment w/ new file
 # 
@@ -54,7 +97,9 @@ rbind(tmp1,tmp2) %>%
   ggplot(aes(x=Year,y=awt,color=Age,shape=Method,type=Method)) + geom_point(size=2) + geom_line() + theme_few() +
   facet_grid(Method~.)
 ```
+
 Now to focus in closer on some specific ages...
+
 ```{r}
 rbind(tmp1,tmp2) %>% filter(Age %in% 4:5) %>%  mutate(Age=as.factor(Age)) %>% 
   ggplot(aes(x=Year,y=awt,color=Method,shape=Age,type=Age)) + geom_point(size=2) + geom_line() + theme_few() #+ facet_grid(Method~.)
