@@ -83,24 +83,64 @@ print(patchwork::wrap_plots(plist) +
 
 ```
 
+# Consistency check on age compositions
+It is of interest to ensure that the data Chile provided for 2021 is the same (or nearly so) as that used in the current model. As such, we
+extracted the data used for the 2020 Jack mackerel assessment into a dataframe to compare with the 2021 data submission using the "antiguo" method.
+```{r Compare consistency,echo=FALSE}
+# Read in data that is in the assessment model for same sources 
+df_age_in <- read.csv("AgeDataInAssessment.csv") 
+
+# Make a plot of currently used wt-at-age for S-C Chile
+# 
+names(df_age_in) <- c("Year","Fleet","type","Label",1:12)
+df_age_in <- df_age_in %>% pivot_longer(cols =5:16,names_to="age")
+
+plt_flt<- function(flt=1,firstyr=2000) {
+  tmp1 <- df_age %>% filter(Year>firstyr,grepl(paste('Fleet',flt),Zone)) %>% 
+  group_by(Method,Year,Age) %>% 
+  summarise(Catch_no=sum(Catch_no) ) %>%
+  group_by(Method,Year) %>% mutate(Proportion=Catch_no/sum(Catch_no)) 
+tmp2 <- df_age_in %>% 
+  filter(type=='catch',Year>firstyr,Fleet==flt) %>%  mutate(Age=as.integer(age)) %>% 
+  group_by(Year,Age) %>% 
+  transmute(Year,Method="assessment",Age,Catch_no=sum(value)) %>%
+  group_by(Year) %>% mutate(Proportion=Catch_no/sum(Catch_no)) 
+
+  rbind(tmp1,tmp2) %>% filter(Age %in% (1:8))  %>% filter(Method != "validacion") %>% mutate(Age=as.factor(Age)) %>% 
+  ggplot(aes(x=Age,y=Proportion,fill=Method,group=Year)) +
+  geom_bar(stat='identity',position="dodge2") + theme_few(base_size=11) + 
+    ggtitle(paste("Fleet",flt)) +
+  facet_grid(Year~Method) + theme(legend.position = "none") 
+}
+plt_flt(1)
+plt_flt(2)
+
+
+
+```
+
+
+
 # Weight-at-age
 
 ```{r First wt-age view, echo=TRUE}
 # Combine assessment w/ new file
 # 
 # Average wt age
-tmp1 <- df_age %>% filter(Age<8,Year>2010,grepl('Fleet 2',Zone)) %>% group_by(Method,Year,Age) %>% 
+tmp1 <- df_age %>% filter(Age<8,Year>2000,grepl('Fleet 2',Zone)) %>% group_by(Method,Year,Age) %>% 
   summarise(Age=as.factor(Age),Catch_wt=sum(Catch_wt),Catch_no=(sum(Catch_no)),awt=1e6*Catch_wt/Catch_no) %>% transmute(Year,Method,Age,awt)
-tmp2 <- df_age_in %>% filter(as.numeric(age)<8,type=='wtage',Year>2010,Fleet==2) %>%  
+tmp2 <- df_age_in %>% filter(as.numeric(age)<8,type=='wtage',Year>2000,Fleet==2) %>%  
   transmute(Year,Method="assessment",Age=as.factor(as.numeric(age)),awt=value*1000)
+
 rbind(tmp1,tmp2) %>% 
   ggplot(aes(x=Year,y=awt,color=Age,shape=Method,type=Method)) + geom_point(size=2) + geom_line() + theme_few() +
   facet_grid(Method~.)
+
 ```
 
 Now to focus in closer on some specific ages...
 
 ```{r}
-rbind(tmp1,tmp2) %>% filter(Age %in% 4:5) %>%  mutate(Age=as.factor(Age)) %>% 
-  ggplot(aes(x=Year,y=awt,color=Method,shape=Age,type=Age)) + geom_point(size=2) + geom_line() + theme_few() #+ facet_grid(Method~.)
+rbind(tmp1,tmp2) %>% filter(Age %in% 2:4) %>%  mutate(Age=as.factor(Age)) %>% 
+  ggplot(aes(x=Year,y=awt,color=Method,shape=Age,type=Age)) + geom_point(size=2) + geom_line() + theme_few() + ylab("Average wt (g)") #+ facet_grid(Method~.)
 ```
