@@ -112,7 +112,7 @@ tmp2 <- df_age_in %>%
     ggtitle(paste("Fleet",flt)) +
   facet_grid(Year~Method) + theme(legend.position = "none") 
 }
-plt_flt(1)
+plt_flt(1, firstyr=2010)
 plt_flt(2)
 
 

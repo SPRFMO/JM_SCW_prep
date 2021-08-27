@@ -11,3 +11,6 @@ This folder is meant as an approach to evaluate aspects of the new age data prov
 | `All_Age_Data_Chile_Pivot.xlsx` | Some excel view |
 | `All_Age_Data_Chile.xlsx` | Revised Chilean data w/ field explanations |
 | `All_Age_Data_Chile.csv` | Revised Chilean data in one file for reading into R |
+
+# To do
+  [ ]  Add in 2020 data provided by Chile in late August
