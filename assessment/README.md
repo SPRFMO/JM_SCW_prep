@@ -4,6 +4,18 @@ Jack mackerel assessment
 ### Notes
 Data files with annotations found in the Excel spreadsheet `JM Data files for SC09.xlsx` on 
 ...
+### Naming convention
+Note the spreadsheet `JM Data files for SC09.xlsx` contains these files (and an analogous README)
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     | 	Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC00)
+0.01     | 	As 0.00 but with revised catches through 2019 (currently still estimates)
+0.02     | 	
+0.03     | 	
+0.04     | 	
+0.05     | 	
 
 ## 2020 SC08 Model runs
 ### Notes
