@@ -36,7 +36,13 @@ fixed_bmsy <- function(mod,refpt=5500){
 
 # Read in some data for making "new" datafiles
 #-------------------------
-
+ mod0.00 <- runit(geth("0.00",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+catch_by_fleet <- read_csv("data/SC09_catchByFleet.csv")
+glimpse(catch_by_fleet)
+# Read in last year's datafile
+readJJMConfig(model="input/h1_0.00")#,path="config")
+readJJMConfig("h1_0.00",path="config")
+?jjmR
 
 #-------------------------
 # Check models are the same
