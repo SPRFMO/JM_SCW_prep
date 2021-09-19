@@ -34,6 +34,11 @@ fixed_bmsy <- function(mod,refpt=5500){
 # Model configuration runs
 #-------------------------
 
+# Read in some data for making "new" datafiles
+#-------------------------
+
+
+#-------------------------
 # Check models are the same
 
 # mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
