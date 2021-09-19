@@ -1,5 +1,5 @@
 0.00.dat
-h1_0.00 # As model 1.0 from SC07
+h1_0.00 # As model 1.0 from SC08
 #	Number	of	stocks
 1
 #	Names	of	stocks
