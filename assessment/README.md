@@ -10,12 +10,21 @@ Note the spreadsheet `JM Data files for SC09.xlsx` contains these files (and an 
 Model      | Description
 -----------|--------------
 **Models 0.x**| **Data introductions**
-0.00     | 	Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC00)
-0.01     | 	As 0.00 but with revised catches through 2019 (currently still estimates)
-0.02     | 	
-0.03     | 	
-0.04     | 	
-0.05     | 	
+0.00     | 	Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC08)
+0.01     | 	As 0.00 but with revised catches through 2020 (currently still estimates)
+0.02     | 	As 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.03     | 	As 0.02 but with updated 2020 weight at age data for all fisheries and their associated CPUE indices
+0.04     | 	As 0.03 but replaced offshore CPUE up to 2020
+0.05     |  As 0.04 but with 2021 catch projections
+0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.07     |  As 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
+0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00     |  Update model (selectivity changes, recruitment) to 2021; 0.xx data file
+-----------|--------------
+**Models 1.x**| **For Benchmark**
+1.01    |   Replace SC_Chile_CPUE with CPUE index by set
 
 ## 2020 SC08 Model runs
 ### Notes
