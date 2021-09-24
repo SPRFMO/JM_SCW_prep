@@ -19,9 +19,15 @@ Model      | Description
 0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
 0.07     |  As 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
 0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10     |  As 0.09 but with updated AcousN 2021 index, with associated age composition and weight at age
 -----------|--------------
-**Models 1.x**| **Updated Model and Sensitivities**
-1.00     |  Update model (selectivity changes, recruitment) to 2021; 0.xx data file
+**Models 1.x**| **(NOT RUN YET) Updated Model and Sensitivities**
+1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
+1.01     | As 1.00 but use revised data series "antiguo" (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35)
+1.03     | As 1.02 but M=0.45
+1.04     | As 1.00 but with increased uncertainty for final year CPUE indices
 -----------|--------------
 **Models 1.x**| **For Benchmark**
 1.01    |   Replace SC_Chile_CPUE with CPUE index by set
@@ -47,12 +53,12 @@ Model      | Description
 0.05     | 	As 0.04 but with updated catches to projected 2020 estimates; 2019 CTL file
 0.06     | 	As 0.05 but with updated 2020 fishery age composition and weight-at-age for N_Chile and SC_Chile (+CPUE); downweighted
 0.07     | 	As 0.06 but with updated 2020 fishery length composition for FarNorth
-0.08	 |	As 0.07 but with updated 2020 Chile_AcousN index, age composition, and weight-at-age
+0.08	   |	As 0.07 but with updated 2020 Chile_AcousN index, age composition, and weight-at-age
 0.09     | 	As 0.08 but with replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.10     | 	As 0.09 but with replaced Peru_CPUE index
 0.11     | 	As 0.10 but with correct Chile_AcousN 2018 data point
 0.12     | 	As 0.11 but with 2019/2020 N_Chile weight-at-age set to mean(2016,2017,2018); ignored
-0.13 	 |	As 0.11 but remove Chinese CPUE (as opposed to completely downweight) from both data and control files
+0.13 	   |	As 0.11 but remove Chinese CPUE (as opposed to completely downweight) from both data and control files
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
 **1.00**     | 	Update model (selectivity changes, recruitment) to 2020; 0.13 data file

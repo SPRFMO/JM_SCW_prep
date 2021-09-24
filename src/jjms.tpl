@@ -610,7 +610,7 @@ DATA_SECTION
   // !! phase_Rzero =  4;
   !! phase_nosr  = -3;
   
-  matrix yy_sr(1,nstk,styr_sp,endyr+1);
+  matrix yy_sr(1,nstk,styr_sp,endyr+nproj_yrs);
  LOCAL_CALCS
   yy_sr = 1;
   for (s=1;s<=nstk;s++)

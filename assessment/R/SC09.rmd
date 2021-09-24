@@ -21,7 +21,14 @@ This document was compiled in `RMarkdown`, and shows the incremental results of 
 
 Annoted data files can be found in the Excel spreadsheet `JM Data files for SC09.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
 
-Currently, the files resulting from the model runs are not on the Github site, so this `.rmd` file cannot be recompiled without first running some code found in `jjm/assessment/R/SC08.R` to run all the models. Prior to doing this, please compile the latest `jjm/src/jjms.tpl`.
+The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC09_Bridging.R`][`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC09_Bridging.R). Should you choose to run the models, please ensure that you have:
+
+* Compiled the latest `jjm/src/jjms.tpl`
+  - This can be done by navigating to the `jjm/src` folder in your Terminal, and using the `make` command
+  - You will need to have [ADMB](http://www.admb-project.org/) installed to do this.
+  - This does not need to be done if you're only re-compiling the R Markdown document.
+* Updated the `jjmR` package
+  - This can be done in `R` using the command `remotes::install_github("SPRFMO/jjmR")`
 
 
 # Model Naming Convention
@@ -37,21 +44,21 @@ Model | Description
 0.04     |  As 0.03 but replaced offshore CPUE up to 2020
 0.05     |  As 0.04 but with 2021 catch projections
 0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
-0.07     |  As 0.06 but but with updated 2021 weight at age data for all fisheries and CPUE indices
+0.07     |  As 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
 0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10     |  As 0.09 but updated 2021 AcousticN_Survey index, with associated age composition and weight at age
 -----------|--------------
 **Models 1.x**| **(NOT RUN YET) Updated Model and Sensitivities**
-1.00     |  Update model (selectivity changes, recruitment) to 2021; 0.xx data file
+1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
+1.01     | As 1.00 but use revised data series "antiguo" (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35)
+1.03     | As 1.02 but M=0.45
+1.04     | As 1.00 but with increased uncertainty for final year CPUE indices
 -----------|--------------
 **Models 1.x**| **For Benchmark**
 1.01    |   Replace SC_Chile_CPUE with CPUE index by set
 
-Make sure that the `jjmR` package is updated with `devtools::install_github("SPRFMO/jjmR")`. `jjms` will need to be updated as well if you decide to run the models on your own.
-
-## Questions
-* Are these all the data updates we're expecting? Last year's update included Chile_AcousN index, Peru_CPUE
-* Age composition data were provided for the FarNorth fleet - what do we do with them?
-* Weight-at-age for FarNorth fleet is different for 2020 and 2021, when it's been the same from 2015-2019. Is that right?
 
 ```{r install_packages, eval=F, cache=F, echo=T}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
@@ -70,6 +77,7 @@ library(kableExtra)
 # MP note: normally I never use setwd in rmarkdown because it has unexpected behaviour. 
 # I thought you would always end up in the jjm rootdirectory if you start up the markdown file?
 # I cannot change the working directory by using setwd() ??
+# LQ It might depend on the programme you use to open the file? Would be great if someone could test if this runs.
 
 pwd <- getwd()
 # if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
@@ -119,6 +127,38 @@ plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 
 plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
+## Two-stock hypothesis {.tabset}
+```{r load_prev_h2}
+# mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+hyp <- "h2"
+mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
+
+load("results/mod_prev_h2.Rdat")
+
+```
+
+### Biomass
+
+```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+oldnewMods <- combineModels(mod0.00,mod_prev)
+
+plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
+
+```
+
+### Recruitment
+```{r recruit_h2_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+
+### Fishing Mortality
+```{r fmort_h2_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
 
 # Incremental Data Updates
 
@@ -151,13 +191,33 @@ plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, biomass_h2_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+hyp <- "h2"
+Dat_Prev <- compareModels(geth(mods2compare))
+
+plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, recruitment_h2_datprev, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fmort_h2_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+
+plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
 ## Updating this year's data
 The data updated to `r as.numeric(format(Sys.time(), "%Y"))` include projected catch estimates, age and length compositions, and indices of abundance. 
 
 Currently, only the Chilean and Offshore CPUE indices have been made available (to me at least).
 
 ```{r}
-mods2compare <- c("0.04","0.05","0.06","0.07", "0.08")
+mods2compare <- c("0.04","0.05","0.06","0.07", "0.08", "0.09", "0.10")
 ```
 
 ### Single-stock hypothesis {.tabset}
@@ -181,17 +241,218 @@ plot(Dat_Curr,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, biomass_h2_datcurr, fig.cap=paste0("Plot comparing biomass estimated with last year's data using the same model (", geth(mods2compare[1]),") but with data updated to ",as.numeric(format(Sys.time(), "%Y")),".")}
+hyp <- "h2"
+Dat_Curr <- compareModels(geth(mods2compare))
+
+plot(Dat_Curr,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, recruitment_h2_datcurr, fig.cap=paste0("Plot comparing recruitment estimated with last year's data using the same model (", geth(mods2compare[1]),") but with data updated to ",as.numeric(format(Sys.time(), "%Y")),".")}
+plot(Dat_Curr,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fmort_h2_datcurr, fig.cap=paste0("Plot comparing fishing mortality estimated with last year's data using the same model (", geth(mods2compare[1]),") but with data updated to ",as.numeric(format(Sys.time(), "%Y")),".")}
+
+plot(Dat_Curr,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Stepping through the CPUE replacements
+### SC Chile CPUE
+```{r}
+mods2compare <- c("0.07", "0.08")
+```
+
+#### Single-stock hypothesis {.tabset}
+##### Biomass
+```{r}
+hyp <- "h1"
+Chile_CPUE <- compareModels(geth(mods2compare))
+
+plot(Chile_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+
+##### Recruitment
+```{r}
+plot(Chile_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r}
+
+plot(Chile_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Two-stock hypothesis {.tabset}
+##### Biomass
+```{r}
+hyp <- "h2"
+Chile_CPUE <- compareModels(geth(mods2compare))
+
+plot(Chile_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+##### Recruitment
+```{r}
+plot(Chile_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r}
+plot(Chile_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Peru CPUE
+```{r}
+mods2compare <- c("0.08", "0.09")
+```
+
+#### Single-stock hypothesis {.tabset}
+##### Biomass
+```{r}
+hyp <- "h1"
+Peru_CPUE <- compareModels(geth(mods2compare))
+
+plot(Peru_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+##### Recruitment
+```{r}
+plot(Peru_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r}
+
+plot(Peru_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Two-stock hypothesis {.tabset}
+##### Biomass
+```{r}
+hyp <- "h2"
+Peru_CPUE <- compareModels(geth(mods2compare))
+
+plot(Peru_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+##### Recruitment
+```{r}
+plot(Peru_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r}
+plot(Peru_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Offshore CPUE
+```{r}
+mods2compare <- c("0.03", "0.04")
+```
+
+#### Single-stock hypothesis {.tabset}
+##### Biomass
+```{r}
+hyp <- "h1"
+Offshore_CPUE <- compareModels(geth(mods2compare))
+
+plot(Offshore_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+##### Recruitment
+```{r}
+plot(Offshore_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r}
+
+plot(Offshore_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Two-stock hypothesis {.tabset}
+##### Biomass
+```{r}
+hyp <- "h2"
+Offshore_CPUE <- compareModels(geth(mods2compare))
+
+plot(Offshore_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+##### Recruitment
+```{r}
+plot(Offshore_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r}
+plot(Offshore_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+
+## Final Data Update
+This just shows the final data update, using the exact same model (i.e., with the same control files).
+
+```{r}
+mods2compare <- c("0.00","0.10")
+```
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, biomass_h1_datfin, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+hyp <- "h1"
+Dat_Fin <- compareModels(geth(mods2compare))
+
+plot(Dat_Fin,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, recruitment_h1_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+plot(Dat_Fin,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fmort_h1_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+
+plot(Dat_Fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, biomass_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+hyp <- "h2"
+Dat_Fin <- compareModels(geth(mods2compare))
+
+plot(Dat_Fin,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, recruitment_h2_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+plot(Dat_Fin,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fmort_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+
+plot(Dat_Fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
 # Other Business
 ## General
 * Reweighting of data for Chile CPUE, Offshore CPUE?
 	- Use sample sizes to weight the age data
 * Age-0 data
-* Anything that stands out? Any particularly egregious errors?
-* How to do projection for h2?
+* Increase uncertainty for most recent year of CPUE for Chile, Offshore
 
 ## Other models to run
-* 2-stock hypothesis runs
 * Update control file to 2021
+* Sensitivities to new age data as discussed in the data workshop
 * Projection runs (recruitment regimes)
 
 

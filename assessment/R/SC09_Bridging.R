@@ -31,27 +31,39 @@ fixed_bmsy <- function(mod,refpt=5500){
   return(mod)
 }
 
+fn.update <- function(newmod, newmodname, h2mod=h2.ctl,ln.dat=line.dat, ln.modnm=line.modnm) {
 
-fn.update <- function(newmod, newmodname, h=hyp) {
+  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,"h1")
+  newmod[[1]]$control$dataFile <- h2mod[line.dat] <- paste0(newmodname,".dat")
 
-  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
-  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat")
+  h2mod[ln.dat] <- paste0(newmodname, ".dat")
+  h2mod[ln.modnm] <- geth(newmodname, "h2")
+  
   writeJJM(newmod,datPath="input",ctlPath="config")
+  writeLines(h2mod, con=paste0("config/h2_",newmodname,".ctl"))
 }
-
 
 #-------------------------
 # Read in some data for making "new" datafiles
 #-------------------------
 hyp <- "h1"
  # mod0.00 <- runit(geth("0.00",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.00 <- runit(geth("0.00",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
 # Read in last year's datafile
 mod_prev <- readJJM(geth("0.00"), path = "config", input = "input")
+
+h2.ctl <- readLines("config/h2_0.00.ctl")
+line.dat <- grep("dataFile", h2.ctl) + 1
+line.modnm <- grep("modelName", h2.ctl) + 1
+
+
 yr_prev <- as.numeric(format(Sys.time(), "%Y"))-1
 yr_curr <- as.numeric(format(Sys.time(), "%Y"))
 mod_new <- mod_prev
 
 CV.CPUE <- 0.2
+CV.acousN <- .5
 
 dat.catch <- read_csv(here("data","SC09_catchByFleet.csv")) %>%
               rename_with(~ gsub("Fleet_", "fishery", .x, fixed = TRUE)) %>%
@@ -91,6 +103,20 @@ dat.cpue.chile <- read_csv(here("data","SC09_CPUE_Chile_Trip.csv")) %>%
 dat.cpue.offshore <- read_csv(here("data","SC09_CPUE_Offshore.csv")) %>%
                       mutate(err=CV.CPUE * cpue)
 
+dat.cpue.peru <- read_csv(here("data","SC09_CPUE_Peru.csv")) %>%
+                      mutate(err=CV.CPUE * cpue)
+
+dat.acousN.ant <- read_csv(here("data","SC09_AcousN_Antiguo.csv")) %>%
+                      janitor::clean_names() %>%
+                      mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
+                              total_biomass=replace_na(total_biomass,0)) %>%
+                      filter(age>0)
+
+dat.acousN.nue <- read_csv(here("data","SC09_AcousN_Nuevo.csv")) %>%
+                      janitor::clean_names() %>%
+                      mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
+                              total_biomass=replace_na(total_biomass,0)) %>%
+                      filter(age>0)
 
 #-----------
 # 0.01 Update last year's catch
@@ -103,7 +129,8 @@ catch_prev <- dat.catch %>%
 mod_new[[1]]$data$Fcaton[which(rownames(mod_new[[1]]$data$Fcaton)==yr_prev),] <- catch_prev
 
 # fn.update(mod_new, "0.01")
-# mod0.01 <- runit(geth("0.01"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.01 <- runit(geth("0.01","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.01 <- runit(geth("0.01","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 mod_prev <- mod_new
 #----------
@@ -117,43 +144,44 @@ mod_new <- mod_prev
 for(f in 1:mod_new[[1]]$data$Fnum) {
 
   if(mod_new[[1]]$data$FnumyearsA[f] > 0) {  
-    row2use <- which(rownames(mod_new[[1]]$data$Fagecomp[,,f])==yr_prev)
+    rows2use <- which(rownames(mod_new[[1]]$data$Fagecomp[,,f])==yr_prev)
     dat2use <- dat.agecomp.f %>%
               filter(year==yr_prev, fleet==f) %>%
               select(-year,-fleet) %>%
               unlist()
 
     if(length(dat2use)>0){
-        if(sum(is.na(mod_new[[1]]$data$Fagecomp[row2use,,f]))>0){
+        if(sum(is.na(mod_new[[1]]$data$Fagecomp[rows2use,,f]))>0){
                 mod_new[[1]]$data$FnumyearsA[f] <- mod_prev[[1]]$data$FnumyearsA[f] + 1
-                mod_new[[1]]$data$Fageyears[row2use,f] <- yr_prev
+                mod_new[[1]]$data$Fageyears[rows2use,f] <- yr_prev
           }
         
-        mod_new[[1]]$data$Fagecomp[row2use,,f] <- dat2use
-        mod_new[[1]]$data$Fagesample[row2use,f] <- mod_new[[1]]$data$Fagesample[(row2use-1),f]
+        mod_new[[1]]$data$Fagecomp[rows2use,,f] <- dat2use
+        mod_new[[1]]$data$Fagesample[rows2use,f] <- mod_new[[1]]$data$Fagesample[(rows2use-1),f]
       }
     }
 
   if(mod_new[[1]]$data$FnumyearsL[f] > 0) {
 
-    row2use <- which(rownames(mod_new[[1]]$data$Flengthcomp[,,f])==yr_prev)
+    rows2use <- which(rownames(mod_new[[1]]$data$Flengthcomp[,,f])==yr_prev)
     dat2use <- dat.lencomp.f %>%
           filter(year==yr_prev, fleet==f) %>%
           select(-year,-fleet) %>%
           unlist()
     if(length(dat2use)>0){
-        if(sum(is.na(mod_new[[1]]$data$Flengthcomp[row2use,,f]))>0){
+        if(sum(is.na(mod_new[[1]]$data$Flengthcomp[rows2use,,f]))>0){
                 mod_new[[1]]$data$FnumyearsL[f] <- mod_prev[[1]]$data$FnumyearsL[f] + 1
-                mod_new[[1]]$data$Flengthyears[row2use,f] <- yr_prev
+                mod_new[[1]]$data$Flengthyears[rows2use,f] <- yr_prev
           }    
-        mod_new[[1]]$data$Flengthcomp[row2use,,f] <- dat2use
-        mod_new[[1]]$data$Flengthsample[row2use,f] <- mod_new[[1]]$data$Flengthsample[(row2use-1),f]
+        mod_new[[1]]$data$Flengthcomp[rows2use,,f] <- dat2use
+        mod_new[[1]]$data$Flengthsample[rows2use,f] <- mod_new[[1]]$data$Flengthsample[(rows2use-1),f]
       }
     }
 }
 
 # fn.update(mod_new, "0.02")
-# mod0.02 <- runit(geth("0.02"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.02 <- runit(geth("0.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.02 <- runit(geth("0.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
 
 
@@ -165,12 +193,12 @@ mod_new <- mod_prev
 cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
-  row2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
+  rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
   dat2use <- dat.wtatage.f %>%
               filter(year==yr_prev, fleet==f) %>%
               select(-year,-fleet) %>%
               unlist()
-  mod_new[[1]]$data$Fwtatage[row2use,,f] <- dat2use
+  mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
   mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
                                       as.data.frame() %>% 
                                       fill(everything()) %>% 
@@ -178,13 +206,14 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
 
  # Update wtatage for CPUE
   if(f>1) {
-    row2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,cpue_ind[f-1]])==yr_prev)
-    mod_new[[1]]$data$Iwtatage[row2use,,cpue_ind[f-1]] <- mod_new[[1]]$data$Fwtatage[row2use,,f]
+    rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,cpue_ind[f-1]])==yr_prev)
+    mod_new[[1]]$data$Iwtatage[rows2use,,cpue_ind[f-1]] <- mod_new[[1]]$data$Fwtatage[rows2use,,f]
   }
 }
 
 # fn.update(mod_new, "0.03")
 # mod0.03 <- runit(geth("0.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.03 <- runit(geth("0.03","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
 
 #----------
@@ -206,6 +235,7 @@ mod_new[[1]]$data$Iyears[rows2use,i] <- dat.cpue.offshore$year
 
 # fn.update(mod_new, "0.04")
 # mod0.04 <- runit(geth("0.04"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.04 <- runit(geth("0.04","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
 
 
@@ -238,6 +268,7 @@ for(i in 1:mod_new[[1]]$data$Inum) {
 
 # fn.update(mod_new, "0.05")
 # mod0.05 <- runit(geth("0.05"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.05 <- runit(geth("0.05","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
 
 #----------
@@ -248,41 +279,42 @@ mod_new <- readJJM(geth("0.05"), path = "config", input = "input")
 for(f in 1:mod_new[[1]]$data$Fnum) {
 
   if(mod_new[[1]]$data$FnumyearsA[f] > 0) {  
-    row2use <- which(rownames(mod_new[[1]]$data$Fagecomp[,,f])==yr_curr)
+    rows2use <- which(rownames(mod_new[[1]]$data$Fagecomp[,,f])==yr_curr)
     dat2use <- dat.agecomp.f %>%
               filter(year==yr_curr, fleet==f) %>%
               select(-year,-fleet) %>%
               unlist()
     if(length(dat2use)>0){
-        if(sum(is.na(mod_new[[1]]$data$Fagecomp[row2use,,f]))>0){
+        if(sum(is.na(mod_new[[1]]$data$Fagecomp[rows2use,,f]))>0){
                 mod_new[[1]]$data$FnumyearsA[f] <- mod_prev[[1]]$data$FnumyearsA[f] + 1
-                mod_new[[1]]$data$Fageyears[row2use,f] <- yr_curr
+                mod_new[[1]]$data$Fageyears[rows2use,f] <- yr_curr
           }
         
-        mod_new[[1]]$data$Fagecomp[row2use,,f] <- dat2use
-        mod_new[[1]]$data$Fagesample[row2use,f] <- mod_new[[1]]$data$Fagesample[(row2use-1),f] * .1
+        mod_new[[1]]$data$Fagecomp[rows2use,,f] <- dat2use
+        mod_new[[1]]$data$Fagesample[rows2use,f] <- mod_new[[1]]$data$Fagesample[(rows2use-1),f] * .1
       }
   }
 
   if(mod_new[[1]]$data$FnumyearsL[f] > 0) {
-    row2use <- which(rownames(mod_new[[1]]$data$Flengthcomp[,,f])==yr_curr)
+    rows2use <- which(rownames(mod_new[[1]]$data$Flengthcomp[,,f])==yr_curr)
     dat2use <- dat.lencomp.f %>%
           filter(year==yr_curr, fleet==f) %>%
           select(-year,-fleet) %>%
           unlist()
     if(length(dat2use)>0){
-      if(sum(is.na(mod_new[[1]]$data$Flengthcomp[row2use,,f]))>0){
+      if(sum(is.na(mod_new[[1]]$data$Flengthcomp[rows2use,,f]))>0){
             mod_new[[1]]$data$FnumyearsL[f] <- mod_prev[[1]]$data$FnumyearsL[f] + 1
-            mod_new[[1]]$data$Flengthyears[row2use,f] <- yr_curr
+            mod_new[[1]]$data$Flengthyears[rows2use,f] <- yr_curr
       }
-        mod_new[[1]]$data$Flengthcomp[row2use,,f] <- dat2use
-        mod_new[[1]]$data$Flengthsample[row2use,f] <- mod_new[[1]]$data$Flengthsample[(row2use-1),f]
+        mod_new[[1]]$data$Flengthcomp[rows2use,,f] <- dat2use
+        mod_new[[1]]$data$Flengthsample[rows2use,f] <- mod_new[[1]]$data$Flengthsample[(rows2use-1),f]
     }  
   }
 }
 
 # fn.update(mod_new, "0.06")
 # mod0.06 <- runit(geth("0.06"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.06 <- runit(geth("0.06","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
 
 
@@ -294,28 +326,29 @@ mod_new <- mod_prev
 cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
-  row2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_curr)
+  rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_curr)
   dat2use <- dat.wtatage.f %>%
               filter(year==yr_curr, fleet==f) %>%
               select(-year,-fleet) %>%
               unlist()
 
   if(length(dat2use)>0)
-    mod_new[[1]]$data$Fwtatage[row2use,,f] <- dat2use
-  mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
+    mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
+    mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
                                       as.data.frame() %>% 
                                       fill(everything()) %>% 
                                       as.matrix()
 
  # Update wtatage for CPUE
   if(f>1) {
-    row2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,cpue_ind[f-1]])==yr_curr)
-    mod_new[[1]]$data$Iwtatage[row2use,,cpue_ind[f-1]] <- mod_new[[1]]$data$Fwtatage[row2use,,f]
+    rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,cpue_ind[f-1]])==yr_curr)
+    mod_new[[1]]$data$Iwtatage[rows2use,,cpue_ind[f-1]] <- mod_new[[1]]$data$Fwtatage[rows2use,,f]
   }
 }
 
 # fn.update(mod_new, "0.07")
 # mod0.07 <- runit(geth("0.07"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.07 <- runit(geth("0.07","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
 
 #----------
@@ -337,4 +370,68 @@ mod_new[[1]]$data$Iyears[rows2use,i] <- dat.cpue.chile$year
 
 # fn.update(mod_new, "0.08")
 # mod0.08 <- runit(geth("0.08"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.08 <- runit(geth("0.08","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
+
+
+#----------
+# 0.09 Peru CPUE
+#----------
+mod_new <- mod_prev
+
+i <- grep("Peru_CPUE",mod_new[[1]]$data$Inames)
+rows2use <- which(rownames(mod_new[[1]]$data$Index) %in% dat.cpue.peru$year)
+
+if(sum(is.na(mod_new[[1]]$data$Index[rows2use,i]))>0) {
+  mod_new[[1]]$data$Inumyears[i] <- mod_prev[[1]]$data$Inumyears[i] + sum(is.na(mod_prev[[1]]$data$Index[rows2use,i]))
+}
+
+mod_new[[1]]$data$Index[rows2use,i] <- dat.cpue.peru$cpue
+mod_new[[1]]$data$Indexerr[rows2use,i] <- dat.cpue.peru$err
+mod_new[[1]]$data$Iyears[rows2use,i] <- dat.cpue.peru$year
+
+# fn.update(mod_new, "0.09")
+# mod0.09 <- runit(geth("0.09"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.09 <- runit(geth("0.09","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+mod_prev <- mod_new
+
+#----------
+# 0.10 Chile AcousN
+#----------
+mod_new <- mod_prev
+
+i <- grep("Chile_AcousN",mod_new[[1]]$data$Inames)
+rows2use <- which(rownames(mod_new[[1]]$data$Index) == yr_curr)
+
+# Update index
+if(sum(is.na(mod_new[[1]]$data$Index[rows2use,i]))>0) {
+  mod_new[[1]]$data$Inumyears[i] <- mod_prev[[1]]$data$Inumyears[i] + 1
+  mod_new[[1]]$data$Iyears[rows2use,i] <- yr_curr
+}
+
+if(sum(is.na(mod_new[[1]]$data$Iyearsage[rows2use,i]))>0) {
+  mod_new[[1]]$data$Iyearsage[rows2use,i] <- yr_curr
+  mod_new[[1]]$data$Inumageyears[i] <- mod_prev[[1]]$data$Inumageyears[i] + 1
+}
+
+mod_new[[1]]$data$Index[rows2use,i] <- sum(dat.acousN.ant$total_biomass,na.rm=T)/1e3
+mod_new[[1]]$data$Indexerr[rows2use,i] <- mod_new[[1]]$data$Index[rows2use,i] * CV.acousN
+
+# Update wt at age
+rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,i])==yr_curr)
+mod_new[[1]]$data$Iwtatage[rows2use,!is.na(dat.acousN.ant$mean_weight),i] <- dat.acousN.ant$mean_weight[!is.na(dat.acousN.ant$mean_weight)]
+
+# Update agecomp
+rows2use <- which(rownames(mod_new[[1]]$data$Ipropage[,,i])==yr_curr)
+
+mod_new[[1]]$data$Ipropage[rows2use,,i] <- dat.acousN.ant$numbers_at_age
+mod_new[[1]]$data$Iagesample[rows2use,i] <- mod_new[[1]]$data$Iagesample[(rows2use-1),i]
+
+fn.update(mod_new, "0.10")
+mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+mod0.10 <- runit(geth("0.10","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod_prev <- mod_new
+
+#-------------
+
+
