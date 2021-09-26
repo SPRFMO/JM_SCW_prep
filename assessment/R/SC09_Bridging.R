@@ -31,7 +31,7 @@ fixed_bmsy <- function(mod,refpt=5500){
   return(mod)
 }
 
-fn.update <- function(newmod, newmodname, h2mod=h2.ctl,ln.dat=line.dat, ln.modnm=line.modnm) {
+fn.bridge <- function(newmod, newmodname, h2mod=h2.ctl,ln.dat=line.dat, ln.modnm=line.modnm) {
 
   names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,"h1")
   newmod[[1]]$control$dataFile <- h2mod[line.dat] <- paste0(newmodname,".dat")
@@ -128,7 +128,7 @@ catch_prev <- dat.catch %>%
 
 mod_new[[1]]$data$Fcaton[which(rownames(mod_new[[1]]$data$Fcaton)==yr_prev),] <- catch_prev
 
-# fn.update(mod_new, "0.01")
+# fn.bridge(mod_new, "0.01")
 # mod0.01 <- runit(geth("0.01","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.01 <- runit(geth("0.01","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
@@ -179,7 +179,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
     }
 }
 
-# fn.update(mod_new, "0.02")
+# fn.bridge(mod_new, "0.02")
 # mod0.02 <- runit(geth("0.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.02 <- runit(geth("0.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -211,7 +211,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
   }
 }
 
-# fn.update(mod_new, "0.03")
+# fn.bridge(mod_new, "0.03")
 # mod0.03 <- runit(geth("0.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.03 <- runit(geth("0.03","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -233,7 +233,7 @@ mod_new[[1]]$data$Index[rows2use,i] <- dat.cpue.offshore$cpue
 mod_new[[1]]$data$Indexerr[rows2use,i] <- dat.cpue.offshore$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat.cpue.offshore$year
 
-# fn.update(mod_new, "0.04")
+# fn.bridge(mod_new, "0.04")
 # mod0.04 <- runit(geth("0.04"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.04 <- runit(geth("0.04","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -266,7 +266,7 @@ for(i in 1:mod_new[[1]]$data$Inum) {
     mod_new[[1]]$data$Iwtatage[,,i] <- rbind(mod_prev[[1]]$data$Iwtatage[,,i],tail(mod_prev[[1]]$data$Iwtatage[,,i],1))
 }
 
-# fn.update(mod_new, "0.05")
+# fn.bridge(mod_new, "0.05")
 # mod0.05 <- runit(geth("0.05"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.05 <- runit(geth("0.05","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -312,7 +312,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
   }
 }
 
-# fn.update(mod_new, "0.06")
+# fn.bridge(mod_new, "0.06")
 # mod0.06 <- runit(geth("0.06"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.06 <- runit(geth("0.06","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -346,7 +346,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
   }
 }
 
-# fn.update(mod_new, "0.07")
+# fn.bridge(mod_new, "0.07")
 # mod0.07 <- runit(geth("0.07"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.07 <- runit(geth("0.07","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -368,7 +368,7 @@ mod_new[[1]]$data$Index[rows2use,i] <- dat.cpue.chile$Index
 mod_new[[1]]$data$Indexerr[rows2use,i] <- dat.cpue.chile$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat.cpue.chile$year
 
-# fn.update(mod_new, "0.08")
+# fn.bridge(mod_new, "0.08")
 # mod0.08 <- runit(geth("0.08"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.08 <- runit(geth("0.08","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -390,7 +390,7 @@ mod_new[[1]]$data$Index[rows2use,i] <- dat.cpue.peru$cpue
 mod_new[[1]]$data$Indexerr[rows2use,i] <- dat.cpue.peru$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat.cpue.peru$year
 
-# fn.update(mod_new, "0.09")
+# fn.bridge(mod_new, "0.09")
 # mod0.09 <- runit(geth("0.09"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # mod0.09 <- runit(geth("0.09","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mod_prev <- mod_new
@@ -427,11 +427,55 @@ rows2use <- which(rownames(mod_new[[1]]$data$Ipropage[,,i])==yr_curr)
 mod_new[[1]]$data$Ipropage[rows2use,,i] <- dat.acousN.ant$numbers_at_age
 mod_new[[1]]$data$Iagesample[rows2use,i] <- mod_new[[1]]$data$Iagesample[(rows2use-1),i]
 
-fn.update(mod_new, "0.10")
-mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-mod0.10 <- runit(geth("0.10","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod_prev <- mod_new
+# fn.bridge(mod_new, "0.10")
+# mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.10 <- runit(geth("0.10","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+mod_prev <- mod_new
 
 #-------------
+# 1.00 Update CTL
+#-------------
+mod.h1 <- readJJM(geth("0.10","h1"), path = "config", input = "input")
+mod.h2 <- readJJM(geth("0.10","h2"), path = "config", input = "input")
+
+mod.h1.new <- mod.h1
+mod.h2.new <- mod.h2
+
+mod.h1.new[[1]]$control[["Nyrs_sr"]] <- mod.h1[[1]]$control[["Nyrs_sr"]]+1
+mod.h1.new[[1]]$control[["Nyrs_sr_1"]] <- c(mod.h1[[1]]$control[["Nyrs_sr_1"]],(tail(mod.h1[[1]]$control[["Nyrs_sr_1"]],1)+1))
+
+for(f in 1:mod.h1[[1]]$data$Fnum) {
+  ff <- paste0("F",f,"_")
+
+  mod.h1.new[[1]]$control[[paste0(ff,"info")]][length(mod.h1[[1]]$control[[paste0(ff,"info")]])] <- tail(mod.h1[[1]]$control[[paste0(ff,"info")]],1) + 1
+  mod.h1.new[[1]]$control[[paste0(ff,"selchangeYear")]] <- c(mod.h1[[1]]$control[[paste0(ff,"selchangeYear")]],(tail(mod.h1[[1]]$control[[paste0(ff,"selchangeYear")]],1)+1))
+  mod.h1.new[[1]]$control[[paste0(ff,"selchange")]] <- c(mod.h1[[1]]$control[[paste0(ff,"selchange")]],tail(mod.h1[[1]]$control[[paste0(ff,"selchange")]],1))
+}
 
 
+mod.h2.new[[1]]$control[["Nyrs_sr"]][1] <- mod.h2[[1]]$control[["Nyrs_sr"]][1]+1
+mod.h2.new[[1]]$control[["Nyrs_sr_1"]] <- c(mod.h2[[1]]$control[["Nyrs_sr_1"]],(tail(mod.h2[[1]]$control[["Nyrs_sr_1"]],1)+1))
+
+for(f in 1:mod.h2[[1]]$data$Fnum) {
+  if(f!=3) {
+    ff <- paste0("F",f,"_")
+  
+    mod.h2.new[[1]]$control[[paste0(ff,"info")]][length(mod.h2[[1]]$control[[paste0(ff,"info")]])] <- tail(mod.h2[[1]]$control[[paste0(ff,"info")]],1) + 1
+    mod.h2.new[[1]]$control[[paste0(ff,"selchangeYear")]] <- c(mod.h2[[1]]$control[[paste0(ff,"selchangeYear")]],(tail(mod.h2[[1]]$control[[paste0(ff,"selchangeYear")]],1)+1))
+    mod.h2.new[[1]]$control[[paste0(ff,"selchange")]] <- c(mod.h2[[1]]$control[[paste0(ff,"selchange")]],tail(mod.h2[[1]]$control[[paste0(ff,"selchange")]],1))
+  }
+}
+
+fn.update <- function(newmod, newmodname, h) {
+
+  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
+  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat")
+  
+  writeJJM(newmod,datPath="input",ctlPath="config")
+}
+
+# fn.update(mod.h1.new, "1.00", "h1")
+# mod1.00 <- runit(geth("1.00","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+# fn.update(mod.h2.new, "1.00", "h2")
+# mod1.00 <- runit(geth("1.00","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")

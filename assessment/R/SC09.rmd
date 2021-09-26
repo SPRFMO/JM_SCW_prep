@@ -21,7 +21,7 @@ This document was compiled in `RMarkdown`, and shows the incremental results of 
 
 Annoted data files can be found in the Excel spreadsheet `JM Data files for SC09.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
 
-The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC09_Bridging.R`][`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC09_Bridging.R). Should you choose to run the models, please ensure that you have:
+The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC09_Bridging.R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC09_Bridging.R). Should you choose to run the models, please ensure that you have:
 
 * Compiled the latest `jjm/src/jjms.tpl`
   - This can be done by navigating to the `jjm/src` folder in your Terminal, and using the `make` command
@@ -84,7 +84,33 @@ pwd <- getwd()
 #   stop(paste("Set working directory to jjm/assessment"))
 # }
 
-geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
+geth <- function(mod,h=hyp) paste0(h,"_", mod)
+
+fn.plotind <- function(mods2compare, indname) {
+  fn.seldata <- function(x) {
+  x$data$Index[,i] %>%
+    bind_rows() %>%
+    pivot_longer(everything(), names_to="year") %>%
+    drop_na() %>%
+    mutate(year=as.numeric(year),
+            assessment_year=max(year))
+  }
+
+  mods <- compareModels(geth(mods2compare, "h1"))
+  i <- grep(indname,mods[[1]]$data$Inames)
+  dat2use <- list()
+  for(m in 1:length(mods)) {
+    dat2use[[m]] <- fn.seldata(mods[[m]])
+  }
+
+  p <- map_dfr(dat2use, ~as_tibble(.)) %>%
+        mutate(assessment_year=as.factor(assessment_year)) %>%
+        ggplot(aes(x=year,y=value,colour=assessment_year)) +
+        geom_line() +
+        theme_minimal() + 
+        scale_x_continuous(breaks= scales::pretty_breaks())
+  print(p)
+}
 
 ```
 
@@ -120,7 +146,6 @@ plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 
 plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
-
 
 ### Fishing Mortality
 ```{r fmort_h1_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
@@ -263,19 +288,20 @@ plot(Dat_Curr,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 ## Stepping through the CPUE replacements
 ### SC Chile CPUE
-```{r}
+```{r, fig.height=3}
 mods2compare <- c("0.07", "0.08")
+
+fn.plotind(mods2compare, "Chile_CPUE")
+
 ```
 
 #### Single-stock hypothesis {.tabset}
 ##### Biomass
 ```{r}
-hyp <- "h1"
-Chile_CPUE <- compareModels(geth(mods2compare))
+Chile_CPUE <- compareModels(geth(mods2compare, "h1"))
 
 plot(Chile_CPUE,combine=T,what="biomass",stack=F,main="Biomass")
 ```
-
 
 ##### Recruitment
 ```{r}
@@ -308,8 +334,11 @@ plot(Chile_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ### Peru CPUE
-```{r}
+```{r, fig.height=3}
 mods2compare <- c("0.08", "0.09")
+
+fn.plotind(mods2compare, "Peru_CPUE")
+
 ```
 
 #### Single-stock hypothesis {.tabset}
@@ -352,8 +381,11 @@ plot(Peru_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ### Offshore CPUE
-```{r}
+```{r, fig.height=3}
 mods2compare <- c("0.03", "0.04")
+
+fn.plotind(mods2compare, "Offshore_CPUE")
+
 ```
 
 #### Single-stock hypothesis {.tabset}
@@ -372,7 +404,6 @@ plot(Offshore_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
 
 ##### Fishing Mortality
 ```{r}
-
 plot(Offshore_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
@@ -395,53 +426,113 @@ plot(Offshore_CPUE,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Offshore_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-
-
-## Final Data Update
+# Final Data Update
 This just shows the final data update, using the exact same model (i.e., with the same control files).
 
 ```{r}
 mods2compare <- c("0.00","0.10")
 ```
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r, biomass_h1_datfin, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+
+## Single-stock hypothesis {.tabset}
+### Biomass
+```{r, biomass_h1_datfin, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 hyp <- "h1"
 Dat_Fin <- compareModels(geth(mods2compare))
 
 plot(Dat_Fin,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-#### Recruitment
-```{r, recruitment_h1_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+### Recruitment
+```{r, recruitment_h1_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 plot(Dat_Fin,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-#### Fishing Mortality
-```{r fmort_h1_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+### Fishing Mortality
+```{r fmort_h1_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 
 plot(Dat_Fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r, biomass_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+## Two-stock hypothesis {.tabset}
+### Biomass
+```{r, biomass_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 hyp <- "h2"
 Dat_Fin <- compareModels(geth(mods2compare))
 
 plot(Dat_Fin,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-#### Recruitment
-```{r, recruitment_h2_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+### Recruitment
+```{r, recruitment_h2_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 plot(Dat_Fin,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-#### Fishing Mortality
-```{r fmort_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1," (",geth(mods2compare[2]),").")}
+### Fishing Mortality
+```{r fmort_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 
 plot(Dat_Fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
+
+# Model Update
+These results are from updating the model to include selectivity changes in the most recent year, and to extend the recruitment regime shift time series. This was the same procedure that was applied to the previous year.
+
+```{r}
+mods2compare <- c("0.00","1.00")
+```
+## Single-stock hypothesis {.tabset}
+### Biomass
+```{r, biomass_h1_base, fig.cap=paste0("Plot comparing biomass estimates from last year's model (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
+hyp <- "h1"
+Mod_Update <- compareModels(geth(mods2compare))
+
+plot(Mod_Update,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, recruitment_h1_base, fig.cap=paste0("Plot comparing recruitment estimates from last year's model (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
+plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fmort_h1_base, fig.cap=paste0("Plot comparing fishing mortality estimates from last year's model (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
+
+plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Two-stock hypothesis {.tabset}
+### Biomass
+```{r, biomass_h2_base, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
+hyp <- "h2"
+Mod_Update <- compareModels(geth(mods2compare))
+
+plot(Mod_Update,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, recruitment_h2_base, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
+plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fmort_h2_base, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model  (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
+
+plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Likelihood Table
+```{r results="asis"}
+hyp <- "h1"
+finMod <- "1.00"
+h1 <- readJJM(geth(finMod), path = "config", input = "input")
+
+hyp <- "h2"
+h2 <- readJJM(geth(finMod), path = "config", input = "input")
+
+LL <- cbind(summary(h1)$like,summary(h2)$like)
+
+knitr::kable(LL) %>% kableExtra::kable_styling()
+```
+
 
 # Other Business
 ## General
