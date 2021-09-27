@@ -539,13 +539,12 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 * Reweighting of data for Chile CPUE, Offshore CPUE?
 	- Use sample sizes to weight the age data
 * Age-0 data
-* Increase uncertainty for most recent year of CPUE for Chile, Offshore
+
 
 ## Other models to run
-* Update control file to 2021
 * Sensitivities to new age data as discussed in the data workshop
 * Projection runs (recruitment regimes)
-
+* Increase uncertainty for most recent year of CPUE for Chile, Offshore
 
 
 

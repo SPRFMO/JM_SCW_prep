@@ -20,16 +20,8 @@ pwd <- getwd()
 if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
   stop(paste("Set working directory to jjm/assessment"))
 }
-geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 
-# Function to put a constant reference point into image
-fixed_bmsy <- function(mod,refpt=5500){
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
+geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 
 fn.bridge <- function(newmod, newmodname, h2mod=h2.ctl,ln.dat=line.dat, ln.modnm=line.modnm) {
 
@@ -42,6 +34,15 @@ fn.bridge <- function(newmod, newmodname, h2mod=h2.ctl,ln.dat=line.dat, ln.modnm
   writeJJM(newmod,datPath="input",ctlPath="config")
   writeLines(h2mod, con=paste0("config/h2_",newmodname,".ctl"))
 }
+
+fn.update <- function(newmod, newmodname, h) {
+
+  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
+  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat")
+  
+  writeJJM(newmod,datPath="input",ctlPath="config")
+}
+
 
 #-------------------------
 # Read in some data for making "new" datafiles
@@ -136,7 +137,6 @@ mod_prev <- mod_new
 #----------
 # 0.02 Last year's fishery age and length comp
 # What to do with fleet 3 age comps
-# Length comps for all the other fleets now?
 # And length bins going out to 64 (previously only to 50). Sum up to plus group?
 #----------
 mod_new <- mod_prev
@@ -240,7 +240,7 @@ mod_prev <- mod_new
 
 
 #----------
-# 0.05 Add 2021 catch projections
+# 0.05 Add this year's catch projections
 #----------
 mod_new <- mod_prev
 
@@ -464,14 +464,6 @@ for(f in 1:mod.h2[[1]]$data$Fnum) {
     mod.h2.new[[1]]$control[[paste0(ff,"selchangeYear")]] <- c(mod.h2[[1]]$control[[paste0(ff,"selchangeYear")]],(tail(mod.h2[[1]]$control[[paste0(ff,"selchangeYear")]],1)+1))
     mod.h2.new[[1]]$control[[paste0(ff,"selchange")]] <- c(mod.h2[[1]]$control[[paste0(ff,"selchange")]],tail(mod.h2[[1]]$control[[paste0(ff,"selchange")]],1))
   }
-}
-
-fn.update <- function(newmod, newmodname, h) {
-
-  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
-  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat")
-  
-  writeJJM(newmod,datPath="input",ctlPath="config")
 }
 
 # fn.update(mod.h1.new, "1.00", "h1")

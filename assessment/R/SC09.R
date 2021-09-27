@@ -30,78 +30,19 @@ fixed_bmsy <- function(mod,refpt=5500){
   return(mod)
 }
 
+fn.update <- function(newmod, newmodname, h) {
+
+  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
+  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat")
+  
+  writeJJM(newmod,datPath="input",ctlPath="config")
+}
+
 #-------------------------
 # Model configuration runs
 #-------------------------
 
-# Read in some data for making "new" datafiles
-#-------------------------
- mod0.00 <- runit(geth("0.00",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-catch_by_fleet <- read_csv("data/SC09_catchByFleet.csv")
-glimpse(catch_by_fleet)
-# Read in last year's datafile
-readJJMConfig(model="input/h1_0.00")#,path="config")
-readJJMConfig("h1_0.00",path="config")
-?jjmR
-
-#-------------------------
-# Check models are the same
-
-# mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-
-# setwd("../../jjm_2019/assessment/SC07") # only works on LQ's computer at the moment
-# mod_prev <- readJJM("mod1.00", path = "config", input = "input")
-# setwd(pwd)
-
-mod0.00 <- readJJM(geth("0.00","h1"), path = "config", input = "input")
-# loads last year's model as mod_prev
-load("results/mod_prev_h1.Rdat")
-
-oldnewMods <- combineModels(mod0.00,mod_prev)
-plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
-plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-
-mod0.00 <- readJJM(geth("0.00","h2"), path = "config", input = "input")
-# loads last year's model as mod_prev
-load("results/mod_prev_h2.Rdat")
-
-oldnewMods <- combineModels(mod0.00,mod_prev)
-plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
-plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
-plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-
-#----------------
-# Data increments
-#----------------
-# mod0.01 <- runit(geth("0.01"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.02 <- runit(geth("0.02"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.03 <- runit(geth("0.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.04 <- runit(geth("0.04"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.05 <- runit(geth("0.05"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.06 <- runit(geth("0.06"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.07 <- runit(geth("0.07"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.08 <- runit(geth("0.08"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.09 <- runit(geth("0.09"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.11 <- runit(geth("0.11"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.12 <- runit(geth("0.12"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.13 <- runit(geth("0.13"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-
-# mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
-# mod0.01 <- readJJM(geth("0.01"), path = "config", input = "input")
-# mod0.02 <- readJJM(geth("0.02"), path = "config", input = "input")
-# mod0.03 <- readJJM(geth("0.03"), path = "config", input = "input")
-# mod0.04 <- readJJM(geth("0.04"), path = "config", input = "input")
-# mod0.05 <- readJJM(geth("0.05"), path = "config", input = "input")
-# mod0.06 <- readJJM(geth("0.06"), path = "config", input = "input")
-# mod0.07 <- readJJM(geth("0.07"), path = "config", input = "input")
-# mod0.08 <- readJJM(geth("0.08"), path = "config", input = "input")
-# mod0.09 <- readJJM(geth("0.09"), path = "config", input = "input")
-# mod0.10 <- readJJM(geth("0.10"), path = "config", input = "input")
-# mod0.11 <- readJJM(geth("0.11"), path = "config", input = "input")
-# mod0.12 <- readJJM(geth("0.12"), path = "config", input = "input")
-# mod0.13 <- readJJM(geth("0.13"), path = "config", input = "input")
+# Bridging now done in SC09_Bridging.R
 
 #--------------------
 # Full model
@@ -109,8 +50,91 @@ plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 # mod1.00 <- runit(geth("1.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
-#h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
-#h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
+h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
+h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
+
+file.dat <- h1_1.00[[1]]$data
+dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) %>%
+              janitor::clean_names() %>%
+              rename(year=ano,
+                      fleet=macrozona,
+                      age=grupo_edad,
+                      catch_no=capt,
+                      catch_wt=capt_ton,
+                      method=criterio_lectura) %>%
+              mutate(fleet_type=ifelse(grepl("acoustic",fleet),"survey","fishery"),
+                      fleet=as.numeric(str_extract(fleet, "[0-9]+")))
+
+dat.fish <- dat.chile %>%
+                  group_by(fleet,method,year,age) %>%
+                  summarise(catch_no=sum(catch_no), 
+                            catch_wt=sum(catch_wt),
+                            avg_wt=1e3*catch_wt/catch_no) %>%
+                  ungroup()
+
+for(f in unique(dat.fish$fleet)) {
+  rows2use <- rownames(file.dat$Fagecomp[,,f]) %in% dat.fish$year
+  dat2use <- dat.fish %>%
+            filter(fleet==f, method=="antiguo") %>%
+            select(-fleet, -method)
+
+  file.dat$Fagecomp[rows2use,,f] <- dat2use %>%
+                                      select(-catch_wt, -avg_wt) %>%
+                                      pivot_wider(names_from=age,
+                                                  values_from=catch_no) %>%
+                                      select(str_sort(names(.),numeric=T), -`0`,-year) %>% 
+                                      mutate_all(replace_na,0) %>%
+                                      as.matrix()
+  file.dat$Fagesample[!(rows2use|is.na(file.dat$Fagesample[,f])),f] <- file.dat$Fagesample[rows2use,f][1]*.1
+
+  tmp <- dat2use %>%
+          select(-catch_wt, -catch_no) %>%
+          pivot_wider(names_from=age,
+                      values_from=avg_wt) %>%
+          select(str_sort(names(.),numeric=T), -`0`,-year) %>% 
+          as.matrix()
+
+  tmp[is.na(tmp)] <- file.dat$Fwtatage[rows2use,,f][is.na(tmp)]
+  file.dat$Fwtatage[rows2use,,f] <- tmp
+
+  # Update wtatage for CPUE
+  if(f>1) {
+    ind <- grep("Chile_CPUE",file.dat$Inames)
+    file.dat$Iwtatage[,,ind] <- file.dat$Fwtatage[,,f]
+  }
+}
+
+h1_1.01 <- h1_1.00
+h1_1.01[[1]]$data <- file.dat
+
+ fn.update(h1_0.01, "1.01", "h1")
+# mod0.02 <- runit(geth("0.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# mod0.02 <- runit(geth("0.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+#----------
+# 0.03 Last year's fishery (and CPUE) wtatage
+# wtatage for fleet 3 is different?
+#----------
+cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
+
+for(f in 1:mod_new[[1]]$data$Fnum) {
+  rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
+  dat2use <- dat.wtatage.f %>%
+              filter(year==yr_prev, fleet==f) %>%
+              select(-year,-fleet) %>%
+              unlist()
+  mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
+  mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
+                                      as.data.frame() %>% 
+                                      fill(everything()) %>% 
+                                      as.matrix()
+
+ # Update wtatage for CPUE
+  if(f>1) {
+    rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,cpue_ind[f-1]])==yr_prev)
+    mod_new[[1]]$data$Iwtatage[rows2use,,cpue_ind[f-1]] <- mod_new[[1]]$data$Fwtatage[rows2use,,f]
+  }
+}
 
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
