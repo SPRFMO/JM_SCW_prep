@@ -212,13 +212,12 @@ plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 
 #### Fishing Mortality
 ```{r fmort_h1_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
-
 plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ### Two-stock hypothesis {.tabset}
 #### Biomass
-```{r, biomass_h2_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+```{r, biomass_h2_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1],"h2"), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 hyp <- "h2"
 Dat_Prev <- compareModels(geth(mods2compare))
 
@@ -238,8 +237,6 @@ plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 ## Updating this year's data
 The data updated to `r as.numeric(format(Sys.time(), "%Y"))` include projected catch estimates, age and length compositions, and indices of abundance. 
-
-Currently, only the Chilean and Offshore CPUE indices have been made available (to me at least).
 
 ```{r}
 mods2compare <- c("0.04","0.05","0.06","0.07", "0.08", "0.09", "0.10")
@@ -540,6 +537,8 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 * Updated age composition and weight at age for Chile_SC and Chile_N fleets, and also for AcousCS and AcousN surveys
 * Sample sizes remained the same
 * Current year is downweighted, as usual
+* 2021 data in 1.00 are already from the "antiguo" method
+
 
 * **The data for Chile_AcousCS include 2010, 2011, 2012, 2017, and 2020. But this index hasn't been updated since 2009- were we supposed to also be updating this? Should we ignore those years of data?**
 * **In the antiguo dataset, summing up the capt_ton by year leads to numbers greater than historical total catch (~7 mil tons in 1995). Is there something we're missing?**
@@ -585,46 +584,7 @@ plot(Antiguo,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-## Chile's New Age Data ("Validacion")
-```{r}
-mods2compare <- c("1.00","1.02")
-```
 
-## Single-stock hypothesis {.tabset}
-### Biomass
-```{r}
-Validacion <- compareModels(geth(mods2compare,"h1"))
-
-plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-### Recruitment
-```{r}
-plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-### Fishing Mortality
-```{r }
-plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-## Two-stock hypothesis {.tabset}
-### Biomass
-```{r}
-Validacion <- compareModels(geth(mods2compare,"h2"))
-
-plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-### Recruitment
-```{r}
-plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-### Fishing Mortality
-```{r}
-plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
 
 # Other Business
 ## General

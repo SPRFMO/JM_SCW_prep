@@ -53,11 +53,9 @@ fn.update <- function(newmod, newmodname, h) {
 h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
 h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
-
 #----------
 # Loading updated Chilean data
 # Still need to include 2021 data
-# Plot data in RMD
 #----------
 file.dat <- h1_1.00[[1]]$data
 dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) %>%
@@ -159,6 +157,8 @@ h2_1.01[[1]]$data <- file.dat
 
 #---------
 # Using the "validacion" data set
+# Still need to update M and maturity parameters
+# Update 2021 data points
 #---------
 file.dat <- h1_1.00[[1]]$data
 for(f in unique(dat.fish$fleet)) {

@@ -22,9 +22,9 @@ Model      | Description
 0.09     |  As 0.08 but replaced Peru_CPUE index
 0.10     |  As 0.09 but with updated AcousN 2021 index, with associated age composition and weight at age
 -----------|--------------
-**Models 1.x**| **(NOT RUN YET) Updated Model and Sensitivities**
+**Models 1.x**| **Updated Model and Sensitivities**
 1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
-1.01     | As 1.00 but use revised data series "antiguo" (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
 1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35)
 1.03     | As 1.02 but M=0.45
 1.04     | As 1.00 but with increased uncertainty for final year CPUE indices

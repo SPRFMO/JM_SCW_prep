@@ -194,15 +194,17 @@ cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
   rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
-  dat2use <- dat.wtatage.f %>%
-              filter(year==yr_prev, fleet==f) %>%
-              select(-year,-fleet) %>%
-              unlist()
-  mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
-  mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
-                                      as.data.frame() %>% 
-                                      fill(everything()) %>% 
-                                      as.matrix()
+  if(f!=3) {
+    dat2use <- dat.wtatage.f %>%
+                filter(year==yr_prev, fleet==f) %>%
+                select(-year,-fleet) %>%
+                unlist()
+    mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
+    mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
+                                        as.data.frame() %>% 
+                                        fill(everything()) %>% 
+                                        as.matrix()
+  }
 
  # Update wtatage for CPUE
   if(f>1) {
@@ -327,17 +329,19 @@ cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
   rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_curr)
-  dat2use <- dat.wtatage.f %>%
-              filter(year==yr_curr, fleet==f) %>%
-              select(-year,-fleet) %>%
-              unlist()
-
-  if(length(dat2use)>0)
-    mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
-    mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
-                                      as.data.frame() %>% 
-                                      fill(everything()) %>% 
-                                      as.matrix()
+  if(f!=3){
+    dat2use <- dat.wtatage.f %>%
+                filter(year==yr_curr, fleet==f) %>%
+                select(-year,-fleet) %>%
+                unlist()
+  
+    if(length(dat2use)>0)
+      mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
+      mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
+                                        as.data.frame() %>% 
+                                        fill(everything()) %>% 
+                                        as.matrix()
+  }
 
  # Update wtatage for CPUE
   if(f>1) {

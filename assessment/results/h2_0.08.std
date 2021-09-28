@@ -1,10 +1,10 @@
  index   name                 value      std.dev
      1   mean_log_rec[1]      9.4977e+00 8.9832e-02
-     2   mean_log_rec[2]      8.3431e+00 1.7857e-01
-     3   mean_log_rec[3]      7.6599e+00 1.7934e-01
+     2   mean_log_rec[2]      8.3326e+00 1.7787e-01
+     3   mean_log_rec[3]      7.6817e+00 1.7883e-01
      4   log_Rzero[1]         9.1781e+00 1.8804e-01
-     5   log_Rzero[2]         8.3910e+00 1.8486e-01
-     6   log_Rzero[3]         7.4198e+00 1.8879e-01
+     5   log_Rzero[2]         8.3809e+00 1.8420e-01
+     6   log_Rzero[3]         7.4094e+00 1.8779e-01
      7   rec_dev             -4.3506e-01 5.0410e-01
      8   rec_dev             -5.0746e-01 4.9271e-01
      9   rec_dev             -5.8613e-01 4.8124e-01
@@ -68,73 +68,73 @@
     67   rec_dev              2.0497e-01 3.1099e-01
     68   rec_dev             -1.8739e-01 3.7704e-01
     69   rec_dev             -3.1628e-02 4.5011e-01
-    70   rec_dev             -1.7106e-04 5.9994e-01
-    71   rec_dev             -2.1605e-04 5.9993e-01
-    72   rec_dev             -2.5954e-04 5.9991e-01
-    73   rec_dev             -2.9127e-04 5.9989e-01
-    74   rec_dev             -2.9335e-04 5.9988e-01
-    75   rec_dev             -2.3090e-04 5.9988e-01
-    76   rec_dev             -4.7485e-05 5.9992e-01
-    77   rec_dev              3.6995e-04 6.0001e-01
-    78   rec_dev              8.7738e-04 6.0012e-01
-    79   rec_dev              1.7393e-03 6.0030e-01
-    80   rec_dev              2.9910e-03 6.0055e-01
-    81   rec_dev              2.7429e-02 4.6382e-01
-    82   rec_dev              2.8043e-02 4.6360e-01
-    83   rec_dev              2.8488e-02 4.6340e-01
-    84   rec_dev              2.8556e-02 4.6320e-01
-    85   rec_dev              2.6573e-02 4.6248e-01
-    86   rec_dev              1.9365e-02 4.6094e-01
-    87   rec_dev              6.9568e-03 4.5449e-01
-    88   rec_dev             -4.6939e-02 4.1169e-01
-    89   rec_dev              3.5547e-01 2.9545e-01
-    90   rec_dev             -1.7273e-02 2.7474e-01
-    91   rec_dev             -1.1850e-01 2.9495e-01
-    92   rec_dev             -5.1221e-03 2.9067e-01
-    93   rec_dev              4.1135e-01 2.7136e-01
-    94   rec_dev             -4.2056e-02 2.4527e-01
-    95   rec_dev             -2.4945e-01 2.3917e-01
-    96   rec_dev             -5.3660e-01 2.5797e-01
-    97   rec_dev             -5.1509e-02 2.3621e-01
-    98   rec_dev              3.6497e-01 2.2513e-01
-    99   rec_dev              8.9287e-01 2.1341e-01
-   100   rec_dev              2.7136e-01 2.5276e-01
-   101   rec_dev              2.3656e-01 2.3351e-01
-   102   rec_dev             -4.6373e-01 2.6249e-01
-   103   rec_dev             -4.5552e-03 2.1280e-01
-   104   rec_dev             -4.4647e-01 2.2068e-01
-   105   rec_dev             -6.6464e-01 2.4708e-01
-   106   rec_dev              5.1980e-03 2.3241e-01
-   107   rec_dev              8.8087e-02 2.6285e-01
-   108   rec_dev              4.3218e-02 2.1758e-01
-   109   rec_dev             -1.1629e-01 2.0144e-01
-   110   rec_dev              6.1525e-01 2.2015e-01
-   111   rec_dev              1.2214e+00 2.0882e-01
-   112   rec_dev             -2.8730e-01 2.7307e-01
-   113   rec_dev              6.7164e-01 1.8967e-01
-   114   rec_dev             -6.2727e-01 2.9761e-01
-   115   rec_dev             -1.4190e-01 2.5465e-01
-   116   rec_dev              7.4718e-01 1.8740e-01
-   117   rec_dev              2.8267e-02 2.0794e-01
-   118   rec_dev             -1.1765e+00 2.7012e-01
-   119   rec_dev             -1.9602e+00 2.6988e-01
-   120   rec_dev             -4.2819e-01 2.0599e-01
-   121   rec_dev              8.5851e-01 1.7908e-01
-   122   rec_dev             -5.3883e-01 2.7617e-01
-   123   rec_dev             -1.5716e-01 2.0934e-01
-   124   rec_dev             -1.5164e+00 2.9591e-01
-   125   rec_dev             -4.2106e-01 2.1986e-01
-   126   rec_dev             -6.7630e-01 2.4404e-01
-   127   rec_dev             -1.7830e-01 2.5628e-01
-   128   rec_dev              1.2077e+00 2.0380e-01
-   129   rec_dev              7.7901e-01 2.2448e-01
-   130   rec_dev             -2.9782e-01 2.9494e-01
-   131   rec_dev             -9.0854e-01 3.4353e-01
-   132   rec_dev             -1.3733e-01 4.2559e-01
+    70   rec_dev             -1.8775e-04 5.9994e-01
+    71   rec_dev             -2.3899e-04 5.9992e-01
+    72   rec_dev             -2.9055e-04 5.9990e-01
+    73   rec_dev             -3.3310e-04 5.9988e-01
+    74   rec_dev             -3.4824e-04 5.9987e-01
+    75   rec_dev             -3.0215e-04 5.9987e-01
+    76   rec_dev             -1.3935e-04 5.9989e-01
+    77   rec_dev              2.5390e-04 5.9998e-01
+    78   rec_dev              7.3205e-04 6.0008e-01
+    79   rec_dev              1.5609e-03 6.0025e-01
+    80   rec_dev              2.7722e-03 6.0049e-01
+    81   rec_dev              2.7482e-02 4.6378e-01
+    82   rec_dev              2.8054e-02 4.6354e-01
+    83   rec_dev              2.8452e-02 4.6333e-01
+    84   rec_dev              2.8455e-02 4.6312e-01
+    85   rec_dev              2.6295e-02 4.6235e-01
+    86   rec_dev              1.8889e-02 4.6073e-01
+    87   rec_dev              6.3435e-03 4.5411e-01
+    88   rec_dev             -4.7448e-02 4.1103e-01
+    89   rec_dev              3.5449e-01 2.9451e-01
+    90   rec_dev             -1.7939e-02 2.7385e-01
+    91   rec_dev             -1.2177e-01 2.9459e-01
+    92   rec_dev             -9.2484e-03 2.9054e-01
+    93   rec_dev              4.0730e-01 2.7108e-01
+    94   rec_dev             -4.6203e-02 2.4526e-01
+    95   rec_dev             -2.5401e-01 2.3920e-01
+    96   rec_dev             -5.4025e-01 2.5792e-01
+    97   rec_dev             -5.5525e-02 2.3612e-01
+    98   rec_dev              3.6278e-01 2.2497e-01
+    99   rec_dev              8.9074e-01 2.1325e-01
+   100   rec_dev              2.6749e-01 2.5278e-01
+   101   rec_dev              2.3181e-01 2.3347e-01
+   102   rec_dev             -4.6816e-01 2.6245e-01
+   103   rec_dev             -7.0613e-03 2.1257e-01
+   104   rec_dev             -4.4411e-01 2.2059e-01
+   105   rec_dev             -6.5877e-01 2.4713e-01
+   106   rec_dev              1.4231e-02 2.3227e-01
+   107   rec_dev              1.0197e-01 2.6201e-01
+   108   rec_dev              5.2397e-02 2.1732e-01
+   109   rec_dev             -1.1655e-01 2.0122e-01
+   110   rec_dev              5.9028e-01 2.2012e-01
+   111   rec_dev              1.1960e+00 2.0935e-01
+   112   rec_dev             -3.1848e-01 2.7280e-01
+   113   rec_dev              6.3773e-01 1.8995e-01
+   114   rec_dev             -6.6369e-01 2.9729e-01
+   115   rec_dev             -1.7739e-01 2.5447e-01
+   116   rec_dev              7.1122e-01 1.8762e-01
+   117   rec_dev             -5.1570e-03 2.0810e-01
+   118   rec_dev             -1.2102e+00 2.6992e-01
+   119   rec_dev             -1.9906e+00 2.6973e-01
+   120   rec_dev             -4.6029e-01 2.0634e-01
+   121   rec_dev              8.2722e-01 1.7940e-01
+   122   rec_dev             -5.7523e-01 2.7615e-01
+   123   rec_dev             -1.9576e-01 2.0956e-01
+   124   rec_dev             -1.5519e+00 2.9547e-01
+   125   rec_dev             -4.6060e-01 2.2015e-01
+   126   rec_dev             -7.1301e-01 2.4430e-01
+   127   rec_dev             -2.1335e-01 2.5659e-01
+   128   rec_dev              1.1918e+00 2.0492e-01
+   129   rec_dev              9.1036e-01 2.2270e-01
+   130   rec_dev             -1.9199e-01 3.0541e-01
+   131   rec_dev             -8.5290e-01 3.4614e-01
+   132   rec_dev             -1.2442e-01 4.2779e-01
    133   fmort                1.1409e-02 1.8626e-03
    134   fmort                1.6819e-02 2.7266e-03
    135   fmort                7.6468e-03 1.2235e-03
-   136   fmort                9.6891e-03 1.5213e-03
+   136   fmort                9.6890e-03 1.5213e-03
    137   fmort                1.8691e-02 2.8530e-03
    138   fmort                2.3009e-02 3.3894e-03
    139   fmort                2.7915e-02 3.9402e-03
@@ -225,7 +225,7 @@
    224   fmort                2.6628e-01 3.0460e-02
    225   fmort                1.5408e-01 2.1122e-02
    226   fmort                1.1029e-01 1.6031e-02
-   227   fmort                9.4892e-02 1.3561e-02
+   227   fmort                9.4893e-02 1.3561e-02
    228   fmort                7.5904e-02 1.1277e-02
    229   fmort                7.3274e-02 1.1332e-02
    230   fmort                7.3641e-02 1.2075e-02
@@ -235,68 +235,68 @@
    234   fmort                7.8807e-02 1.2798e-02
    235   fmort                7.2288e-02 1.1550e-02
    236   fmort                7.2155e-02 1.1174e-02
-   237   fmort                5.8634e-04 2.6439e-04
-   238   fmort                1.1427e-03 5.0933e-04
-   239   fmort                2.8362e-03 1.0206e-03
-   240   fmort                6.0698e-03 2.1488e-03
-   241   fmort                1.9378e-02 7.0815e-03
-   242   fmort                6.0176e-03 2.1921e-03
-   243   fmort                7.6735e-03 2.7502e-03
-   244   fmort                1.0400e-01 4.4336e-02
-   245   fmort                1.0608e-01 5.3468e-02
-   246   fmort                8.5346e-02 3.6319e-02
-   247   fmort                8.5745e-02 3.2536e-02
-   248   fmort                1.1557e-01 4.7310e-02
-   249   fmort                3.7148e-02 1.4772e-02
-   250   fmort                2.2024e-02 7.2459e-03
-   251   fmort                2.5567e-02 7.4195e-03
-   252   fmort                1.8811e-02 4.2377e-03
-   253   fmort                1.0311e-02 2.1717e-03
-   254   fmort                1.1719e-02 2.4327e-03
-   255   fmort                4.4967e-02 1.0246e-02
-   256   fmort                3.7247e-02 8.3093e-03
-   257   fmort                3.2741e-02 7.1308e-03
-   258   fmort                2.6828e-02 5.7924e-03
-   259   fmort                1.5876e-02 3.4602e-03
-   260   fmort                2.7417e-02 5.7469e-03
-   261   fmort                4.5721e-02 9.5376e-03
-   262   fmort                2.1768e-01 4.9092e-02
-   263   fmort                3.7288e-01 8.8289e-02
-   264   fmort                7.0247e-01 1.5904e-01
-   265   fmort                6.1853e-01 1.4751e-01
-   266   fmort                1.6742e-01 5.1289e-02
-   267   fmort                1.2120e-01 3.4767e-02
-   268   fmort                3.8727e-01 1.1506e-01
-   269   fmort                5.4748e-02 1.4237e-02
-   270   fmort                7.7909e-02 1.6625e-02
-   271   fmort                6.3564e-02 1.3644e-02
-   272   fmort                4.1865e-02 8.9231e-03
-   273   fmort                1.0310e-01 2.3058e-02
-   274   fmort                8.4857e-02 2.0244e-02
-   275   fmort                9.7246e-02 2.3256e-02
-   276   fmort                1.1791e-01 3.1591e-02
-   277   fmort                3.0028e-02 6.5352e-03
-   278   fmort                1.4905e-01 2.9902e-02
-   279   fmort                6.8884e-02 1.5649e-02
-   280   fmort                4.2552e-02 9.2210e-03
-   281   fmort                4.3941e-02 1.0323e-02
-   282   fmort                1.8953e-02 4.3149e-03
-   283   fmort                8.8301e-03 2.0111e-03
-   284   fmort                4.4604e-03 9.5601e-04
-   285   fmort                1.3076e-02 2.9228e-03
-   286   fmort                1.6715e-02 3.7576e-03
-   287   fmort                1.7709e-02 3.9367e-03
-   288   fmort                3.5198e-02 9.0230e-03
-   289   fmort                2.0595e-13 3.3923e-10
+   237   fmort                5.9203e-04 2.6666e-04
+   238   fmort                1.1538e-03 5.1377e-04
+   239   fmort                2.8632e-03 1.0292e-03
+   240   fmort                6.1288e-03 2.1664e-03
+   241   fmort                1.9576e-02 7.1451e-03
+   242   fmort                6.0795e-03 2.2120e-03
+   243   fmort                7.7532e-03 2.7746e-03
+   244   fmort                1.0534e-01 4.4906e-02
+   245   fmort                1.0790e-01 5.4516e-02
+   246   fmort                8.6953e-02 3.7042e-02
+   247   fmort                8.7378e-02 3.3108e-02
+   248   fmort                1.1803e-01 4.8439e-02
+   249   fmort                3.7938e-02 1.5145e-02
+   250   fmort                2.2432e-02 7.3952e-03
+   251   fmort                2.5993e-02 7.5445e-03
+   252   fmort                1.9102e-02 4.2956e-03
+   253   fmort                1.0466e-02 2.1981e-03
+   254   fmort                1.1892e-02 2.4610e-03
+   255   fmort                4.5722e-02 1.0395e-02
+   256   fmort                3.7866e-02 8.4306e-03
+   257   fmort                3.3243e-02 7.2247e-03
+   258   fmort                2.7241e-02 5.8661e-03
+   259   fmort                1.6125e-02 3.5050e-03
+   260   fmort                2.7834e-02 5.8148e-03
+   261   fmort                4.6401e-02 9.6448e-03
+   262   fmort                2.2107e-01 4.9845e-02
+   263   fmort                3.7929e-01 8.9935e-02
+   264   fmort                7.1349e-01 1.6110e-01
+   265   fmort                6.2980e-01 1.4867e-01
+   266   fmort                1.7170e-01 5.2253e-02
+   267   fmort                1.2413e-01 3.5460e-02
+   268   fmort                3.9717e-01 1.1720e-01
+   269   fmort                5.6030e-02 1.4527e-02
+   270   fmort                7.9349e-02 1.6883e-02
+   271   fmort                6.4730e-02 1.3860e-02
+   272   fmort                4.2555e-02 9.0409e-03
+   273   fmort                1.0537e-01 2.3474e-02
+   274   fmort                8.6916e-02 2.0691e-02
+   275   fmort                9.9323e-02 2.3749e-02
+   276   fmort                1.2035e-01 3.2300e-02
+   277   fmort                3.0582e-02 6.6401e-03
+   278   fmort                1.5195e-01 3.0345e-02
+   279   fmort                7.0284e-02 1.5934e-02
+   280   fmort                4.3352e-02 9.3740e-03
+   281   fmort                4.4789e-02 1.0504e-02
+   282   fmort                1.9286e-02 4.3796e-03
+   283   fmort                8.9938e-03 2.0422e-03
+   284   fmort                4.5252e-03 9.6590e-04
+   285   fmort                1.3142e-02 2.9266e-03
+   286   fmort                1.6114e-02 3.5843e-03
+   287   fmort                2.0256e-02 4.4354e-03
+   288   fmort                4.0735e-02 1.0452e-02
+   289   fmort                2.0539e-13 3.3915e-10
    290   fmort                2.1927e-13 3.6466e-10
    291   fmort                5.6145e-04 9.3039e-05
-   292   fmort                2.3787e-13 3.9948e-10
-   293   fmort                2.3953e-13 4.0775e-10
-   294   fmort                2.4286e-13 4.1374e-10
+   292   fmort                2.3537e-13 3.9922e-10
+   293   fmort                2.4009e-13 4.0782e-10
+   294   fmort                2.4314e-13 4.1376e-10
    295   fmort                3.5502e-06 5.2728e-07
    296   fmort                2.4087e-04 3.4759e-05
    297   fmort                5.0195e-03 7.2459e-04
-   298   fmort                3.1070e-02 4.7487e-03
+   298   fmort                3.1069e-02 4.7487e-03
    299   fmort                2.7579e-02 4.0072e-03
    300   fmort                3.4811e-02 4.9566e-03
    301   fmort                7.8022e-02 1.1706e-02
@@ -310,15 +310,15 @@
    309   fmort                6.6205e-02 1.3081e-02
    310   fmort                4.1656e-02 7.5886e-03
    311   fmort                3.5797e-03 5.3654e-04
-   312   fmort                2.1705e-13 3.7778e-10
-   313   fmort                2.6507e-13 4.5479e-10
-   314   fmort                3.6859e-13 6.6123e-10
-   315   fmort                4.6463e-13 8.5046e-10
-   316   fmort                7.1193e-13 1.2988e-09
-   317   fmort                7.7743e-13 1.5011e-09
-   318   fmort                3.4670e-06 7.0475e-07
+   312   fmort                2.2676e-13 3.7902e-10
+   313   fmort                2.7006e-13 4.5526e-10
+   314   fmort                3.6915e-13 6.6130e-10
+   315   fmort                4.6296e-13 8.5051e-10
+   316   fmort                6.8473e-13 1.3001e-09
+   317   fmort                7.7799e-13 1.5011e-09
+   318   fmort                3.4670e-06 7.0476e-07
    319   fmort                6.2499e-04 1.2574e-04
-   320   fmort                4.3323e-03 8.6180e-04
+   320   fmort                4.3323e-03 8.6181e-04
    321   fmort                1.3041e-02 2.4745e-03
    322   fmort                2.5008e-02 4.3190e-03
    323   fmort                4.3795e-02 7.0427e-03
@@ -361,7 +361,7 @@
    360   log_selcoffs_fsh[1] -2.9352e+00 4.3408e-01
    361   log_selcoffs_fsh[1] -1.7107e+00 3.8891e-01
    362   log_selcoffs_fsh[1] -6.8658e-01 3.5650e-01
-   363   log_selcoffs_fsh[1] -4.4341e-03 3.2929e-01
+   363   log_selcoffs_fsh[1] -4.4340e-03 3.2929e-01
    364   log_selcoffs_fsh[1]  5.3304e-01 2.9383e-01
    365   log_selcoffs_fsh[1]  8.2475e-01 2.5924e-01
    366   log_selcoffs_fsh[1]  6.6797e-01 2.8290e-01
@@ -405,7 +405,7 @@
    404   log_selcoffs_fsh[1] -3.0722e+00 6.0757e-01
    405   log_selcoffs_fsh[1] -1.7617e+00 4.2791e-01
    406   log_selcoffs_fsh[1] -7.7683e-01 3.7732e-01
-   407   log_selcoffs_fsh[1] -7.4889e-03 3.3827e-01
+   407   log_selcoffs_fsh[1] -7.4888e-03 3.3827e-01
    408   log_selcoffs_fsh[1]  5.9586e-01 2.8713e-01
    409   log_selcoffs_fsh[1]  7.1165e-01 2.6147e-01
    410   log_selcoffs_fsh[1]  3.5829e-01 2.8775e-01
@@ -428,7 +428,7 @@
    427   log_selcoffs_fsh[1]  5.8359e-01 2.8265e-01
    428   log_selcoffs_fsh[1]  2.9770e-01 3.0061e-01
    429   log_selcoffs_fsh[1] -4.5722e-02 3.3346e-01
-   430   log_selcoffs_fsh[1] -2.1635e-01 3.6140e-01
+   430   log_selcoffs_fsh[1] -2.1636e-01 3.6140e-01
    431   log_selcoffs_fsh[1] -2.6193e+00 5.7384e-01
    432   log_selcoffs_fsh[1] -9.8856e-01 3.8988e-01
    433   log_selcoffs_fsh[1]  4.5656e-01 3.0940e-01
@@ -652,13 +652,13 @@
    651   log_selcoffs_fsh[1]  2.0592e-01 3.2589e-01
    652   log_selcoffs_fsh[1]  2.4235e-01 3.2057e-01
    653   log_selcoffs_fsh[1]  2.9306e-01 3.1861e-01
-   654   log_selcoffs_fsh[1]  2.9034e-01 3.3090e-01
+   654   log_selcoffs_fsh[1]  2.9033e-01 3.3090e-01
    655   log_selcoffs_fsh[1]  2.6401e-01 3.5195e-01
    656   log_selcoffs_fsh[1] -9.7091e-01 4.5467e-01
    657   log_selcoffs_fsh[1] -3.4778e-01 3.7907e-01
    658   log_selcoffs_fsh[1] -6.8685e-01 3.8162e-01
-   659   log_selcoffs_fsh[1] -3.6639e-01 3.6847e-01
-   660   log_selcoffs_fsh[1] -4.4950e-02 3.5393e-01
+   659   log_selcoffs_fsh[1] -3.6638e-01 3.6847e-01
+   660   log_selcoffs_fsh[1] -4.4949e-02 3.5393e-01
    661   log_selcoffs_fsh[1]  2.1851e-01 3.3419e-01
    662   log_selcoffs_fsh[1]  3.8158e-01 3.1963e-01
    663   log_selcoffs_fsh[1]  4.3229e-01 3.2556e-01
@@ -808,7 +808,7 @@
    807   log_selcoffs_fsh[2] -5.2529e-01 3.1890e-01
    808   log_selcoffs_fsh[2]  1.0089e-01 3.0161e-01
    809   log_selcoffs_fsh[2]  2.8798e-01 2.9484e-01
-   810   log_selcoffs_fsh[2]  3.3673e-01 2.9359e-01
+   810   log_selcoffs_fsh[2]  3.3673e-01 2.9358e-01
    811   log_selcoffs_fsh[2]  4.1949e-01 2.9746e-01
    812   log_selcoffs_fsh[2]  5.7810e-01 2.9393e-01
    813   log_selcoffs_fsh[2]  7.1694e-01 2.8049e-01
@@ -976,12 +976,12 @@
    975   log_selcoffs_fsh[2] -4.3926e+00 4.9197e-01
    976   log_selcoffs_fsh[2] -2.5373e+00 3.9980e-01
    977   log_selcoffs_fsh[2] -7.6024e-01 3.3614e-01
-   978   log_selcoffs_fsh[2]  3.7241e-01 2.8864e-01
+   978   log_selcoffs_fsh[2]  3.7240e-01 2.8864e-01
    979   log_selcoffs_fsh[2]  8.3964e-01 2.5897e-01
    980   log_selcoffs_fsh[2]  7.1009e-01 2.7332e-01
    981   log_selcoffs_fsh[2]  3.5652e-01 3.1242e-01
    982   log_selcoffs_fsh[2]  1.4272e-01 3.3749e-01
-   983   log_selcoffs_fsh[2]  5.4750e-02 3.4537e-01
+   983   log_selcoffs_fsh[2]  5.4751e-02 3.4537e-01
    984   log_selcoffs_fsh[2] -6.2462e+00 7.3477e-01
    985   log_selcoffs_fsh[2] -4.3647e+00 4.9029e-01
    986   log_selcoffs_fsh[2] -2.4349e+00 3.8869e-01
@@ -996,7 +996,7 @@
    995   log_selcoffs_fsh[2] -4.3165e+00 4.9441e-01
    996   log_selcoffs_fsh[2] -2.2773e+00 3.8439e-01
    997   log_selcoffs_fsh[2] -5.5402e-01 3.1937e-01
-   998   log_selcoffs_fsh[2]  3.2870e-02 3.0899e-01
+   998   log_selcoffs_fsh[2]  3.2869e-02 3.0899e-01
    999   log_selcoffs_fsh[2]  3.4403e-01 3.0485e-01
   1000   log_selcoffs_fsh[2]  5.7490e-01 3.0163e-01
   1001   log_selcoffs_fsh[2]  5.9433e-01 3.0603e-01
@@ -1052,20 +1052,20 @@
   1051   log_selcoffs_fsh[2]  8.2874e-01 2.8557e-01
   1052   log_selcoffs_fsh[2]  8.9401e-01 2.8686e-01
   1053   log_selcoffs_fsh[2]  7.2774e-01 3.3543e-01
-  1054   log_selcoffs_fsh[3] -2.3677e+00 2.7318e-01
-  1055   log_selcoffs_fsh[3]  2.7766e-01 1.9757e-01
-  1056   log_selcoffs_fsh[3]  1.4748e+00 1.6553e-01
-  1057   log_selcoffs_fsh[3]  6.5175e-02 2.4582e-01
-  1058   log_selcoffs_fsh[3] -2.1115e+00 4.6715e-01
-  1059   log_selcoffs_fsh[3] -3.8998e+00 7.1056e-01
-  1060   log_selcoffs_fsh[3] -4.8777e+00 9.2249e-01
-  1061   log_selcoffs_fsh[3] -2.3633e+00 2.8080e-01
-  1062   log_selcoffs_fsh[3]  8.3813e-01 1.7868e-01
-  1063   log_selcoffs_fsh[3]  1.2883e+00 1.6815e-01
-  1064   log_selcoffs_fsh[3] -1.7026e-01 2.5548e-01
-  1065   log_selcoffs_fsh[3] -2.3313e+00 4.3890e-01
-  1066   log_selcoffs_fsh[3] -3.9555e+00 7.0085e-01
-  1067   log_selcoffs_fsh[3] -4.8790e+00 9.2195e-01
+  1054   log_selcoffs_fsh[3] -2.3781e+00 2.7357e-01
+  1055   log_selcoffs_fsh[3]  2.7037e-01 1.9794e-01
+  1056   log_selcoffs_fsh[3]  1.4749e+00 1.6556e-01
+  1057   log_selcoffs_fsh[3]  7.2862e-02 2.4562e-01
+  1058   log_selcoffs_fsh[3] -2.0988e+00 4.6667e-01
+  1059   log_selcoffs_fsh[3] -3.8866e+00 7.0989e-01
+  1060   log_selcoffs_fsh[3] -4.8650e+00 9.2177e-01
+  1061   log_selcoffs_fsh[3] -2.3748e+00 2.8074e-01
+  1062   log_selcoffs_fsh[3]  8.3052e-01 1.7879e-01
+  1063   log_selcoffs_fsh[3]  1.2887e+00 1.6811e-01
+  1064   log_selcoffs_fsh[3] -1.5215e-01 2.5367e-01
+  1065   log_selcoffs_fsh[3] -2.3172e+00 4.3857e-01
+  1066   log_selcoffs_fsh[3] -3.9430e+00 7.0003e-01
+  1067   log_selcoffs_fsh[3] -4.8666e+00 9.2096e-01
   1068   log_selcoffs_fsh[4] -5.9152e+00 1.0760e+00
   1069   log_selcoffs_fsh[4] -4.7866e+00 7.5196e-01
   1070   log_selcoffs_fsh[4] -3.6334e+00 6.2281e-01
@@ -1134,7 +1134,7 @@
   1133   log_selcoffs_fsh[4] -3.1685e+00 4.5358e-01
   1134   log_selcoffs_fsh[4] -2.0098e+00 4.1317e-01
   1135   log_selcoffs_fsh[4] -9.0166e-01 3.7651e-01
-  1136   log_selcoffs_fsh[4]  8.1455e-03 3.3695e-01
+  1136   log_selcoffs_fsh[4]  8.1453e-03 3.3695e-01
   1137   log_selcoffs_fsh[4]  7.2097e-01 2.8672e-01
   1138   log_selcoffs_fsh[4]  1.0278e+00 2.5443e-01
   1139   log_selcoffs_fsh[4]  9.3223e-01 2.8800e-01
@@ -1161,7 +1161,7 @@
   1160   log_selcoffs_fsh[4] -2.7038e+00 4.6470e-01
   1161   log_selcoffs_fsh[4] -1.6747e+00 4.1347e-01
   1162   log_selcoffs_fsh[4] -7.6576e-01 3.6460e-01
-  1163   log_selcoffs_fsh[4] -3.1622e-03 3.3154e-01
+  1163   log_selcoffs_fsh[4] -3.1624e-03 3.3154e-01
   1164   log_selcoffs_fsh[4]  5.8824e-01 2.9455e-01
   1165   log_selcoffs_fsh[4]  9.3449e-01 2.5815e-01
   1166   log_selcoffs_fsh[4]  1.0679e+00 2.6898e-01
@@ -1170,7 +1170,7 @@
   1169   log_selcoffs_fsh[4] -2.5579e+00 4.6066e-01
   1170   log_selcoffs_fsh[4] -1.5449e+00 4.1955e-01
   1171   log_selcoffs_fsh[4] -6.6186e-01 3.7570e-01
-  1172   log_selcoffs_fsh[4]  7.5873e-02 3.2663e-01
+  1172   log_selcoffs_fsh[4]  7.5872e-02 3.2663e-01
   1173   log_selcoffs_fsh[4]  5.8303e-01 2.9017e-01
   1174   log_selcoffs_fsh[4]  8.8830e-01 2.6117e-01
   1175   log_selcoffs_fsh[4]  1.0511e+00 2.6644e-01
@@ -1179,7 +1179,7 @@
   1178   log_selcoffs_fsh[4] -2.3351e+00 4.4532e-01
   1179   log_selcoffs_fsh[4] -1.3454e+00 4.0967e-01
   1180   log_selcoffs_fsh[4] -5.8678e-01 3.7827e-01
-  1181   log_selcoffs_fsh[4]  7.6627e-02 3.3532e-01
+  1181   log_selcoffs_fsh[4]  7.6626e-02 3.3532e-01
   1182   log_selcoffs_fsh[4]  5.8326e-01 2.8729e-01
   1183   log_selcoffs_fsh[4]  8.6614e-01 2.6189e-01
   1184   log_selcoffs_fsh[4]  1.0303e+00 2.6659e-01
@@ -1197,7 +1197,7 @@
   1196   log_selcoffs_fsh[4] -1.7221e+00 4.0822e-01
   1197   log_selcoffs_fsh[4] -6.2292e-01 3.7363e-01
   1198   log_selcoffs_fsh[4] -1.2614e-01 3.5553e-01
-  1199   log_selcoffs_fsh[4]  9.8047e-02 3.4176e-01
+  1199   log_selcoffs_fsh[4]  9.8046e-02 3.4176e-01
   1200   log_selcoffs_fsh[4]  3.5344e-01 3.1982e-01
   1201   log_selcoffs_fsh[4]  7.1466e-01 2.8966e-01
   1202   log_selcoffs_fsh[4]  1.0242e+00 2.7718e-01
@@ -1209,7 +1209,7 @@
   1208   log_selcoffs_fsh[4]  8.1234e-02 3.4042e-01
   1209   log_selcoffs_fsh[4]  2.9328e-01 3.2310e-01
   1210   log_selcoffs_fsh[4]  6.5252e-01 2.9479e-01
-  1211   log_selcoffs_fsh[4]  1.0028e+00 2.7992e-01
+  1211   log_selcoffs_fsh[4]  1.0028e+00 2.7991e-01
   1212   log_selcoffs_fsh[4] -4.6063e+00 7.3299e-01
   1213   log_selcoffs_fsh[4] -3.0728e+00 5.0492e-01
   1214   log_selcoffs_fsh[4] -1.5377e+00 4.1236e-01
@@ -1394,12 +1394,12 @@
   1393   rec_dev_future       0.0000e+00 6.0000e-01
   1394   rec_dev_future       0.0000e+00 6.0000e-01
   1395   rec_dev_future       0.0000e+00 6.0000e-01
-  1396   log_q_ind[1]        -8.0016e-02 1.5196e-01
+  1396   log_q_ind[1]        -8.0015e-02 1.5196e-01
   1397   log_q_ind[2]        -3.0105e+00 1.3287e-01
   1398   log_q_ind[3]        -9.5450e+00 1.1255e-01
   1399   log_q_ind[4]        -8.1543e-01 1.8023e-01
-  1400   log_q_ind[5]        -4.0274e+00 1.5702e-01
-  1401   log_q_ind[6]        -6.3684e+00 1.7704e-01
+  1400   log_q_ind[5]        -4.0121e+00 1.5605e-01
+  1401   log_q_ind[6]        -6.3486e+00 1.7606e-01
   1402   log_q_ind[7]        -9.8984e-01 1.5726e-01
   1403   log_rw_q_ind[1]     -1.2239e+00 1.4605e-01
   1404   log_rw_q_ind[3]     -3.5062e-01 1.4439e-01
@@ -1428,11 +1428,11 @@
   1427   log_selcoffs_ind[2]  1.4401e-01 2.9723e-01
   1428   log_selcoffs_ind[2]  2.4814e-01 2.9309e-01
   1429   log_selcoffs_ind[2]  1.3042e-01 2.8184e-01
-  1430   log_selcoffs_ind[2] -5.8167e-03 2.5505e-01
+  1430   log_selcoffs_ind[2] -5.8168e-03 2.5505e-01
   1431   log_selcoffs_ind[2] -5.0188e-02 2.4043e-01
   1432   log_selcoffs_ind[2] -2.7709e-03 2.9388e-01
   1433   log_selcoffs_ind[2]  5.6148e-02 4.0123e-01
-  1434   log_selcoffs_ind[2]  7.3729e-02 4.9232e-01
+  1434   log_selcoffs_ind[2]  7.3728e-02 4.9232e-01
   1435   log_selcoffs_ind[2] -2.1828e-01 3.5194e-01
   1436   log_selcoffs_ind[2] -1.8193e-02 2.9166e-01
   1437   log_selcoffs_ind[2]  9.2492e-02 2.7745e-01
@@ -1474,7 +1474,7 @@
   1473   log_selcoffs_ind[4]  5.6841e-01 2.0920e-01
   1474   log_selcoffs_ind[4]  5.2876e-01 2.6660e-01
   1475   B100                 1.2679e+04 6.9358e+02
-  1476   B100                 4.9339e+03 5.9860e+02
+  1476   B100                 4.8808e+03 5.8560e+02
   1477   totbiom              1.2550e+04 1.6445e+03
   1478   totbiom              1.2303e+04 1.5870e+03
   1479   totbiom              1.2085e+04 1.5286e+03
@@ -1528,59 +1528,59 @@
   1527   totbiom              1.0495e+04 1.3602e+03
   1528   totbiom              1.1370e+04 1.5393e+03
   1529   totbiom              1.2075e+04 1.6793e+03
-  1530   totbiom              7.9540e+03 1.9105e+03
-  1531   totbiom              7.9515e+03 1.9108e+03
-  1532   totbiom              7.9529e+03 1.8882e+03
-  1533   totbiom              7.9431e+03 1.8486e+03
-  1534   totbiom              7.9029e+03 1.8014e+03
-  1535   totbiom              7.7351e+03 1.7540e+03
-  1536   totbiom              7.6846e+03 1.7107e+03
-  1537   totbiom              7.6190e+03 1.6678e+03
-  1538   totbiom              6.8986e+03 1.6187e+03
-  1539   totbiom              6.3541e+03 1.5700e+03
-  1540   totbiom              5.8983e+03 1.5281e+03
-  1541   totbiom              5.3285e+03 1.4971e+03
-  1542   totbiom              4.8640e+03 1.4899e+03
-  1543   totbiom              4.9584e+03 1.5007e+03
-  1544   totbiom              5.1463e+03 1.5008e+03
-  1545   totbiom              5.1601e+03 1.4695e+03
-  1546   totbiom              5.2178e+03 1.4108e+03
-  1547   totbiom              5.4456e+03 1.3490e+03
-  1548   totbiom              5.9996e+03 1.3243e+03
-  1549   totbiom              6.4989e+03 1.3476e+03
-  1550   totbiom              6.9039e+03 1.3990e+03
-  1551   totbiom              6.9840e+03 1.4404e+03
-  1552   totbiom              7.0149e+03 1.4508e+03
-  1553   totbiom              6.9947e+03 1.4192e+03
-  1554   totbiom              6.7506e+03 1.3404e+03
-  1555   totbiom              6.2955e+03 1.2227e+03
-  1556   totbiom              5.4306e+03 1.0686e+03
-  1557   totbiom              4.6720e+03 9.0548e+02
-  1558   totbiom              3.6935e+03 7.6159e+02
-  1559   totbiom              3.0083e+03 6.5159e+02
-  1560   totbiom              2.9144e+03 5.7339e+02
-  1561   totbiom              2.8804e+03 5.2230e+02
-  1562   totbiom              1.9792e+03 4.9714e+02
-  1563   totbiom              2.0037e+03 4.9743e+02
-  1564   totbiom              1.9335e+03 4.9977e+02
-  1565   totbiom              1.9773e+03 5.1022e+02
-  1566   totbiom              2.2453e+03 5.2636e+02
-  1567   totbiom              2.1582e+03 5.3262e+02
-  1568   totbiom              1.9120e+03 5.1973e+02
-  1569   totbiom              1.6857e+03 4.9018e+02
-  1570   totbiom              1.7145e+03 4.6489e+02
-  1571   totbiom              1.9521e+03 4.4994e+02
-  1572   totbiom              1.7269e+03 4.3900e+02
-  1573   totbiom              1.6085e+03 4.2968e+02
-  1574   totbiom              1.5760e+03 4.1841e+02
-  1575   totbiom              1.5450e+03 4.0760e+02
-  1576   totbiom              1.6029e+03 4.0087e+02
-  1577   totbiom              1.9193e+03 4.3604e+02
-  1578   totbiom              2.5508e+03 5.3036e+02
-  1579   totbiom              3.1795e+03 6.4363e+02
-  1580   totbiom              3.5167e+03 7.2766e+02
-  1581   totbiom              3.6548e+03 7.6730e+02
-  1582   totbiom              3.6480e+03 7.7306e+02
+  1530   totbiom              7.8708e+03 1.8861e+03
+  1531   totbiom              7.8683e+03 1.8864e+03
+  1532   totbiom              7.8694e+03 1.8640e+03
+  1533   totbiom              7.8594e+03 1.8246e+03
+  1534   totbiom              7.8190e+03 1.7777e+03
+  1535   totbiom              7.6511e+03 1.7305e+03
+  1536   totbiom              7.6003e+03 1.6872e+03
+  1537   totbiom              7.5344e+03 1.6443e+03
+  1538   totbiom              6.8138e+03 1.5945e+03
+  1539   totbiom              6.2684e+03 1.5447e+03
+  1540   totbiom              5.8114e+03 1.5018e+03
+  1541   totbiom              5.2401e+03 1.4698e+03
+  1542   totbiom              4.7725e+03 1.4618e+03
+  1543   totbiom              4.8622e+03 1.4719e+03
+  1544   totbiom              5.0459e+03 1.4719e+03
+  1545   totbiom              5.0575e+03 1.4411e+03
+  1546   totbiom              5.1147e+03 1.3834e+03
+  1547   totbiom              5.3422e+03 1.3226e+03
+  1548   totbiom              5.8924e+03 1.2980e+03
+  1549   totbiom              6.3851e+03 1.3206e+03
+  1550   totbiom              6.7827e+03 1.3707e+03
+  1551   totbiom              6.8574e+03 1.4111e+03
+  1552   totbiom              6.8865e+03 1.4211e+03
+  1553   totbiom              6.8683e+03 1.3900e+03
+  1554   totbiom              6.6308e+03 1.3126e+03
+  1555   totbiom              6.1860e+03 1.1972e+03
+  1556   totbiom              5.3351e+03 1.0460e+03
+  1557   totbiom              4.5912e+03 8.8595e+02
+  1558   totbiom              3.6253e+03 7.4471e+02
+  1559   totbiom              2.9495e+03 6.3626e+02
+  1560   totbiom              2.8621e+03 5.5844e+02
+  1561   totbiom              2.8322e+03 5.0719e+02
+  1562   totbiom              1.9318e+03 4.8136e+02
+  1563   totbiom              1.9554e+03 4.8135e+02
+  1564   totbiom              1.8845e+03 4.8380e+02
+  1565   totbiom              1.9265e+03 4.9425e+02
+  1566   totbiom              2.1920e+03 5.1020e+02
+  1567   totbiom              2.1035e+03 5.1646e+02
+  1568   totbiom              1.8581e+03 5.0409e+02
+  1569   totbiom              1.6348e+03 4.7555e+02
+  1570   totbiom              1.6661e+03 4.5120e+02
+  1571   totbiom              1.9054e+03 4.3694e+02
+  1572   totbiom              1.6812e+03 4.2649e+02
+  1573   totbiom              1.5638e+03 4.1765e+02
+  1574   totbiom              1.5327e+03 4.0692e+02
+  1575   totbiom              1.5031e+03 3.9664e+02
+  1576   totbiom              1.5622e+03 3.9036e+02
+  1577   totbiom              1.8820e+03 4.2596e+02
+  1578   totbiom              2.5481e+03 5.2549e+02
+  1579   totbiom              3.2423e+03 6.4952e+02
+  1580   totbiom              3.6485e+03 7.4625e+02
+  1581   totbiom              3.7993e+03 7.9617e+02
+  1582   totbiom              3.7845e+03 8.0832e+02
   1583   totbiom_NoFish       1.2550e+04 1.6445e+03
   1584   totbiom_NoFish       1.2442e+04 1.5870e+03
   1585   totbiom_NoFish       1.2411e+04 1.5292e+03
@@ -1633,58 +1633,58 @@
   1632   totbiom_NoFish       2.4144e+04 2.2844e+03
   1633   totbiom_NoFish       2.4719e+04 2.4829e+03
   1634   totbiom_NoFish       2.5298e+04 2.6431e+03
-  1635   totbiom_NoFish       7.9540e+03 1.9105e+03
-  1636   totbiom_NoFish       7.9574e+03 1.9108e+03
-  1637   totbiom_NoFish       7.9708e+03 1.8882e+03
-  1638   totbiom_NoFish       7.9906e+03 1.8486e+03
-  1639   totbiom_NoFish       8.0132e+03 1.8015e+03
-  1640   totbiom_NoFish       8.0349e+03 1.7549e+03
-  1641   totbiom_NoFish       8.0518e+03 1.7123e+03
-  1642   totbiom_NoFish       8.0534e+03 1.6702e+03
-  1643   totbiom_NoFish       8.1126e+03 1.6253e+03
-  1644   totbiom_NoFish       8.2222e+03 1.5764e+03
-  1645   totbiom_NoFish       8.3138e+03 1.5293e+03
-  1646   totbiom_NoFish       8.3650e+03 1.4946e+03
-  1647   totbiom_NoFish       8.4822e+03 1.4845e+03
-  1648   totbiom_NoFish       8.6592e+03 1.4885e+03
-  1649   totbiom_NoFish       8.7894e+03 1.4813e+03
-  1650   totbiom_NoFish       8.7680e+03 1.4431e+03
-  1651   totbiom_NoFish       8.6301e+03 1.3779e+03
-  1652   totbiom_NoFish       8.5473e+03 1.3086e+03
-  1653   totbiom_NoFish       8.8105e+03 1.2753e+03
-  1654   totbiom_NoFish       9.3623e+03 1.2953e+03
-  1655   totbiom_NoFish       9.9610e+03 1.3499e+03
-  1656   totbiom_NoFish       1.0349e+04 1.3989e+03
-  1657   totbiom_NoFish       1.0453e+04 1.4171e+03
-  1658   totbiom_NoFish       1.0284e+04 1.3915e+03
-  1659   totbiom_NoFish       9.8596e+03 1.3170e+03
-  1660   totbiom_NoFish       9.3415e+03 1.2009e+03
-  1661   totbiom_NoFish       8.8965e+03 1.0484e+03
-  1662   totbiom_NoFish       8.6044e+03 8.7870e+02
-  1663   totbiom_NoFish       8.4359e+03 7.2487e+02
-  1664   totbiom_NoFish       8.3339e+03 6.0809e+02
-  1665   totbiom_NoFish       8.3953e+03 5.2633e+02
-  1666   totbiom_NoFish       8.5026e+03 4.7251e+02
-  1667   totbiom_NoFish       8.5656e+03 4.4690e+02
-  1668   totbiom_NoFish       8.4794e+03 4.4079e+02
-  1669   totbiom_NoFish       8.1918e+03 4.4153e+02
-  1670   totbiom_NoFish       7.8820e+03 4.5247e+02
-  1671   totbiom_NoFish       7.6097e+03 4.7062e+02
-  1672   totbiom_NoFish       7.2637e+03 4.8273e+02
-  1673   totbiom_NoFish       6.7551e+03 4.7781e+02
-  1674   totbiom_NoFish       6.1376e+03 4.5605e+02
-  1675   totbiom_NoFish       5.6839e+03 4.3234e+02
-  1676   totbiom_NoFish       5.4166e+03 4.1522e+02
-  1677   totbiom_NoFish       5.2254e+03 4.0685e+02
-  1678   totbiom_NoFish       5.0163e+03 4.0071e+02
-  1679   totbiom_NoFish       4.7432e+03 3.9344e+02
-  1680   totbiom_NoFish       4.4455e+03 3.8697e+02
-  1681   totbiom_NoFish       4.1703e+03 3.8413e+02
-  1682   totbiom_NoFish       4.1894e+03 4.2310e+02
-  1683   totbiom_NoFish       4.5968e+03 5.2524e+02
-  1684   totbiom_NoFish       5.1314e+03 6.5023e+02
-  1685   totbiom_NoFish       5.4981e+03 7.4528e+02
-  1686   totbiom_NoFish       5.6092e+03 7.9193e+02
+  1635   totbiom_NoFish       7.8708e+03 1.8861e+03
+  1636   totbiom_NoFish       7.8741e+03 1.8864e+03
+  1637   totbiom_NoFish       7.8873e+03 1.8640e+03
+  1638   totbiom_NoFish       7.9069e+03 1.8246e+03
+  1639   totbiom_NoFish       7.9292e+03 1.7778e+03
+  1640   totbiom_NoFish       7.9506e+03 1.7314e+03
+  1641   totbiom_NoFish       7.9671e+03 1.6889e+03
+  1642   totbiom_NoFish       7.9684e+03 1.6467e+03
+  1643   totbiom_NoFish       8.0265e+03 1.6011e+03
+  1644   totbiom_NoFish       8.1345e+03 1.5510e+03
+  1645   totbiom_NoFish       8.2244e+03 1.5027e+03
+  1646   totbiom_NoFish       8.2738e+03 1.4669e+03
+  1647   totbiom_NoFish       8.3877e+03 1.4559e+03
+  1648   totbiom_NoFish       8.5604e+03 1.4593e+03
+  1649   totbiom_NoFish       8.6870e+03 1.4519e+03
+  1650   totbiom_NoFish       8.6642e+03 1.4142e+03
+  1651   totbiom_NoFish       8.5266e+03 1.3500e+03
+  1652   totbiom_NoFish       8.4442e+03 1.2816e+03
+  1653   totbiom_NoFish       8.7048e+03 1.2484e+03
+  1654   totbiom_NoFish       9.2510e+03 1.2675e+03
+  1655   totbiom_NoFish       9.8430e+03 1.3209e+03
+  1656   totbiom_NoFish       1.0226e+04 1.3689e+03
+  1657   totbiom_NoFish       1.0328e+04 1.3867e+03
+  1658   totbiom_NoFish       1.0161e+04 1.3616e+03
+  1659   totbiom_NoFish       9.7431e+03 1.2886e+03
+  1660   totbiom_NoFish       9.2352e+03 1.1748e+03
+  1661   totbiom_NoFish       8.8041e+03 1.0252e+03
+  1662   totbiom_NoFish       8.5277e+03 8.5847e+02
+  1663   totbiom_NoFish       8.3735e+03 7.0727e+02
+  1664   totbiom_NoFish       8.2829e+03 5.9247e+02
+  1665   totbiom_NoFish       8.3526e+03 5.1180e+02
+  1666   totbiom_NoFish       8.4655e+03 4.5846e+02
+  1667   totbiom_NoFish       8.5308e+03 4.3299e+02
+  1668   totbiom_NoFish       8.4444e+03 4.2686e+02
+  1669   totbiom_NoFish       8.1555e+03 4.2763e+02
+  1670   totbiom_NoFish       7.8425e+03 4.3828e+02
+  1671   totbiom_NoFish       7.5660e+03 4.5586e+02
+  1672   totbiom_NoFish       7.2168e+03 4.6764e+02
+  1673   totbiom_NoFish       6.7073e+03 4.6297e+02
+  1674   totbiom_NoFish       6.0914e+03 4.4198e+02
+  1675   totbiom_NoFish       5.6397e+03 4.1895e+02
+  1676   totbiom_NoFish       5.3741e+03 4.0229e+02
+  1677   totbiom_NoFish       5.1839e+03 3.9427e+02
+  1678   totbiom_NoFish       4.9756e+03 3.8854e+02
+  1679   totbiom_NoFish       4.7037e+03 3.8180e+02
+  1680   totbiom_NoFish       4.4069e+03 3.7584e+02
+  1681   totbiom_NoFish       4.1325e+03 3.7342e+02
+  1682   totbiom_NoFish       4.1558e+03 4.1279e+02
+  1683   totbiom_NoFish       4.6047e+03 5.2037e+02
+  1684   totbiom_NoFish       5.2167e+03 6.5686e+02
+  1685   totbiom_NoFish       5.6655e+03 7.6583e+02
+  1686   totbiom_NoFish       5.8390e+03 8.2462e+02
   1687   Sp_Biom              1.1984e+04 2.2535e+03
   1688   Sp_Biom              1.1984e+04 2.2535e+03
   1689   Sp_Biom              1.1984e+04 2.2535e+03
@@ -1751,72 +1751,72 @@
   1750   Sp_Biom              6.8993e+03 9.2209e+02
   1751   Sp_Biom              7.6726e+03 1.1101e+03
   1752   Sp_Biom              8.6956e+03 1.2716e+03
-  1753   Sp_Biom              6.0257e+03 1.1139e+03
-  1754   Sp_Biom              6.0257e+03 1.1139e+03
-  1755   Sp_Biom              6.0257e+03 1.1139e+03
-  1756   Sp_Biom              6.0195e+03 1.1025e+03
-  1757   Sp_Biom              5.9934e+03 1.0953e+03
-  1758   Sp_Biom              5.9606e+03 1.1148e+03
-  1759   Sp_Biom              5.9257e+03 1.1557e+03
-  1760   Sp_Biom              5.8920e+03 1.2066e+03
-  1761   Sp_Biom              5.8615e+03 1.2575e+03
-  1762   Sp_Biom              5.8353e+03 1.3029e+03
-  1763   Sp_Biom              5.8135e+03 1.3409e+03
-  1764   Sp_Biom              5.7963e+03 1.3715e+03
-  1765   Sp_Biom              5.7830e+03 1.3955e+03
-  1766   Sp_Biom              5.7708e+03 1.4142e+03
-  1767   Sp_Biom              5.7611e+03 1.4239e+03
-  1768   Sp_Biom              5.7540e+03 1.4070e+03
-  1769   Sp_Biom              5.7320e+03 1.3757e+03
-  1770   Sp_Biom              5.6451e+03 1.3387e+03
-  1771   Sp_Biom              5.5761e+03 1.3020e+03
-  1772   Sp_Biom              5.5316e+03 1.2692e+03
-  1773   Sp_Biom              5.1544e+03 1.2416e+03
-  1774   Sp_Biom              4.6527e+03 1.2049e+03
-  1775   Sp_Biom              4.2488e+03 1.1605e+03
-  1776   Sp_Biom              3.9154e+03 1.1329e+03
-  1777   Sp_Biom              3.4842e+03 1.1014e+03
-  1778   Sp_Biom              3.2506e+03 1.0795e+03
-  1779   Sp_Biom              3.2925e+03 1.0887e+03
-  1780   Sp_Biom              3.5156e+03 1.1185e+03
-  1781   Sp_Biom              3.6494e+03 1.1023e+03
-  1782   Sp_Biom              3.7346e+03 1.0568e+03
-  1783   Sp_Biom              3.7757e+03 9.9320e+02
-  1784   Sp_Biom              3.8473e+03 9.4902e+02
-  1785   Sp_Biom              4.1287e+03 9.4987e+02
-  1786   Sp_Biom              4.6070e+03 1.0132e+03
-  1787   Sp_Biom              4.8688e+03 1.0565e+03
-  1788   Sp_Biom              5.0558e+03 1.0803e+03
-  1789   Sp_Biom              5.0033e+03 1.0588e+03
-  1790   Sp_Biom              4.8371e+03 1.0175e+03
-  1791   Sp_Biom              4.2270e+03 9.3472e+02
-  1792   Sp_Biom              3.5657e+03 8.1711e+02
-  1793   Sp_Biom              2.8969e+03 6.8609e+02
-  1794   Sp_Biom              2.3289e+03 5.6752e+02
-  1795   Sp_Biom              1.9199e+03 4.7760e+02
-  1796   Sp_Biom              1.6520e+03 4.2265e+02
-  1797   Sp_Biom              1.2988e+03 3.7385e+02
-  1798   Sp_Biom              1.2215e+03 3.6163e+02
-  1799   Sp_Biom              1.1930e+03 3.5617e+02
-  1800   Sp_Biom              1.2507e+03 3.7034e+02
-  1801   Sp_Biom              1.2533e+03 3.6603e+02
-  1802   Sp_Biom              1.3037e+03 3.7352e+02
-  1803   Sp_Biom              1.3695e+03 3.9650e+02
-  1804   Sp_Biom              1.3165e+03 3.9587e+02
-  1805   Sp_Biom              1.1926e+03 3.7168e+02
-  1806   Sp_Biom              1.0954e+03 3.3773e+02
-  1807   Sp_Biom              1.0700e+03 3.1921e+02
-  1808   Sp_Biom              1.0945e+03 3.2268e+02
-  1809   Sp_Biom              1.0886e+03 3.1535e+02
-  1810   Sp_Biom              1.0992e+03 3.1163e+02
-  1811   Sp_Biom              1.0757e+03 2.9709e+02
-  1812   Sp_Biom              1.1158e+03 2.9152e+02
-  1813   Sp_Biom              1.1728e+03 2.8666e+02
-  1814   Sp_Biom              1.4384e+03 3.2145e+02
-  1815   Sp_Biom              2.0708e+03 4.4780e+02
-  1816   Sp_Biom              2.5241e+03 5.4473e+02
-  1817   Sp_Biom              2.6520e+03 5.7817e+02
-  1818   Sp_Biom              2.6517e+03 5.7283e+02
+  1753   Sp_Biom              5.9655e+03 1.0988e+03
+  1754   Sp_Biom              5.9655e+03 1.0988e+03
+  1755   Sp_Biom              5.9655e+03 1.0988e+03
+  1756   Sp_Biom              5.9593e+03 1.0875e+03
+  1757   Sp_Biom              5.9332e+03 1.0803e+03
+  1758   Sp_Biom              5.9004e+03 1.0994e+03
+  1759   Sp_Biom              5.8656e+03 1.1400e+03
+  1760   Sp_Biom              5.8319e+03 1.1904e+03
+  1761   Sp_Biom              5.8014e+03 1.2409e+03
+  1762   Sp_Biom              5.7752e+03 1.2860e+03
+  1763   Sp_Biom              5.7534e+03 1.3236e+03
+  1764   Sp_Biom              5.7361e+03 1.3540e+03
+  1765   Sp_Biom              5.7228e+03 1.3778e+03
+  1766   Sp_Biom              5.7105e+03 1.3964e+03
+  1767   Sp_Biom              5.7007e+03 1.4060e+03
+  1768   Sp_Biom              5.6935e+03 1.3891e+03
+  1769   Sp_Biom              5.6713e+03 1.3580e+03
+  1770   Sp_Biom              5.5842e+03 1.3212e+03
+  1771   Sp_Biom              5.5152e+03 1.2848e+03
+  1772   Sp_Biom              5.4705e+03 1.2521e+03
+  1773   Sp_Biom              5.0927e+03 1.2244e+03
+  1774   Sp_Biom              4.5914e+03 1.1875e+03
+  1775   Sp_Biom              4.1875e+03 1.1425e+03
+  1776   Sp_Biom              3.8522e+03 1.1137e+03
+  1777   Sp_Biom              3.4203e+03 1.0814e+03
+  1778   Sp_Biom              3.1860e+03 1.0591e+03
+  1779   Sp_Biom              3.2248e+03 1.0678e+03
+  1780   Sp_Biom              3.4428e+03 1.0971e+03
+  1781   Sp_Biom              3.5740e+03 1.0811e+03
+  1782   Sp_Biom              3.6588e+03 1.0364e+03
+  1783   Sp_Biom              3.7012e+03 9.7385e+02
+  1784   Sp_Biom              3.7724e+03 9.3037e+02
+  1785   Sp_Biom              4.0499e+03 9.3094e+02
+  1786   Sp_Biom              4.5201e+03 9.9286e+02
+  1787   Sp_Biom              4.7766e+03 1.0351e+03
+  1788   Sp_Biom              4.9606e+03 1.0582e+03
+  1789   Sp_Biom              4.9094e+03 1.0371e+03
+  1790   Sp_Biom              4.7464e+03 9.9639e+02
+  1791   Sp_Biom              4.1433e+03 9.1526e+02
+  1792   Sp_Biom              3.4926e+03 7.9977e+02
+  1793   Sp_Biom              2.8358e+03 6.7130e+02
+  1794   Sp_Biom              2.2786e+03 5.5512e+02
+  1795   Sp_Biom              1.8771e+03 4.6669e+02
+  1796   Sp_Biom              1.6135e+03 4.1208e+02
+  1797   Sp_Biom              1.2642e+03 3.6278e+02
+  1798   Sp_Biom              1.1874e+03 3.5006e+02
+  1799   Sp_Biom              1.1587e+03 3.4448e+02
+  1800   Sp_Biom              1.2146e+03 3.5842e+02
+  1801   Sp_Biom              1.2173e+03 3.5449e+02
+  1802   Sp_Biom              1.2663e+03 3.6208e+02
+  1803   Sp_Biom              1.3289e+03 3.8453e+02
+  1804   Sp_Biom              1.2755e+03 3.8399e+02
+  1805   Sp_Biom              1.1539e+03 3.6057e+02
+  1806   Sp_Biom              1.0603e+03 3.2773e+02
+  1807   Sp_Biom              1.0368e+03 3.0992e+02
+  1808   Sp_Biom              1.0611e+03 3.1348e+02
+  1809   Sp_Biom              1.0558e+03 3.0648e+02
+  1810   Sp_Biom              1.0669e+03 3.0304e+02
+  1811   Sp_Biom              1.0451e+03 2.8905e+02
+  1812   Sp_Biom              1.0860e+03 2.8380e+02
+  1813   Sp_Biom              1.1440e+03 2.7930e+02
+  1814   Sp_Biom              1.4119e+03 3.1429e+02
+  1815   Sp_Biom              2.0752e+03 4.4478e+02
+  1816   Sp_Biom              2.5917e+03 5.5641e+02
+  1817   Sp_Biom              2.7391e+03 5.9930e+02
+  1818   Sp_Biom              2.7520e+03 5.9928e+02
   1819   Sp_Biom_NoFish       1.1984e+04 2.2535e+03
   1820   Sp_Biom_NoFish       1.1984e+04 2.2535e+03
   1821   Sp_Biom_NoFish       1.1984e+04 2.2535e+03
@@ -1902,97 +1902,97 @@
   1901   Sp_Biom_NoFish       1.3859e+04 3.0121e+03
   1902   Sp_Biom_NoFish       1.3683e+04 3.0215e+03
   1903   Sp_Biom_NoFish       1.3534e+04 3.0286e+03
-  1904   Sp_Biom_NoFish       6.0257e+03 1.1139e+03
-  1905   Sp_Biom_NoFish       6.0257e+03 1.1139e+03
-  1906   Sp_Biom_NoFish       6.0257e+03 1.1139e+03
-  1907   Sp_Biom_NoFish       6.0195e+03 1.1025e+03
-  1908   Sp_Biom_NoFish       5.9934e+03 1.0953e+03
-  1909   Sp_Biom_NoFish       5.9606e+03 1.1148e+03
-  1910   Sp_Biom_NoFish       5.9257e+03 1.1557e+03
-  1911   Sp_Biom_NoFish       5.8920e+03 1.2066e+03
-  1912   Sp_Biom_NoFish       5.8615e+03 1.2575e+03
-  1913   Sp_Biom_NoFish       5.8353e+03 1.3029e+03
-  1914   Sp_Biom_NoFish       5.8135e+03 1.3409e+03
-  1915   Sp_Biom_NoFish       5.7963e+03 1.3715e+03
-  1916   Sp_Biom_NoFish       5.7830e+03 1.3955e+03
-  1917   Sp_Biom_NoFish       5.7735e+03 1.4143e+03
-  1918   Sp_Biom_NoFish       5.7707e+03 1.4240e+03
-  1919   Sp_Biom_NoFish       5.7805e+03 1.4070e+03
-  1920   Sp_Biom_NoFish       5.7956e+03 1.3757e+03
-  1921   Sp_Biom_NoFish       5.8130e+03 1.3388e+03
-  1922   Sp_Biom_NoFish       5.8305e+03 1.3028e+03
-  1923   Sp_Biom_NoFish       5.8458e+03 1.2708e+03
-  1924   Sp_Biom_NoFish       5.8557e+03 1.2427e+03
-  1925   Sp_Biom_NoFish       5.8520e+03 1.2129e+03
-  1926   Sp_Biom_NoFish       5.8853e+03 1.1712e+03
-  1927   Sp_Biom_NoFish       6.0539e+03 1.1350e+03
-  1928   Sp_Biom_NoFish       6.0994e+03 1.0998e+03
-  1929   Sp_Biom_NoFish       6.0894e+03 1.0794e+03
-  1930   Sp_Biom_NoFish       6.1701e+03 1.0862e+03
-  1931   Sp_Biom_NoFish       6.4148e+03 1.1106e+03
-  1932   Sp_Biom_NoFish       6.4752e+03 1.0871e+03
-  1933   Sp_Biom_NoFish       6.3701e+03 1.0359e+03
-  1934   Sp_Biom_NoFish       6.1590e+03 9.6761e+02
-  1935   Sp_Biom_NoFish       6.1122e+03 9.1701e+02
-  1936   Sp_Biom_NoFish       6.4529e+03 9.1317e+02
-  1937   Sp_Biom_NoFish       7.1727e+03 9.7687e+02
-  1938   Sp_Biom_NoFish       7.5813e+03 1.0252e+03
-  1939   Sp_Biom_NoFish       7.7619e+03 1.0555e+03
-  1940   Sp_Biom_NoFish       7.6029e+03 1.0389e+03
-  1941   Sp_Biom_NoFish       7.3697e+03 1.0009e+03
-  1942   Sp_Biom_NoFish       6.9392e+03 9.2023e+02
-  1943   Sp_Biom_NoFish       6.4730e+03 8.1303e+02
-  1944   Sp_Biom_NoFish       6.2215e+03 6.8836e+02
-  1945   Sp_Biom_NoFish       6.1113e+03 5.5151e+02
-  1946   Sp_Biom_NoFish       6.0610e+03 4.4875e+02
-  1947   Sp_Biom_NoFish       5.9997e+03 3.9152e+02
-  1948   Sp_Biom_NoFish       6.0721e+03 3.5223e+02
-  1949   Sp_Biom_NoFish       6.3356e+03 3.2763e+02
-  1950   Sp_Biom_NoFish       6.2293e+03 3.1700e+02
-  1951   Sp_Biom_NoFish       6.1584e+03 3.2757e+02
-  1952   Sp_Biom_NoFish       5.7911e+03 3.2480e+02
-  1953   Sp_Biom_NoFish       5.4990e+03 3.3389e+02
-  1954   Sp_Biom_NoFish       5.4218e+03 3.5952e+02
-  1955   Sp_Biom_NoFish       5.1449e+03 3.6393e+02
-  1956   Sp_Biom_NoFish       4.6582e+03 3.4611e+02
-  1957   Sp_Biom_NoFish       4.1151e+03 3.1727e+02
-  1958   Sp_Biom_NoFish       3.8143e+03 2.9773e+02
-  1959   Sp_Biom_NoFish       3.8665e+03 2.9933e+02
-  1960   Sp_Biom_NoFish       3.7296e+03 2.9357e+02
-  1961   Sp_Biom_NoFish       3.5686e+03 2.9265e+02
-  1962   Sp_Biom_NoFish       3.2977e+03 2.8166e+02
-  1963   Sp_Biom_NoFish       3.0783e+03 2.7931e+02
-  1964   Sp_Biom_NoFish       2.8678e+03 2.7725e+02
-  1965   Sp_Biom_NoFish       2.9488e+03 3.1488e+02
-  1966   Sp_Biom_NoFish       3.6049e+03 4.5197e+02
-  1967   Sp_Biom_NoFish       4.1040e+03 5.5816e+02
-  1968   Sp_Biom_NoFish       4.2117e+03 5.9711e+02
-  1969   Sp_Biom_NoFish       4.1785e+03 6.0845e+02
-  1970   Sp_Biom_NoFish       4.0616e+03 6.0520e+02
-  1971   Sp_Biom_NoFish       3.8872e+03 5.9751e+02
-  1972   Sp_Biom_NoFish       3.6998e+03 5.9430e+02
-  1973   Sp_Biom_NoFish       3.5161e+03 5.9723e+02
-  1974   Sp_Biom_NoFish       3.3496e+03 6.0534e+02
-  1975   Sp_Biom_NoFish       3.2029e+03 6.1603e+02
-  1976   Sp_Biom_NoFish       3.0593e+03 6.2555e+02
-  1977   Sp_Biom_NoFish       2.9384e+03 6.3492e+02
-  1978   Sp_Biom_NoFish       2.8495e+03 6.4435e+02
-  1979   Sp_Biom_NoFish       2.7855e+03 6.5303e+02
-  1980   Sp_Biom_NoFish       2.7351e+03 6.6013e+02
-  1981   Sp_Biom_NoFish       2.6956e+03 6.6535e+02
-  1982   Sp_Biom_NoFish       2.6643e+03 6.6924e+02
-  1983   Sp_Biom_NoFish       2.6393e+03 6.7220e+02
-  1984   Sp_Biom_NoFish       2.6192e+03 6.7451e+02
-  1985   Sp_Biom_NoFish       2.6030e+03 6.7634e+02
-  1986   Sp_Biom_NoFish       2.5898e+03 6.7783e+02
-  1987   Sp_Biom_NoFish       2.5791e+03 6.7905e+02
-  1988   Sp_Biom_NoFish       2.5704e+03 6.8006e+02
+  1904   Sp_Biom_NoFish       5.9655e+03 1.0988e+03
+  1905   Sp_Biom_NoFish       5.9655e+03 1.0988e+03
+  1906   Sp_Biom_NoFish       5.9655e+03 1.0988e+03
+  1907   Sp_Biom_NoFish       5.9593e+03 1.0875e+03
+  1908   Sp_Biom_NoFish       5.9332e+03 1.0803e+03
+  1909   Sp_Biom_NoFish       5.9004e+03 1.0994e+03
+  1910   Sp_Biom_NoFish       5.8656e+03 1.1400e+03
+  1911   Sp_Biom_NoFish       5.8319e+03 1.1904e+03
+  1912   Sp_Biom_NoFish       5.8014e+03 1.2409e+03
+  1913   Sp_Biom_NoFish       5.7752e+03 1.2860e+03
+  1914   Sp_Biom_NoFish       5.7534e+03 1.3236e+03
+  1915   Sp_Biom_NoFish       5.7361e+03 1.3540e+03
+  1916   Sp_Biom_NoFish       5.7228e+03 1.3778e+03
+  1917   Sp_Biom_NoFish       5.7132e+03 1.3964e+03
+  1918   Sp_Biom_NoFish       5.7103e+03 1.4060e+03
+  1919   Sp_Biom_NoFish       5.7199e+03 1.3891e+03
+  1920   Sp_Biom_NoFish       5.7348e+03 1.3580e+03
+  1921   Sp_Biom_NoFish       5.7521e+03 1.3214e+03
+  1922   Sp_Biom_NoFish       5.7695e+03 1.2856e+03
+  1923   Sp_Biom_NoFish       5.7845e+03 1.2537e+03
+  1924   Sp_Biom_NoFish       5.7940e+03 1.2256e+03
+  1925   Sp_Biom_NoFish       5.7900e+03 1.1956e+03
+  1926   Sp_Biom_NoFish       5.8226e+03 1.1533e+03
+  1927   Sp_Biom_NoFish       5.9890e+03 1.1157e+03
+  1928   Sp_Biom_NoFish       6.0336e+03 1.0796e+03
+  1929   Sp_Biom_NoFish       6.0224e+03 1.0587e+03
+  1930   Sp_Biom_NoFish       6.1003e+03 1.0651e+03
+  1931   Sp_Biom_NoFish       6.3403e+03 1.0889e+03
+  1932   Sp_Biom_NoFish       6.3987e+03 1.0655e+03
+  1933   Sp_Biom_NoFish       6.2937e+03 1.0151e+03
+  1934   Sp_Biom_NoFish       6.0845e+03 9.4791e+02
+  1935   Sp_Biom_NoFish       6.0381e+03 8.9794e+02
+  1936   Sp_Biom_NoFish       6.3757e+03 8.9375e+02
+  1937   Sp_Biom_NoFish       7.0883e+03 9.5598e+02
+  1938   Sp_Biom_NoFish       7.4919e+03 1.0033e+03
+  1939   Sp_Biom_NoFish       7.6694e+03 1.0330e+03
+  1940   Sp_Biom_NoFish       7.5116e+03 1.0167e+03
+  1941   Sp_Biom_NoFish       7.2813e+03 9.7936e+02
+  1942   Sp_Biom_NoFish       6.8579e+03 9.0033e+02
+  1943   Sp_Biom_NoFish       6.4011e+03 7.9530e+02
+  1944   Sp_Biom_NoFish       6.1611e+03 6.7302e+02
+  1945   Sp_Biom_NoFish       6.0640e+03 5.3859e+02
+  1946   Sp_Biom_NoFish       6.0238e+03 4.3765e+02
+  1947   Sp_Biom_NoFish       5.9682e+03 3.8135e+02
+  1948   Sp_Biom_NoFish       6.0451e+03 3.4232e+02
+  1949   Sp_Biom_NoFish       6.3111e+03 3.1758e+02
+  1950   Sp_Biom_NoFish       6.2054e+03 3.0714e+02
+  1951   Sp_Biom_NoFish       6.1321e+03 3.1735e+02
+  1952   Sp_Biom_NoFish       5.7639e+03 3.1473e+02
+  1953   Sp_Biom_NoFish       5.4693e+03 3.2365e+02
+  1954   Sp_Biom_NoFish       5.3873e+03 3.4842e+02
+  1955   Sp_Biom_NoFish       5.1086e+03 3.5269e+02
+  1956   Sp_Biom_NoFish       4.6231e+03 3.3545e+02
+  1957   Sp_Biom_NoFish       4.0827e+03 3.0758e+02
+  1958   Sp_Biom_NoFish       3.7839e+03 2.8859e+02
+  1959   Sp_Biom_NoFish       3.8363e+03 2.9010e+02
+  1960   Sp_Biom_NoFish       3.7000e+03 2.8460e+02
+  1961   Sp_Biom_NoFish       3.5392e+03 2.8396e+02
+  1962   Sp_Biom_NoFish       3.2697e+03 2.7352e+02
+  1963   Sp_Biom_NoFish       3.0507e+03 2.7147e+02
+  1964   Sp_Biom_NoFish       2.8410e+03 2.6974e+02
+  1965   Sp_Biom_NoFish       2.9249e+03 3.0759e+02
+  1966   Sp_Biom_NoFish       3.6175e+03 4.4914e+02
+  1967   Sp_Biom_NoFish       4.2162e+03 5.7124e+02
+  1968   Sp_Biom_NoFish       4.3824e+03 6.2119e+02
+  1969   Sp_Biom_NoFish       4.3820e+03 6.3975e+02
+  1970   Sp_Biom_NoFish       4.2751e+03 6.3968e+02
+  1971   Sp_Biom_NoFish       4.0900e+03 6.2987e+02
+  1972   Sp_Biom_NoFish       3.8810e+03 6.2144e+02
+  1973   Sp_Biom_NoFish       3.6709e+03 6.1794e+02
+  1974   Sp_Biom_NoFish       3.4772e+03 6.1980e+02
+  1975   Sp_Biom_NoFish       3.3047e+03 6.2519e+02
+  1976   Sp_Biom_NoFish       3.1381e+03 6.3058e+02
+  1977   Sp_Biom_NoFish       2.9950e+03 6.3651e+02
+  1978   Sp_Biom_NoFish       2.8881e+03 6.4349e+02
+  1979   Sp_Biom_NoFish       2.8104e+03 6.5045e+02
+  1980   Sp_Biom_NoFish       2.7495e+03 6.5630e+02
+  1981   Sp_Biom_NoFish       2.7021e+03 6.6061e+02
+  1982   Sp_Biom_NoFish       2.6648e+03 6.6381e+02
+  1983   Sp_Biom_NoFish       2.6352e+03 6.6624e+02
+  1984   Sp_Biom_NoFish       2.6114e+03 6.6811e+02
+  1985   Sp_Biom_NoFish       2.5924e+03 6.6959e+02
+  1986   Sp_Biom_NoFish       2.5769e+03 6.7079e+02
+  1987   Sp_Biom_NoFish       2.5644e+03 6.7178e+02
+  1988   Sp_Biom_NoFish       2.5543e+03 6.7261e+02
   1989   Sp_Biom_NoFishRatio  9.8990e-01 1.4930e-03
   1990   Sp_Biom_NoFishRatio  9.7333e-01 3.7174e-03
   1991   Sp_Biom_NoFishRatio  9.6263e-01 4.9024e-03
   1992   Sp_Biom_NoFishRatio  9.5163e-01 5.9731e-03
   1993   Sp_Biom_NoFishRatio  9.3452e-01 7.6325e-03
-  1994   Sp_Biom_NoFishRatio  9.1198e-01 9.6182e-03
+  1994   Sp_Biom_NoFishRatio  9.1198e-01 9.6181e-03
   1995   Sp_Biom_NoFishRatio  8.8668e-01 1.1433e-02
   1996   Sp_Biom_NoFishRatio  8.6620e-01 1.2196e-02
   1997   Sp_Biom_NoFishRatio  8.2822e-01 1.3962e-02
@@ -2039,60 +2039,60 @@
   2038   Sp_Biom_NoFishRatio  3.3199e-01 3.1037e-02
   2039   Sp_Biom_NoFishRatio  3.6868e-01 3.4165e-02
   2040   Sp_Biom_NoFishRatio  3.9461e-01 3.6924e-02
-  2041   Sp_Biom_NoFishRatio  9.9954e-01 1.1480e-04
-  2042   Sp_Biom_NoFishRatio  9.9833e-01 4.1124e-04
-  2043   Sp_Biom_NoFishRatio  9.9542e-01 1.1234e-03
-  2044   Sp_Biom_NoFishRatio  9.8903e-01 2.6324e-03
-  2045   Sp_Biom_NoFishRatio  9.7112e-01 6.7223e-03
-  2046   Sp_Biom_NoFishRatio  9.5636e-01 9.7374e-03
-  2047   Sp_Biom_NoFishRatio  9.4625e-01 1.1590e-02
-  2048   Sp_Biom_NoFishRatio  8.8023e-01 2.5642e-02
-  2049   Sp_Biom_NoFishRatio  7.9507e-01 4.1687e-02
-  2050   Sp_Biom_NoFishRatio  7.2194e-01 5.4278e-02
-  2051   Sp_Biom_NoFishRatio  6.4675e-01 6.6642e-02
-  2052   Sp_Biom_NoFishRatio  5.7124e-01 7.8403e-02
-  2053   Sp_Biom_NoFishRatio  5.3382e-01 8.3631e-02
-  2054   Sp_Biom_NoFishRatio  5.3362e-01 8.3701e-02
-  2055   Sp_Biom_NoFishRatio  5.4804e-01 8.1011e-02
-  2056   Sp_Biom_NoFishRatio  5.6360e-01 7.7549e-02
-  2057   Sp_Biom_NoFishRatio  5.8627e-01 7.2969e-02
-  2058   Sp_Biom_NoFishRatio  6.1304e-01 6.7855e-02
-  2059   Sp_Biom_NoFishRatio  6.2945e-01 6.4025e-02
-  2060   Sp_Biom_NoFishRatio  6.3982e-01 5.9954e-02
-  2061   Sp_Biom_NoFishRatio  6.4229e-01 5.7015e-02
-  2062   Sp_Biom_NoFishRatio  6.4221e-01 5.5603e-02
-  2063   Sp_Biom_NoFishRatio  6.5136e-01 5.3566e-02
-  2064   Sp_Biom_NoFishRatio  6.5808e-01 5.2139e-02
-  2065   Sp_Biom_NoFishRatio  6.5636e-01 5.1400e-02
-  2066   Sp_Biom_NoFishRatio  6.0914e-01 5.5832e-02
-  2067   Sp_Biom_NoFishRatio  5.5086e-01 5.8586e-02
-  2068   Sp_Biom_NoFishRatio  4.6562e-01 6.0090e-02
-  2069   Sp_Biom_NoFishRatio  3.8108e-01 5.9797e-02
-  2070   Sp_Biom_NoFishRatio  3.1676e-01 5.6977e-02
-  2071   Sp_Biom_NoFishRatio  2.7535e-01 5.4446e-02
-  2072   Sp_Biom_NoFishRatio  2.1389e-01 5.0924e-02
-  2073   Sp_Biom_NoFishRatio  1.9280e-01 4.8836e-02
-  2074   Sp_Biom_NoFishRatio  1.9152e-01 4.9248e-02
-  2075   Sp_Biom_NoFishRatio  2.0309e-01 5.1114e-02
-  2076   Sp_Biom_NoFishRatio  2.1641e-01 5.2843e-02
-  2077   Sp_Biom_NoFishRatio  2.3707e-01 5.5195e-02
-  2078   Sp_Biom_NoFishRatio  2.5259e-01 5.7796e-02
-  2079   Sp_Biom_NoFishRatio  2.5589e-01 6.0084e-02
-  2080   Sp_Biom_NoFishRatio  2.5602e-01 6.1933e-02
-  2081   Sp_Biom_NoFishRatio  2.6619e-01 6.2740e-02
-  2082   Sp_Biom_NoFishRatio  2.8051e-01 6.2959e-02
-  2083   Sp_Biom_NoFishRatio  2.8307e-01 6.2708e-02
-  2084   Sp_Biom_NoFishRatio  2.9187e-01 6.2890e-02
-  2085   Sp_Biom_NoFishRatio  3.0802e-01 6.3548e-02
-  2086   Sp_Biom_NoFishRatio  3.2619e-01 6.3890e-02
-  2087   Sp_Biom_NoFishRatio  3.6247e-01 6.3674e-02
-  2088   Sp_Biom_NoFishRatio  4.0895e-01 6.2497e-02
-  2089   Sp_Biom_NoFishRatio  4.8780e-01 5.9226e-02
-  2090   Sp_Biom_NoFishRatio  5.7444e-01 5.4846e-02
-  2091   Sp_Biom_NoFishRatio  6.1504e-01 5.1938e-02
-  2092   Sp_Biom_NoFishRatio  6.2969e-01 5.0912e-02
+  2041   Sp_Biom_NoFishRatio  9.9954e-01 1.1582e-04
+  2042   Sp_Biom_NoFishRatio  9.9832e-01 4.1474e-04
+  2043   Sp_Biom_NoFishRatio  9.9537e-01 1.1326e-03
+  2044   Sp_Biom_NoFishRatio  9.8892e-01 2.6535e-03
+  2045   Sp_Biom_NoFishRatio  9.7081e-01 6.7758e-03
+  2046   Sp_Biom_NoFishRatio  9.5593e-01 9.8069e-03
+  2047   Sp_Biom_NoFishRatio  9.4573e-01 1.1667e-02
+  2048   Sp_Biom_NoFishRatio  8.7895e-01 2.5828e-02
+  2049   Sp_Biom_NoFishRatio  7.9299e-01 4.1941e-02
+  2050   Sp_Biom_NoFishRatio  7.1918e-01 5.4543e-02
+  2051   Sp_Biom_NoFishRatio  6.4321e-01 6.6909e-02
+  2052   Sp_Biom_NoFishRatio  5.6688e-01 7.8653e-02
+  2053   Sp_Biom_NoFishRatio  5.2902e-01 8.3854e-02
+  2054   Sp_Biom_NoFishRatio  5.2863e-01 8.3966e-02
+  2055   Sp_Biom_NoFishRatio  5.4299e-01 8.1335e-02
+  2056   Sp_Biom_NoFishRatio  5.5855e-01 7.7909e-02
+  2057   Sp_Biom_NoFishRatio  5.8134e-01 7.3353e-02
+  2058   Sp_Biom_NoFishRatio  6.0830e-01 6.8256e-02
+  2059   Sp_Biom_NoFishRatio  6.2477e-01 6.4441e-02
+  2060   Sp_Biom_NoFishRatio  6.3520e-01 6.0351e-02
+  2061   Sp_Biom_NoFishRatio  6.3768e-01 5.7383e-02
+  2062   Sp_Biom_NoFishRatio  6.3757e-01 5.5958e-02
+  2063   Sp_Biom_NoFishRatio  6.4680e-01 5.3914e-02
+  2064   Sp_Biom_NoFishRatio  6.5358e-01 5.2480e-02
+  2065   Sp_Biom_NoFishRatio  6.5185e-01 5.1718e-02
+  2066   Sp_Biom_NoFishRatio  6.0417e-01 5.6108e-02
+  2067   Sp_Biom_NoFishRatio  5.4562e-01 5.8734e-02
+  2068   Sp_Biom_NoFishRatio  4.6027e-01 6.0041e-02
+  2069   Sp_Biom_NoFishRatio  3.7575e-01 5.9526e-02
+  2070   Sp_Biom_NoFishRatio  3.1161e-01 5.6505e-02
+  2071   Sp_Biom_NoFishRatio  2.7036e-01 5.3790e-02
+  2072   Sp_Biom_NoFishRatio  2.0913e-01 4.9974e-02
+  2073   Sp_Biom_NoFishRatio  1.8814e-01 4.7770e-02
+  2074   Sp_Biom_NoFishRatio  1.8673e-01 4.8132e-02
+  2075   Sp_Biom_NoFishRatio  1.9807e-01 5.0021e-02
+  2076   Sp_Biom_NoFishRatio  2.1119e-01 5.1784e-02
+  2077   Sp_Biom_NoFishRatio  2.3153e-01 5.4198e-02
+  2078   Sp_Biom_NoFishRatio  2.4668e-01 5.6861e-02
+  2079   Sp_Biom_NoFishRatio  2.4968e-01 5.9182e-02
+  2080   Sp_Biom_NoFishRatio  2.4960e-01 6.1058e-02
+  2081   Sp_Biom_NoFishRatio  2.5971e-01 6.1909e-02
+  2082   Sp_Biom_NoFishRatio  2.7399e-01 6.2187e-02
+  2083   Sp_Biom_NoFishRatio  2.7660e-01 6.1982e-02
+  2084   Sp_Biom_NoFishRatio  2.8535e-01 6.2215e-02
+  2085   Sp_Biom_NoFishRatio  3.0145e-01 6.2952e-02
+  2086   Sp_Biom_NoFishRatio  3.1962e-01 6.3365e-02
+  2087   Sp_Biom_NoFishRatio  3.5598e-01 6.3260e-02
+  2088   Sp_Biom_NoFishRatio  4.0269e-01 6.2205e-02
+  2089   Sp_Biom_NoFishRatio  4.8273e-01 5.9062e-02
+  2090   Sp_Biom_NoFishRatio  5.7366e-01 5.4486e-02
+  2091   Sp_Biom_NoFishRatio  6.1470e-01 5.1636e-02
+  2092   Sp_Biom_NoFishRatio  6.2502e-01 5.1128e-02
   2093   ABCBiom              1.2075e+04 1.6793e+03
-  2094   ABCBiom              3.6480e+03 7.7306e+02
+  2094   ABCBiom              3.7845e+03 8.0832e+02
   2095   recruits             9.4551e+03 1.8492e+03
   2096   recruits             9.1062e+03 1.6710e+03
   2097   recruits             9.5235e+03 1.6417e+03
@@ -2146,88 +2146,88 @@
   2145   recruits             1.1052e+04 4.2622e+03
   2146   recruits             1.2914e+04 5.9269e+03
   2147   recruits             1.3329e+04 1.1974e+03
-  2148   recruits             4.3180e+03 2.0731e+03
-  2149   recruits             4.3206e+03 2.0734e+03
-  2150   recruits             4.3225e+03 2.0732e+03
-  2151   recruits             4.3228e+03 2.0717e+03
-  2152   recruits             4.3143e+03 2.0630e+03
-  2153   recruits             4.2833e+03 2.0388e+03
-  2154   recruits             4.2305e+03 1.9812e+03
-  2155   recruits             4.0085e+03 1.6888e+03
-  2156   recruits             5.9944e+03 1.8125e+03
-  2157   recruits             4.1292e+03 1.1832e+03
-  2158   recruits             3.7317e+03 1.1952e+03
-  2159   recruits             4.1797e+03 1.3356e+03
-  2160   recruits             6.3389e+03 1.8381e+03
-  2161   recruits             4.0281e+03 1.0200e+03
-  2162   recruits             3.2736e+03 8.1424e+02
-  2163   recruits             2.4565e+03 6.4916e+02
-  2164   recruits             3.9902e+03 9.6891e+02
-  2165   recruits             6.0516e+03 1.3447e+03
-  2166   recruits             1.0260e+04 2.1281e+03
-  2167   recruits             5.5108e+03 1.4348e+03
-  2168   recruits             5.3224e+03 1.2950e+03
-  2169   recruits             2.6422e+03 7.2251e+02
-  2170   recruits             4.1820e+03 8.7829e+02
-  2171   recruits             2.6882e+03 5.1565e+02
-  2172   recruits             2.1613e+03 4.4383e+02
-  2173   recruits             4.2230e+03 6.8291e+02
-  2174   recruits             4.5880e+03 8.0657e+02
-  2175   recruits             4.3867e+03 6.5956e+02
-  2176   recruits             3.7399e+03 6.8081e+02
-  2177   recruits             3.9250e+03 6.9106e+02
-  2178   recruits             7.1962e+03 1.0232e+03
-  2179   recruits             1.5917e+03 4.1387e+02
-  2180   recruits             4.1527e+03 6.8602e+02
-  2181   recruits             1.1330e+03 3.3853e+02
-  2182   recruits             1.8408e+03 4.7267e+02
-  2183   recruits             4.4786e+03 7.4819e+02
-  2184   recruits             2.1823e+03 4.0234e+02
-  2185   recruits             6.5419e+02 1.6931e+02
-  2186   recruits             2.9877e+02 7.9140e+01
-  2187   recruits             1.3825e+03 2.6212e+02
-  2188   recruits             5.0060e+03 6.8390e+02
-  2189   recruits             1.2377e+03 3.3790e+02
-  2190   recruits             1.8130e+03 3.9103e+02
-  2191   recruits             4.6567e+02 1.4382e+02
-  2192   recruits             1.3925e+03 3.3041e+02
-  2193   recruits             1.0788e+03 2.8035e+02
-  2194   recruits             1.7750e+03 4.7328e+02
-  2195   recruits             7.0984e+03 1.6081e+03
-  2196   recruits             4.6234e+03 1.1503e+03
-  2197   recruits             1.5751e+03 5.0674e+02
-  2198   recruits             8.5520e+02 3.1403e+02
-  2199   recruits             1.8493e+03 8.4550e+02
-  2200   recruits             2.1215e+03 3.8048e+02
+  2148   recruits             4.2733e+03 2.0503e+03
+  2149   recruits             4.2757e+03 2.0504e+03
+  2150   recruits             4.2774e+03 2.0501e+03
+  2151   recruits             4.2774e+03 2.0484e+03
+  2152   recruits             4.2682e+03 2.0392e+03
+  2153   recruits             4.2367e+03 2.0143e+03
+  2154   recruits             4.1839e+03 1.9562e+03
+  2155   recruits             3.9648e+03 1.6654e+03
+  2156   recruits             5.9262e+03 1.7804e+03
+  2157   recruits             4.0835e+03 1.1630e+03
+  2158   recruits             3.6808e+03 1.1757e+03
+  2159   recruits             4.1191e+03 1.3142e+03
+  2160   recruits             6.2476e+03 1.8071e+03
+  2161   recruits             3.9697e+03 1.0026e+03
+  2162   recruits             3.2248e+03 8.0041e+02
+  2163   recruits             2.4221e+03 6.3882e+02
+  2164   recruits             3.9329e+03 9.5223e+02
+  2165   recruits             5.9755e+03 1.3230e+03
+  2166   recruits             1.0131e+04 2.0931e+03
+  2167   recruits             5.4324e+03 1.4118e+03
+  2168   recruits             5.2420e+03 1.2723e+03
+  2169   recruits             2.6032e+03 7.1035e+02
+  2170   recruits             4.1282e+03 8.6281e+02
+  2171   recruits             2.6665e+03 5.1018e+02
+  2172   recruits             2.1514e+03 4.4208e+02
+  2173   recruits             4.2170e+03 6.8331e+02
+  2174   recruits             4.6037e+03 8.0811e+02
+  2175   recruits             4.3811e+03 6.5719e+02
+  2176   recruits             3.7000e+03 6.6866e+02
+  2177   recruits             3.9125e+03 6.8291e+02
+  2178   recruits             7.1700e+03 1.0153e+03
+  2179   recruits             1.5769e+03 4.0833e+02
+  2180   recruits             4.1027e+03 6.7255e+02
+  2181   recruits             1.1165e+03 3.3255e+02
+  2182   recruits             1.8158e+03 4.6396e+02
+  2183   recruits             4.4156e+03 7.3097e+02
+  2184   recruits             2.1571e+03 3.9452e+02
+  2185   recruits             6.4642e+02 1.6637e+02
+  2186   recruits             2.9621e+02 7.8110e+01
+  2187   recruits             1.3684e+03 2.5796e+02
+  2188   recruits             4.9586e+03 6.7076e+02
+  2189   recruits             1.2198e+03 3.3222e+02
+  2190   recruits             1.7827e+03 3.8271e+02
+  2191   recruits             4.5934e+02 1.4131e+02
+  2192   recruits             1.3680e+03 3.2327e+02
+  2193   recruits             1.0628e+03 2.7526e+02
+  2194   recruits             1.7516e+03 4.6574e+02
+  2195   recruits             7.1398e+03 1.6102e+03
+  2196   recruits             5.3885e+03 1.3358e+03
+  2197   recruits             1.7895e+03 5.9687e+02
+  2198   recruits             9.2405e+02 3.4249e+02
+  2199   recruits             1.9146e+03 8.7993e+02
+  2200   recruits             2.1682e+03 3.8775e+02
   2201   depletion            9.0598e-01 1.5034e-01
-  2202   depletion            4.5949e-01 1.1771e-01
+  2202   depletion            4.8271e-01 1.2390e-01
   2203   depletion_dyn        4.4945e-01 3.7679e-02
-  2204   depletion_dyn        6.5158e-01 4.7890e-02
+  2204   depletion_dyn        6.5068e-01 4.7661e-02
   2205   MSY                  7.8281e+02 1.5045e+02
-  2206   MSY                  1.5305e+02 3.7946e+01
+  2206   MSY                  1.0043e+02 2.4283e+01
   2207   MSYL                 3.7688e-01 1.5923e-02
-  2208   MSYL                 2.7196e-01 4.6951e-02
+  2208   MSYL                 2.8684e-01 5.1720e-02
   2209   Fmsy                 1.2824e-01 3.6028e-03
-  2210   Fmsy                 8.6103e-02 9.2594e-03
+  2210   Fmsy                 8.4111e-02 8.6999e-03
   2211   lnFmsy              -2.1923e+00 1.1330e-02
-  2212   lnFmsy              -1.8998e+00 1.3880e-01
+  2212   lnFmsy              -2.3478e+00 1.3328e-01
   2213   Fcur_Fmsy            6.4967e-01 9.6349e-02
-  2214   Fcur_Fmsy            4.0879e-01 1.0489e-01
+  2214   Fcur_Fmsy            4.8430e-01 1.2406e-01
   2215   Rmsy                 7.9196e+03 1.4989e+03
-  2216   Rmsy                 1.2266e+03 2.6243e+02
+  2216   Rmsy                 1.2373e+03 2.6368e+02
   2217   Bmsy                 4.5165e+03 8.8278e+02
-  2218   Bmsy                 6.3337e+02 1.1564e+02
+  2218   Bmsy                 6.5359e+02 1.1860e+02
   2219   Bcur_Bmsy            1.6988e+00 3.6366e-01
-  2220   Bcur_Bmsy            4.1872e+00 7.2695e-01
+  2220   Bcur_Bmsy            4.1908e+00 7.5113e-01
   2221   pred_ind_nextyr      2.8743e+03 4.9003e+02
   2222   pred_ind_nextyr      3.7497e+02 6.6582e+01
   2223   pred_ind_nextyr      4.8351e-01 5.6638e-02
   2224   pred_ind_nextyr      3.3713e+03 7.4413e+02
-  2225   pred_ind_nextyr      3.8619e+01 1.0555e+01
-  2226   pred_ind_nextyr      5.3549e+00 1.5204e+00
+  2225   pred_ind_nextyr      4.1599e+01 1.1524e+01
+  2226   pred_ind_nextyr      3.9189e+00 1.0670e+00
   2227   pred_ind_nextyr      3.7263e+03 4.9269e+02
   2228   OFL                  1.2089e+03 1.6981e+02
-  2229   OFL                  2.0299e+02 6.0641e+01
+  2229   OFL                  1.4467e+02 4.1109e+01
   2230   SSB_fut_1            8.1729e+03 1.2587e+03
   2231   SSB_fut_1            8.4478e+03 1.3626e+03
   2232   SSB_fut_1            8.4920e+03 1.4366e+03
@@ -2248,26 +2248,26 @@
   2247   SSB_fut_1            6.1728e+03 1.6875e+03
   2248   SSB_fut_1            6.1347e+03 1.6897e+03
   2249   SSB_fut_1            6.1020e+03 1.6915e+03
-  2250   SSB_fut_1            2.6198e+03 5.7327e+02
-  2251   SSB_fut_1            2.5497e+03 5.5976e+02
-  2252   SSB_fut_1            2.4260e+03 5.3917e+02
-  2253   SSB_fut_1            2.2886e+03 5.1924e+02
-  2254   SSB_fut_1            2.1526e+03 5.0268e+02
-  2255   SSB_fut_1            2.0290e+03 4.9042e+02
-  2256   SSB_fut_1            1.9203e+03 4.8162e+02
-  2257   SSB_fut_1            1.8166e+03 4.7364e+02
-  2258   SSB_fut_1            1.7301e+03 4.6778e+02
-  2259   SSB_fut_1            1.6657e+03 4.6445e+02
-  2260   SSB_fut_1            1.6182e+03 4.6280e+02
-  2261   SSB_fut_1            1.5803e+03 4.6172e+02
-  2262   SSB_fut_1            1.5499e+03 4.6082e+02
-  2263   SSB_fut_1            1.5253e+03 4.6009e+02
-  2264   SSB_fut_1            1.5051e+03 4.5952e+02
-  2265   SSB_fut_1            1.4884e+03 4.5909e+02
-  2266   SSB_fut_1            1.4746e+03 4.5879e+02
-  2267   SSB_fut_1            1.4630e+03 4.5860e+02
-  2268   SSB_fut_1            1.4534e+03 4.5850e+02
-  2269   SSB_fut_1            1.4454e+03 4.5847e+02
+  2250   SSB_fut_1            2.7128e+03 5.9968e+02
+  2251   SSB_fut_1            2.6368e+03 5.8789e+02
+  2252   SSB_fut_1            2.4953e+03 5.6467e+02
+  2253   SSB_fut_1            2.3352e+03 5.3966e+02
+  2254   SSB_fut_1            2.1753e+03 5.1682e+02
+  2255   SSB_fut_1            2.0289e+03 4.9810e+02
+  2256   SSB_fut_1            1.8998e+03 4.8338e+02
+  2257   SSB_fut_1            1.7784e+03 4.7030e+02
+  2258   SSB_fut_1            1.6760e+03 4.5985e+02
+  2259   SSB_fut_1            1.5990e+03 4.5292e+02
+  2260   SSB_fut_1            1.5416e+03 4.4857e+02
+  2261   SSB_fut_1            1.4962e+03 4.4541e+02
+  2262   SSB_fut_1            1.4602e+03 4.4295e+02
+  2263   SSB_fut_1            1.4311e+03 4.4102e+02
+  2264   SSB_fut_1            1.4073e+03 4.3951e+02
+  2265   SSB_fut_1            1.3877e+03 4.3833e+02
+  2266   SSB_fut_1            1.3715e+03 4.3743e+02
+  2267   SSB_fut_1            1.3579e+03 4.3676e+02
+  2268   SSB_fut_1            1.3466e+03 4.3627e+02
+  2269   SSB_fut_1            1.3372e+03 4.3594e+02
   2270   SSB_fut_2            8.2989e+03 1.2622e+03
   2271   SSB_fut_2            8.7379e+03 1.3749e+03
   2272   SSB_fut_2            8.9470e+03 1.4619e+03
@@ -2288,26 +2288,26 @@
   2287   SSB_fut_2            7.1140e+03 1.8587e+03
   2288   SSB_fut_2            7.0752e+03 1.8641e+03
   2289   SSB_fut_2            7.0418e+03 1.8685e+03
-  2290   SSB_fut_2            2.6274e+03 5.7322e+02
-  2291   SSB_fut_2            2.5749e+03 5.6053e+02
-  2292   SSB_fut_2            2.4716e+03 5.4182e+02
-  2293   SSB_fut_2            2.3545e+03 5.2462e+02
-  2294   SSB_fut_2            2.2377e+03 5.1131e+02
-  2295   SSB_fut_2            2.1311e+03 5.0243e+02
-  2296   SSB_fut_2            2.0371e+03 4.9686e+02
-  2297   SSB_fut_2            1.9455e+03 4.9185e+02
-  2298   SSB_fut_2            1.8691e+03 4.8859e+02
-  2299   SSB_fut_2            1.8129e+03 4.8744e+02
-  2300   SSB_fut_2            1.7719e+03 4.8756e+02
-  2301   SSB_fut_2            1.7391e+03 4.8790e+02
-  2302   SSB_fut_2            1.7128e+03 4.8811e+02
-  2303   SSB_fut_2            1.6915e+03 4.8824e+02
-  2304   SSB_fut_2            1.6741e+03 4.8835e+02
-  2305   SSB_fut_2            1.6597e+03 4.8846e+02
-  2306   SSB_fut_2            1.6478e+03 4.8859e+02
-  2307   SSB_fut_2            1.6379e+03 4.8875e+02
-  2308   SSB_fut_2            1.6298e+03 4.8892e+02
-  2309   SSB_fut_2            1.6230e+03 4.8910e+02
+  2290   SSB_fut_2            2.7222e+03 5.9966e+02
+  2291   SSB_fut_2            2.6664e+03 5.8890e+02
+  2292   SSB_fut_2            2.5474e+03 5.6772e+02
+  2293   SSB_fut_2            2.4095e+03 5.4553e+02
+  2294   SSB_fut_2            2.2703e+03 5.2602e+02
+  2295   SSB_fut_2            2.1421e+03 5.1080e+02
+  2296   SSB_fut_2            2.0285e+03 4.9946e+02
+  2297   SSB_fut_2            1.9200e+03 4.8951e+02
+  2298   SSB_fut_2            1.8281e+03 4.8186e+02
+  2299   SSB_fut_2            1.7596e+03 4.7729e+02
+  2300   SSB_fut_2            1.7090e+03 4.7484e+02
+  2301   SSB_fut_2            1.6688e+03 4.7322e+02
+  2302   SSB_fut_2            1.6369e+03 4.7194e+02
+  2303   SSB_fut_2            1.6112e+03 4.7094e+02
+  2304   SSB_fut_2            1.5902e+03 4.7015e+02
+  2305   SSB_fut_2            1.5730e+03 4.6955e+02
+  2306   SSB_fut_2            1.5588e+03 4.6911e+02
+  2307   SSB_fut_2            1.5470e+03 4.6881e+02
+  2308   SSB_fut_2            1.5372e+03 4.6861e+02
+  2309   SSB_fut_2            1.5290e+03 4.6850e+02
   2310   SSB_fut_3            8.0499e+03 1.2550e+03
   2311   SSB_fut_3            8.1729e+03 1.3499e+03
   2312   SSB_fut_3            8.0729e+03 1.4108e+03
@@ -2328,32 +2328,32 @@
   2327   SSB_fut_3            5.4315e+03 1.5452e+03
   2328   SSB_fut_3            5.3947e+03 1.5455e+03
   2329   SSB_fut_3            5.3632e+03 1.5455e+03
-  2330   SSB_fut_3            2.6123e+03 5.7330e+02
-  2331   SSB_fut_3            2.5260e+03 5.5886e+02
-  2332   SSB_fut_3            2.3840e+03 5.3638e+02
-  2333   SSB_fut_3            2.2281e+03 5.1391e+02
-  2334   SSB_fut_3            2.0750e+03 4.9444e+02
-  2335   SSB_fut_3            1.9362e+03 4.7919e+02
-  2336   SSB_fut_3            1.8145e+03 4.6758e+02
-  2337   SSB_fut_3            1.7000e+03 4.5705e+02
-  2338   SSB_fut_3            1.6047e+03 4.4896e+02
-  2339   SSB_fut_3            1.5331e+03 4.4377e+02
-  2340   SSB_fut_3            1.4798e+03 4.4063e+02
-  2341   SSB_fut_3            1.4374e+03 4.3835e+02
-  2342   SSB_fut_3            1.4035e+03 4.3652e+02
-  2343   SSB_fut_3            1.3760e+03 4.3506e+02
-  2344   SSB_fut_3            1.3534e+03 4.3391e+02
-  2345   SSB_fut_3            1.3347e+03 4.3303e+02
-  2346   SSB_fut_3            1.3191e+03 4.3237e+02
-  2347   SSB_fut_3            1.3060e+03 4.3189e+02
-  2348   SSB_fut_3            1.2951e+03 4.3157e+02
-  2349   SSB_fut_3            1.2859e+03 4.3138e+02
+  2330   SSB_fut_3            2.7037e+03 5.9965e+02
+  2331   SSB_fut_3            2.6092e+03 5.8671e+02
+  2332   SSB_fut_3            2.4477e+03 5.6141e+02
+  2333   SSB_fut_3            2.2680e+03 5.3374e+02
+  2334   SSB_fut_3            2.0899e+03 5.0790e+02
+  2335   SSB_fut_3            1.9275e+03 4.8611e+02
+  2336   SSB_fut_3            1.7848e+03 4.6847e+02
+  2337   SSB_fut_3            1.6523e+03 4.5273e+02
+  2338   SSB_fut_3            1.5408e+03 4.3991e+02
+  2339   SSB_fut_3            1.4565e+03 4.3101e+02
+  2340   SSB_fut_3            1.3933e+03 4.2506e+02
+  2341   SSB_fut_3            1.3435e+03 4.2063e+02
+  2342   SSB_fut_3            1.3040e+03 4.1719e+02
+  2343   SSB_fut_3            1.2720e+03 4.1449e+02
+  2344   SSB_fut_3            1.2459e+03 4.1237e+02
+  2345   SSB_fut_3            1.2243e+03 4.1071e+02
+  2346   SSB_fut_3            1.2063e+03 4.0944e+02
+  2347   SSB_fut_3            1.1912e+03 4.0847e+02
+  2348   SSB_fut_3            1.1786e+03 4.0775e+02
+  2349   SSB_fut_3            1.1679e+03 4.0724e+02
   2350   SSB_fut_4            7.9112e+03 1.1853e+03
   2351   SSB_fut_4            7.8725e+03 1.2075e+03
   2352   SSB_fut_4            7.6288e+03 1.2104e+03
   2353   SSB_fut_4            7.2651e+03 1.2063e+03
   2354   SSB_fut_4            6.8780e+03 1.2036e+03
-  2355   SSB_fut_4            6.5276e+03 1.2086e+03
+  2355   SSB_fut_4            6.5275e+03 1.2086e+03
   2356   SSB_fut_4            6.2114e+03 1.2184e+03
   2357   SSB_fut_4            5.9228e+03 1.2291e+03
   2358   SSB_fut_4            5.6806e+03 1.2402e+03
@@ -2368,26 +2368,26 @@
   2367   SSB_fut_4            4.7542e+03 1.2923e+03
   2368   SSB_fut_4            4.7192e+03 1.2929e+03
   2369   SSB_fut_4            4.6893e+03 1.2933e+03
-  2370   SSB_fut_4            2.5792e+03 5.6464e+02
-  2371   SSB_fut_4            2.4299e+03 5.2947e+02
-  2372   SSB_fut_4            2.2218e+03 4.8154e+02
-  2373   SSB_fut_4            2.0008e+03 4.3140e+02
-  2374   SSB_fut_4            1.7874e+03 3.8443e+02
-  2375   SSB_fut_4            1.5956e+03 3.4393e+02
-  2376   SSB_fut_4            1.4292e+03 3.1059e+02
-  2377   SSB_fut_4            1.2779e+03 2.8187e+02
-  2378   SSB_fut_4            1.1530e+03 2.5954e+02
-  2379   SSB_fut_4            1.0579e+03 2.4362e+02
-  2380   SSB_fut_4            9.8606e+02 2.3224e+02
-  2381   SSB_fut_4            9.2966e+02 2.2359e+02
-  2382   SSB_fut_4            8.8471e+02 2.1670e+02
-  2383   SSB_fut_4            8.4822e+02 2.1104e+02
-  2384   SSB_fut_4            8.1809e+02 2.0630e+02
-  2385   SSB_fut_4            7.9290e+02 2.0227e+02
-  2386   SSB_fut_4            7.7163e+02 1.9884e+02
-  2387   SSB_fut_4            7.5351e+02 1.9590e+02
-  2388   SSB_fut_4            7.3801e+02 1.9338e+02
-  2389   SSB_fut_4            7.2468e+02 1.9121e+02
+  2370   SSB_fut_4            2.6760e+03 5.8998e+02
+  2371   SSB_fut_4            2.5310e+03 5.5596e+02
+  2372   SSB_fut_4            2.3186e+03 5.0657e+02
+  2373   SSB_fut_4            2.0895e+03 4.5364e+02
+  2374   SSB_fut_4            1.8661e+03 4.0326e+02
+  2375   SSB_fut_4            1.6641e+03 3.5933e+02
+  2376   SSB_fut_4            1.4882e+03 3.2293e+02
+  2377   SSB_fut_4            1.3286e+03 2.9174e+02
+  2378   SSB_fut_4            1.1954e+03 2.6717e+02
+  2379   SSB_fut_4            1.0940e+03 2.4972e+02
+  2380   SSB_fut_4            1.0176e+03 2.3738e+02
+  2381   SSB_fut_4            9.5785e+02 2.2813e+02
+  2382   SSB_fut_4            9.1050e+02 2.2088e+02
+  2383   SSB_fut_4            8.7227e+02 2.1501e+02
+  2384   SSB_fut_4            8.4088e+02 2.1013e+02
+  2385   SSB_fut_4            8.1476e+02 2.0604e+02
+  2386   SSB_fut_4            7.9278e+02 2.0256e+02
+  2387   SSB_fut_4            7.7414e+02 1.9960e+02
+  2388   SSB_fut_4            7.5824e+02 1.9707e+02
+  2389   SSB_fut_4            7.4461e+02 1.9491e+02
   2390   SSB_fut_5            8.6956e+03 1.2716e+03
   2391   SSB_fut_5            9.7086e+03 1.4082e+03
   2392   SSB_fut_5            1.0566e+04 1.5338e+03
@@ -2408,23 +2408,23 @@
   2407   SSB_fut_5            1.2163e+04 2.6727e+03
   2408   SSB_fut_5            1.2140e+04 2.7059e+03
   2409   SSB_fut_5            1.2121e+04 2.7340e+03
-  2410   SSB_fut_5            2.6517e+03 5.7283e+02
-  2411   SSB_fut_5            2.6606e+03 5.6192e+02
-  2412   SSB_fut_5            2.6320e+03 5.4915e+02
-  2413   SSB_fut_5            2.5911e+03 5.4230e+02
-  2414   SSB_fut_5            2.5460e+03 5.4230e+02
-  2415   SSB_fut_5            2.5037e+03 5.4787e+02
-  2416   SSB_fut_5            2.4651e+03 5.5636e+02
-  2417   SSB_fut_5            2.4203e+03 5.6438e+02
-  2418   SSB_fut_5            2.3826e+03 5.7267e+02
-  2419   SSB_fut_5            2.3582e+03 5.8125e+02
-  2420   SSB_fut_5            2.3430e+03 5.8931e+02
-  2421   SSB_fut_5            2.3303e+03 5.9610e+02
-  2422   SSB_fut_5            2.3200e+03 6.0131e+02
-  2423   SSB_fut_5            2.3116e+03 6.0539e+02
-  2424   SSB_fut_5            2.3048e+03 6.0864e+02
-  2425   SSB_fut_5            2.2992e+03 6.1126e+02
-  2426   SSB_fut_5            2.2946e+03 6.1340e+02
-  2427   SSB_fut_5            2.2908e+03 6.1516e+02
-  2428   SSB_fut_5            2.2877e+03 6.1661e+02
-  2429   SSB_fut_5            2.2852e+03 6.1781e+02
+  2410   SSB_fut_5            2.7520e+03 5.9928e+02
+  2411   SSB_fut_5            2.7689e+03 5.9060e+02
+  2412   SSB_fut_5            2.7354e+03 5.7562e+02
+  2413   SSB_fut_5            2.6833e+03 5.6414e+02
+  2414   SSB_fut_5            2.6244e+03 5.5871e+02
+  2415   SSB_fut_5            2.5677e+03 5.5911e+02
+  2416   SSB_fut_5            2.5155e+03 5.6329e+02
+  2417   SSB_fut_5            2.4584e+03 5.6794e+02
+  2418   SSB_fut_5            2.4088e+03 5.7345e+02
+  2419   SSB_fut_5            2.3748e+03 5.8003e+02
+  2420   SSB_fut_5            2.3522e+03 5.8668e+02
+  2421   SSB_fut_5            2.3335e+03 5.9241e+02
+  2422   SSB_fut_5            2.3187e+03 5.9685e+02
+  2423   SSB_fut_5            2.3068e+03 6.0034e+02
+  2424   SSB_fut_5            2.2971e+03 6.0312e+02
+  2425   SSB_fut_5            2.2893e+03 6.0538e+02
+  2426   SSB_fut_5            2.2829e+03 6.0722e+02
+  2427   SSB_fut_5            2.2777e+03 6.0875e+02
+  2428   SSB_fut_5            2.2734e+03 6.1001e+02
+  2429   SSB_fut_5            2.2699e+03 6.1105e+02
