@@ -272,7 +272,7 @@ for(i in 1:mod_new[[1]]$data$Inum) {
 mod_prev <- mod_new
 
 #----------
-# 0.06 Add current year's length and age comps
+# 0.06 Add current year's fishery length and age comps
 #----------
 mod_new <- readJJM(geth("0.05"), path = "config", input = "input")
 

@@ -53,6 +53,12 @@ fn.update <- function(newmod, newmodname, h) {
 h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
 h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
+
+#----------
+# Loading updated Chilean data
+# Still need to include 2021 data
+# Plot data in RMD
+#----------
 file.dat <- h1_1.00[[1]]$data
 dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) %>%
               janitor::clean_names() %>%
@@ -63,35 +69,39 @@ dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) 
                       catch_wt=capt_ton,
                       method=criterio_lectura) %>%
               mutate(fleet_type=ifelse(grepl("acoustic",fleet),"survey","fishery"),
-                      fleet=as.numeric(str_extract(fleet, "[0-9]+")))
+                      fleet=as.numeric(str_extract(fleet, "[0-9]+"))) %>%
+              group_by(fleet,method,year,age,fleet_type) %>%
+              summarise(catch_no=sum(catch_no), 
+                        catch_wt=sum(catch_wt),
+                        avg_wt=1e3*catch_wt/catch_no) %>%
+              ungroup() %>%
+              filter(age!=0) %>%
+              complete(age, nesting(fleet, method, year, fleet_type))
 
-dat.fish <- dat.chile %>%
-                  group_by(fleet,method,year,age) %>%
-                  summarise(catch_no=sum(catch_no), 
-                            catch_wt=sum(catch_wt),
-                            avg_wt=1e3*catch_wt/catch_no) %>%
-                  ungroup()
+dat.fish <- filter(dat.chile, fleet_type=="fishery")
+
+dat.ind <- filter(dat.chile, fleet_type=="survey")
 
 for(f in unique(dat.fish$fleet)) {
-  rows2use <- rownames(file.dat$Fagecomp[,,f]) %in% dat.fish$year
+
   dat2use <- dat.fish %>%
             filter(fleet==f, method=="antiguo") %>%
-            select(-fleet, -method)
-
+            select(-fleet, -method, -fleet_type)
+  rows2use <- rownames(file.dat$Fagecomp[,,f]) %in% dat2use$year
   file.dat$Fagecomp[rows2use,,f] <- dat2use %>%
                                       select(-catch_wt, -avg_wt) %>%
                                       pivot_wider(names_from=age,
                                                   values_from=catch_no) %>%
-                                      select(str_sort(names(.),numeric=T), -`0`,-year) %>% 
+                                      select(str_sort(names(.),numeric=T), -year) %>% 
                                       mutate_all(replace_na,0) %>%
                                       as.matrix()
-  file.dat$Fagesample[!(rows2use|is.na(file.dat$Fagesample[,f])),f] <- file.dat$Fagesample[rows2use,f][1]*.1
+  # file.dat$Fagesample[!(rows2use|is.na(file.dat$Fagesample[,f])),f] <- file.dat$Fagesample[rows2use,f][1]*.1
 
   tmp <- dat2use %>%
           select(-catch_wt, -catch_no) %>%
           pivot_wider(names_from=age,
                       values_from=avg_wt) %>%
-          select(str_sort(names(.),numeric=T), -`0`,-year) %>% 
+          select(str_sort(names(.),numeric=T),-year) %>% 
           as.matrix()
 
   tmp[is.na(tmp)] <- file.dat$Fwtatage[rows2use,,f][is.na(tmp)]
@@ -104,38 +114,127 @@ for(f in unique(dat.fish$fleet)) {
   }
 }
 
+for(f in unique(dat.ind$fleet)) {
+  if(f==1) ff=2 # Index 2 == Chile_AcousN in assessment
+  if(f==2) ff=1 # Index 1 == Chile_AcousCS in assessment
+
+  dat2use <- dat.ind %>%
+              filter(fleet==f, method=="antiguo") %>%
+              select(-fleet, -method, -fleet_type) %>%
+              filter(year %in% file.dat$Iyears[,ff])
+  rows2use <- rownames(file.dat$Ipropage[,,ff]) %in% dat2use$year
+  file.dat$Ipropage[rows2use,,ff] <- dat2use %>%
+                                      select(-catch_wt, -avg_wt) %>%
+                                      pivot_wider(names_from=age,
+                                                  values_from=catch_no) %>%
+                                      mutate(`1`=0) %>%
+                                      select(str_sort(names(.),numeric=T),-year) %>% 
+                                      mutate_all(replace_na,0) %>%
+                                      as.matrix()
+  # file.dat$Iagesample[!(rows2use|is.na(file.dat$Iagesample[,ff])),ff] <- file.dat$Iagesample[rows2use,ff][1]*.1 
+  # AcousN missing 2008, 2010, 2011, 2012, 2021
+  # AcousCS has extra 2010, 2011, 2012, 2017, 2020 age comps, but we don't have the index of abundance for those years (ends in 2009)
+
+  tmp <- dat2use %>%
+          select(-catch_wt, -catch_no) %>%
+          pivot_wider(names_from=age,
+                      values_from=avg_wt) %>%
+          select(str_sort(names(.),numeric=T),-year) %>% 
+          as.matrix()
+
+  tmp[is.na(tmp)] <- file.dat$Iwtatage[rows2use,,ff][is.na(tmp)]
+  file.dat$Iwtatage[rows2use,,ff] <- tmp
+
+}
+
 h1_1.01 <- h1_1.00
 h1_1.01[[1]]$data <- file.dat
+h2_1.01 <- h2_1.00
+h2_1.01[[1]]$data <- file.dat
 
- fn.update(h1_0.01, "1.01", "h1")
-# mod0.02 <- runit(geth("0.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# mod0.02 <- runit(geth("0.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# fn.update(h1_1.01, "1.01", "h1")
+# fn.update(h2_1.01, "1.01", "h2")
+# h1_1.01 <- runit(geth("1.01",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# h2_1.01 <- runit(geth("1.01",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
-#----------
-# 0.03 Last year's fishery (and CPUE) wtatage
-# wtatage for fleet 3 is different?
-#----------
-cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
+#---------
+# Using the "validacion" data set
+#---------
+file.dat <- h1_1.00[[1]]$data
+for(f in unique(dat.fish$fleet)) {
 
-for(f in 1:mod_new[[1]]$data$Fnum) {
-  rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
-  dat2use <- dat.wtatage.f %>%
-              filter(year==yr_prev, fleet==f) %>%
-              select(-year,-fleet) %>%
-              unlist()
-  mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
-  mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>% 
-                                      as.data.frame() %>% 
-                                      fill(everything()) %>% 
+  dat2use <- dat.fish %>%
+            filter(fleet==f, method=="validacion") %>%
+            select(-fleet, -method, -fleet_type)
+  rows2use <- rownames(file.dat$Fagecomp[,,f]) %in% dat2use$year
+  file.dat$Fagecomp[rows2use,,f] <- dat2use %>%
+                                      select(-catch_wt, -avg_wt) %>%
+                                      pivot_wider(names_from=age,
+                                                  values_from=catch_no) %>%
+                                      select(str_sort(names(.),numeric=T), -year) %>% 
+                                      mutate_all(replace_na,0) %>%
                                       as.matrix()
+  # file.dat$Fagesample[!(rows2use|is.na(file.dat$Fagesample[,f])),f] <- file.dat$Fagesample[rows2use,f][1]*.1
 
- # Update wtatage for CPUE
+  tmp <- dat2use %>%
+          select(-catch_wt, -catch_no) %>%
+          pivot_wider(names_from=age,
+                      values_from=avg_wt) %>%
+          select(str_sort(names(.),numeric=T),-year) %>% 
+          as.matrix()
+
+  tmp[is.na(tmp)] <- file.dat$Fwtatage[rows2use,,f][is.na(tmp)]
+  file.dat$Fwtatage[rows2use,,f] <- tmp
+
+  # Update wtatage for CPUE
   if(f>1) {
-    rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,cpue_ind[f-1]])==yr_prev)
-    mod_new[[1]]$data$Iwtatage[rows2use,,cpue_ind[f-1]] <- mod_new[[1]]$data$Fwtatage[rows2use,,f]
+    ind <- grep("Chile_CPUE",file.dat$Inames)
+    file.dat$Iwtatage[,,ind] <- file.dat$Fwtatage[,,f]
   }
 }
 
+for(f in unique(dat.ind$fleet)) {
+  if(f==1) ff=2 # Index 2 == Chile_AcousN in assessment
+  if(f==2) ff=1 # Index 1 == Chile_AcousCS in assessment
+
+  dat2use <- dat.ind %>%
+              filter(fleet==f, method=="validacion") %>%
+              select(-fleet, -method, -fleet_type) %>%
+              filter(year %in% file.dat$Iyears[,ff])
+  rows2use <- rownames(file.dat$Ipropage[,,ff]) %in% dat2use$year
+  file.dat$Ipropage[rows2use,,ff] <- dat2use %>%
+                                      select(-catch_wt, -avg_wt) %>%
+                                      pivot_wider(names_from=age,
+                                                  values_from=catch_no) %>%
+                                      mutate(`1`=0) %>%
+                                      select(str_sort(names(.),numeric=T),-year) %>% 
+                                      mutate_all(replace_na,0) %>%
+                                      as.matrix()
+  # file.dat$Iagesample[!(rows2use|is.na(file.dat$Iagesample[,ff])),ff] <- file.dat$Iagesample[rows2use,ff][1]*.1 
+  # AcousN missing 2008, 2010, 2011, 2012, 2021
+  # AcousCS has extra 2010, 2011, 2012, 2017, 2020 age comps, but we don't have the index of abundance for those years (ends in 2009)
+
+  tmp <- dat2use %>%
+          select(-catch_wt, -catch_no) %>%
+          pivot_wider(names_from=age,
+                      values_from=avg_wt) %>%
+          select(str_sort(names(.),numeric=T),-year) %>% 
+          as.matrix()
+
+  tmp[is.na(tmp)] <- file.dat$Iwtatage[rows2use,,ff][is.na(tmp)]
+  file.dat$Iwtatage[rows2use,,ff] <- tmp
+
+}
+
+h1_1.02 <- h1_1.00
+h1_1.02[[1]]$data <- file.dat
+h2_1.02 <- h2_1.00
+h2_1.02[[1]]$data <- file.dat
+
+# fn.update(h1_1.02, "1.02", "h1")
+# fn.update(h2_1.02, "1.02", "h2")
+# h1_1.02 <- runit(geth("1.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# h2_1.02 <- runit(geth("1.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs
