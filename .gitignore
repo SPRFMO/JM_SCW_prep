@@ -73,7 +73,7 @@ assessment/result/
 !*.R.rep
 !*.par
 assessment/R/SC08.html
-assessment/risk_tables/
+#assessment/risk_tables/
 *.txt
 *.doc
 assessment/annex\ plots
