@@ -22,9 +22,9 @@ dir.main <- getwd()
 dir.plots <- "annex plots"
 if(!dir.exists(dir.plots)) dir.create(dir.plots)
 
-h1nm <- "h1_1.00"
+h1nm <- "h1_1.05"
 
-h2nm <- "h2_1.00"
+h2nm <- "h2_1.05"
 
 # Width and height in pixels for most graphs
 # The rest will have to changed manually

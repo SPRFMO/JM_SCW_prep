@@ -127,4 +127,19 @@ h2_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
 # modhs  <- runit(geth(paste0(FinModName,".hs"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # modls  <- runit(geth(paste0(FinModName,".ls"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
+report(h2_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+report(h2_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+
+report(h2_modhs, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+
+report(h2_modhl, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+
+report(h2_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+
+report(FinMod.h2, format="word", output="risk_tables/")
+
+kobe(h2_modls)
+
+# 20 year projection table
+summary(h2_modls, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
 

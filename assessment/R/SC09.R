@@ -55,6 +55,9 @@ h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
 h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
 basemod <- "1.01"
+
+FinModName <- "1.05"
+
 #----------
 # Loading updated Chilean data
 # Still need to include 2021 data
@@ -332,80 +335,7 @@ h2_1.05[[1]]$data <- file.dat
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-#------------
-# Risk Tables
-# h1
-#------------
-
-
-h1_modhl <- readJJM(paste0(geth(FinModName,"h1"),".hl"),path="config",input="input")
-h1_modll <- readJJM(paste0(geth(FinModName,"h1"),".ll"),path="config",input="input")
-h1_modhs <- readJJM(paste0(geth(FinModName,"h1"),".hs"),path="config",input="input")
-h1_modls <- readJJM(paste0(geth(FinModName,"h1"),".ls"),path="config",input="input")
-
-# Only do this for h1
-# Should not be setting BMSY for h2
-# Most of this is setting BMSY at the interim level
-
-h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
-report(h1_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-report(h1_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-h1_modhs[[1]]$output[[1]]$msy_mt[,13] <- h1_modhs[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modhs[[1]]$output[[1]]$msy_mt[,10] <- 5500
-report(h1_modhs, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-h1_modhl[[1]]$output[[1]]$msy_mt[,13] <- h1_modhl[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modhl[[1]]$output[[1]]$msy_mt[,10] <- 5500
-report(h1_modhl, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-h1_modll[[1]]$output[[1]]$msy_mt[,13] <- h1_modll[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modll[[1]]$output[[1]]$msy_mt[,10] <- 5500
-report(h1_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-kobe(h1_modls)
-FinMod_msy <- fixed_bmsy(FinMod)
-FinMod_msy
-kobe(FinMod_msy)
-
-report(FinMod_msy, format="word", output="risk_tables/")
-
-# 20 year projection table
-summary(FinMod_msy, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-#-------------------
-# Risk Tables for h2
-#-------------------
-
-FinMod <- readJJM(geth(FinModName,"h2"),path="config",input="input")
-
-# modhl  <- runit(paste0(geth(FinModName,"h2"),".hl"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modll  <- runit(paste0(geth(FinModName,"h2"),".ll"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modhs  <- runit(paste0(geth(FinModName,"h2"),".hs"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modls  <- runit(paste0(geth(FinModName,"h2"),".ls"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-
-h2_modhl <- readJJM(paste0(geth(FinModName,"h2"),".hl"),path="config",input="input")
-h2_modll <- readJJM(paste0(geth(FinModName,"h2"),".ll"),path="config",input="input")
-h2_modhs <- readJJM(paste0(geth(FinModName,"h2"),".hs"),path="config",input="input")
-h2_modls <- readJJM(paste0(geth(FinModName,"h2"),".ls"),path="config",input="input")
-
-report(h2_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-report(h2_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-report(h2_modhs, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-report(h2_modhl, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-report(h2_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-
-report(FinMod, format="word", output="risk_tables/")
-
-kobe(h2_modls)
-
-# 20 year projection table
-summary(h2_modls, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
-
+# Now done in SC09_Projections.R
 
 #--------------------------
 # Tables for the Tech Annex
@@ -444,7 +374,7 @@ table_15 <- data.frame(yr  = FinMod[[1]]$output[[1]]$msy_mt[,1]) %>%
                     r_ssbmsy  = round(FinMod[[1]]$output[[1]]$msy_mt[,13], 2)
                     )
 
-write.table(table_15, paste0("table_15_sce_",geth(FinModName,"h1"),".txt"), sep="\t")
+write.table(table_15, paste0("results/table_15_sce_",geth(FinModName,"h1"),".txt"), sep="\t")
 
 # m <- data.frame(N=modls[[1]]$output$Stock_1$N[49,2:13],age=1:12,Year_Estimated=2019)
 # m <- rbind(m,data.frame(N=mod1.00[[1]]$output$Stock_1$N[49,2:13],age=1:12,Year_Estimated=2019))
@@ -496,16 +426,16 @@ ggplot(mdf,aes(x=Year,y=SSB,fill=Scenario,color=Scenario)) + xlim(2010,2026) + y
 
 
 hyp <- "h2"
-mod_2stk <- readJJM(geth(FinModName),path="config",input="input")
+mod_2stk <- readJJM(geth(FinModName,hyp),path="config",input="input")
 
-SSB <- tibble(Year=mod_2stk$Model_1.0$output$Stock_1$SSB[,1],
-              Two_Stock=mod_2stk$Model_1.0$output$Stock_1$SSB[,2]+mod_2stk$Model_1.0$output$Stock_2$SSB[,2],
-              One_Stock=FinMod$Model_1.0$output$Stock_1$SSB[,2]) %>% 
+SSB <- tibble(Year=mod_2stk[[1]]$output$Stock_1$SSB[,1],
+              Two_Stock=mod_2stk[[1]]$output$Stock_1$SSB[,2]+mod_2stk[[1]]$output$Stock_2$SSB[,2],
+              One_Stock=FinMod[[1]]$output$Stock_1$SSB[,2]) %>% 
         pivot_longer(-Year, names_to="Model",values_to="SSB") 
 
-Rec <- tibble(Year=mod_2stk$Model_1.0$output$Stock_1$R[,1],
-              Two_Stock=mod_2stk$Model_1.0$output$Stock_1$R[,2]+mod_2stk$Model_1.0$output$Stock_2$R[,2],
-              One_Stock=FinMod$Model_1.0$output$Stock_1$R[,2]) %>% 
+Rec <- tibble(Year=mod_2stk[[1]]$output$Stock_1$R[,1],
+              Two_Stock=mod_2stk[[1]]$output$Stock_1$R[,2]+mod_2stk[[1]]$output$Stock_2$R[,2],
+              One_Stock=FinMod[[1]]$output$Stock_1$R[,2]) %>% 
         pivot_longer(-Year, names_to="Model",values_to="Recruitment") 
 
 Full_tib <- left_join(SSB,Rec, by=c("Year","Model")) %>%
@@ -579,22 +509,22 @@ write.csv(as.data.frame(new.table), file = "SPRFMO historical retro.csv", quote 
 # and do devtools::load_all()
 # doesn't work in current stage..
 #-------------------------------------------
-#library(foreach)
-#library(doParallel)
-#registerDoParallel(5)
-#dir.jjmR <- "../../jjmR"
-#dir.jjm <- getwd()
-#setwd(dir.jjmR)
-#devtools::load_all()
-#setwd(dir.jjm)
+# library(foreach)
+# library(doParallel)
+# registerDoParallel(5)
+# dir.jjmR <- "../../jjmR"
+# dir.jjm <- getwd()
+# setwd(dir.jjmR)
+# devtools::load_all()
+# setwd(dir.jjm)
 
 FinMod <- geth(FinModName,"h1")
-#mod1.00 <- readJJM(FinModName, path = "config", input = "input")
-#mod1.00r <- mod1.00
-#names(mod1.00r) <- FinModName
-#Npeels<-5
-#
-#ret1 <- retro(model = mod1.00r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
+finmod.h1 <- readJJM(FinMod, path = "config", input = "input")
+finmod.h1r <- finmod.h1
+names(finmod.h1r) <- FinMod
+Npeels<-5
+
+# ret1 <- retro(model = finmod.h1r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
 
 load(paste0("results/",FinMod,"_retrospective.RData"))
 ret1<-output
@@ -607,6 +537,27 @@ plot(ret1, var="SSB") # only SSB
 #Calculation of Mohn's Rho courtesy of Arni Magnusson
 icesAdvice::mohn(ret1$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
 
+
+
+FinMod <- geth(FinModName,"h2")
+finmod.h2 <- readJJM(FinMod, path = "config", input = "input")
+finmod.h2r <- finmod.h2
+names(finmod.h2r) <- FinMod
+Npeels<-5
+
+# ret2 <- retro(model = finmod.h2r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
+
+load(paste0("results/",FinMod,"_retrospective.RData"))
+ret2<-output
+pdf(paste0("results/",FinMod,"_Retro.pdf"))
+plot(ret2) # all plots
+dev.off()
+
+plot(ret2, var="SSB") # only SSB
+#install.packages("icesAdvice")
+#Calculation of Mohn's Rho courtesy of Arni Magnusson
+icesAdvice::mohn(ret2$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
+icesAdvice::mohn(ret2$Stock_2$SSB$var[,1,1:6],peel=5,details=T)
 
 
 
