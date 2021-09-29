@@ -53,31 +53,28 @@ The code to create the input files for this assessment and to run these models c
 # Model Naming Convention
 File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
 
-Model | Description
-------|--------------
+Model      | Description
+-----------|--------------
 **Models 0.x**| **Data introductions**
 0.00     |  Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC08)
 0.01     |  As 0.00 but with revised catches through 2020 (currently still estimates)
 0.02     |  As 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
-0.03     |  As 0.02 but with updated 2020 weight at age data for all fisheries and CPUE indices
+0.03     |  As 0.02 but with updated 2020 weight at age data for all fisheries and their associated CPUE indices
 0.04     |  As 0.03 but replaced offshore CPUE up to 2020
 0.05     |  As 0.04 but with 2021 catch projections
 0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
 0.07     |  As 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
 0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.09     |  As 0.08 but replaced Peru_CPUE index
-0.10     |  As 0.09 but updated 2021 AcousticN_Survey index, with associated age composition and weight at age
+0.10     |  As 0.09 but with updated AcousN 2021 index, with associated age composition and weight at age
 -----------|--------------
-**Models 1.x**| **(NOT RUN YET) Updated Model and Sensitivities**
+**Models 1.x**| **Updated Model and Sensitivities**
 1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
-1.01     | As 1.00 but use revised data series "antiguo" (assessment/NewAgeData/AgeDataInAssessment.csv)
-1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35)
-1.03     | As 1.02 but M=0.45
-1.04     | As 1.00 but with increased uncertainty for final year CPUE indices
------------|--------------
-**Models 1.x**| **For Benchmark**
-1.01    |   Replace SC_Chile_CPUE with CPUE index by set
-
+1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)
+1.03     | As 1.02 but M=0.45 (NOT RUN)
+1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
+1.05     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
 
 ```{r install_packages, eval=F, cache=F, echo=T}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
@@ -604,6 +601,50 @@ plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ## Addressing CPUE Uncertainty
 
 The final year of each CPUE index was downweighted, doubling the CV from 0.2 to 0.4.
+
+```{r}
+mods2compare <- c("1.01","1.04")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+cpue.dw <- compareModels(geth(mods2compare,"h1"))
+
+plot(cpue.dw,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(cpue.dw,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r }
+plot(cpue.dw,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+cpue.dw <- compareModels(geth(mods2compare,"h2"))
+
+plot(cpue.dw,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(cpue.dw,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r}
+plot(cpue.dw,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Northern Chile Weight at Age
+
+The final two years of weight at age for the northern Chilean fleet appeared to be out of the ordinary. They are now fixed to the weight at age from 2019.
 
 ```{r}
 mods2compare <- c("1.01","1.04")

@@ -263,7 +263,28 @@ h2_1.04[[1]]$data <- mod.base.h1[[1]]$data
 # h1_1.04 <- runit(geth("1.04",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # h2_1.04 <- runit(geth("1.04",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
+#------
+# 1.05
+# Fixing 2020/2021 wt at age for N_Chile
+#------
 
+h1_1.05 <- h1_1.04
+h2_1.05 <- h2_1.04
+
+file.dat <- h1_1.05[[1]]$data
+f2change <- grep("N_Chile", file.dat$Fnames)
+yrs2change <- paste(c(2020,2021))
+yrs2change2 <- paste(c(2019))
+
+file.dat$Fwtatage[paste(yrs2change),,f] <- file.dat$Fwtatage[paste(yrs2change2),,f] 
+
+h1_1.05[[1]]$data <- file.dat
+h2_1.05[[1]]$data <- file.dat
+
+# fn.update(h1_1.05, "1.05", "h1")
+# fn.update(h2_1.05, "1.05", "h2")
+# h1_1.05 <- runit(geth("1.05",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# h2_1.05 <- runit(geth("1.05",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs
