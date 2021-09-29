@@ -53,6 +53,7 @@ fn.update <- function(newmod, newmodname, h) {
 h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
 h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
+basemod <- "1.01"
 #----------
 # Loading updated Chilean data
 # Still need to include 2021 data
@@ -235,6 +236,34 @@ h2_1.02[[1]]$data <- file.dat
 # fn.update(h2_1.02, "1.02", "h2")
 # h1_1.02 <- runit(geth("1.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # h2_1.02 <- runit(geth("1.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+
+#---------
+# 1.04
+# Downweighting final year for every CPUE index to reflect increased uncertainty
+#---------
+mod.base.h1 <- readJJM(geth(basemod,"h1"), path = "config", input = "input")
+mod.base.h2 <- readJJM(geth(basemod,"h2"), path = "config", input = "input")
+
+CV.CPUE.fin <- .4
+cpue_ind <- grep("CPUE",mod.base.h1[[1]]$data$Inames)
+
+for(i in cpue_ind) {
+  row2use <- max(names(mod.base.h1[[1]]$data$Indexerr[,i])[!is.na(mod.base.h1[[1]]$data$Indexerr[,i])])
+  mod.base.h1[[1]]$data$Indexerr[row2use,i] <- mod.base.h1[[1]]$data$Index[row2use,i] * CV.CPUE.fin
+}
+
+h1_1.04 <- mod.base.h1
+h1_1.04[[1]]$data <- mod.base.h1[[1]]$data
+h2_1.04 <- mod.base.h2
+h2_1.04[[1]]$data <- mod.base.h1[[1]]$data
+
+# fn.update(h1_1.04, "1.04", "h1")
+# fn.update(h2_1.04, "1.04", "h2")
+# h1_1.04 <- runit(geth("1.04",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# h2_1.04 <- runit(geth("1.04",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs

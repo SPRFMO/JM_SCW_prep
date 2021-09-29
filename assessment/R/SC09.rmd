@@ -12,6 +12,25 @@ output:
     toc_float: yes
 ---
 
+```{css zoom-lib-src, echo = FALSE}
+script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+```
+
+```{js zoom-jquery, echo = FALSE}
+ $(document).ready(function() {
+    $('body').prepend('<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>');
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src')).css({width: '100%'});
+      $('.zoomDiv').css({opacity: '1', width: 'auto', border: '1px solid white', borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', marginRight: '-50%', transform: 'translate(-50%, -50%)', boxShadow: '0px 0px 50px #888888', zIndex: '50', overflow: 'auto', maxHeight: '100%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'}); 
+    });
+  });
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir=here::here())
 knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.height=5)
@@ -538,9 +557,7 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 * Sample sizes remained the same
 * Current year is downweighted, as usual
 * 2021 data in 1.00 are already from the "antiguo" method
-
-
-* **The data for Chile_AcousCS include 2010, 2011, 2012, 2017, and 2020. But this index hasn't been updated since 2009- were we supposed to also be updating this? Should we ignore those years of data?**
+* **The data for Chile_AcousCS include 2010, 2011, 2012, 2017, and 2020. But this index hasn't been updated in the assessment since 2009, due to changes in sampling design. These data are thus ignored for the time being.**
 * **In the antiguo dataset, summing up the capt_ton by year leads to numbers greater than historical total catch (~7 mil tons in 1995). Is there something we're missing?**
 
 
@@ -548,43 +565,85 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 mods2compare <- c("1.00","1.01")
 ```
 
-## Single-stock hypothesis {.tabset}
-### Biomass
+### Single-stock hypothesis {.tabset}
+#### Biomass
 ```{r}
 Antiguo <- compareModels(geth(mods2compare,"h1"))
 
 plot(Antiguo,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Recruitment
+#### Recruitment
 ```{r}
 plot(Antiguo,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-### Fishing Mortality
+#### Fishing Mortality
 ```{r }
 plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-## Two-stock hypothesis {.tabset}
-### Biomass
+### Two-stock hypothesis {.tabset}
+#### Biomass
 ```{r}
 Antiguo <- compareModels(geth(mods2compare,"h2"))
 
 plot(Antiguo,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Recruitment
+#### Recruitment
 ```{r}
 plot(Antiguo,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-### Fishing Mortality
+#### Fishing Mortality
 ```{r}
 plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
+## Addressing CPUE Uncertainty
 
+The final year of each CPUE index was downweighted, doubling the CV from 0.2 to 0.4.
+
+```{r}
+mods2compare <- c("1.01","1.04")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+cpue.dw <- compareModels(geth(mods2compare,"h1"))
+
+plot(cpue.dw,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(cpue.dw,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r }
+plot(cpue.dw,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+cpue.dw <- compareModels(geth(mods2compare,"h2"))
+
+plot(cpue.dw,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(cpue.dw,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r}
+plot(cpue.dw,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
 
 # Other Business
 ## General
@@ -594,7 +653,6 @@ plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ## Other models to run
 * Sensitivities to new age data as discussed in the data workshop
 * Projection runs (recruitment regimes)
-* Increase uncertainty for most recent year of CPUE for Chile, Offshore
 
 
 
