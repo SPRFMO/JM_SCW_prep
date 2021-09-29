@@ -273,10 +273,12 @@ h2_1.05 <- h2_1.04
 
 file.dat <- h1_1.05[[1]]$data
 f2change <- grep("N_Chile", file.dat$Fnames)
-yrs2change <- paste(c(2020,2021))
-yrs2change2 <- paste(c(2019))
+yrs2change <- c(2020,2021)
+yrs2change2 <- 2019
 
-file.dat$Fwtatage[paste(yrs2change),,f] <- file.dat$Fwtatage[paste(yrs2change2),,f] 
+row2use <- which(rownames(file.dat$Fwtatage[,,f2change]) %in% yrs2change)
+row2change2 <- which(rownames(file.dat$Fwtatage[,,f2change]) == yrs2change2)
+file.dat$Fwtatage[row2use,,f2change] <- matrix(rep(file.dat$Fwtatage[row2change2,,f2change],times=length(yrs2change)),nrow=length(yrs2change),byrow=T)
 
 h1_1.05[[1]]$data <- file.dat
 h2_1.05[[1]]$data <- file.dat
