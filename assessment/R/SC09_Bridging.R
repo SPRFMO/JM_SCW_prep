@@ -75,10 +75,6 @@ dat.wtatage.f <- read_csv(here("data","SC09_catchWtByFleet.csv")) %>%
                   select(-1,-`0`) %>%
                   mutate(fleet=str_extract(fleet,"\\d"))
 
-dat.wtatage.f.new <- read_csv(here("data","SC09_catchWtByFleet_newAgeMet.csv")) %>%
-                  select(-1,-`0`) %>%
-                  mutate(fleet=str_extract(fleet,"\\d"))
-
 dat.lencomp.f <- read_csv(here("data","SC09_catchLengthByFleet.csv")) %>%
                   select(-1) %>%
                   mutate_all(replace_na,0) %>%
@@ -93,11 +89,6 @@ dat.agecomp.f <- read_csv(here("data","SC09_catchNumByFleet.csv")) %>%
                   mutate_all(replace_na,0) %>%
                   mutate(fleet=str_extract(fleet,"\\d"))
 
-dat.agecomp.f.new <- read_csv(here("data","SC09_catchNumByFleet_newAgeMet.csv")) %>% 
-                      select(-1,-`0`) %>%
-                      mutate_all(replace_na,0) %>%
-                      mutate(fleet=str_extract(fleet,"\\d"))
-
 dat.cpue.chile <- read_csv(here("data","SC09_CPUE_Chile_Trip.csv")) %>%
                     mutate(err=CV.CPUE * Index)
 
@@ -108,12 +99,6 @@ dat.cpue.peru <- read_csv(here("data","SC09_CPUE_Peru.csv")) %>%
                       mutate(err=CV.CPUE * cpue)
 
 dat.acousN.ant <- read_csv(here("data","SC09_AcousN_Antiguo.csv")) %>%
-                      janitor::clean_names() %>%
-                      mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
-                              total_biomass=replace_na(total_biomass,0)) %>%
-                      filter(age>0)
-
-dat.acousN.nue <- read_csv(here("data","SC09_AcousN_Nuevo.csv")) %>%
                       janitor::clean_names() %>%
                       mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
                               total_biomass=replace_na(total_biomass,0)) %>%

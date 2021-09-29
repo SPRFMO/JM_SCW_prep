@@ -2,7 +2,7 @@ Jack mackerel assessment
 =================================
 ## 2021 SC09 Model runs
 ### Notes
-Data files with annotations found in the Excel spreadsheet `JM Data files for SC09.xlsx` on 
+Data files with annotations found in the Excel spreadsheet `JM Data files for SC09.xlsx` in the data folder.
 ...
 ### Naming convention
 Note the spreadsheet `JM Data files for SC09.xlsx` contains these files (and an analogous README)
@@ -28,7 +28,14 @@ Model      | Description
 1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)
 1.03     | As 1.02 but M=0.45 (NOT RUN)
 1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
-1.05     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
+**1.05**     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
+-----------|--------------
+**Models 1.xx.yy**| **Base Model Projections**
+**1.05**     |  Base model
+1.05.ll    |  As 1.05 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
+1.05.ls    |  As 1.05 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+1.05.hl    |  As 1.05 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))
+1.05.hs    |  As 1.05 but **h**igh steepness and **s**hort recruitment time series (2000-2015)
 -----------|--------------
 **Models 1.x**| **For Benchmark**
 1.01    |   Replace SC_Chile_CPUE with CPUE index by set

@@ -10,6 +10,7 @@
 
 library(jjmR)
 library(tidyverse)
+library(here)
 
 #--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
@@ -59,6 +60,39 @@ basemod <- "1.01"
 # Still need to include 2021 data
 #----------
 file.dat <- h1_1.00[[1]]$data
+
+dat.acousN.nue <- read_csv(here("data","SC09_AcousN_Nuevo.csv")) %>%
+                      janitor::clean_names() %>%
+                      mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
+                              total_biomass=replace_na(total_biomass,0)) %>%
+                      filter(age>0) %>%
+                      rename(catch_no=numbers_at_age,
+                              avg_wt=mean_weight,
+                              catch_wt=total_biomass) %>%
+                      mutate(fleet_type="survey",
+                              fleet=1,
+                              age=as.numeric(str_extract(age, "[0-9]+")),
+                              method="validacion") %>%
+                      select(-mean_length)
+
+dat.f.new <- read_csv(here("data","SC09_catchNumByFleet_newAgeMet.csv")) %>% 
+                      select(-1,-`0`) %>%
+                      mutate_all(replace_na,0) %>%
+                      mutate(fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
+                      pivot_longer(-(year:fleet),names_to="age",values_to="catch_no") %>%
+                      mutate(fleet_type="fishery", 
+                              age=as.numeric(str_extract(age, "[0-9]+"))) %>%
+                      left_join(
+                        read_csv(here("data","SC09_catchWtByFleet_newAgeMet.csv")) %>%
+                        select(-1,-`0`)  %>%
+                        mutate(fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
+                        pivot_longer(-(year:fleet),names_to="age",values_to="avg_wt") %>%
+                        mutate(fleet_type="fishery", 
+                                age=as.numeric(str_extract(age, "[0-9]+")),
+                                method="validacion")
+                    ) %>%
+                      filter(fleet %in% 1:2)
+
 dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) %>%
               janitor::clean_names() %>%
               rename(year=ano,
@@ -74,8 +108,13 @@ dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) 
                         catch_wt=sum(catch_wt),
                         avg_wt=1e3*catch_wt/catch_no) %>%
               ungroup() %>%
+              bind_rows(dat.acousN.nue,dat.f.new) %>%
               filter(age!=0) %>%
               complete(age, nesting(fleet, method, year, fleet_type))
+
+# Check if dat.f.new data match up with dat.chile for 2020.. doesn't seem to be.
+# Also current code creates duplicates rows
+# Where did newAgeMet come from? Is it revised antiguo or validacion?
 
 dat.fish <- filter(dat.chile, fleet_type=="fishery")
 
@@ -227,6 +266,8 @@ for(f in unique(dat.ind$fleet)) {
 
 }
 
+
+
 h1_1.02 <- h1_1.00
 h1_1.02[[1]]$data <- file.dat
 h2_1.02 <- h2_1.00
@@ -296,13 +337,6 @@ h2_1.05[[1]]$data <- file.dat
 # h1
 #------------
 
-FinModName <- "1.00"
-FinMod <- readJJM(geth(FinModName,"h1"),path="config",input="input")
-
-# modhl  <- runit(paste0(geth(FinModName,"h1"),".hl"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modll  <- runit(paste0(geth(FinModName,"h1"),".ll"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modhs  <- runit(paste0(geth(FinModName,"h1"),".hs"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# modls  <- runit(paste0(geth(FinModName,"h1"),".ls"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 h1_modhl <- readJJM(paste0(geth(FinModName,"h1"),".hl"),path="config",input="input")
 h1_modll <- readJJM(paste0(geth(FinModName,"h1"),".ll"),path="config",input="input")
