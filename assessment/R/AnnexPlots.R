@@ -87,6 +87,14 @@ dev.off()
 # Historical retrospective
 plotCount <- plotCount + 1
 source("R/historic retro.R")
+pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro.pdf"),height=10,width=7)
+print(pg)
+dev.off()
+
+plotCount <- plotCount+1
+pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro2.pdf"),height=10,width=10)
+print(pg2)
+dev.off()
 
 # Fishery weight at age
 plotCount <- plotCount + 1

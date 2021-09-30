@@ -165,13 +165,13 @@ plot_grid(p1 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=1, align = 'h', rel_widths = c(3,3,3))
 
 # generate pdf
-pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro.pdf"),height=10,width=7)
+# pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro.pdf"),height=10,width=7)
 pg <- plot_grid(p1 + theme(legend.position = "none", axis.title = element_blank()), 
           p2 + theme(legend.position = "none", axis.title = element_blank()),
           p3 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=1, align = 'h', rel_widths = c(3,3,3))
-print(pg)
-dev.off()
+# print(pg)
+# dev.off()
 
 
 # Extra plots ---------------------------------------------------------------------
@@ -318,16 +318,16 @@ plot_grid(p4 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=2, align = 'hv', rel_widths = c(3,3), rel_heights = c(3,3))
 
 
-plotCount <- plotCount+1
+# plotCount <- plotCount+1
 # generate pdf
-pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro2.pdf"),height=10,width=10)
+# pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro2.pdf"),height=10,width=10)
 pg2 <- plot_grid(p4 + theme(legend.position = "none", axis.title = element_blank()), 
           p5 + theme(legend.position = "none", axis.title = element_blank()),
           p6 + theme(legend.position = "none", axis.title = element_blank()),
           p7 + theme(legend.position = "none", axis.title = element_blank()),
           ncol=2, align = 'hv', rel_widths = c(3,3), rel_heights = c(3,3))
-print(pg2)
-dev.off()
+# print(pg2)
+# dev.off()
 
 
 

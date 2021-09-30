@@ -69,10 +69,15 @@ h1_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
 # Should not be setting BMSY for h2
 # Most of this is setting BMSY at the interim level
 
+h1_modhl <- readJJM(geth(paste0(FinModName,".hl"),"h1"), path = "config", input = "input")
+h1_modhs <- readJJM(geth(paste0(FinModName,".hs"),"h1"), path = "config", input = "input")
+h1_modll <- readJJM(geth(paste0(FinModName,".ll"),"h1"), path = "config", input = "input")
+h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")
+
 h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
 h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
 report(h1_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-report(h1_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
+report(h1_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25),tangle=T)
 
 h1_modhs[[1]]$output[[1]]$msy_mt[,13] <- h1_modhs[[1]]$output[[1]]$msy_mt[,12]/ 5500
 h1_modhs[[1]]$output[[1]]$msy_mt[,10] <- 5500
@@ -127,6 +132,11 @@ h2_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
 # modhs  <- runit(geth(paste0(FinModName,".hs"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # modls  <- runit(geth(paste0(FinModName,".ls"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
+h2_modhl <- readJJM(geth(paste0(FinModName,".hl"),"h2"), path = "config", input = "input")
+h2_modhs <- readJJM(geth(paste0(FinModName,".hs"),"h2"), path = "config", input = "input")
+h2_modll <- readJJM(geth(paste0(FinModName,".ll"),"h2"), path = "config", input = "input")
+h2_modls <- readJJM(geth(paste0(FinModName,".ls"),"h2"), path = "config", input = "input")
+
 report(h2_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 report(h2_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
@@ -141,5 +151,5 @@ report(FinMod.h2, format="word", output="risk_tables/")
 kobe(h2_modls)
 
 # 20 year projection table
-summary(h2_modls, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
+summary(h2_modls, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25),plot=F)
 
