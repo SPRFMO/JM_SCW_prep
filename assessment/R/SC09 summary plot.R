@@ -13,6 +13,14 @@ library(PBSadmb)
 library(tidyverse)
 library(ggthemes)
 
+fixed_bmsy <- function(mod,refpt=5500){
+  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
+  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
+  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
+  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
+  return(mod)
+}
+
 #--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
 #--------------------------------------------------------
@@ -48,22 +56,61 @@ modll2 <- readJJM(paste0(FinModName2,".ll"),path="config",input="input")
 modhs2 <- readJJM(paste0(FinModName2,".hs"),path="config",input="input")
 modls2 <- readJJM(paste0(FinModName2,".ls"),path="config",input="input")
 
-lastF <-  modls1[[1]]$output[[1]]$f
-tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1)
+# lastF <-  modls1[[1]]$output[[1]]
+# tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1)
+# diagnostics(fixed_bmsy(modls1), plots = F)
+# bmsy.diag <- diagnostics(fixed_bmsy(modls1), plots = F)
+# plot(bmsy.diag, var = "summarySheet")
+# bmsy.diag <- diagnostics(modls1, plots = F)
+# plot(bmsy.diag, var = "summarySheet")
+# diagnostics
+# modls1[[1]]$output
+# names(modls1[[1]]$output$Stock_1)
+
+rp <- 
+            data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="Fishing mortality", Refpoint="Fmsy", 
+                       Year=modls1[[1]]$output$Stock_1$msy_mt[,1],
+                       Value=modls1[[1]]$output$Stock_1$msy_mt[,5]) %>% 
+  bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="south",Var="Fishing mortality", Refpoint="Fmsy south",
+                       Year =modls2[[1]]$output$Stock_1$msy_mt[,1],
+                       Value=modls2[[1]]$output$Stock_1$msy_mt[,5])) %>% 
+  bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="north",Var="Fishing mortality", Refpoint="Fmsy north",
+                       Year =modls2[[1]]$output$Stock_2$msy_mt[,1],
+                       Value=modls2[[1]]$output$Stock_2$msy_mt[,5])) %>% 
+  
+  bind_rows(data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="SSB", Refpoint="Bmsy", 
+                       Year=modls1[[1]]$output$Stock_1$msy_mt[,1],
+                       Value=5500)) %>% 
+  bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="south",Var="SSB", Refpoint="Bmsy south",
+                       Year =modls2[[1]]$output$Stock_1$msy_mt[,1],
+                       Value=modls2[[1]]$output$Stock_1$msy_mt[,10])) %>% 
+  bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="north",Var="SSB", Refpoint="Bmsy north",
+                       Year =modls2[[1]]$output$Stock_2$msy_mt[,1],
+                       Value=modls2[[1]]$output$Stock_2$msy_mt[,10]))  
+  
 
 # assessment
 mdf <- 
-            data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", modls1[[1]]$output[[1]]$SSB) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="SSB", modls2[[1]]$output[[1]]$SSB)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="SSB", modls2[[1]]$output[[2]]$SSB)) %>% 
+            data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", 
+                       modls1[[1]]$output[[1]]$SSB) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="SSB", 
+                       modls2[[1]]$output[[1]]$SSB)) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="SSB", 
+                       modls2[[1]]$output[[2]]$SSB)) %>% 
   
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Recruitment", modls1[[1]]$output[[1]]$R)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="Recruitment", modls2[[1]]$output[[1]]$R)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="Recruitment", modls2[[1]]$output[[2]]$R)) %>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Recruitment", 
+                       modls1[[1]]$output[[1]]$R)) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="Recruitment", 
+                       modls2[[1]]$output[[1]]$R)) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="Recruitment", 
+                       modls2[[1]]$output[[2]]$R)) %>% 
 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", modls1[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="Fishing mortality", modls2[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="Fishing mortality", modls2[[1]]$output[[2]]$msy_mt[,c(1,6)])) %>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", 
+                       modls1[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="Fishing mortality", 
+                       modls2[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="Fishing mortality", 
+                       modls2[[1]]$output[[2]]$msy_mt[,c(1,6)])) %>% 
   
   setNames( c("Hyp", "Scenario","Stock","Var", "Year","Value","SD","lb","ub")) %>% 
   mutate(Var = factor(Var, levels=c("Catch", "SSB","Fishing mortality","Recruitment"))) %>% 
@@ -72,20 +119,31 @@ mdf <-
 # %>% 
 #   mutate(Stock = ifelse(Stock=="comb","", Stock)) 
 
+
 # forecast (NOT USED)
 fc <- 
-            data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="1.0", modls1[[1]]$output[[1]]$SSB_fut_1)%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="0.75", modls1[[1]]$output[[1]]$SSB_fut_2))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="1.25", modls1[[1]]$output[[1]]$SSB_fut_3))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="FMSY", modls1[[1]]$output[[1]]$SSB_fut_4))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="0.0", modls1[[1]]$output[[1]]$SSB_fut_5))%>% 
+            data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="1.0", 
+                       modls1[[1]]$output[[1]]$SSB_fut_1)%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="0.75", 
+                       modls1[[1]]$output[[1]]$SSB_fut_2))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="1.25", 
+                       modls1[[1]]$output[[1]]$SSB_fut_3))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="FMSY", 
+                       modls1[[1]]$output[[1]]$SSB_fut_4))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB", Fmult="0.0", 
+                       modls1[[1]]$output[[1]]$SSB_fut_5))%>% 
   
   # Need to put the Fs into a forecast string with year and value
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="1.0", 1.00*tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1) ))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="0.75",0.75*tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1) ))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="1.25",1.25*tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1) ))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="FMSY", NA))%>% 
-  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="0.0", 0.00 ))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="1.0", 
+                       X2 =1.00*tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1) ))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="0.75",
+                       X2=0.75*tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1) ))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="1.25",
+                       X2=1.25*tail(modls1[[1]]$output[[1]]$msy_mt[,c(6)],1) ))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="FMSY", 
+                       X2=NA))%>% 
+  bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality", Fmult="0.0", 
+                       X2=0.00 ))%>% 
   
   setNames( c("Hyp", "Scenario","Stock","Var", "Fmult", "Year","Value","SD","lb","ub")) %>% 
   mutate(Var = factor(Var, levels=c("Catch", "SSB","Fishing mortality","Recruitment"))) %>% 
@@ -143,7 +201,10 @@ cc2 <-
 # plot nominal
 ep <-
   mdf %>% 
-  filter(Year == 2021) 
+  filter(Year >= 2000) %>% 
+  group_by(Hyp, Scenario, Stock, Var) %>% 
+  filter(Value == max(Value, na.rm=TRUE))
+
 
 mdf %>% 
   filter(Year >= 1974) %>% 
@@ -153,10 +214,17 @@ mdf %>%
   theme_bw() +
   theme(legend.position = "none") +
   
-  geom_line(aes(colour=Stock)) +
+  geom_line(aes(colour=Stock), size=1) +
   geom_ribbon(aes(fill=Stock, ymin=lb, ymax=ub), alpha=0.4) +
   ggrepel::geom_text_repel(data=ep,
                            aes(x=Year, y=Value, label = Stock, colour=Stock)) +
+  
+  geom_line(data=filter(rp, 
+                        Year>= 1974), 
+            aes(colour=Stock), linetype="dashed") +
+  ggrepel::geom_text_repel(data=filter(rp,
+                                       Year == 1974),
+                           aes(x=Year, y=Value, label = Refpoint, colour=Stock)) +
   
   # geom_line(data=filter(cc1, Year >= 1974),
   #           aes(x=Year, y=Value, colour=Stock), inherit.aes = FALSE) +
