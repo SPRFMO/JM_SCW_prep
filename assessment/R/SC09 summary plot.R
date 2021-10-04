@@ -13,13 +13,13 @@ library(PBSadmb)
 library(tidyverse)
 library(ggthemes)
 
-fixed_bmsy <- function(mod,refpt=5500){
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
+# fixed_bmsy <- function(mod,refpt=5500){
+#   old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
+#   new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
+#   mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
+#   mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
+#   return(mod)
+# }
 
 #--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
