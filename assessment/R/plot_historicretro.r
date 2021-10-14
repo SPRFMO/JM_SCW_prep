@@ -29,7 +29,6 @@ if(!"plotCount" %in% ls())
 d <-
   read.csv("hist_retro/SPRFMO historical retro.csv", header=TRUE) %>%
   lowcase() %>% 
-  
   filter(!(assessmenttype %in% c("benchmark", "mod1.4"))) %>% 
   mutate(assessmenttype = ifelse(assessmentyear == max(assessmentyear),"last","assess"),
          tyear          = substr(as.character(assessmentyear),3,4)) %>% 
@@ -43,23 +42,18 @@ d <-
 p1 <-
   d %>% 
   filter(!is.na(ssb)) %>%  
-  
-  ggplot(aes(year,ssb, group=assessmentyear)) +
-  
+  ggplot(aes(year,ssb, group=assessmentyear)) + 
   theme_publication() +
   theme(legend.title=element_blank(),
         axis.text.x = element_text(angle = 0, vjust = 0.5, size=9),
         axis.text.y = element_text(size=9),
         # strip.background = element_blank(),
         legend.position = "null") +
-  
   geom_ribbon(aes(ymin = ssblow, ymax = ssbupp, fill = assessmenttype), alpha=0.2 ) +
-  scale_fill_manual (values=c(last   = "red", assess = "white")) +
-  
+  scale_fill_manual (values=c(last   = "red", assess = "white")) +  
   geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
   geom_dl(aes(label  = tyear, colour=assessmenttype), 
-          method = list(dl.combine("last.points"), cex = 0.8)) +
-  
+          method = list(dl.combine("last.points"), cex = 0.8)) +  
   scale_colour_manual(values=c(last   = "red", assess = "black")) +
   scale_linetype_manual(values=c(last   = "solid",
                                  assess = "solid",
@@ -69,7 +63,6 @@ p1 <-
                              assess = 0.8,
                              bench  = 1.2,
                              old    = 0.8)) +
-  
   expand_limits(y = 0) +
   # xlim(2005,2020) +
   labs(x = NULL, y = NULL , title = "SSB")  

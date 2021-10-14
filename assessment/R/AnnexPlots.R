@@ -55,6 +55,13 @@ png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_"
 plot(h1.diag, var = "totalCatchByFleet")
 dev.off()
 
+# Meta data overview
+plotCount <- plotCount+1
+source("R/plot_metadataoverview.R")
+pdf(paste0("annex plots/Fig", plotCount,"_metadata.pdf"),height=10,width=10)
+print(p1)
+dev.off()
+
 ## Retro
 load(file = paste0("results/", h1nm, "_retrospective", ".RData"))
 h1.retro <- output
@@ -86,7 +93,7 @@ dev.off()
 
 # Historical retrospective
 plotCount <- plotCount + 1
-source("R/historic retro.R")
+source("R/plot_historicretro.R")
 pdf(paste0("annex plots/Fig", plotCount,"_HistoricRetro.pdf"),height=10,width=7)
 print(pg)
 dev.off()
@@ -98,7 +105,7 @@ dev.off()
 
 # Fishery weight at age
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"a_", h1nm, "_", "weightFisheryt", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"a_", h1nm, "_", "weightFishery", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h1.diag, var = "weightFishery")
 dev.off()
@@ -125,7 +132,7 @@ dev.off()
 # Model fit to age/length comps
 ###
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "AgeCompCatchFits", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_%02d_", h1nm, "_", "AgeCompCatchFits", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h1.diag, var = "ageFitsCatch")
 dev.off()
@@ -137,7 +144,7 @@ plot(h2.diag, var = "ageFitsCatch")
 dev.off()
 
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "LengthCompCatchFits", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_%02d_",h1nm, "_",  "LengthCompCatchFits", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h1.diag, var = "lengthFitsCatch")
 dev.off()
@@ -149,7 +156,7 @@ plot(h2.diag, var = "lengthFitsCatch")
 dev.off()
 
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "AgeCompSurveyFits", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_%02d_", h1nm, "_",  "AgeCompSurveyFits", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h1.diag, var = "ageFitsSurvey")
 dev.off()
@@ -220,7 +227,7 @@ plot(h1.diag, var = "selectivityFisheryByPentad")
 dev.off()
 
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "FishSelectivity", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h2nm, "_%02d_", "FishSelectivity", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h2.diag, var = "selectivityFisheryByPentad")
 dev.off()
@@ -233,7 +240,7 @@ plot(h1.diag, var = "selectivitySurveyByPentad")
 dev.off()
 
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "SurvSelectivity", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h2nm, "_%02d_", "SurvSelectivity", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h2.diag, var = "selectivitySurveyByPentad")
 dev.off()
@@ -254,7 +261,7 @@ plot(bmsy.diag, var = "summarySheet")
 dev.off()
 
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "Summary", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h2nm, "_%02d_", "Summary", ".png")),
 	width = plotsizes[2], height = plotsizes[2],units="in",res=300)
 plot(h2.diag, var = "summarySheet")
 dev.off()
@@ -267,14 +274,13 @@ plot(h1.diag, var = "fishedUnfishedBiomass")
 dev.off()
 
 plotCount <- plotCount + 1
-png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h1nm, "_%02d_", "fishedUnfishedBiomass", ".png")),
+png(file = file.path(dir.main, dir.plots, paste0("Fig", plotCount,"_", h2nm, "_%02d_", "fishedUnfishedBiomass", ".png")),
 	width = plotsizes[1], height = plotsizes[2],units="in",res=300)
 plot(h2.diag, var = "fishedUnfishedBiomass")
 dev.off()
 
 
 # To have in future?
-## History of assessment and SSB
 #
 ## Heat map for age/length comps?
 #

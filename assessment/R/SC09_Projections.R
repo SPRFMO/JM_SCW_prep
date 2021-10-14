@@ -23,7 +23,7 @@ fixed_bmsy <- function(mod,refpt=5500){
 fn.update <- function(newmod, newmodname, h) {
 
   names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
-  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat")
+#  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat") # Double-check if this is actually necessary
   
   writeJJM(newmod,datPath="input",ctlPath="config")
 }
@@ -69,31 +69,22 @@ h1_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
 # Should not be setting BMSY for h2
 # Most of this is setting BMSY at the interim level
 
-h1_modhl <- readJJM(geth(paste0(FinModName,".hl"),"h1"), path = "config", input = "input")
-h1_modhs <- readJJM(geth(paste0(FinModName,".hs"),"h1"), path = "config", input = "input")
-h1_modll <- readJJM(geth(paste0(FinModName,".ll"),"h1"), path = "config", input = "input")
-h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")
+h1_modhl <- readJJM(geth(paste0(FinModName,".hl"),"h1"), path = "config", input = "input")  %>% fixed_bmsy()
+h1_modhs <- readJJM(geth(paste0(FinModName,".hs"),"h1"), path = "config", input = "input")  %>% fixed_bmsy()
+h1_modll <- readJJM(geth(paste0(FinModName,".ll"),"h1"), path = "config", input = "input")  %>% fixed_bmsy()
+h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")  %>% fixed_bmsy()
 
-h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
 report(h1_modls, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
-report(h1_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25),tangle=T)
+report(h1_modls, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
-h1_modhs[[1]]$output[[1]]$msy_mt[,13] <- h1_modhs[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modhs[[1]]$output[[1]]$msy_mt[,10] <- 5500
 report(h1_modhs, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
-h1_modhl[[1]]$output[[1]]$msy_mt[,13] <- h1_modhl[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modhl[[1]]$output[[1]]$msy_mt[,10] <- 5500
 report(h1_modhl, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
-h1_modll[[1]]$output[[1]]$msy_mt[,13] <- h1_modll[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modll[[1]]$output[[1]]$msy_mt[,10] <- 5500
 report(h1_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 kobe(h1_modls)
 FinMod.h1_msy <- fixed_bmsy(FinMod.h1)
-FinMod.h1_msy
 kobe(FinMod.h1_msy)
 
 report(FinMod.h1_msy, format="word", output="risk_tables/")
@@ -146,7 +137,7 @@ report(h2_modhl, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 
 
 report(h2_modll, format="pdf", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
-report(FinMod.h2, format="word", output="risk_tables/")
+report(FinMod.h2, format="word", output="risk_tables/",Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 kobe(h2_modls)
 

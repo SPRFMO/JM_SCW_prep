@@ -552,7 +552,6 @@ plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 * 2021 data in 1.00 are already from the "antiguo" method
 * **The data for Chile_AcousCS include 2010, 2011, 2012, 2017, and 2020. But this index hasn't been updated in the assessment since 2009, due to changes in sampling design. These data are thus ignored for the time being.**
 * **The data for Chile_AcousN are missing updated information for 2008, 2010, 2011, and 2012.**
-* **In the antiguo dataset, summing up the capt_ton by year leads to numbers greater than historical total catch (~7 mil tons in 1995). Is there something we're missing?**
 
 
 ```{r}
@@ -595,9 +594,104 @@ plot(Antiguo,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
+## Chile's New Age Data ("Validacion")
+```{r}
+mods2compare <- c("1.01","1.02","1.03")
+Validacion <- compareModels(geth(mods2compare,"h1"))
+```
+
+* Updated age composition and weight at age for Chile_SC and Chile_N fleets, and also for AcousCS and AcousN surveys
+* Sample sizes remained the same
+* Current year is downweighted, as usual
+* Natural Mortality updated to 0.35 (per the data workshop)
+* Maturity at age was not provided, so the values for the FarNorth stock under the two-stock hypothesis were used.
+* Population weight at age was uncertain. The validacion data were pooled across years (summed catch numbers at age multiplied by catch weight at age divided by summed catch numbers at age), and the mean weights at age were calculated in the interim.
+* Code for this setup is shown in `SC09.R`.
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r }
+plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+Validacion <- compareModels(geth(mods2compare,"h2"))
+
+plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r}
+plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Chile's New Age Data ("Validacion") but higher Natural Mortality
+```{r}
+mods2compare <- c("1.01","1.02","1.03")
+```
+
+* Updated age composition and weight at age for Chile_SC and Chile_N fleets, and also for AcousCS and AcousN surveys
+* Sample sizes remained the same
+* Current year is downweighted, as usual
+* Natural Mortality updated to **0.45** (per the data workshop)
+* Maturity at age was not provided, so the values for the FarNorth stock under the two-stock hypothesis were used.
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+Validacion <- compareModels(geth(mods2compare,"h1"))
+
+plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r }
+plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r}
+Validacion <- compareModels(geth(mods2compare,"h2"))
+
+plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r}
+plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r}
+plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
 ## Addressing CPUE Uncertainty
 
-The final year of each CPUE index was downweighted, doubling the CV from 0.2 to 0.4.
+With the revised Chilean age data that used the "antiguo" method, but the final year of each CPUE index was downweighted, doubling the CV from 0.2 to 0.4.
 
 ```{r}
 mods2compare <- c("1.01","1.04")
@@ -777,14 +871,14 @@ for(i in seq_along(table)){
 knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
 ```
 
-Note that BMSY is set to the interim level of 5.5 kt in this scenario.
+Note that BMSY is set to the interim level of 5500 kt in this scenario.
 
 ### Kobe Plot
 ```{r}
 kobe(fixed_bmsy(h1.mod))
 ```
 
-Note that BMSY is set to the interim level of 5.5 kt in this scenario.
+Note that BMSY is set to the interim level of 5500 kt in this scenario.
 
 ### Summary Plot
 ```{r}

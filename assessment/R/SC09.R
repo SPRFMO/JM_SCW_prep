@@ -94,7 +94,8 @@ dat.f.new <- read_csv(here("data","SC09_catchNumByFleet_newAgeMet.csv")) %>%
                                 age=as.numeric(str_extract(age, "[0-9]+")),
                                 method="validacion")
                     ) %>%
-                      filter(fleet %in% 1:2)
+                      filter(fleet %in% 1:2) %>%
+                      filter(year==2021)
 
 dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) %>%
               janitor::clean_names() %>%
@@ -113,11 +114,11 @@ dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) 
               ungroup() %>%
               bind_rows(dat.acousN.nue,dat.f.new) %>%
               filter(age!=0) %>%
-              complete(age, nesting(fleet, method, year, fleet_type))
+              complete(age, nesting(fleet, method, year, fleet_type)) 
 
 # Check if dat.f.new data match up with dat.chile for 2020.. doesn't seem to be.
 # Also current code creates duplicates rows
-# Where did newAgeMet come from? Is it revised antiguo or validacion?
+# Where did newAgeMet come from? Is it validacion?
 
 dat.fish <- filter(dat.chile, fleet_type=="fishery")
 
@@ -127,7 +128,7 @@ for(f in unique(dat.fish$fleet)) {
 
   dat2use <- dat.fish %>%
             filter(fleet==f, method=="antiguo") %>%
-            select(-fleet, -method, -fleet_type)
+            select(-fleet, -fleet_type, -method)
   rows2use <- rownames(file.dat$Fagecomp[,,f]) %in% dat2use$year
   file.dat$Fagecomp[rows2use,,f] <- dat2use %>%
                                       select(-catch_wt, -avg_wt) %>%
@@ -255,8 +256,6 @@ for(f in unique(dat.ind$fleet)) {
                                       as.matrix()
   # file.dat$Iagesample[!(rows2use|is.na(file.dat$Iagesample[,ff])),ff] <- file.dat$Iagesample[rows2use,ff][1]*.1 
   # AcousN missing 2008, 2010, 2011, 2012, 2021
-  # AcousCS has extra 2010, 2011, 2012, 2017, 2020 age comps, but we don't have the index of abundance for those years (ends in 2009)
-
   tmp <- dat2use %>%
           select(-catch_wt, -catch_no) %>%
           pivot_wider(names_from=age,
@@ -269,18 +268,51 @@ for(f in unique(dat.ind$fleet)) {
 
 }
 
+mat.new <- h2_1.00[[1]]$control$Pmatatage[2,]
 
+popwtatage.new <- dat.chile %>% 
+                    filter(method=="validacion") %>% 
+                    mutate(catch_wt2=avg_wt*catch_no) %>%
+                    select(age,catch_no,catch_wt2) %>%
+                    drop_na() %>%
+                    group_by(age) %>%
+                    summarise(avg_wt=sum(catch_wt2)/sum(catch_no)) %>%
+                    select(avg_wt) %>%
+                    unlist()
 
 h1_1.02 <- h1_1.00
 h1_1.02[[1]]$data <- file.dat
+h1_1.02[[1]]$control$N_Mort[1,1] <- .35
+h1_1.02[[1]]$control$Pmatatage[1,] <- mat.new
+h1_1.02[[1]]$control$Pwtatage <- popwtatage.new
+
 h2_1.02 <- h2_1.00
 h2_1.02[[1]]$data <- file.dat
+h2_1.02[[1]]$control$N_Mort[1,1] <- .35
+h2_1.02[[1]]$control$Pmatatage[1,] <- mat.new
+h2_1.02[[1]]$control$Pwtatage[1,] <- popwtatage.new
 
 # fn.update(h1_1.02, "1.02", "h1")
 # fn.update(h2_1.02, "1.02", "h2")
 # h1_1.02 <- runit(geth("1.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 # h2_1.02 <- runit(geth("1.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
+
+#------
+# 1.03
+# Another M value
+#------
+
+h1_1.03 <- h1_1.02
+h1_1.03[[1]]$control$N_Mort[1,1] <- .45
+
+h2_1.03 <- h2_1.02
+h2_1.03[[1]]$control$N_Mort[1,1] <- .45
+
+# fn.update(h1_1.03, "1.03", "h1")
+# fn.update(h2_1.03, "1.03", "h2")
+# h1_1.03 <- runit(geth("1.03",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# h2_1.03 <- runit(geth("1.03",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 #---------
 # 1.04
@@ -345,7 +377,8 @@ h2_1.05[[1]]$data <- file.dat
 
 source("R/constructor_input_tables.R")
 
-construct_input_tables(modname=geth(FinModName,"h1"),docname="Input_Tables_SC08")
+
+construct_input_tables(modname=FinModName,docname="annex\ plots/Annex_Tables")
 
 # Summary data
 FinMod <- readJJM(geth(FinModName,"h1"),path="config",input="input")
@@ -507,7 +540,6 @@ write.csv(as.data.frame(new.table), file = "SPRFMO historical retro.csv", quote 
 # mod1.0_r: Retrospective analysis on mod1.0
 # Code won't work unless go into jjmR directory
 # and do devtools::load_all()
-# doesn't work in current stage..
 #-------------------------------------------
 # library(foreach)
 # library(doParallel)

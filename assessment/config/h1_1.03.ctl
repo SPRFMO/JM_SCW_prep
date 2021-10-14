@@ -1,7 +1,7 @@
 #dataFile 
-1.02.dat 
+1.03.dat 
 #modelName 
-h1_1.02 
+h1_1.03 
 #nStocks 
 1 
 #nameStock 
@@ -55,7 +55,7 @@ Stock
 #NMatrix 
 1 
 #N_Mort 
-0.35 
+0.45 
 0.05 
 -4 
 #npars_mage 

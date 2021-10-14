@@ -13,6 +13,7 @@
 #	devtools::install_github("sprfmo/jjmr")
 #}
 library(jjmR)
+library(tidyverse)
 #
 #----------------------
 # User-specified inputs
@@ -22,9 +23,9 @@ dir.main <- getwd()
 dir.plots <- "annex plots"
 if(!dir.exists(dir.plots)) dir.create(dir.plots)
 
-h1nm <- "h1_1.00"
+h1nm <- "h1_1.05"
 
-h2nm <- "h2_1.00"
+h2nm <- "h2_1.05"
 
 #------------------
 # Reading in models
@@ -32,6 +33,11 @@ h2nm <- "h2_1.00"
 h1.mod <- readJJM(h1nm, path = "config", input = "input")
 
 h2.mod <- readJJM(h2nm,path = "config", input = "input")
+
+#-------------------
+h1.mod[[1]]$data$Fcaton
+h1.mod[[1]]$data$Fagecomp[,,1] %>% as_tibble() %>% drop_na() %>% as.matrix()
+
 
 ################
 # SSB Table Update
