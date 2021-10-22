@@ -35,8 +35,6 @@ h1.mod <- readJJM(h1nm, path = "config", input = "input")
 h2.mod <- readJJM(h2nm,path = "config", input = "input")
 
 #-------------------
-h1.mod[[1]]$data$Fcaton
-h1.mod[[1]]$data$Fagecomp[,,1] %>% as_tibble() %>% drop_na() %>% as.matrix()
 
 
 ################
