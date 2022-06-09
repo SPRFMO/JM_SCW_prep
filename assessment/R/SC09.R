@@ -10,7 +10,6 @@
 
 library(jjmR)
 library(tidyverse)
-library(here)
 
 #--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
@@ -64,7 +63,7 @@ FinModName <- "1.05"
 #----------
 file.dat <- h1_1.00[[1]]$data
 
-dat.acousN.nue <- read_csv(here("data","SC09_AcousN_Nuevo.csv")) %>%
+dat.acousN.nue <- read_csv(file.path("data/SC09_AcousN_Nuevo.csv")) %>%
                       janitor::clean_names() %>%
                       mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
                               total_biomass=replace_na(total_biomass,0)) %>%
@@ -78,7 +77,7 @@ dat.acousN.nue <- read_csv(here("data","SC09_AcousN_Nuevo.csv")) %>%
                               method="validacion") %>%
                       select(-mean_length)
 
-dat.f.new <- read_csv(here("data","SC09_catchNumByFleet_newAgeMet.csv")) %>% 
+dat.f.new <- read_csv(file.path("data/SC09_catchNumByFleet_newAgeMet.csv")) %>% 
                       select(-1,-`0`) %>%
                       mutate_all(replace_na,0) %>%
                       mutate(fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
@@ -86,7 +85,7 @@ dat.f.new <- read_csv(here("data","SC09_catchNumByFleet_newAgeMet.csv")) %>%
                       mutate(fleet_type="fishery", 
                               age=as.numeric(str_extract(age, "[0-9]+"))) %>%
                       left_join(
-                        read_csv(here("data","SC09_catchWtByFleet_newAgeMet.csv")) %>%
+                        read_csv(file.path("data/SC09_catchWtByFleet_newAgeMet.csv")) %>%
                         select(-1,-`0`)  %>%
                         mutate(fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
                         pivot_longer(-(year:fleet),names_to="age",values_to="avg_wt") %>%
@@ -97,7 +96,7 @@ dat.f.new <- read_csv(here("data","SC09_catchNumByFleet_newAgeMet.csv")) %>%
                       filter(fleet %in% 1:2) %>%
                       filter(year==2021)
 
-dat.chile <- read_csv(here::here("data","NewAgeData","All_Age_Data_Chile.csv")) %>%
+dat.chile <- read_csv(file.path("data/NewAgeData/All_Age_Data_Chile.csv")) %>%
               janitor::clean_names() %>%
               rename(year=ano,
                       fleet=macrozona,

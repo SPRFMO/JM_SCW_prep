@@ -10,7 +10,6 @@
 
 library(jjmR)
 library(tidyverse)
-library(here)
 
 #--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
@@ -66,16 +65,16 @@ mod_new <- mod_prev
 CV.CPUE <- 0.2
 CV.acousN <- .5
 
-dat.catch <- read_csv(here("data","SC09_catchByFleet.csv")) %>%
+dat.catch <- read_csv(file.path("data/SC09_catchByFleet.csv")) %>%
               rename_with(~ gsub("Fleet_", "fishery", .x, fixed = TRUE)) %>%
               select(-row,-fisherytotal) %>%
               mutate_at(vars(-year), function(x)x/1e3)
 
-dat.wtatage.f <- read_csv(here("data","SC09_catchWtByFleet.csv")) %>%
+dat.wtatage.f <- read_csv(file.path("data/SC09_catchWtByFleet.csv")) %>%
                   select(-1,-`0`) %>%
                   mutate(fleet=str_extract(fleet,"\\d"))
 
-dat.lencomp.f <- read_csv(here("data","SC09_catchLengthByFleet.csv")) %>%
+dat.lencomp.f <- read_csv(file.path("data/SC09_catchLengthByFleet.csv")) %>%
                   select(-1) %>%
                   mutate_all(replace_na,0) %>%
                   rowwise() %>%
@@ -84,21 +83,21 @@ dat.lencomp.f <- read_csv(here("data","SC09_catchLengthByFleet.csv")) %>%
                           `50`=sum(c_across(`50`:`65`))) %>%
                   select(-`9`,-c(`51`:`65`))
 
-dat.agecomp.f <- read_csv(here("data","SC09_catchNumByFleet.csv")) %>%
+dat.agecomp.f <- read_csv(file.path("data/SC09_catchNumByFleet.csv")) %>%
                   select(-1,-`0`) %>%
                   mutate_all(replace_na,0) %>%
                   mutate(fleet=str_extract(fleet,"\\d"))
 
-dat.cpue.chile <- read_csv(here("data","SC09_CPUE_Chile_Trip.csv")) %>%
+dat.cpue.chile <- read_csv(file.path("data/SC09_CPUE_Chile_Trip.csv")) %>%
                     mutate(err=CV.CPUE * Index)
 
-dat.cpue.offshore <- read_csv(here("data","SC09_CPUE_Offshore.csv")) %>%
+dat.cpue.offshore <- read_csv(file.path("data/SC09_CPUE_Offshore.csv")) %>%
                       mutate(err=CV.CPUE * cpue)
 
-dat.cpue.peru <- read_csv(here("data","SC09_CPUE_Peru.csv")) %>%
+dat.cpue.peru <- read_csv(file.path("data/SC09_CPUE_Peru.csv")) %>%
                       mutate(err=CV.CPUE * cpue)
 
-dat.acousN.ant <- read_csv(here("data","SC09_AcousN_Antiguo.csv")) %>%
+dat.acousN.ant <- read_csv(file.path("data/SC09_AcousN_Antiguo.csv")) %>%
                       janitor::clean_names() %>%
                       mutate(numbers_at_age=as.numeric(str_remove_all(replace_na(numbers_at_age,0)," ")),
                               total_biomass=replace_na(total_biomass,0)) %>%

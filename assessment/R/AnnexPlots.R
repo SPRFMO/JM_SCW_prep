@@ -34,10 +34,10 @@ plotsizes <- c(10, 7)
 # Reading in and combining models
 #--------------------------------
 h1.mod <- readJJM(h1nm, path = "config", input = "input")
-h1.diag <- diagnostics(h1.mod,plot=F)
+h1.diag <- diagnostics(h1.mod, plot=F)
 
 h2.mod <- readJJM(h2nm,path = "config", input = "input")
-h2.diag <- diagnostics(h2.mod, plots=F)
+h2.diag <- diagnostics(h2.mod, plot=F)
 
 dev.off()
 #---------------
