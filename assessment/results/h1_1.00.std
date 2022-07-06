@@ -220,12 +220,12 @@
    219   fmort                2.2244e-03 2.8172e-04
    220   fmort                1.9331e-03 2.4823e-04
    221   fmort                1.7833e-03 2.5847e-04
-   222   fmort                1.7486e-13 2.7812e-10
-   223   fmort                1.8791e-13 3.0316e-10
+   222   fmort                1.7542e-13 2.7820e-10
+   223   fmort                1.8763e-13 3.0315e-10
    224   fmort                4.8575e-04 8.0100e-05
-   225   fmort                2.0567e-13 3.3940e-10
-   226   fmort                2.1066e-13 3.5034e-10
-   227   fmort                2.1649e-13 3.5946e-10
+   225   fmort                2.0622e-13 3.3951e-10
+   226   fmort                2.1122e-13 3.5039e-10
+   227   fmort                2.1594e-13 3.5935e-10
    228   fmort                3.1658e-06 4.6329e-07
    229   fmort                2.1750e-04 3.0768e-05
    230   fmort                4.5644e-03 6.5089e-04
@@ -234,21 +234,21 @@
    233   fmort                3.2612e-02 4.5482e-03
    234   fmort                7.4010e-02 1.0875e-02
    235   fmort                8.6744e-02 1.3494e-02
-   236   fmort                1.1452e-01 1.9326e-02
+   236   fmort                1.1452e-01 1.9325e-02
    237   fmort                9.2741e-02 1.6891e-02
-   238   fmort                8.8072e-02 1.6753e-02
+   238   fmort                8.8071e-02 1.6753e-02
    239   fmort                9.1576e-02 1.7772e-02
    240   fmort                9.4538e-02 1.8380e-02
    241   fmort                8.0549e-02 1.5158e-02
    242   fmort                6.8166e-02 1.2490e-02
    243   fmort                4.3225e-02 7.4671e-03
    244   fmort                3.6969e-03 5.6689e-04
-   245   fmort                2.1733e-13 3.6373e-10
-   246   fmort                2.2232e-13 3.7194e-10
-   247   fmort                2.8588e-13 5.0004e-10
-   248   fmort                3.3890e-13 6.0574e-10
-   249   fmort                5.1043e-13 9.4289e-10
-   250   fmort                6.1617e-13 1.1568e-09
+   245   fmort                2.1871e-13 3.6395e-10
+   246   fmort                2.2204e-13 3.7191e-10
+   247   fmort                2.8699e-13 5.0013e-10
+   248   fmort                3.4056e-13 6.0581e-10
+   249   fmort                5.1015e-13 9.4288e-10
+   250   fmort                6.1534e-13 1.1569e-09
    251   fmort                3.0373e-06 6.1243e-07
    252   fmort                6.0705e-04 1.1353e-04
    253   fmort                4.3896e-03 8.2210e-04
@@ -294,7 +294,7 @@
    293   log_selcoffs_fsh[1] -2.9191e+00 4.3735e-01
    294   log_selcoffs_fsh[1] -1.6947e+00 3.8900e-01
    295   log_selcoffs_fsh[1] -6.8596e-01 3.5513e-01
-   296   log_selcoffs_fsh[1]  7.0782e-03 3.2895e-01
+   296   log_selcoffs_fsh[1]  7.0783e-03 3.2895e-01
    297   log_selcoffs_fsh[1]  5.5026e-01 2.9253e-01
    298   log_selcoffs_fsh[1]  8.3250e-01 2.5858e-01
    299   log_selcoffs_fsh[1]  6.5657e-01 2.8439e-01
@@ -393,7 +393,7 @@
    392   log_selcoffs_fsh[1] -7.1341e-01 3.5935e-01
    393   log_selcoffs_fsh[1]  5.4117e-01 2.9340e-01
    394   log_selcoffs_fsh[1]  8.8202e-01 2.6020e-01
-   395   log_selcoffs_fsh[1]  3.7774e-01 2.9708e-01
+   395   log_selcoffs_fsh[1]  3.7774e-01 2.9709e-01
    396   log_selcoffs_fsh[1] -6.5440e-02 3.3203e-01
    397   log_selcoffs_fsh[1] -3.6204e-01 3.6036e-01
    398   log_selcoffs_fsh[1] -5.0519e-01 3.8707e-01
@@ -449,7 +449,7 @@
    448   log_selcoffs_fsh[1]  7.2601e-01 2.7137e-01
    449   log_selcoffs_fsh[1]  2.5463e-01 3.1287e-01
    450   log_selcoffs_fsh[1] -1.8672e-01 3.5449e-01
-   451   log_selcoffs_fsh[1] -5.0211e-01 3.9321e-01
+   451   log_selcoffs_fsh[1] -5.0210e-01 3.9321e-01
    452   log_selcoffs_fsh[1] -6.9968e-01 4.2255e-01
    453   log_selcoffs_fsh[1] -7.9748e-01 4.3068e-01
    454   log_selcoffs_fsh[1] -1.4526e+00 5.2534e-01
@@ -471,7 +471,7 @@
    470   log_selcoffs_fsh[1] -8.7984e-01 4.1024e-01
    471   log_selcoffs_fsh[1] -9.3983e-01 4.1420e-01
    472   log_selcoffs_fsh[1] -1.3599e+00 5.1171e-01
-   473   log_selcoffs_fsh[1]  5.0039e-02 3.3393e-01
+   473   log_selcoffs_fsh[1]  5.0038e-02 3.3393e-01
    474   log_selcoffs_fsh[1]  9.1028e-01 2.5595e-01
    475   log_selcoffs_fsh[1]  7.9920e-01 2.6200e-01
    476   log_selcoffs_fsh[1]  1.3832e-01 3.1071e-01
@@ -516,7 +516,7 @@
    515   log_selcoffs_fsh[1] -9.1276e-01 3.8151e-01
    516   log_selcoffs_fsh[1] -9.6812e-01 3.7624e-01
    517   log_selcoffs_fsh[1] -1.4846e+00 4.4309e-01
-   518   log_selcoffs_fsh[1]  4.9580e-03 3.1967e-01
+   518   log_selcoffs_fsh[1]  4.9579e-03 3.1967e-01
    519   log_selcoffs_fsh[1]  4.1476e-01 2.9439e-01
    520   log_selcoffs_fsh[1]  8.0403e-01 2.6474e-01
    521   log_selcoffs_fsh[1]  4.3570e-01 2.9840e-01
@@ -549,7 +549,7 @@
    548   log_selcoffs_fsh[1]  3.9401e-03 3.2901e-01
    549   log_selcoffs_fsh[1] -1.2642e-01 3.4811e-01
    550   log_selcoffs_fsh[1] -2.2611e-01 3.6799e-01
-   551   log_selcoffs_fsh[1] -2.9621e-01 3.8697e-01
+   551   log_selcoffs_fsh[1] -2.9622e-01 3.8697e-01
    552   log_selcoffs_fsh[1] -3.3086e-01 3.9334e-01
    553   log_selcoffs_fsh[1] -1.1012e+00 4.3754e-01
    554   log_selcoffs_fsh[1]  5.2445e-01 3.1101e-01
@@ -567,7 +567,7 @@
    566   log_selcoffs_fsh[1]  3.7156e-01 3.0265e-01
    567   log_selcoffs_fsh[1]  1.6231e-01 3.0772e-01
    568   log_selcoffs_fsh[1]  6.1412e-02 3.2759e-01
-   569   log_selcoffs_fsh[1]  1.7155e-02 3.5459e-01
+   569   log_selcoffs_fsh[1]  1.7156e-02 3.5459e-01
    570   log_selcoffs_fsh[1] -1.7083e-02 3.6954e-01
    571   log_selcoffs_fsh[1] -1.8345e+00 4.4789e-01
    572   log_selcoffs_fsh[1] -1.0151e+00 3.7204e-01
@@ -600,7 +600,7 @@
    599   log_selcoffs_fsh[1] -1.3858e+00 4.0099e-01
    600   log_selcoffs_fsh[1] -1.2834e+00 3.9339e-01
    601   log_selcoffs_fsh[1] -5.6067e-01 3.8158e-01
-   602   log_selcoffs_fsh[1]  4.1231e-03 3.5696e-01
+   602   log_selcoffs_fsh[1]  4.1230e-03 3.5696e-01
    603   log_selcoffs_fsh[1]  4.6869e-01 3.1475e-01
    604   log_selcoffs_fsh[1]  6.0288e-01 2.8924e-01
    605   log_selcoffs_fsh[1]  5.1444e-01 3.0184e-01
@@ -720,7 +720,7 @@
    719   log_selcoffs_fsh[2] -1.5372e+00 3.5640e-01
    720   log_selcoffs_fsh[2] -8.7041e-01 3.3330e-01
    721   log_selcoffs_fsh[2] -4.2966e-01 3.2244e-01
-   722   log_selcoffs_fsh[2] -1.6062e-02 3.1240e-01
+   722   log_selcoffs_fsh[2] -1.6063e-02 3.1240e-01
    723   log_selcoffs_fsh[2]  4.0751e-01 2.8890e-01
    724   log_selcoffs_fsh[2]  8.8079e-01 2.5816e-01
    725   log_selcoffs_fsh[2]  1.3135e+00 2.2173e-01
@@ -739,7 +739,7 @@
    738   log_selcoffs_fsh[2] -2.0204e+00 3.8465e-01
    739   log_selcoffs_fsh[2] -7.3254e-01 3.4156e-01
    740   log_selcoffs_fsh[2] -2.4598e-01 3.1925e-01
-   741   log_selcoffs_fsh[2]  4.0632e-02 3.0262e-01
+   741   log_selcoffs_fsh[2]  4.0631e-02 3.0262e-01
    742   log_selcoffs_fsh[2]  1.6587e-01 3.0361e-01
    743   log_selcoffs_fsh[2]  3.3788e-01 3.0443e-01
    744   log_selcoffs_fsh[2]  7.1506e-01 2.8563e-01
@@ -777,7 +777,7 @@
    776   log_selcoffs_fsh[2] -5.3313e+00 6.3398e-01
    777   log_selcoffs_fsh[2] -3.0664e+00 4.1119e-01
    778   log_selcoffs_fsh[2] -9.2641e-01 3.1903e-01
-   779   log_selcoffs_fsh[2]  8.0053e-02 2.9256e-01
+   779   log_selcoffs_fsh[2]  8.0054e-02 2.9256e-01
    780   log_selcoffs_fsh[2]  3.5682e-01 2.9842e-01
    781   log_selcoffs_fsh[2]  3.3150e-01 3.1891e-01
    782   log_selcoffs_fsh[2]  1.9508e-01 3.3768e-01
@@ -923,7 +923,7 @@
    922   log_selcoffs_fsh[2]  7.6901e-01 2.6989e-01
    923   log_selcoffs_fsh[2]  3.9750e-01 3.0834e-01
    924   log_selcoffs_fsh[2]  1.4890e-01 3.3531e-01
-   925   log_selcoffs_fsh[2]  3.1929e-02 3.4587e-01
+   925   log_selcoffs_fsh[2]  3.1928e-02 3.4587e-01
    926   log_selcoffs_fsh[2] -6.3244e+00 7.3660e-01
    927   log_selcoffs_fsh[2] -4.3532e+00 4.9452e-01
    928   log_selcoffs_fsh[2] -2.3801e+00 3.9149e-01
@@ -989,7 +989,7 @@
    988   log_selcoffs_fsh[2] -3.4926e+00 4.6073e-01
    989   log_selcoffs_fsh[2] -2.0831e+00 3.8689e-01
    990   log_selcoffs_fsh[2] -9.0117e-01 3.6055e-01
-   991   log_selcoffs_fsh[2]  7.1155e-03 3.3226e-01
+   991   log_selcoffs_fsh[2]  7.1156e-03 3.3226e-01
    992   log_selcoffs_fsh[2]  6.2984e-01 2.9289e-01
    993   log_selcoffs_fsh[2]  9.2023e-01 2.6761e-01
    994   log_selcoffs_fsh[2]  8.2600e-01 2.7922e-01
@@ -1126,7 +1126,7 @@
   1125   log_selcoffs_fsh[3] -1.1884e+00 3.8745e-01
   1126   log_selcoffs_fsh[3]  6.3266e-01 2.6364e-01
   1127   log_selcoffs_fsh[3]  1.0874e+00 2.1608e-01
-  1128   log_selcoffs_fsh[3]  7.7419e-03 3.2651e-01
+  1128   log_selcoffs_fsh[3]  7.7418e-03 3.2651e-01
   1129   log_selcoffs_fsh[3] -9.3659e-01 4.1497e-01
   1130   log_selcoffs_fsh[3] -1.4407e+00 5.0926e-01
   1131   log_selcoffs_fsh[3] -1.5625e+00 5.9994e-01
@@ -1180,7 +1180,7 @@
   1179   log_selcoffs_fsh[3] -1.7730e+00 4.2664e-01
   1180   log_selcoffs_fsh[3] -1.9408e+00 4.8232e-01
   1181   log_selcoffs_fsh[3] -8.2701e-02 3.6402e-01
-  1182   log_selcoffs_fsh[3]  7.0571e-01 2.4438e-01
+  1182   log_selcoffs_fsh[3]  7.0572e-01 2.4438e-01
   1183   log_selcoffs_fsh[3]  6.4013e-01 2.5755e-01
   1184   log_selcoffs_fsh[3]  2.9227e-01 2.8808e-01
   1185   log_selcoffs_fsh[3] -7.3845e-01 3.5779e-01
@@ -1309,7 +1309,7 @@
   1308   log_selcoffs_fsh[4]  5.7470e-01 3.2640e-01
   1309   log_selcoffs_fsh[4] -5.9467e+00 1.0056e+00
   1310   log_selcoffs_fsh[4] -4.7833e+00 6.9950e-01
-  1311   log_selcoffs_fsh[4] -3.5893e+00 5.6645e-01
+  1311   log_selcoffs_fsh[4] -3.5893e+00 5.6644e-01
   1312   log_selcoffs_fsh[4] -2.2983e+00 4.8468e-01
   1313   log_selcoffs_fsh[4] -9.6521e-01 4.0890e-01
   1314   log_selcoffs_fsh[4]  1.9454e-01 3.3497e-01
@@ -1357,7 +1357,7 @@
   1356   log_selcoffs_fsh[4] -3.2414e+00 4.6911e-01
   1357   log_selcoffs_fsh[4] -2.0248e+00 4.1714e-01
   1358   log_selcoffs_fsh[4] -9.0970e-01 3.7675e-01
-  1359   log_selcoffs_fsh[4]  6.1208e-02 3.3403e-01
+  1359   log_selcoffs_fsh[4]  6.1209e-02 3.3403e-01
   1360   log_selcoffs_fsh[4]  7.9125e-01 2.8025e-01
   1361   log_selcoffs_fsh[4]  1.0281e+00 2.5470e-01
   1362   log_selcoffs_fsh[4]  8.5261e-01 2.9367e-01
@@ -1366,7 +1366,7 @@
   1365   log_selcoffs_fsh[4] -3.1578e+00 4.5747e-01
   1366   log_selcoffs_fsh[4] -1.9872e+00 4.1355e-01
   1367   log_selcoffs_fsh[4] -8.8172e-01 3.7514e-01
-  1368   log_selcoffs_fsh[4]  3.6621e-02 3.3564e-01
+  1368   log_selcoffs_fsh[4]  3.6622e-02 3.3564e-01
   1369   log_selcoffs_fsh[4]  7.4513e-01 2.8437e-01
   1370   log_selcoffs_fsh[4]  1.0257e+00 2.5484e-01
   1371   log_selcoffs_fsh[4]  8.9843e-01 2.9101e-01
@@ -1375,7 +1375,7 @@
   1374   log_selcoffs_fsh[4] -3.0260e+00 4.5175e-01
   1375   log_selcoffs_fsh[4] -1.9839e+00 4.0430e-01
   1376   log_selcoffs_fsh[4] -9.5653e-01 3.7527e-01
-  1377   log_selcoffs_fsh[4] -5.0857e-03 3.3612e-01
+  1377   log_selcoffs_fsh[4] -5.0853e-03 3.3612e-01
   1378   log_selcoffs_fsh[4]  7.3095e-01 2.8499e-01
   1379   log_selcoffs_fsh[4]  1.0189e+00 2.5313e-01
   1380   log_selcoffs_fsh[4]  9.4288e-01 2.8578e-01
@@ -1410,7 +1410,7 @@
   1409   log_selcoffs_fsh[4] -3.7163e+00 5.1450e-01
   1410   log_selcoffs_fsh[4] -2.4683e+00 4.4289e-01
   1411   log_selcoffs_fsh[4] -1.4565e+00 4.0374e-01
-  1412   log_selcoffs_fsh[4] -6.3215e-01 3.7295e-01
+  1412   log_selcoffs_fsh[4] -6.3214e-01 3.7295e-01
   1413   log_selcoffs_fsh[4]  1.2158e-01 3.3188e-01
   1414   log_selcoffs_fsh[4]  6.7048e-01 2.8144e-01
   1415   log_selcoffs_fsh[4]  8.8864e-01 2.6044e-01
@@ -1649,7 +1649,7 @@
   1648   log_selcoffs_ind[2]  1.1536e-01 3.0177e-01
   1649   log_selcoffs_ind[2]  2.0852e-01 2.9288e-01
   1650   log_selcoffs_ind[2]  9.4955e-02 2.7898e-01
-  1651   log_selcoffs_ind[2] -7.4866e-03 2.5431e-01
+  1651   log_selcoffs_ind[2] -7.4865e-03 2.5431e-01
   1652   log_selcoffs_ind[2] -1.8102e-02 2.4017e-01
   1653   log_selcoffs_ind[2]  4.3132e-02 2.8650e-01
   1654   log_selcoffs_ind[2]  1.0058e-01 3.8465e-01
@@ -1660,12 +1660,12 @@
   1659   log_selcoffs_ind[2]  1.3597e-01 2.6562e-01
   1660   log_selcoffs_ind[2]  1.4609e-01 2.4668e-01
   1661   log_selcoffs_ind[2]  8.9910e-02 2.3383e-01
-  1662   log_selcoffs_ind[2]  2.8994e-03 2.4563e-01
+  1662   log_selcoffs_ind[2]  2.8993e-03 2.4563e-01
   1663   log_selcoffs_ind[2] -7.0171e-02 2.9373e-01
   1664   log_selcoffs_ind[2] -1.0726e-01 3.6520e-01
   1665   log_selcoffs_ind[2] -1.1534e-01 4.2990e-01
   1666   log_selcoffs_ind[2]  1.3206e-01 3.6140e-01
-  1667   log_selcoffs_ind[2]  5.2288e-02 2.8335e-01
+  1667   log_selcoffs_ind[2]  5.2289e-02 2.8335e-01
   1668   log_selcoffs_ind[2]  7.3439e-02 2.6507e-01
   1669   log_selcoffs_ind[2]  1.7034e-01 2.5098e-01
   1670   log_selcoffs_ind[2]  1.9194e-01 2.3939e-01
@@ -1732,7 +1732,7 @@
   1731   totbiom              1.1297e+04 3.0140e+02
   1732   totbiom              1.0117e+04 2.8924e+02
   1733   totbiom              8.9025e+03 2.8011e+02
-  1734   totbiom              7.3576e+03 2.7070e+02
+  1734   totbiom              7.3576e+03 2.7071e+02
   1735   totbiom              5.6453e+03 2.6160e+02
   1736   totbiom              4.5439e+03 2.6246e+02
   1737   totbiom              3.7504e+03 2.7351e+02
@@ -1804,7 +1804,7 @@
   1803   Sp_Biom              1.5744e+04 2.9801e+03
   1804   Sp_Biom              1.5744e+04 2.9801e+03
   1805   Sp_Biom              1.5648e+04 2.9332e+03
-  1806   Sp_Biom              1.5477e+04 2.8300e+03
+  1806   Sp_Biom              1.5478e+04 2.8300e+03
   1807   Sp_Biom              1.5194e+04 2.6849e+03
   1808   Sp_Biom              1.4829e+04 2.5268e+03
   1809   Sp_Biom              1.4404e+04 2.3686e+03
@@ -1870,7 +1870,7 @@
   1869   Sp_Biom_NoFish       1.5744e+04 2.9801e+03
   1870   Sp_Biom_NoFish       1.5744e+04 2.9801e+03
   1871   Sp_Biom_NoFish       1.5648e+04 2.9332e+03
-  1872   Sp_Biom_NoFish       1.5477e+04 2.8300e+03
+  1872   Sp_Biom_NoFish       1.5478e+04 2.8300e+03
   1873   Sp_Biom_NoFish       1.5194e+04 2.6849e+03
   1874   Sp_Biom_NoFish       1.4829e+04 2.5268e+03
   1875   Sp_Biom_NoFish       1.4404e+04 2.3686e+03
@@ -1892,7 +1892,7 @@
   1891   Sp_Biom_NoFish       1.5414e+04 9.3709e+02
   1892   Sp_Biom_NoFish       1.6742e+04 8.5359e+02
   1893   Sp_Biom_NoFish       1.8191e+04 7.6064e+02
-  1894   Sp_Biom_NoFish       1.9898e+04 6.7291e+02
+  1894   Sp_Biom_NoFish       1.9898e+04 6.7292e+02
   1895   Sp_Biom_NoFish       2.1869e+04 6.0847e+02
   1896   Sp_Biom_NoFish       2.4146e+04 5.7300e+02
   1897   Sp_Biom_NoFish       2.7003e+04 5.6843e+02
@@ -2128,7 +2128,7 @@
   2127   SSB_fut_3            8.4557e+03 1.9712e+03
   2128   SSB_fut_3            8.2087e+03 1.9959e+03
   2129   SSB_fut_3            8.0241e+03 2.0130e+03
-  2130   SSB_fut_3            7.8805e+03 2.0247e+03
+  2130   SSB_fut_3            7.8806e+03 2.0247e+03
   2131   SSB_fut_3            7.7653e+03 2.0327e+03
   2132   SSB_fut_3            7.6704e+03 2.0383e+03
   2133   SSB_fut_3            7.5911e+03 2.0422e+03

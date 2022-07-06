@@ -6,7 +6,27 @@ library(tidyverse)
 setwd(file.path(getwd(),"assessment"))
 modname <- "1.00"
 
-h2.mod <- readJJM(geth(modname,"h2"), path="config", input="input")
+h2.mod <- runit(geth(modname,"h2"), path="config", input="input")
+
+df <- data.frame(h2.mod[[1]][[5]][[1]]$df)
+names(df)<-c("type","year","est","std","lb","ub")
+df <- as_tibble(df)
+
+df <- df %>% mutate(
+  year=as.numeric(year),
+  est=as.numeric(est),
+  std=as.numeric(std),
+  lb =as.numeric(lb),
+  ub =as.numeric(ub)
+  )
+unique(df$type)
+#df %>% filter(type=="Total_Biom") %>%
+
+  df %>%
+  ggplot(aes(x=year,y=est,ymin=lb,ymax=ub)) + geom_ribbon(fill="salmon") + expand_limits(y=0) + theme_bw() + ylab("Estimates") +
+        facet_wrap(type~.,scales="free")
+
+
 mod    <- h2.mod
 df     <- data.frame(stringsAsFactors = FALSE)
 

@@ -1,7 +1,7 @@
 #dataFile
-0.01.dat
+1.05.dat
 #modelName 
-h2_0.01
+h2_1.05
 #nStocks
 2
 #nameStock
@@ -31,8 +31,8 @@ Stock1%Stock2
 -6 -6 -6
 #SigmaR 
 0.6 0.6 0.6
-15 15 15
--4 -4 -4
+.15 .15 .15
+ -6  -6  -6
 #phase_Rzero
 4 4 4
 #Nyrs_sr
@@ -65,20 +65,16 @@ Stock1%Stock2
 0.09 0.09 
 0.1 0.1	
 -4 -4																																									
-#Mortality sharing matrix (number_stocks, number_regimes)
+#NMatrix 
 1
 2 2
-#Natural_Mortality 
+#N_Mort
 0.23 0.33
-0.05 0.05
+0.15 0.15
 -4 -4
-# NEW npars_mage
+#npars_mage 
 0 0
-# NEW ages_M_changes
-
-# NEW Mage_in
-
-# phase_Mage
+#phase_Mage 
 -5 -5
 #Phase_Random_walk_M 
 -4
@@ -86,26 +82,26 @@ Stock1%Stock2
 #Nyrs_Random_walk_M 
 0
 0
-#Random_walk_M_yrs blank if nyrs==0
+#Random_walk_M_yrs
 
-#Random_walk_M_sigmas blank if nyrs==0
+#Random_walk_M_sigmas 
 
-#catchability 
+#qMatrix 
 1.143881847	0.029045376	0.000159487	0.519171913	0.002284038	0.007987171	0.033884372
 12  12  12  12  12  12  12
 3  5  3  3  3  4  4
-#q_power                    
+#qpowMatrix 
 1  1  1  1  1  1  1
 1.2  1.2  1.2  1.2  1.2  1.2  1.2
 -1  -1  -1  -1  -1  -1  -1
 #Random_walk_q_phases                    
 1  -1  1  -1  1  -1  -1
-#Nyrs_Random_walk_q
+#RW_nyrs_q 
 1  0  1  0  0  0  0
-#Random_walk_q_yrs blank if nyrs==0
+#RW_q_yrs 
 2002 
 2000
-#Random_walk_q_sigmas blank if nyrs==0
+#RW_q_sigmas 
 2.0
 2.0
 #q_agemin                    
@@ -251,4 +247,3 @@ Stock1%Stock2
 0	0.37	0.98	1	1	1	1	1	1	1	1	1
 #Test  
 123456789  
-
