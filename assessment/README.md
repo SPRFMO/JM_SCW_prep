@@ -11,9 +11,10 @@ Model      | Description
 -----------|--------------
 0.00	|	Exact 2021 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC09)
 0.01	|	As 0.00 but with the model beginning at age-0.
-0.02	|	As **0.01 (?)** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; updated growth rates to new Chilean values; downweighting DEPM.
+0.02	|	As **0.01** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; updated growth rates to new Chilean values; downweighting DEPM.
+0.03	|	As **0.00** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; updated growth rates to new Chilean values; downweighting DEPM.
 ---- | ----
-1.00	|	As 0.02
+1.00	|	As 0.03
 1.01	|	As 1.00 but with Peruvian growth parameters for the single-stock model. (ED)
 1.02	|	As 1.00 but with age-varying M (Gislason method; scaled to 0.25). (NH)
 1.03	|	As 1.00 but with the new offshore CPUE index that incorporates effort creep. (MP)
