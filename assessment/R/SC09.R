@@ -50,6 +50,9 @@ fn.update <- function(newmod, newmodname, h) {
 
 # mod1.00 <- runit(geth("1.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
+h2_0.00 <- readJJM(geth("0.00","h2"), path = "config", input = "input")
+h2_0.02 <- readJJM(geth("0.02","h2"), path = "config", input = "input")
+
 h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
 h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
@@ -293,7 +296,13 @@ h2_1.02[[1]]$control$Pwtatage[1,] <- popwtatage.new
 
 # fn.update(h1_1.02, "1.02", "h1")
 # fn.update(h2_1.02, "1.02", "h2")
-# h1_1.02 <- runit(geth("1.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+h2_0.00 <- runit(geth("0.00",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+h2_0.01 <- runit(geth("0.01",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+h2_0.02 <- runit(geth("0.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+h2_0.03 <- runit(geth("0.03",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+newdf<-read_csv("/var/folders/6j/nx969f1d63l5dhq2nc2z9hsc0000gn/T//RtmpeJ3s1n/h2_0.02/For_R_2.csv")
+olddf<-read_csv("/var/folders/6j/nx969f1d63l5dhq2nc2z9hsc0000gn/T//RtmpeJ3s1n/h2_0.01/For_R_2.csv")
 # h2_1.02 <- runit(geth("1.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 
