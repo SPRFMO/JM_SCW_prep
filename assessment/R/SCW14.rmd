@@ -126,11 +126,22 @@ FinModName <- "1.05"
 
 ```
 
+```{r, eval=F}
+modnm <- "0.04"
+
+tmp1 <- runit(geth(modnm,"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+tmp2 <- runit(geth(modnm,"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+
+```
+
+
+# Updated Age Data
+
 ```{r}
 mods2compare <- c("0.00","0.03")
 ```
-
-# Updated Age Data
 
 ## Single-stock hypothesis {.tabset}
 ### Biomass
@@ -169,4 +180,49 @@ plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```{r fmort_h2_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 
 plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+# Correcting Growth Parameters
+
+```{r}
+mods2compare <- c("0.03","0.04")
+```
+
+## Single-stock hypothesis {.tabset}
+### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+hyp <- "h1"
+obj <- compareModels(geth(mods2compare))
+
+plot(obj,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(obj,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(obj,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Two-stock hypothesis {.tabset}
+### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1],"h2"), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+hyp <- "h2"
+obj <- compareModels(geth(mods2compare))
+
+plot(obj,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(obj,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+
+plot(obj,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
