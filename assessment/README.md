@@ -3,7 +3,7 @@ Jack mackerel assessment
 ## 2022 SC10 Benchmark Model runs
 ### Notes
 Benchmark in Seattle Jul 2022
-...
+
 ### Naming convention
 
 
@@ -13,7 +13,7 @@ Model      | Description
 0.01	|	As 0.00 but with the model beginning at age-0.
 0.02	|	As **0.01 (?)** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; updated growth rates to new Chilean values; downweighting DEPM.
 ---- | ----
-1.00	|	As 0.02.
+1.00	|	As 0.02
 1.01	|	As 1.00 but with Peruvian growth parameters for the single-stock model. (ED)
 1.02	|	As 1.00 but with age-varying M (Gislason method; scaled to 0.25). (NH)
 1.03	|	As 1.00 but with the new offshore CPUE index that incorporates effort creep. (MP)
@@ -24,7 +24,7 @@ Model      | Description
 ## 2021 SC09 Model runs
 ### Notes
 Data files with annotations found in the Excel spreadsheet `JM Data files for SC09.xlsx` in the data folder.
-...
+
 ### Naming convention
 Note the spreadsheet `JM Data files for SC09.xlsx` contains these files (and an analogous README)
 
