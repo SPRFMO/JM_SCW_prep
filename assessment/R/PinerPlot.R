@@ -41,7 +41,7 @@ dir.ast <- "assessment"
 dir.src <- "src"
 
 #---------------------------
-# Running models in parellel
+# Running models in parallel
 #---------------------------
 
 foreach(i = 1:Nreps) %dopar% {

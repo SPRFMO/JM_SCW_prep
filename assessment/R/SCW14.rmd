@@ -54,16 +54,18 @@ File naming conventions have been changed to reflect the stock structure hypothe
 
 Model      | Description
 -----------|--------------
-**Models 0.x**| **Data introductions**
-0.00     |  Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC08)
-0.01     |  As 0.00 but with revised catches through 2020 (currently still estimates)
-0.02     |  As 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
------------|--------------
-**Models 1.x**| **Updated Model and Sensitivities**
-1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
-1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
-1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)
-1.03     | As 1.00 but with offshore CPUE that takes into account efficiency creep
+0.00  | Exact 2021 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC09)
+0.01  | As 0.00 but with the model beginning at age-0.
+0.02  | As **0.01** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; updated growth rates to new Chilean values; downweighting DEPM.
+0.03  | As **0.00** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; updated growth rates to new Chilean values; downweighting DEPM.
+---- | ----
+1.00  | As 0.03
+1.01  | As 1.00 but with Peruvian growth parameters for the single-stock model. (ED)
+1.02  | As 1.00 but with age-varying M (Gislason method; scaled to 0.25). (NH)
+1.03  | As 1.00 but with the new offshore CPUE index that incorporates effort creep. (MP)
+1.04  | As 1.00 but with pre-weighted sample sizes for composition data. (IP)
+1.05  | As 1.04 but with sample sizes for composition data and CVs of index data based on expert judgement.
+
 
 ```{r install_packages, eval=F, cache=F, echo=T}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
@@ -78,11 +80,6 @@ You'll need to be in the `jjm/assessment` directory in order for the code here t
 library(jjmR)
 library(tidyverse)
 library(kableExtra)
-
-# MP note: normally I never use setwd in rmarkdown because it has unexpected behaviour. 
-# I thought you would always end up in the jjm rootdirectory if you start up the markdown file?
-# I cannot change the working directory by using setwd() ??
-# LQ It might depend on the programme you use to open the file? Would be great if someone could test if this runs.
 
 pwd <- getwd()
 # if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
@@ -101,7 +98,7 @@ fn.plotind <- function(mods2compare, indname) {
             assessment_year=max(year))
   }
 
-  mods <- compareModels(geth(mods2compare, "h1"))
+  mods <- compareModels(geth(mods2compare, "h2"))
   i <- grep(indname,mods[[1]]$data$Inames)
   dat2use <- list()
   for(m in 1:length(mods)) {
@@ -129,83 +126,47 @@ FinModName <- "1.05"
 
 ```
 
-# Re-running Last Year's Model (a sanity check)
-Re-running the `r as.numeric(format(Sys.time(), "%Y"))-1` model and comparing the results with that year's SC meeting.
+```{r}
+mods2compare <- c("0.00","0.03")
+```
 
+# Updated Age Data
 
 ## Single-stock hypothesis {.tabset}
-```{r load_prev_h1}
-hyp <- "h1"
-
-# mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
-
-# mod_prev <- readJJM(geth("1.00"), path = "config", input = "input")
-# save(mod_prev, file="results/mod_prev_h1.Rdat")
-
-load("results/mod_prev_h1.Rdat")
-
-```
 ### Biomass
+```{r, biomass_h1_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+hyp <- "h1"
+Dat_Prev <- compareModels(geth(mods2compare))
 
-```{r biomass_h1_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
-
-oldnewMods <- combineModels(mod0.00,mod_prev)
-
-plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
-
+plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
-```{r recruit_h1_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
-
-plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+```{r, recruitment_h1_datprev, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 ### Fishing Mortality
-```{r fmort_h1_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
-
-plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```{r fmort_h1_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ## Two-stock hypothesis {.tabset}
-
-```{r load_prev_h2}
-hyp <- "h2"
-
-# default model
-mod0.02 <- readJJM(geth("0.02"), path = "config", input = "input")
-
-# mod1.03 <- runit(geth("1.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-mod1.03 <- readJJM(geth("1.03"), path = "config", input = "input")
-
-# load("results/mod_prev_h2.Rdat")
-
-```
-
 ### Biomass
+```{r, biomass_h2_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1],"h2"), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+hyp <- "h2"
+Dat_Prev <- compareModels(geth(mods2compare))
 
-```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
-
-oldnewMods <- combineModels(mod0.02,mod1.03)
-
-plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
-
+plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
-```{r recruit_h2_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
-
-plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+```{r, recruitment_h2_datprev, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
-
 
 ### Fishing Mortality
-```{r fmort_h2_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r fmort_h2_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 
-plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
-
-
-
-
