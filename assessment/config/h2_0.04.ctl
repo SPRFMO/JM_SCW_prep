@@ -1,7 +1,7 @@
 #dataFile 
 0.03.dat 
 #modelName 
-h2_0.03
+h2_0.04
 #nStocks 
 2 
 #nameStock 
@@ -43,7 +43,7 @@ Stock1%Stock2
 #GrowMatrix 
 1 2 2 
 #Linf 
-74.4 80.4 
+80.4 80.4 
 0.1 0.1 
 -4 -4 
 #K 
@@ -51,7 +51,7 @@ Stock1%Stock2
 0.1 0.1 
 -4 -4 
 #Lo_len 
-18 18 
+15.75 15.75 
 0.1 0.1 
 -4 -4 
 #Sigma_len 

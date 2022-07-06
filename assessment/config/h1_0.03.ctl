@@ -55,7 +55,7 @@ Stock
 #NMatrix 
 1 
 #N_Mort 
-0.25
+0.28
 0.05 
 -4 
 #npars_mage 
