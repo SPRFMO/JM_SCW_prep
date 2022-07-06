@@ -1,0 +1,211 @@
+---
+title: "Jack Mackerel Assessment SCW14"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    code_folding: hide
+    fig_caption: yes
+    number_sections: yes
+    theme: readable
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+---
+
+```{css zoom-lib-src, echo = FALSE}
+script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+```
+
+```{js zoom-jquery, echo = FALSE}
+ $(document).ready(function() {
+    $('body').prepend('<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>');
+    // onClick function for all plots (img's)
+    $('img:not(.zoomImg)').click(function() {
+      $('.zoomImg').attr('src', $(this).attr('src')).css({width: '100%'});
+      $('.zoomDiv').css({opacity: '1', width: 'auto', border: '1px solid white', borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', marginRight: '-50%', transform: 'translate(-50%, -50%)', boxShadow: '0px 0px 50px #888888', zIndex: '50', overflow: 'auto', maxHeight: '100%'});
+    });
+    // onClick function for zoomImg
+    $('img.zoomImg').click(function() {
+      $('.zoomDiv').css({opacity: '0', width: '0%'}); 
+    });
+  });
+```
+
+```{r setup, include=FALSE}
+#knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_knit$set(root.dir=file.path(here::here()))
+knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.height=5)
+```
+
+This document was compiled in `RMarkdown`, and shows the incremental results of the Chilean Jack Mackerel (*Trachurus murphyi*) stock assessment benchmark in `r format(Sys.time(), "%Y")`. The files associated with this document can be found on [Github](https://github.com/SPRFMO/jjm/tree/master/assessment).
+
+Annoted data files can be found in the Excel spreadsheet `newAge.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
+
+* Compiled the latest `jjm/src/jjms.tpl`
+  - This can be done by navigating to the `jjm/src` folder in your Terminal, and using the `make` command
+  - You will need to have [ADMB](http://www.admb-project.org/) installed to do this.
+  - This does not need to be done if you're only re-compiling the R Markdown document.
+* Updated the `jjmR` package
+  - This can be done in `R` using the command `remotes::install_github("SPRFMO/jjmR")`
+
+
+# Model Naming Convention
+File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     |  Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC08)
+0.01     |  As 0.00 but with revised catches through 2020 (currently still estimates)
+0.02     |  As 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
+1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)
+1.03     | As 1.00 but with offshore CPUE that takes into account efficiency creep
+
+```{r install_packages, eval=F, cache=F, echo=T}
+if(!'devtools' %in% installed.packages()) install.packages('devtools')
+devtools::install_github("SPRFMO/jjmR")
+
+if(!'kableExtra' %in% installed.packages()) install.packages('kableExtra')
+```
+
+You'll need to be in the `jjm/assessment` directory in order for the code here to run.
+
+```{r pkgs, echo=T}
+library(jjmR)
+library(tidyverse)
+library(kableExtra)
+
+# MP note: normally I never use setwd in rmarkdown because it has unexpected behaviour. 
+# I thought you would always end up in the jjm rootdirectory if you start up the markdown file?
+# I cannot change the working directory by using setwd() ??
+# LQ It might depend on the programme you use to open the file? Would be great if someone could test if this runs.
+
+pwd <- getwd()
+# if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
+#   stop(paste("Set working directory to jjm/assessment"))
+# }
+
+geth <- function(mod,h=hyp) paste0(h,"_", mod)
+
+fn.plotind <- function(mods2compare, indname) {
+  fn.seldata <- function(x) {
+  x$data$Index[,i] %>%
+    bind_rows() %>%
+    pivot_longer(everything(), names_to="year") %>%
+    drop_na() %>%
+    mutate(year=as.numeric(year),
+            assessment_year=max(year))
+  }
+
+  mods <- compareModels(geth(mods2compare, "h1"))
+  i <- grep(indname,mods[[1]]$data$Inames)
+  dat2use <- list()
+  for(m in 1:length(mods)) {
+    dat2use[[m]] <- fn.seldata(mods[[m]])
+  }
+
+  p <- map_dfr(dat2use, ~as_tibble(.)) %>%
+        mutate(assessment_year=as.factor(assessment_year)) %>%
+        ggplot(aes(x=year,y=value,colour=assessment_year)) +
+        geom_line() +
+        theme_minimal() + 
+        scale_x_continuous(breaks= scales::pretty_breaks())
+  print(p)
+}
+
+fixed_bmsy <- function(mod,refpt=5500){
+  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
+  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
+  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
+  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
+  return(mod)
+}
+
+FinModName <- "1.05"
+
+```
+
+# Re-running Last Year's Model (a sanity check)
+Re-running the `r as.numeric(format(Sys.time(), "%Y"))-1` model and comparing the results with that year's SC meeting.
+
+
+## Single-stock hypothesis {.tabset}
+```{r load_prev_h1}
+hyp <- "h1"
+
+# mod0.00 <- runit(geth("0.00"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
+
+# mod_prev <- readJJM(geth("1.00"), path = "config", input = "input")
+# save(mod_prev, file="results/mod_prev_h1.Rdat")
+
+load("results/mod_prev_h1.Rdat")
+
+```
+### Biomass
+
+```{r biomass_h1_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+oldnewMods <- combineModels(mod0.00,mod_prev)
+
+plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
+
+```
+
+### Recruitment
+```{r recruit_h1_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fmort_h1_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Two-stock hypothesis {.tabset}
+
+```{r load_prev_h2}
+hyp <- "h2"
+
+# default model
+mod0.02 <- readJJM(geth("0.02"), path = "config", input = "input")
+
+# mod1.03 <- runit(geth("1.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+mod1.03 <- readJJM(geth("1.03"), path = "config", input = "input")
+
+# load("results/mod_prev_h2.Rdat")
+
+```
+
+### Biomass
+
+```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+oldnewMods <- combineModels(mod0.02,mod1.03)
+
+plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
+
+```
+
+### Recruitment
+```{r recruit_h2_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+
+### Fishing Mortality
+```{r fmort_h2_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
+
+plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+
+
