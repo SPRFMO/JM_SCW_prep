@@ -13,7 +13,7 @@ Model      | Description
 0.02	|	As **0.01** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; downweighting DEPM.
 0.03	|	As **0.00** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25;  downweighting DEPM.
 0.04	|	As 0.03 but with L_infinity updated to reflect TL (80.4) instead of FL (74.4); Lo updated to 15.75 to reflect the mean total length of age-1 fish.
----- | ----
+------|------
 1.00	|	As **0.04**.
 1.01	|	As 1.00 but with changes in selectivity. (JNI)
 1.02	|	As 1.00 but with age-varying M (Chen and Watanabe method; scaled to 0.28 (average over entire vector)). (NH)
@@ -23,7 +23,9 @@ Model      | Description
 1.06  | As 1.03 but with the Chilean CPUE index that incorporates a 1% effort creep (NH)
 1.07  | As 1.04 but with the updated CVs on all the indices (Candidate for furture)
 1.08  | As 1.07 but with high weights on composition data (compare francis weights w/ 1.07)
-1.09  | As 1.07 and 1.06 (combination)
+1.09  | As 1.07 and 1.06 (combination) and updated CVs because the index series had changed
+1.10  | As 1.09 with 5x the sample size (ie, 150, 250, 200) for the multinomials
+1.11  | As 1.10 but Francis weights applied only in one iteration
 
 
 ## 2021 SC09 Model runs
