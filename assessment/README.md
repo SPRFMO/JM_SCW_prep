@@ -23,6 +23,7 @@ Model      | Description
 1.06  | As 1.03 but with the Chilean CPUE index that incorporates a 1% effort creep (NH)
 1.07  | As 1.04 but with the updated CVs on all the indices (Candidate for furture)
 1.08  | As 1.07 but with high weights on composition data (compare francis weights w/ 1.07)
+1.09  | As 1.07 and 1.06 (combination)
 
 
 ## 2021 SC09 Model runs
