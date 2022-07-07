@@ -14,8 +14,8 @@ Model      | Description
 0.03	|	As **0.00** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25;  downweighting DEPM.
 0.04	|	As 0.03 but with L_infinity updated to reflect TL (80.4) instead of FL (74.4); Lo updated to 15.75 to reflect the mean total length of age-1 fish.
 ---- | ----
-1.00	|	As 0.04
-1.01	|	
+1.00	|	As **0.04**.
+1.01	|	As 1.00 but with changes in selectivity. (JNI)
 1.02	|	As 1.00 but with age-varying M (Gislason method; scaled to 0.25). (NH)
 1.03	|	As 1.00 but with the new offshore CPUE index that incorporates effort creep. (MP)
 1.04	|	As 1.00 but with pre-weighted sample sizes for composition data. (IP)
