@@ -20,12 +20,13 @@ Model      | Description
 1.03	|	As 1.00 but with the new offshore CPUE index that incorporates effort creep. (MP)
 1.04	|	As 1.00 but with pre-weighted sample sizes for composition data. (IP)
 1.05	|	As 1.04 but with sample sizes for composition data and CVs of index data based on expert judgement.
-1.06  | As 1.03 but with the Chilean CPUE index that incorporates a 1% effort creep (NH)
-1.07  | As 1.04 but with the updated CVs on all the indices (Candidate for furture)
-1.08  | As 1.07 but with high weights on composition data (compare francis weights w/ 1.07)
-1.09  | As 1.07 and 1.06 (combination) and updated CVs because the index series had changed
-1.10  | As 1.09 with 5x the sample size (ie, 150, 250, 200) for the multinomials
-1.11  | As 1.10 but Francis weights applied only in one iteration
+1.06  	| 	As 1.03 but with the Chilean CPUE index that incorporates a 1% effort creep. (NH)
+1.07  	| 	As 1.04 but with the updated CVs on all the indices (Candidate for furture).
+1.08  	| 	As 1.07 but with high weights on composition data (compare francis weights w/ 1.07).
+1.09  	| 	As 1.07 and 1.06 (combination) and updated CVs because the index series had changed
+1.10 	| As 1.09 with 5x the sample size (ie, 150, 250, 200) for the multinomials (composition data).
+1.11	| 	As 1.10 but removing recent age compositions from Chile AcousCS.
+1.12	|	As 1.11 but Francis weights applied only in one iteration.
 
 
 ## 2021 SC09 Model runs
