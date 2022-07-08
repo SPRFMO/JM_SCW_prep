@@ -3907,6 +3907,7 @@ FUNCTION write_mceval_hdr
 
 //+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+ 
 REPORT_SECTION
+  if (last_phase()) Get_Replacement_Yield();
   report <<"P1" <<endl<<sel_p1_fsh<<endl;
   report <<"P2" <<endl<<sel_p2_fsh<<endl;
   report <<"P3" <<endl<<sel_p3_fsh<<endl;
@@ -5520,20 +5521,24 @@ FUNCTION Write_R
     R_report<<"$TotF"<<endl << Ftot(s)<<endl;
     if(do_hess==0)
     {
-       R_report<<"$df"<<endl; 
+       R_report<<"$df1"<<endl; 
 			for (i=styr;i<=endyr;i++) 
       {
         double lb=value(totbiom_NoFish(s,i)/exp(2.*sqrt(log(1+square(totbiom_NoFish.sd(s,i))/square(totbiom_NoFish(s,i))))));
         double ub=value(totbiom_NoFish(s,i)*exp(2.*sqrt(log(1+square(totbiom_NoFish.sd(s,i))/square(totbiom_NoFish(s,i))))));
+
         R_report<<"Total_Biom_Nofishing "<<i<<" "<<totbiom_NoFish(s,i)<<" "<<totbiom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
                lb=value(Sp_Biom_NoFishRatio(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFishRatio.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
                ub=value(Sp_Biom_NoFishRatio(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFishRatio.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
+
         R_report<<"SSB0_Dynamic "       <<i<<" "<<Sp_Biom_NoFishRatio(s,i)<<" "<< Sp_Biom_NoFishRatio.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
-               lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
+               lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
                ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
-        R_report<<"SSB_Nofishing "       <<i<<" "<<Sp_Biom_NoFishRatio(s,i)<<" "<< Sp_Biom_NoFishRatio.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
-               lb=value(totbiom(s,i)/exp(2.*sqrt(log(1+square(totbiom.sd(s,i))/square(totbiom(s,i))))));
-               ub=value(totbiom(s,i)*exp(2.*sqrt(log(1+square(totbiom.sd(s,i))/square(totbiom(s,i))))));
+
+        R_report<<"SSB_Nofishing "       <<i<<" "<<Sp_Biom_NoFish(s,i)<<" "<< Sp_Biom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+               lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
+               ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
+
         R_report<<"Total_Biom    "       <<i<<" "<<totbiom(s,i)<<" "<<totbiom.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
                lb=value(Sp_Biom(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom.sd(s,i))/square(Sp_Biom(s,i))))));
                ub=value(Sp_Biom(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom.sd(s,i))/square(Sp_Biom(s,i))))));
@@ -5576,7 +5581,7 @@ FUNCTION Write_R
             R_report<<i<<" "<<SSB_fut(s,k,i)<<" "<<SSB_fut.sd(s,k,i)<<" "<<lb<<" "<<ub<<endl;
           }
         }*/
-       R_report<<"$df"<<endl; 
+       R_report<<"$df2"<<endl; 
        for (i=styr_fut;i<=endyr_fut;i++) 
        {
          double lb=value(SSB_fut_1(s,i)/exp(2.*sqrt(log(1+square(SSB_fut_1.sd(s,i))/square(SSB_fut_1(s,i))))));
