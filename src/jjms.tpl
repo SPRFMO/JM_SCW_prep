@@ -5525,23 +5525,24 @@ FUNCTION Write_R
       {
         double lb=value(totbiom_NoFish(s,i)/exp(2.*sqrt(log(1+square(totbiom_NoFish.sd(s,i))/square(totbiom_NoFish(s,i))))));
         double ub=value(totbiom_NoFish(s,i)*exp(2.*sqrt(log(1+square(totbiom_NoFish.sd(s,i))/square(totbiom_NoFish(s,i))))));
-
         R_report<<"Total_Biom_Nofishing "<<i<<" "<<totbiom_NoFish(s,i)<<" "<<totbiom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+
                lb=value(Sp_Biom_NoFishRatio(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFishRatio.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
                ub=value(Sp_Biom_NoFishRatio(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFishRatio.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
-
         R_report<<"SSB0_Dynamic "       <<i<<" "<<Sp_Biom_NoFishRatio(s,i)<<" "<< Sp_Biom_NoFishRatio.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
-               lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
-               ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
 
-        R_report<<"SSB_Nofishing "       <<i<<" "<<Sp_Biom_NoFish(s,i)<<" "<< Sp_Biom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
                lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
                ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
+        R_report<<"SSB_Nofishing "       <<i<<" "<<Sp_Biom_NoFish(s,i)<<" "<< Sp_Biom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
 
+               lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
+               ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
         R_report<<"Total_Biom    "       <<i<<" "<<totbiom(s,i)<<" "<<totbiom.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+
                lb=value(Sp_Biom(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom.sd(s,i))/square(Sp_Biom(s,i))))));
                ub=value(Sp_Biom(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom.sd(s,i))/square(Sp_Biom(s,i))))));
         R_report<<"SSB "                 <<i<<" "<<Sp_Biom(s,i)<<" "<<Sp_Biom.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+
                lb=value(recruits(s,i)/exp(2.*sqrt(log(1+square(recruits.sd(s,i))/square(recruits(s,i))))));
                ub=value(recruits(s,i)*exp(2.*sqrt(log(1+square(recruits.sd(s,i))/square(recruits(s,i))))));
         R_report<<"Recruits "            <<i<<" "<<recruits(s,i)<<" "<<recruits.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
