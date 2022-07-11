@@ -32,8 +32,8 @@ script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
 ```
 
 ```{r setup, include=FALSE}
-#knitr::opts_knit$set(root.dir=here::here())
-knitr::opts_knit$set(root.dir=file.path(here::here()))
+knitr::opts_knit$set(root.dir=here::here())
+# knitr::opts_knit$set(root.dir=file.path(here::here()))
 knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.height=5)
 ```
 
@@ -136,7 +136,7 @@ FinModName <- "1.11"
 
 ```
 
-```{r, eval=F}
+```{r eval=FALSE, include=FALSE}
 modnm <- "1.12"
 
 tmp1 <- runit(geth(modnm,"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
@@ -153,13 +153,13 @@ tmp2 <- runit(geth(modnm,"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 mods2compare <- c("0.00","0.03")
 ```
 
-## Single-stock hypothesis {.tabset}
+## Single-stock hypothesis
 ### Biomass
 ```{r, biomass_h1_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 hyp <- "h1"
 Dat_Prev <- compareModels(geth(mods2compare))
 
-plot(Mods,combine=T,what="biomass",stack=F,main="Biomass")
+plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
