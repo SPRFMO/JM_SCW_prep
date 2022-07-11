@@ -1876,7 +1876,7 @@ PROCEDURE_SECTION
   Get_Fishery_Predictions();
   // Objective function calcs------------
   evaluate_the_objective_function();
-  // if (last_phase()) Get_Replacement_Yield();
+  if (last_phase()) Get_Replacement_Yield();
 
   // Output calcs-------------------------
   // if (sd_phase()) // this gets executed in mcmc too
@@ -3907,7 +3907,6 @@ FUNCTION write_mceval_hdr
 
 //+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+ 
 REPORT_SECTION
-  if (last_phase()) Get_Replacement_Yield();
   report <<"P1" <<endl<<sel_p1_fsh<<endl;
   report <<"P2" <<endl<<sel_p2_fsh<<endl;
   report <<"P3" <<endl<<sel_p3_fsh<<endl;
