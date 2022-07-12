@@ -16,47 +16,22 @@ setwd(dir.jjmR)
 devtools::load_all()
 setwd(dir.jjm)
 
-geth <- function(mod,h=hyp) paste0(h,"_", mod)
 
+modnm <- "h2_1.13"
 
-modnm <- "1.11"
-
-h1nm <- geth(modnm,"h1")
-mod_h1 <- readJJM(h1nm, path = "config", input = "input")
-mod_h1r <- mod_h1
-names(mod_h1r) <- h1nm
+mod <- readJJM(modnm, path = "config", input = "input")
+mod_r <- mod
+names(mod_r) <- modnm
 Npeels<-5
 
-# ret1 <- retro(model = mod_h1r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
+# ret1 <- retro(model = mod_r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
 
-load(paste0("results/",h1nm,"_retrospective.RData"))
-ret1<-output
-pdf(paste0("results/",h1nm,"_Retro.pdf"))
-plot(ret1) # all plots
+load(paste0("results/",modnm,"_retrospective.RData"))
+ret<-output
+pdf(paste0("results/",modnm,"_Retro.pdf"))
+plot(ret) # all plots
 dev.off()
 
-plot(ret1, var="SSB") # only SSB
+plot(ret, var="SSB") # only SSB
 #Calculation of Mohn's Rho courtesy of Arni Magnusson
-icesAdvice::mohn(ret1$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
-
-#----
-
-h2nm <- geth(modnm,"h2")
-mod_h2 <- readJJM(h2nm, path = "config", input = "input")
-mod_h2r <- mod_h2
-names(mod_h2r) <- h2nm
-Npeels<-5
-
-# ret2 <- retro(model = mod_h2r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
-
-load(paste0("results/",h2nm,"_retrospective.RData"))
-ret2<-output
-pdf(paste0("results/",h2nm,"_Retro.pdf"))
-plot(ret2) # all plots
-dev.off()
-
-plot(ret2, var="SSB") # only SSB
-#install.packages("icesAdvice")
-#Calculation of Mohn's Rho courtesy of Arni Magnusson
-icesAdvice::mohn(ret2$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
-icesAdvice::mohn(ret2$Stock_2$SSB$var[,1,1:6],peel=5,details=T)
+icesAdvice::mohn(ret$Stock_1$SSB$var[,1,1:6],peel=5,details=T)

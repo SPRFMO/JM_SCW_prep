@@ -1,4 +1,15 @@
-h1nm <- geth(FinModName,"h1")
 
-h1.mod <- readJJM(h1nm, path = "config", input = "input")
-h1.diag <- diagnostics(h1.mod,plot=F)
+
+modnm <- 
+
+mod <- readJJM(modnm, path = "config", input = "input")
+diag <- diagnostics(mod,plot=F)
+dev.off()
+
+# names(diag)
+plot(diag, var = "ageFitsCatch")
+plot(diag, var = "lengthFitsCatch")
+plot(diag, var = "ageFitsSurvey")
+plot(diag, var = "predictedObservedIndices")
+plot(diag, var = "ssbPrediction")
+plot(diag, var = "catchPrediction")
