@@ -1876,7 +1876,7 @@ PROCEDURE_SECTION
   Get_Fishery_Predictions();
   // Objective function calcs------------
   evaluate_the_objective_function();
-  // if (last_phase()) Get_Replacement_Yield();
+  if (last_phase()) Get_Replacement_Yield();
 
   // Output calcs-------------------------
   // if (sd_phase()) // this gets executed in mcmc too
@@ -2050,41 +2050,40 @@ FUNCTION dvar_matrix ALK(dvar_vector& mu, dvar_vector& sig, dvector& x)
 FUNCTION Get_Replacement_Yield
   // compute next year's yield and SSB and add penalty to ensure F gives same SSB... 
   dvar_matrix ntmp(1,nstk,1,nages);
-  for (s=1;s<=nstk;s++)
-    ntmp(s) = natage(s,endyr+1);
   dvariable SSBnext;
   dvar_matrix Ftmp(1,nfsh,1,nages);
   dvar_matrix Ctmp(1,nstk,1,nages);
   dvar_matrix Ztmp(1,nstk,1,nages);
   dvar_matrix Stmp(1,nstk,1,nages);
   Ctmp.initialize();
-  for (s=1;s<=nstk;s++)
-    Ztmp(s)  = M(s,endyr);
   dvar_vector sumF(1,nstk);
   sumF.initialize();
   for (k=1;k<=nfsh;k++)
     sumF(sel_map(1,k)) += sum(F(k,endyr));
-  for (k=1;k<=nfsh;k++)
-  {
-    int istk   = sel_map(1,k);
-    Ftmp(k)    = repl_F(istk)*sum(F(k,endyr)) / sumF(istk);
-    Ztmp(istk)+= Ftmp(k);
-  }
-  Stmp = mfexp(-Ztmp);
-  for (k=1;k<=nfsh;k++)
-  {
-    int istk = sel_map(1,k);
-    Ctmp(istk) += elem_prod(wt_fsh(k,endyr),elem_prod(elem_div(Ftmp(k),Ztmp(istk)),elem_prod(1.-Stmp(istk),ntmp(istk))) );
-  }
-  for (s=1;s<=nstk;s++)
-  {
+  for (s=1;s<=nstk;s++) 
+	{
+    ntmp(s) = natage(s,endyr+1);
+    Ztmp(s)  = M(s,endyr);
+    for (k=1;k<=nfsh;k++)
+    {
+      int istk   = sel_map(1,k);
+      Ftmp(k)    = repl_F(istk)*sum(F(k,endyr)) / sumF(istk);
+      Ztmp(istk)+= Ftmp(k);
+    }
+    Stmp = mfexp(-Ztmp);
+		// Need to loop over fisheries again w/ total mortality (Ztmp)
+    for (k=1;k<=nfsh;k++)
+    {
+      int istk = sel_map(1,k);
+      Ctmp(istk) += elem_prod(wt_fsh(k,endyr),elem_prod(elem_div(Ftmp(k),Ztmp(istk)),elem_prod(1.-Stmp(istk),ntmp(istk))) );
+    }
     repl_yld(s) = sum(Ctmp(s)) ;
     ntmp(s)(2,nages) = ++elem_prod(Stmp(s)(1,nages-1),ntmp(s)(1,nages-1));
     ntmp(s,nages)   += ntmp(s,nages)*Stmp(s,nages);
     ntmp(s,1)        = mean(mod_rec(s));
     repl_SSB(s)  = elem_prod(ntmp(s), pow(Stmp(s),spmo_frac)) * wt_mature(s); 
-    obj_fun  += 200.*square(log(Sp_Biom(s,endyr))-log(repl_SSB(s)));
   }
+    obj_fun  += 200.*square(log(Sp_Biom(s,endyr))-log(repl_SSB(s)));
   
 FUNCTION Get_Selectivity
   // Calculate the logistic selectivity (Only if being used...)   
@@ -3907,7 +3906,6 @@ FUNCTION write_mceval_hdr
 
 //+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+==+ 
 REPORT_SECTION
-  if (last_phase()) Get_Replacement_Yield();
   report <<"P1" <<endl<<sel_p1_fsh<<endl;
   report <<"P2" <<endl<<sel_p2_fsh<<endl;
   report <<"P3" <<endl<<sel_p3_fsh<<endl;
@@ -5526,23 +5524,24 @@ FUNCTION Write_R
       {
         double lb=value(totbiom_NoFish(s,i)/exp(2.*sqrt(log(1+square(totbiom_NoFish.sd(s,i))/square(totbiom_NoFish(s,i))))));
         double ub=value(totbiom_NoFish(s,i)*exp(2.*sqrt(log(1+square(totbiom_NoFish.sd(s,i))/square(totbiom_NoFish(s,i))))));
-
         R_report<<"Total_Biom_Nofishing "<<i<<" "<<totbiom_NoFish(s,i)<<" "<<totbiom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+
                lb=value(Sp_Biom_NoFishRatio(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFishRatio.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
                ub=value(Sp_Biom_NoFishRatio(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFishRatio.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
-
         R_report<<"SSB0_Dynamic "       <<i<<" "<<Sp_Biom_NoFishRatio(s,i)<<" "<< Sp_Biom_NoFishRatio.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
-               lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
-               ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFishRatio(s,i))))));
 
-        R_report<<"SSB_Nofishing "       <<i<<" "<<Sp_Biom_NoFish(s,i)<<" "<< Sp_Biom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
                lb=value(Sp_Biom_NoFish(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
                ub=value(Sp_Biom_NoFish(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom_NoFish.sd(s,i))/square(Sp_Biom_NoFish(s,i))))));
+        R_report<<"SSB_Nofishing "       <<i<<" "<<Sp_Biom_NoFish(s,i)<<" "<< Sp_Biom_NoFish.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
 
+               lb=value(totbiom(s,i)/exp(2.*sqrt(log(1+square(totbiom.sd(s,i))/square(totbiom(s,i))))));
+               ub=value(totbiom(s,i)*exp(2.*sqrt(log(1+square(totbiom.sd(s,i))/square(totbiom(s,i))))));
         R_report<<"Total_Biom    "       <<i<<" "<<totbiom(s,i)<<" "<<totbiom.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+
                lb=value(Sp_Biom(s,i)/exp(2.*sqrt(log(1+square(Sp_Biom.sd(s,i))/square(Sp_Biom(s,i))))));
                ub=value(Sp_Biom(s,i)*exp(2.*sqrt(log(1+square(Sp_Biom.sd(s,i))/square(Sp_Biom(s,i))))));
         R_report<<"SSB "                 <<i<<" "<<Sp_Biom(s,i)<<" "<<Sp_Biom.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
+
                lb=value(recruits(s,i)/exp(2.*sqrt(log(1+square(recruits.sd(s,i))/square(recruits(s,i))))));
                ub=value(recruits(s,i)*exp(2.*sqrt(log(1+square(recruits.sd(s,i))/square(recruits(s,i))))));
         R_report<<"Recruits "            <<i<<" "<<recruits(s,i)<<" "<<recruits.sd(s,i)<<" "<<lb<<" "<<ub<<endl;

@@ -1,35 +1,10 @@
 ---
 title: "Jack Mackerel Assessment SCW14"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-output:
-  html_document:
-    code_folding: hide
-    fig_caption: yes
-    number_sections: yes
-    theme: readable
-    toc: yes
-    toc_depth: 3
-    toc_float: yes
+output: 
+  word_document:
+    reference_docx:  ../report_template_v1.7.dotx
 ---
-
-```{css zoom-lib-src, echo = FALSE}
-script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-```
-
-```{js zoom-jquery, echo = FALSE}
- $(document).ready(function() {
-    $('body').prepend('<div class=\"zoomDiv\"><img src=\"\" class=\"zoomImg\"></div>');
-    // onClick function for all plots (img's)
-    $('img:not(.zoomImg)').click(function() {
-      $('.zoomImg').attr('src', $(this).attr('src')).css({width: '100%'});
-      $('.zoomDiv').css({opacity: '1', width: 'auto', border: '1px solid white', borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', marginRight: '-50%', transform: 'translate(-50%, -50%)', boxShadow: '0px 0px 50px #888888', zIndex: '50', overflow: 'auto', maxHeight: '100%'});
-    });
-    // onClick function for zoomImg
-    $('img.zoomImg').click(function() {
-      $('.zoomDiv').css({opacity: '0', width: '0%'}); 
-    });
-  });
-```
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(root.dir=here::here())
@@ -77,7 +52,7 @@ j.11  |   As 1.10 but removing recent age compositions from Chile AcousCS.
 
 
 
-```{r install_packages, eval=F, cache=F, echo=T}
+```{r install_packages, echo=FALSE, cache=FALSE}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
 devtools::install_github("SPRFMO/jjmR")
 
@@ -86,7 +61,7 @@ if(!'kableExtra' %in% installed.packages()) install.packages('kableExtra')
 
 You'll need to be in the `jjm/assessment` directory in order for the code here to run.
 
-```{r pkgs, echo=T}
+```{r pkgs, echo=FALSE}
 library(jjmR)
 library(tidyverse)
 library(kableExtra)
@@ -137,6 +112,7 @@ FinModName <- "1.11"
 ```
 
 ```{r eval=FALSE, include=FALSE}
+
 modnm <- "1.12"
 
 tmp1 <- runit(geth(modnm,"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
@@ -149,12 +125,12 @@ tmp2 <- runit(geth(modnm,"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 # Updated Age Data
 
-```{r}
+```{r echo=FALSE}
 mods2compare <- c("0.00","0.03")
 ```
 
 ## Single-stock hypothesis
-### Biomass
+
 ```{r, biomass_h1_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 hyp <- "h1"
 Dat_Prev <- compareModels(geth(mods2compare))
@@ -162,18 +138,18 @@ Dat_Prev <- compareModels(geth(mods2compare))
 plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Recruitment
 ```{r, recruitment_h1_datprev, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-### Fishing Mortality
 ```{r fmort_h1_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-## Two-stock hypothesis {.tabset}
-### Biomass
+\newpage
+
+## Two-stock hypothesis
+
 ```{r, biomass_h2_datprev, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1],"h2"), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 hyp <- "h2"
 Dat_Prev <- compareModels(geth(mods2compare))
@@ -181,16 +157,16 @@ Dat_Prev <- compareModels(geth(mods2compare))
 plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Recruitment
 ```{r, recruitment_h2_datprev, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-### Fishing Mortality
 ```{r fmort_h2_datprev, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 
 plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
+
+\newpage
 
 # Correcting Growth Parameters
 
@@ -198,8 +174,8 @@ plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 mods2compare <- c("0.03","0.04")
 ```
 
-## Single-stock hypothesis {.tabset}
-### Biomass
+## Single-stock hypothesis
+
 ```{r, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 hyp <- "h1"
 obj <- compareModels(geth(mods2compare))
@@ -207,18 +183,18 @@ obj <- compareModels(geth(mods2compare))
 plot(obj,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Recruitment
 ```{r, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 plot(obj,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-### Fishing Mortality
 ```{r fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 plot(obj,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-## Two-stock hypothesis {.tabset}
-### Biomass
+\newpage
+
+## Two-stock hypothesis
+
 ```{r, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1],"h2"), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 hyp <- "h2"
 obj <- compareModels(geth(mods2compare))
@@ -226,13 +202,39 @@ obj <- compareModels(geth(mods2compare))
 plot(obj,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Recruitment
 ```{r, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 plot(obj,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
-### Fishing Mortality
 ```{r fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
 
 plot(obj,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
+
+
+\newpage
+
+# Updated Age Data
+
+```{r}
+mods2compare <- c("0.00","1.13")
+```
+
+## Single-stock hypothesis
+
+```{r, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+hyp <- "h1"
+Dat_Prev <- compareModels(geth(mods2compare))
+
+plot(Dat_Prev,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+```{r, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(Dat_Prev,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))-1,".")}
+plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
