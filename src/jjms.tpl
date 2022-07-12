@@ -2047,43 +2047,115 @@ FUNCTION dvar_matrix ALK(dvar_vector& mu, dvar_vector& sig, dvector& x)
   //RETURN_ARRAYS_DECREMENT();
   return(pdf);
 //---------------------------------------------------------------------------
-FUNCTION Get_Replacement_Yield
+FUNCTION dvariable repl_ssb(dvariable& Ftrial,const int& istk)
   // compute next year's yield and SSB and add penalty to ensure F gives same SSB... 
-  dvar_matrix ntmp(1,nstk,1,nages);
+  dvar_vector ntmp(1,nages);
   dvariable SSBnext;
   dvar_matrix Ftmp(1,nfsh,1,nages);
-  dvar_matrix Ctmp(1,nstk,1,nages);
-  dvar_matrix Ztmp(1,nstk,1,nages);
-  dvar_matrix Stmp(1,nstk,1,nages);
+  dvar_vector Ctmp(1,nages);
+  dvar_vector Ztmp(1,nages);
+  dvar_vector Stmp(1,nages);
   Ctmp.initialize();
-  dvar_vector sumF(1,nstk);
-  sumF.initialize();
-  for (k=1;k<=nfsh;k++)
-    sumF(sel_map(1,k)) += sum(F(k,endyr));
-  for (s=1;s<=nstk;s++) 
+  //for (s=1;s<=nstk;s++) 
 	{
-    ntmp(s) = natage(s,endyr+1);
-    Ztmp(s)  = M(s,endyr);
+    ntmp = natage(istk,endyr+1);
+    Ztmp  = M(istk,endyr);
     for (k=1;k<=nfsh;k++)
     {
       int istk   = sel_map(1,k);
-      Ftmp(k)    = repl_F(istk)*sum(F(k,endyr)) / sumF(istk);
-      Ztmp(istk)+= Ftmp(k);
+      Ftmp(k)    = Ftrial*Fratio(k);
+      Ztmp      += Ftmp(k);
     }
     Stmp = mfexp(-Ztmp);
 		// Need to loop over fisheries again w/ total mortality (Ztmp)
     for (k=1;k<=nfsh;k++)
     {
       int istk = sel_map(1,k);
-      Ctmp(istk) += elem_prod(wt_fsh(k,endyr),elem_prod(elem_div(Ftmp(k),Ztmp(istk)),elem_prod(1.-Stmp(istk),ntmp(istk))) );
+      Ctmp    += elem_prod(wt_fsh(k,endyr),elem_prod(elem_div(Ftmp(k),Ztmp),elem_prod(1.-Stmp,ntmp)) );
     }
-    repl_yld(s) = sum(Ctmp(s)) ;
-    ntmp(s)(2,nages) = ++elem_prod(Stmp(s)(1,nages-1),ntmp(s)(1,nages-1));
-    ntmp(s,nages)   += ntmp(s,nages)*Stmp(s,nages);
-    ntmp(s,1)        = mean(mod_rec(s));
-    repl_SSB(s)  = elem_prod(ntmp(s), pow(Stmp(s),spmo_frac)) * wt_mature(s); 
+    repl_yld(istk) = sum(Ctmp) ;
+    ntmp(2,nages)  = ++elem_prod(Stmp(1,nages-1),ntmp(1,nages-1));
+    ntmp(nages)   += ntmp(nages)*Stmp(nages);
+    ntmp(1)        = mean(mod_rec(istk));
+    SSBnext        = elem_prod(ntmp, pow(Stmp,spmo_frac)) * wt_mature(istk); 
+	}
+	return(SSBnext);      
+
+
+FUNCTION Get_Replacement_Yield
+    int breakout=0;
+  // compute next year's yield and SSB and add penalty to ensure F gives same SSB... 
+    dvariable dssb;
+    dvariable dssbp;
+  double df=1.e-3;
+  dvariable F1 ;
+  F1.initialize();
+  F1 = .1; //Ojo: first regime //nreg(istk)
+  dvariable F2;
+  dvariable F3;
+  dvar_matrix ntmp(1,nstk,1,nages);
+  dvariable SSBnext;
+  dvar_matrix Ftmp(1,nfsh,1,nages);
+  dvar_matrix Ctmp(1,nstk,1,nages);
+  dvar_matrix Ztmp(1,nstk,1,nages);
+  dvar_matrix Stmp(1,nstk,1,nages);
+    dvariable ssb1;
+    dvariable ssb2;
+    dvariable ssb3;
+  Ctmp.initialize();
+  dvar_vector sumF(1,nstk);
+	// Note that Fratio key to which stock is which is in sel_map, this makes it work...
+  sumF.initialize();
+  for (k=1;k<=nfsh;k++)
+    sumF(sel_map(1,k)) += sum(F(k,endyr));
+  for (k=1;k<=nfsh;k++)
+    Fratio(k) = sum(F(k,endyr)) / sumF(sel_map(1,k));
+  for (s=1;s<=nstk;s++) 
+	{
+    // obj_fun  += 200.*square(log(Sp_Biom(s,endyr))-log(repl_SSB(s)));
+   // Newton Raphson stuff to go here
+    for (int ii=1;ii<=4;ii++)
+    {
+      if (mceval_phase()&&(F1>5||F1< -5)) 
+      {
+        ii=8;
+        if (F1>5) 
+					F1=5.0; 
+        else      
+					F1=-5.0; 
+        breakout    = 1;
+      }
+      F2     = F1 + df*.5;
+      F3     = F2 - df;
+      // yld1   = yield(Fratio,F1, Stmp,Rtmp); // yld2   = yield(Fratio,F2,Stmp,Rtmp); // yld3   = yield(Fratio,F3,Stmp,Rtmp);
+    // yld1   = -1000*square(log(spr_percent/spr_ratio(F1, sel_tmp,styr,istk)));
+    // yld2   = -1000*square(log(spr_percent/spr_ratio(F2, sel_tmp,styr,istk)));
+    // yld3   = -1000*square(log(spr_percent/spr_ratio(F3, sel_tmp,styr,istk)));
+   // sdreport_matrix Sp_Biom(1,nstk,styr_sp,endyr+1)
+      ssb1   = -1000*square(log(repl_ssb(F1,s)/Sp_Biom(s,endyr)));
+      ssb2   = -1000*square(log(repl_ssb(F2,s)/Sp_Biom(s,endyr)));
+      ssb3   = -1000*square(log(repl_ssb(F3,s)/Sp_Biom(s,endyr)));
+      // ssb2   = repl_ssb(F2,s);
+      // ssb3   = repl_ssb(F3,s);
+      dssb   = (ssb2 - ssb3)/df;                          // First derivative (to find the root of this)
+      dssbp  = (ssb2 + ssb3 - 2.*ssb1)/(.25*df*df);       // Second derivative (for Newton Raphson)
+      if (breakout==0)
+      {
+        F1    -= dssb/dssbp;
+      }
+      else
+      {
+        if (F1>5) 
+          cout<<"Frepl v. high "<< endl;// yld1<<" "<< yld2<<" "<< yld3<<" "<< F1<<" "<< F2<<" "<< F3<<" "<< endl;
+        else      
+          cout<<"Frepl v. low "<< endl;// yld1<<" "<< yld2<<" "<< yld3<<" "<< F1<<" "<< F2<<" "<< F3<<" "<< endl;
+      }
+    }
+		repl_F(s) = F1;
+		repl_SSB(s) = repl_ssb(F1,s);
+	  // cout << "SSB "<<repl_SSB(s) <<" "<<Sp_Biom(s,endyr)<<endl;
   }
-    obj_fun  += 200.*square(log(Sp_Biom(s,endyr))-log(repl_SSB(s)));
+
   
 FUNCTION Get_Selectivity
   // Calculate the logistic selectivity (Only if being used...)   
@@ -5475,6 +5547,7 @@ FUNCTION Write_R
     report_name = "For_R_"+ str(s) + ".rep";
     ofstream R_report(report_name);
     ofstream csv_report(report_csv);
+    R_report<< "$repl_F"<<endl<<repl_F(s)<<endl; 
     R_report<< "$repl_yld"<<endl<<repl_yld(s)<<endl; 
     R_report<< "$repl_SSB"<<endl<<repl_SSB(s)<<endl; 
     for (int k=1;k<=nfsh;k++)
