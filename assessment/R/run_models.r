@@ -4,7 +4,7 @@ library(jjmR)
 
 geth <- function(mod,h=hyp) paste0(h,"_", mod)
 
-modnm <- "1.12"
+modnm <- "0.04"
 
 tmp1 <- runit(geth(modnm,"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
