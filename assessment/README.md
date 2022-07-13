@@ -28,6 +28,8 @@ Model      | Description
 1.11	| 	As 1.10 but removing recent age compositions from Chile AcousCS.
 1.12	|	As 1.11 but Francis weights applied only in one iteration.
 1.13	|	As 1.12 but Francis weights applied second iteration
+1.14	|	As 1.13 but reduced selectivity variability in offshore fleet since data now only from 2015-2020
+
 
 
 ## 2021 SC09 Model runs
