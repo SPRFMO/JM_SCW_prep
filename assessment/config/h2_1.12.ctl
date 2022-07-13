@@ -1,5 +1,5 @@
 #dataFile 
-h2_1.12.dat 
+1.12.dat 
 #modelName 
 h2_1.12
 #nStocks 

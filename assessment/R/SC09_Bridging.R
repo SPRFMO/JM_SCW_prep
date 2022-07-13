@@ -25,7 +25,7 @@ geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 fn.bridge <- function(newmod, newmodname, h2mod=h2.ctl,ln.dat=line.dat, ln.modnm=line.modnm) {
 
   names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,"h1")
-  newmod[[1]]$control$dataFile <- h2mod[line.dat] <- paste0(newmodname,".dat")
+  newmod[[1]]$control$dataFile <- h2mod[ln.dat] <- paste0(newmodname,".dat")
 
   h2mod[ln.dat] <- paste0(newmodname, ".dat")
   h2mod[ln.modnm] <- geth(newmodname, "h2")
