@@ -53,7 +53,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 DATA_SECTION
-  !!version_info+="SPRFMO_Jack_Mackerel;May_2018";
+  !!version_info+="jjm model V1.00.00 July 2022";
   int iseed 
   !! iseed=1313;
   int cmp_no // candidate management procedure
