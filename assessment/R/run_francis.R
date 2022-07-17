@@ -54,13 +54,14 @@ fn_bridge(newmod, newmodnm)
 
 mods2compare <- c("h1_1.11","h2_1.11","h1_1.12","h2_1.12")
 comp.casos <-  compareModels(mods2compare)
-W_labels <- names(comp.casos[[1]]$output$Stock_1[c(3:8)]); W_labels
+ind <- grep("FW_",names(comp.casos[[1]]$output[[1]]))
+W_labels <- names(comp.casos[[1]]$output$Stock_1[ind]); W_labels
 cases.names <-  mods2compare; cases.names
 ##
 for(i in 1:length(mods2compare)){
     ##    
-    if(i==1){ Ws <- comp.casos[[i]]$output$Stock_1[c(3:8)]}
-    else {Ws<- cbind(Ws, comp.casos[[i]]$output$Stock_1[c(3:8)])}
+    if(i==1){ Ws <- comp.casos[[i]]$output$Stock_1[ind]}
+    else {Ws<- cbind(Ws, comp.casos[[i]]$output$Stock_1[ind])}
     ##
 }
 ##
