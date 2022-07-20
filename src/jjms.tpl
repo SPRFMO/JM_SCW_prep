@@ -145,7 +145,7 @@ DATA_SECTION
   !! nyrs          = endyr - styr + 1;
   int mc_count;
   !!  mc_count=0;
-  !! styr_rec = (styr - nages) + 1;     // First year of recruitment
+  !! styr_rec = (styr - nages) + rec_age;     // First year of recruitment
   !! styr_sp  = styr_rec - rec_age - 1 ;    // First year of spawning biomass  
   vector yy(styr,endyr);
   !! yy.fill_seqadd(styr,1) ;
