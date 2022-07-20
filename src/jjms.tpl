@@ -294,6 +294,8 @@ DATA_SECTION
   init_number spawnmo
   number spmo_frac
   !! spmo_frac = (spawnmo-1)/12.;
+  !! log_input(spawnmo);
+  !! log_input(spmo_frac);
 
   init_matrix age_err(1,nages,1,nages)
   !! log_input(age_err);
