@@ -1,8 +1,45 @@
 Jack mackerel assessment 
 =================================
-## 2022 SC10 Benchmark Model runs
+## 2022 SC10 Model runs
 ### Notes
 Benchmark in Seattle Jul 2022
+
+### Naming convention
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     | 	Exact 2021 (single stock `h1` and two-stock `h2`) model and data set (model 1.14) from benchmark SCW14.
+0.01     | 	As 0.00 but with revised catches through 2021 (currently still estimates)
+0.02     | 	As 0.01 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2021 fishery length composition data for FarNorth
+0.03     | 	As 0.02 but with updated 2021 weight at age data for all fisheries and their associated CPUE indices
+0.04     | 	As 0.03 but replaced offshore CPUE up to 2021
+0.05     |  As 0.04 but with updated AcousN 2021 index, with associated age composition and weight at age
+0.06     |  As 0.05 but with 2022 catch projections
+0.07     |  As 0.06 but with updated 2022 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2022 fishery length composition data for FarNorth
+0.08     |  As 0.07 but with updated 2022 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
+0.09     |  As 0.08 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.10     |  As 0.09 but replaced Peru_CPUE index
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
+1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (**NOT RUN**)
+1.03     | As 1.02 but M=0.45 (**NOT RUN**)
+1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
+**1.05**     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
+-----------|--------------
+**Models 1.xx.yy**| **Base Model Projections**
+**1.05**     |  Base model
+1.05.ll    |  As 1.05 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
+1.05.ls    |  As 1.05 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+1.05.hl    |  As 1.05 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))
+1.05.hs    |  As 1.05 but **h**igh steepness and **s**hort recruitment time series (2000-2015)
+-----------|--------------
+
+## 2022 SCW14 Benchmark Model runs
+### Notes
+Benchmark in Seattle Jul 2022.
 
 ### Naming convention
 
@@ -21,13 +58,13 @@ Model      | Description
 1.04	|	As 1.00 but with pre-weighted sample sizes for composition data. (IP)
 1.05	|	As 1.04 but with sample sizes for composition data and CVs of index data based on expert judgement.
 1.06  	| 	As 1.03 but with the Chilean CPUE index that incorporates a 1% effort creep. (NH)
-1.07  	| 	As 1.04 but with the updated CVs on all the indices (Candidate for furture).
+1.07  	| 	As 1.04 but with the updated CVs on all the indices (Candidate for future).
 1.08  	| 	As 1.07 but with high weights on composition data (compare francis weights w/ 1.07).
 1.09  	| 	As 1.07 and 1.06 (combination) but with Peruvian CPUE index that incorporates a 1% effort creep, and updated CVs because the index series had changed
 1.10 	| 	As 1.09 with 5x the sample size (ie, 150, 250, 200) for the multinomials (composition data).
 1.11	| 	As 1.10 but removing recent age compositions from Chile AcousCS.
 1.12	|	As 1.11 but Francis weights applied only in one iteration.
-1.13	|	As 1.12 but Francis weights applied second iteration
+**1.13**	|	As 1.12 but Francis weights applied second iteration
 1.14	|	As 1.13 but reduced selectivity variability in offshore fleet since data now only from 2015-2020
 
 
@@ -48,7 +85,7 @@ Model      | Description
 0.03     | 	As 0.02 but with updated 2020 weight at age data for all fisheries and their associated CPUE indices
 0.04     | 	As 0.03 but replaced offshore CPUE up to 2020
 0.05     |  As 0.04 but with 2021 catch projections
-0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2021 fishery length composition data for FarNorth
 0.07     |  As 0.06 but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
 0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.09     |  As 0.08 but replaced Peru_CPUE index

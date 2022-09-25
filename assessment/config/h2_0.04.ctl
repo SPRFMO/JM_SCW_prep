@@ -1,5 +1,5 @@
 #dataFile 
-0.03.dat 
+0.04.dat
 #modelName 
 h2_0.04
 #nStocks 
