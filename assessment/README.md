@@ -2,7 +2,7 @@ Jack mackerel assessment
 =================================
 ## 2022 SC10 Model runs
 ### Notes
-Benchmark in Seattle Jul 2022
+Update assessment in Seoul. Excel file contanining the data files to be created.
 
 ### Naming convention
 
@@ -22,20 +22,7 @@ Model      | Description
 0.10     |  As 0.09 but replaced Peru_CPUE index
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
-1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
-1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (**NOT RUN**)
-1.03     | As 1.02 but M=0.45 (**NOT RUN**)
-1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
-**1.05**     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
------------|--------------
-**Models 1.xx.yy**| **Base Model Projections**
-**1.05**     |  Base model
-1.05.ll    |  As 1.05 but **l**ow steepness and **l**ong recruitment time series (1970-2015)
-1.05.ls    |  As 1.05 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
-1.05.hl    |  As 1.05 (i.e., **h**igh steepness and **l**ong recruitment time series (1970-2015))
-1.05.hs    |  As 1.05 but **h**igh steepness and **s**hort recruitment time series (2000-2015)
------------|--------------
+1.00     | Update model (selectivity changes, recruitment) to 2022; 0.10 data file
 
 ## 2022 SCW14 Benchmark Model runs
 ### Notes
