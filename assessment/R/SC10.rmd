@@ -38,7 +38,7 @@ knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.h
 
 This document was compiled in `RMarkdown`, and shows the incremental results of the Chilean Jack Mackerel (*Trachurus murphyi*) stock assessment update in `r format(Sys.time(), "%Y")`. The files associated with this document can be found on [Github](https://github.com/SPRFMO/jjm/tree/master/assessment).
 
-Annoted data files can be found in the Excel spreadsheet `JM Data files for SC10.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
+Annoted data files can be found in the Excel spreadsheet `SC10_datfiles.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
 
 The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC09_Bridging.R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC10_Bridging.R). Should you choose to run the models, please ensure that you have:
 
@@ -85,11 +85,6 @@ library(jjmR)
 library(tidyverse)
 library(kableExtra)
 
-# MP note: normally I never use setwd in rmarkdown because it has unexpected behaviour. 
-# I thought you would always end up in the jjm rootdirectory if you start up the markdown file?
-# I cannot change the working directory by using setwd() ??
-# LQ It might depend on the programme you use to open the file? Would be great if someone could test if this runs.
-
 pwd <- getwd()
 # if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
 #   stop(paste("Set working directory to jjm/assessment"))
@@ -131,11 +126,11 @@ fixed_bmsy <- function(mod,refpt=5500){
   return(mod)
 }
 
-FinModName <- "1.05"
+FinModName <- "1.00"
 
 ```
 
-# Re-running Last Year's Model (a sanity check)
+# Re-running Benchmark Model (a sanity check)
 Re-running the `r as.numeric(format(Sys.time(), "%Y"))-1` model and comparing the results with that year's SC meeting.
 
 
@@ -150,14 +145,18 @@ mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
 # save(mod_prev, file="results/mod_prev_h1.Rdat")
 
 load("results/mod_prev_h1.Rdat")
+names(mod_prev) <- mod_prev[[1]]$control$modelName <- "mod_prev"
+
+load("results/mod_bench_h1.Rdat")
+names(mod_bench) <- mod_bench[[1]]$control$modelName <- "mod_bench"
 
 ```
 ### Biomass
 
 ```{r biomass_h1_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
 
-oldnewMods <- combineModels(mod0.00,mod_prev)
-
+oldnewMods <- combineModels(mod0.00,mod_prev,mod_bench) %>%
+                changeNameModel(c("SC10 mod0.00","SC09 mod1.05","SCW14 mod 1.13"))
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 
 ```
@@ -179,7 +178,14 @@ plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 hyp <- "h2"
 mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
 
+# mod_prev <- readJJM(geth("1.00"), path = "config", input = "input")
+# save(mod_prev, file="results/mod_prev_h2.Rdat")
+
 load("results/mod_prev_h2.Rdat")
+names(mod_prev) <- mod_prev[[1]]$control$modelName <- "mod_prev"
+
+load("results/mod_bench_h2.Rdat")
+names(mod_bench) <- mod_bench[[1]]$control$modelName <- "mod_bench"
 
 ```
 
@@ -187,7 +193,8 @@ load("results/mod_prev_h2.Rdat")
 
 ```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
 
-oldnewMods <- combineModels(mod0.00,mod_prev)
+combineModels(mod0.00,mod_prev,mod_bench) %>%
+                changeNameModel(geth(c("SC10 mod0.00","SC09 mod1.05","SCW14 mod 1.13")))
 
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 
@@ -214,7 +221,7 @@ The most updated table of model runs can be found on [Github](https://github.com
 The data updated to `r as.numeric(format(Sys.time(), "%Y"))-1` include catch estimates, age and length compositions, and indices of abundance. 
 
 ```{r}
-mods2compare <- c("0.00","0.01","0.02","0.03", "0.04")
+mods2compare <- c("0.00","0.01","0.02","0.03", "0.04","0.05")
 ```
 
 ### Single-stock hypothesis {.tabset}
@@ -260,7 +267,7 @@ plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 The data updated to `r as.numeric(format(Sys.time(), "%Y"))` include projected catch estimates, age and length compositions, and indices of abundance. 
 
 ```{r}
-mods2compare <- c("0.04","0.05","0.06","0.07", "0.08", "0.09", "0.10")
+mods2compare <- c("0.05","0.06","0.07", "0.08", "0.09", "0.10")
 ```
 
 ### Single-stock hypothesis {.tabset}
@@ -307,7 +314,7 @@ plot(Dat_Curr,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ## Stepping through the CPUE replacements
 ### SC Chile CPUE
 ```{r, fig.height=3}
-mods2compare <- c("0.07", "0.08")
+mods2compare <- c("0.08", "0.09")
 
 fn.plotind(mods2compare, "Chile_CPUE")
 
@@ -353,7 +360,7 @@ plot(Chile_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 ### Peru CPUE
 ```{r, fig.height=3}
-mods2compare <- c("0.08", "0.09")
+mods2compare <- c("0.09", "0.10")
 
 fn.plotind(mods2compare, "Peru_CPUE")
 
@@ -537,297 +544,62 @@ plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-# Sensitivity Analyses
+# Sensitivity Analyses?
 
-## Chile's Revised Age Data ("Antiguo")
-
-* Updated age composition and weight at age for Chile_SC and Chile_N fleets, and also for AcousCS and AcousN surveys
-* Sample sizes remained the same
-* Current year is downweighted, as usual
-* 2021 data in 1.00 are already from the "antiguo" method
-* **The data for Chile_AcousCS include 2010, 2011, 2012, 2017, and 2020. But this index hasn't been updated in the assessment since 2009, due to changes in sampling design. These data are thus ignored for the time being.**
-* **The data for Chile_AcousN are missing updated information for 2008, 2010, 2011, and 2012.**
-
-
-```{r}
-mods2compare <- c("1.00","1.01")
-```
-
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-Antiguo <- compareModels(geth(mods2compare,"h1"))
-
-plot(Antiguo,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(Antiguo,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r }
-plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-Antiguo <- compareModels(geth(mods2compare,"h2"))
-
-plot(Antiguo,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(Antiguo,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r}
-plot(Antiguo,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-## Chile's New Age Data ("Validacion")
-```{r}
-mods2compare <- c("1.01","1.02","1.03")
-Validacion <- compareModels(geth(mods2compare,"h1"))
-```
-
-* Updated age composition and weight at age for Chile_SC and Chile_N fleets, and also for AcousCS and AcousN surveys
-* Sample sizes remained the same
-* Current year is downweighted, as usual
-* Natural Mortality updated to 0.35 (per the data workshop)
-* Maturity at age was not provided, so the values for the FarNorth stock under the two-stock hypothesis were used.
-* Population weight at age was uncertain. The validacion data were pooled across years (summed catch numbers at age multiplied by catch weight at age divided by summed catch numbers at age), and the mean weights at age were calculated in the interim.
-* Code for this setup is shown in `SC09.R`.
-
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r }
-plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-Validacion <- compareModels(geth(mods2compare,"h2"))
-
-plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r}
-plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-## Chile's New Age Data ("Validacion") but higher Natural Mortality
-```{r}
-mods2compare <- c("1.01","1.02","1.03")
-```
-
-* Updated age composition and weight at age for Chile_SC and Chile_N fleets, and also for AcousCS and AcousN surveys
-* Sample sizes remained the same
-* Current year is downweighted, as usual
-* Natural Mortality updated to **0.45** (per the data workshop)
-* Maturity at age was not provided, so the values for the FarNorth stock under the two-stock hypothesis were used.
-
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-Validacion <- compareModels(geth(mods2compare,"h1"))
-
-plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r }
-plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-Validacion <- compareModels(geth(mods2compare,"h2"))
-
-plot(Validacion,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(Validacion,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r}
-plot(Validacion,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-## Addressing CPUE Uncertainty
-
-With the revised Chilean age data that used the "antiguo" method, but the final year of each CPUE index was downweighted, doubling the CV from 0.2 to 0.4.
-
-```{r}
-mods2compare <- c("1.01","1.04")
-```
-
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-cpue.dw <- compareModels(geth(mods2compare,"h1"))
-
-plot(cpue.dw,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(cpue.dw,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r }
-plot(cpue.dw,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-cpue.dw <- compareModels(geth(mods2compare,"h2"))
-
-plot(cpue.dw,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(cpue.dw,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r}
-plot(cpue.dw,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-## Northern Chile Weight at Age
-
-The final two years of weight at age for the northern Chilean fleet appeared to be out of the ordinary. They are now fixed to the weight at age from 2019.
-
-```{r}
-mods2compare <- c("1.04","1.05")
-```
-
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-wtatage <- compareModels(geth(mods2compare,"h1"))
-
-plot(wtatage,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(wtatage,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r }
-plot(wtatage,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r}
-wtatage <- compareModels(geth(mods2compare,"h2"))
-
-plot(wtatage,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r}
-plot(wtatage,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r}
-plot(wtatage,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
 
 # Final Model
 Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`. This model incorporates:
 
-* revised "antiguo" Chilean age data,
-* increased uncertainty for final year CPUE data points, and
-* 2019 revised "antiguo" age data for the 2020 and 2021 N_Chile fishery.
 
 ## Single-Stock Hypothesis
 ```{r results=F}
 h1nm <- geth(FinModName,"h1")
 
-h1.mod <- readJJM(h1nm, path = "config", input = "input")
-h1.diag <- diagnostics(h1.mod,plot=F)
+h1_mod <- readJJM(h1nm, path = "config", input = "input")
+h1_diag <- diagnostics(h1_mod,plot=F)
 
 ```
 ### Fits to Data {.tabset}
 #### Fishery Age Composition
 ```{r}
-plot(h1.diag, var = "ageFitsCatch")
+plot(h1_diag, var = "ageFitsCatch")
 ```
 
 #### Fishery Length Composition
 ```{r}
-plot(h1.diag, var = "lengthFitsCatch")
+plot(h1_diag, var = "lengthFitsCatch")
 ```
 
 #### Survey Age Composition
 ```{r}
-plot(h1.diag, var = "ageFitsSurvey")
+plot(h1_diag, var = "ageFitsSurvey")
 ```
 
 #### Index Data
 ```{r}
-plot(h1.diag, var = "predictedObservedIndices")
+plot(h1_diag, var = "predictedObservedIndices")
 ```
 
 ### Projections {.tabset}
-```{r}
+<!-- ```{r}
 h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")
 
 h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
 h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
-```
+``` -->
 
 #### SSB
 ```{r}
-plot(h1.diag, var = "ssbPrediction")
+plot(h1_diag, var = "ssbPrediction")
 ```
 
 #### Catch
 ```{r}
-plot(h1.diag, var = "catchPrediction")
+plot(h1_diag, var = "catchPrediction")
 ```
 
 ### Risk Table
-```{r}
+<!-- ```{r}
 # From jjmR::report()
 table   = summary(h1_modls, Projections = TRUE,
                   Fmult=c(0, "FMSY", .75, 1, 1.25))$proj[[1]]
@@ -860,103 +632,104 @@ NamesCol = c(NameFs, NameBs, NameCt)
 for(i in seq_along(table)){
   colnames(table[[i]]) = NamesCol  
 }
-```
+``` -->
 
-```{r, results="asis"}
+
+<!-- ```{r, results="asis"}
 knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
-```
+``` -->
 
 Note that BMSY is set to the interim level of 5500 kt in this scenario.
 
 ### Kobe Plot
 ```{r}
-kobe(fixed_bmsy(h1.mod))
+kobe(fixed_bmsy(h1_mod), engine="ggplot")
 ```
 
 Note that BMSY is set to the interim level of 5500 kt in this scenario.
 
 ### Summary Plot
 ```{r}
-bmsy.diag <- diagnostics(fixed_bmsy(h1.mod), plots = F)
+bmsy.diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
 plot(bmsy.diag, var = "summarySheet")
 ```
 
 ### Retrospective
 #### Model Retrospective {.tabset}
-```{r}
+<!-- ```{r}
 load(file = paste0("results/", h1nm, "_retrospective", ".RData"))
 h1.retro <- output
-```
+``` -->
 
 ##### SSB
-```{r}
+<!-- ```{r}
 plot(h1.retro, var = "SSB")
-```
+``` -->
 
 ##### Recruitment
-```{r}
+<!-- ```{r}
 plot(h1.retro, var = "R")
-```
+``` -->
 
 #### Historical Retrospective {.tabset}
 ##### Derived Quantities 
-```{r}
+<!-- ```{r}
 source("R/plot_historicretro.R")
 print(pg)
-```
+``` -->
 
 ##### Reference Points
-```{r}
+<!-- ```{r}
 print(pg2)
-```
+``` -->
 
 ## Two-Stock Hypothesis
 
 ```{r results=F}
-h2nm <- "h2_1.05"
+h2nm <- geth(FinModName,"h2")
 
-h2.mod <- readJJM(h2nm,path = "config", input = "input")
-h2.diag <- diagnostics(h2.mod, plots=F)
+h2_mod <- readJJM(h2nm,path = "config", input = "input")
+h2_diag <- diagnostics(h2_mod, plots=F)
 ```
 
 ### Fits to Data {.tabset}
 #### Fishery Age Composition
 ```{r}
-plot(h2.diag, var = "ageFitsCatch")
+plot(h2_diag, var = "ageFitsCatch")
 ```
 
 #### Fishery Length Composition
 ```{r}
-plot(h2.diag, var = "lengthFitsCatch")
+plot(h2_diag, var = "lengthFitsCatch")
 ```
 
 #### Survey Age Composition
 ```{r}
-plot(h2.diag, var = "ageFitsSurvey")
+plot(h2_diag, var = "ageFitsSurvey")
 ```
 
 #### Index Data
 ```{r}
-plot(h2.diag, var = "predictedObservedIndices")
+plot(h2_diag, var = "predictedObservedIndices")
 ```
 
 ### Projections {.tabset}
-```{r}
+<!-- ```{r}
 h2_modls <- readJJM(geth(paste0(FinModName,".ls"),"h2"), path = "config", input = "input")
-```
+``` -->
 
 #### SSB
 ```{r}
-plot(h2.diag, var = "ssbPrediction")
+plot(h2_diag, var = "ssbPrediction")
 ```
 
 #### Catch
 ```{r}
-plot(h2.diag, var = "catchPrediction")
+plot(h2_diag, var = "catchPrediction")
 ```
 
 ### Risk Table {.tabset}
-```{r}
+<!-- ```{r}
 # From jjmR::report()
 table   = summary(h2_modls, Projections = TRUE,
                   Fmult=c(0, "FMSY", .75, 1, 1.25))$proj[[1]]
@@ -990,57 +763,51 @@ for(i in seq_along(table)){
   colnames(table[[i]]) = NamesCol  
 }
 
-```
+``` -->
 
 #### Stock_1
-```{r, results="asis"}
+<!-- ```{r, results="asis"}
 knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
-```
+``` -->
 
 #### Stock_2
-```{r, results="asis"}
+<!-- ```{r, results="asis"}
 knitr::kable(table[[2]], align="c") %>% kableExtra::kable_styling()
 ```
-
-### Kobe Plot {.tabset}
-#### Stock_1
+ -->
+### Kobe Plot
 ```{r}
-kobe(h2.mod, stock=1)
-```
-
-#### Stock_2
-```{r}
-kobe(h2.mod, stock=2)
+kobe(h2_mod, engine="ggplot") + facet_wrap(~stock, scale="free")
 ```
 
 ### Summary Plot
 ```{r}
-plot(h2.diag, var = "summarySheet")
+plot(h2_diag, var = "summarySheet")
 ```
 
 ### Retrospective
 #### Model Retrospective {.tabset}
-```{r}
+<!-- ```{r}
 load(file = paste0("results/", h2nm, "_retrospective", ".RData"))
 h2.retro <- output
-```
+``` -->
 
 ##### SSB
-```{r}
+<!-- ```{r}
 plot(h2.retro, var = "SSB")
-```
+``` -->
 
 ##### Recruitment
-```{r}
+<!-- ```{r}
 plot(h2.retro, var = "R")
-```
+``` -->
 
 ## Likelihood Table
-```{r results="asis"}
-LL <- cbind(summary(h1.mod)$like,summary(h2.mod)$like)
+<!-- ```{r results="asis"}
+LL <- cbind(summary(h1_mod)$like,summary(h2_mod)$like)
 
 knitr::kable(LL) %>% kableExtra::kable_styling()
-```
+``` -->
 
 # Other Business
 ## General
@@ -1048,7 +815,5 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 
 
 ## Other models to run
-* Sensitivities to new age data as discussed in the data workshop
-
 
 

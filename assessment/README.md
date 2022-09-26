@@ -32,7 +32,7 @@ Benchmark in Seattle Jul 2022.
 
 Model      | Description
 -----------|--------------
-0.00	|	Exact 2021 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC09)
+0.00	|	Exact 2021 (single stock `h1` and two-stock `h2`) model and data set through 2021 (mod1.0 from SC09)
 0.01	|	As 0.00 but with the model beginning at age-0.
 0.02	|	As **0.01** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; downweighting DEPM.
 0.03	|	As **0.00** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25;  downweighting DEPM.
