@@ -70,6 +70,7 @@ Model      | Description
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00     | Update model (selectivity changes, recruitment) to 2022; 0.10 data file
+1.01   |  Correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
 
 ```{r install_packages, eval=F, cache=F, echo=T}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
