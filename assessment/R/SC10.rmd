@@ -40,7 +40,7 @@ This document was compiled in `RMarkdown`, and shows the incremental results of 
 
 Annoted data files can be found in the Excel spreadsheet `SC10_datfiles.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
 
-The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC09_Bridging.R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC10_Bridging.R). Should you choose to run the models, please ensure that you have:
+The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC10_Bridging.R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC10_Bridging.R). Should you choose to run the models, please ensure that you have:
 
 * Compiled the latest `jjm/src/jjms.tpl`
   - This can be done by navigating to the `jjm/src` folder in your Terminal, and using the `make` command
@@ -126,7 +126,7 @@ fixed_bmsy <- function(mod,refpt=5500){
   return(mod)
 }
 
-FinModName <- "1.00"
+FinModName <- "1.01"
 
 ```
 
@@ -193,7 +193,7 @@ names(mod_bench) <- mod_bench[[1]]$control$modelName <- "mod_bench"
 
 ```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev), ") with a re-run of the model this year (", names(mod0.00),").")}
 
-combineModels(mod0.00,mod_prev,mod_bench) %>%
+oldnewMods <- combineModels(mod0.00,mod_prev,mod_bench) %>%
                 changeNameModel(geth(c("SC10 mod0.00","SC09 mod1.05","SCW14 mod 1.13")))
 
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
@@ -542,6 +542,52 @@ plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```{r fmort_h2_base, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model  (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
 
 plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+# Correcting Growth Parameters
+Peru found a mistake in the growth parameters- we had been applying growth parameters for Total Length to Fork Length data. Model 1.01 corrects this error.
+
+```{r}
+mods2compare <- c("1.00","1.01")
+```
+## Single-stock hypothesis {.tabset}
+### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates using TL growth parameters  (", geth(mods2compare[1]), ") to using FL parameters (",geth(mods2compare[2]),").")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates using TL growth parameters  (", geth(mods2compare[1]), ") to using FL parameters (",geth(mods2compare[2]),").")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates using TL growth parameters  (", geth(mods2compare[1]), ") to using FL parameters (",geth(mods2compare[2]),").")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Two-stock hypothesis {.tabset}
+### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated using TL growth parameters  (", geth(mods2compare[1]), ") to using FL parameters (",geth(mods2compare[2]),").")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment using TL growth parameters  (", geth(mods2compare[1]), ") to using FL parameters (",geth(mods2compare[2]),").")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated using TL growth parameters  (", geth(mods2compare[1]), ") to using FL parameters (",geth(mods2compare[2]),").")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 # Sensitivity Analyses?

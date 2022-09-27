@@ -2,7 +2,7 @@ Jack mackerel assessment
 =================================
 ## 2022 SC10 Model runs
 ### Notes
-Update assessment in Seoul. Excel file contanining the data files to be created.
+Update assessment in Seoul. Excel file contanining the data files can be found at `assessment/data/SC10_datfiles.xlsx`.
 
 ### Naming convention
 
@@ -23,6 +23,7 @@ Model      | Description
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00     | Update model (selectivity changes, recruitment) to 2022; 0.10 data file
+1.01	 |	Correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
 
 ## 2022 SCW14 Benchmark Model runs
 ### Notes
@@ -42,7 +43,7 @@ Model      | Description
 1.01	|	As 1.00 but with changes in selectivity. (JNI)
 1.02	|	As 1.00 but with age-varying M (Chen and Watanabe method; scaled to 0.28 (average over entire vector)). (NH)
 1.03	|	As 1.00 but with the new offshore CPUE index that incorporates effort creep. (MP)
-1.04	|	As 1.00 but with pre-weighted sample sizes for composition data. (IP)
+1.04	|	As 1.03 but with pre-weighted sample sizes for composition data. (IP)
 1.05	|	As 1.04 but with sample sizes for composition data and CVs of index data based on expert judgement.
 1.06  	| 	As 1.03 but with the Chilean CPUE index that incorporates a 1% effort creep. (NH)
 1.07  	| 	As 1.04 but with the updated CVs on all the indices (Candidate for future).
