@@ -882,3 +882,7 @@ Chile_AcousCS%Chile_AcousN%Chile_CPUE%DEPM%Peru_Acoustic%Peru_CPUE%Offshore_CPUE
 0 0 0 0 0 0 0.002 0.0405 0.2405 0.4339 0.2405 0.0426 
 0 0 0 0 0 0 0 0.0025 0.0439 0.2413 0.4245 0.2877 
 0 0 0 0 0 0 0 1e-04 0.0031 0.0473 0.2418 0.7078 
+#fleet_names 
+ind ind ind ind ind ind ind fsh fsh fsh fsh 
+Chile_AcousCS Chile_AcousN Chile_CPUE DEPM Peru_Acoustic Peru_CPUE Offshore_CPUE N_Chile SC_Chile_PS FarNorth Offshore_Trawl 
+1 2 3 4 5 6 7 1 2 3 4 

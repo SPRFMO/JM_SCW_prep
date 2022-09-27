@@ -17,14 +17,14 @@ devtools::load_all()
 setwd(dir.jjm)
 
 
-modnm <- "h2_1.13"
+modnm <- "h2_1.02"
 
 mod <- readJJM(modnm, path = "config", input = "input")
 mod_r <- mod
 names(mod_r) <- modnm
 Npeels<-5
 
-# ret1 <- retro(model = mod_r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
+ret1 <- retro(model = mod_r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
 
 load(paste0("results/",modnm,"_retrospective.RData"))
 ret<-output

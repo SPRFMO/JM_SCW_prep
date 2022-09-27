@@ -22,8 +22,9 @@ Model      | Description
 0.10     |  As 0.09 but replaced Peru_CPUE index
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00     | Update model (selectivity changes, recruitment) to 2022; 0.10 data file
-1.01	 |	Correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
+1.00    |	As 0.10 but with updated model (selectivity changes, recruitment) to 2022; 0.10 data file
+1.01	|	As 1.00 but with correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
+1.02	|	As 1.01 but with added flexibility for offshore fleet
 
 ## 2022 SCW14 Benchmark Model runs
 ### Notes

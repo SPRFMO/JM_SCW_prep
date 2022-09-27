@@ -127,7 +127,7 @@ fixed_bmsy <- function(mod,refpt=5500){
   return(mod)
 }
 
-FinModName <- "1.01"
+FinModName <- "1.02"
 
 ```
 
@@ -597,7 +597,6 @@ plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 # Final Model
 Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`. This model incorporates:
 
-
 ## Single-Stock Hypothesis
 ```{r results=F}
 h1nm <- geth(FinModName,"h1")
@@ -628,12 +627,12 @@ plot(h1_diag, var = "predictedObservedIndices")
 ```
 
 ### Projections {.tabset}
-<!-- ```{r}
+```{r}
 h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")
 
 h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
 h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
-``` -->
+```
 
 #### SSB
 ```{r}
@@ -646,7 +645,7 @@ plot(h1_diag, var = "catchPrediction")
 ```
 
 ### Risk Table
-<!-- ```{r}
+```{r}
 # From jjmR::report()
 table   = summary(h1_modls, Projections = TRUE,
                   Fmult=c(0, "FMSY", .75, 1, 1.25))$proj[[1]]
@@ -679,12 +678,11 @@ NamesCol = c(NameFs, NameBs, NameCt)
 for(i in seq_along(table)){
   colnames(table[[i]]) = NamesCol  
 }
-``` -->
+```
 
-
-<!-- ```{r, results="asis"}
+```{r, results="asis"}
 knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
-``` -->
+```
 
 Note that BMSY is set to the interim level of 5500 kt in this scenario.
 
@@ -703,20 +701,20 @@ plot(bmsy.diag, var = "summarySheet")
 
 ### Retrospective
 #### Model Retrospective {.tabset}
-<!-- ```{r}
+```{r}
 load(file = paste0("results/", h1nm, "_retrospective", ".RData"))
 h1.retro <- output
-``` -->
+```
 
 ##### SSB
-<!-- ```{r}
+```{r}
 plot(h1.retro, var = "SSB")
-``` -->
+```
 
 ##### Recruitment
-<!-- ```{r}
+```{r}
 plot(h1.retro, var = "R")
-``` -->
+```
 
 #### Historical Retrospective {.tabset}
 ##### Derived Quantities 
@@ -728,8 +726,8 @@ print(pg)
 ##### Reference Points
 <!-- ```{r}
 print(pg2)
-``` -->
-
+```
+ -->
 ## Two-Stock Hypothesis
 
 ```{r results=F}
@@ -761,9 +759,9 @@ plot(h2_diag, var = "predictedObservedIndices")
 ```
 
 ### Projections {.tabset}
-<!-- ```{r}
+```{r}
 h2_modls <- readJJM(geth(paste0(FinModName,".ls"),"h2"), path = "config", input = "input")
-``` -->
+```
 
 #### SSB
 ```{r}
@@ -776,7 +774,7 @@ plot(h2_diag, var = "catchPrediction")
 ```
 
 ### Risk Table {.tabset}
-<!-- ```{r}
+```{r}
 # From jjmR::report()
 table   = summary(h2_modls, Projections = TRUE,
                   Fmult=c(0, "FMSY", .75, 1, 1.25))$proj[[1]]
@@ -810,18 +808,18 @@ for(i in seq_along(table)){
   colnames(table[[i]]) = NamesCol  
 }
 
-``` -->
+```
 
 #### Stock_1
-<!-- ```{r, results="asis"}
+```{r, results="asis"}
 knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
-``` -->
+```
 
 #### Stock_2
-<!-- ```{r, results="asis"}
+```{r, results="asis"}
 knitr::kable(table[[2]], align="c") %>% kableExtra::kable_styling()
 ```
- -->
+
 ### Kobe Plot
 ```{r}
 kobe(h2_mod, engine="ggplot") + facet_wrap(~stock, scale="free")
@@ -834,27 +832,27 @@ plot(h2_diag, var = "summarySheet")
 
 ### Retrospective
 #### Model Retrospective {.tabset}
-<!-- ```{r}
+```{r}
 load(file = paste0("results/", h2nm, "_retrospective", ".RData"))
 h2.retro <- output
-``` -->
+```
 
 ##### SSB
-<!-- ```{r}
+```{r}
 plot(h2.retro, var = "SSB")
-``` -->
+```
 
 ##### Recruitment
-<!-- ```{r}
+```{r}
 plot(h2.retro, var = "R")
-``` -->
+```
 
 ## Likelihood Table
-<!-- ```{r results="asis"}
+```{r results="asis"}
 LL <- cbind(summary(h1_mod)$like,summary(h2_mod)$like)
 
 knitr::kable(LL) %>% kableExtra::kable_styling()
-``` -->
+```
 
 # Other Business
 ## General
