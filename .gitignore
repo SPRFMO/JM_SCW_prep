@@ -77,3 +77,5 @@ assessment/R/SC08.html
 *.txt
 *.doc
 assessment/annex\ plots
+input/
+docs/Model_Notes.md
