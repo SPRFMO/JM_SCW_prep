@@ -120,13 +120,6 @@ fn.plotind <- function(mods2compare, indname) {
   print(p)
 }
 
-fixed_bmsy <- function(mod,refpt=5500){
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
 
 FinModName <- "1.02"
 
@@ -675,8 +668,6 @@ plot(h1_diag, var = "predictedObservedIndices")
 ```{r}
 h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")
 
-h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ 5500
-h1_modls[[1]]$output[[1]]$msy_mt[,10] <- 5500
 ```
 
 #### SSB
@@ -729,18 +720,15 @@ for(i in seq_along(table)){
 knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
 ```
 
-Note that BMSY is set to the interim level of 5500 kt in this scenario.
-
 ### Kobe Plot
 ```{r}
-kobe(fixed_bmsy(h1_mod), engine="ggplot")
+kobe(h1_mod, engine="ggplot")
 ```
 
-Note that BMSY is set to the interim level of 5500 kt in this scenario.
 
 ### Summary Plot
 ```{r}
-bmsy.diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
+bmsy.diag <- diagnostics(h1_mod, plots = F)
 plot(bmsy.diag, var = "summarySheet")
 ```
 
