@@ -120,6 +120,14 @@ fn.plotind <- function(mods2compare, indname) {
   print(p)
 }
 
+fixed_bmsy <- function(mod,refpt=5500){
+  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
+  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
+  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
+  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
+  return(mod)
+}
+
 
 FinModName <- "1.02"
 
@@ -593,7 +601,7 @@ mods2compare <- c("1.01","1.02")
 ```
 ## Single-stock hypothesis {.tabset}
 ### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+```{r, fig.cap=paste0("Plot comparing biomass estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),".")}
 hyp <- "h1"
 res <- compareModels(geth(mods2compare))
 
@@ -601,19 +609,19 @@ plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+```{r, fig.cap=paste0("Plot comparing recruitment estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),".")}
 plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 ### Fishing Mortality
-```{r, fig.cap=paste0("Plot comparing fishing mortality estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),".")}
 
 plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ## Two-stock hypothesis {.tabset}
 ### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimated for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+```{r, fig.cap=paste0("Plot comparing biomass estimated for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),".")}
 hyp <- "h2"
 res <- compareModels(geth(mods2compare))
 
@@ -621,19 +629,19 @@ plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+```{r, fig.cap=paste0("Plot comparing recruitment for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),".")}
 plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 ### Fishing Mortality
-```{r fig.cap=paste0("Plot comparing fishing mortality estimated for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),".")}
 
 plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 
 # Final Model
-Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`. This model incorporates:
+Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
 ## Single-Stock Hypothesis
 ```{r results=F}
@@ -641,6 +649,8 @@ h1nm <- geth(FinModName,"h1")
 
 h1_mod <- readJJM(h1nm, path = "config", input = "input")
 h1_diag <- diagnostics(h1_mod,plot=F)
+
+new_bmsy <- mean(rev(h1_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
 
 ```
 ### Fits to Data {.tabset}
@@ -668,6 +678,8 @@ plot(h1_diag, var = "predictedObservedIndices")
 ```{r}
 h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")
 
+h1_modls[[1]]$output[[1]]$msy_mt[,13] <- h1_modls[[1]]$output[[1]]$msy_mt[,12]/ new_bmsy
+h1_modls[[1]]$output[[1]]$msy_mt[,10] <- new_bmsy
 ```
 
 #### SSB
@@ -722,13 +734,14 @@ knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
 
 ### Kobe Plot
 ```{r}
-kobe(h1_mod, engine="ggplot")
+kobe(fixed_bmsy(h1_mod, new_bmsy), engine="ggplot")
 ```
 
+The BMSY for this year (an average of the most recent ten years) will be ***`r round(new_bmsy)`kt***.
 
 ### Summary Plot
 ```{r}
-bmsy.diag <- diagnostics(h1_mod, plots = F)
+bmsy.diag <- diagnostics(fixed_bmsy(h1_mod, new_bmsy), plots = F)
 plot(bmsy.diag, var = "summarySheet")
 ```
 
