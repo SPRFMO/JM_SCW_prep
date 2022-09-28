@@ -70,7 +70,8 @@ Model      | Description
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00     | Update model (selectivity changes, recruitment) to 2022; 0.10 data file
-1.01   |  Correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
+1.01  | As 1.00 but with correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
+1.02  | As 1.01 but with added flexibility for offshore fleet
 
 ```{r install_packages, eval=F, cache=F, echo=T}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
@@ -591,7 +592,51 @@ plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
-# Sensitivity Analyses?
+# Sensitivity Analyses
+Downweighting the selectivity change penalty and upweighting the final year age comp data for offshore fleet.
+
+```{r}
+mods2compare <- c("1.01","1.02")
+```
+## Single-stock hypothesis {.tabset}
+### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Two-stock hypothesis {.tabset}
+### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated for ", geth(mods2compare[1]), " and ",geth(mods2compare[2]),").")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
 
 
 # Final Model
