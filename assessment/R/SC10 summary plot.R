@@ -80,7 +80,7 @@ rp <-
   
   bind_rows(data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="SSB", Refpoint="Bmsy", 
                        Year=modls1[[1]]$output$Stock_1$msy_mt[,1],
-                       Value=8713)) %>% 
+                       Value=7819)) %>% 
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="south",Var="SSB", Refpoint="Bmsy south",
                        Year =modls2[[1]]$output$Stock_1$msy_mt[,1],
                        Value=modls2[[1]]$output$Stock_1$msy_mt[,10])) %>% 
