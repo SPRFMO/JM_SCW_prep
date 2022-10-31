@@ -2,7 +2,7 @@ Jack mackerel assessment
 =================================
 ## 2022 SC10 Model runs
 ### Notes
-Update assessment in Seoul. Excel file contanining the data files can be found at `assessment/data/SC10_datfiles.xlsx`.
+Update assessment in Seoul, Sep 2022. Excel file contanining the data files can be found at `assessment/data/SC10_datfiles.xlsx`.
 
 ### Naming convention
 
@@ -24,7 +24,12 @@ Model      | Description
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00    |	As 0.10 but with updated model (selectivity changes, recruitment) to 2022; 0.10 data file
 1.01	|	As 1.00 but with correct growth parameters to reflect FL (Linf=73.56; L0=13.56; SC10-Doc27 Peru National Report - ANJ)
-1.02	|	As 1.01 but with added flexibility for offshore fleet
+1.02	|	As 1.01 but with added flexibility for selectivity in the offshore fleet
+-----------|--------------
+**Models 1.xx.yy**| **Base Model Projections**
+**1.05**     |  Base model
+1.05.ls    |  As 1.05 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+-----------|--------------
 
 ## 2022 SCW14 Benchmark Model runs
 ### Notes

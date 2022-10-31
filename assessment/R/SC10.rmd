@@ -120,7 +120,8 @@ fn.plotind <- function(mods2compare, indname) {
   print(p)
 }
 
-fixed_bmsy <- function(mod,refpt=5500){
+fixed_bmsy <- function(mod, refpt=T){
+  if(refpt) refpt <- mean(rev(mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
   old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
   new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
   mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
@@ -653,6 +654,9 @@ h1_diag <- diagnostics(h1_mod,plot=F)
 new_bmsy <- mean(rev(h1_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
 
 ```
+
+The $B_MSY$ for this year (an average of the most recent ten years) will be ***`r round(new_bmsy)/1000`*** million tons.
+
 ### Fits to Data {.tabset}
 #### Fishery Age Composition
 ```{r}
@@ -737,7 +741,6 @@ knitr::kable(table[[1]], align="c") %>% kableExtra::kable_styling()
 kobe(fixed_bmsy(h1_mod, new_bmsy), engine="ggplot")
 ```
 
-The BMSY for this year (an average of the most recent ten years) will be ***`r round(new_bmsy)`kt***.
 
 ### Summary Plot
 ```{r}
@@ -764,16 +767,16 @@ plot(h1.retro, var = "R")
 
 #### Historical Retrospective {.tabset}
 ##### Derived Quantities 
-<!-- ```{r}
+```{r}
 source("R/plot_historicretro.R")
 print(pg)
-``` -->
+```
 
 ##### Reference Points
-<!-- ```{r}
+```{r}
 print(pg2)
 ```
- -->
+
 ## Two-Stock Hypothesis
 
 ```{r results=F}
@@ -867,7 +870,7 @@ knitr::kable(table[[2]], align="c") %>% kableExtra::kable_styling()
 ```
 
 ### Kobe Plot
-```{r}
+```{r, fig.width=8}
 kobe(h2_mod, engine="ggplot") + facet_wrap(~stock, scale="free")
 ```
 

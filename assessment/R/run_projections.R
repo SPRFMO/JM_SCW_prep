@@ -12,7 +12,8 @@ if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
 geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 
 # Function to put a constant reference point into image
-fixed_bmsy <- function(mod,refpt=5500){
+fixed_bmsy <- function(mod, refpt=T){
+  if(refpt) refpt <- mean(rev(mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
   old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
   new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
   mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
@@ -30,7 +31,7 @@ fn.update <- function(newmod, newmodname, h) {
 
 #---------
 
-FinModName <- "1.01"
+FinModName <- "1.02"
 FinMod_h1 <- readJJM(geth(FinModName,"h1"),path="config",input="input")
 FinMod_h2 <- readJJM(geth(FinModName,"h2"),path="config",input="input")
 
@@ -41,12 +42,12 @@ h1_modls[[1]]$control$Steepness[1,1] <- .65
 h1_modls[[1]]$control$Nyrs_sr <- 16
 h1_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
 
-fn.update(h1_modls, paste0(FinModName,".ls"),"h1")
-modls  <- runit(geth(paste0(FinModName,".ls"),"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# fn.update(h1_modls, paste0(FinModName,".ls"),"h1")
+# modls  <- runit(geth(paste0(FinModName,".ls"),"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 # Only do this for h1
 # Should not be setting BMSY for h2
-# Most of this is setting BMSY at the interim level
+# Most of this is setting BMSY at the average level for the last ten years.
 
 h1_modls <- readJJM(geth(paste0(FinModName,".ls"),"h1"), path = "config", input = "input")  %>% fixed_bmsy()
 
@@ -69,8 +70,8 @@ h2_modls[[1]]$control$Steepness[1,1:3] <- .65
 h2_modls[[1]]$control$Nyrs_sr[1] <- 16
 h2_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
 
-fn.update(h2_modls, paste0(FinModName,".ls"),"h2")
-modls  <- runit(geth(paste0(FinModName,".ls"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# fn.update(h2_modls, paste0(FinModName,".ls"),"h2")
+# modls  <- runit(geth(paste0(FinModName,".ls"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
 
 h2_modls <- readJJM(geth(paste0(FinModName,".ls"),"h2"), path = "config", input = "input")
 
