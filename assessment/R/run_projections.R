@@ -39,8 +39,8 @@ FinMod_h2 <- readJJM(geth(FinModName,"h2"),path="config",input="input")
 #---------
 h1_modls <- FinMod_h1
 h1_modls[[1]]$control$Steepness[1,1] <- .65
-h1_modls[[1]]$control$Nyrs_sr <- 16
-h1_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
+h1_modls[[1]]$control$Nyrs_sr <- 16 # CHANGE TO 15
+h1_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015 # CHANGE TO 2001:2015
 
 # fn.update(h1_modls, paste0(FinModName,".ls"),"h1")
 # modls  <- runit(geth(paste0(FinModName,".ls"),"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")

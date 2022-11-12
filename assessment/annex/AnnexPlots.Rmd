@@ -100,6 +100,9 @@ plot(h1_diag, var = "weightAge")
 
 ```{r agefitsfshh1-1, fig.cap=paste0("Model ",h1nm," (single-stock hypothesis) fit to the age compositions for the Chilean northern zone fishery (Fleet 1). Bars represent the observed data and lines represent the model predictions.")}
 plot(h1_diag, var = "ageFitsCatch", fleet="N_Chile")
+
+age_fits <- get_age_fits(h1_mod)
+
 ```
 
 
