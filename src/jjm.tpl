@@ -1459,6 +1459,7 @@ PARAMETER_SECTION
   // matrix Sp_Biom(1,nstk,styr_sp,endyr)
   matrix pred_rec(1,nstk,styr_rec,endyr)
   matrix mod_rec(1,nstk,styr_rec,endyr) // As estimated by model
+
   3darray  M(1,nstk,styr,endyr,1,nages)
   3darray  Z(1,nstk,styr,endyr,1,nages)
   3darray  S(1,nstk,styr,endyr,1,nages)
@@ -1917,7 +1918,74 @@ PROCEDURE_SECTION
 FUNCTION write_mceval
   if (mcmcmode != 3)
     write_mceval_hdr();
+  mcmcmode = 3;
+  // mceval<<"mcdraw type unit Year Age value"<<endl;
+  mc_count++;
+  // BY stock
+  for (int k=1;k<=nstk;k++)
+  {
+    // REFPTS
+    mceval<< mc_count<<" MSY    "<<k<<" all "<<" all "<<MSY(k)<<  endl;
+    mceval<< mc_count<<" SBMSY  "<<k<<" all "<<" all "<<Bmsy(k)<<  endl;
+    mceval<< mc_count<<" FMSY   "<<k<<" all "<<" all "<<Fmsy(k)<<  endl;
+    mceval<< mc_count<<" R0   "<<k<<" all "<<" all "<<Rzero(k)<<  endl;
+    mceval<< mc_count<<" B0   "<<k<<" all "<<" all "<<Bzero(k)<<  endl;
+    for (i=styr;i<=endyr;i++) {
+      // SSB & rec
+      mceval<< mc_count<<" SSB      "<<k<<" "<<i<<" all "<<Sp_Biom(k,i)<<  endl;
+      mceval<< mc_count<<" Recruits "<<k<<" "<<i<<" age_"<<rec_age<<" "<<recruits(k,i)<<  endl;
+      for (j=1;j<=nages;j++) 
+      {
+        // catage, natage
+        mceval<< mc_count<<" N_stock "<<k<<" "<<i<<" "<<j<<" "<<natage(k,i,j)<<  endl; 
+      }
+    }
+    mceval<< mc_count<<" Depletion "<<k<<" "<<endyr<<" all "<<depletion(k) <<  endl;
+    mceval<< mc_count<<" Dynamic_Depletion "<<k<<" "<<endyr<<" all "<<depletion_dyn(k) <<  endl;
+  }
+  // BY fishery
+  for(int k=1;k<=nfsh;k++)
+  {
+    for (i=styr;i<=endyr;i++) {
+      for (j=1;j<=nages;j++) {
+        // SELEX F
+        mceval<< mc_count<<" Sel_fsh "<<k<<" "<<i<<" "<<j<<" "<<sel_fsh(k,i,j)<<  endl; 
+        mceval<< mc_count<<" C_fsh "<<k<<" "<<i<<" "<<j<<" "<<catage(k,i,j)<<  endl; 
+      }
+    }
+  }
+  // BY index
+  for(int k=1;k<=nind;k++)
+  {
+    for (i=styr;i<=endyr;i++)
+    {
+      for (j=1;j<=nages;j++) 
+      {
+        // SELEX I
+        mceval<< mc_count<<" Sel_ind "<<k<<" "<<i<<" "<<j<<" "<<sel_ind(k,i,j)<<  endl; 
+      }
+    }
+  }
+  /*
+	mceval<<"N_stock"<<endl;
+	mceval<<natage << endl;
 
+	mceval<<"F"<<endl;
+	mceval<<natage << endl;
+  for (int k=1;k<=nstk;k++) {
+	  mceva<<"C_fish"<<k<< endl;
+	mceval<<catage << endl;
+
+  for (int k=1;k<=nstk;k++)
+  {
+    for (i=styr;i<=endyr;i++)
+    {
+			mceval<<natage(k,i) << endl;
+		}
+	}
+
+  */
+  /*
   // sdreport_matrix Sp_Biom(1,nstk,styr_sp,endyr+1)
   mc_count++;
     // mceval<<"mcdraw type Year Age value"<<endl;
@@ -1939,6 +2007,7 @@ FUNCTION write_mceval
     mceval<< mc_count<<" Depletion "<<endyr<<" all_stock_"<<k<<" "<<depletion(k) <<  endl;
     mceval<< mc_count<<" Dynamic_Depletion "<<endyr<<" all_stock_"<<k<<" "<<depletion_dyn(k) <<  endl;
   }
+  */
   if (mcmcmode != 3)
 			mclike<<"Draw, stock, type, value, SSB"<<endl;
   mcmcmode = 3;
