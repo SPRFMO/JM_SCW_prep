@@ -1218,6 +1218,10 @@ DATA_SECTION
   matrix n_sample_fsh_length(1,nfsh,1,nyrs_fsh_length)    //Years of index index value (annual)
   3darray oac_fsh(1,nfsh,1,nyrs_fsh_age,1,nages)
   3darray olc_fsh(1,nfsh,1,nyrs_fsh_length,1,nlength)
+	int nyrs_zero_catch
+	ivector fsh_zero_catch(1,200)
+	ivector yrs_zero_catch(1,200)
+
 
   imatrix yrs_ind(1,nind,1,nyrs_ind)         //Years of index value (annual)
   matrix obs_ind(1,nind,1,nyrs_ind)          //values of index value (annual)
@@ -1303,6 +1307,16 @@ DATA_SECTION
   obs_lse_ind = sqrt(log(square(obs_lse_ind) + 1.));
   log_input(obs_lse_ind);
   obs_lva_ind = square(obs_lse_ind);
+  for (k=1;k<=nfsh;k++)
+		for (i=styr;i<=endyr;i++)
+      if (catch_bio(k,i)==0.0) {
+			  nyrs_zero_catch++;
+				fsh_zero_catch(nyrs_zero_catch)=k;
+				yrs_zero_catch(nyrs_zero_catch)=i;
+			}
+  log_input(nyrs_zero_catch);
+  log_input(fsh_zero_catch);
+  log_input(yrs_zero_catch);
  END_CALCS
 
   ////////////////////////////////////////////////////////////////////////////////////
@@ -2504,7 +2518,8 @@ FUNCTION Get_NatMortality
   }
   // natmort = M;
 
-FUNCTION Get_Mortality2
+  /*
+  FUNCTION Get_Mortality2
   Get_NatMortality();
   Z       = M;
   for (k=1;k<=nfsh;k++)
@@ -2513,6 +2528,7 @@ FUNCTION Get_Mortality2
     Z(sel_map(1,k))     += F(k);
   }
   S = mfexp(-1.*Z);
+  */
 
 FUNCTION Get_Mortality
   Get_NatMortality();
@@ -2522,7 +2538,7 @@ FUNCTION Get_Mortality
     Fmort.initialize();
     for (k=1;k<=nfsh;k++)
     {
-      Fmort(sel_map(1,k)) +=  fmort(k);
+      Fmort(sel_map(1,k)) +=  mfexp(fmort(k));
       for (i=styr;i<=endyr;i++)
       {
         F(k,i)   =  mfexp(fmort(k,i)) * sel_fsh(k,i) ;
@@ -3049,7 +3065,12 @@ FUNCTION Fmort_Pen
   if (current_phase()<3)
     fpen(1) += 1.* norm2(F - .2);
   else 
+	{
     fpen(1) += 0.0001*norm2(F - .2); 
+		// Add extreme penalty to fmort when catches are zero to stabilize MCMC mixing
+  for (int ii=1;ii<=nyrs_zero_catch;ii++)
+	  fpen(2) += square(fmort(fsh_zero_catch(ii),yrs_zero_catch(ii))+14)*100.;
+  }
 
   // for (k=1;k<=nfsh;k++)  fpen(2) += 20.*square(mean(fmort_dev(k)) ); // this is just a normalizing constraint (fmort_devs sum to zero) }
 FUNCTION Sel_Like 
