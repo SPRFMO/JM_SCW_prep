@@ -72,7 +72,7 @@ assessment/result/
 !*.yld
 !*.R.rep
 !*.par
-assessment/R/SC08.html
+*.html
 #assessment/risk_tables/
 *.txt
 *.doc
