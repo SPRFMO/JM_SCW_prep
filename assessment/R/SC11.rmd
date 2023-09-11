@@ -541,9 +541,11 @@ The code used to run the following sensitivities can be found in `assessment/R/S
 
 - Re-run 0.05 onwards with updated catch projections for Chile (80,466 t for Fleet 1 and 736,292 t for Fleet 2; Ignacio Paya 30/08/23) and Peru (210,000 t; Ana Alegre 01/09/23)
 - Acoustic Central South data obtained (Ignacio Paya 10/09/23)
-- 
+  + The 2020 data have not been submitted to the Jack Mackerel Data Repository
+  + 
 - Effort creep sensitivity has already been done in SC11-JM06_corrected
 - Variable weight-at-age from Peru (thanks to Peru)
+  + The mean-wight-at-age for the FarNorth fleet has not been updated since 2015, even though those data were reported. Peru indicated that these data do change over time due to annually-estimated weight-length parameters, albeit with minor variation.
 
 # Updated Model Diagnostics
 <!-- Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`. -->
@@ -665,8 +667,6 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 
 # Other Business
 ## General
-- No 2022 Chile AcousN index value
-
 
 ## Other models to run?
 
