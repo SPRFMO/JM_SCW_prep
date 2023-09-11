@@ -23,6 +23,10 @@ Model      | Description
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00    |	As 0.10 but with updated model (selectivity changes, recruitment) to 2023; 0.10 data file
+1.01	|	As 1.00 but with updated Acoustic_CS data (2020, 2021, 2023)
+1.02	|	As 1.01 but with a break in selectivity in 2020
+1.03	|	As 1.02 but with updated ageing error matrix from Chile (SC11-JM05)
+1.04	|	As 1.00 but with new Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06)
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.02**     |  Base model
