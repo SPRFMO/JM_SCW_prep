@@ -38,8 +38,6 @@ knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.h
 
 This document was compiled in `RMarkdown`, and shows the incremental results of the Chilean Jack Mackerel (*Trachurus murphyi*) stock assessment update in `r format(Sys.time(), "%Y")`. The files associated with this document can be found on [Github](https://github.com/SPRFMO/jjm/tree/master/assessment).
 
-Annoted data files can be found in the Excel spreadsheet `SC11_datfiles.xlsx` on [`jjm/assessment/data`](https://github.com/SPRFMO/jjm/tree/master/assessment/data).
-
 The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC11_Bridging.R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC11_Bridging.R). Should you choose to run the models, please ensure that you have:
 
 * Compiled the latest `jjm/src/jjms.tpl`
@@ -67,10 +65,10 @@ Model      | Description
 0.07     |  As 0.06 but with updated 2023 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
 0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10     |  As 0.09 but updated AcousN 2023 index, with associated age composition and weight at age
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00    | As 0.09 but with updated model (selectivity changes, recruitment) to 2023; 0.09 data file
------------|--------------
+1.00    | As 0.10 but with updated model (selectivity changes, recruitment) to 2023; 0.10 data file
 
 
 ```{r install_packages, eval=F, cache=F, echo=T}
@@ -537,6 +535,15 @@ plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
+
+# Since the Web Meeting
+The code used to run the following sensitivities can be found in `assessment/R/SC11.R`.
+
+- Re-run 0.05 onwards with updated catch projections for Chile (80,466 t for Fleet 1 and 736,292 t for Fleet 2; Ignacio Paya 30/08/23) and Peru (210,000 t; Ana Alegre 01/09/23)
+- Acoustic Central South data obtained (Ignacio Paya 10/09/23)
+- 
+- Effort creep sensitivity has already been done in SC11-JM06_corrected
+- Variable weight-at-age from Peru (thanks to Peru)
 
 # Updated Model Diagnostics
 <!-- Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`. -->

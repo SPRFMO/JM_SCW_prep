@@ -55,26 +55,92 @@ fn_update <- function(newmod, newmodname, h, dodat=T) {
 h1_1.00 <- readJJM(geth("1.00","h1"), path = "config", input = "input")
 h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
-file.dat <- h1_1.00[[1]]$data
+file_dat <- h1_1.00[[1]]$data
 
-FinModName <- "1.02"
+# FinModName <- "1.02"
 
 #----------
-# Correcting growth parameters
+# Updating Chile_AcousCS
 #----------
 
-h1_1.01 <- h1_1.00
-h1_1.01[[1]]$data <- file.dat
-h2_1.01 <- h2_1.00
-h2_1.01[[1]]$data <- file.dat
+h1_prev <- h1_new <- h1_1.00
+h1_new[[1]]$data <- file_dat
+h1_prev <- h2_new <- h2_1.00
+h2_new[[1]]$data <- file_dat
 
-h1_1.01[[1]]$control$Linf[1,1] <- h2_1.01[[1]]$control$Linf[1,] <- 73.56
-h1_1.01[[1]]$control$Lo_len[1,1] <- h2_1.01[[1]]$control$Lo_len[1,] <- 13.56
+library(tidyverse)
+library(readxl)
 
-# fn_update(h1_1.01, "1.01", "h1", dodat=F)
-# fn_update(h2_1.01, "1.01", "h2", dodat=F)
-# h1_1.01 <- runit("h1_1.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# h2_1.01 <- runit("h2_1.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+CV_acousCS <- 0.3
+
+dat_acous_2020 <- "data/Age-data_Chile_New-criteria\ 1980-2022_august_9.xlsx" %>% # From I. Paya 10/09/23
+                    read_excel(sheet=2) %>%
+                    janitor::clean_names() %>%
+                    filter(ano==2020, macrozona==2) %>%
+                    select(ano,macrozona,grupo_edad,capt,p_pr,capt_ton) %>%
+                    rename(year="ano", fleet="macrozona",age="grupo_edad",agecomp="capt",wtatage="p_pr",total_biomass="capt_ton")
+
+dat_acous_2021 <- "data/SC10_2022assessmentInputData.xlsx" %>%
+                      read_excel(sheet=5) %>%
+                      pivot_longer(contains("F"), names_to="fleet") %>%
+                      pivot_wider(names_from=type,values_from=value) %>%
+                      mutate(total_biomass=agecomp*wtatage,
+                              fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
+                      filter(age>0, fleet==2)
+
+dat_acous_2023 <- "data/SC11_2023assessmentInputData.xlsx" %>%
+                      read_excel(sheet=5) %>%
+                      pivot_longer(contains("F"), names_to="fleet") %>%
+                      pivot_wider(names_from=type,values_from=value) %>%
+                      mutate(total_biomass=agecomp*wtatage,
+                              fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
+                      filter(age>0, fleet==2)
+
+dat_acous <- dat_acous_2023 %>%
+              full_join(dat_acous_2021) %>%
+              full_join(dat_acous_2020) %>%
+              complete(year,age,fleet) %>%
+              replace_na(list("agecomp"=0,"total_biomass"=0))
+
+i <- grep("Chile_AcousCS",h1_new[[1]]$data$Inames)
+rows2use <- which(rownames(h1_new[[1]]$data$Index) %in% unique(dat_acous$year))
+
+# Update index
+if(sum(is.na(h1_new[[1]]$data$Index[rows2use,i]))>0) {
+  h1_new[[1]]$data$Inumyears[i] <- h1_prev[[1]]$data$Inumyears[i] + sum(is.na(h1_new[[1]]$data$Index[rows2use,i]))
+  h1_new[[1]]$data$Iyears[rows2use,i] <- unique(dat_acous$year)
+}
+
+if(sum(is.na(h1_new[[1]]$data$Iyearsage[rows2use,i]))>0) {
+  h1_new[[1]]$data$Iyearsage[rows2use,i] <- unique(dat_acous$year)
+  h1_new[[1]]$data$Inumageyears[i] <- h1_prev[[1]]$data$Inumageyears[i] + sum(is.na(h1_new[[1]]$data$Iyearsage[rows2use,i]))
+}
+
+for(n in seq_along(rows2use)) {
+  dat2use <- filter(dat_acous, year==unique(dat_acous$year)[n])
+  h1_new[[1]]$data$Index[rows2use[n],i] <- sum(dat2use$total_biomass,na.rm=T)/1e3
+  h1_new[[1]]$data$Indexerr[rows2use[n],i] <- h1_new[[1]]$data$Index[rows2use[n],i] * CV_acousCS
+}
+
+# Update wt at age
+rows2use <- which(rownames(h1_new[[1]]$data$Iwtatage[,,i]) %in% unique(dat_acous$year))
+
+for(n in seq_along(rows2use)) {
+  dat2use <- filter(dat_acous, year==unique(dat_acous$year)[n])
+  h1_new[[1]]$data$Iwtatage[rows2use[n],!is.na(dat2use$wtatage),i] <- dat2use$wtatage[!is.na(dat2use$wtatage)]
+}
+
+# Update agecomp
+rows2use <- which(rownames(h1_new[[1]]$data$Ipropage[,,i]) %in% unique(dat_acous$year))
+ 
+h1_new[[1]]$data$Ipropage[rows2use,,i] <- dat_acous$agecomp
+h1_new[[1]]$data$Iagesample[rows2use,i] <- h1_new[[1]]$data$Iagesample[rev(which(!is.na(h1_new[[1]]$data$Iagesample[,i])))[1],i]
+
+
+# fn_update(h1_new, "1.01", "h1", dodat=F)
+# fn_update(h2_new, "1.01", "h2", dodat=F)
+# h1_1.01 <- runit("h1_1.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# h2_1.01 <- runit("h2_1.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
 #----------
 # Adding more flexibility in selectivity for offshore fleet

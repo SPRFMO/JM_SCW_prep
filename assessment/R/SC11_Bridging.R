@@ -122,8 +122,8 @@ dat_acous <- read_excel(file_input, sheet=5) %>%
                       pivot_wider(names_from=type,values_from=value) %>%
                       mutate(total_biomass=agecomp*wtatage,
                               fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
-                      mutate_if(is.numeric,replace_na,0) %>%
-                      filter(age>0, fleet==1)
+                      replace_na(list("agecomp"=0,"total_biomass"=0)) %>%
+                      filter(age>0, fleet==1) # Change for SC12?
 
 #-----------
 # 0.01 Update last year's catch
@@ -245,6 +245,7 @@ mod_prev <- mod_new
 
 #----------
 # 0.05 Add this year's catch projections
+# Weight-at-age for current year filled with fleet-level mean from last five years
 #----------
 mod_new <- mod_prev
 
@@ -262,12 +263,12 @@ mod_new[[1]]$data$Fcatonerr <- rbind(mod_prev[[1]]$data$Fcatonerr, tail(mod_prev
 mod_new[[1]]$data$Fwtatage <- array(dim=c(dim(mod_prev[[1]]$data$Fwtatage)[1]+1,dim(mod_prev[[1]]$data$Fwtatage)[2:3]))
 # Add rows for wtatage for fishery and indices
 for(f in 1:mod_new[[1]]$data$Fnum) {
-  mod_new[[1]]$data$Fwtatage[,,f] <- rbind(mod_prev[[1]]$data$Fwtatage[,,f],tail(mod_prev[[1]]$data$Fwtatage[,,f],1))
+  mod_new[[1]]$data$Fwtatage[,,f] <- rbind(mod_prev[[1]]$data$Fwtatage[,,f],tail(mod_prev[[1]]$data$Fwtatage[,,f],5) %>% colMeans())
 }
 
 mod_new[[1]]$data$Iwtatage <- array(dim=c(dim(mod_prev[[1]]$data$Iwtatage)[1]+1,dim(mod_prev[[1]]$data$Iwtatage)[2:3]))
 for(i in 1:mod_new[[1]]$data$Inum) {
-    mod_new[[1]]$data$Iwtatage[,,i] <- rbind(mod_prev[[1]]$data$Iwtatage[,,i],tail(mod_prev[[1]]$data$Iwtatage[,,i],1))
+    mod_new[[1]]$data$Iwtatage[,,i] <- rbind(mod_prev[[1]]$data$Iwtatage[,,i],tail(mod_prev[[1]]$data$Iwtatage[,,i],5) %>% colMeans())
 }
 
 # fn_bridge(mod_new, "0.05")
@@ -421,13 +422,23 @@ if(sum(is.na(mod_new[[1]]$data$Iyearsage[rows2use,i]))>0) {
 mod_new[[1]]$data$Index[rows2use,i] <- sum(dat_acous$total_biomass,na.rm=T)/1e3
 mod_new[[1]]$data$Indexerr[rows2use,i] <- mod_new[[1]]$data$Index[rows2use,i] * CV_acousN
 
+# Fixing mistake from SC10 where wt at age for recent years were set to zero for older ages
+# Set to previous year's data because that was previously done
+for(y in 1:nrow(mod_new[[1]]$data$Iwtatage[,,i])) {
+  if(length(which(mod_new[[1]]$data$Iwtatage[y,,i]==0))>0){
+      cols2change <- which(mod_new[[1]]$data$Iwtatage[y,,i]==0)
+      mod_new[[1]]$data$Iwtatage[y,cols2change,i] <- mod_new[[1]]$data$Iwtatage[(y-1),cols2change,i]
+    }
+}
+
 # Update wt at age
 rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,i]) %in% unique(dat_acous$year))
+mod_new[[1]]$data$Iwtatage[rows2use,,i] <- tail(mod_new[[1]]$data$Iwtatage[,,i],6)[-6,] %>% colMeans()
 mod_new[[1]]$data$Iwtatage[rows2use,!is.na(dat_acous$wtatage),i] <- dat_acous$wtatage[!is.na(dat_acous$wtatage)]
 
 # Update agecomp
 rows2use <- which(rownames(mod_new[[1]]$data$Ipropage[,,i]) %in% unique(dat_acous$year))
- 
+
 mod_new[[1]]$data$Ipropage[rows2use,,i] <- dat_acous$agecomp
 mod_new[[1]]$data$Iagesample[rows2use,i] <- mod_new[[1]]$data$Iagesample[rev(which(!is.na(mod_new[[1]]$data$Iagesample[,i])))[1],i]
 
@@ -476,7 +487,7 @@ for(f in 1:mod_h2[[1]]$data$Fnum) {
 mod_h1_new[[1]]$control$F4_selchange[length(mod_h1_new[[1]]$control$F4_selchange)] <- mod_h2_new[[1]]$control$F4_selchange[length(mod_h2_new[[1]]$control$F4_selchange)]  <- 0.5
 
 fn_update(mod_h1_new, "1.00", "h1")
-mod1.00 <- runit(geth("1.00","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-
 fn_update(mod_h2_new, "1.00", "h2")
-mod1.00 <- runit(geth("1.00","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+
+# mod1.00 <- runit(geth("1.00","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod1.00 <- runit(geth("1.00","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
