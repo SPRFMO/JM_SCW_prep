@@ -77,11 +77,11 @@ Stock
 #RW_q_phases 
 1 -1 1 -1 1 -1 -1 
 #RW_nyrs_q 
-1 0 1 0 0 0 0 
+2 0 1 0 0 0 0 
 #RW_q_yrs 
-2002 2000 
+2002 2019 2000 
 #RW_q_sigmas 
-2 2 
+2 2 2 
 #q_agemin 
 2 2 2 2 2 2 2 
 #q_agemax 
@@ -125,7 +125,7 @@ Stock
 #I1_info 
 1 10 2 0.25 100 2 
 #I1_selchangeYear 
-2005 2020 
+2005 2019 
 #I1_selchange 
 0.7 0.7 
 #I1_selbyage 
