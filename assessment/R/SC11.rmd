@@ -535,6 +535,7 @@ plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
 plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
+---
 
 # Since the Web Meeting
 The code used to run the following sensitivities (1.01 onwards) can be found in `assessment/R/SC11.R`.
@@ -548,7 +549,8 @@ Model      | Description
 1.04  | As 1.00 but with proposed Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06) (**NOT RUN**; comparison shown in SC11-JM06)
 1.05  | As 1.00 but with proposed Chile CPUE index from SC11-JM07
 1.06  | As 1.00 but with updated Peruvian weight-at-age data (run by Peru)
-1.07  | As 1.00 but with downweighted 2022 offshore CPUE index
+1.07  | As 1.06 but with downweighted 2022 offshore CPUE index
+1.08  | As 1.07 but with Peruvian high seas catch allocated to the offshore fleet instead of fleet 3
 
 - Re-run 0.05-1.00 onwards with updated catch projections for Chile (80,466 t for Fleet 1 and 736,292 t for Fleet 2; Ignacio Paya 30/08/23) and Peru (210,000 t; Ana Alegre 01/09/23)
   + Thanks to Criscely and Josymar (Peru) for cross-checking and finding bugs
@@ -635,52 +637,6 @@ plot(h2_diag, var = "predictedObservedIndices")
 plot(h2_diag, var = "ageFitsSurvey", fleet="Chile_AcousCS")
 ```
 
-## Annual variation in FarNorth mean weight-at-age
-The Peruvian mean weight-at-age vectors have not been updated since 2015 due to low fishing levels (?). These data have historically been provided to the SC but they have not been used in the assessment.
-
-```{r}
-mods2compare <- c("1.00","1.06")
-```
-
-### Single-stock hypothesis {.tabset}
-#### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
-hyp <- "h1"
-res <- compareModels(geth(mods2compare))
-
-plot(res,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
-plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
-plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-### Two-stock hypothesis {.tabset}
-#### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimated from updating the FarNorth mean weight-at-age from 2015-2023.")}
-hyp <- "h2"
-res <- compareModels(geth(mods2compare))
-
-plot(res,combine=T,what="biomass",stack=F,main="Biomass")
-```
-
-#### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
-plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
-```
-
-#### Fishing Mortality
-```{r fig.cap=paste0("Plot comparing fishing mortality estimated from updating the FarNorth mean weight-at-age from 2015-2023.")}
-plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
-```
-
-
 ## Proposed changes to Chilean CPUE Index
 
 - JM06: informed technological creep factor
@@ -764,6 +720,144 @@ h2_diag <- diagnostics(h2_mod, plots=F)
 plot(h2_diag, var = "predictedObservedIndices")
 ```
 
+## Annual variation in FarNorth mean weight-at-age
+The Peruvian mean weight-at-age vectors have not been updated since 2015 due to low fishing levels (?). These data have historically been provided to the SC but they have not been used in the assessment.
+
+```{r}
+mods2compare <- c("1.00","1.06")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated from updating the FarNorth mean weight-at-age from 2015-2023.")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Downweighting the final year of the Offshore CPUE
+The offshore CPUE series has an unusually high final year value, likely due to reasons unrelated to the stock size. It was suggested to downweight this final value to reduce its impact on the assessment.
+
+```{r}
+mods2compare <- c("1.06","1.07")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from downweighting the 2022 offshore CPUE value.")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from downweighting the 2022 offshore CPUE value.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from downweighting the 2022 offshore CPUE value.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated from downweighting the 2022 offshore CPUE value.")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from downweighting the 2022 offshore CPUE value.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated from downweighting the 2022 offshore CPUE value.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Allocating Peruvian high seas catch to the offshore fleet
+In 2023, the Peruvian fleet fished in the SPRFMO Convention Area, amounting to 20,056 tons of catch. The SC decided to incorporate those catches to Fleet 3 due to two factors, namely that 1) the fishery composition data were not separated by area, and 2) the fleet characteristics (e.g., gear) are that of the far-north fleet rather than that of the offshore fleet.
+
+```{r}
+mods2compare <- c("1.07","1.08")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from allocating the Peruvian high seas catch to the offshore fleet.")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from allocating the Peruvian high seas catch to the offshore fleet.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from allocating the Peruvian high seas catch to the offshore fleet.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated from allocating the Peruvian high seas catch to the offshore fleet.")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from allocating the Peruvian high seas catch to the offshore fleet.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated allocating the Peruvian high seas catch to the offshore fleet.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+---
+
 # Updated Model Diagnostics
 Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
@@ -803,23 +897,27 @@ plot(h1_diag, var = "predictedObservedIndices")
 
 ### Projections {.tabset}
 
+Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
+
 #### SSB
 ```{r}
-plot(h1_diag, var = "ssbPrediction")
+h1_mod_ls <- readJJM(paste0(h1nm,".ls"), path="config", input="input")
+h1_diag_ls <- diagnostics(h1_mod_ls, plots=F)
+plot(h1_diag_ls, var = "ssbPrediction")
 ```
 
 #### Catch
 ```{r}
-plot(h1_diag, var = "catchPrediction")
+plot(h1_diag_ls, var = "catchPrediction")
 ```
 
 ### Kobe Plot
-```{r, fig.width=8}
+```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
 kobe(fixed_bmsy(h1_mod), engine="ggplot")
 ```
 
 ### Summary Plot
-```{r}
+```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
 bmsy_diag <- diagnostics(fixed_bmsy(h1_mod, new_bmsy), plots = F)
 plot(bmsy_diag, var = "summarySheet")
 ```
@@ -856,16 +954,18 @@ plot(h2_diag, var = "predictedObservedIndices")
 ```
 
 ### Projections {.tabset}
-
+Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
 
 #### SSB
 ```{r}
-plot(h2_diag, var = "ssbPrediction")
+h2_mod_ls <- readJJM(paste0(h2nm,".ls"), path="config", input="input")
+h2_diag_ls <- diagnostics(h2_mod_ls, plots=F)
+plot(h2_diag_ls, var = "ssbPrediction")
 ```
 
 #### Catch
 ```{r}
-plot(h2_diag, var = "catchPrediction")
+plot(h2_diag_ls, var = "catchPrediction")
 ```
 
 ### Kobe Plot

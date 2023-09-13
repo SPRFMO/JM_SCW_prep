@@ -33,7 +33,7 @@ Model      | Description
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.07.xx**     |  Base model
-1.07.ls    |  As 1.7x but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+1.07.ls    |  As 1.07 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
 -----------|--------------
 
 ## 2022 SC10 Model runs

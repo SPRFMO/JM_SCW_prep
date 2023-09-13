@@ -240,8 +240,8 @@ h1_1.06[[1]]$data$Fwtatage[rows2use,,f] <- h2_1.06[[1]]$data$Fwtatage[rows2use,,
 rows2use <- which(rownames(h1_1.06[[1]]$data$Iwtatage[,,i]) %in% wtatage_peru$year)
 h1_1.06[[1]]$data$Iwtatage[rows2use,,i] <- h2_1.06[[1]]$data$Iwtatage[rows2use,,i] <- dat2use
 
-fn_update(h1_1.06, "1.06", "h1", dodat=T)
-fn_update(h2_1.06, "1.06", "h2", dodat=T)
+# fn_update(h1_1.06, "1.06", "h1", dodat=T)
+# fn_update(h2_1.06, "1.06", "h2", dodat=T)
 h1_1.06 <- runit("h1_1.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 h2_1.06 <- runit("h2_1.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
@@ -256,9 +256,27 @@ rows2use <- which(h1_1.07[[1]]$data$Iyears[,i]==max(h1_1.07[[1]]$data$Iyears[,i]
 
 h1_1.07[[1]]$data$Indexerr[rows2use,i] <- h1_1.00[[1]]$data$Indexerr[rows2use,i] * 2
 
-# fn_bridge(h1_1.07, "1.07")
+# fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.06.ctl"))
 # h1_1.07 <- runit("h1_1.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 # h2_1.07 <- runit("h2_1.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+
+#----------
+# Move Peruvian catch in high seas from Fleet 3 to Fleet 4
+# 20,056 tons
+#----------
+
+h1_1.08 <- h1_1.07 <- readJJM("h1_1.07",path="config",input="input")
+
+catch2move <- 20056/1e3
+catch_fin <- h1_1.07[[1]]$data$Fcaton[which(rownames(h1_1.07[[1]]$data$Fcaton)==2023),] 
+catch_fin[3] <- catch_fin[3]-catch2move
+catch_fin[4] <- catch_fin[4]+catch2move
+h1_1.08[[1]]$data$Fcaton[which(rownames(h1_1.08[[1]]$data$Fcaton)==2023),] <- catch_fin
+
+fn_bridge(h1_1.08, "1.08", h2mod=readLines("config/h2_1.06.ctl"))
+# h1_1.08 <- runit("h1_1.08",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# h2_1.08 <- runit("h2_1.08",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs
@@ -289,11 +307,11 @@ write.csv(summary(FinMod)$like,"results/SummaryLikelihoods_h2.csv")
 kobe(FinMod)
 kobe(fixed_bmsy(FinMod) ,add=T, col = 'red') 
 
-main.diag <- diagnostics(fixed_bmsy(FinMod),plots=F)
-plot(main.diag, var = "summarySheet")
+main_diag <- diagnostics(fixed_bmsy(FinMod),plots=F)
+plot(main_diag, var = "summarySheet")
 
-main.diag <- diagnostics(FinMod,plots=F)
-plot(main.diag, var = "summarySheet")
+main_diag <- diagnostics(FinMod,plots=F)
+plot(main_diag, var = "summarySheet")
 
 
 
