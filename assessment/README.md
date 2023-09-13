@@ -22,17 +22,18 @@ Model      | Description
 0.10 	 |	As 0.09 but updated AcousN 2023 index, with associated age composition and weight at age
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00    | As 0.10 but with updated model (selectivity changes, recruitment) to 2023; 0.10 data file
+1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2023; 0.10 data file
 1.01  | As 1.00 but with updated Acoustic_CS data (2020, 2021, 2023)
 1.02  | As 1.01 but with a break in selectivity in 2020
 1.03  | As 1.00 but with updated ageing error matrix from Chile (SC11-JM05) (**NOT RUN**)
-1.04  | As 1.00 but with new Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06) (comparison already done in SC11-JM06)
-1.05  | As 1.00 but with new Chile CPUE index from JM07
-1.06  | As 1.00 but with updated Peruvian weight-at-age data (2015-2023)
+1.04  | As 1.00 but with proposed Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06) (**NOT RUN**; comparison shown in SC11-JM06)
+1.05  | As 1.00 but with proposed Chile CPUE index from SC11-JM07
+1.06  | As 1.00 but with updated Peruvian weight-at-age data
+1.07  | As 1.06 but with downweighted 2022 offshore CPUE index
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
-**1.0x**     |  Base model
-1.0x.ls    |  As 1.0x but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+**1.07.xx**     |  Base model
+1.07.ls    |  As 1.7x but **l**ow steepness and **s**hort recruitment time series (2000-2015)
 -----------|--------------
 
 ## 2022 SC10 Model runs

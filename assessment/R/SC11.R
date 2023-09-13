@@ -40,6 +40,22 @@ fn_update <- function(newmod, newmodname, h, dodat=T) {
   writeJJM(newmod,datPath="input",ctlPath="config")
 }
 
+fn_bridge <- function(newmod, newmodname, h2mod=h2_ctl,ln_dat=line_dat, ln_modnm=line_modnm) {
+
+  names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,"h1")
+  newmod[[1]]$control$dataFile <- h2mod[ln_dat] <- paste0(newmodname,".dat")
+
+  h2mod[ln_dat] <- paste0(newmodname, ".dat")
+  h2mod[ln_modnm] <- geth(newmodname, "h2")
+  
+  writeJJM(newmod,datPath="input",ctlPath="config")
+  writeLines(h2mod, con=paste0("config/h2_",newmodname,".ctl"))
+}
+
+h2_ctl <- readLines("config/h2_1.00.ctl")
+line_dat <- grep("dataFile", h2_ctl) + 1
+line_modnm <- grep("modelName", h2_ctl) + 1
+
 #-------------------------
 # Model configuration runs
 #-------------------------
@@ -62,11 +78,6 @@ file_dat <- h1_1.00[[1]]$data
 #----------
 # Updating Chile_AcousCS
 #----------
-
-h1_prev <- h1_new <- h1_1.00
-h1_new[[1]]$data <- file_dat
-h1_prev <- h2_new <- h2_1.00
-h2_new[[1]]$data <- file_dat
 
 library(tidyverse)
 library(readxl)
@@ -102,6 +113,12 @@ dat_acous <- dat_acous_2023 %>%
               complete(year,age,fleet) %>%
               replace_na(list("agecomp"=0,"total_biomass"=0))
 
+h1_prev <- h1_new <- h1_1.00
+h1_new[[1]]$data <- file_dat
+h1_prev <- h2_new <- h2_1.00
+h2_new[[1]]$data <- file_dat
+
+
 i <- grep("Chile_AcousCS",h1_new[[1]]$data$Inames)
 rows2use <- which(rownames(h1_new[[1]]$data$Index) %in% unique(dat_acous$year))
 
@@ -112,8 +129,8 @@ if(sum(is.na(h1_new[[1]]$data$Index[rows2use,i]))>0) {
 }
 
 if(sum(is.na(h1_new[[1]]$data$Iyearsage[rows2use,i]))>0) {
-  h1_new[[1]]$data$Iyearsage[rows2use,i] <- unique(dat_acous$year)
   h1_new[[1]]$data$Inumageyears[i] <- h1_prev[[1]]$data$Inumageyears[i] + sum(is.na(h1_new[[1]]$data$Iyearsage[rows2use,i]))
+  h1_new[[1]]$data$Iyearsage[rows2use,i] <- unique(dat_acous$year)
 }
 
 for(n in seq_along(rows2use)) {
@@ -136,14 +153,15 @@ rows2use <- which(rownames(h1_new[[1]]$data$Ipropage[,,i]) %in% unique(dat_acous
 h1_new[[1]]$data$Ipropage[rows2use,,i] <- dat_acous$agecomp
 h1_new[[1]]$data$Iagesample[rows2use,i] <- h1_new[[1]]$data$Iagesample[rev(which(!is.na(h1_new[[1]]$data$Iagesample[,i])))[1],i]
 
+h2_new[[1]]$data <- h1_new[[1]]$data
 
-# fn_update(h1_new, "1.01", "h1", dodat=F)
-# fn_update(h2_new, "1.01", "h2", dodat=F)
+# fn_update(h1_new, "1.01", "h1", dodat=T)
+# fn_update(h2_new, "1.01", "h2", dodat=T)
 # h1_1.01 <- runit("h1_1.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 # h2_1.01 <- runit("h2_1.01",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
 #----------
-# Adding more flexibility in selectivity for offshore fleet
+# Adding break in selectivity for Chile Acous_CS
 #----------
 
 h1_1.01 <- readJJM("h1_1.01", path = "config", input = "input")
@@ -152,16 +170,95 @@ h2_1.01 <- readJJM("h2_1.01", path = "config", input = "input")
 h1_1.02 <- h1_1.01
 h2_1.02 <- h2_1.01
 
-# Increase curve penalty for final year
-h1_1.02[[1]]$control$F4_selchange[length(h1_1.02[[1]]$control$F4_selchange)] <- h2_1.02[[1]]$control$F4_selchange[length(h2_1.02[[1]]$control$F4_selchange)]  <- 0.8
+# Downweight selectivity change penalty (increase flexibility) in 2019
+h1_1.02[[1]]$control$I1_info[length(h1_1.02[[1]]$control$I1_info)] <- h2_1.02[[1]]$control$I1_info[length(h2_1.02[[1]]$control$I1_info)] <- h1_1.02[[1]]$control$I1_info[length(h1_1.02[[1]]$control$I1_info)] + 1
+h1_1.02[[1]]$control$I1_selchangeYear <- h2_1.02[[1]]$control$I1_selchangeYear <- c(h1_1.02[[1]]$control$I1_selchangeYear,2019)
+h1_1.02[[1]]$control$I1_selchange <- h2_1.02[[1]]$control$I1_selchange <- c(h1_1.02[[1]]$control$I1_selchange,.8)
 
-# Increase sample size for final year age comp
-h1_1.02[[1]]$data$Fagesample[dim(h1_1.02[[1]]$data$Fagesample)[1],4] <- h2_1.02[[1]]$data$Fagesample[dim(h2_1.02[[1]]$data$Fagesample)[1],4] <- h2_1.02[[1]]$data$Fagesample[(dim(h2_1.02[[1]]$data$Fagesample)[1]-1),4]
+# Update q
+h1_1.02[[1]]$control$RW_nyrs_q[1] <- h2_1.02[[1]]$control$RW_nyrs_q[1] <- h1_1.01[[1]]$control$RW_nyrs_q[1]+1
+h1_1.02[[1]]$control$RW_q_yrs <- h2_1.02[[1]]$control$RW_q_yrs <- c(h1_1.01[[1]]$control$RW_q_yrs[1], 2019, h1_1.01[[1]]$control$RW_q_yrs[2])
+h1_1.02[[1]]$control$RW_q_sigmas <- h2_1.02[[1]]$control$RW_q_sigmas <- c(h1_1.01[[1]]$control$RW_q_sigmas, h1_1.01[[1]]$control$RW_q_sigmas[1])
 
-# fn_update(h1_1.02, "1.02", "h1", dodat=T)
-# fn_update(h2_1.02, "1.02", "h2", dodat=T)
-# h1_1.02 <- runit("h1_1.02",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
-# h2_1.02 <- runit("h2_1.02",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+
+# fn_update(h1_1.02, "1.02", "h1", dodat=F)
+# fn_update(h2_1.02, "1.02", "h2", dodat=F)
+# h1_1.02 <- runit("h1_1.02",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# h2_1.02 <- runit("h2_1.02",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+
+#----------
+# New CPUE index proposed in JM07
+#----------
+
+chile_cpue <- read_csv(here::here("data","cpue_chile.csv")) %>%
+                pivot_longer(everything(),names_sep="_", names_to=c("variable","index")) %>% 
+                pivot_wider(names_from=variable, values_from=value) %>%
+                unnest(-index) %>% 
+                drop_na(cpue) %>%
+                group_by(index) %>%
+                mutate(z_cpue=(cpue-mean(cpue))/sd(cpue))
+
+h1_1.05 <- h1_1.00
+h2_1.05 <- h2_1.00
+
+i <- grep("Chile_CPUE",h1_1.05[[1]]$data$Inames)
+dat2use <- chile_cpue %>% filter(index=="jm07")
+rows2use <- which(rownames(h1_1.05[[1]]$data$Index) %in% dat2use$year)
+
+h1_1.05[[1]]$data$Inumyears[i]          <- h2_1.05[[1]]$data$Inumyears[i]          <- dim(dat2use)[1]
+h1_1.05[[1]]$data$Index[,i]             <- h2_1.05[[1]]$data$Index[,i]             <- h1_1.05[[1]]$data$Indexerr[,i] <- h1_1.05[[1]]$data$Iyears[,i] <- h2_1.05[[1]]$data$Indexerr[,i] <- h2_1.05[[1]]$data$Iyears[,i] <- NA # In case the years change.
+h1_1.05[[1]]$data$Index[rows2use,i]     <- h2_1.05[[1]]$data$Index[rows2use,i]     <- dat2use$cpue
+h1_1.05[[1]]$data$Indexerr[rows2use,i]  <- h2_1.05[[1]]$data$Indexerr[rows2use,i]  <- dat2use$sd
+h1_1.05[[1]]$data$Iyears[rows2use,i]    <- h2_1.05[[1]]$data$Iyears[rows2use,i]    <- dat2use$year
+
+# fn_update(h1_1.05, "1.05", "h1", dodat=T)
+# fn_update(h2_1.05, "1.05", "h2", dodat=T)
+# h1_1.05 <- runit("h1_1.05",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# h2_1.05 <- runit("h2_1.05",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+
+#----------
+# Updating Peruvian wt at age
+# Data file provided by Criscely 12/09/23
+#----------
+
+h1_1.06 <- h1_1.00
+h2_1.06 <- h2_1.00
+
+wtatage_peru <- read_csv(here::here("data","wtatage_peru.csv"))
+
+f <- grep("FarNorth", h1_1.06[[1]]$data$Fnames)
+i <- grep("Peru_CPUE",h1_1.06[[1]]$data$Inames)
+
+rows2use <- which(rownames(h1_1.06[[1]]$data$Fwtatage[,,f]) %in% wtatage_peru$year)
+dat2use <- wtatage_peru %>%
+            select(-year) %>%
+            as.matrix()
+
+h1_1.06[[1]]$data$Fwtatage[rows2use,,f] <- h2_1.06[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
+
+# Update wtatage for CPUE
+rows2use <- which(rownames(h1_1.06[[1]]$data$Iwtatage[,,i]) %in% wtatage_peru$year)
+h1_1.06[[1]]$data$Iwtatage[rows2use,,i] <- h2_1.06[[1]]$data$Iwtatage[rows2use,,i] <- dat2use
+
+fn_update(h1_1.06, "1.06", "h1", dodat=T)
+fn_update(h2_1.06, "1.06", "h2", dodat=T)
+h1_1.06 <- runit("h1_1.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+h2_1.06 <- runit("h2_1.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+
+#----------
+# Downweight last value for offshore CPUE
+#----------
+
+h1_1.07 <- h1_1.06
+
+i <- grep("Offshore",h1_1.07[[1]]$data$Inames)
+rows2use <- which(h1_1.07[[1]]$data$Iyears[,i]==max(h1_1.07[[1]]$data$Iyears[,i],na.rm=T))
+
+h1_1.07[[1]]$data$Indexerr[rows2use,i] <- h1_1.00[[1]]$data$Indexerr[rows2use,i] * 2
+
+# fn_bridge(h1_1.07, "1.07")
+# h1_1.07 <- runit("h1_1.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# h2_1.07 <- runit("h2_1.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs

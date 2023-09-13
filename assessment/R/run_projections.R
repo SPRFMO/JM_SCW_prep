@@ -21,7 +21,7 @@ fixed_bmsy <- function(mod, refpt=T){
   return(mod)
 }
 
-fn.update <- function(newmod, newmodname, h) {
+fn_update <- function(newmod, newmodname, h) {
 
   names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,h)
 #  newmod[[1]]$control$dataFile <- paste0(newmodname,".dat") # Double-check if this is actually necessary
@@ -31,7 +31,7 @@ fn.update <- function(newmod, newmodname, h) {
 
 #---------
 
-FinModName <- "1.02"
+FinModName <- "1.07"
 FinMod_h1 <- readJJM(geth(FinModName,"h1"),path="config",input="input")
 FinMod_h2 <- readJJM(geth(FinModName,"h2"),path="config",input="input")
 
@@ -39,11 +39,11 @@ FinMod_h2 <- readJJM(geth(FinModName,"h2"),path="config",input="input")
 #---------
 h1_modls <- FinMod_h1
 h1_modls[[1]]$control$Steepness[1,1] <- .65
-h1_modls[[1]]$control$Nyrs_sr <- 16 # CHANGE TO 15
-h1_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015 # CHANGE TO 2001:2015
+h1_modls[[1]]$control$Nyrs_sr <- 15
+h1_modls[[1]]$control$Nyrs_sr_1 <- 2001:2015
 
-# fn.update(h1_modls, paste0(FinModName,".ls"),"h1")
-# modls  <- runit(geth(paste0(FinModName,".ls"),"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# fn_update(h1_modls, paste0(FinModName,".ls"),"h1")
+# modls  <- runit(geth(paste0(FinModName,".ls"),"h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
 # Only do this for h1
 # Should not be setting BMSY for h2
@@ -67,11 +67,11 @@ summary(FinMod_h1_msy, Projections=TRUE, Fmult=c(0, "FMSY", .75, 1, 1.25))
 
 h2_modls <- FinMod_h2
 h2_modls[[1]]$control$Steepness[1,1:3] <- .65
-h2_modls[[1]]$control$Nyrs_sr[1] <- 16
-h2_modls[[1]]$control$Nyrs_sr_1 <- 2000:2015
+h2_modls[[1]]$control$Nyrs_sr[1] <- 15
+h2_modls[[1]]$control$Nyrs_sr_1 <- 2001:2015
 
-# fn.update(h2_modls, paste0(FinModName,".ls"),"h2")
-# modls  <- runit(geth(paste0(FinModName,".ls"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjms")
+# fn_update(h2_modls, paste0(FinModName,".ls"),"h2")
+# modls  <- runit(geth(paste0(FinModName,".ls"),"h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
 h2_modls <- readJJM(geth(paste0(FinModName,".ls"),"h2"), path = "config", input = "input")
 

@@ -133,7 +133,7 @@ Stock1%Stock2
 #I1_selchangeYear 
 2005 2019 
 #I1_selchange 
-0.7 0.7 
+0.7 0.8 
 #I1_selbyage 
 0.3 1 1 1 1 1 1 1 1 1 1 1 
 #I2_info 

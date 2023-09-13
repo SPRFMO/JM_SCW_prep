@@ -61,7 +61,6 @@ fn_update <- function(newmod, newmodname, h) {
 #-------------------------
 hyp <- "h1"
 
-
 # mod0.00 <- runit(geth("0.00",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 # mod0.00 <- runit(geth("0.00",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 
@@ -191,14 +190,13 @@ mod_prev <- mod_new
 
 #----------
 # 0.03 Last year's fishery (and CPUE) wtatage
-# wtatage for fleet 3 is different?
 #----------
 mod_new <- mod_prev
 cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
   rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
-  if(f!=3) {
+  if(f!=3) {  # TAKE OUT FOR SC12
     dat2use <- dat_wtatage_f %>%
                 filter(year==yr_prev, fleet==f) %>%
                 select(-year,-fleet) %>%
@@ -318,7 +316,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
   }
 }
 
-# fn_bridge(mod_new, "0.06")
+fn_bridge(mod_new, "0.06")
 # mod0.06 <- runit("h1_0.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 # mod0.06 <- runit("h2_0.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
 mod_prev <- mod_new
@@ -489,5 +487,5 @@ mod_h1_new[[1]]$control$F4_selchange[length(mod_h1_new[[1]]$control$F4_selchange
 fn_update(mod_h1_new, "1.00", "h1")
 fn_update(mod_h2_new, "1.00", "h2")
 
-# mod1.00 <- runit(geth("1.00","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod1.00 <- runit(geth("1.00","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+mod1.00 <- runit(geth("1.00","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+mod1.00 <- runit(geth("1.00","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")

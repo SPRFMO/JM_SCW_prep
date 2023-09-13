@@ -128,7 +128,7 @@ fixed_bmsy <- function(mod, refpt=T){
 }
 
 
-FinModName <- "1.00"
+FinModName <- "1.07"
 
 ```
 
@@ -537,19 +537,235 @@ plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 
 # Since the Web Meeting
-The code used to run the following sensitivities can be found in `assessment/R/SC11.R`.
+The code used to run the following sensitivities (1.01 onwards) can be found in `assessment/R/SC11.R`.
 
-- Re-run 0.05 onwards with updated catch projections for Chile (80,466 t for Fleet 1 and 736,292 t for Fleet 2; Ignacio Paya 30/08/23) and Peru (210,000 t; Ana Alegre 01/09/23)
+Model      | Description
+-----------|--------------
+1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2023; 0.10 data file
+1.01  | As 1.00 but with updated Acoustic_CS data (2020, 2021, 2023)
+1.02  | As 1.01 but with a break in selectivity in 2020
+1.03  | As 1.00 but with updated ageing error matrix from Chile (SC11-JM05) (**NOT RUN**)
+1.04  | As 1.00 but with proposed Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06) (**NOT RUN**; comparison shown in SC11-JM06)
+1.05  | As 1.00 but with proposed Chile CPUE index from SC11-JM07
+1.06  | As 1.00 but with updated Peruvian weight-at-age data (run by Peru)
+1.07  | As 1.00 but with downweighted 2022 offshore CPUE index
+
+- Re-run 0.05-1.00 onwards with updated catch projections for Chile (80,466 t for Fleet 1 and 736,292 t for Fleet 2; Ignacio Paya 30/08/23) and Peru (210,000 t; Ana Alegre 01/09/23)
+  + Thanks to Criscely and Josymar (Peru) for cross-checking and finding bugs
 - Acoustic Central South data obtained (Ignacio Paya 10/09/23)
-  + The 2020 data have not been submitted to the Jack Mackerel Data Repository
-  + 
-- Effort creep sensitivity has already been done in SC11-JM06_corrected
+- Chilean updates to informed effort creep estimates sensitivity has already been done in SC11-JM06_corrected
 - Variable weight-at-age from Peru (thanks to Peru)
   + The mean-wight-at-age for the FarNorth fleet has not been updated since 2015, even though those data were reported. Peru indicated that these data do change over time due to annually-estimated weight-length parameters, albeit with minor variation.
+  
+## Updating the Chilean Acoustic Central-South Survey
+
+The Central-South Acoustic survey has not been updated since 2009, due to inconsistencies in survey timing and methodology in subsequent years (?). Since 2020, the survey has been conducted for three years- 2020, 2021, and 2023. During the JMWG Web Meeting in August this year (G128-2023), Chile requested that the SC consider including these updated data points in the assessment model. Two versions were proposed- one with just the data updated and a second with a break allowed in selectivity estimates (selectivity change penalty and catchability in 2019) to account for changes since 2009.
+
+- The 2020 data have not been submitted to the Jack Mackerel Data Repository
+- Should the weighting of the new data points (2020, 2021, and 2023) remain the same for the entire time series (historical series ending in 2009)?
+  + Index CV is 0.3, compared to AcousN CV of 0.5
+  + Age composition sample size 6.8 compared to AcousN 12.4 (Francis Weights from 2022 benchmark)
+
+```{r}
+mods2compare <- c("1.00","1.01","1.02")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the Chilean Central South Acoustic Survey  (", geth(mods2compare[2]), ") with a regime change in selectivity in 2020 (",geth(mods2compare[3]),").")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the Chilean Central South Acoustic Survey  (", geth(mods2compare[2]), ") with a regime change in selectivity in 2020 (",geth(mods2compare[3]),").")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the Chilean Central South Acoustic Survey  (", geth(mods2compare[2]), ") with a regime change in selectivity in 2020 (",geth(mods2compare[3]),").")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Fit to Survey
+```{r}
+h1_mod <- readJJM("h1_1.02",path = "config", input = "input")
+h1_diag <- diagnostics(h1_mod, plots=F)
+plot(h1_diag, var = "predictedObservedIndices")
+```
+
+#### Fit to Age Composition
+```{r}
+plot(h1_diag, var = "ageFitsSurvey", fleet="Chile_AcousCS")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated from updating the Chilean Central South Acoustic Survey  (", geth(mods2compare[2]), ") with a regime change in selectivity in 2020 (",geth(mods2compare[3]),").")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the Chilean Central South Acoustic Survey  (", geth(mods2compare[2]), ") with a regime change in selectivity in 2020 (",geth(mods2compare[3]),").")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated from updating the Chilean Central South Acoustic Survey  (", geth(mods2compare[2]), ") with a regime change in selectivity in 2020 (",geth(mods2compare[3]),").")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Fit to Survey
+
+```{r}
+h2_mod <- readJJM("h2_1.02",path = "config", input = "input")
+h2_diag <- diagnostics(h2_mod, plots=F)
+plot(h2_diag, var = "predictedObservedIndices")
+```
+
+#### Fit to Age Composition
+```{r}
+plot(h2_diag, var = "ageFitsSurvey", fleet="Chile_AcousCS")
+```
+
+## Annual variation in FarNorth mean weight-at-age
+The Peruvian mean weight-at-age vectors have not been updated since 2015 due to low fishing levels (?). These data have historically been provided to the SC but they have not been used in the assessment.
+
+```{r}
+mods2compare <- c("1.00","1.06")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated from updating the FarNorth mean weight-at-age from 2015-2023.")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated from updating the FarNorth mean weight-at-age from 2015-2023.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+## Proposed changes to Chilean CPUE Index
+
+- JM06: informed technological creep factor
+- JM07: spatiotemporal model using INLA
+- JM12: SPDE-based GLM
+
+* JM10 not included as the values were not provided in the paper
+
+```{r fig.cap=paste0("Plot comparing z-scored Chilean CPUE indices proposed in SC11-JM06, SC11-JM07, and SC11-JM12.", fig.width=10)}
+
+chile_cpue <- read_csv(here::here("data","cpue_chile.csv")) %>%
+                pivot_longer(everything(),names_sep="_", names_to=c("variable","index")) %>%
+                pivot_wider(names_from=variable, values_from=value) %>%
+                unnest(-index) %>% 
+                drop_na(cpue) %>%
+                group_by(index) %>%
+                mutate(z_cpue=(cpue-mean(cpue))/sd(cpue))
+
+ggplot(chile_cpue) +
+  geom_line(aes(x=year,y=z_cpue,colour=index)) +
+  theme_minimal() + 
+  scale_x_continuous(breaks= scales::pretty_breaks())
+
+```
+
+### CPUE Index from JM07 (INPESCA)
+
+```{r}
+mods2compare <- c("1.00","1.05")
+```
+
+##### Single-stock hypothesis {.tabset}
+###### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+###### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+###### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+###### Fit to Survey
+```{r}
+h1_mod <- readJJM("h1_1.07",path = "config", input = "input")
+h1_diag <- diagnostics(h1_mod, plots=F)
+plot(h1_diag, var = "predictedObservedIndices")
+```
+
+#### Two-stock hypothesis {.tabset}
+##### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimated from updating the Chilean CPUE index to that from SC11-JM07.")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+##### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+##### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimated from updating the Chilean CPUE index to that from SC11-JM07.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+###### Fit to Survey
+```{r}
+h2_mod <- readJJM("h2_1.07",path = "config", input = "input")
+h2_diag <- diagnostics(h2_mod, plots=F)
+plot(h2_diag, var = "predictedObservedIndices")
+```
 
 # Updated Model Diagnostics
-<!-- Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`. -->
-For model `r FinModName`.
+Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
 ## Single-Stock Hypothesis
 ```{r results=F}
@@ -597,6 +813,10 @@ plot(h1_diag, var = "ssbPrediction")
 plot(h1_diag, var = "catchPrediction")
 ```
 
+### Kobe Plot
+```{r, fig.width=8}
+kobe(fixed_bmsy(h2_mod), engine="ggplot") + facet_wrap(~stock, scale="free")
+```
 
 ### Summary Plot
 ```{r}
