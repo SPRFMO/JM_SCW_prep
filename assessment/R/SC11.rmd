@@ -815,13 +815,13 @@ plot(h1_diag, var = "catchPrediction")
 
 ### Kobe Plot
 ```{r, fig.width=8}
-kobe(fixed_bmsy(h2_mod), engine="ggplot") + facet_wrap(~stock, scale="free")
+kobe(fixed_bmsy(h1_mod), engine="ggplot")
 ```
 
 ### Summary Plot
 ```{r}
-bmsy.diag <- diagnostics(fixed_bmsy(h1_mod, new_bmsy), plots = F)
-plot(bmsy.diag, var = "summarySheet")
+bmsy_diag <- diagnostics(fixed_bmsy(h1_mod, new_bmsy), plots = F)
+plot(bmsy_diag, var = "summarySheet")
 ```
 
 

@@ -73,7 +73,7 @@ h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
 file_dat <- h1_1.00[[1]]$data
 
-# FinModName <- "1.02"
+FinModName <- "1.07"
 
 #----------
 # Updating Chile_AcousCS
@@ -271,10 +271,9 @@ h1_1.07[[1]]$data$Indexerr[rows2use,i] <- h1_1.00[[1]]$data$Indexerr[rows2use,i]
 # Loads packages
 #--------------------------
 
-source("R/constructor_input_tables.R")
+source("annex/constructor_input_tables.R")
 
-
-construct_input_tables(modname=FinModName,docname="annex\ plots/Annex_Tables")
+construct_input_tables(modname=FinModName,docname="annex/Annex_Tables")
 
 # Summary data
 FinMod <- readJJM(geth(FinModName,"h1"),path="config",input="input")
