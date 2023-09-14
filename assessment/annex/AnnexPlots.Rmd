@@ -24,8 +24,8 @@ dir.main <- getwd()
 dir.plots <- "annex plots"
 if(!dir.exists(dir.plots)) dir.create(dir.plots)
 
-h1nm <- "h1_1.02"
-h2nm <- "h2_1.02"
+h1nm <- "h1_1.07"
+h2nm <- "h2_1.07"
 
 h1_mod <- readJJM(h1nm, path = "config", input = "input")
 h1_diag <- diagnostics(h1_mod, plot=F)

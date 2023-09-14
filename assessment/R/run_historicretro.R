@@ -3,7 +3,7 @@
 #--------------------------
 library(jjmR)
 
-FinModName <- "1.02"
+FinModName <- "1.07"
 
 mod_final <- readJJM(paste0("h1_",FinModName),path="config",input="input")   # current year assessment
 repfile <- mod_final[[1]]$output[[1]]
@@ -40,5 +40,5 @@ if(max(table_old$Assessmentyear)<max(repfile$Yr) | assessmenttype != "assessment
   table_new <- rbind(table_old, sumtable)
 }
 
-write.csv(as.data.frame(table_new), file = "SPRFMO historical retro.csv", quote = FALSE,row.names = F)
+write.csv(as.data.frame(table_new), file = here::here("hist_retro", "SPRFMO historical retro.csv"), quote = FALSE,row.names = F)
 
