@@ -24,12 +24,13 @@ Model      | Description
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2023; 0.10 data file
 1.01  | As 1.00 but with updated Acoustic_CS data (2020, 2021, 2023)
-1.02  | As 1.01 but with a break in selectivity in 2020
+1.02  | As 1.01 but with a break in selectivity in 2019
 1.03  | As 1.00 but with updated ageing error matrix from Chile (SC11-JM05) (**NOT RUN**)
 1.04  | As 1.00 but with proposed Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06) (**NOT RUN**; comparison shown in SC11-JM06)
 1.05  | As 1.00 but with proposed Chile CPUE index from SC11-JM07
 1.06  | As 1.00 but with updated Peruvian weight-at-age data
 1.07  | As 1.06 but with downweighted 2022 offshore CPUE index
+1.08  | As 1.07 but with Peruvian high seas catch allocated to the offshore fleet (f4) instead of the farnorth fleet (f3)
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.07.xx**     |  Base model

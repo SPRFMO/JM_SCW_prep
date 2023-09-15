@@ -330,7 +330,7 @@ cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
   rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_curr)
-  if(f!=3){
+  if(f!=3){ # CHANGE FOR SC12
     dat2use <- dat_wtatage_f %>%
                 filter(year==yr_curr, fleet==f) %>%
                 select(-year,-fleet) %>%
