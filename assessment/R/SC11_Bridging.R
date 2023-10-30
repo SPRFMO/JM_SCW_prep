@@ -11,17 +11,14 @@
 library(jjmR)
 library(tidyverse)
 library(readxl)
+library(foreach)
+library(doParallel)
+ncores <- 2
+cl <- if(Sys.info()[["sysname"]]=="Windows") makePSOCKcluster(ncores) else ncores
+registerDoParallel(cl)
 
-#--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
-#--------------------------------------------------------
-# setwd(file.path(getwd(), "assessment"))
-pwd <- getwd()
-if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
-  stop(paste("Set working directory to jjm/assessment"))
-}
 
-geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 
 fn_bridge <- function(newmod, newmodname, h2mod=h2_ctl,ln.dat=line_dat, ln.modnm=line_modnm) {
 
@@ -61,8 +58,8 @@ fn_update <- function(newmod, newmodname, h) {
 #-------------------------
 hyp <- "h1"
 
-# mod0.00 <- runit(geth("0.00",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.00 <- runit(geth("0.00",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.00 <- runit(geth("0.00",h="h1"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.00 <- runit(geth("0.00",h="h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm")
 
 # Read in last year's datafile
 mod_prev <- readJJM(geth("0.00"), path = "config", input = "input")
@@ -135,8 +132,7 @@ catch_prev <- dat_catch %>%
 mod_new[[1]]$data$Fcaton[which(rownames(mod_new[[1]]$data$Fcaton)==yr_prev),] <- catch_prev
 
 # fn_bridge(mod_new, "0.01")
-# mod0.01 <- runit(geth("0.01","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.01 <- runit(geth("0.01","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.01 <- runit(geth("0.01","h1"),geth("0.01","h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 mod_prev <- mod_new
 #----------
@@ -183,8 +179,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
 }
 
 # fn_bridge(mod_new, "0.02")
-# mod0.02 <- runit(geth("0.02",h="h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.02 <- runit(geth("0.02",h="h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.02 <- runit(geth("0.02",h="h1"),geth("0.02",h="h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
 
@@ -216,8 +211,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
 }
 
 # fn_bridge(mod_new, "0.03")
-# mod0.03 <- runit(geth("0.03"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.03 <- runit(geth("0.03","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.03 <- runit(geth("0.03"),geth("0.03","h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
 #----------
@@ -236,8 +230,7 @@ mod_new[[1]]$data$Indexerr[rows2use,i] <- dat2use$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat2use$year
 
 # fn_bridge(mod_new, "0.04")
-# mod0.04 <- runit(geth("0.04"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.04 <- runit(geth("0.04","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.04 <- runit(geth("0.04"),geth("0.04","h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
 
@@ -270,8 +263,7 @@ for(i in 1:mod_new[[1]]$data$Inum) {
 }
 
 # fn_bridge(mod_new, "0.05")
-# mod0.05 <- runit(geth("0.05"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.05 <- runit(geth("0.05","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.05 <- runit(geth("0.05"),geth("0.05","h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parellel=T)
 mod_prev <- mod_new
 
 #----------
@@ -317,8 +309,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
 }
 
 fn_bridge(mod_new, "0.06")
-# mod0.06 <- runit("h1_0.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.06 <- runit("h2_0.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.06 <- runit("h1_0.06","h2_0.06",pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parellel=T)
 mod_prev <- mod_new
 
 
@@ -352,8 +343,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
 }
 
 # fn_bridge(mod_new, "0.07")
-# mod0.07 <- runit("h1_0.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.07 <- runit("h2_0.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.07 <- runit("h1_0.07","h2_0.07",pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parellel=T)
 mod_prev <- mod_new
 
 #----------
@@ -372,8 +362,7 @@ mod_new[[1]]$data$Indexerr[rows2use,i] <- dat2use$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat2use$year
 
 # fn_bridge(mod_new, "0.08")
-# mod0.08 <- runit("h1_0.08",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.08 <- runit("h2_0.08",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.08 <- runit("h1_0.08","h2_0.08",pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parellel=T)
 mod_prev <- mod_new
 
 
@@ -393,8 +382,7 @@ mod_new[[1]]$data$Indexerr[rows2use,i] <- dat2use$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat2use$year
 
 # fn_bridge(mod_new, "0.09")
-# mod0.09 <- runit("h1_0.09",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.09 <- runit("h2_0.09",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.09 <- runit("h1_0.09","h2_0.09",pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parellel=T)
 mod_prev <- mod_new
 
 
@@ -442,8 +430,7 @@ mod_new[[1]]$data$Iagesample[rows2use,i] <- mod_new[[1]]$data$Iagesample[rev(whi
 
 
 # fn_bridge(mod_new, "0.10")
-# mod0.10 <- runit(geth("0.10"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# mod0.10 <- runit(geth("0.10","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+# mod0.10 <- runit(geth("0.10"),geth("0.10","h2"),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parellel=T)
 mod_prev <- mod_new
 
 
@@ -487,5 +474,5 @@ mod_h1_new[[1]]$control$F4_selchange[length(mod_h1_new[[1]]$control$F4_selchange
 fn_update(mod_h1_new, "1.00", "h1")
 fn_update(mod_h2_new, "1.00", "h2")
 
-mod1.00 <- runit(geth("1.00","h1"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-mod1.00 <- runit(geth("1.00","h2"),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+mod1.00 <- runit(geth("1.00","h1"),pdf=T,portrait=F,est=TRUE,exec="../src/jjm")
+mod1.00 <- runit(geth("1.00","h2"),pdf=T,portrait=F,est=TRUE,exec="../src/jjm")

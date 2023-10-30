@@ -86,11 +86,6 @@ library(tidyverse)
 library(kableExtra)
 
 pwd <- getwd()
-# if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
-#   stop(paste("Set working directory to jjm/assessment"))
-# }
-
-geth <- function(mod,h=hyp) paste0(h,"_", mod)
 
 fn_plotind <- function(mods2compare, indname) {
   fn_seldata <- function(x) {
@@ -118,17 +113,7 @@ fn_plotind <- function(mods2compare, indname) {
   print(p)
 }
 
-fixed_bmsy <- function(mod, refpt=T){
-  if(refpt) refpt <- mean(rev(mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
-
-
-FinModName <- "1.07"
+finmodname <- "1.07"
 
 ```
 
@@ -859,11 +844,11 @@ plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ---
 
 # Updated Model Diagnostics
-Model `r FinModName` was selected as the final model for `r format(Sys.time(), "%Y")`.
+Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
 ## Single-Stock Hypothesis
 ```{r results=F}
-h1nm <- geth(FinModName,"h1")
+h1nm <- geth(finmodname,"h1")
 
 h1_mod <- readJJM(h1nm, path = "config", input = "input")
 h1_diag <- diagnostics(h1_mod,plot=F)
@@ -918,7 +903,7 @@ kobe(fixed_bmsy(h1_mod), engine="ggplot")
 
 ### Summary Plot
 ```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
-bmsy_diag <- diagnostics(fixed_bmsy(h1_mod, new_bmsy), plots = F)
+bmsy_diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
 plot(bmsy_diag, var = "summarySheet")
 ```
 
@@ -926,11 +911,19 @@ plot(bmsy_diag, var = "summarySheet")
 ## Two-Stock Hypothesis
 
 ```{r results=F}
-h2nm <- geth(FinModName,"h2")
+h2nm <- geth(finmodname,"h2")
 
 h2_mod <- readJJM(h2nm,path = "config", input = "input")
 h2_diag <- diagnostics(h2_mod, plots=F)
+h2_bmsy_diag <- diagnostics(fixed_bmsy(h2_mod), plots = F)
+
+new_bmsy_s <- mean(rev(h2_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
+new_bmsy_n <- mean(rev(h2_mod[[1]]$output[[2]]$msy_mt[,10])[1:10])
+
 ```
+
+The $B_{MSY}$ for this year (an average of the most recent ten years) will be ***`r round(new_bmsy_s)/1000`*** million tons for the south stock and ***`r round(new_bmsy_n)/1000`*** million tons for the north stock.
+
 
 ### Fits to Data {.tabset}
 #### Fishery Age Composition
@@ -969,13 +962,13 @@ plot(h2_diag_ls, var = "catchPrediction")
 ```
 
 ### Kobe Plot
-```{r, fig.width=8}
-kobe(h2_mod, engine="ggplot") + facet_wrap(~stock, scale="free")
+```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy_s)/1000, " million tons for the south stock and ", round(new_bmsy_n)/1000, ".")}
+kobe(fixed_bmsy(h2_mod), engine="ggplot") + facet_wrap(~stock, scale="free")
 ```
 
 ### Summary Plot
 ```{r}
-plot(h2_diag, var = "summarySheet")
+plot(h2_bmsy_diag, var = "summarySheet")
 ```
 
 ## Likelihood Table

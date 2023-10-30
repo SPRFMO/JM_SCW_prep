@@ -11,25 +11,19 @@
 library(jjmR)
 library(tidyverse)
 
+
+#---If running models in parallel
+
+library(foreach)
+library(doParallel)
+
+ncores <- 2
+cl <- if(Sys.info()[["sysname"]]=="Windows") makePSOCKcluster(ncores) else ncores
+registerDoParallel(cl)
+
 #--------------------------------------------------------
 # Working directory should be in assessment folder of jjm
 #--------------------------------------------------------
-# setwd(file.path(getwd(), "assessment"))
-pwd <- getwd()
-if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
-  stop(paste("Set working directory to jjm/assessment"))
-}
-geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
-
-# Function to put a constant reference point into image
-fixed_bmsy <- function(mod, refpt=T){
-  if(refpt) refpt <- mean(rev(mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
 
 fn_update <- function(newmod, newmodname, h, dodat=T) {
 
@@ -73,7 +67,7 @@ h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
 file_dat <- h1_1.00[[1]]$data
 
-FinModName <- "1.07"
+finmodname <- "1.07"
 
 #----------
 # Updating Chile_AcousCS
@@ -257,8 +251,7 @@ rows2use <- which(h1_1.07[[1]]$data$Iyears[,i]==max(h1_1.07[[1]]$data$Iyears[,i]
 h1_1.07[[1]]$data$Indexerr[rows2use,i] <- h1_1.00[[1]]$data$Indexerr[rows2use,i] * 2
 
 # fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.06.ctl"))
-# h1_1.07 <- runit("h1_1.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# h2_1.07 <- runit("h2_1.07",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+h_1.07 <- runit(c("h1_1.07","h2_1.07"),parallel=TRUE,pdf=TRUE,portrait=F,est=F,exec="../src/jjm")
 
 #----------
 # Move Peruvian catch in high seas from Fleet 3 to Fleet 4
@@ -291,26 +284,26 @@ fn_bridge(h1_1.08, "1.08", h2mod=readLines("config/h2_1.06.ctl"))
 
 source("annex/constructor_input_tables.R")
 
-construct_input_tables(modname=FinModName,docname="annex/Annex_Tables")
+construct_input_tables(modname=finmodname,docname="annex/Annex_Tables")
 
 # Summary data
-FinMod <- readJJM(geth(FinModName,"h1"),path="config",input="input")
-write.csv(summary(FinMod)$like,"results/SummaryLikelihoods_h1.csv")
+finmod <- readJJM(geth(finmodname,"h1"),path="config",input="input")
+write.csv(summary(finmod)$like,"results/SummaryLikelihoods_h1.csv")
 
-FinMod <- readJJM(geth(FinModName,"h2"),path="config",input="input")
-write.csv(summary(FinMod)$like,"results/SummaryLikelihoods_h2.csv")
+finmod <- readJJM(geth(finmodname,"h2"),path="config",input="input")
+write.csv(summary(finmod)$like,"results/SummaryLikelihoods_h2.csv")
 
 #------------------
 # Kobe for main doc
 # Summary sheets
 #------------------
-kobe(FinMod)
-kobe(fixed_bmsy(FinMod) ,add=T, col = 'red') 
+kobe(finmod)
+kobe(fixed_bmsy(finmod) ,add=T, col = 'red') 
 
-main_diag <- diagnostics(fixed_bmsy(FinMod),plots=F)
+main_diag <- diagnostics(fixed_bmsy(finmod),plots=F)
 plot(main_diag, var = "summarySheet")
 
-main_diag <- diagnostics(FinMod,plots=F)
+main_diag <- diagnostics(finmod,plots=F)
 plot(main_diag, var = "summarySheet")
 
 

@@ -1,50 +1,19 @@
-# ------------------------------------------------------------------------
-# Script for SC08---------------------------------------------------------
-# 2020 JM  ---------------------------------------------------------------
-# ------------------------------------------------------------------------
-#install.packages("devtools")
-#
-# MAKE SURE TO UPDATE
-# devtools::install_github("sprfmo/jjmr")
-# Remember to recompile jjms as needed
-
 library(jjmR)
 library(PBSadmb)
 library(tidyverse)
 library(ggthemes)
-
-# fixed_bmsy <- function(mod,refpt=5500){
-#   old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-#   new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-#   mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-#   mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-#   return(mod)
-# }
-
-#--------------------------------------------------------
-# Working directory should be in assessment folder of jjm
-#--------------------------------------------------------
-
-setwd(file.path(getwd(), "assessment"))
-
-pwd <- getwd()
-if (!grepl(basename(pwd), "assessment", ignore.case = TRUE)) {
-  stop(paste("Set working directory to jjm/assessment"))
-}
-
-geth <- function(mod,h=hyp) paste0(h,"_", mod) # Package? Or keep?
 
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # summarize H1 and H2
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
-FinModName1 <- geth("1.02", h="h1")
-FinModName2 <- geth("1.02", h="h2")
+finmodname_h1 <- geth("1.07", h="h1")
+finmodname_h2 <- geth("1.07", h="h2")
 
-modls1 <- readJJM(paste0(FinModName1,".ls"),path="config",input="input")
-modls2 <- readJJM(paste0(FinModName2,".ls"),path="config",input="input")
-
+# WHY ARE WE USING LS??
+modls1 <- readJJM(paste0(finmodname_h1,".ls"),path="config",input="input")
+modls2 <- readJJM(paste0(finmodname_h2,".ls"),path="config",input="input")
 
 rp <- 
             data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="Fishing mortality", Refpoint="Fmsy", 
@@ -59,13 +28,13 @@ rp <-
   
   bind_rows(data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="SSB", Refpoint="Bmsy", 
                        Year=modls1[[1]]$output$Stock_1$msy_mt[,1],
-                       Value=7819)) %>% 
+                       Value=fixed_bmsy(modls1)[[1]]$output$Stock_1$msy_mt[,10])) %>% 
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="south",Var="SSB", Refpoint="Bmsy south",
                        Year =modls2[[1]]$output$Stock_1$msy_mt[,1],
-                       Value=modls2[[1]]$output$Stock_1$msy_mt[,10])) %>% 
+                       Value=fixed_bmsy(modls2)[[1]]$output$Stock_1$msy_mt[,10])) %>% 
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="north",Var="SSB", Refpoint="Bmsy north",
                        Year =modls2[[1]]$output$Stock_2$msy_mt[,1],
-                       Value=modls2[[1]]$output$Stock_2$msy_mt[,10]))  
+                       Value=fixed_bmsy(modls2)[[1]]$output$Stock_2$msy_mt[,10]))  
   
 
 # assessment
