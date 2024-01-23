@@ -20,12 +20,8 @@ library(jjmR)
 ```
 
 ```{r}
-dir.main <- getwd()
-dir.plots <- "annex plots"
-if(!dir.exists(dir.plots)) dir.create(dir.plots)
-
-h1nm <- "h1_1.02"
-h2nm <- "h2_1.02"
+h1nm <- "h1_1.07"
+h2nm <- "h2_1.07"
 
 h1_mod <- readJJM(h1nm, path = "config", input = "input")
 h1_diag <- diagnostics(h1_mod, plot=F)
@@ -238,39 +234,35 @@ plot(h2_mod,what="selectivity",fleet="ind", alpha = 0.2, scale = 10)
 ```
 
 
-```{r sumsheet-h1, fig.cap=paste0("Model ",h1nm," (single-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right). Blue lines represent the average $B_{MSY}$ over the most recent ten years (upper left) and dynamic estimates of $F_{MSY}$ (upper right).")}
-fixed_bmsy <- function(mod, refpt=T){
-  if(refpt) refpt <- mean(rev(mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
-bmsy.diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
-plot(bmsy.diag, var = "summarySheet")
+```{r sumsheet-h1, fig.cap=paste0("Model ",h1nm," (single-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right). Blue lines represent  dynamic estimates of $B_{MSY}$ (upper left) and dynamic estimates of $F_{MSY}$ (upper right). The orange line represents the average $B_{MSY}$ over the most recent ten years.")}
+bmsy_diag_h1 <- diagnostics(fixed_bmsy(h1_mod), plots = F)
+plot(bmsy_diag_h1, var = "summarySheet")
 ```
 
-```{r unfshbio-h1, fig.cap=paste0("Model ",h1nm," (single-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line), beginning in 1970.")}
+```{r unfshbio-h1, fig.cap=paste0("Model ",h1nm," (single-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line), beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is ", round((tail(h1_mod[[1]]$output[[1]]$TotBiom[,2],1) / tail(h1_mod[[1]]$output[[1]]$TotBiom_NoFish[,2],1)),2),".")}
 plot(h1_diag, var = "fishedUnfishedBiomass")
 ```
 
-```{r sumsheet-h2-1, fig.cap=paste0("Model ",h2nm," (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the south stock. Blue lines represent dynamic estimates of $B_{MSY}$ (upper left) and of $F_{MSY}$ (upper right).")}
-plot(h2_diag, var = "summarySheet", stock=1)
+```{r sumsheet-h2-1, fig.cap=paste0("Model ",h2nm," (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the south stock. Blue lines represent dynamic estimates of $B_{MSY}$ (upper left) and of $F_{MSY}$ (upper right). The orange line represents the average $B_{MSY}$ over the most recent ten years.")}
+bmsy_diag_h2 <- diagnostics(fixed_bmsy(h2_mod), plots = F)
+plot(bmsy_diag_h2, var = "summarySheet", stock=1)
 ```
 
 
-```{r sumsheet-h2-2, fig.cap=paste0("Model ",h2nm," (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the far north stock. Blue lines represent dynamic estimates of $B_{MSY}$ (upper left) and of $F_{MSY}$ (upper right).")}
-plot(h2_diag, var = "summarySheet", stock=2)
+```{r sumsheet-h2-2, fig.cap=paste0("Model ",h2nm," (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the far north stock. Blue lines represent dynamic estimates of $B_{MSY}$ (upper left) and of $F_{MSY}$ (upper right). The orange line represents the average $B_{MSY}$ over the most recent ten years.")}
+plot(bmsy_diag_h2, var = "summarySheet", stock=2)
 ```
 
 
-```{r unfshbio-h2-1, fig.cap=c(paste0("Model ",h2nm," (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the south stock, beginning in 1970."))}
+```{r unfshbio-h2-1, fig.cap=c(paste0("Model ",h2nm," (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the south stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is ", round((tail(h2_mod[[1]]$output[[1]]$TotBiom[,2],1) / tail(h2_mod[[1]]$output[[1]]$TotBiom_NoFish[,2],1)),2),"."))}
+
+
+
 plot(h2_diag, var = "fishedUnfishedBiomass",stock=1)
 ```
 
 
-```{r unfshbio-h2-2, fig.cap=paste0("Model ",h2nm," (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the far north stock, beginning in 1970.")}
+```{r unfshbio-h2-2, fig.cap=paste0("Model ",h2nm," (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the far north stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is ", round((tail(h2_mod[[1]]$output[[2]]$TotBiom[,2],1) / tail(h2_mod[[1]]$output[[2]]$TotBiom_NoFish[,2],1)),2),".")}
 plot(h2_diag, var = "fishedUnfishedBiomass",stock=2)
 ```
 

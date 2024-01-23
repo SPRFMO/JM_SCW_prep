@@ -31,22 +31,22 @@ library(ggthemes)
 if(!"plotCount" %in% ls())
   plotCount <- 0
 
-if(!"h1.mod" %in% ls())
-  stop("h1.mod not found. Please specify.")
+if(!"h1_mod" %in% ls())
+  stop("h1_mod not found. Please specify.")
 
 # FinModName1 <- geth("1.05", h="h1")
-# h1.mod <- readJJM(paste0(FinModName1,".ls"),path="config",input="input")
+# h1_mod <- readJJM(paste0(FinModName1,".ls"),path="config",input="input")
 
 # generate overviews; first the indices
 i <- 
-  as.data.frame(h1.mod[[1]]$data$Inames, stringsAsFactors = FALSE) %>%
+  as.data.frame(h1_mod[[1]]$data$Inames, stringsAsFactors = FALSE) %>%
   set_names("series") %>% 
   mutate(seriesnr = row_number()) 
 
 df <-
-            data.frame(var = "Iyears"   , as_tibble(h1.mod[[1]]$data$Iyears)   , stringsAsFactors = FALSE) %>% 
-  bind_rows(data.frame(var = "Iyearsage", as_tibble(h1.mod[[1]]$data$Iyearsage), stringsAsFactors = FALSE)) %>% 
-  bind_rows(data.frame(var = "Iyearslength", as_tibble(h1.mod[[1]]$data$Iyearslength), stringsAsFactors = FALSE)) %>% 
+            data.frame(var = "Iyears"   , as_tibble(h1_mod[[1]]$data$Iyears)   , stringsAsFactors = FALSE) %>% 
+  bind_rows(data.frame(var = "Iyearsage", as_tibble(h1_mod[[1]]$data$Iyearsage), stringsAsFactors = FALSE)) %>% 
+  bind_rows(data.frame(var = "Iyearslength", as_tibble(h1_mod[[1]]$data$Iyearslength), stringsAsFactors = FALSE)) %>% 
   pivot_longer(names_to = "seriesnr", values_to="year", 2:8) %>% 
   mutate(seriesnr = as.integer(gsub("index","", seriesnr)) ) %>% 
   mutate(var     = ifelse(var == "Iyears", "index", var)) %>% 
@@ -59,13 +59,13 @@ df <-
 
 # then the catch
 i <- 
-  as.data.frame(h1.mod[[1]]$data$Fnames, stringsAsFactors = FALSE) %>%
+  as.data.frame(h1_mod[[1]]$data$Fnames, stringsAsFactors = FALSE) %>%
   set_names("series") %>% 
   mutate(seriesnr = row_number()) 
 
 df <-
-            data.frame(var = "Cyearsage"   , as_tibble(h1.mod[[1]]$data$Fageyears)   , stringsAsFactors = FALSE) %>% 
-  bind_rows(data.frame(var = "Cyearslength", as_tibble(h1.mod[[1]]$data$Flengthyears), stringsAsFactors = FALSE)) %>% 
+            data.frame(var = "Cyearsage"   , as_tibble(h1_mod[[1]]$data$Fageyears)   , stringsAsFactors = FALSE) %>% 
+  bind_rows(data.frame(var = "Cyearslength", as_tibble(h1_mod[[1]]$data$Flengthyears), stringsAsFactors = FALSE)) %>% 
   pivot_longer(names_to = "seriesnr", values_to="year", 2:5) %>% 
   mutate(seriesnr = as.integer(gsub("fishery","", seriesnr)) ) %>% 
   mutate(var     = ifelse(var == "Cyearsage", "age", var)) %>% 

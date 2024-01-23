@@ -15,15 +15,6 @@
 library(jjmR)
 library(tidyverse)
 
-fixed_bmsy <- function(mod, refpt=T){
-  if(refpt) refpt <- mean(rev(mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
-  old_rat <- (mod[[1]]$output[[1]]$msy_mt[,13])
-  new_rat <- (mod[[1]]$output[[1]]$msy_mt[,12]/ refpt)
-  mod[[1]]$output[[1]]$msy_mt[,13] <- new_rat
-  mod[[1]]$output[[1]]$msy_mt[,10] <- refpt
-  return(mod)
-}
-#
 #----------------------
 # User-specified inputs
 #----------------------
@@ -65,7 +56,7 @@ h2_mod[[1]]$output$Stock_2$TotF
 
 # Summary of results
 y_ind <- h1_mod[[1]]$output[[1]]$SSB[,1] %in% h1_mod[[1]]$output[[1]]$msy_mt[,1]
-res.h1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
+res_h1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
                   mutate(
                     landings  = round(as.vector(rowSums(h1_mod[[1]]$data$Fcaton)), 0),
                     ssb       = round(h1_mod[[1]]$output[[1]]$SSB[y_ind,2], 0),
@@ -74,10 +65,10 @@ res.h1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                     fmsy      = round(h1_mod[[1]]$output[[1]]$msy_mt[,5], 2),
                     ssbmsy    = round(h1_mod[[1]]$output[[1]]$msy_mt[,10], 0),
                     )
-res.h1
+res_h1
 
 y_ind <- h2_mod[[1]]$output[[1]]$SSB[,1] %in% h2_mod[[1]]$output[[1]]$msy_mt[,1]
-res.h2_1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
+res_h2_1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
                   mutate(
                     landings  = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton)), 0),
                     ssb       = round(h2_mod[[1]]$output[[1]]$SSB[y_ind,2], 0),
@@ -86,10 +77,10 @@ res.h2_1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                     fmsy      = round(h2_mod[[1]]$output[[1]]$msy_mt[,5], 2),
                     ssbmsy    = round(h2_mod[[1]]$output[[1]]$msy_mt[,10], 0),
                     )
-res.h2_1
+res_h2_1
 
 y_ind <- h2_mod[[1]]$output[[2]]$SSB[,1] %in% h2_mod[[1]]$output[[2]]$msy_mt[,1]
-res.h2_2 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
+res_h2_2 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
                   mutate(
                     landings      = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton)), 0),
                     ssb       = round(h2_mod[[1]]$output[[2]]$SSB[y_ind,2], 0),
@@ -98,7 +89,7 @@ res.h2_2 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                     fmsy      = round(h2_mod[[1]]$output[[2]]$msy_mt[,5], 2),
                     ssbmsy    = round(h2_mod[[1]]$output[[2]]$msy_mt[,10], 0),
                     )
-res.h2_2
+res_h2_2
 
 
 #########

@@ -68,7 +68,6 @@ DATA_SECTION
   int mcmcmode
   int mcflag
   int do_hess
-
   !! oper_mod = 0;
   !! mcmcmode = 0;
   !! mcflag   = 1;
@@ -320,9 +319,18 @@ DATA_SECTION
  END_CALCS
   // Stock specifics
   init_int nstk                                   //Number of stocks
+  vector hcr_tac(1,nstk);
+  number hcr_tac_in;
+  !! hcr_tac_in = 10 ;
+
   imatrix pstkname(1,nstk,1,2)
   init_adstring stknameread;
  LOCAL_CALCS
+  if ( (on=option_match(argc,argv,"-tac"))>-1)
+  {
+    hcr_tac_in = atof(argv[on+1]);
+    cout<<"Got to tac "<<hcr_tac_in<<endl;
+  }
   for(s=1;s<=nstk;s++) 
   {
     pstkname(s,1)=1; 
@@ -1100,8 +1108,7 @@ DATA_SECTION
   !! log_input(maturity);
   // !! if (max(maturity)>.9) maturity /=2.;
   matrix wt_mature(1,nstk,1,nages);
-  !! for (s=1;s<=nstk;s++)
-  !!  wt_mature(s) = elem_prod(wt_pop(s),maturity(s)) ;
+  !! for (s=1;s<=nstk;s++) wt_mature(s) = elem_prod(wt_pop(s),maturity(s)) ;
   init_number test;
   !! write_input_log<<" Test: "<<test<<endl;
  !! if (test!=123456789) {cerr<<"Control file not read in correctly... "<<endl;exit(1);}
@@ -1307,6 +1314,7 @@ DATA_SECTION
   obs_lse_ind = sqrt(log(square(obs_lse_ind) + 1.));
   log_input(obs_lse_ind);
   obs_lva_ind = square(obs_lse_ind);
+  nyrs_zero_catch = 0;
   for (k=1;k<=nfsh;k++)
 		for (i=styr;i<=endyr;i++)
       if (catch_bio(k,i)==0.0) {
@@ -1676,15 +1684,16 @@ PARAMETER_SECTION
   sdreport_vector pred_ind_nextyr(1,nind);
   sdreport_vector OFL(1,nstk);
   // NOTE TO DAVE: Need to have a phase switch for sdreport variables(
-  3darray catch_future(1,nstk,1,4,styr_fut,endyr_fut); // Note, don't project for F=0 (it will bomb)
+  3darray catch_future(1,nstk,1,5,styr_fut,endyr_fut); // Note, don't project for F=0 (it will bomb)
   //sdreport_matrix SSB_fut(1,5,styr_fut,endyr_fut) //Ojo
-  3darray SSB_fut(1,nstk,1,5,styr_fut,endyr_fut) //Ojo
+  3darray SSB_fut(1,nstk,1,6,styr_fut,endyr_fut) //Ojo
   // !! int endyr_proj; if (nproj_yrs>0) endyr_proj=endyr+nproj_yrs; else endyr_proj=endyr-1;
   sdreport_matrix SSB_fut_1(1,nstk,styr_fut,endyr_fut)
   sdreport_matrix SSB_fut_2(1,nstk,styr_fut,endyr_fut)
   sdreport_matrix SSB_fut_3(1,nstk,styr_fut,endyr_fut)
   sdreport_matrix SSB_fut_4(1,nstk,styr_fut,endyr_fut)
   sdreport_matrix SSB_fut_5(1,nstk,styr_fut,endyr_fut)
+  sdreport_matrix SSB_fut_6(1,nstk,styr_fut,endyr_fut)
   !! write_input_log <<"logRzero "<<log_Rzero<<endl;
   !! write_input_log <<"logmeanrec "<<mean_log_rec<<endl;
   !! write_input_log<< "exp(log_sigmarprior "<<exp(log_sigmarprior)<<endl;
@@ -2773,7 +2782,7 @@ FUNCTION Calc_Dependent_Vars
     OFL(sel_map(1,k)) += wt_fsh(k,endyr) * ctmp;
   }
   if (phase_proj>0) 
-					Future_projections();
+		Future_projections();
   
 FUNCTION void Catch_at_Age(const int& s, const int& i)
   dvariable vbio=0.;
@@ -3376,21 +3385,25 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
         for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = seltmp(k)*Fratio(k)*Fmsy(s); // mean(F(k,endyr));
         break;
       case 5:
+      // 15% increase...but doesn't seem to be working yet...
+        ftmp2.initialize();
+				// First line gives by each year
+        ftmp2 = SolveF3(endyr, nage_future(s,styr_fut), hcr_tac(s), s);
+		    // cout<<s<<" hcr_tac: "<<hcr_tac(s)<<" ftmp2 "<<ftmp2<<endl;
+        for (k=1;k<=nfsh;k++){
+          f_tmp(k)     = ftmp2*Fratio(k);
+          F_fut_tmp(k) = f_tmp(k)*sel_fsh(k,endyr);
+				}
+        // f_tmp = SolveF3(endyr, natage(s,endyr+1), hcr_tac, s);
+        // for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = f_tmp(k)*seltmp(k);
+        // cout<<catch_lastyr<<endl;// <<F_fut_tmp<<endl;exit(1);
+        // cout << F_fut_tmp<<endl<<" ftmp2 "<<Fratio*ftmp2<<endl;exit(1);
+        break;
+       /*  */
+      case 6:
         f_tmp = 0.0;
         F_fut_tmp = 0.0;
         break;
-      /* case 6:
-      // 15% increase...but doesn't seem to be working yet...
-        p_lastyr.initialize();
-        for (int k=1;k<=nfsh;k++) p_lastyr(k) = catch_lastyr(k)/sum(catch_lastyr) ;
-        catch_lastyr = p_lastyr * 680. ; //591+0.15* 591.; OjO THIS NEEDS CHANGING AFTER 2019...
-        f_tmp.initialize();
-        f_tmp = SolveF2(endyr, catch_lastyr ,s);
-        for (int k=1;k<=nfsh;k++) 
-          F_fut_tmp(k) = f_tmp(k)*seltmp(k);
-        cout<<catch_lastyr<<endl;// <<F_fut_tmp<<endl;exit(1);
-        break;
-        */
     }
     Z_future(s,i) = M(s,endyr);
     for (k=1;k<=nfsh;k++)
@@ -3412,11 +3425,24 @@ FUNCTION Future_projections
   SSB_fut_3.initialize();
   SSB_fut_4.initialize();
   SSB_fut_5.initialize();
-  // SSB_fut_6.initialize();
+  SSB_fut_6.initialize();
   catch_future.initialize();
+  dvector p_lastyr(1,nfsh);
+  p_lastyr.initialize(); 
+  hcr_tac.initialize(); 
+	for (int k=1;k<=nfsh;k++) 
+	  p_lastyr(k) = catch_lastyr(k)/sum(catch_lastyr) ;
+
   for (s=1;s<=nstk;s++)
   {
-    for (int iscen=1;iscen<=5;iscen++)
+		
+    for (k=1;k<=nfsh;k++)
+      if (sel_map(1,k) == s)
+	      hcr_tac(s) += hcr_tac_in*p_lastyr(k);
+
+		// cout<<s<<" hcr_tac: "<<hcr_tac(s)<<" tac_in: "<<hcr_tac_in<<endl;
+
+    for (int iscen=1;iscen<=6;iscen++)
     {
      // Future Sp_Biom set equal to estimated Sp_Biom w/ right lag
       // Sp_Biom_future(s)(styr_fut-rec_age,styr_fut-1) = Sp_Biom(s)(endyr-rec_age+1,endyr);
@@ -3436,8 +3462,11 @@ FUNCTION Future_projections
         nage_future(s,i+1,nages)   += nage_future(s,i,nages)*S_future(s,i,nages);
         Sp_Biom_future(s,i) = wt_mature(s) * elem_prod(nage_future(s,i),pow(S_future(s,i),spmo_frac)) ;
       }
-      nage_future(s,endyr_fut,1)  = SRecruit( Sp_Biom_future(s,endyr_fut-rec_age),cum_regs(s)+yy_sr(s,endyr) ) * mfexp(rec_dev_future(s,endyr_fut)) ;     
+      nage_future(s,endyr_fut,1)  = SRecruit( Sp_Biom_future(s,endyr_fut-rec_age),cum_regs(s)+yy_sr(s,endyr) ) * 
+			                                mfexp(rec_dev_future(s,endyr_fut));     
+
       get_future_Fs(s,endyr_fut,iscen);
+
       Sp_Biom_future(s,endyr_fut)  = wt_mature(s) * elem_prod(nage_future(s,endyr_fut),pow(S_future(s,endyr_fut),spmo_frac)) ;
       if (iscen==1)
       {
@@ -3445,7 +3474,8 @@ FUNCTION Future_projections
         {                   
           N_NoFsh(s,i,1)        = nage_future(s,i,1);
           // Adjustment for no-fishing recruits (ratio of R_nofish/R_fish)
-          N_NoFsh(s,i,1)       *= SRecruit(Sp_Biom_NoFish(s,i-rec_age),cum_regs(s)+yy_sr(s,endyr)) / SRecruit(Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,endyr));
+          N_NoFsh(s,i,1)       *= SRecruit(Sp_Biom_NoFish(s,i-rec_age),cum_regs(s)+yy_sr(s,endyr)) / 
+					                        SRecruit(Sp_Biom_future(s,i-rec_age),cum_regs(s)+yy_sr(s,endyr));
           N_NoFsh(s,i)(2,nages) = ++N_NoFsh(s,i-1)(1,nages-1)*exp(-mean(natmort(s)));
           N_NoFsh(s,i,nages)   +=   N_NoFsh(s,i-1,nages)*exp(-mean(natmort(s)));
           Sp_Biom_NoFish(s,i)   = (N_NoFsh(s,i)*pow(exp(-mean(natmort(s))),spmo_frac) * wt_mature(s)); 
@@ -3457,7 +3487,7 @@ FUNCTION Future_projections
       for (i=styr_fut; i<=endyr_fut; i++)
       {
         catage_future(s,i).initialize();
-        if (iscen!=5) 
+        if (iscen!=6) 
         {
           for (k = 1 ; k<= nfsh ; k++)
           {
@@ -3489,15 +3519,15 @@ FUNCTION Future_projections
           case 5:
             SSB_fut_5(s,i) = Sp_Biom_future(s,i);
             break;
-          /* case 6:
+          case 6:
             SSB_fut_6(s,i) = Sp_Biom_future(s,i);
             break;
-            */
+          /*   */
         }
       }
     }   //End of loop over F's
     Sp_Biom(s,styr_fut) = Sp_Biom_future(s,styr_fut);
-  }
+  } //End over stocks
 
 FUNCTION get_msy
  /*Function calculates used in calculating MSY and MSYL for a designated component of the
@@ -3530,11 +3560,13 @@ FUNCTION get_msy
     // Newton Raphson stuff to go here
     for (int ii=1;ii<=8;ii++)
     {
-      if (mceval_phase()&&(F1>5||F1<0.01)) 
+      if (mceval_phase()&&(F1>5.||F1<0.01)) 
       {
         ii=8;
-        if (F1>5) F1=5.0; 
-        else      F1=0.001; 
+        if (F1>5.) 
+					F1=5.0; 
+        else      
+				  F1=0.001; 
         breakout    = 1;
       }
       F2     = F1 + df*.5;
@@ -3609,7 +3641,7 @@ FUNCTION void get_msy(int iyr)
     // Newton Raphson stuff to go here
     for (int ii=1;ii<=8;ii++)
     {
-      if (mceval_phase()&&(F1>5||F1<0.01)) 
+      if (mceval_phase()&&(F1>5.||F1<0.01)) 
       {
         ii=8;
         if (F1>5) F1=5.0; 
@@ -4853,7 +4885,10 @@ FUNCTION dvariable SolveF3(const int& iyr, const dvar_vector& N_tmp, const doubl
   for (k=1;k<=nfsh;k++)
     Fratsel(k) = Fratio(k)*sel_fsh(k,iyr);
 
-    for (int ii=1;ii<=5;ii++)
+  // iterate to balance effect of multiple fisheries...........
+  for (int kk=1;kk<=nfsh;kk++) 
+  {
+    for (int ii=1;ii<=8;ii++)
     {
       Ftottmp.initialize();
       for (k=1;k<=nfsh;k++)
@@ -4871,6 +4906,7 @@ FUNCTION dvariable SolveF3(const int& iyr, const dvar_vector& N_tmp, const doubl
       if (dd<0.) dd *= -1.;
       ftmp += (TACin-cc) / btmp;
     }
+  }
   RETURN_ARRAYS_DECREMENT();
   return(ftmp);
 
@@ -4890,7 +4926,7 @@ FUNCTION dvariable SolveF2(const int& iyr, const dvar_vector& N_tmp, const doubl
   ftmp = TACin/btmp;
     for (k=1;k<=nfsh;k++)
       Fratsel(k) = Fratio(k)*sel_fsh(k,iyr);
-    for (int ii=1;ii<=5;ii++)
+    for (int ii=1;ii<=8;ii++)
     {
       Ftottmp.initialize();
       for (k=1;k<=nfsh;k++)
@@ -5810,7 +5846,6 @@ FUNCTION Write_R
           double ub=value(SSB_fut_5(s,i)*exp(2.*sqrt(log(1+square(SSB_fut_5.sd(s,i))/square(SSB_fut_5(s,i))))));
           R_report<<i<<" "<<SSB_fut_5(s,i)<<" "<<SSB_fut_5.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
         }
-        /*
         R_report<<"$SSB_fut_6"<<endl; 
         for (i=styr_fut;i<=endyr_fut;i++) 
         {
@@ -5818,13 +5853,14 @@ FUNCTION Write_R
           double ub=value(SSB_fut_6(s,i)*exp(2.*sqrt(log(1+square(SSB_fut_6.sd(s,i))/square(SSB_fut_6(s,i))))));
           R_report<<i<<" "<<SSB_fut_6(s,i)<<" "<<SSB_fut_6.sd(s,i)<<" "<<lb<<" "<<ub<<endl;
         }
+        /*
         */
-        double ctmp;
-        for (k=1;k<=5;k++){
+        double ctmp=0.;
+        for (k=1;k<=6;k++){
           R_report<<"$Catch_fut_"<<k<<endl; 
           for (i=styr_fut;i<=endyr_fut;i++) 
           {
-            if (k==5) ctmp=0.;else ctmp=value(catch_future(s,k,i));
+            if (k==6) ctmp=0.;else ctmp=value(catch_future(s,k,i));
             R_report<<i<<" "<<ctmp<<endl;
           }
         }
@@ -5913,7 +5949,6 @@ FUNCTION Write_R
           double ub=value(SSB_fut_5(s,i));
           R_report<<i<<" "<<SSB_fut_5(s,i)<<" "<<SSB_fut_5(s,i)<<" "<<lb<<" "<<ub<<endl;
         }
-        /*
         R_report<<"$SSB_fut_6"<<endl; 
         for (i=styr_fut;i<=endyr_fut;i++) 
         {
@@ -5921,13 +5956,12 @@ FUNCTION Write_R
           double ub=value(SSB_fut_6(s,i)*exp(2.*sqrt(log(1+square(SSB_fut_6(s,i))/square(SSB_fut_6(s,i))))));
           R_report<<i<<" "<<SSB_fut_6(s,i)<<" "<<SSB_fut_6(s,i)<<" "<<lb<<" "<<ub<<endl;
         }
-        */
         double ctmp;
-        for (k=1;k<=5;k++){
+        for (k=1;k<=6;k++){
           R_report<<"$Catch_fut_"<<k<<endl; 
           for (i=styr_fut;i<=endyr_fut;i++) 
           {
-            if (k==5) ctmp=0.;else ctmp=value(catch_future(s,k,i));
+            if (k==6) ctmp=0.;else ctmp=value(catch_future(s,k,i));
             R_report<<i<<" "<<ctmp<<endl;
           }
         }

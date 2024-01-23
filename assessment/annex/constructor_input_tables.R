@@ -9,7 +9,6 @@ library(ggthemes)
 # setwd(getwd())
 
 construct_input_tables<- function(modname, docname="Input_Tables") {
-geth <- function(mod,h=hyp) paste0(h,"_", mod)
 docname <- paste0(docname,".doc")
 
 h1nm <- geth(modname,"h1")
