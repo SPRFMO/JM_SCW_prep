@@ -1,0 +1,980 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Guía de uso del modelo JJM: Joint Jack Mackarel
+% 
+% Descargar el repositorio desde:
+% https://github.com/SPRFMO/jack_mackerel
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------------------------------%
+% PREÁMBULO
+%---------------------------------------------------------------%
+
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage{graphicx}
+\usepackage{fullpage}
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+
+\usepackage[latin1]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref} % Provee herramientas para hipervínculos
+\usepackage{color}
+\usepackage{soul} % Paquete para resaltar
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+
+\hypersetup{pdfborder = {0 0 0}}
+\renewcommand{\figurename}{Figura}
+
+\graphicspath{{Figures/}} % Directorio de las figuras
+
+\linespread{1.2}
+
+\title{Joint Jack Mackarel Model: Guía de uso}
+\author{Wencheng Lau-Medrano \and Ricardo Oliveros-Ramos}
+\date{Instituto del Mar del Perú \\[0.2cm] version 0.1, \today}
+
+%---------------------------------------------------------------%
+% CUERPO DEL DOCUMENTO
+%---------------------------------------------------------------%
+\begin{document}
+
+%---------------- CARÁTULA ----------------%
+\maketitle % Título
+\tableofcontents % Índice
+\newpage
+
+%---------------- SECCIÓN 1: PRE REQUISITOS ----------------%
+\section{Prerrequisitos} 
+En esta sección se darán las pautas previas a la ejecución del modelo. Para dicho fin, se hará uso de lenguajes de programación (\textbf{C++} y \textbf{R}) por lo que, del mismo modo, se utilizarán dos softwares (editores) que permitirán trabajar con ellos (\textbf{VIM} y \textbf{RStudio}).
+
+%---------------- 1.1 Instalación de ADMB ----------------%
+\subsection{Instalación de \texttt{ADMB}}
+\texttt{ADMB} (\textbf{Automatic Diferentiation Model Builder}) es un editor de texto con una gran cantidad de funciones, muy popular entre programadores y usuarios técnicos. Dentro de nuestros intereses, es el programa que usaremos para abrir, editar y compilar el código de \textbf{ADMB} (hecho en \textbf{C++}).
+
+Para la instalación debemos:
+\begin{enumerate}
+\item Descargar el programa \textbf{Rapid Environment Editor} desde  \url{http://www.rapidee.com/en/download} e instalarlo.
+
+\item Ir al website \url{http://www.admb-project.org/tools/admb-tools-for-windows} y seleccionar \textbf{ADMB Tools for nn-bit Windows}, donde \textbf{nn} (32 o 64) depende del ordenador en donde se está trabajando.
+
+\item Este link, llevará a descargar el archivo \textbf{ADMBtoolsnn-vv.7z}, donde \textbf{vv} es el número de versión.
+
+\item Retornar al website \url{http://www.admb-project.org/tools/admb-tools-for-windows} y seleccionar el link \texttt{ADMB vv.v.rrrr binary library for nn-bit Windows}, donde \textbf{vv.v} es el número de versión y \textbf{rrrr} es el número de revisión de ADMB.
+
+\item Ir al directorio donde se descargaron ambos archivos \textbf{.7z}. Dar click derecho en el archivo \textbf{ADMBtools} y seleccionar \textbf{Extraer aquí}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,resolution=300,frame]{admb-1}
+\caption{Descompresión del archivo \textbf{ADMBtools64-02.7z}}
+\end{figure}
+\pagebreak
+
+\item Una vez completada la extracción, la carpeta obtenida contendrá una carpeta llamada \textbf{mingw}. Copiar (o cortar-pegar) \textbf{mingw} a la locación deseada. Para este ejemplo, la locación será \texttt{C:\textbackslash}. Por lo que, finalmente, se tendrá \texttt{C:\textbackslash mingw}.
+
+\item Ir al directorio donde se descargaron ambos archivos \textbf{.7z}. Dar click derecho en el archivo \textbf{ADMBlib64.11.1.1483} y seleccionar \textbf{Extraer aquí}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,resolution=300,frame]{admb-2}
+\caption{Descompresión del archivo \textbf{ADMBlib64.11.1.1483.7z}}
+\end{figure}
+
+\item Una vez completada la extracción, renombrar la carpeta con el nombre \textbf{admb} y copiar (o cortar-pegar) a la locación deseada. Para este ejemplo, la locación será \texttt{C:\textbackslash}. Por lo que, finalmente, se tendrá \texttt{C:\textbackslash admb}.
+\pagebreak
+
+\item Seguidamente, es momento de decirle a Windows dónde se encuentran los archivos. Para esto se utilizará el programa \textbf{Rapid Environment Editor} (citado anteriormente). Ir a $Inicio \rightarrow Programas \rightarrow Rapid Environment Editor \rightarrow Rapid Environment Editor$. Ejecutar como administrador dando click derecho en el Acceso directo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth,resolution=300,frame]{admb-3}
+\caption{Abrir \textbf{Rapid Environment Editor} en modo Administrador}
+\end{figure}
+
+\item Buscar la línea \textbf{Path}, dar click derecho y selccionar la opción \textbf{Añadir valor}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,resolution=300,frame]{admb-4}
+\caption{Añadir valor}
+\end{figure}
+\pagebreak
+
+\item Seleccionar la opción \textbf{Insertar ruta del directorio}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,resolution=300,frame]{admb-5}
+\caption{Insertar ruta del directorio}
+\end{figure}
+
+\item Mediante la ventana abierta, seleccionar la carpeta \texttt{C:\textbackslash 	admb\textbackslash bin}
+
+\item Realizar el mismo procedimiento para las siguientes carpetas: \texttt{C:\textbackslash mingw\textbackslash bin}, \texttt{C:\textbackslash mingw\textbackslash msys\textbackslash bin}
+
+\item Luego, ir a \textbf{Editar}, opción \textbf{Añadir variable}
+
+\item En la ventana que se abre, escribir \textbf{ADMB\_HOME} y \textbf{Aceptar}.
+
+\item El programa, por defecto, pedirá agregar un valor, agregar la ubicación de la carpeta \textbf{admb}. De este modo, para el ejemplo, se indicaría el lugar de la carpeta \texttt{C:\textbackslash 	admb}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth,resolution=300,frame]{admb-6}
+\caption{Añadir variable \textbf{ADMB\_HOME}}
+\end{figure}
+
+\item Seguidamente, ir al menú \textbf{Archivo} y seleccionar la opción \textbf{Guardar}. Cerrar \textbf{Rapid Environment Editor}.
+
+\item Para probar que la instalación haya sido bien realizada, ir hasta la carpeta \texttt{C:\textbackslash admb\textbackslash examples\textbackslash admb\textbackslash simple}
+
+\item Copiar los archivos \texttt{simple.tpl} y \texttt{simple.dat} a una carpeta externa (dentro Escritorio, por ejemplo).
+
+\item Abrir una ventana de comandos (\textbf{DOS}) en la carpeta elegida. En nuestro ejemplo, crearemos una carpeta en Escritorio llamada \textbf{ADMB} y es aquí donde copiaremos los comandos del paso anterior. Para abrir la ventana de comandos, presionar \textbf{Shift + Click derecho} sobre la carpeta y elegir la opción \textbf{Abrir ventana de comandos aquí}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,resolution=300,frame]{admb-7}
+\caption{Abrir ventana de comandos en carpeta seleccionada}
+\end{figure}
+
+\item En la ventana (símbolo de sistema) que se abrirá, escribir el siguiente comando: \texttt{admb simple.tpl} y dar \textbf{Enter}.
+\pagebreak
+
+\item Si la instalación fue exitosa, el resultado debería ser:
+
+\begin{lstlisting}
+*** Parsing simple.tpl:
+*** Compile simple.cpp:
+*** Linking simple.obj:
+Successfully built 'simple.exe'
+\end{lstlisting}
+
+\item Luego, en la misma ventana de Símbolo de sistema, escribir \texttt{simple simple.tpl} y dar \textbf{Enter}.
+
+\item Si la instalación fue exitosa, el resultado debería ser:
+
+\begin{lstlisting}
+Initial statistics: 2 variables; iteration 0; function evaluation 0; phase 1
+Function value 3.6493579e+001; maximum gradient component mag -3.6127e+000
+Var Value Gradient |Var Value Gradient |Var Value Gradient
+1 0.00000 -3.61269e+000 | 2 0.00000 -7.27814e-001 |
+
+- final statistics: 2 variables; iteration 7; function evaluation 19
+Function value 1.4964e+001; maximum gradient component mag -7.0014e-005
+Exit code = 1; converg criter 1.0000e-004
+Var Value Gradient |Var Value Gradient |Var Value Gradient
+1 1.90909 -7.00140e-005 | 2 4.07818 -2.08982e-005 |
+
+Estimating row 1 out of 2 for hessian
+Estimating row 2 out of 2 for hessian
+\end{lstlisting}
+\end{enumerate}
+\pagebreak
+
+%---------------- 1.2 Instalación de R y RStudio ----------------%
+\subsection{Instalación de \texttt{R} y \texttt{RStudio}}
+
+%---------------- 1.2.1 Instalación de R ----------------%
+\subsubsection{Instalación de \texttt{R}}
+Para obtener los resultados en \texttt{JJM}, se debe utilizar \texttt{R 3.0.0} o superior. Instalar \texttt{R} de la siguiente manera.
+
+\begin{enumerate}
+\item Descargar la última versión de \texttt{R} desde \href{http://cran.r-project.org/bin/windows/base/}{AQUÍ}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,resolution=300,frame]{r-1}
+\caption{Web de \textbf{RStudio}}
+\end{figure}
+
+\item Hacer doble clic sobre el fichero para iniciar la instalación de \texttt{R}.
+
+\item Elegir el idioma de instalación y a continuación arrancará el asistente de instalación, dar clic en \textbf{Siguiente}.
+
+\item Aparecerá una ventana en la cual se solicita al usuario leer información relacionada a la licencia. Al finalizar esta lectura, dar clic en \textbf{Siguiente}.
+
+\item A continuación aparecerá una ventana en la que se indica la ruta de instalación, dar clic en \textbf{Siguiente}.
+
+\item La instalación permitirá que el usuario seleccione qué componentes desea instalar.
+
+\item Seguidamente, en la siguiente ventana \textbf{Opciones de configuración}, el usuario podrá hacer uso de opciones de avanzadas de instalación. En caso de querer usar una instalación típica dar clic en \textbf{No} y luego en \textbf{Siguiente}.
+
+\item Luego se debe elegir la carpeta del menú inicio donde se colocará los accesos directos del programa, dar clic en \textbf{Siguiente}.
+
+\item Seleccionar las tareas adicionales y posteriormente dar clic en \textbf{Siguiente}.
+
+\item A continuación se inicia la instalación de \texttt{R}. Una vez finalizado el proceso, aparecerá una ventana que indicará la culminación del mismo.
+\end{enumerate}
+\pagebreak
+
+La secuencia de pasos para el proceso de instalación de \texttt{R} son mostrados en la Figura~\ref{fig:processInstalationR}.
+
+\begin{figure}[H]
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR1}
+  \caption{Advertencia de seguridad de Windows}
+  \label{fig:executionR1}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR2}
+  \caption{Selección del idioma de instalación}
+  \label{fig:executionR2}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR3}
+  \caption{Asistente de instalación}
+  \label{fig:executionR3}
+\end{subfigure}
+
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR4}
+  \caption{Información sobre el tipo de licencia}
+  \label{fig:executionR4}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR5}
+  \caption{Seleccionar ruta de instalación}
+  \label{fig:executionR5}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR6}
+  \caption{Selección de los componentes a instalar}
+  \label{fig:executionR6}
+\end{subfigure}
+
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR7}
+  \caption{Opciones de configuración}
+  \label{fig:executionR7}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR8}
+  \caption{Selección de la carpeta en la cual se colocaran los archivos directos del programa}
+  \label{fig:executionR8}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR9}
+  \caption{Selección de tareas adicionales}
+  \label{fig:executionR9}
+\end{subfigure}
+
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR10}
+  \caption{Instalación de \texttt{R} en el sistema}
+  \label{fig:executionR10}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{executionR11}
+  \caption{Culminación del proceso de instalación}
+  \label{fig:executionR11}
+\end{subfigure}
+\caption{Proceso de instalación de \texttt{R}.}
+\label{fig:processInstalationR}
+\end{figure}
+\pagebreak
+
+%---------------- 1.2.2 Instalación de RStudio ----------------%
+\subsubsection{Instalación de \texttt{RStudio}}
+
+\texttt{RStudio} es una interface de usuario para \texttt{R}. Es libre y de código abierto (Open Source) y se encuentra disponible para los sistemas operativos Windows, Mac y Linux.
+
+Se detallará a continuación los pasos para la descarga e instalación de \texttt{RStudio} para entorno Windows.
+
+\begin{enumerate}
+\item Descargar la última versión de \texttt{RStudio} desde \href{https://www.rstudio.com/ide/download/desktop}{AQUÍ}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth,resolution=300,frame]{r-2}
+\caption{Web de \textbf{RStudio}}
+\end{figure}
+%\pagebreak
+
+\item Descargar.
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS1}
+  \caption{Sitio oficial de RStudio}
+  \label{fig:instalationRS1}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS2}
+  \caption{Descargar instalador para desktop}
+  \label{fig:instalationRS2}
+\end{subfigure}
+
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS3}
+  \caption{Seleccionar el instalador en relación a sistema operativo}
+  \label{fig:instalationRS3}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{instalationRS4}
+  \caption{Seleccionar la carpeta en la cual se guardará el instalador}
+  \label{fig:instalationRS4}
+\end{subfigure}
+\caption{Iniciando el proceso de descarga del instalador del \texttt{RStudio}.}
+\label{fig:downloadRS}
+\end{figure}
+\pagebreak
+
+\item Ejecutar el instalador descargado. De manera similar a la instación de \texttt{R}, saldrá un aviso de Windows indicando que no se puede comprobar el editor, ignorar éste aviso y dar clic en \textbf{Ejecutar}. Puede aparecer otra ventana indicando que hay que permitir la ejecución del software, dar clic en \textbf{Permitir}
+
+\item A continuación aparecerá el asistente de instalación, dar clic en \textbf{Siguiente}.
+
+\item Indicar el lugar de instalación del software, dar clic en \textbf{Siguiente}.
+
+\item Elegir la carpeta del menú inicio donde se colocarán los accesos directos a los elementos del software, finalizando este paso comienza la instalación del software.
+
+\item Este último paso dura pocos segundos y al finalizar la instalación aparecerá el asistente de instalación, indicando que el proceso ha concluido, dar clic en \textbf{Terminar}.
+\end{enumerate}
+\pagebreak
+
+La secuencia de pasos para el proceso de instalación de \texttt{RStudio} son mostrados en la Figura~\ref{fig:processInstalationRS}.
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS5}
+  \caption{Advertencia de seguridad de Windows}
+  \label{fig:instalationRS5}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS6}
+  \caption{Asistente de instalación}
+  \label{fig:instalationRS6}
+\end{subfigure}
+
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS7}
+  \caption{Seleccionar ruta de instalación}
+  \label{fig:instalationRS7}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS8}
+  \caption{Selección de la carpeta en la cual se colocaran los archivos directos del programa}
+  \label{fig:instalationRS8}
+\end{subfigure}
+
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS9}
+  \caption{Instalación de \texttt{RStudio} en el sistema}
+  \label{fig:instalationRS9}
+\end{subfigure}
+\qquad
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth,resolution=300,frame]{instalationRS10}
+  \caption{Culminación del proceso de instalación}
+  \label{fig:instalationRS10}
+\end{subfigure}
+\caption{Proceso de instalación de \texttt{RStudio}.}
+\label{fig:processInstalationRS}
+\end{figure}
+\pagebreak
+
+Al acceder a \texttt{RStudio}, se observará una ventana subdividida tal cual se muestra en la Figura~\ref{fig:instalationRS11}. En la parte izquierda se hallará la \textbf{consola}; en la superior derecha, el espacio de trabajo (\textbf{Workspace}) y el historial de trabajo (\textbf{History}); en la inferior derecha, cuatro pestañas: \textbf{Files}, \textbf{Plots}, \textbf{Packages}, \textbf{Help} y \textbf{Viewer}. Finalmente, en la parte superior de la ventana se encuentra la barra de herramientas.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth,frame]{instalationRS11}
+\caption{\label{fig:instalationRS11} Ventana principal de \texttt{RStudio}.}
+\end{figure}
+\pagebreak
+
+%---------------- SECCIÓN 2: INSTALACIÓN DE JJM ----------------%
+\section{Instalación de \texttt{JJM}}
+
+%---------------- 2.1 ¿Cómo obtener una copia desde GitHub ----------------%
+\subsection{¿Cómo obtener una copia desde \texttt{GitHub}?}
+
+El código necesario para ejecutar \texttt{JJM} se encuentra alojado en el servidor \texttt{GitHub}. Para descargar una imagen almacenada o para sincronizar se hará uso del programa \texttt{TortoiseGit}.
+
+Descargar \texttt{TortoiseGit} desde \url{https://code.google.com/p/tortoisegit/wiki/Download?tm=2} e instalar.
+
+%---------------- 2.1.1 Descargar una imagen de JJM ----------------%
+\subsubsection{Descargar una imagen de \texttt{JJM}}
+
+\begin{enumerate}
+
+\item Acceder al repositorio desde el siguiente link: \url{https://github.com/SPRFMO/jack_mackerel}.
+
+\item Ir al botón \textbf{Copy to clipboard} (localizado en la parte inferior de la columna derecha).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,resolution=300,frame]{github-1}
+\caption{Web del repositorio de ADMB en \textbf{GitHub}}
+\end{figure}
+\pagebreak
+
+\item Crear carpeta donde se desea realizar la copia con el nombre \texttt{SPRFMO\_SC}. Por ejemplo: \texttt{Escritorio\textbackslash SPRFMO\_SC}
+
+\item Dar click derecho dentro de la carpeta y seleccionar la opción \textbf{Git Clone}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6,resolution=300,frame]{github-2}
+\caption{Menú Tortoise}
+\label{fig:sfig3}
+\end{figure}
+
+\item Por defecto, lo copiado en el paso (2) se pegará en el campo \textbf{URL:}.
+
+\item En el campo \textbf{Directory:}, asegurarse que la dirección corresponda a la carpeta que acabamos de crear. Esto es porque, por defecto, se añade a la carpeta elegida el nombre del repositorio. Por ejemplo: en nuestro caso, la carpeta destino que aparecerá es \texttt{Escritorio\textbackslash SPRFMO\_SC\textbackslash jack\_mackerel} y debemos cambiar a \texttt{Escritorio\textbackslash SPRFMO\_SC}.
+
+\item Dar click en \textbf{Aceptar} y esperar a que termine la copia.
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-3}
+  \caption{Opciones por defecto}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-4}
+  \caption{Opciones modificadas}
+\end{subfigure}
+\caption{Copia de imagen desde \texttt{GitHub}}
+\label{fig:fig}
+\end{figure}
+\end{enumerate}
+\pagebreak
+
+%---------------- 2.1.2 Sincronizar una carpeta con el repositorio ----------------%
+\subsubsection{Sincronizar una carpeta con el repositorio}
+Sincronizar nuestra carpeta SPRFMO\_SC con el repositorio implica: a) Si se realiza un cambio dentro de la carpeta SPRFMO\_SC de \texttt{JJM}, poder reportar ese cambio (\textbf{Commit}), y aplicarlo al repositorio (\textbf{Push}). Así mismo, si otros usuarios realizan y aplican cambios al repositorio, poder actualizar constantemente nuestra carpeta con estos cambios (\textbf{Pull}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6,resolution=300,frame]{github-5}
+\caption{Comandos de Transporte de Datos Git}
+\label{fig:sfig3}
+\end{figure}
+
+Para cualquier caso, lo primero será crear una cuenta en la web de \texttt{GitHub} desde el siguiente link: \url{https://github.com/join}
+
+%%%%%%%%%%%%%%% Realizar un COMMIT %%%%%%%%%%%%%%%
+\begin{itemize}
+\item Realizar un \textbf{COMMIT}: Significa consignar un cambio (o conjunto de cambios) tentativos o no permanente.
+
+\begin{enumerate}
+\item Una vez realizados los cambios dentro del directorio, previamente clonado, dar click derecho en esta carpeta.
+
+\item Elegir la opción \textbf{Git Commit -> "master"...}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6,resolution=300,frame]{github-6}
+\caption{Comandos de Transporte de Datos Git}
+\label{fig:sfig3}
+\end{figure}
+\pagebreak
+
+\item En la ventana emergente, escribir el mensaje con una descripción de cambio realizado. Este mensaje será visto en el repositorio y -por lo tanto- es necesario siempre incluirlo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6,resolution=300,frame]{github-7}
+\caption{Comandos de Transporte de Datos Git}
+\label{fig:sfig3}
+\end{figure}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%% Realizar un PUSH %%%%%%%%%%%%%%%
+\item Realizar un \textbf{PUSH}: Significa mover un cambio (o conjunto de cambios) a una rama del repositorio principal.
+
+\begin{enumerate}
+\item Una vez realizado el \textbf{Commit}, en la ventana emergente, dar click en el botón \textbf{Push}.
+
+\begin{figure}[h]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-8}
+  \caption{Ventana de inicio de \textbf{Commit}}
+  \label{fig:sfig1}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-9}
+  \caption{Ventana de finalización de \textbf{Commit}}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Ventanas de \textbf{Commit}}
+\label{fig:fig}
+\end{figure}
+\pagebreak
+
+\item En la ventana emergente, dar click en \textbf{OK}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6,resolution=300,frame]{github-10}
+\caption{Ventana de \textbf{Push}}
+\label{fig:sfig3}
+\end{figure}
+
+\item Ingresar el \textbf{Usuario} y \textbf{Password} del repositorio.
+
+\begin{figure}[h]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-11}
+  \caption{Ventana de confirmación de usuario}
+  \label{fig:sfig1}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-12}
+  \caption{Ventana de confirmación de contraseña}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Ventanas de confirmación de \textbf{Push}}
+\label{fig:fig}
+\end{figure}
+
+\item En la ventana final, click en \textbf{Close}.
+\end{enumerate}
+\pagebreak
+
+%%%%%%%%%%%%%%% Realizar un PULL %%%%%%%%%%%%%%%
+\item Realizar un \textbf{PULL}: Significa recibir los últimos cambios realizados al repositorio principal. En otros términos, es la actualización del directorio local (en nuestro ordenador) a partir del repositorio principal (nube).
+
+\begin{enumerate}
+\item Ir al directorio local (\texttt{SPRFMO\_SC}) y dar click derecho.
+
+\item En el menú contextual, ir al menú lista de \textbf{Tortoise} y elegir la opción \textbf{Pull}.
+
+\begin{figure}[h]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-13}
+  \caption{Ventana de confirmación de comando}
+  \label{fig:sfig1}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth,resolution=300,frame]{github-14}
+  \caption{Ventana de finalización}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Ventanas de \textbf{Pull}}
+\label{fig:fig}
+\end{figure}
+\end{enumerate}
+\end{itemize}
+\pagebreak
+
+
+
+%---------------- SECCIÓN 3: Ejecución de JJM  ----------------%
+\section{Ejecución de JJM}
+Una vez finalizada la compilación, se procederá a ejecutar el modelo utilizando alguna de las bases de datos disponibles en el repositorio.
+
+\subsection{Archivos necesarios}
+Es importante constatar -previamente- la existencia de los archivos \texttt{[nombre de modelo].ctl} y \texttt{[data asociada al modelo].dat}.
+
+\begin{itemize}
+\item \textbf{.ctl}: Es la extensión de archivo de control para un determinado modelo. Posee los parámetros que se usarán en la ejecución de un modelo elegido.
+
+\item \textbf{.dat}: Es la extensión de archivo que contiene los datos que el modelo utilizará al ejecutarse.
+\end{itemize}
+
+Así mismo, se debe revisar la existencia de los siguientes tres scripts (batch):
+\begin{itemize}
+\item \textbf{run.bat}: Este script contiene la órdenes para la ejecución de un determinado modelo.
+
+\item \textbf{cleanad.bat}: Este archivo limpia (elimina) archivos temporales creados en la ejecución de un determinado modelo por el script anterior.
+
+\item \textbf{MyArchive.bat}: Este script se ejecuta en conjunto con \textbf{run.bat}, y su función es crear las carpetas necesarias para la ejecución del modelo.
+\end{itemize}
+
+Para el correcto funcionamiento de los scripts de Resultados (en \texttt{R}), se llevarán a cabo modificaciones en los archivos \textbf{run.bat} y \textbf{cleanad.bat}:
+
+\begin{itemize}
+\item En el archivo \textbf{run.bat}, el código debe quedar de la siguiente manera (modificaciones en las líneas 1, 2 y 3):
+
+\begin{lstlisting}[language=bash,numbers=left]
+:: jjm -nox -ind %1.ctl -ainp arc\%1.par -iprint 100
+jjm -nox -ind %1.ctl -iprint 100
+:: copy jjm.par arc\%1.par
+copy jjm.rep arc\%1.rep
+copy jjm.std arc\%1.std
+copy %1.prj arc\%1.prj
+:: copy jjm.cor arc\%1.cor
+copy fprof.yld arc\%1.yld
+copy for_r.rep arc\%1_R.rep
+call cleanad.ba
+\end{lstlisting}
+\pagebreak
+
+\item En el archivo \textbf{cleanad.bat}, el código debe quedar de la siguiente manera (modificación en la línea 26):
+
+\begin{lstlisting}[language=bash,numbers=left]
+@echo off
+echo cleaning admb files 
+del varssave.* >NUL
+del cmpdiff.* >NUL
+del tmp_admb >NUL
+del gradfil2.* >NUL
+del *.tmp >NUL
+del *~ >NUL
+del *.dep >NUL
+del *.log >NUL
+del *.obj >NUL
+del *.o >NUL
+rem del *.cpp >NUL
+del *.htp >NUL
+del *.0? >NUL
+del *.r1? >NUL
+del *.p1? >NUL
+del *.b1? >NUL
+del *.r0? >NUL
+del *.p0? >NUL
+del *.b0? >NUL
+del *.hes >NUL
+del variance. >NUL
+del *.cov >NUL
+del *.rpt >NUL
+::del *.cor >NUL
+del *.eva >NUL
+del *.td2 >NUL
+del *.tds >NUL
+del *.tr2 >NUL
+echo on
+\end{lstlisting}
+\end{itemize}
+\pagebreak
+
+\subsection{Ejecución}
+A continuación, se detallarán los pasos para correr cualquiera de los modelos dentro del repositorio. Para ello se requiere conocer el nombre del archivo con extensión \texttt{.ctl} (archivo de control) y su respectivo \texttt{.dat} (data asociada).
+
+Para averiguar el archivo "\texttt{[data asociada al modelo].dat}" basta con abrir el archivo \texttt{[nombre de modelo].ctl} con \textbf{VIM} y verificar la primera línea.
+ 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85,resolution=300,frame]{vim-1.png}
+\caption{Obtención del archivo \texttt{.dat} relacionado}
+\end{figure}
+
+\begin{enumerate}
+\item Abrir una ventana de comandos en la carpeta \texttt{/Code/admb/}
+
+\begin{enumerate}
+\item Abrir una ventana de explorador e ir a la carpeta anterior a \texttt{admb}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85,resolution=300,frame]{admb-8.png}
+\caption{Carpeta \texttt{Code/}}
+\end{figure}
+
+\item Presionar, a la vez, \texttt{Shift + Click derecho} en la carpeta \texttt{admb} y seleccionar la opción \texttt{Abrir una ventana de comandos aquí}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85,resolution=300,frame]{admb-9.png}
+\caption{Opción \textbf{Abrir ventana de comandos aquí}}
+\end{figure}
+\end{enumerate}
+\pagebreak
+
+\item En la ventana de comandos abierta, ejecutar el modelo escribiendo \texttt{run [modelo]}. Se debe colocar el nombre del archivo SIN la extensión. Por ejemplo: Para correr el mod4.2, el comando será \texttt{mod4.2} y NO \texttt{mod4.2.ctl}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth,resolution=300,frame]{admb-10.png}
+\caption{Ventana de comandos}
+\end{figure}
+
+\item Esperar a que finalice el proceso. Mientras se ejecuta el modelo, se crearán archivos temporales que finalmente será borrados por el script \textbf{cleanad.bat}.
+
+\item Al final del proceso se habrán creado archivos que se usarán en la generación de tablas y gráficos. De esta forma, se tiene:
+
+\begin{itemize}
+\item Dentro de la carpeta \texttt{admb}: For\_R.rep, Fprof.yld, jjm.cor, jjm.std, [modelo].prj, proj.dat, jjm.bar, jjm.par, jjm.rep, mceval.dat, jjm.exe, jjm.cpp
+
+
+\item Dentro de la carpeta \texttt{admb/arc}: [modelo].cor, [modelo].par, [modelo].prj, [modelo].rep, [modelo].std, [modelo].yld, [modelo]\_R.rep
+\end{itemize}
+\end{enumerate}
+\pagebreak
+
+%---------------- SECCIÓN 3: Visualización de resultados  ----------------%
+\section{Visualización de resultados}
+En esta sección se usarán los scripts de la carpeta \texttt{/Code/R/}. Estos han sido codificados en lenguaje \texttt{R} por lo que se utilizará el programa \texttt{RStudio}.
+
+\subsection{Descripción de los scripts de R}
+Los scripts dentro de la carpeta \texttt{/Code/R/} pueden agruparse de la siguiente manera:
+\begin{itemize}
+\item \textbf{Funciones:} Son subrutinas o subprogramas que forman parte de un algoritmo (o algoritmos) principal. Para el caso de \textbf{ADMB} lo constituyen:
+
+\begin{itemize}
+\item \texttt{ADMB2R\_15102012.r}
+\item \texttt{ADMB2R\_15102013.r}
+\item \texttt{compareRuns.r}
+\item \texttt{diagnostics.r}
+\item \texttt{diagnostics\_v2.r}
+\end{itemize}
+
+\item \textbf{Algoritmos principales:} Son aquellos que harán uso de las funciones (antes mencionadas) para generar resultados (cuadros y tablas). Para el caso de \textbf{ADMB} lo constituyen:
+
+\begin{itemize}
+\item \texttt{JJM\_Assessment.r}: Genera las salidas relacionadas a cada modelo ejecutado por \texttt{JJM}. Así mismo, realiza comparaciones entre los diversos modelos ejecutados.
+
+\item \texttt{JJM\_projections.r}: Realiza proyecciones en base a los modelos ejecutados y genera los gráficos correspondientes.
+
+\item \texttt{JJM\_tables.r}: Genera tablas de verosimilitud en base a modelos seleccionados.
+\end{itemize}
+\end{itemize}
+
+Existe, por otro lado, una carpeta llamada \texttt{HCRFramework}. Dicha carpeta contiene funciones que generan objetos tipo binario de \texttt{R}.
+\pagebreak
+
+%---------------- 4.2 Ejecución de los scripts ----------------%
+\subsection{Ejecución de los scripts}
+
+\subsubsection{Pasos previos}
+\begin{enumerate}[rightmargin=0.3cm]
+\item Verificar que la versión de \texttt{R} utilizada sea igual o mayor a la 3.00.
+\begin{enumerate}
+\item Click en el menú \texttt{Tools} y luego en la opción \texttt{Global Options}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85,resolution=300,frame]{6-1}
+\caption{Llegar al menú de opciones generales en \textbf{RStudio}}
+\end{figure}
+
+\item En la pestaña \textbf{General}, click en el botón \textbf{Change}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85,resolution=300,frame]{6-2.png}
+\caption{Opciones generales en \textbf{RStudio}}
+\end{figure}
+\pagebreak
+
+\item Seleccionar \textbf{Choose a specific version of R:} y seleccionar la una versión igual o superior a \texttt{3.0.0} y \textbf{Aceptar}.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.65,resolution=300,frame]{6-3.png}
+\caption{Seleccionar la versión a utilizar de \textbf{R}}
+\end{figure}
+
+\end{enumerate}
+
+% Paso 07
+\item Abrir \texttt{RStudio} e instalar los paquetes \texttt{lattice, PBSadmb, RColorBrewer y doBy} mediante el comando \texttt{install.packages("[nombre del paquete]")} en \textbf{Consola}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,resolution=300,frame]{7.png}
+\caption{Ventana de \textbf{RStudio}}
+\end{figure}
+
+\end{enumerate}
+\pagebreak
+
+\subsubsection{Según cada script}
+\begin{enumerate}
+% Paso 08
+\item Abrir el archivo \texttt{JJM\_Assessment.r} y modificar y correr las siguientes líneas:
+
+% Parámetros LaTeX para código R
+\lstset{ %
+language=R,                         % Lenguaje del código
+basicstyle=\footnotesize\ttfamily,  % Tamaño de la fuente usada
+keywordstyle=\bfseries\color{blue}, % Color aplicado a las funciones
+commentstyle=\color{olivegreen} ,   % Color aplicado a los comentarios
+numbers=left,                       % Posición de los números de línea
+numberstyle=\tiny,                  % Tamaño de la funte para los números de línea
+stepnumber=1,                       % Salto de línea en línea
+numbersep=5pt,                      % Distancia entre los números de línea y el código
+backgroundcolor=\color{white},      % Color de fondo
+showspaces=false,                   % Mostrar espacios
+showstringspaces=false,             % underline spaces within strings
+showtabs=false,                     % show tabs within strings adding particular underscores
+frame=none,                         % Agregar un marco alrededor del código (true/false/none)
+tabsize=2,                          % set default tabsize to 2 spaces
+captionpos=b,                       % sets the caption-position to bottom
+breaklines=true,                    % sets automatic line breaking
+breakatwhitespace=true,             % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)},             % Agregar comentarios entre el código
+%firstnumber=16                      % Número de primera línea de código
+}
+
+% Definir colores personalizados
+\definecolor{olivegreen}   {cmyk}{0.64, 0   , 0.95, 0.40}
+\definecolor{midnightblue} {cmyk}{0.98, 0.13, 0   , 0.43}
+\definecolor{gray}         {cmyk}{0   , 0   , 0   , 0.1}
+
+% Código 01
+\begin{lstlisting}[firstnumber=1]
+#-------------------------------------------------------------------------------
+# Set paths
+#-------------------------------------------------------------------------------
+reposDir    <- "[Nombre de carpeta del repositorio]"
+codePath    <- file.path(reposDir,"Code/R/")
+inputPath   <- file.path(reposDir,"Code/admb/")
+outputPath  <- file.path(reposDir,"Code/admb/arc/")
+resultPath  <- file.path(reposDir,"Results/Assessment/")
+setwd(codePath)
+
+# Specify control file
+controlFile <- "[nombre de modelo].ctl"
+\end{lstlisting}
+% NOTA 01
+\footnotesize NOTA 1: Para correr se deben seleccionar las líneas de código deseadas y pulsar \texttt{Ctrl + ENTER} \\
+
+% NOTA 02
+\footnotesize NOTA 2: Dentro del código, los textos [entre corchetes] indican que pueden (deben) ser modificados según las necesidades del usuario y/o características de su entorno (Sistema Operativo). \\
+
+% NOTA 03
+\footnotesize NOTA 3: El símbolo $\sharp$ precede a un comentario dentro del código. Es decir, un texto que el programa no tomará en cuenta. \\
+
+% NOTA 04
+\footnotesize NOTA 4: Las salidas se escribirán en formato \texttt{pdf} en la carpeta indicada en la línea:
+
+\begin{center}
+\texttt{resultPath <- file.path(reposDir,\textquotedblleft Results/Assessment/\textquotedblright)}
+\end{center}
+
+% Paso 09
+\item Dentro del escript \texttt{Assessment.r} se pueden obtener resultados por modelo y de comparación entre modelos.
+
+\begin{enumerate}
+\item Para la sección \textbf{Assessment}, modificar y correr las siguientes líneas de código. Estas líneas procesarán y escribirán salidas para cada modelo indicado. En el ejemplo que se muestra a continuación, se detalla el código usado para obtener resultados del modelo \texttt{mod4.3}.
+
+\begin{lstlisting}[firstnumber=30]	
+# Run the assessment
+source("diagnostics_v2.r")
+source("ADMB2R_15102013.r")
+# system(paste("../admb/jjm.exe",'-ind',paste(controlFile,".ctr",sep=""),'-nox'), wait = TRUE)
+
+# Read in the output of the assessment
+run_name="mod4.3"
+dat_name="mod3.dat"
+
+jjm.in  <- read.dat(iFilename = paste(dat_name,sep=""),iPath=inputPath)
+jjm.out <- readList(file.path(inputPath,paste("arc/",run_name,"_r.rep",sep="")))
+jjm.ypr <- readYPR(file.path(inputPath,paste( "arc/",run_name,".yld",  sep="")))
+
+#-------------------------------------------------------------------------------
+# Create diagnostics
+#-------------------------------------------------------------------------------
+pdf(paste(resultPath,"summary_",run_name,".pdf",sep=""),height=29.7/2.54,
+    width=21/2.54,pointsize = 16, bg = "white")
+diagnostics(jjm.out,jjm.in,jjm.ypr,what=c("input","fit","projections","ypr"))
+dev.off()
+
+#Write output to file
+writeList(setOutputNames(jjm.out),fname=paste(controlFile,"_out.txt",sep=""),format="P")
+\end{lstlisting}
+\pagebreak
+
+\item Si se desea obtener resultados de comparación entre modelos, ir a la sección (en el código) precedida por el encabezado \textbf{Visual compare runs}.
+
+\item Observar las siguientes líneas que se modificarán de acuerdo al número y nombre de modelos que se desea comparar.
+
+\begin{lstlisting}[firstnumber=59]
+jjm0.0 <- readList(file.path(inputPath,paste("arc/Mod0.0_r.rep",sep="")))
+jjm0.1 <- readList(file.path(inputPath,paste("arc/Mod0.1_r.rep",sep="")))
+jjm0.2 <- readList(file.path(inputPath,paste("arc/Mod0.2_r.rep",sep="")))
+jjm0.3 <- readList(file.path(inputPath,paste("arc/Mod0.3_r.rep",sep="")))
+jjm0.4 <- readList(file.path(inputPath,paste("arc/Mod0.4_r.rep",sep="")))
+jjm0.5 <- readList(file.path(inputPath,paste("arc/Mod0.5_r.rep",sep="")))
+jjm0.6 <- readList(file.path(inputPath,paste("arc/Mod0.6_r.rep",sep="")))
+
+lstOuts   <- list(
+  Model_0.0= jjm0.0,
+  Model_0.1= jjm0.1,
+  Model_0.2= jjm0.2,
+  Model_0.3= jjm0.3,
+  Model_0.4= jjm0.4,
+  Model_0.5= jjm0.5
+                  )
+lstOuts   <- list(
+  Model_0.5= jjm0.5,
+  Model_0.6= jjm0.6
+)
+pdf(paste(outputPath,"Compare_1_4.pdf",sep=""),height=29.7/2.54,width=21/2.54,pointsize = 24, bg = "white")
+\end{lstlisting}
+
+\item Las líneas del siguiente tipo se modificarán -en los textos resaltados- de la siguiente manera:
+\begin{center}
+\texttt{jj\hl{m0.0} <- readList(file.path(inputPath,paste("arc/\hl{Mod0.0}\_r.rep",sep="")))}
+\end{center}
+
+\begin{enumerate}
+\item \texttt{m0.0}: Se colocará el número correspondiente al modelo que se desea comparar. Por ejemplo \texttt{m4.1}
+
+\item \texttt{Mod0.0}: Se colocará el nombre del archivo de extensión \textbf{.rep} correspondiente al modelo que se desea comparar. Por ejemplo \texttt{mod4.1}. Se debe verificar, previamente, la existencia de este archivo en la carpeta \texttt{/Code/admb/arc/}.
+\end{enumerate}
+
+\item Las líneas del siguiente tipo se modificarán -en los textos resaltados- de la siguiente manera:
+\begin{center}
+\texttt{ \hl{Model\_ 0.0} = \hl{jjm0.0},}
+\end{center}
+
+\begin{enumerate}
+\item \texttt{Model\_ 0.0}: Se colocará el número correspondiente al modelo que se desea comparar. Por ejemplo \texttt{Model\_ 4.1}
+
+\item \texttt{jjm0.0}: Se colocará el nombre utilizado en el paso anterior (línea anterior). Es decir, si se utilizó el nombre de \texttt{jjm0.0 <- ...}, se debe usar el mismo en esta parte.
+\end{enumerate} 
+
+% NOTA 05
+\footnotesize NOTA 5: Crear tantas líneas según el número de modelos que se desea comparar. Recordar que los textos [entre corchetes] se modifican según corresponda.
+
+\item Modificar en el texto resaltado de la siguiente línea:
+\begin{center}
+pdf(paste(outputPath,"\hl{Compare\_ 1\_ 4}.pdf",sep=""),height=29.7/2.54,width=21/2.54,pointsize = 24, bg = "white")
+\end{center}
+
+\item Colocar el nombre del archivo de salida
+
+\item Correr las líneas indicadas. El archivo de salida se guardará en la carpeta \texttt{/Code/admb/arc/}.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
