@@ -128,7 +128,7 @@ Pplot(proj_Assess)
 
 # check out the github repo at blue-matter/ECP
 
-PPD = proj_IR
+PPD = proj_IR@PPD[[1]]
 
 
 # --- NOTES --------------------------------------------------------------------
