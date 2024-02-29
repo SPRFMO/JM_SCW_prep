@@ -1,4 +1,5 @@
 
+# Source code for converting Jim's Jack Mackerel MLE and MCMC output into an OpenMSE operating model
 
 make_age_array = function(mcmc, type = "N_stock"){
   
@@ -76,8 +77,8 @@ plotJMcomp=function(mod,naa,faa,Hist,simnos = 1:2){
 }
 
 
-# proyears = 50; interval = 2; nsim=48; seed = 1; check=T
-JM2OM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed = 1, check=T){
+# proyears = 50; interval = 2; nsim=48; seed = 1; check=T; datastart = 2012
+JM2OM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed = 1, check=T, datastart = NA){
   
   info = mod[[1]]$info        #1
   data = mod[[1]]$data        #2
@@ -147,12 +148,14 @@ JM2OM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed = 
   cat(paste0("Indices are: ", paste(paste0("(",1:nI,")"),data$Inames,collapse=", "), "\n"))
   if(nrow(data$Index)>nyears) cat(paste0("The model currently ends (",yrng[2],") before the specified index data series ends (",max(rownames(data$Index)),") \n"))
   Data@AddInd = array(rep(t(data$Index[1:nyears,]),each=nsim),c(nsim,nI,nyears))
+  
   Data@CV_AddInd = array(rep(t(data$Indexerr[1:nyears,]/data$Index[1:nyears,]),each=nsim),c(nsim,nI,nyears))
   Data@AddIndV = array(0, c(nsim,nI,nage+1))
   for(i in 1:nI) Data@AddIndV[,i,2:(nage+1)] = rep(MLE[[paste0("sel_ind_",i)]][nyears,2+(1:nage)],each=nsim); cat("Index vulnerabilities assumed to be those most recent estimated \n")
   
+  if(!is.na(datastart))   Data@AddInd[,,yrs<datastart] = NA;  cat(paste0("Removing observations before ", datastart, " for calculation of observation error properties \n"))
+
   OM@cpars$Data = Data
-  
   
   if(check){
     cat("Checking conditioning model N and F against OpenMSE reconstructed N and F \n")
