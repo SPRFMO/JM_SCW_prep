@@ -533,4 +533,16 @@ plot_proj_JJM <- function(MMSE, maxcol = 6, qcol = rgb(0.4, 0.8, 0.95), lcol = "
 
 
 
+getOMs = function(OMdir){
+  dirs = list.files(OMdir,full.names=T)
+  files = list.files(OMdir)
+  OMnam <<- sapply(strsplit(files,".rda"),function(x)x[[1]][1])
+  runnam <<-  sapply(strsplit(OMnam,"OM_"),function(x)x[2])
+  nOM <<- length(objnam)
+  for(i in 1:nOM)  assign(objnam[i],readRDS(dirs[i]))
+  cat(paste("The following OMs have been loaded:",paste(objnam,collapse=", ")," \n"))
+  cat(paste("'OMnam','nOM' and 'runnam' also specified \n"))
+}
+
+
 cat("Jack Mackerel to Operating Model (JJ2OM) source code loaded \n")
