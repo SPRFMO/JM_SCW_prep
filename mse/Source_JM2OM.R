@@ -538,9 +538,9 @@ getOMs = function(OMdir){
   files = list.files(OMdir)
   OMnam <<- sapply(strsplit(files,".rda"),function(x)x[[1]][1])
   runnam <<-  sapply(strsplit(OMnam,"OM_"),function(x)x[2])
-  nOM <<- length(objnam)
+  nOM <<- length(OMnam)
   for(i in 1:nOM)  assign(OMnam[i],readRDS(dirs[i]))
-  cat(paste("The following OMs have been loaded:",paste(objnam,collapse=", ")," \n"))
+  cat(paste("The following OMs have been loaded:",paste(OMnam,collapse=", ")," \n"))
   cat(paste("'OMnam','nOM' and 'runnam' also specified \n"))
 }
 

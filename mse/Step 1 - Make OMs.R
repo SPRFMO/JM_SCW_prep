@@ -36,10 +36,10 @@ GetOM_Jim <- function(run_loc="../mse/mcmc/om1/mcmc", hyp="h1_ls") {
   )
 }
 
-OM_h1_ls <- OM1 <- GetOM_Jim("../mse/mcmc/om1/mcmc", "h1_ls")
-OM_h1_ll <- OM2 <- GetOM_Jim("../mse/mcmc/om2/mcmc", "h1_ll")
-OM_h1_hl <- OM3 <- GetOM_Jim("../mse/mcmc/om3/mcmc", "h1_hl")
-OM_h1_hs <- OM4 <- GetOM_Jim("../mse/mcmc/om4/mcmc", "h1_hs")
+OM_h1_ls <- GetOM_Jim("../mse/mcmc/om1/mcmc", "h1_ls")
+OM_h1_ll <- GetOM_Jim("../mse/mcmc/om2/mcmc", "h1_ll")
+OM_h1_hl <- GetOM_Jim("../mse/mcmc/om3/mcmc", "h1_hl")
+OM_h1_hs <- GetOM_Jim("../mse/mcmc/om4/mcmc", "h1_hs")
 
 # setwd("C:/GitHub/jjm/assessment") # Tom WD
 

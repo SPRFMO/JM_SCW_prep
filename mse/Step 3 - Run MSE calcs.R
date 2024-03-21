@@ -36,7 +36,7 @@ for(om in 1:nOM){
 for(om in 1:nOM){
   Hist = readRDS(paste0(largedir,"Hists/Hist_",runnam[om],".rda"))
   MSE = ProjectMOM(Hist, IRMPs)
-  saveRDS(Hist,paste0(largedir,"MSEs/MSE_",runnam[om],".rda"))
+  saveRDS(MSE,paste0(largedir,"MSEs/MSE_",runnam[om],".rda"))
 } 
 
 
