@@ -61,7 +61,7 @@ MMSE_list <- lapply(1:nOM, function(i) {
 # Performance metrics, copy from script Z ----
 
 PMs = c("NSE_LP","NSP_LP","ZV_LP","CBA_CP","CBA_MP","CBA_LP")
-
+PMlabs = c("P(B>BMSY)","P(F<1.1FMSY)","P(GK)","Y(1-5)","Y(6-15)","Y(16-30)") 
 
 
 
@@ -105,7 +105,8 @@ obj$MP$Description <- c("Index ratio, tuning parameter 1, with HCR",
 ## Deterministic performance metrics ----
 ## Need to multiply by 100
 obj$Perf$Det$Labels <-
-  obj$Perf$Det$Codes <- PMs
+  obj$Perf$Det$Codes <- PMlabs # PMs = c("NSE_LP","NSP_LP","ZV_LP","CBA_CP","CBA_MP","CBA_LP")
+
 obj$Perf$Det$Description <- sapply(PMs, function(i) get(i) %>% formals() %>% getElement("Name"))
 
 PMobj <- lapply(MMSE_list, PM_fn, PMs = PMs)
@@ -120,7 +121,7 @@ obj$Perf$Det$Values[] <- 100 * obj$Perf$Det$Values[]
 
 ## Stochastic performance metrics ----
 obj$Perf$Stoch$Labels <-
-  obj$Perf$Stoch$Codes <- PMs
+  obj$Perf$Stoch$Codes <- PMlabs
 obj$Perf$Stoch$Description <- sapply(PMs, function(i) get(i) %>% formals() %>% getElement("Name"))
 
 PMsim <- lapply(MMSE_list, PM_fn, PMs = PMs, all_sims = TRUE)
@@ -132,7 +133,7 @@ obj$Perf$Stoch$Values[, , , !grepl("CBAprom", PMs)] <- 100 * obj$Perf$Stoch$Valu
 obj$Perf$Proj$Labels <- obj$Perf$Proj$Codes <- obj$Perf$Proj$Description <- StateVar[1:3]
 
 allYear <- seq(1970, 2073, 1)
-last_hist <- 2023.5
+last_hist <- 2023
 
 source("../mse/ZZ - functions-figures.R")
 nsim = MMSE_list[[1]]@nsim
@@ -175,7 +176,7 @@ R <- plot_array(MMSE_list, 1:4, sims = 1:nsim, type = "R")[["data"]] %>%
 
 
 obj$StateVar$Times <- allYear
-obj$StateVar$TimeNow <- last_hist
+obj$StateVar$TimeNow <- 2023
 obj$StateVar$Labels <- obj$StateVar$Description <- obj$StateVar$Codes <- StateVar
 
 
