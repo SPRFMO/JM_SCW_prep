@@ -34,7 +34,7 @@ IRMP = function(x, DataList, reps=1, enp.mult = 0.25,                          #
                 deltas =  c(NA,  0.529, 2012.446, NA, 2.801, 56.531, 0.419),   # multiplier C = delta * I
                 TRP =     c(NA,  182.5, 0.055, NA, 36.77, 1.78, 274.565),      # 'target' index level
                 TRPmod = 1.0,                                                  # TRP modifier
-                mult = 1.5,                                                    # tuning parameter - multiplier of initial delta
+                mult = 2,                                                    # tuning parameter - multiplier of initial delta
                 useInd = c(NA, 1, NA, NA, NA, 1, NA),                          # runs off Peru_CPUE Index only (CV ~34%)
                 allo = c(0.0709,  0.6489,  0.2028, 0.0774)){                   # fleet TAC allocation is same as 2023    
   
@@ -80,6 +80,19 @@ IRMPs = c("IR1A","IR1B","IR2A","IR2B","IR3A","IR3B")
 cat("Index Ratio MPs Loaded (IR1A, IR1B, IR2A, IR2B - 1/2/3 is multiplier, A/B is TRP/no TRP) \n")
 cat("'IRMPs' also specified \n")
 
+
+# Catch proportions
+
+
+IRF1 = IRF2 = IRF3 = IRF4 = IRMP
+formals(IRF1)$allo = c(1,0,0,0)
+formals(IRF2)$allo = c(0,1,0,0)
+formals(IRF3)$allo = c(0,0,1,0)
+formals(IRF4)$allo = c(0,0,0,1)
+class(IRF1) = class(IRF2) = class(IRF3) = class(IRF4) = "MMP"
+                    
+CPMPs = c("IRF1","IRF2","IRF3","IRF4")                    
+ 
 # === End of script ===========================================================================
 
 

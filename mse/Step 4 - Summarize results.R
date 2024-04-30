@@ -160,8 +160,13 @@ obj$Perf$Proj$RefNames <- list(c("Limit", "Target"), "Limit")
 
 
 ## State variables ----
-CBA <- plot_array(MMSE_list, 1:4, sims = 1:nsim, type = "CBA", annual = TRUE)[["data"]] %>%
-  df2matrix()
+#CBA <- plot_array(MMSE_list, 1:4, sims = 1:nsim, type = "CBA", annual = TRUE)[["data"]] %>%
+#  df2matrix()
+
+CBA = array(NA,c(nsim,nOM,length(obj$MP$Labels),MMSE_list[[1]]@proyears))
+out = lapply(MMSE_list,function(x)apply(x@Catch[,1,,,],c(1,3,4),sum))
+for(om in 1:length(out))CBA[,om,,] = out[[om]]
+
 
 SB <- plot_array(MMSE_list, 1:4, sims = 1:nsim, type = "SB")[["data"]] %>%
   df2matrix()
@@ -222,7 +227,7 @@ obj$Misc$App_axes # Can translate into Spanish?
 obj$Misc$App_axes_code # Can translate into Spanish?
 
 ## Save object ----
-saveRDS(obj, file = "../mse/Slick/JM_Demo_Mar_2024 v2.slick")
+saveRDS(obj, file = "../mse/Slick/JM_Demo_Mar_2024 v3.slick")
 
 ## Open Slick ----
 Slick::Slick()
