@@ -66,9 +66,9 @@ class(IRMP) = "MMP"
 IR1A = IR2A = IR3A = IR1B = IR2B = IR3B = IRMP
 
 # Level 1 is MP multiplier
-formals(IR1A)$mult = formals(IR1B)$mult = 1.0
-formals(IR2A)$mult = formals(IR2B)$mult = 1.5
-formals(IR3A)$mult = formals(IR3B)$mult = 2.0
+formals(IR1A)$mult = formals(IR1B)$mult = 2.0
+formals(IR2A)$mult = formals(IR2B)$mult = 3.0
+formals(IR3A)$mult = formals(IR3B)$mult = 4.0
 
 # Level 2 is TRP on / off
 formals(IR1A)$TRPmod = formals(IR2A)$TRPmod = formals(IR3A)$TRPmod = 2.0 #twice base TRP (to make some kind of contrast!)

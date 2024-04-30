@@ -539,10 +539,24 @@ getOMs = function(OMdir){
   OMnam <<- sapply(strsplit(files,".rda"),function(x)x[[1]][1])
   runnam <<-  sapply(strsplit(OMnam,"OM_"),function(x)x[2])
   nOM <<- length(OMnam)
-  for(i in 1:nOM)  assign(OMnam[i],readRDS(dirs[i]))
+  for(i in 1:nOM)  assign(OMnam[i],readRDS(dirs[i]),envir = .GlobalEnv)
   cat(paste("The following OMs have been loaded:",paste(OMnam,collapse=", ")," \n"))
   cat(paste("'OMnam','nOM' and 'runnam' also specified \n"))
 }
 
+
+getyrs = function(OM,inrec=T){
+  ind = (-(OM@Fleets[[1]][[1]]@nyears -1):OM@proyears)
+  if(inrec) ind = (-(OM@Fleets[[1]][[1]]@nyears +OM@Stocks[[1]]@maxage-1):OM@proyears)
+  OM@Fleets[[1]][[1]]@CurrentYr + ind
+  
+}  
+
+IFR=function(OM, factor = 1.5){ # inflate future recruitment
+  ind = (OM@Fleets[[1]][[1]]@nyears +OM@Stocks[[1]]@maxage-1)+(1:OM@proyears)
+  nf = length(OM@Fleets[[1]])
+  for(ff in 1:nf)OM@cpars[[1]][[ff]]$Perr_y[,ind] = OM@cpars[[1]][[ff]]$Perr_y[,ind] * factor
+  OM
+}
 
 cat("Jack Mackerel to Operating Model (JJ2OM) source code loaded \n")

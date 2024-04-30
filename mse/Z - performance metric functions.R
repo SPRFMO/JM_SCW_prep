@@ -191,8 +191,8 @@ class(NZR_CP) <- class(NZR_MP) <- class(NZR_LP) <- "PM"
 
 # CBA promedio ----
 CBA_CP <- function(MMSEobj = NULL, semester = c(1, 5),
-                       Name = "Mean CBA in Years 1-5 (2024-2028)",
-                       Caption = "Mean CBA (2024-2028)", ...) {
+                       Name = "Mean Yield in Years 1-5 (2024-2028)",
+                       Caption = "Mean Yield (2024-2028)", ...) {
 
   if(!inherits(MMSEobj,'MMSE')) stop('This PM method is designed for objects of class `MMSE`')
 
@@ -211,11 +211,11 @@ CBA_MP <- CBA_LP <- CBA_CP
 formals(CBA_MP)$semester <- c(6, 15)
 formals(CBA_LP)$semester <- c(16, 30)
 
-formals(CBA_MP)$Name <- "Mean CBA in Years 6-15 (2029-2038)"
-formals(CBA_MP)$Caption <- "Mean CBA (2029-2038)"
+formals(CBA_MP)$Name <- "Mean Yield in Years 6-15 (2029-2038)"
+formals(CBA_MP)$Caption <- "Mean Yield (2029-2038)"
 
-formals(CBA_LP)$Name <- "Mean CBA in Years 16-30 (2039-2053)"
-formals(CBA_LP)$Caption <- "Mean CBA (2039-2053)"
+formals(CBA_LP)$Name <- "Mean Yield in Years 16-30 (2039-2053)"
+formals(CBA_LP)$Caption <- "Mean Yield (2039-2053)"
 
 class(CBA_MP) <- class(CBA_LP) <- "PM"
 

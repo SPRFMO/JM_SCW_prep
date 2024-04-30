@@ -9,7 +9,7 @@
 
 # --- Installation -------------------------------------------------------------
 
-devtools::install_github('blue-matter/slick')
+# devtools::install_github('blue-matter/slick')
 
 # --- Prerequisites ------------------------------------------------------------
 
@@ -35,10 +35,10 @@ source("../mse/Z - performance metric functions.R") # source some performance me
 # Get MMSE objects, copy from script 5 ----
 
 nOM = 4
-OM_names <- c("(1) hypoth 1, low steepness, short rec",
-              "(2) hypoth 1, low steepness, long rec",
-              "(3) hypoth 1, high steepness, short rec",
-              "(4) hypoth 1, high steepness, long rec")
+OM_names <- c("(1) hypoth 1, steepness 0.65, short rec",
+              "(2) hypoth 1, steepness 0.65, long rec",
+              "(3) hypoth 1, steepness 0.90, short rec",
+              "(4) hypoth 1, steepness 0.90, long rec")
 
 codes = paste("h1",c("ls","ll","hs","hl"),sep="_")
 OM_short <- paste(1:4,codes,sep="_")
@@ -62,14 +62,15 @@ MMSE_list <- lapply(1:nOM, function(i) {
 
 PMs = c("NSE_LP","NSP_LP","ZV_LP","CBA_CP","CBA_MP","CBA_LP")
 PMlabs = c("P(B>BMSY)","P(F<1.1FMSY)","P(GK)","Y(1-5)","Y(6-15)","Y(16-30)") 
+PMlabs_det = c("P(B>BMSY)","P(F<1.1FMSY)","P(GK)","Y(1-5)(%max)","Y(6-15)(%max)","Y(16-30)(%max)") 
 
 
 
 # Make Slick object ----
 
-StateVar <- c("B/BRMS",
-              "F/FRMS",
-              "CBA",
+StateVar <- c("B/BMSY",
+              "F/FMSY",
+              "Yield",
               "Spawning biomass",
                "Annual Recruitment")
 
@@ -87,11 +88,11 @@ obj <- Slick::NewSlick(
 )
 
 ## OM design ----
-obj$OM$Factor_Labels <- c("Rec. length", "Steepness")
-obj$OM$Description <- list(c("Short rec.", "Long rec."), c("Low steepness", "High steepness"))
+obj$OM$Factor_Labels <- c("SRR Duration", "Steepness")
+obj$OM$Description <- list(c("SRR short time period", "SRR long time period"), c("Less resilient (B.H. steepness = 0.65)", "Resilient (B.H. steepness = 0.9)"))
 
 obj$OM$Codes <-
-  obj$OM$Labels <- list(c("Short rec.", "Long rec."), c("Low steep.", "High steep."))
+  obj$OM$Labels <- list(c("SRR short", "SRR long"), c("0.65", "0.90"))
 
 ## Management procedures ----
 obj$MP$Labels <- obj$MP$Codes <- MMSE_list[[1]]@MPs[[1]]
@@ -105,9 +106,10 @@ obj$MP$Description <- c("Index ratio, tuning parameter 1, with HCR",
 ## Deterministic performance metrics ----
 ## Need to multiply by 100
 obj$Perf$Det$Labels <-
-  obj$Perf$Det$Codes <- PMlabs # PMs = c("NSE_LP","NSP_LP","ZV_LP","CBA_CP","CBA_MP","CBA_LP")
+  obj$Perf$Det$Codes <- PMlabs_det # PMs = c("NSE_LP","NSP_LP","ZV_LP","CBA_CP","CBA_MP","CBA_LP")
 
-obj$Perf$Det$Description <- sapply(PMs, function(i) get(i) %>% formals() %>% getElement("Name"))
+obj$Perf$Det$Description <- paste(sapply(PMs, function(i) get(i) %>% formals() %>% getElement("Name")),c(rep("",3),rep("(%max)",3)))
+
 
 PMobj <- lapply(MMSE_list, PM_fn, PMs = PMs)
 for (i in 1:length(MMSE_list)) {
@@ -207,19 +209,20 @@ obj$StateVar$RefNames <- list(c("Limit", "Target"), "Limit", NULL, NULL, NULL)
 
 
 ## Text ----
-obj$Text$Title <- "Pacific Jack Mackerel (demo)"
+obj$Text$Title <- "SPRFMO Jack Mackerel (demo)"
 obj$Text$Sub_title <- "Demonstration of openMSE results March 2024 using J. Ianelli's conditioning model"
 
 
 ## Contact information ----
 obj$Misc$Author <- "T. Carruthers & J. Ianelli"
+obj$Misc$Contact <- "(tom@bluematterscience.com)"
 obj$Misc$Institution <- "Blue Matter Science"
 
 obj$Misc$App_axes # Can translate into Spanish?
 obj$Misc$App_axes_code # Can translate into Spanish?
 
 ## Save object ----
-saveRDS(obj, file = "../mse/Slick/JM_Demo_Mar_2024.slick")
+saveRDS(obj, file = "../mse/Slick/JM_Demo_Mar_2024 v2.slick")
 
 ## Open Slick ----
 Slick::Slick()

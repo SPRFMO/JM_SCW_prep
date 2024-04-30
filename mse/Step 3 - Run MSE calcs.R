@@ -15,7 +15,7 @@ setwd("~/_mymods/SPRFMO/jjm/assessment")
 library(openMSE)
 source("../mse/Step 2 - Specify MPs.r")   # load MPs made in step 2
 source("../mse/Source_JM2OM.r")           # load JM2OM source code
-getOMs("../mse/OMs/")                     # load OMs  (OMnam, nOM, runnam)  
+getOMs(OMdir = "../mse/OMs/")                     # load OMs  (OMnam, nOM, runnam)  
 largedir = "C:/temp/JM_mcmc/"             # somewhere to store big things off the github 
                                           #  (needs /Hists and /MSEs subdirectories)
 
@@ -26,7 +26,7 @@ largedir = "C:/temp/JM_mcmc/"             # somewhere to store big things off th
 # you want to project some new MPs
 
 for(om in 1:nOM){
-  Hist = multiMSE(get(OMnam[om]), Hist = T)
+  Hist = multiMSE(IFR(get(OMnam[om])), Hist = T) # !!!! IFR is Inflate Future Recruitment - a temporary patch for demo purposes !!!
   saveRDS(Hist,paste0(largedir,"Hists/Hist_",runnam[om],".rda"))
 } 
 

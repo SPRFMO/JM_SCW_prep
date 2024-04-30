@@ -32,7 +32,7 @@ GetOM_Jim <- function(run_loc="../mse/mcmc/om1/mcmc", hyp="h1_ls") {
                  interval = 2,           # update management every 2 years
                  nsim = 128,             # only 32 sims for demo purposes
                  datastart = 2007,       # only the last 15 years of data are submitted to derive statistical properties for index simulation
-                 check = T)              # visual check that reconstructed openMSE N and F matches conditioning model estimates
+                 check = F)              # visual check that reconstructed openMSE N and F matches conditioning model estimates
   )
 }
 
@@ -40,6 +40,8 @@ OM_h1_ls <- GetOM_Jim("../mse/mcmc/om1/mcmc", "h1_ls")
 OM_h1_ll <- GetOM_Jim("../mse/mcmc/om2/mcmc", "h1_ll")
 OM_h1_hl <- GetOM_Jim("../mse/mcmc/om3/mcmc", "h1_hl")
 OM_h1_hs <- GetOM_Jim("../mse/mcmc/om4/mcmc", "h1_hs")
+
+matplot(getyrs(OM_h1_ls),t(OM_h1_ls@cpars[[1]][[1]]$Perr_y[1:2,]),col=c("red","blue"),lty=1,xlab="Year",ylab = "Rec. dev",type="l"); abline(v=2023.5,h=1)
 
 # setwd("C:/GitHub/jjm/assessment") # Tom WD
 
