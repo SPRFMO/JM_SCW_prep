@@ -34,7 +34,7 @@ IRMP = function(x, DataList, reps=1, enp.mult = 0.25,                          #
                 deltas =  c(NA,  0.529, 2012.446, NA, 2.801, 56.531, 0.419),   # multiplier C = delta * I
                 TRP =     c(NA,  182.5, 0.055, NA, 36.77, 1.78, 274.565),      # 'target' index level
                 TRPmod = 1.0,                                                  # TRP modifier
-                mult = 2,                                                    # tuning parameter - multiplier of initial delta
+                mult = 2,                                                      # tuning parameter - multiplier of initial delta
                 useInd = c(NA, 1, NA, NA, NA, 1, NA),                          # runs off Peru_CPUE Index only (CV ~34%)
                 allo = c(0.0709,  0.6489,  0.2028, 0.0774)){                   # fleet TAC allocation is same as 2023    
   
