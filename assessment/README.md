@@ -1,8 +1,35 @@
 Jack mackerel assessment 
 =================================
+## 2024 SC12 Model runs
+### Notes
+Update assessment in Lima, Peru, Sep-Oct 2023.
+
+### Naming convention
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     | 	Exact 2023 (single stock `h1` and two-stock `h2`) model and data set (model 1.07) from SC11.
+0.01     | 	As 0.00 but with revised catches through 2023 (currently still estimates)
+0.02     | 	As 0.01 but with updated 2023 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth
+0.03     | 	As 0.02 but with updated 2023 weight at age data for all fisheries and their associated CPUE indices
+0.04     | 	As 0.03 but replaced offshore CPUE up to 2023 (**NOT UPDATED**)
+0.05     |  As 0.04 but with 2024 catch projections
+0.06     |  As 0.05 but with updated 2024 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth (**NO OFFSHORE UPDATE YET**)
+0.07     |  As 0.06 but with updated 2024 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
+0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10 	 |	As 0.09 but updated AcousN 2024 index, with associated age composition and weight at age
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
+-----------|--------------
+**Models 1.xx.yy**| **Base Model Projections**
+**1.xx.xx**     |  Base model
+
 ## 2023 SC11 Model runs
 ### Notes
-Update assessment in Panama City, Sep 2023. Excel file contanining the data files can be found at `assessment/data/SC11_datfiles.xlsx`.
+Update assessment in Panama City, Sep 2023.
 
 ### Naming convention
 
@@ -29,7 +56,7 @@ Model      | Description
 1.04  | As 1.00 but with proposed Chile CPUE index incorporating effort creep based on fisher interviews (SC11-JM06) (**NOT RUN**; comparison shown in SC11-JM06)
 1.05  | As 1.00 but with proposed Chile CPUE index from SC11-JM07
 1.06  | As 1.00 but with updated Peruvian weight-at-age data
-1.07  | As 1.06 but with downweighted 2022 offshore CPUE index
+**1.07  | As 1.06 but with downweighted 2022 offshore CPUE index**
 1.08  | As 1.07 but with Peruvian high seas catch allocated to the offshore fleet (f4) instead of the farnorth fleet (f3)
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
