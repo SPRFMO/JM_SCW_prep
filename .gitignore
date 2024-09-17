@@ -80,7 +80,7 @@ assessment/result/
 *.doc
 assessment/annex\ plots
 docs/Model_Notes.md
-*.pdf
+# *.pdf
 *.html
 ~$*
 *.docx
