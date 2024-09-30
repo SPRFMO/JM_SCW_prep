@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------
-# Script for SC11---------------------------------------------------------
+# Script for SC12---------------------------------------------------------
 # 2024 JM  ---------------------------------------------------------------
 # ------------------------------------------------------------------------
 #install.packages("devtools")
@@ -87,11 +87,18 @@ dat_catch <- read_excel(file_input, sheet=5) %>%
               mutate_at(vars(-year), function(x)x/1e3) %>%
               rename_with(~ gsub("F", "fishery", .x, fixed = TRUE))
 
+# Not sure if new system for SC13?
+dat_wtatage_peru <- read_excel("data/WatAge_Peru_updated2023-preliminar2024.xlsx", sheet=1) %>%
+                      mutate(fleet=3) %>%
+                      filter(year>=yr_prev)
+
 dat_wtatage_f <- read_excel(file_input, sheet=2) %>%
                   pivot_longer(cols=contains("F"), names_to="fleet") %>%
                   pivot_wider(names_from=age, values_from=value) %>%
                   mutate(fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
-                  select(-`0`)
+                  select(-`0`) %>%
+                  filter(fleet!=3) %>%
+                  add_row(dat_wtatage_peru)
 
 dat_lencomp_f <- read_excel(file_input, sheet=3) %>%
                   pivot_longer(contains("F", ignore.case=F), names_to="fleet") %>%
@@ -196,17 +203,16 @@ cpue_ind <- grep("CPUE",mod_new[[1]]$data$Inames)
 
 for(f in 1:mod_new[[1]]$data$Fnum) {
   rows2use <- which(rownames(mod_new[[1]]$data$Fwtatage[,,f])==yr_prev)
-  if(f!=3) {  # TAKE OUT FOR SC12
-    dat2use <- dat_wtatage_f %>%
-                filter(year==yr_prev, fleet==f) %>%
-                select(-year,-fleet) %>%
-                unlist()
+  dat2use <- dat_wtatage_f %>%
+               filter(year==yr_prev, fleet==f) %>%
+               select(-year,-fleet) %>%
+               unlist()
+
     mod_new[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
     mod_new[[1]]$data$Fwtatage[,,f] <- mod_new[[1]]$data$Fwtatage[,,f] %>%
                                         as.data.frame() %>%
                                         fill(everything()) %>%
                                         as.matrix()
-  }
 
  # Update wtatage for CPUE
   if(f>1) {
@@ -268,8 +274,8 @@ for(i in 1:mod_new[[1]]$data$Inum) {
     mod_new[[1]]$data$Iwtatage[,,i] <- rbind(mod_prev[[1]]$data$Iwtatage[,,i],tail(mod_prev[[1]]$data$Iwtatage[,,i],5) %>% colMeans())
 }
 
-# fn_bridge(mod_new, "0.05")
-# mod0.05 <- runit(geth("0.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+fn_bridge(mod_new, "0.05")
+mod0.05 <- runit(geth("0.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
 #----------
