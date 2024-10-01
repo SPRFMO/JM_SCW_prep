@@ -442,6 +442,8 @@ mod_prev <- mod_new
 mod_h1 <- readJJM(geth("0.10","h1"), path = "config", input = "input")
 mod_h2 <- readJJM(geth("0.10","h2"), path = "config", input = "input")
 
+tac_prev <- sum(tail(mod_h1[[1]]$data$Fcaton,1))
+
 mod_h1_new <- mod_h1
 mod_h2_new <- mod_h2
 
@@ -473,4 +475,4 @@ for(f in 1:mod_h2[[1]]$data$Fnum) {
 fn_update(mod_h1_new, "1.00", "h1")
 fn_update(mod_h2_new, "1.00", "h2")
 
-mod1.00 <- runit(geth("1.00",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.00 <- runit(geth("1.00",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T, adflags=paste0("-tac ", tac_prev))

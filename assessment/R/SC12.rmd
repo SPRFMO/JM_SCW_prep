@@ -32,7 +32,7 @@ script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
 ```
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir=here::here("assessment"))
+knitr::opts_knit$set(root.dir=here::here())
 knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.height=5)
 ```
 
@@ -82,6 +82,8 @@ You'll need to be in the `jjm/assessment` directory in order for the code here t
 library(jjmR)
 library(tidyverse)
 library(kableExtra)
+library(patchwork)
+theme_set(theme_jjm(base_size = 15))
 
 pwd <- getwd()
 
@@ -104,9 +106,8 @@ fn_plotind <- function(mods2compare, indname) {
 
   p <- map_dfr(dat2use, ~as_tibble(.)) %>%
         mutate(assessment_year=as.factor(assessment_year)) %>%
-        ggplot(aes(x=year,y=value,colour=assessment_year)) +
-        geom_line() +
-        theme_minimal() + 
+        ggplot() +
+        geom_line(aes(x=year,y=value,colour=assessment_year)) +
         scale_x_continuous(breaks= scales::pretty_breaks())
   print(p)
 }
@@ -436,40 +437,40 @@ mods2compare <- c("0.00","0.10")
 ### Biomass
 ```{r, biomass_h1_datfin, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 hyp <- "h1"
-Dat_Fin <- compareModels(geth(mods2compare))
+dat_fin <- compareModels(geth(mods2compare))
 
-plot(Dat_Fin,combine=T,what="biomass",stack=F,main="Biomass")
+plot(dat_fin,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
 ```{r, recruitment_h1_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
-plot(Dat_Fin,combine=T,what="recruitment",stack=F,main="Recruitment")
+plot(dat_fin,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 ### Fishing Mortality
 ```{r fmort_h1_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 
-plot(Dat_Fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+plot(dat_fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ## Two-stock hypothesis {.tabset}
 ### Biomass
 ```{r, biomass_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 hyp <- "h2"
-Dat_Fin <- compareModels(geth(mods2compare))
+dat_fin <- compareModels(geth(mods2compare))
 
-plot(Dat_Fin,combine=T,what="biomass",stack=F,main="Biomass")
+plot(dat_fin,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
 ```{r, recruitment_h2_datfin, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
-plot(Dat_Fin,combine=T,what="recruitment",stack=F,main="Recruitment")
+plot(dat_fin,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 ### Fishing Mortality
 ```{r fmort_h2_datfin, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", geth(mods2compare[1]), ") with data updated to ",as.numeric(format(Sys.time(), "%Y"))," (",geth(mods2compare[2]),").")}
 
-plot(Dat_Fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+plot(dat_fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 # Model Update
@@ -516,6 +517,211 @@ plot(Mod_Update,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```{r fmort_h2_base, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model  (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
 
 plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+---
+
+# Sensitivy Analyses
+The code used to run the following sensitivities (1.01 onwards) can be found in `assessment/R/SC12.R`.
+
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
+1.01  | As 1.00 but with flexibility in selectivity for Offshore fleet in 2021 (changed from 2022), a break in catchability in 2021 and reduced CV for the 2022 Offshore CPUE index
+1.02  | As 1.00 but with proposed standardised CPUE index from Vázquez & Sepúlveda (SC12-JM06), using CV = 0.2
+1.03  | As 1.02 but with stdev reported in the study (SC12-JM06; annually-varying CV ~ 0.1)
+
+## Changing selectivity and catchability for Offshore fishery in 2021
+The dynamics of the offshore fleet changed significantly in 2021, with the fishery fishing further north than they had in the past. Previous asssessments had accepted base models with added flexibility in selectivity for 2022 (SC10-1.02) and a downweighted offshore CPUE value in 2022 (SC11-1.07). For this sensitivity, we moved that selectivity flexibility to 2021 and added a break in catchability for the same year, while increasing the CV for the entire CPUE time series to be the same as that of previous years.
+
+```{r}
+mods2compare <- c("1.00","1.01")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Fit to Survey
+```{r}
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name == "Offshore_CPUE") %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = observed_ind - 1.96 * observed_se, ymax =  observed_ind + 1.96 * observed_se), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values")
+print(p1)
+```
+
+#### Fit to Age Composition
+```{r}
+p1 <- res_tidy$age_fits %>%
+  filter(fleet_name == "Offshore_Trawl") %>% 
+  ggplot() +
+    geom_col(aes(x = age, y = observed)) +
+    geom_line(aes(x = age, y = predicted, colour = model)) +
+    facet_wrap(~year)
+
+print(p1)
+```
+
+#### Catchability Coefficients
+```{r}
+p1 <- res_tidy$catchabilities %>%
+  filter(fleet_name == "Offshore_CPUE") %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = q, colour = model))
+
+print(p1)
+```
+
+### Likelihood Table
+```{r results="asis"}
+LL <- summary(res)$like
+
+knitr::kable(LL) %>% kableExtra::kable_styling()
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Fit to Survey
+```{r}
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name == "Offshore_CPUE") %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = observed_ind - 1.96 * observed_se, ymax =  observed_ind + 1.96 * observed_se), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values")
+print(p1)
+```
+
+#### Fit to Age Composition
+```{r}
+p1 <- res_tidy$age_fits %>%
+  filter(fleet_name == "Offshore_Trawl") %>% 
+  ggplot() +
+    geom_col(aes(x = age, y = observed)) +
+    geom_line(aes(x = age, y = predicted, colour = model)) +
+    facet_wrap(~year)
+
+print(p1)
+```
+
+#### Catchability Coefficients
+```{r}
+p1 <- res_tidy$catchabilities %>%
+  filter(fleet_name == "Offshore_CPUE") %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = q, colour = model))
+
+print(p1)
+```
+
+### Likelihood Table
+```{r results="asis"}
+LL <- summary(res)$like
+
+knitr::kable(LL) %>% kableExtra::kable_styling()
+```
+
+## Chilean CPUE standardised with spatio-temporal Bayesian models (SC12-JM06)
+This was also run as a sensitivity in SC11 (SC11-1.05).
+
+### Comparing z-scored indices
+
+```{r}
+mods2compare <- c("1.00","1.02","1.03")
+res <- compareModels(geth(mods2compare, "h1"))
+res_tidy <- tidy_JJM(res)
+```
+
+```{r}
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name == "Chile_CPUE") %>%
+  group_by(model) %>%
+  mutate(z_obs = (observed_ind-mean(observed_ind))/sd(observed_ind)) %>%
+  ggplot() +
+    geom_path(aes(x = year, y = z_obs, colour = model))
+
+print(p1)
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the Chilean CPUE index to that from SC12-JM06.")}
+
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+#### Fit to Survey
+```{r}
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name == "Chile_CPUE") %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = observed_ind - 1.96 * observed_se, ymax =  observed_ind + 1.96 * observed_se, colour = model), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values")
+print(p1)
+```
+
+#### Fit to Age Composition
+```{r}
+p1 <- res_tidy$age_fits %>%
+  filter(fleet_name == "SC_Chile_PS") %>% 
+  ggplot() +
+    geom_col(aes(x = age, y = observed)) +
+    geom_line(aes(x = age, y = predicted, colour = model)) +
+    facet_wrap(~year) 
+
+print(p1)
 ```
 
 
@@ -652,7 +858,8 @@ plot(h2_bmsy_diag, var = "summarySheet")
 
 ## Likelihood Table
 ```{r results="asis"}
-LL <- cbind(summary(h1_mod)$like,summary(h2_mod)$like)
+finmods <- combineModels(h1_mod, h2_mod)
+LL <- summary(finmods)$like
 
 knitr::kable(LL) %>% kableExtra::kable_styling()
 ```
@@ -660,10 +867,13 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 # Other Business
 ## Data needs
 - Standardise data reporting workflow for updating Peruvian weight at age
+- Aging protocol for acoustic survey
+  - Age-0 fish showing up even though survey conducted in March
 
 ## General
 - h2 MSY estimates are still strange, but worked for Windows OS in 2023?
+- Linking selectivity to cohort strength when calculating FMSY; instead of using the last year's selectivity with the most recent cohort strengths
+  - Tom has model that adds one extra parameter to track cohort strength and selectivity to address targeting of different age classes for projections
 
 ## Other models to run?
 - Acoustic survey CV change?
-- Downweight offshore CPUE for 2023?

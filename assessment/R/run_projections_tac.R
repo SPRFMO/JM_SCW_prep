@@ -29,17 +29,17 @@ library(tidyverse)
 devtools::load_all("../../jjmR")
 source("R/read-admb.R")
 
-finmodname <- "1.07"
+finmodnm <- "1.07"
 yr_curr <- as.numeric(format(Sys.time(), "%Y"))
-h1_modls <- readJJM(paste0("h1_",finmodname,".ls"), path = "config", input = "input")
-h2_modls <- readJJM(paste0("h2_",finmodname,".ls"), path = "config", input = "input")
+h1_modls <- readJJM(paste0("h1_",finmodnm,".ls"), path = "config", input = "input")
+h2_modls <- readJJM(paste0("h2_",finmodnm,".ls"), path = "config", input = "input")
 
 mods_com <- combineModels(h1_modls,h2_modls)
 quants_hist <- mods_com %>% .reshapeJJM2(what="catchProj") %>%
 				rename(catch=data) %>%
 				left_join(mods_com %>% .reshapeJJM2(what="ssbProj") %>% rename(ssb=data)) %>%
 				mutate(stocks=str_remove(stocks,"Stock_"),
-						model=str_remove(model,paste0("_",finmodname,".ls"))) %>%
+						model=str_remove(model,paste0("_",finmodnm,".ls"))) %>%
 				rename(stock=stocks, hyp=model)
 
 quants_msy <-  mods_com %>%
@@ -48,7 +48,7 @@ quants_msy <-  mods_com %>%
 				group_by(model, stock) %>%
 				summarise(bmsy=mean(bmsy)) %>%
 				ungroup() %>%
-				mutate(hyp=str_remove(model,paste0("_",finmodname,".ls")),
+				mutate(hyp=str_remove(model,paste0("_",finmodnm,".ls")),
 						stock=str_remove(stock,"Stock_")) %>%
 				select(-model) %>%
 				as_tibble()
@@ -64,18 +64,18 @@ fn_pullfuts <- function(nm) {
 	cat_fut <- tmp[[ind_cat]] %>%
 				as_tibble() %>%
 				rename(year=V1,catch=V2)
-	
+
 	ssb_fut <- tmp[[ind_ssb]] %>%
 				as_tibble() %>%
 				rename(year=V1, ssb=V2, sd=V3, lb=V4, ub=V5)
-	
+
 	quant_fut <- full_join(cat_fut,ssb_fut) %>%
 					mutate(file=nm)
 
 	return(quant_fut)
 }
 
-quants_fut <- map_dfr(repfilenames, fn_pullfuts) %>% 
+quants_fut <- map_dfr(repfilenames, fn_pullfuts) %>%
 			separate(file, into=c("hyp","file"), sep="_For_R_") %>%
 			separate(file, into=c("stock","scenario"), sep="_") %>%
 			mutate(scenario=str_remove(scenario,".rep")) %>%
@@ -92,11 +92,11 @@ quants_rm <- quants_proj %>%
 
 quants_curr <- quants_proj %>%
 				filter(year==yr_curr | year==yr_curr+1) %>%
-				complete(year,hyp,stock,scenario) %>% 
-				filter(year==yr_curr) %>% 
-				arrange(year,hyp,stock) %>% 
+				complete(year,hyp,stock,scenario) %>%
+				filter(year==yr_curr) %>%
+				arrange(year,hyp,stock) %>%
 				group_by(year,hyp,stock) %>%
-				fill(everything(),.direction="updown") %>% 
+				fill(everything(),.direction="updown") %>%
 				drop_na() %>%
 				ungroup()
 
@@ -107,7 +107,7 @@ quants_proj <- quants_proj %>%
 
 yrs2use <- c(yr_curr+2, yr_curr+6, yr_curr+10)
 
-risk_table_cat <- quants_fut %>% 
+risk_table_cat <- quants_fut %>%
 					select(year, catch, hyp, stock, scenario) %>%
 					filter(year==yr_curr+1 | year==yr_curr+2) %>%
 					mutate(catch=round(catch)) %>%
@@ -115,7 +115,7 @@ risk_table_cat <- quants_fut %>%
 
 
 risk_table <- quants_fut %>%
-				select(year, ssb, sd, hyp, stock, scenario) %>% 
+				select(year, ssb, sd, hyp, stock, scenario) %>%
 				filter(year %in% yrs2use) %>%
 				left_join(quants_msy) %>%
 				mutate(prob=round((1 - pnorm(bmsy, ssb, sd))*100),
