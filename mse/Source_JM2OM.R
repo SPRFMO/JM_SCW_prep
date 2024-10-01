@@ -273,7 +273,7 @@ make_F_array = function(mcmc, nstock = 1, nfleet = 4){
 
 # proyears = 50; interval = 2; nsim=48; seed = 1; check=T; datastart = 2012; LowerTri = 1; nstock = 1; nfleet = 4
 JM2MOM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed = 1, check=T, datastart = NA, LowerTri=1, 
-                  nstock = 1, nfleet = 4){
+                  nstock = 1, nfleet = 4, Allocation = c(0.069, 0.694, 0.140, 0.097)){
   
   info = mod[[1]]$info        #1
   data = mod[[1]]$data        #2
@@ -366,7 +366,12 @@ JM2MOM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed =
     cat("Checking conditioning model N and F against OpenMSE reconstructed N and F \n")
     Hist = multiMSE(OM,Hist=T)
     plotJMcomp_MOM(mod,naa,faa,waa,Hist)
+    lastcat = sapply(Hist$`Stock 1`, function(X)apply(X@TSdata$Removals[,54,],1,sum))
+    cat_frac = apply(lastcat,2,sum) / sum(lastcat) # 0.06922257 0.69473672 0.13993185 0.09610886
   }
+  
+  OM@Allocation=list()
+  OM@Allocation[[1]] = t(array(Allocation,c(nfleet,nsim)))
   
   OM
   

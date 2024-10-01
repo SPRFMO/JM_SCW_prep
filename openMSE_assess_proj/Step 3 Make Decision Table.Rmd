@@ -1,0 +1,141 @@
+---
+title: "Decision Table for Jack Mackerel Assessment Projections"
+author: "Tom Carruthers <tom@bluematterscience.com>"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+  toc: true
+toc_float: yes
+number_sections: true
+
+---
+&nbsp;
+
+  
+```{r make_table, include=FALSE}
+
+# Tom Carruthers
+# October 2024
+
+# --- Prerequisites ------------------------------------------------------------
+
+library(openMSE)
+library(kableExtra)
+library(dplyr)
+
+setwd("C:/GitHub/jjm/openMSE_assess_proj") # Tom WD
+source('MP_spawn.R')
+yrs = 2023+1:15
+
+# --- load Projections ---------------------------------------------------------
+
+
+# --- Extract projection data --------------------------------------------------
+
+
+maketab = function(Proj, dp = 0){
+  # Dimensions are sim, stock, fleet, MP, projection year
+  Catch = apply(Proj@Catch[,1,,,],c(1,3,4),sum) # sum over fleets for stock 1 (only 1 stock)
+  
+  # Dimensions are sim, stock, MP, projection year
+  Bio = Proj@B[,1,,]
+  SSBrel = Proj@SB_SBMSY[,1,,]
+  
+  
+  # --- Calculate tabulated values -----------------------------------------------
+  
+  # Catches
+  mu_Cat_25 = apply(Catch[,,1],2,mean) # mean by MP
+  mu_Cat_26 = apply(Catch[,,2],2,mean) 
+  
+  # Biomass
+  
+  mu_B_26 = apply(Bio[,,2],2,mean)     
+  mu_B_30 = apply(Bio[,,6],2,mean)
+  mu_B_34 = apply(Bio[,,10],2,mean)
+  
+  # Biomass risk
+  
+  PBMSY_26 = apply(SSBrel[,,2]>1,2,mean)*100
+  PBMSY_30 = apply(SSBrel[,,6]>1,2,mean)*100
+  PBMSY_34 = apply(SSBrel[,,10]>1,2,mean)*100
+  
+  
+  # --- Tabulate -----------------------------------------------------------------
+  
+  MPs = Proj@MPs[[1]]
+  TACMPs = MPs[grepl("TAC_",MPs)]
+  TACs = sapply(strsplit(TACMPs,"_"),function(X)as.numeric(X[2]))
+  
+  FMMPs = MPs[grepl("FM_",MPs)]
+  FMs = sapply(strsplit(FMMPs,"_"),function(X)as.numeric(X[2]))
+  
+  row.names=c("F~MSY~",paste0(FMs,"% F~2024~"), paste0(TACs,"% TAC~2024~"))
+  
+  round(data.frame(mu_Cat_25, mu_Cat_26, mu_B_26, PBMSY_26, mu_B_30, PBMSY_30, 
+                  mu_B_34, PBMSY_34, row.names=row.names), dp)
+
+}
+
+col.names = c("Catch 2025 (kt)","Catch 2026 (kt)","B~2026~ (kt)","P(SSB~2026~ > SSB~MSY~)","B~2030~ (kt)","P(SSB~2030~ > SSB~MSY~)","B~2034~ (kt)","P(SSB~2034~ > SSB~MSY~)")
+
+
+```
+
+
+## Assessment table 1
+
+```{r plotTable1, eval=T, echo=F, fig.width = 15}
+
+Proj_1 = readRDS("Proj_1.rda")
+
+DF = maketab(Proj)
+
+DF %>%
+  kable(caption = "Table XX. Catch scenarios from the assessment model", 
+      col.names = col.names) %>%
+  kable_classic(full_width = T, html_font = "Cambria") %>%
+  column_spec(1, width_min = '1in')
+
+```
+
+
+## Assessment table 2
+
+```{r plotTable2, eval=T, echo=F, fig.width = 15}
+
+# Proj_2 = readRDS("Proj_2.rda") # some other OM
+
+#DF = maketab(Proj_2)
+
+#DF %>%
+#  kable(caption = "Table XX. Catch scenarios from the assessment model", 
+#      col.names = col.names) %>%
+#  kable_classic(full_width = T, html_font = "Cambria") %>%
+#  column_spec(1, width_min = '1in')
+
+```
+
+
+## Assessment table 3
+
+```{r plotTable3, eval=T, echo=F, fig.width = 15}
+
+#Proj_3 = readRDS("Proj_3.rda") # some other OM
+
+#DF = maketab(Proj_3)
+
+#DF %>%
+#  kable(caption = "Table XX. Catch scenarios from the assessment model", 
+#      col.names = col.names) %>%
+#  kable_classic(full_width = T, html_font = "Cambria") %>%
+#  column_spec(1, width_min = '1in')
+
+```
+
+
+
+
+
+
+
