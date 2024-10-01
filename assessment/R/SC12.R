@@ -120,7 +120,7 @@ i <- grep("Chile_CPUE",h1_1.02[[1]]$data$Inames)
 rows2use <- which(rownames(h1_1.02[[1]]$data$Index) %in% chile_cpue$year)
 
 h1_1.02[[1]]$data$Inumyears[i]          <- dim(chile_cpue)[1]
-h1_1.02[[1]]$data$Index[,i]             <- h1_1.02[[1]]$data$Indexerr[,i] <- h1_1.02[[1]]$data$Iyears[,i] <- h2_1.02[[1]]$data$Iyears[,i] <- NA # In case the years change.
+h1_1.02[[1]]$data$Index[,i]             <- h1_1.02[[1]]$data$Indexerr[,i] <- h1_1.02[[1]]$data$Iyears[,i] <- NA # In case the years change.
 h1_1.02[[1]]$data$Index[rows2use,i]     <- chile_cpue$mean
 h1_1.02[[1]]$data$Indexerr[rows2use,i]  <- chile_cpue$mean * cv_cpue
 h1_1.02[[1]]$data$Iyears[rows2use,i]    <- chile_cpue$year
@@ -134,12 +134,10 @@ mod_1.02 <- runit(geth("1.02",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec=".
 # Using regular CPUE CV of 0.2
 #----------
 h1_1.03 <- h1_1.02
-h2_1.03 <- h2_1.02
 
-h1_1.03[[1]]$data$Indexerr[rows2use,i]  <- h2_1.03[[1]]$data$Indexerr[rows2use,i]  <- chile_cpue$sd
+h1_1.03[[1]]$data$Indexerr[rows2use,i]    <- chile_cpue$sd
 
-fn_update(h1_1.03, "1.03", "h1", dodat=T)
-fn_update(h2_1.03, "1.03", "h2", dodat=T)
+fn_bridge(h1_1.03, "1.03")
 mod_1.03 <- runit(geth("1.03",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
 
 
