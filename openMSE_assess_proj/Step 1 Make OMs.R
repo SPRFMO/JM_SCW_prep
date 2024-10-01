@@ -38,7 +38,7 @@ GetOM_Jim <- function(run_loc="C:/temp/JM_mcmc/mse/mcmc/om1/mcmc", hyp="h1_ls", 
 OM_1 <- GetOM_Jim("C:/temp/JM_mcmc/mse/mcmc/om1/mcmc", "h1_ls", nsim = 196, interval = 5) # an example rip of mcmc outputs to an OM
 
 # Check fleet allocation
-OM@Allocation[[1]]   # stock 1, [simulation, fleet] based on last historical year of catches
+OM_1@Allocation[[1]]   # stock 1, [simulation, fleet] based on last historical year of catches
 
 saveRDS(OM_1,"C:/GitHub/jjm/openMSE_assess_proj/OM_1.rda")
 
