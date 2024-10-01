@@ -89,7 +89,7 @@ col.names = c("Catch 2025 (kt)","Catch 2026 (kt)","B~2026~ (kt)","P(SSB~2026~ > 
 
 Proj_1 = readRDS("Proj_1.rda")
 
-DF = maketab(Proj)
+DF = maketab(Proj_1)
 
 DF %>%
   kable(caption = "Table XX. Catch scenarios from the assessment model", 
