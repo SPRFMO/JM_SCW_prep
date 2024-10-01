@@ -571,3 +571,80 @@ plot_tradeoff <- function(
 
   g
 }
+
+plot_array2 = function(MMSE, names, sims,
+         type = c("SB", "B_BMSY", "F_FMSY", "CBA", "Catch_Chile", "Catch_Peru", "Acoustic_Chile", "MPH",
+                  "rho", "CBA_ratio", "R"),
+         annual = FALSE) {
+  
+  type <- match.arg(type)
+  
+  if (is.list(MMSE)) {
+    array_df <- Map(.get_array, mmse = MMSE, .name = names, type = type, annual = annual) %>%
+      dplyr::bind_rows()
+    
+  } else if (is(MMSE, "MMSE")) {
+    array_df <- .get_array(MMSE, names, type = type, annual = annual)
+  } else {
+    stop("MMSE list or object not found.")
+  }
+  
+  ylab <- switch(type,
+                 "SB" = "Biomasa desovante",
+                 "B_BMSY" = expression(B/B[RMS]),
+                 "F_FMSY" = expression(F/F[RMS]),
+                 "CBA" = "CBA",
+                 "Catch_Peru" = "Captura peruana",
+                 "Catch_Chile" = "Captura chilena",
+                 "Acoustic_Chile" = "Crucero acústico",
+                 "MPH" = "MPH",
+                 "rho" = "rho de Mohn (2do hito)",
+                 "CBA_ratio" = expression(CBA[H2]/CBA[H1]),
+                 "R" = "Reclutamiento")
+  
+  if (!missing(sims)) {
+    
+    array_sims <- filter(array_df, Simulation %in% sims) %>%
+      mutate(Simulation = factor(Simulation))
+    g <- ggplot(array_sims, aes(Year, value, group = Simulation, linetype = Simulation)) +
+      facet_grid(vars(MP), vars(OM)) +
+      geom_line() +
+      expand_limits(y = 0) +
+      theme(panel.spacing = unit(0, "in"),
+            axis.text.x = element_text(angle = 45, vjust = 0.5),
+            legend.position = "bottom",
+            strip.background = element_blank()) +
+      coord_cartesian(expand = FALSE) +
+      labs(x = "Año", y = ylab, linetype = "Simulación")
+    
+  } else {
+    array_band <- array_df %>%
+      group_by(Year, MP, OM) %>%
+      summarise(med = median(value),
+                lwr = quantile(value, 0.05),
+                upr = quantile(value, 0.95),
+                lwr2 = quantile(value, 0.25),
+                upr2 = quantile(value, 0.75))
+    g <- ggplot(array_band, aes(Year, med)) +
+      facet_wrap(vars(MP)) +
+      #geom_ribbon(fill = "grey90", aes(ymin = lwr, ymax = upr)) +
+      #geom_ribbon(fill = "grey70", aes(ymin = lwr2, ymax = upr2)) +
+      geom_ribbon(alpha = 0.1, aes(ymin = lwr2, ymax = upr2, fill = OM)) + # Plot only the interquartile range
+      geom_line(aes(colour = OM)) +
+      expand_limits(y = 0) +
+      theme(panel.spacing = unit(0, "in"),
+            legend.position = "bottom",
+            strip.background = element_blank()) +
+      coord_cartesian(expand = FALSE) +
+      scale_fill_brewer(palette = "Dark2") +
+      scale_colour_brewer(palette = "Dark2") +
+      labs(x = "Año", y = ylab, fill = NULL, colour = NULL) +
+      guides(fill = guide_legend(ncol = 2),
+             colour = guide_legend(ncol = 2))
+  }
+  if (any(array_df$Year < 2023)) { # 2022 is the historical period
+    g <- g + geom_vline(xintercept = 2022.5, linetype = 2)
+  }
+  g
+}
+
