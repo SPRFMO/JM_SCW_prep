@@ -41,13 +41,14 @@ MPs = c("FMSYref", FM_nams, TAC_nams)
 
 OM_1 = readRDS("OM_1.rda")
 Hist_1 = multiMSE(OM_1, Hist = T) # do the historical spool up including Ref pt calcs
-Proj_1 = ProjectMOM(Hist_11, MPs, parallel=T)
+Proj_1 = ProjectMOM(Hist_1, MPs, parallel=T)
 saveRDS(Proj_1,"Proj_1.rda")
 
 
 # --- OM 2----------------------------------------------------
 
 # another OM
+
 
 
 # --- OM 3----------------------------------------------------
