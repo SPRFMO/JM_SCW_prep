@@ -35,7 +35,7 @@ fn_update <- function(newmod, newmodname, h, dodat=T) {
 }
 
 # Only changes to data file
-fn_bridge <- function(newmod, newmodname, h2mod=h2_ctl,ln_dat=line_dat, ln_modnm=line_modnm) {
+fn_bridge <- function(newmod, newmodname, h2mod,ln_dat=line_dat, ln_modnm=line_modnm) {
 
   names(newmod) <- newmod[[1]]$control$modelName <- geth(newmodname,"h1")
   newmod[[1]]$control$dataFile <- h2mod[ln_dat] <- paste0(newmodname,".dat")
@@ -96,9 +96,9 @@ h1_1.01[[1]]$control$RW_q_yrs <- h2_1.01[[1]]$control$RW_q_yrs <- c(h1_1.01[[1]]
 h1_1.01[[1]]$control$RW_q_sigmas <- h2_1.01[[1]]$control$RW_q_sigmas <- c(h1_1.01[[1]]$control$RW_q_sigmas, h1_1.01[[1]]$control$RW_q_sigmas[1]) # Sigma for random walk
 
 # Change CV back to usual
-CV_CPUE <- 0.2
+cv_cpue <- 0.2
 y <- which(rownames(h1_1.01[[1]]$data$Index) == 2022)
-h1_1.01[[1]]$data$Indexerr[y,i] <- h2_1.01[[1]]$data$Indexerr[y,i] <- h1_1.01[[1]]$data$Index[y,i] * CV_CPUE
+h1_1.01[[1]]$data$Indexerr[y,i] <- h2_1.01[[1]]$data$Indexerr[y,i] <- h1_1.01[[1]]$data$Index[y,i] * cv_cpue
 
 fn_update(h1_1.01, "1.01", "h1")
 fn_update(h2_1.01, "1.01", "h2")
@@ -111,8 +111,11 @@ mod_1.01 <- runit(geth("1.01",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec=".
 h1_1.02 <- h1_1.00
 chile_cpue <- read_csv(here::here("data","sc12-jm06.csv")) %>%
                 janitor::clean_names() %>%
-                mutate(sd=mean-low,
-                        cv=sd/mean)
+                rowid_to_column() %>%
+                mutate(creep = 0.99^(rowid-1)) %>%
+                mutate(cpue_creep = mean * creep,
+                        low_creep = low * creep,
+                        sd = mean - low)
 
 cv_cpue <- 0.2
 
@@ -121,11 +124,11 @@ rows2use <- which(rownames(h1_1.02[[1]]$data$Index) %in% chile_cpue$year)
 
 h1_1.02[[1]]$data$Inumyears[i]          <- dim(chile_cpue)[1]
 h1_1.02[[1]]$data$Index[,i]             <- h1_1.02[[1]]$data$Indexerr[,i] <- h1_1.02[[1]]$data$Iyears[,i] <- NA # In case the years change.
-h1_1.02[[1]]$data$Index[rows2use,i]     <- chile_cpue$mean
-h1_1.02[[1]]$data$Indexerr[rows2use,i]  <- chile_cpue$mean * cv_cpue
+h1_1.02[[1]]$data$Index[rows2use,i]     <- chile_cpue$cpue_creep
+h1_1.02[[1]]$data$Indexerr[rows2use,i]  <- chile_cpue$cpue_creep * cv_cpue
 h1_1.02[[1]]$data$Iyears[rows2use,i]    <- chile_cpue$year
 
-fn_bridge(h1_1.02, "1.02")
+fn_bridge(h1_1.02, "1.02", h2mod=h2_ctl)
 mod_1.02 <- runit(geth("1.02",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
 
 
@@ -137,69 +140,110 @@ h1_1.03 <- h1_1.02
 
 h1_1.03[[1]]$data$Indexerr[rows2use,i]    <- chile_cpue$sd
 
-fn_bridge(h1_1.03, "1.03")
+fn_bridge(h1_1.03, "1.03", h2mod=h2_ctl)
 mod_1.03 <- runit(geth("1.03",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
 
+#---------
+# Updating selectivity change for N_Chile
+#---------
+h1_1.04 <- readJJM(geth("1.01","h1"), path = "config", input = "input")
+h2_1.04 <- readJJM(geth("1.01","h2"), path = "config", input = "input")
 
+ff <- "F1_"
+
+h1_1.04[[1]]$control[[paste0(ff,"info")]][length(h1_1.04[[1]]$control[[paste0(ff,"info")]])] <- tail(h1_1.04[[1]]$control[[paste0(ff,"info")]],1) + 1
+h1_1.04[[1]]$control[[paste0(ff,"selchangeYear")]] <- c(h1_1.04[[1]]$control[[paste0(ff,"selchangeYear")]],(tail(h1_1.04[[1]]$control[[paste0(ff,"selchangeYear")]],1)+1))
+h1_1.04[[1]]$control[[paste0(ff,"selchange")]] <- c(h1_1.04[[1]]$control[[paste0(ff,"selchange")]],tail(h1_1.04[[1]]$control[[paste0(ff,"selchange")]],1))
+
+h2_1.04[[1]]$control[[paste0(ff,"info")]][length(h2_1.04[[1]]$control[[paste0(ff,"info")]])] <- tail(h2_1.04[[1]]$control[[paste0(ff,"info")]],1) + 1
+h2_1.04[[1]]$control[[paste0(ff,"selchangeYear")]] <- c(h2_1.04[[1]]$control[[paste0(ff,"selchangeYear")]],(tail(h2_1.04[[1]]$control[[paste0(ff,"selchangeYear")]],1)+1))
+h2_1.04[[1]]$control[[paste0(ff,"selchange")]] <- c(h2_1.04[[1]]$control[[paste0(ff,"selchange")]],tail(h2_1.04[[1]]$control[[paste0(ff,"selchange")]],1))
+
+
+fn_update(h1_1.04, "1.04", "h1")
+fn_update(h2_1.04, "1.04", "h2")
+mod_1.04 <- runit(geth("1.04",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
+
+#---------
+# Correcting AcousN age composition data
 #----------
-# Updating Peruvian wt at age
-# Data file provided by Criscely 12/09/23
+h1_1.04 <- readJJM(geth("1.04","h1"), path = "config", input = "input")
+h1_1.05 <- h1_1.04
+
+library(readxl)
+dat_acous <- read_excel(here::here("data", "Revised historic North Acoustic JM.xlsx")) %>%
+              select(!contains("...")) %>%
+              rename(age=AGE) %>%
+              mutate(age=0:12) %>%
+              pivot_longer(-age, names_to="year", values_to="agecomp") %>%
+              group_by(year) %>%
+              replace_na(list(agecomp=0)) %>%
+              mutate(propage=agecomp/sum(agecomp),
+                data="new") %>%
+              ungroup() %>%
+              filter(age!=0) %>%
+              drop_na()
+
+i <- grep("Chile_AcousN",h1_1.05[[1]]$data$Inames)
+dat_prev <- h1_1.05[[1]]$data[["Ipropage"]][,,i] %>%
+  as.data.frame() %>%
+  rownames_to_column("year") %>%
+  as_tibble() %>%
+  pivot_longer(-year, names_to="age", values_to="agecomp") %>%
+  drop_na() %>%
+  mutate(data="current",
+    age=as.numeric(age)) %>%
+  group_by(year) %>%
+  mutate(propage=agecomp/sum(agecomp)) %>%
+  ungroup()
+
+dat_acous %>%
+  add_row(dat_prev) %>%
+  ggplot() +
+    geom_line(aes(x=age,y=propage,colour=data), alpha=.6) +
+    facet_wrap(~year) +
+    theme_jjm()
+
+
+rows2use <- which(rownames(h1_1.05[[1]]$data$Index) %in% unique(dat_acous$year))
+h1_1.05[[1]]$data$Ipropage[rows2use,,i] <- dat_acous$agecomp
+
+fn_bridge(h1_1.05, "1.05",h2mod=readLines("config/h2_1.04.ctl"))
+mod_1.05 <- runit(geth("1.05",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
+
+#---------
+# Decreasing CV for AcousN
 #----------
+# h1_1.05 <- readJJM(geth("1.05","h1"), path = "config", input = "input")
+h1_1.06 <- h1_1.05
 
-h1_1.06 <- h1_1.00
-h2_1.06 <- h2_1.00
+cv_acousN <- 0.3
 
-wtatage_peru <- read_csv(here::here("data","wtatage_peru.csv"))
+i <- grep("Chile_AcousN",h1_1.05[[1]]$data$Inames)
+h1_1.06[[1]]$data$Indexerr[,i] <- h1_1.06[[1]]$data$Index[,i] * cv_acousN
 
-f <- grep("FarNorth", h1_1.06[[1]]$data$Fnames)
-i <- grep("Peru_CPUE",h1_1.06[[1]]$data$Inames)
+fn_bridge(h1_1.06, "1.06", h2mod=readLines("config/h2_1.05.ctl"))
+mod_1.06 <- runit(geth("1.06",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
 
-rows2use <- which(rownames(h1_1.06[[1]]$data$Fwtatage[,,f]) %in% wtatage_peru$year)
-dat2use <- wtatage_peru %>%
-            select(-year) %>%
-            as.matrix()
 
-h1_1.06[[1]]$data$Fwtatage[rows2use,,f] <- h2_1.06[[1]]$data$Fwtatage[rows2use,,f] <- dat2use
-
-# Update wtatage for CPUE
-rows2use <- which(rownames(h1_1.06[[1]]$data$Iwtatage[,,i]) %in% wtatage_peru$year)
-h1_1.06[[1]]$data$Iwtatage[rows2use,,i] <- h2_1.06[[1]]$data$Iwtatage[rows2use,,i] <- dat2use
-
-# fn_update(h1_1.06, "1.06", "h1", dodat=T)
-# fn_update(h2_1.06, "1.06", "h2", dodat=T)
-h1_1.06 <- runit("h1_1.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-h2_1.06 <- runit("h2_1.06",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-
+#---------
+# Downweighting most current year CPUE
+# Double the CV because it's only for first half of the year?
 #----------
-# Downweight last value for offshore CPUE
-#----------
-
+h1_1.06 <- readJJM(geth("1.06","h1"), path = "config", input = "input")
 h1_1.07 <- h1_1.06
 
-i <- grep("Offshore",h1_1.07[[1]]$data$Inames)
-rows2use <- which(h1_1.07[[1]]$data$Iyears[,i]==max(h1_1.07[[1]]$data$Iyears[,i],na.rm=T))
+cv_cpue <- 0.2
+cpue_ind <- grep("CPUE",h1_1.07[[1]]$data$Inames)
+row2use <- dim(h1_1.07[[1]]$data$Iyears)[1]
 
-h1_1.07[[1]]$data$Indexerr[rows2use,i] <- h1_1.00[[1]]$data$Indexerr[rows2use,i] * 2
+for(i in cpue_ind) {
+  if(!is.na(h1_1.07[[1]]$data$Indexerr[row2use,i]))
+    h1_1.07[[1]]$data$Indexerr[row2use,i] <- h1_1.07[[1]]$data$Index[row2use,i] * cv_cpue * 2
+}
 
-# fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.06.ctl"))
-h_1.07 <- runit(c("h1_1.07","h2_1.07"),parallel=TRUE,pdf=TRUE,portrait=F,est=F,exec="../src/jjm")
-
-#----------
-# Move Peruvian catch in high seas from Fleet 3 to Fleet 4
-# 20,056 tons
-#----------
-
-h1_1.08 <- h1_1.07 <- readJJM("h1_1.07",path="config",input="input")
-
-catch2move <- 20056/1e3
-catch_fin <- h1_1.07[[1]]$data$Fcaton[which(rownames(h1_1.07[[1]]$data$Fcaton)==2023),]
-catch_fin[3] <- catch_fin[3]-catch2move
-catch_fin[4] <- catch_fin[4]+catch2move
-h1_1.08[[1]]$data$Fcaton[which(rownames(h1_1.08[[1]]$data$Fcaton)==2023),] <- catch_fin
-
-fn_bridge(h1_1.08, "1.08", h2mod=readLines("config/h2_1.06.ctl"))
-# h1_1.08 <- runit("h1_1.08",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
-# h2_1.08 <- runit("h2_1.08",pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm")
+fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.07.ctl"))
+mod_1.07 <- runit(geth("1.07",c("h1","h2")),parallel=TRUE,pdf=TRUE,portrait=F,est=T,exec="../src/jjm")
 
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000

@@ -22,10 +22,14 @@ Model      | Description
 0.10 	 |	As 0.09 but updated AcousN 2024 index, with associated age composition and weight at age
 -----------|--------------
 **Models 1.x**| **Updated Model and Sensitivities**
-1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
-1.01  | As 1.00 but with flexibility in selectivity for Offshore fleet in 2021 (changed from 2022), a break in catchability in 2021 and reduced CV for the 2022 Offshore CPUE index
-1.02  | As 1.00 but with proposed standardised CPUE index from Vázquez & Sepúlveda (SC12-JM06), using CV = 0.2
-1.03  | As 1.02 but with stdev reported in the study (SC12-JM06; annually-varying CV ~ 0.1)
+1.00	| As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
+1.01	| As 1.00 but with flexibility in selectivity for Offshore fleet in 2021 (changed from 2022), a break in catchability in 2021 and reduced CV for the 2022 Offshore CPUE index
+1.02	| As 1.00 but with proposed standardised CPUE index from Vázquez & Sepúlveda (SC12-JM06), using CV = 0.2 and a 1% tech creep factor
+1.03	| As 1.02 but with stdev reported in the study (SC12-JM06; annually-varying CV ~ 0.1)
+1.04	| As 1.01 but with current year selectivity change implemented for N_Chile fleet
+1.05	| As 1.04 but with corrected AcousN survey data
+1.06	| As 1.05 but with a decreased CV (from 0.5 to 0.3) for AcousN survey
+1.07	| As 1.05 but with increased error for CPUE data in the current year (CV from 0.2 to 0.4)
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.xx.xx**     |  Base model
@@ -106,7 +110,7 @@ Benchmark in Seattle Jul 2022.
 
 Model      | Description
 -----------|--------------
-0.00	|	Exact 2021 (single stock `h1` and two-stock `h2`) model and data set through 2021 (mod1.0 from SC09)
+0.00	|	Exact 2021 (single stock `h1` and two-stock `h2`) model and data set through 2021 (mod1.05 from SC09)
 0.01	|	As 0.00 but with the model beginning at age-0.
 0.02	|	As **0.01** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25; downweighting DEPM.
 0.03	|	As **0.00** but replacing previous age data with updated data; mean stock weight at age calculated as a mean from SC_Chile 4th quarter, 1995-2020; natural mortality set to 0.25;  downweighting DEPM.
