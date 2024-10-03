@@ -276,11 +276,11 @@ write.csv(summary(finmod)$like,"results/SummaryLikelihoods_h2.csv")
 # Kobe for main doc
 # Summary sheets
 #------------------
-kobe(finmod)
-kobe(fixed_bmsy(finmod) ,add=T, col = 'red')
+# kobe(finmod)
+# kobe(fixed_bmsy(finmod) ,add=T, col = 'red')
 
-main_diag <- diagnostics(fixed_bmsy(finmod),plots=F)
-plot(main_diag, var = "summarySheet")
+# main_diag <- diagnostics(fixed_bmsy(finmod),plots=F)
+# plot(main_diag, var = "summarySheet")
 
-main_diag <- diagnostics(finmod,plots=F)
-plot(main_diag, var = "summarySheet")
+# main_diag <- diagnostics(finmod,plots=F)
+# plot(main_diag, var = "summarySheet")
