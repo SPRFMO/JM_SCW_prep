@@ -75,8 +75,8 @@ yr_prev <- as.numeric(format(Sys.time(), "%Y"))-1
 yr_curr <- as.numeric(format(Sys.time(), "%Y"))
 mod_new <- mod_prev
 
-CV_CPUE <- 0.2
-CV_acousN <- .5
+cv_cpue <- 0.2 # SC13: Change for final year
+cv_acousN <- .5 # SC13: Change to 0.3
 
 file_input <- "data/SC12_2024assessmentInputData.xlsx" # From https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository/SC12_2024assessmentInputData.xlsx?d=wf71ecc62936d4857baeab9241692400e&csf=1&web=1&e=Lqvx3a
 # names_input <- excel_sheets(file_input)
@@ -120,10 +120,11 @@ dat_agecomp_f <- read_excel(file_input, sheet=1) %>%
 dat_cpue <- read_excel(file_input, sheet=4) %>%
               pivot_longer(contains("F"), names_to="fleet", values_to="index") %>%
               mutate(fleet=as.numeric(str_extract(fleet,"\\d")),
-                      err=CV_CPUE * index) %>%
-              # For 2022 need to make sure it stays downweighted due to fleet distribution shift, per SC11
+                      err=cv_cpue * index) %>%
+              # For 2022 need to make sure it stays downweighted due to fleet distribution shift, per SC11 (removed in SC12)
               mutate(err=case_when(year==2022 & fleet==4 ~ err*2,
-                                      TRUE ~ err))
+                                      TRUE ~ err)) #%>%
+              # mutate(err=ifelse(year == yr_curr, cv_cpue * index * 2, cv_cpue * index)) # for SC13
 
 dat_acous <- read_excel(file_input, sheet=6) %>%
                       pivot_longer(contains("F"), names_to="fleet") %>%
@@ -274,8 +275,8 @@ for(i in 1:mod_new[[1]]$data$Inum) {
     mod_new[[1]]$data$Iwtatage[,,i] <- rbind(mod_prev[[1]]$data$Iwtatage[,,i],tail(mod_prev[[1]]$data$Iwtatage[,,i],5) %>% colMeans())
 }
 
-fn_bridge(mod_new, "0.05")
-mod0.05 <- runit(geth("0.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+# fn_bridge(mod_new, "0.05")
+# mod0.05 <- runit(geth("0.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
 #----------
@@ -417,7 +418,7 @@ if(sum(is.na(mod_new[[1]]$data$Iyearsage[rows2use,i]))>0) {
 }
 
 mod_new[[1]]$data$Index[rows2use,i] <- sum(dat_acous$total_biomass,na.rm=T)/1e3
-mod_new[[1]]$data$Indexerr[rows2use,i] <- mod_new[[1]]$data$Index[rows2use,i] * CV_acousN
+mod_new[[1]]$data$Indexerr[rows2use,i] <- mod_new[[1]]$data$Index[rows2use,i] * cv_acousN
 
 # Update wt at age
 rows2use <- which(rownames(mod_new[[1]]$data$Iwtatage[,,i]) %in% unique(dat_acous$year))

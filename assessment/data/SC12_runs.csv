@@ -1,0 +1,23 @@
+﻿Model      ,Description
+Models 0.x,Data introductions
+0.00,  Exact 2023 (single stock `h1` and two-stock `h2`) model and data set (model 1.07) from SC11.
+0.01,  As 0.00 but with revised catches through 2023 (currently still estimates)
+0.02,"  As 0.01 but with updated 2023 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth"
+0.03,  As 0.02 but with updated 2023 weight at age data for all fisheries and their associated CPUE indices
+0.04,  As 0.03 but replaced offshore CPUE up to 2023
+0.05,  As 0.04 but with 2024 catch projections
+0.06,"  As 0.05 but with updated 2024 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth"
+0.07,"  As 0.06 but with updated 2024 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices"
+0.08,  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09,  As 0.08 but replaced Peru_CPUE index
+0.10,"  As 0.09 but updated AcousN 2024 index, with associated age composition and weight at age"
+Models 1.x,Updated Model and Sensitivities
+1.00," As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file"
+1.01," As 1.00 but with flexibility in selectivity for Offshore fleet in 2021 (changed from 2022), a break in catchability in 2021 and reduced CV for the 2022 Offshore CPUE index"
+1.02," As 1.00 but with proposed standardised CPUE index from Vásquez & Sepúlveda (SC12-JM06), using CV = 0.2 and a 1% tech creep factor"
+1.03, As 1.02 but with stdev reported in the study (SC12-JM06; annually-varying CV ~ 0.1)
+1.04,As 1.01 but with current year selectivity change implemented for N_Chile fleet
+1.05,As 1.04 but with corrected AcousN survey data
+1.06,As 1.05 but with a decreased CV (from 0.5 to 0.3) for AcousN survey
+1.07,As 1.06 but with increased error for CPUE data in the current year (CV from 0.2 to 0.4)
+Models 1.xx.yy,Base Model Projections

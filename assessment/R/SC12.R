@@ -143,11 +143,15 @@ h1_1.03[[1]]$data$Indexerr[rows2use,i]    <- chile_cpue$sd
 fn_bridge(h1_1.03, "1.03", h2mod=h2_ctl)
 mod_1.03 <- runit(geth("1.03",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
 
+
 #---------
 # Updating selectivity change for N_Chile
 #---------
-h1_1.04 <- readJJM(geth("1.01","h1"), path = "config", input = "input")
-h2_1.04 <- readJJM(geth("1.01","h2"), path = "config", input = "input")
+h1_1.01 <- readJJM(geth("1.01","h1"), path = "config", input = "input")
+h2_1.01 <- readJJM(geth("1.01","h2"), path = "config", input = "input")
+
+h1_1.04 <- h1_1.01
+h2_1.04 <- h2_1.01
 
 ff <- "F1_"
 
@@ -242,7 +246,7 @@ for(i in cpue_ind) {
     h1_1.07[[1]]$data$Indexerr[row2use,i] <- h1_1.07[[1]]$data$Index[row2use,i] * cv_cpue * 2
 }
 
-fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.07.ctl"))
+fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.06.ctl"))
 mod_1.07 <- runit(geth("1.07",c("h1","h2")),parallel=TRUE,pdf=TRUE,portrait=F,est=T,exec="../src/jjm")
 
 

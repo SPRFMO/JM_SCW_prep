@@ -24,15 +24,15 @@ Model      | Description
 **Models 1.x**| **Updated Model and Sensitivities**
 1.00	| As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
 1.01	| As 1.00 but with flexibility in selectivity for Offshore fleet in 2021 (changed from 2022), a break in catchability in 2021 and reduced CV for the 2022 Offshore CPUE index
-1.02	| As 1.00 but with proposed standardised CPUE index from Vázquez & Sepúlveda (SC12-JM06), using CV = 0.2 and a 1% tech creep factor
+1.02	| As 1.00 but with proposed standardised CPUE index from Vásquez & Sepúlveda (SC12-JM06), using CV = 0.2 and a 1% tech creep factor
 1.03	| As 1.02 but with stdev reported in the study (SC12-JM06; annually-varying CV ~ 0.1)
 1.04	| As 1.01 but with current year selectivity change implemented for N_Chile fleet
 1.05	| As 1.04 but with corrected AcousN survey data
 1.06	| As 1.05 but with a decreased CV (from 0.5 to 0.3) for AcousN survey
-1.07	| As 1.05 but with increased error for CPUE data in the current year (CV from 0.2 to 0.4)
+1.07	| As 1.06 but with increased error for CPUE data in the current year (CV from 0.2 to 0.4)
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
-**1.xx.xx**     |  Base model
+**1.07.xx**     |  Base model
 
 ## 2023 SC11 Model runs
 ### Notes
