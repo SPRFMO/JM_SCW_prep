@@ -47,36 +47,12 @@ The code to create the input files for this assessment and to run these models c
 * Updated the `jjmR` package
   - This can be done in `R` using the command `remotes::install_github("SPRFMO/jjmR")`
 
-# Model Naming Convention
-File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
-
-Model      | Description
------------|--------------
-**Models 0.x**| **Data introductions**
-0.00     |  Exact 2023 (single stock `h1` and two-stock `h2`) model and data set (model 1.07) from SC11.
-0.01     |  As 0.00 but with revised catches through 2023 (currently still estimates)
-0.02     |  As 0.01 but with updated 2023 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth
-0.03     |  As 0.02 but with updated 2023 weight at age data for all fisheries and their associated CPUE indices
-0.04     |  As 0.03 but replaced offshore CPUE up to 2023
-0.05     |  As 0.04 but with 2024 catch projections
-0.06     |  As 0.05 but with updated 2024 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth
-0.07     |  As 0.06 but with updated 2024 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
-0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
-0.09     |  As 0.08 but replaced Peru_CPUE index
-0.10   |  As 0.09 but updated AcousN 2024 index, with associated age composition and weight at age
------------|--------------
-**Models 1.x**| **Updated Model and Sensitivities**
-1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
-
-
 ```{r install_packages, eval=F, cache=F, echo=T}
 if(!'devtools' %in% installed.packages()) install.packages('devtools')
 devtools::install_github("SPRFMO/jjmR")
 
 if(!'kableExtra' %in% installed.packages()) install.packages('kableExtra')
 ```
-
-You'll need to be in the `jjm/assessment` directory in order for the code here to run.
 
 ```{r pkgs, echo=T}
 library(jjmR)
@@ -112,9 +88,28 @@ fn_plotind <- function(mods2compare, indname) {
   print(p)
 }
 
-finmodname <- "1.00"
+finmodname <- "1.07"
 
 ```
+
+
+# Model Naming Convention
+File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
+
+
+```{r results = "asis"}
+modruns <- read_csv(here::here("data", "SC12_runs.csv"))
+
+modruns %>% 
+  kable() %>%
+  kable_styling() %>%
+  row_spec(0, bold = TRUE, background = "#05427b", color = "white") %>%
+  row_spec(1, bold = TRUE, background = "#05427b", color = "white") %>%
+  row_spec(13, bold = TRUE, background = "#05427b", color = "white")
+```
+
+You'll need to be in the `jjm/assessment` directory in order for the code here to run.
+
 
 # Re-running Last Year's Model (a sanity check)
 Re-running the `r as.numeric(format(Sys.time(), "%Y"))-1` model and comparing the results with that year's SC meeting.
@@ -242,7 +237,7 @@ plot(Dat_Prev,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 The data updated to `r as.numeric(format(Sys.time(), "%Y"))` include projected catch estimates, age and length compositions, and indices of abundance. 
 
 ```{r}
-mods2compare <- c("0.05","0.06","0.07", "0.08", "0.09", "0.09","0.10")
+mods2compare <- c("0.04","0.05","0.06","0.07", "0.08", "0.09", "0.09","0.10")
 ```
 
 ### Single-stock hypothesis {.tabset}
@@ -521,25 +516,29 @@ plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 ---
 
-# Sensitivy Analyses
+# Sensitivity Analyses
 The code used to run the following sensitivities (1.01 onwards) can be found in `assessment/R/SC12.R`.
 
-**Models 1.x**| **Updated Model and Sensitivities**
-1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2024; 0.10 data file
-1.01  | As 1.00 but with flexibility in selectivity for Offshore fleet in 2021 (changed from 2022), a break in catchability in 2021 and reduced CV for the 2022 Offshore CPUE index
-1.02  | As 1.00 but with proposed standardised CPUE index from Vázquez & Sepúlveda (SC12-JM06), using CV = 0.2
-1.03  | As 1.02 but with stdev reported in the study (SC12-JM06; annually-varying CV ~ 0.1)
+```{r results = "asis"}
+modruns %>%
+  slice(13:n()) %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(1, bold = TRUE, background = "#203c64", color = "white")
+
+```
 
 ## Changing selectivity and catchability for Offshore fishery in 2021
 The dynamics of the offshore fleet changed significantly in 2021, with the fishery fishing further north than they had in the past. Previous asssessments had accepted base models with added flexibility in selectivity for 2022 (SC10-1.02) and a downweighted offshore CPUE value in 2022 (SC11-1.07). For this sensitivity, we moved that selectivity flexibility to 2021 and added a break in catchability for the same year, while increasing the CV for the entire CPUE time series to be the same as that of previous years.
 
 ```{r}
 mods2compare <- c("1.00","1.01")
+mod_cap <- "from adding flexibility to selectivity and catchability for the offshore fishery in 2021."
 ```
 
 ### Single-stock hypothesis {.tabset}
 #### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
 hyp <- "h1"
 res <- compareModels(geth(mods2compare))
 res_tidy <- tidy_JJM(res)
@@ -548,12 +547,12 @@ plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 #### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
 plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 #### Fishing Mortality
-```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
 plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
@@ -591,16 +590,10 @@ p1 <- res_tidy$catchabilities %>%
 print(p1)
 ```
 
-### Likelihood Table
-```{r results="asis"}
-LL <- summary(res)$like
-
-knitr::kable(LL) %>% kableExtra::kable_styling()
-```
 
 ### Two-stock hypothesis {.tabset}
 #### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+```{r, fig.cap=paste0("Plot comparing biomass estimates  ", mod_cap)}
 hyp <- "h2"
 res <- compareModels(geth(mods2compare))
 res_tidy <- tidy_JJM(res)
@@ -609,12 +602,12 @@ plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 #### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
 plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 #### Fishing Mortality
-```{r fig.cap=paste0("Plot comparing fishing mortality estimates from adding flexibility to selectivity and catchability for the offshore fishery in 2021.")}
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
 
 plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
@@ -653,15 +646,8 @@ p1 <- res_tidy$catchabilities %>%
 print(p1)
 ```
 
-### Likelihood Table
-```{r results="asis"}
-LL <- summary(res)$like
-
-knitr::kable(LL) %>% kableExtra::kable_styling()
-```
-
 ## Chilean CPUE standardised with spatio-temporal Bayesian models (SC12-JM06)
-This was also run as a sensitivity in SC11 (SC11-1.05).
+This was also run as a sensitivity in SC11 (SC11-1.05). A 1% effort creep factor was applied to this time series.
 
 ### Comparing z-scored indices
 
@@ -669,6 +655,8 @@ This was also run as a sensitivity in SC11 (SC11-1.05).
 mods2compare <- c("1.00","1.02","1.03")
 res <- compareModels(geth(mods2compare, "h1"))
 res_tidy <- tidy_JJM(res)
+
+mod_cap <- " from replacing the Chilean CPUE index with that from SC11-JM07."
 ```
 
 ```{r}
@@ -684,19 +672,17 @@ print(p1)
 
 ### Single-stock hypothesis {.tabset}
 #### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimates from updating the Chilean CPUE index to that from SC12-JM06.")}
-
-
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
 plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 #### Recruitment
-```{r, fig.cap=paste0("Plot comparing recruitment estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
 plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 #### Fishing Mortality
-```{r, fig.cap=paste0("Plot comparing fishing mortality estimates from updating the Chilean CPUE index to that from SC11-JM07.")}
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates  ", mod_cap)}
 plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
@@ -725,10 +711,182 @@ print(p1)
 ```
 
 
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates  ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Fixing some data and modelling errors
+Peru noted a difference in treatment of selectivity between the Northern Chile fleet and the other three fleets - selectivity was not allowed to vary in the final year of the model. This was likely due to an oversight during SC6, and was corrected in model 1.04. Some anomalies were also noted in the age composition data for the Chilean acoustic north survey and the northern Chile fishery, where age-0 fish were recorded in the first two quarters of the year. This resulted in some corrections to the present year data, and were incorporated into the data-bridging exercise. More errors were found in data from earlier years, which were then corrected in model 1.05.
+
+```{r}
+mods2compare <- c("1.01", "1.04", "1.05")
+res <- compareModels(geth(mods2compare, "h1"))
+res_tidy <- tidy_JJM(res)
+
+mod_cap <- "from correcting model and data for the Northern Chile fishing fleet and the Acoustic North survey."
+```
+
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Increasing confidence in the acoustic north survey
+It was noted during SC12 that the acoustic north survey had consistently provided data in recent years.
+
+```{r}
+mods2compare <- c("1.05", "1.06")
+res <- compareModels(geth(mods2compare, "h1"))
+res_tidy <- tidy_JJM(res)
+
+mod_cap <- "from correcting model and data for the Northern Chile fishing fleet and the Acoustic North survey."
+```
+
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Decreasing confidence in the current year's CPUE values
+It was noted during SC12 that the CPUE values for the current year only reflected the dynamics for the first half of the assessment year. As such, they may not be reflective of the abundance trends of that year. As such, the CPUE value of the current year should be given less weight than those of previous years.
+
+```{r}
+mods2compare <- c("1.06", "1.07")
+res <- compareModels(geth(mods2compare, "h1"))
+res_tidy <- tidy_JJM(res)
+
+mod_cap <- "from downweighting the value for CPUE in the current year for all CPUE series."
+```
+
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
 ---
 
 # Updated Model Diagnostics
-Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`. **NOT YET DONE**
+Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
 ## Single-Stock Hypothesis
 ```{r results=F}
@@ -766,19 +924,19 @@ plot(h1_diag, var = "predictedObservedIndices")
 
 ### Projections {.tabset}
 
-Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
+Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from `(h1_mod[[1]]$data$year[2]-16):(h1_mod[[1]]$data$year[2]-2)`).
 
 #### SSB
-<!-- ```{r}
+```{r}
 h1_mod_ls <- readJJM(paste0(h1nm,".ls"), path="config", input="input")
 h1_diag_ls <- diagnostics(h1_mod_ls, plots=F)
 plot(h1_diag_ls, var = "ssbPrediction")
-``` -->
+```
 
 #### Catch
-<!-- ```{r}
+```{r}
 plot(h1_diag_ls, var = "catchPrediction")
-``` -->
+```
 
 ### Kobe Plot
 ```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
@@ -834,16 +992,16 @@ plot(h2_diag, var = "predictedObservedIndices")
 Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
 
 #### SSB
-<!-- ```{r}
+```{r}
 h2_mod_ls <- readJJM(paste0(h2nm,".ls"), path="config", input="input")
 h2_diag_ls <- diagnostics(h2_mod_ls, plots=F)
 plot(h2_diag_ls, var = "ssbPrediction")
-``` -->
+```
 
 #### Catch
-<!-- ```{r}
+```{r}
 plot(h2_diag_ls, var = "catchPrediction")
-``` -->
+```
 
 
 ### Kobe Plot
@@ -866,9 +1024,7 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 
 # Other Business
 ## Data needs
-- Standardise data reporting workflow for updating Peruvian weight at age
-- Aging protocol for acoustic survey
-  - Age-0 fish showing up even though survey conducted in March
+- Catch totals for Chile different in ALK relative to annex 1 of SC12-JM03
 
 ## General
 - h2 MSY estimates are still strange, but worked for Windows OS in 2023?
@@ -876,4 +1032,3 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
   - Tom has model that adds one extra parameter to track cohort strength and selectivity to address targeting of different age classes for projections
 
 ## Other models to run?
-- Acoustic survey CV change?
