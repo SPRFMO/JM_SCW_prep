@@ -247,8 +247,8 @@ for(i in cpue_ind) {
 }
 
 fn_bridge(h1_1.07, "1.07",h2mod=readLines("config/h2_1.06.ctl"))
-mod_1.07 <- runit(geth("1.07",c("h1","h2")),parallel=TRUE,pdf=TRUE,portrait=F,est=T,exec="../src/jjm")
-
+mod_1.07 <- runit(geth("1.07",c("h1")),pdf=TRUE,portrait=F,est=T,exec="../src/jjm", adflags=paste0("-tac ", tac_prev))
+mod_1.07 <- runit(geth("1.07",c("h2")),pdf=TRUE,portrait=F,est=T,exec="../src/jjm", adflags=paste0("-tac ", tac_prev))
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs

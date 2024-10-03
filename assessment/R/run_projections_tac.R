@@ -1,6 +1,6 @@
+# Need to be in separate directory where runs will be conducted
 
-
-tac <- 1080
+tac <- 1242
 tac15 <- tac*1.15
 tac20 <- tac*1.2
 

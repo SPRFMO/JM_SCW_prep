@@ -105,7 +105,8 @@ modruns %>%
   kable_styling() %>%
   row_spec(0, bold = TRUE, background = "#05427b", color = "white") %>%
   row_spec(1, bold = TRUE, background = "#05427b", color = "white") %>%
-  row_spec(13, bold = TRUE, background = "#05427b", color = "white")
+  row_spec(13, bold = TRUE, background = "#05427b", color = "white") %>%
+  row_spec(22, bold = TRUE, background = "#05427b", color = "white")
 ```
 
 You'll need to be in the `jjm/assessment` directory in order for the code here to run.
@@ -119,7 +120,7 @@ Re-running the `r as.numeric(format(Sys.time(), "%Y"))-1` model and comparing th
 ```{r load_prev_h1}
 hyp <- "h1"
 
-mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
+h1_mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
 
 load("results/mod_prev_h1.Rdat")
 names(mod_prev_h1) <- mod_prev_h1[[1]]$control$modelName <- "mod_prev"
@@ -127,29 +128,29 @@ names(mod_prev_h1) <- mod_prev_h1[[1]]$control$modelName <- "mod_prev"
 ```
 ### Biomass
 
-```{r biomass_h1_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r biomass_h1_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(h1_mod0.00),").")}
 
-oldnewMods <- combineModels(mod0.00, mod_prev_h1) %>%
+oldnewMods <- combineModels(h1_mod0.00, mod_prev_h1) %>%
                 changeNameModel(c("SC11 mod0.00","SC10 mod1.02"))
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 
 ```
 
 ### Recruitment
-```{r recruit_h1_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r recruit_h1_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(h1_mod0.00),").")}
 
 plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 ### Fishing Mortality
-```{r fmort_h1_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r fmort_h1_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(h1_mod0.00),").")}
 
 plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 ## Two-stock hypothesis {.tabset}
 ```{r load_prev_h2}
 hyp <- "h2"
-mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
+h2_mod0.00 <- readJJM(geth("0.00"), path = "config", input = "input")
 
 # mod_prev <- readJJM(geth("1.00"), path = "config", input = "input")
 # save(mod_prev, file="results/mod_prev_h2.Rdat")
@@ -161,9 +162,9 @@ names(mod_prev_h2) <- mod_prev_h2[[1]]$control$modelName <- "mod_prev"
 
 ### Biomass
 
-```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(h2_mod0.00),").")}
 
-oldnewMods <- combineModels(mod0.00,mod_prev_h2) %>%
+oldnewMods <- combineModels(h2_mod0.00,mod_prev_h2) %>%
                 changeNameModel(geth(c("SC11 mod0.00","SC10 mod1.02")))
 
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
@@ -171,14 +172,14 @@ plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ### Recruitment
-```{r recruit_h2_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r recruit_h2_0.00, fig.cap=paste0("Plot comparing recruitment estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(h2_mod0.00),").")}
 
 plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 ```
 
 
 ### Fishing Mortality
-```{r fmort_h2_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(mod0.00),").")}
+```{r fmort_h2_0.00, fig.cap=paste0("Plot comparing fishing mortality estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(h2_mod0.00),").")}
 
 plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
@@ -885,80 +886,128 @@ plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 
 ---
 
-# Updated Model Diagnostics
+# Final Model
 Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
-## Single-Stock Hypothesis
-```{r results=F}
+## Comparison to last year
+```{r}
 h1nm <- geth(finmodname,"h1")
 
 h1_mod <- readJJM(h1nm, path = "config", input = "input")
 h1_diag <- diagnostics(h1_mod,plot=F)
 
-new_bmsy <- mean(rev(h1_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
+res <- combineModels(h1_mod0.00, h1_mod)
+res_tidy <- tidy_JJM(res)
 
-```
-
-The $B_{MSY}$ for this year (an average of the most recent ten years) will be ***`r round(new_bmsy)/1000`*** million tons.
-
-### Fits to Data {.tabset}
-#### Fishery Age Composition
-```{r}
-plot(h1_diag, var = "ageFitsCatch")
-```
-
-#### Fishery Length Composition
-```{r}
-plot(h1_diag, var = "lengthFitsCatch")
-```
-
-#### Survey Age Composition
-```{r}
-plot(h1_diag, var = "ageFitsSurvey")
-```
-
-#### Index Data
-```{r}
-plot(h1_diag, var = "predictedObservedIndices")
-```
-
-### Projections {.tabset}
-
-Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from `(h1_mod[[1]]$data$year[2]-16):(h1_mod[[1]]$data$year[2]-2)`).
-
-#### SSB
-```{r}
-h1_mod_ls <- readJJM(paste0(h1nm,".ls"), path="config", input="input")
-h1_diag_ls <- diagnostics(h1_mod_ls, plots=F)
-plot(h1_diag_ls, var = "ssbPrediction")
-```
-
-#### Catch
-```{r}
-plot(h1_diag_ls, var = "catchPrediction")
-```
-
-### Kobe Plot
-```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
-kobe(fixed_bmsy(h1_mod), engine="ggplot")
-```
-
-### Summary Plot
-```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons, shown by the orange line. The blue lines show the reference points estimated by the model.")}
-bmsy_diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
-plot(bmsy_diag, var = "summarySheet")
+mod_cap <- "from last year's model with the final model selected for this year."
 ```
 
 
-## Two-Stock Hypothesis
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
 
-```{r results=F}
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r, fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
 h2nm <- geth(finmodname,"h2")
 
 h2_mod <- readJJM(h2nm,path = "config", input = "input")
 h2_diag <- diagnostics(h2_mod, plots=F)
 h2_bmsy_diag <- diagnostics(fixed_bmsy(h2_mod), plots = F)
 
+res <- combineModels(h2_mod0.00, h2_mod)
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Recruitment
+```{r, fig.cap=paste0("Plot comparing recruitment estimates ", mod_cap)}
+plot(res,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+#### Fishing Mortality
+```{r fig.cap=paste0("Plot comparing fishing mortality estimates ", mod_cap)}
+
+plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
+```
+
+## Model Diagnostics
+
+### Single-Stock Hypothesis
+```{r results=F}
+new_bmsy <- mean(rev(h1_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
+
+```
+
+The $B_{MSY}$ for this year (an average of the most recent ten years) will be ***`r round(new_bmsy)/1000`*** million tons.
+
+#### Fits to Data {.tabset}
+##### Fishery Age Composition
+```{r}
+plot(h1_diag, var = "ageFitsCatch")
+```
+
+##### Fishery Length Composition
+```{r}
+plot(h1_diag, var = "lengthFitsCatch")
+```
+
+##### Survey Age Composition
+```{r}
+plot(h1_diag, var = "ageFitsSurvey")
+```
+
+##### Index Data
+```{r}
+plot(h1_diag, var = "predictedObservedIndices")
+```
+
+#### Projections {.tabset}
+
+Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
+
+##### SSB
+```{r}
+h1_mod_ls <- readJJM(paste0(h1nm,".ls"), path="config", input="input")
+h1_diag_ls <- diagnostics(h1_mod_ls, plots=F)
+plot(h1_diag_ls, var = "ssbPrediction")
+```
+
+##### Catch
+```{r}
+plot(h1_diag_ls, var = "catchPrediction")
+```
+
+#### Kobe Plot
+```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
+kobe(fixed_bmsy(h1_mod), engine="ggplot")
+```
+
+#### Summary Plot
+```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons, shown by the orange line. The blue lines show the reference points estimated by the model.")}
+bmsy_diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
+plot(bmsy_diag, var = "summarySheet")
+```
+
+
+### Two-Stock Hypothesis
+
+```{r results=F}
 new_bmsy_s <- mean(rev(h2_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
 new_bmsy_n <- mean(rev(h2_mod[[1]]$output[[2]]$msy_mt[,10])[1:10])
 
@@ -967,49 +1016,49 @@ new_bmsy_n <- mean(rev(h2_mod[[1]]$output[[2]]$msy_mt[,10])[1:10])
 The $B_{MSY}$ for this year (an average of the most recent ten years) will be ***`r round(new_bmsy_s)/1000`*** million tons for the south stock and ***`r round(new_bmsy_n)/1000`*** million tons for the north stock.
 
 
-### Fits to Data {.tabset}
-#### Fishery Age Composition
+#### Fits to Data {.tabset}
+##### Fishery Age Composition
 ```{r}
 plot(h2_diag, var = "ageFitsCatch")
 ```
 
-#### Fishery Length Composition
+##### Fishery Length Composition
 ```{r}
 plot(h2_diag, var = "lengthFitsCatch")
 ```
 
-#### Survey Age Composition
+##### Survey Age Composition
 ```{r}
 plot(h2_diag, var = "ageFitsSurvey")
 ```
 
-#### Index Data
+##### Index Data
 ```{r}
 plot(h2_diag, var = "predictedObservedIndices")
 ```
 
-### Projections {.tabset}
+#### Projections {.tabset}
 Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
 
-#### SSB
+##### SSB
 ```{r}
 h2_mod_ls <- readJJM(paste0(h2nm,".ls"), path="config", input="input")
 h2_diag_ls <- diagnostics(h2_mod_ls, plots=F)
 plot(h2_diag_ls, var = "ssbPrediction")
 ```
 
-#### Catch
+##### Catch
 ```{r}
 plot(h2_diag_ls, var = "catchPrediction")
 ```
 
 
-### Kobe Plot
+#### Kobe Plot
 ```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy_s)/1000, " million tons for the south stock and ", round(new_bmsy_n)/1000, " million tons for the north stock.")}
 kobe(fixed_bmsy(h2_mod), engine="ggplot") + facet_wrap(~stock, scale="free")
 ```
 
-### Summary Plot
+#### Summary Plot
 ```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy_s)/1000, " million tons for the south stock and ", round(new_bmsy_n)/1000, "million tons for the north stock, shown as the orange line. The blue lines show the reference points estimated by the model.")}
 plot(h2_bmsy_diag, var = "summarySheet")
 ```
@@ -1024,11 +1073,7 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 
 # Other Business
 ## Data needs
-- Catch totals for Chile different in ALK relative to annex 1 of SC12-JM03
 
 ## General
-- h2 MSY estimates are still strange, but worked for Windows OS in 2023?
-- Linking selectivity to cohort strength when calculating FMSY; instead of using the last year's selectivity with the most recent cohort strengths
-  - Tom has model that adds one extra parameter to track cohort strength and selectivity to address targeting of different age classes for projections
 
 ## Other models to run?
