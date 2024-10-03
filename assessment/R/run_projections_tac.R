@@ -1,10 +1,11 @@
 # Need to be in separate directory where runs will be conducted
+# h1 and h2 should be in different directories as results files will be over-written
 
 tac <- 1242
 tac15 <- tac*1.15
 tac20 <- tac*1.2
 
-h <- "h1"
+h <- "h2"
 finmodnm <- "1.07"
 
 # To get .bar file
