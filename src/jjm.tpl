@@ -3670,6 +3670,7 @@ FUNCTION void get_msy(int iyr)
     }
     {
       dvar_vector ttt(1,5);
+      ttt.initialize();
       ttt            = yld(Fratio,F1,istk,iyr);
       Fmsy(istk)     = F1;
       Rtmp(istk)     = ttt(3);
@@ -3728,13 +3729,15 @@ FUNCTION dvar_vector yld(const dvar_vector& Fratio, const dvariable& Ftmp,int is
     msy_stuff(2)  += wt_fsh(k,iyr) * Ctmp;
   }
   phi    = elem_prod( Ntmp , pow(survtmp,spmo_frac ) ) * wt_mature(istk);
+	dvariable req_tmp;
+	req_tmp= Requil(phi,iyr,istk) ;       // Eq Recruitment
   // Req    = Requil(phi) * exp(sigmarsq/2);
   msy_stuff(5)  = Ntmp * wt_pop(istk);      
-  msy_stuff(4)  = phi/phizero(cum_regs(istk)+yy_sr(istk,iyr)) ;       // SPR
-  msy_stuff(3)  = Requil(phi,iyr,istk) ;       // Eq Recruitment
-  msy_stuff(5) *= msy_stuff(3);       // BmsyTot
-  msy_stuff(2) *= msy_stuff(3);       // MSY
-  msy_stuff(1)  = phi*(msy_stuff(3)); // Bmsy
+  msy_stuff(4)  = phi/phizero(cum_regs(istk)+yy_sr(istk,iyr)) ; // SPR
+  msy_stuff(3)  = req_tmp ;      // Eq Recruitment
+  msy_stuff(5) *= req_tmp;       // BmsyTot
+  msy_stuff(2) *= req_tmp;       // MSY
+  msy_stuff(1)  = phi*(req_tmp); // Bmsy
   RETURN_ARRAYS_DECREMENT();
   return msy_stuff;
 
@@ -6584,6 +6587,7 @@ FUNCTION Write_R
     R_report<<"$msy_mt"<<endl; 
     dvar_matrix sel_tmp(1,nages,1,nfsh);
     dvar_vector sumF(1,nstk);
+    dvariable spr_mt_ft ;
     sel_tmp.initialize();
     for (i=styr;i<=endyr;i++) 
     { 
@@ -6602,7 +6606,8 @@ FUNCTION Write_R
             sel_tmp(j,k) = sel_fsh(k,i,j); 
       get_msy(i);
       // important for time-varying natural mortality...
-      dvariable spr_mt_ft = spr_ratio(sumF(s),sel_tmp,i,s)  ;
+      //dvariable spr_mt_ft = spr_ratio(sumF(s),sel_tmp,i,s)  ;
+      spr_mt_ft = spr_ratio(sumF(s),sel_tmp,i,s)  ;
       // Yr Fspr 1-Fspr F/Fmsy Fmsy F Fsprmsy MSY MSYL Bmsy Bzero SSB B/Bmsy
       R_report<< i<<
               " "<< spr_mt_ft                     <<
