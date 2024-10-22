@@ -29,10 +29,10 @@ Model      | Description
 1.04	| As 1.01 but with current year selectivity change implemented for N_Chile fleet
 1.05	| As 1.04 but with corrected AcousN survey data
 1.06	| As 1.05 but with a decreased CV (from 0.5 to 0.3) for AcousN survey
-1.07	| As 1.06 but with increased error for CPUE data in the current year (CV from 0.2 to 0.4)
+**1.07**	| **As 1.06 but with increased error for CPUE data in the current year (CV from 0.2 to 0.4)**
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
-**1.07.xx**     |  Base model
+**1.07.xx**     |  As 1.07 but **l**ow steepness and **s**hort recruitment time series (2001-2015)
 
 ## 2023 SC11 Model runs
 ### Notes
@@ -68,7 +68,7 @@ Model      | Description
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.07.xx**     |  Base model
-1.07.ls    |  As 1.07 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+1.07.ls    |  As 1.07 but **l**ow steepness and **s**hort recruitment time series (2001-2015)
 -----------|--------------
 
 ## 2022 SC10 Model runs
@@ -99,7 +99,7 @@ Model      | Description
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.02**     |  Base model
-1.02.ls    |  As 1.02 but **l**ow steepness and **s**hort recruitment time series (2000-2015)
+1.02.ls    |  As 1.02 but **l**ow steepness and **s**hort recruitment time series (2001-2015)
 -----------|--------------
 
 ## 2022 SCW14 Benchmark Model runs

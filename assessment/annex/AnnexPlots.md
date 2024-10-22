@@ -1,6 +1,6 @@
 ---
 title: "Technical Annex Plots"
-date: "22 October 2023"
+date: "04 October 2024"
 output:
   bookdown::word_document2:
     keep_md: true
@@ -35,7 +35,7 @@ output:
 ![<span id="fig:retrorh2"></span>Figure 6: Model retrospective of southern stock recruitment from 5 separate model runs for the southern stock (top) and far north stock (bottom), based on Model h2_1.07 (two-stock hypothesis).](AnnexPlots_files/figure-docx/retrorh2-1.png)
 
 
-![<span id="fig:histretroquants"></span>Figure 7: Historical retrospective of spawning stock biomass, fishing mortality, and recruitment estimated from Model h1_1.07 (single-stock hypothesis), as estimated and used for advice from SPFRMO Scientific Committees 2013-2023](AnnexPlots_files/figure-docx/histretroquants-1.png)
+![<span id="fig:histretroquants"></span>Figure 7: Historical retrospective of spawning stock biomass, fishing mortality, and recruitment estimated from Model h1_1.07 (single-stock hypothesis), as estimated and used for advice from SPFRMO Scientific Committees 2013-2024](AnnexPlots_files/figure-docx/histretroquants-1.png)
 
 ![<span id="fig:histretrorefpts"></span>Figure 8: Historical retrospective of management reference points estimated from Model h1_1.07 (single-stock hypothesis), as estimated and used for advice from past (and present) SPRFMO scientific committees.](AnnexPlots_files/figure-docx/histretrorefpts-1.png)
 
@@ -129,7 +129,7 @@ output:
 
 ![<span id="fig:sumsheet-h1"></span>Figure 38: Model h1_1.07 (single-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right). Blue lines represent  dynamic estimates of $B_{MSY}$ (upper left) and dynamic estimates of $F_{MSY}$ (upper right). The orange line represents the average $B_{MSY}$ over the most recent ten years.](AnnexPlots_files/figure-docx/sumsheet-h1-1.png)
 
-![<span id="fig:unfshbio-h1"></span>Figure 39: Model h1_1.07 (single-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line), beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is 0.56.](AnnexPlots_files/figure-docx/unfshbio-h1-1.png)
+![<span id="fig:unfshbio-h1"></span>Figure 39: Model h1_1.07 (single-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line), beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is 0.57.](AnnexPlots_files/figure-docx/unfshbio-h1-1.png)
 
 ![<span id="fig:sumsheet-h2-1"></span>Figure 40: Model h2_1.07 (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the south stock. Blue lines represent dynamic estimates of $B_{MSY}$ (upper left) and of $F_{MSY}$ (upper right). The orange line represents the average $B_{MSY}$ over the most recent ten years.](AnnexPlots_files/figure-docx/sumsheet-h2-1-1.png)
 
@@ -140,7 +140,7 @@ output:
 ![<span id="fig:unfshbio-h2-1"></span>Figure 42: Model h2_1.07 (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the south stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is 0.56.](AnnexPlots_files/figure-docx/unfshbio-h2-1-1.png)
 
 
-![<span id="fig:unfshbio-h2-2"></span>Figure 43: Model h2_1.07 (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the far north stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is 0.62.](AnnexPlots_files/figure-docx/unfshbio-h2-2-1.png)
+![<span id="fig:unfshbio-h2-2"></span>Figure 43: Model h2_1.07 (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the far north stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is 0.58.](AnnexPlots_files/figure-docx/unfshbio-h2-2-1.png)
 
 
 

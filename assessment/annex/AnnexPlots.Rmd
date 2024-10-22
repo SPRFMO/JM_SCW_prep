@@ -17,6 +17,7 @@ knitr::opts_knit$set(root.dir=here::here())
 knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=11, fig.height=9, eval.after="fig.cap")
 
 library(jjmR)
+library(tidyverse)
 ```
 
 ```{r}
@@ -28,6 +29,9 @@ h1_diag <- diagnostics(h1_mod, plot=F)
 
 h2_mod <- readJJM(h2nm,path = "config", input = "input")
 h2_diag <- diagnostics(h2_mod, plot=F)
+
+h1_tidy <- tidy_JJM(h1_mod)
+h2_tidy <- tidy_JJM(h2_mod)
 
 curryr <- as.numeric(format(Sys.time(), "%Y"))
 

@@ -23,6 +23,8 @@ system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 
 file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac20.rep"))
 if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac20.rep"))
 
+
+# Copypasta tac.rep files to jjm/assessment/risk_tables
 #---- Reading in results
 
 library(here)
@@ -32,24 +34,28 @@ source("R/read-admb.R")
 
 finmodnm <- "1.07"
 yr_curr <- as.numeric(format(Sys.time(), "%Y"))
-h1_modls <- readJJM(paste0("h1_",finmodnm,".ls"), path = "config", input = "input")
-h2_modls <- readJJM(paste0("h2_",finmodnm,".ls"), path = "config", input = "input")
+h1_modls <- readJJM(paste0("h1_",finmodnm,".ls"), path = "config", input = "input") %>% fixed_bmsy()
+h2_modls <- readJJM(paste0("h2_",finmodnm,".ls"), path = "config", input = "input") %>% fixed_bmsy()
 
-mods_com <- combineModels(h1_modls,h2_modls)
-quants_hist <- mods_com %>% .reshapeJJM2(what="catchProj") %>%
+h1_mod <- readJJM(paste0("h1_",finmodnm), path = "config", input = "input") %>% fixed_bmsy()
+h2_mod <- readJJM(paste0("h2_",finmodnm), path = "config", input = "input") %>% fixed_bmsy()
+
+mods_com_ls <- combineModels(h1_modls,h2_modls)
+mods_com <- combineModels(h1_mod,h2_mod)
+
+quants_hist <- mods_com_ls %>% .reshapeJJM2(what="catchProj") %>%
 				rename(catch=data) %>%
-				left_join(mods_com %>% .reshapeJJM2(what="ssbProj") %>% rename(ssb=data)) %>%
+				left_join(mods_com_ls %>% .reshapeJJM2(what="ssbProj") %>% rename(ssb=data)) %>%
 				mutate(stocks=str_remove(stocks,"Stock_"),
 						model=str_remove(model,paste0("_",finmodnm,".ls"))) %>%
 				rename(stock=stocks, hyp=model)
 
-quants_msy <-  mods_com %>%
+quants_msy <- mods_com %>%
 				get_msy_mt() %>%
-				filter(year>=(max(year)-9)) %>%
 				group_by(model, stock) %>%
-				summarise(bmsy=mean(bmsy)) %>%
+				summarise(bmsy=unique(bmsy)) %>%
 				ungroup() %>%
-				mutate(hyp=str_remove(model,paste0("_",finmodnm,".ls")),
+				mutate(hyp=str_remove(model,paste0("_",finmodnm)),
 						stock=str_remove(stock,"Stock_")) %>%
 				select(-model) %>%
 				as_tibble()
@@ -89,7 +95,8 @@ quants_proj <- quants_fut %>%
 				bind_rows(quants_hist)
 
 quants_rm <- quants_proj %>%
-				filter(year <= yr_curr, scenario!=paste0("F",yr_curr, " SQ"))
+				filter((year <= yr_curr & scenario!=paste0("F",yr_curr, " SQ")) |
+						str_detect(scenario, "FTAC"))
 
 quants_curr <- quants_proj %>%
 				filter(year==yr_curr | year==yr_curr+1) %>%
