@@ -164,16 +164,18 @@ MPind = grep("01",MPsets)
 MPind = 1:length(MPsets)
 setup()
 
-om = 1
-Hist = readRDS(paste0(largedir,"/", OMnams[om]))
+for(om in 1:length(OMnams)){
+    
+  Hist = readRDS(paste0(largedir,"/", OMnams[om]))
+  
+  for(i in MPind){
+    MSEnam = paste0("MSE_",MPsets[i],"_",om)
+    temp = Project_parallel(Hist, get(MPsets[i]))
+    assign(MSEnam, mergeMPs(temp))
+    saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
+  }  
 
-for(i in MPind){
-  MSEnam = paste0("MSE_",MPsets[i],"_",om)
-  temp = Project_parallel(Hist, get(MPsets[i]))
-  assign(MSEnam, mergeMPs(temp))
-  saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
-}  
-
+}
 
 
 
@@ -193,27 +195,6 @@ class(repDataMP) = "MP"
 Hist = readRDS(paste0(largedir,"/Hist_1_16.rda"))
 test= ProjectMOM(Hist,"repDataMP")
 Data = readRDS("C:/temp/JMdata.rds")
-
-
-# === 
-
-
-# !!!! remember to set up allocation here MOM@Allocate
-
-for(om in 1:nOM){
-  Hist = multiMSE(IFR(get(OMnam[om])), Hist = T) # !!!! IFR is Inflate Future Recruitment - a temporary patch for demo purposes !!!
-  saveRDS(Hist,paste0(largedir,"Hists/Hist_",runnam[om],".rda"))
-} 
-
-
-# --- Run MSE projections ------------------------------------------------------
-
-for(om in 1:nOM){
-  Hist = readRDS(paste0(largedir,"Hists/Hist_",runnam[om],".rda"))
-  MSE = ProjectMOM(Hist, IRMPs)
-  saveRDS(MSE,paste0(largedir,"MSEs/MSE_",runnam[om],".rda"))
-} 
-
 
 
 
