@@ -273,7 +273,7 @@ make_F_array = function(mcmc, nstock = 1, nfleet = 4){
 
 # proyears = 50; interval = 2; nsim=48; seed = 1; check=T; datastart = 2012; LowerTri = 1; nstock = 1; nfleet = 4
 JM2MOM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed = 1, check=T, datastart = NA, LowerTri=1, 
-                  nstock = 1, nfleet = 4, Allocation = c(0.069, 0.694, 0.140, 0.097)){
+                  nstock = 1, nfleet = 4, Allocation = c(0.069, 0.694, 0.140, 0.097), returnMOM = T){
   
   info = mod[[1]]$info        #1
   data = mod[[1]]$data        #2
@@ -309,7 +309,7 @@ JM2MOM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed =
     nyears = length(yrs)
   }
   
-  # arrays for Assess2OM()
+  # arrays for Assess2MOM() or Assess2OM() (if returnMOM = F)
   naa = make_N_array(mcmc)
   naa[,1,1:(nyears-1),1] = naa[,2,2:nyears,1] * exp(rep(MLE$M[2:nyears,1],each=nsim)) ; cat("Age 0 numbers are imputed based on age 1 numbers and natural mortality rate \n")
   
@@ -322,16 +322,6 @@ JM2MOM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed =
   len_a = cn$Lo_len[1,1] + cn$Linf[1,1] * (1-exp(-(0:nage)*cn$K[1,1]))
   laa = array(rep(len_a,each=nsim), c(nsim,nage+1,nyears,nstock)); cat("Somatic growth assumed to be Lo_len + Linf * (1-exp(-ak)) \n")
   
-  
-  OM = Assess2MOM(Name = cn$modelName, proyears, interval, yrng[2], h = pars$steepness, recind=0,
-                 naa = naa, faa = faa, waa = waa, Mataa = Mataa, Maa = Maa, laa = laa, 
-                 LowerTri = LowerTri)
-  
-  OM@Stocks[[1]]@LenCV = rep(cn$Sigma_len[1,1],2)
-  for(ff in 1:nfleet){
-    OM@Fleets[[1]][[ff]]@Misc$Inames = data$Inames
-    OM@Fleets[[1]][[ff]]@Misc$fleet_names =  data$fleet_names
-  }
   
   # now add real data (to simulate statistical properties in projections)
   Data = new('Data')
@@ -356,23 +346,67 @@ JM2MOM = function(mod, mceval_file, proyears = 50, interval = 2, nsim=48, seed =
     #Data@Cat[,yrs<datastart] = NA
   }  
   
-  #      stock  fleet
-  for(ff in 1:nfleet){
-    OM@cpars[[1]][[ff]]$Data = Data # may be able to only put the data object in first stock / fleet as it includes all 5 indices and their vulnerabilities
-    OM@cpars[[1]][[ff]]$AddIbeta = array(1,c(nsim,nI))
-  }
   
-  if(check){
-    cat("Checking conditioning model N and F against OpenMSE reconstructed N and F \n")
-    Hist = multiMSE(OM,Hist=T)
-    plotJMcomp_MOM(mod,naa,faa,waa,Hist)
-    lastcat = sapply(Hist$`Stock 1`, function(X)apply(X@TSdata$Removals[,54,],1,sum))
-    cat_frac = apply(lastcat,2,sum) / sum(lastcat) # 0.06922257 0.69473672 0.13993185 0.09610886
-  }
   
-  OM@Allocation=list()
-  OM@Allocation[[1]] = t(array(Allocation,c(nfleet,nsim)))
+  if(returnMOM){
   
+    OM = Assess2MOM(Name = cn$modelName, proyears, interval, yrng[2], h = pars$steepness, recind=0,
+                   naa = naa, faa = faa, waa = waa, Mataa = Mataa, Maa = Maa, laa = laa, 
+                   LowerTri = LowerTri)
+    
+    OM@Stocks[[1]]@LenCV = rep(cn$Sigma_len[1,1],2)
+    for(ff in 1:nfleet){
+      OM@Fleets[[1]][[ff]]@Misc$Inames = data$Inames
+      OM@Fleets[[1]][[ff]]@Misc$fleet_names =  data$fleet_names
+    }
+    
+    #      stock  fleet
+    for(ff in 1:nfleet){
+      OM@cpars[[1]][[ff]]$Data = Data # may be able to only put the data object in first stock / fleet as it includes all 5 indices and their vulnerabilities
+      OM@cpars[[1]][[ff]]$AddIbeta = array(1,c(nsim,nI))
+    }
+    
+    if(check){
+      cat("Checking conditioning model N and F against OpenMSE reconstructed N and F \n")
+      Hist = multiMSE(OM,Hist=T)
+      plotJMcomp_MOM(mod,naa,faa,waa,Hist)
+      lastcat = sapply(Hist$`Stock 1`, function(X)apply(X@TSdata$Removals[,54,],1,sum))
+      cat_frac = apply(lastcat,2,sum) / sum(lastcat) # 0.06922257 0.69473672 0.13993185 0.09610886
+    }
+    
+    OM@Allocation=list()
+    OM@Allocation[[1]] = t(array(Allocation,c(nfleet,nsim)))
+  
+  } else { # returnMOM = F - return an object of class OM (all stocks and fleets combined)
+    
+    naa_OM = naa[,,,1,drop=T]
+    faa_OM = apply(faa,1:3,sum)
+    waa_OM = waa[,,,1,drop=T]
+    Mataa_OM = Mataa[,,,1,drop=T]
+    Maa_OM = Maa[,,,1,drop=T]
+    laa_OM = laa[,,,1,drop=T]
+    
+    OM = Assess2OM(Name = cn$modelName, proyears, interval, yrng[2], h = pars$steepness, recind=0,
+                    naa = naa_OM, faa = faa_OM, waa = waa_OM, Mataa = Mataa_OM, Maa = Maa_OM, laa = laa_OM, 
+                    LowerTri = LowerTri)
+    
+    OM@LenCV = rep(cn$Sigma_len[1,1],2)
+    OM@Misc$Inames = data$Inames
+    OM@Misc$fleet_names =  data$fleet_names
+   
+    OM@cpars$Data = Data # may be able to only put the data object in first stock / fleet as it includes all 5 indices and their vulnerabilities
+    OM@cpars$AddIbeta = array(1,c(nsim,nI))
+  
+    if(check){
+     # cat("Checking conditioning model N and F against OpenMSE reconstructed N and F \n")
+      #Hist = runMSE(OM,Hist=T)
+      #plotJMcomp_OM(mod,naa,faa,waa,Hist)
+      #lastcat = sapply(Hist$`Stock 1`, function(X)apply(X@TSdata$Removals[,54,],1,sum))
+      #cat_frac = apply(lastcat,2,sum) / sum(lastcat) # 0.06922257 0.69473672 0.13993185 0.09610886
+    }
+    
+  }  
+    
   OM
   
 }
@@ -558,9 +592,15 @@ getyrs = function(OM,inrec=T){
 }  
 
 IFR=function(OM, factor = 1.5){ # inflate future recruitment
-  ind = (OM@Fleets[[1]][[1]]@nyears +OM@Stocks[[1]]@maxage-1)+(1:OM@proyears)
-  nf = length(OM@Fleets[[1]])
-  for(ff in 1:nf)OM@cpars[[1]][[ff]]$Perr_y[,ind] = OM@cpars[[1]][[ff]]$Perr_y[,ind] * factor
+  
+  if(class(OM) == "MOM"){
+    ind = (OM@Fleets[[1]][[1]]@nyears +OM@Stocks[[1]]@maxage-1)+(1:OM@proyears)
+    nf = length(OM@Fleets[[1]])
+    for(ff in 1:nf)OM@cpars[[1]][[ff]]$Perr_y[,ind] = OM@cpars[[1]][[ff]]$Perr_y[,ind] * factor
+  } else {
+    ind = (OM@nyears +OM@maxage-1)+(1:OM@proyears)
+    OM@cpars$Perr_y[,ind] = OM@cpars$Perr_y[,ind] * factor
+  }
   OM
 }
 
