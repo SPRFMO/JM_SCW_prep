@@ -3,35 +3,12 @@
 # ===========================================================================================================
 
 # Tom Carruthers
-# March 2024
-
-# This is designed as a source script
+# November 2024
 
 # --- Prerequisites ------------------------------------------------------------
 
-setwd("C:/GitHub/jjm/assessment") # Tom WD
-
-library(openMSE)
-source("../mse/Step 2 - Specify MPs.r")   # load MPs made in step 2
-source("../mse/Source_JM2OM.r")           # load JM2OM source code
-getOMs(OMdir = "../mse/OMs/")                     # load OMs  (OMnam, nOM, runnam)  
-largedir = "C:/temp/JM_mcmc/"             # somewhere to store big things off the github 
-                                          #  (needs /Hists and /MSEs subdirectories)
-
-
-# --- Run MSE spool up ---------------------------------------------------------
-
-# This just means that you don't have to do all the MSY calcs etc each time
-# you want to project some new MPs
-
-
-setwd("C:/GitHub/jjm/assessment") # Tom WD
-#source("../mse/Step 2 - Specify MPs.r")   # load MPs made in step 2
-source("../mse/Source_JM2OM.r")           # load JM2OM source code
-source("../mse/MSE_parallel.r")           # load parallel coade
-source("../mse/MP_spawn.r")               # load MP building
-
-largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest"
+setwd("C:/GitHub/jjm/assessment") # Tom WD 
+setwd("C:/Users/tcarruth/Documents/GitHub/jjm/assessment") # Tom WD
 
 library(tidyverse)
 library(flextable)
@@ -40,6 +17,13 @@ library(fmtr)
 library(abind)
 library(data.table)
 library(openMSE)
+library(miceadds)
+
+source("../mse/MSE_parallel.r")           # load parallel coade
+source.all("../MPs.r")               # load MP building
+source("../mse/Source_JM2OM.r")           # load JM2OM source code
+largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest"
+largedir = "C:/Users/tcarruth/Dropbox/temp/JJM_MPtest"
 
 
 # --- Conditioning Model inputs / outputs --------------------------------------
@@ -145,20 +129,6 @@ E_50 = paste0("E_50_",Ilab); spawnMP('Emp', defaults=list(HCR_CP_B = c(0.5,1), H
 
 OMnams = c("Hist_1_16.rda", "Hist_3_16.rda")
 
-repDataMP = function(x,Data,reps){
-  if((max(Data@Year) - Data@LHYear)>5){saveRDS(Data,"C:/temp/JMdata.rds");stop()}
-  Rec=new('Rec')
-  Rec@Effort = 1
-  Rec
-}
-class(repDataMP) = "MP"
-
-test = Project(readRDS(paste0(largedir,"/", OMnams[1])), c("Sg_01_5","A_01_5","E_01_12"))
-
-
- Data = readRDS("C:/temp/JMdata.rds")
-
-
 MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
 MPind = grep("01",MPsets)
 MPind = 1:length(MPsets)
@@ -169,7 +139,7 @@ for(om in 1:length(OMnams)){
   Hist = readRDS(paste0(largedir,"/", OMnams[om]))
   
   for(i in MPind){
-    MSEnam = paste0("MSE_",MPsets[i],"_",om)
+    MSEnam = paste0("MSE_",MPsets[i],"_",om,"_16")
     temp = Project_parallel(Hist, get(MPsets[i]))
     assign(MSEnam, mergeMPs(temp))
     saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
@@ -178,6 +148,27 @@ for(om in 1:length(OMnams)){
 }
 
 
+# --- 48 sim test --------------------------------------------------------------
+
+OMnams = c("Hist_1_48.rda", "Hist_3_48.rda")
+
+MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
+MPind = grep("01",MPsets)
+MPind = 1:length(MPsets)
+setup()
+
+for(om in 1:length(OMnams)){
+  
+  Hist = readRDS(paste0(largedir,"/", OMnams[om],"_48"))
+  
+  for(i in MPind){
+    MSEnam = paste0("MSE_",MPsets[i],"_",om)
+    temp = Project_parallel(Hist, get(MPsets[i]))
+    assign(MSEnam, mergeMPs(temp))
+    saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
+  }  
+  
+}
 
 
 
