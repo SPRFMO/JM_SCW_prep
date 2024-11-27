@@ -7,8 +7,7 @@
 
 # --- Prerequisites ------------------------------------------------------------
 
-setwd("C:/GitHub/jjm/assessment") # Tom WD 
-setwd("C:/Users/tcarruth/Documents/GitHub/jjm/assessment") # Tom WD
+setwd("C:/GitHub/jjm/assessment") # Tom WD #setwd("C:/Users/tcarruth/Documents/GitHub/jjm/assessment") # Tom WD
 
 library(tidyverse)
 library(flextable)
@@ -19,11 +18,9 @@ library(data.table)
 library(openMSE)
 library(miceadds)
 
-source("../mse/MSE_parallel.r")           # load parallel coade
-source.all("../MPs.r")               # load MP building
-source("../mse/Source_JM2OM.r")           # load JM2OM source code
-largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest"
-largedir = "C:/Users/tcarruth/Dropbox/temp/JJM_MPtest"
+source.all("../mse/MPs")               # load MP building
+source.all("../mse/Source") 
+largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest" #largedir = "C:/Users/tcarruth/Dropbox/temp/JJM_MPtest"
 
 
 # --- Conditioning Model inputs / outputs --------------------------------------
@@ -47,27 +44,16 @@ sims = c(16, 48, 96)
 for(ss in 1:length(sims)){
   for(i in 1:4){
     OM = GetOM_Jim(paste0(largedir,"/mcmc/om",i,"/mcmc"), hyp[i],nsim=sims[ss])
-    Hist = runMSE(IFR(OM), Hist = T)
+    Hist = runMSE(OM, Hist = T)
     saveRDS(Hist, paste0(largedir,"/Hist_",i,"_",sims[ss],".rda"))
   }
 }
 
-MSElist = list()
-for(i in 1:4){
-  Hist = readRDS(paste0(largedir,"/Hist_",i,"_16.rda"))
-  MSElist[[i]] = Project(Hist,"curE")
-}
-
-par(mfrow=c(2,2))
-for(i in 1:length(MSElist))matplot(t(MSElist[[i]]@SB_SBMSY[,1,]),type="l",main = i)
-
-
-
 # --- Make MPs -----------------------------------------------------------------
 
 source.all('../mse/MPs/')
-ntune = 8
-Fseq = seq(0.5,1.2,length.out=ntune)
+ntune = 16
+Fseq = seq(0.3,1.8,length.out=ntune)
 Flab = Fseq*10
 
 make_s_list = function(B1=0 , B2=1 , F1=1, F2=1, Fseq = seq(0.5,1.2,length.out=8),
@@ -78,43 +64,44 @@ make_s_list = function(B1=0 , B2=1 , F1=1, F2=1, Fseq = seq(0.5,1.2,length.out=8
 } 
 
 # --- Short cut good BSD = 0.15, BAC = 0, Bbias = 1
-Sg_01 = paste0("Sg_01_",Flab); spawnSC(make_s_list(), Sg_01)                 # constant F (HCR 0,1  1,1 )
-Sg_05 = paste0("Sg_05_",Flab); spawnSC(make_s_list(F1=0.5), Sg_05)           # HCR 0,1  0.5,1 
-Sg_00 = paste0("Sg_00_",Flab); spawnSC(make_s_list(F1=0), Sg_00 )            # HCR 0,1  0,1 
-Sg_55 = paste0("Sg_55_",Flab); spawnSC(make_s_list(F1=0.5, B1 = 0.5), Sg_55) # HCR 0.5,1  0.5,1 
-Sg_50 = paste0("Sg_50_",Flab); spawnSC(make_s_list(F1=0, B1 = 0.5), Sg_50)   # HCR 0.5,1  0.5,1 
+Sg_01 = paste0("Sg_01_",Flab); spawnSC(make_s_list(Fseq = Fseq), Sg_01)                 # constant F (HCR 0,1  1,1 )
+Sg_05 = paste0("Sg_05_",Flab); spawnSC(make_s_list(F1=0.5,Fseq = Fseq), Sg_05)           # HCR 0,1  0.5,1 
+Sg_00 = paste0("Sg_00_",Flab); spawnSC(make_s_list(F1=0,Fseq = Fseq), Sg_00 )            # HCR 0,1  0,1 
+Sg_55 = paste0("Sg_55_",Flab); spawnSC(make_s_list(F1=0.5, B1 = 0.5,Fseq = Fseq), Sg_55) # HCR 0.5,1  0.5,1 
+Sg_50 = paste0("Sg_50_",Flab); spawnSC(make_s_list(F1=0, B1 = 0.5,Fseq = Fseq), Sg_50)   # HCR 0.5,1  0.5,1 
 
 #  --- Short cut moderate BSD = 0.2, BAC = 0.6, Bbias = 1
-Sm_01 = paste0("Sm_01_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6), Sm_01)                   # constant F (HCR 0,1  1,1 )
-Sm_05 = paste0("Sm_05_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0.5), Sm_05)           # HCR 0,1  0.5,1 
-Sm_00 = paste0("Sm_00_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0), Sm_00)             # HCR 0,1  0,1 
-Sm_55 = paste0("Sm_55_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0.5, B1 = 0.5), Sm_55) # HCR 0.5,1  0.5,1 
-Sm_50 = paste0("Sm_50_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0, B1 = 0.5), Sm_50)   # HCR 0.5,1  0.5,1 
+Sm_01 = paste0("Sm_01_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, Fseq = Fseq), Sm_01)                   # constant F (HCR 0,1  1,1 )
+Sm_05 = paste0("Sm_05_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0.5,Fseq = Fseq), Sm_05)           # HCR 0,1  0.5,1 
+Sm_00 = paste0("Sm_00_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0,Fseq = Fseq), Sm_00)             # HCR 0,1  0,1 
+Sm_55 = paste0("Sm_55_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0.5, B1 = 0.5,Fseq = Fseq), Sm_55) # HCR 0.5,1  0.5,1 
+Sm_50 = paste0("Sm_50_",Flab); spawnSC(make_s_list(BSD=0.2, BAC=0.6, F1=0, B1 = 0.5,Fseq = Fseq), Sm_50)   # HCR 0.5,1  0.5,1 
 
 # --- Short cut bad BSD = 0.25, BAC = 0.75, Bbias = 1.25
-Sb_01 = paste0("Sb_01_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.25), Sb_01)                   # constant F (HCR 0,1  1,1 )
-Sb_05 = paste0("Sb_05_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.25, F1=0.5), Sb_05)           # HCR 0,1  0.5,1 
-Sb_00 = paste0("Sb_00_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.25, F1=0), Sb_00)             # HCR 0,1  0,1 
-Sb_55 = paste0("Sb_55_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.25, F1=0.5, B1 = 0.5), Sb_55) # HCR 0.5,1  0.5,1 
-Sb_50 = paste0("Sb_50_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.25, F1=0, B1 = 0.5), Sb_50)   # HCR 0.5,1  0.5,1 
+Sb_01 = paste0("Sb_01_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.15, Fseq = Fseq), Sb_01)                   # constant F (HCR 0,1  1,1 )
+Sb_05 = paste0("Sb_05_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.15, F1=0.5,Fseq = Fseq), Sb_05)           # HCR 0,1  0.5,1 
+Sb_00 = paste0("Sb_00_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.15, F1=0,Fseq = Fseq), Sb_00)             # HCR 0,1  0,1 
+Sb_55 = paste0("Sb_55_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.15, F1=0.5, B1 = 0.5,Fseq = Fseq), Sb_55) # HCR 0.5,1  0.5,1 
+Sb_50 = paste0("Sb_50_",Flab); spawnSC(make_s_list(BSD=0.25, BAC=0.75, Bbias=1.15, F1=0, B1 = 0.5,Fseq = Fseq), Sb_50)   # HCR 0.5,1  0.5,1 
 
 
 # --- Assessment via rapid SCA 
+
 make_a_list = function(B1=0 , B2=1 , F1=1, F2=1, Fseq = seq(0.5,1.2,length.out=8)){
   ntune = length(Fseq)
   list(B1 = rep(B1,ntune), B2 = rep(B2,ntune), F1 = F1*Fseq, F2 = F2*Fseq)
 } 
 
-A_01 = paste0("A_01_",Flab); spawnSC(make_a_list(), A_01)                 # constant F (HCR 0,1  1,1 )
-A_05 = paste0("A_05_",Flab); spawnSC(make_a_list(F1=0.5), A_05)           # HCR 0,1  0.5,1 
-A_00 = paste0("A_00_",Flab); spawnSC(make_a_list(F1=0), A_00 )            # HCR 0,1  0,1 
-A_55 = paste0("A_55_",Flab); spawnSC(make_a_list(F1=0.5, B1 = 0.5), A_55) # HCR 0.5,1  0.5,1 
-A_50 = paste0("A_50_",Flab); spawnSC(make_a_list(F1=0, B1 = 0.5), A_50)   # HCR 0.5,1  0.5,1 
+A_01 = paste0("A_01_",Flab); spawnSC(make_a_list(Fseq = Fseq), A_01)                 # constant F (HCR 0,1  1,1 )
+A_05 = paste0("A_05_",Flab); spawnSC(make_a_list(F1=0.5,Fseq = Fseq), A_05)           # HCR 0,1  0.5,1 
+A_00 = paste0("A_00_",Flab); spawnSC(make_a_list(F1=0,Fseq = Fseq), A_00 )            # HCR 0,1  0,1 
+A_55 = paste0("A_55_",Flab); spawnSC(make_a_list(F1=0.5, B1 = 0.5,Fseq = Fseq), A_55) # HCR 0.5,1  0.5,1 
+A_50 = paste0("A_50_",Flab); spawnSC(make_a_list(F1=0, B1 = 0.5,Fseq = Fseq), A_50)   # HCR 0.5,1  0.5,1 
   
 
 # --- Empirical 
 
-Ifacs = seq(0.8, 1.5, length.out=8)
+Ifacs = seq(0.4, 3.4, length.out=ntune)
 Ilab = Ifacs*10
 spawnlist = list(Ind_fac = Ifacs)
 
@@ -125,52 +112,85 @@ E_55 = paste0("E_55_",Ilab); spawnMP('Emp', defaults=list(HCR_CP_B = c(0.5,1), H
 E_50 = paste0("E_50_",Ilab); spawnMP('Emp', defaults=list(HCR_CP_B = c(0.5,1), HCR_CP_TAC=c(0,1)),   spawnlist, E_50) # HCR 0.5,1  0.5,1 
   
 
-# --- 16 sim test --------------------------------------------------------------
+# --- Calculations -------------------------------------------------------------
 
-OMnams = c("Hist_1_16.rda", "Hist_3_16.rda")
+doruns = function(OMnams,ext="16"){
+  MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
+  #MPind = grep("01",MPsets)
+  MPind = 1:length(MPsets)
+  setup()
+  for(om in 1:length(OMnams)){
+    Hist = readRDS(paste0(largedir,"/", OMnams[om]))
+    for(i in MPind){
+      MSEnam = paste0("MSE_",MPsets[i],"_",om,"_",ext)
+      temp = Project_parallel(Hist, get(MPsets[i]))
+      assign(MSEnam, mergeMPs(temp))
+      saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
+}}}    
 
-MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
-MPind = grep("01",MPsets)
-MPind = 1:length(MPsets)
-setup()
+ 
+doruns(OMnams = c("Hist_1_16.rda", "Hist_3_16.rda"), ext="16") # 16 sim
 
-for(om in 1:length(OMnams)){
-    
-  Hist = readRDS(paste0(largedir,"/", OMnams[om]))
+doruns(OMnams = c("Hist_1_48.rda", "Hist_3_48.rda"), ext="48") # 48 sim
+
+doruns(OMnams = c("Hist_1_96.rda", "Hist_3_96.rda"),ext="96") # 96 sim
+
+
+
+# --- plot HCRs ----------------------------------------------------------------
+
+HCRspec = data.frame(x1 = c(0,0,0,0.5,0.5), y1 = c(1, 0.5, 0, 0.5, 0))
+HCRnam = c("01","05","00","55","50")
+for(i in 1:length(HCRnam))doFig(HCRplot(c(HCRspec$x[i],1),c(HCRspec$y[i],1)),paste0(figdir,"HCR_",HCRnam[i]),width=4,height=2.5)
+for(i in 1:length(HCRnam))doFig(HCRplot(c(HCRspec$x[i],1),c(HCRspec$y[i],1),mai=rep(0.025,4)),paste0(figdir,"HCR_ruleonly_",HCRnam[i]),width=3,height=3)
+
   
-  for(i in MPind){
-    MSEnam = paste0("MSE_",MPsets[i],"_",om,"_16")
-    temp = Project_parallel(Hist, get(MPsets[i]))
-    assign(MSEnam, mergeMPs(temp))
-    saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
-  }  
+# --- plot results -------------------------------------------------------------
 
+setwd("C:/GitHub/jjm/assessment") 
+largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest"
+figdir = "C:/Users/tcar_/Dropbox/temp/JJM_Figs/"
+library(openMSE)
+
+ntune=16
+MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
+MPind = 1:length(MPsets)
+
+#            short cut and assessment MPs    Empirical 
+mplabs =list(seq(0.3,1.8,length.out=ntune),seq(0.4, 3.4, length.out=ntune))
+ind = rep(1,length(MPind)); ind[grepl("E",MPsets)]=2
+
+MSElist=list(); j=0
+for(i in MPind){
+  j = j+1
+  MSEnam = paste0("MSE_",MPsets[i],"_1_96")
+  MSE = readRDS(paste0(largedir,"/",MSEnam,".rds"))
+  MSE@MPs = as.character(mplabs[[ind[i]]])
+  MSElist[[j]] = MSE
 }
 
 
-# --- 48 sim test --------------------------------------------------------------
 
-OMnams = c("Hist_1_48.rda", "Hist_3_48.rda")
+# short cuts vs others 
+indCF = grep("01",MPsets)
+ind = indCF[1:3]
+doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts"),paste0(figdir,"Fig 1 Const F shortcut"))
+doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts",yzero=T),paste0(figdir,"Fig 2 Const F shortcut"))
 
-MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
-MPind = grep("01",MPsets)
-MPind = 1:length(MPsets)
-setup()
+ind = indCF[1:4]
+doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts"),paste0(figdir,"Fig 3 Const F shortcut vs SCA"))
 
-for(om in 1:length(OMnams)){
-  
-  Hist = readRDS(paste0(largedir,"/", OMnams[om],"_48"))
-  
-  for(i in MPind){
-    MSEnam = paste0("MSE_",MPsets[i],"_",om)
-    temp = Project_parallel(Hist, get(MPsets[i]))
-    assign(MSEnam, mergeMPs(temp))
-    saveRDS(get(MSEnam), paste0(largedir,"/",MSEnam,".rds"))
-  }  
-  
-}
+subi = c(1,3,4,5)
+ind = indCF[subi]
+doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts",cind=subi),paste0(figdir,"Fig 4 Const F shortcut vs SCA vs Emp"))
+doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts",yzero=T,cind=subi),paste0(figdir,"Fig 5 Const F shortcut vs SCA vs Emp yzero"))
 
+# short cut HCRS
+indHCR = grep("Sm",MPsets)
+doFig(TCP2(Mlist = MSElist[indHCR], MPsets[indHCR],"Short cut moderate (Sg) derivatives",yzero=T),paste0(figdir,"Fig 6 Sg HCR"))
 
+indHCR = grep("A",MPsets)
+doFig(TCP2(Mlist = MSElist[indHCR], MPsets[indHCR],"SCA assessment (A) derivatives",yzero=T),paste0(figdir,"Fig 7 SCA HCR"))
 
 
 # --- Testing ------------------------------------------------------------------
