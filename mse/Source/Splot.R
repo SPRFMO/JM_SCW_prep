@@ -36,7 +36,7 @@ quantile_plot = function(datmat, xvals, p = c(0.05,0.25,0.5,0.75,0.95),  tcol, y
 #' @author T. Carruthers
 #' @export
 Splot = function(MSEobj, MPs = 5,
-                 p = c(0.05,0.25,0.5,0.75,0.95)){
+                 p = c(0.05,0.25,0.5,0.75,0.95),ymaxs = list(NA,NA,NA)){
   
   if(class(MPs[1])=="character"){
     MPind = MSEobj@MPs %in% MPs
@@ -65,7 +65,9 @@ Splot = function(MSEobj, MPs = 5,
     vval = slot(subMSE, vnam)
     mus = apply(vval,2:3,mean)
     qs = apply(vval,2:3,quantile,p=p)
+    
     ymax = quantile(qs,0.98)
+    if(!is.na(ymaxs[vv])) ymax = ymaxs[vv]
     
     matplot(yrs,t(mus),col="white",xlab="",ylab="",main="",ylim=c(0,ymax),yaxs ="i",axes=F)
     grid(col="grey"); abline(h=refs[vv],lty=1); doborder()
@@ -76,7 +78,9 @@ Splot = function(MSEobj, MPs = 5,
     legend('topright',paste0(round(Ps*100,2),"%"),text.col=cols,title=leglabs[vv],title.col ="black",bty="n")
     if(vv==1) mtext("Mean values",line=0.4)
     
+    
     for(mp in 1:nMPs){   
+      
       quantile_plot(datmat = vval[, mp, ], xvals = yrs, p =p, tcol = tcols[mp], 
                     ylim=c(0,ymax),refline = refs[vv], dox = vv==nv)
       if(vv ==1) mtext(subMSE@MPs[mp],line=0.4,col=cols[mp])

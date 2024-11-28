@@ -21,6 +21,7 @@ library(miceadds)
 source.all("../mse/MPs")               # load MP building
 source.all("../mse/Source") 
 largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest" #largedir = "C:/Users/tcarruth/Dropbox/temp/JJM_MPtest"
+figdir = "C:/Users/tcar_/Dropbox/temp/JJM_Figs/" #largedir = "C:/Users/tcarruth/Dropbox/temp/JJM_MPtest"
 
 
 # --- Conditioning Model inputs / outputs --------------------------------------
@@ -40,7 +41,7 @@ GetOM_Jim <- function(run_loc, hyp="h1_ls", nsim=128) {
 
 hyp = c("h1_ls","h1_ll","h1_hl","h1_hs")
 nsim = 16; 
-sims = c(16, 48, 96)
+sims = c(16, 48, 96, 192)
 for(ss in 1:length(sims)){
   for(i in 1:4){
     OM = GetOM_Jim(paste0(largedir,"/mcmc/om",i,"/mcmc"), hyp[i],nsim=sims[ss])
@@ -49,9 +50,11 @@ for(ss in 1:length(sims)){
   }
 }
 
+
 # --- Make MPs -----------------------------------------------------------------
 
 source.all('../mse/MPs/')
+
 ntune = 16
 Fseq = seq(0.3,1.8,length.out=ntune)
 Flab = Fseq*10
@@ -112,12 +115,27 @@ E_55 = paste0("E_55_",Ilab); spawnMP('Emp', defaults=list(HCR_CP_B = c(0.5,1), H
 E_50 = paste0("E_50_",Ilab); spawnMP('Emp', defaults=list(HCR_CP_B = c(0.5,1), HCR_CP_TAC=c(0,1)),   spawnlist, E_50) # HCR 0.5,1  0.5,1 
   
 
+# --- TAC-based PI 
+
+spawnlist = list(tunepar = Fseq)
+TB_00 = paste0("TB_00_",Flab); spawnMP('PI', defaults=list(HCR_CP_B = c(0,1),   HCR_CP_TAC=c(0,1), type = "Tbased"),   spawnlist, TB_00) # HCR 0,1  0,1 
+
+
+# --- F-based PI 
+
+FB_00 = paste0("FB_00_",Flab); spawnMP('PI', defaults=list(HCR_CP_B = c(0,1),   HCR_CP_TAC=c(0,1), type = "Fbased"),   spawnlist, FB_00) # HCR 0,1  0,1 
+FB_01 = paste0("FB_01_",Flab); spawnMP('PI', defaults=list(HCR_CP_B = c(0,1),   HCR_CP_TAC=c(1,1), type = "Fbased"),   spawnlist, FB_01) # HCR 0,1  1,1 
+
+
+
 # --- Calculations -------------------------------------------------------------
 
-doruns = function(OMnams,ext="16"){
+# --- full sets 
+
+doruns = function(OMnams,ext="16",MPind=NA){
   MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
-  #MPind = grep("01",MPsets)
-  MPind = 1:length(MPsets)
+  
+  if(is.na(MPind[1]))MPind = 1:length(MPsets) #MPind = grep("01",MPsets) MPind = match(c("Sm_55","E_50"), MPsets)
   setup()
   for(om in 1:length(OMnams)){
     Hist = readRDS(paste0(largedir,"/", OMnams[om]))
@@ -129,12 +147,24 @@ doruns = function(OMnams,ext="16"){
 }}}    
 
  
-doruns(OMnams = c("Hist_1_16.rda", "Hist_3_16.rda"), ext="16") # 16 sim
+doruns(OMnams = c("Hist_1_16.rda", "Hist_3_16.rda"), ext="16")  # 16 sim
+doruns(OMnams = c("Hist_1_48.rda", "Hist_3_48.rda"), ext="48")  # 48 sim
+doruns(OMnams = c("Hist_1_96.rda", "Hist_3_96.rda"), ext="96")  # 96 sim
 
-doruns(OMnams = c("Hist_1_48.rda", "Hist_3_48.rda"), ext="48") # 48 sim
+MPind =  match(c("Sg_00","A_00","E_00"), paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50")))
+doruns(OMnams = "Hist_1_192.rda",MPind = MPind,ext="192") # 192 sim
 
-doruns(OMnams = c("Hist_1_96.rda", "Hist_3_96.rda"),ext="96") # 96 sim
+# F vs TAC types OM1 96 sim, limited comparison
 
+Hist =  readRDS(paste0(largedir,"/Hist_1_96.rda"))
+MSE = mergeMPs(Project_parallel(Hist, TB_00))
+saveRDS(MSE, paste0(largedir,"/MSE_TB_00_1_96.rds"))
+
+MSE2 = mergeMPs(Project_parallel(Hist, FB_00))
+saveRDS(MSE2, paste0(largedir,"/MSE_FB_00_1_96.rds"))
+
+MSE3 = mergeMPs(Project_parallel(Hist, FB_01))
+saveRDS(MSE3, paste0(largedir,"/MSE_FB_01_1_96.rds"))
 
 
 # --- plot HCRs ----------------------------------------------------------------
@@ -145,12 +175,7 @@ for(i in 1:length(HCRnam))doFig(HCRplot(c(HCRspec$x[i],1),c(HCRspec$y[i],1)),pas
 for(i in 1:length(HCRnam))doFig(HCRplot(c(HCRspec$x[i],1),c(HCRspec$y[i],1),mai=rep(0.025,4)),paste0(figdir,"HCR_ruleonly_",HCRnam[i]),width=3,height=3)
 
   
-# --- plot results -------------------------------------------------------------
-
-setwd("C:/GitHub/jjm/assessment") 
-largedir = "C:/Users/tcar_/Dropbox/temp/JJM_MPtest"
-figdir = "C:/Users/tcar_/Dropbox/temp/JJM_Figs/"
-library(openMSE)
+# --- consolidate results -------------------------------------------------------------
 
 ntune=16
 MPsets = paste0(rep(c("Sg","Sm","Sb","A","E"),each=5),"_",c("01","05","00","55","50"))
@@ -170,6 +195,13 @@ for(i in MPind){
 }
 
 
+# --- plot results -------------------------------------------------------------
+
+
+
+MSEt = Sub(MSElist[[1]],MPs=c("0.3","1.8"))
+doFig(Splot(MSEt,ymaxs = c(NA,3,2000)),paste0(figdir,"Fig 0 PM explanation"),height=6.5)
+
 
 # short cuts vs others 
 indCF = grep("01",MPsets)
@@ -185,12 +217,56 @@ ind = indCF[subi]
 doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts",cind=subi),paste0(figdir,"Fig 4 Const F shortcut vs SCA vs Emp"))
 doFig(TCP2(Mlist = MSElist[ind], MPsets[ind],"Constant F policy - Short cuts",yzero=T,cind=subi),paste0(figdir,"Fig 5 Const F shortcut vs SCA vs Emp yzero"))
 
-# short cut HCRS
+# short cut HCRs
 indHCR = grep("Sm",MPsets)
-doFig(TCP2(Mlist = MSElist[indHCR], MPsets[indHCR],"Short cut moderate (Sg) derivatives",yzero=T),paste0(figdir,"Fig 6 Sg HCR"))
+doFig(TCP2(Mlist = MSElist[indHCR], MPsets[indHCR],"Short cut moderate (Sm) derivatives",yzero=T),paste0(figdir,"Fig 6 Sg HCR"))
 
+# assessment HCRs
 indHCR = grep("A",MPsets)
 doFig(TCP2(Mlist = MSElist[indHCR], MPsets[indHCR],"SCA assessment (A) derivatives",yzero=T),paste0(figdir,"Fig 7 SCA HCR"))
+
+# Empirical HCRs
+indHCR = grep("E",MPsets)
+doFig(TCP2(Mlist = MSElist[indHCR], MPsets[indHCR],"Empirical (E) derivatives",yzero=T),paste0(figdir,"Fig 8 Emp HCR"))
+
+
+# Effect of simno
+MSElist_sim=list()
+MSElist_sim[[1]] = readRDS(paste0(largedir,"/MSE_E_50_1_16.rds"))
+MSElist_sim[[2]] = readRDS(paste0(largedir,"/MSE_E_50_1_48.rds"))
+MSElist_sim[[3]] = readRDS(paste0(largedir,"/MSE_E_50_1_96.rds"))
+MSElist_sim[[4]] = readRDS(paste0(largedir,"/MSE_E_50_1_192.rds"))
+                                                      
+MSElist_sim2=list()
+MSElist_sim2[[1]] = readRDS(paste0(largedir,"/MSE_Sm_55_1_16.rds"))
+MSElist_sim2[[2]] = readRDS(paste0(largedir,"/MSE_Sm_55_1_48.rds"))
+MSElist_sim2[[3]] = readRDS(paste0(largedir,"/MSE_Sm_55_1_96.rds"))
+MSElist_sim2[[4]] = readRDS(paste0(largedir,"/MSE_Sm_55_1_192.rds"))
+
+
+doFig(TCP2(Mlist = MSElist_sim, paste0("nsim = ",c(16,48,96,192)), "Empirical 50 HCR",yzero=T),paste0(figdir,"Fig 9 Emp Simno"))
+
+doFig(TCP2(Mlist = MSElist_sim2, paste0("nsim = ",c(16,48,96,192)), "Sm 55 HCR",yzero=T),paste0(figdir,"Fig 10 Sm Simno"))
+
+
+MSElist_s48 = MSElist_s96 = MSElist_s192 = list()
+MSElist_simcomp[[1]] = readRDS(paste0(largedir,"/MSE_E_50_1_48.rds"))
+
+
+
+
+# Effect of TAC vs F based
+MSElist_TF=list()
+MSElist_TF[[1]] = readRDS(paste0(largedir,"/MSE_TB_00_1_96.rds"))
+MSElist_TF[[2]] = readRDS(paste0(largedir,"/MSE_FB_00_1_96.rds"))
+MSElist_TF[[3]] = readRDS(paste0(largedir,"/MSE_FB_01_1_96.rds"))
+
+doFig(TCP2(Mlist = MSElist_TF, paste0("nsim = ",c("TB_00","FB_00","FB_01")), "F vs TAC based",yzero=T),paste0(figdir,"Fig 11 Sm Simno"))
+
+
+
+
+# Effect of OM
 
 
 # --- Testing ------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 
 TuningCompPlot = function(MSElist,cols = c("red","green","blue","darkgrey","orange"),
-                          adj=0.035,margin=0.075,pos='topright',MSEnams = NA,
+                          adj=0.035, marg=0.075, pos='topright',MSEnams = NA,
                           Bprob = FALSE, Blev=0.5){
   
   MSE1 = MSElist[[1]]
@@ -17,8 +17,8 @@ TuningCompPlot = function(MSElist,cols = c("red","green","blue","darkgrey","oran
   
   xlim = range(unlist(Brel))
   ylim = range(unlist(Cat))
-  xlim = xlim + c(-margin,margin)*(xlim[2]-xlim[1])
-  ylim = ylim + c(-margin,margin)*(ylim[2]-ylim[1])
+  xlim = xlim + c(-marg,marg)*(xlim[2]-xlim[1])
+  ylim = ylim + c(-marg,marg)*(ylim[2]-ylim[1])
   
   xlab = "Mean SSB/SSBMSY (last 5 proj. yrs)"
   if(Bprob) xlab = paste0("P(SSB > ",Blev," SSBMSY (last 5 proj. yrs)")
@@ -39,13 +39,13 @@ TuningCompPlot = function(MSElist,cols = c("red","green","blue","darkgrey","oran
 }
 
 
-TCPplot = function(vx,vy,xlab,ylab,adj=0.03,yzero=F,cols){
+TCPplot = function(vx,vy,xlab,ylab,MPlabs,adj=0.03,yzero=F,cols,marg=0.05){
   nMSE = length(vx)
   xlim = range(unlist(vx))
   ylim = range(unlist(vy))
+  xlim = xlim + c(-marg,marg)*(xlim[2]-xlim[1])
+  ylim = ylim + c(-marg,marg)*(ylim[2]-ylim[1])
   if(yzero)ylim=c(0,ylim[2])
-  xlim = xlim + c(-margin,margin)*(xlim[2]-xlim[1])
-  ylim = ylim + c(-margin,margin)*(ylim[2]-ylim[1])
   xrng = xlim[2] - xlim[1]
   yrng = ylim[2] - ylim[1]
   xadj = xrng * adj
@@ -58,14 +58,14 @@ TCPplot = function(vx,vy,xlab,ylab,adj=0.03,yzero=F,cols){
     points(vx[[mm]],vy[[mm]],col=coly,pch=19)
     ord=order(vx[[mm]])
     lines(vx[[mm]][ord],vy[[mm]][ord],col = coly, lwd=2)
-    text(vx[[mm]]+xadj,vy[[mm]]+yadj,MSElist[[mm]]@MPs,cex=0.8,font=2,col=coly)
+    text(vx[[mm]]+xadj,vy[[mm]]+yadj,MPlabs,cex=0.8,font=2,col=coly)
   }
 }
 
 TCP2 = function(Mlist, MSEnams = NA, title="", cols = c("red","darkgrey","green","blue","orange"),
-                          margin=0.075, pos='topright',
-                          Bprob = FALSE, Blev=1,mfrow=c(1,4),
-                          yzero = F,cind = NA){
+                          marg=0.075, pos='topright',
+                          Bprob = FALSE, Blev=1, mfrow=c(1,4),
+                          yzero = F, cind = NA){
   
   par(mfrow=mfrow,mai=c(0.5,0.4,0.05,0.05),omi=c(0.01,0.01,0.2,0.025))
   MSE1 = Mlist[[1]]
@@ -97,12 +97,12 @@ TCP2 = function(Mlist, MSEnams = NA, title="", cols = c("red","darkgrey","green"
   # Brel Cath
   #xlab = "Mean SSB/SSBMSY (last 5 proj. yrs)"
   #if(Bprob) xlab = paste0("P(SSB > ",Blev," SSBMSY (last 5 proj. yrs)")
-  
-  TCPplot(Brel,Cat,xlab = "Mean SSB/SSBMSY (last 5 yrs)", ylab = "Mean Catch (last 5 yrs)", yzero=yzero, cols=cols[cind])
+  MPlabs = Mlist[[1]]@MPs
+  TCPplot(Brel,Cat,xlab = "Mean SSB/SSBMSY (last 5 yrs)", ylab = "Mean Catch (last 5 yrs)", MPlabs = MPlabs, yzero=yzero, cols=cols[cind])
   legend(pos,legend=MSEnams,text.col=cols[cind],bty="n",text.font=2)
-  TCPplot(Brel10,Cat10,xlab = "10th% SSB/SSBMSY (last 5 yrs)", ylab = "10th% Catch (last 5 yrs)", yzero=yzero, cols=cols[cind])
-  TCPplot(CatST,Cat,xlab = "Mean Catch (first 10 yrs)", ylab = "Mean Catch (last 5 yrs)", yzero=yzero, cols=cols[cind])
-  TCPplot(Brel, VY,"Mean SSB/SSBMSY (last 5 yrs)", "Variability in yield (abs, neg.)", cols=cols[cind])
+  TCPplot(Brel10,Cat10,xlab = "10th% SSB/SSBMSY (last 5 yrs)", ylab = "10th% Catch (last 5 yrs)", MPlabs = MPlabs, yzero=yzero, cols=cols[cind])
+  TCPplot(CatST,Cat,xlab = "Mean Catch (first 10 yrs)", ylab = "Mean Catch (last 5 yrs)", MPlabs = MPlabs, yzero=yzero, cols=cols[cind])
+  TCPplot(Brel, VY,"Mean SSB/SSBMSY (last 5 yrs)", "Variability in yield (abs, neg.)", MPlabs = MPlabs, cols=cols[cind])
   mtext(title, line=0.05, cex=0.8, font=2, outer=T)
   
 }
