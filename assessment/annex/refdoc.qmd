@@ -1,0 +1,71 @@
+---
+title: "Title"
+subtitle: "Subtitle"
+format:
+  docx:
+    number-sections: false
+execute: 
+  echo: false
+  warning: false
+  message: false
+  results: false
+---
+
+# Header 1
+Body paragraph text?
+
+## Header 2
+Body paragraph 1.
+
+Body paragraph 2.
+
+### Header 3
+How about some lists
+
+- Point 1
+- Point 2
+
+
+#### Header 4
+A numbered list
+
+1. Numba one
+1. Numba two
+1. Numba three
+
+## Tables
+
+| Table Header 1   |Table Header 2     |
+|-----------------:|:------------------|
+| Markdown tables  | are pretty weird  |
+|   But kinda fun  |     I guess       |
+|  Right adjusted  |This should be left|
+
+: This is a Markdown table caption. {#tbl-ref}
+
+|  Table Header 1  |  Table Header 2  |
+|:-----------------|-----------------:|
+| 1                | a                |
+| 2                | b                |
+
+: This is a Markdown table with NUMBERS. {#tbl-ref-no}
+
+This is a reference to @tbl-ref and @tbl-ref-no.
+
+```{r}
+#| label: tbl-kable
+#| tbl-cap: This is a Kable Table.
+
+library(tidyverse)
+library(kableExtra)
+tibble(Header_1 = c(1,2), Header_2 = c(3,4)) %>%
+  kable()
+```
+
+Flextable does not like captions and Word documents. Causes some "unreadable" content that can be fixed by Word, but is very very annoying. Apparently it's a Quarto problem and there's nothing I can do about it. Whomp. But it adds extra header rows, which is very handy.
+
+```{r}
+library(flextable)
+tibble(Header_1 = c(1,2), Header_2 = c(3,4)) %>%
+  flextable()
+```

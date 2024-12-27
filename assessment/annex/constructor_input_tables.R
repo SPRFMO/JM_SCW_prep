@@ -97,7 +97,7 @@ Table_34 <- data.frame(Year  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
 y_ind <- h2_mod[[1]]$output[[1]]$SSB[,1] %in% h2_mod[[1]]$output[[1]]$msy_mt[,1]
 Table_35 <- data.frame(Year  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
                   mutate(
-                    "Landings ('000 t)"                       = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton)), 0),
+                    "Landings ('000 t)"                       = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton[,-3])), 0),
                     "SSB ('000 t)"                            = round(h2_mod[[1]]$output[[1]]$SSB[y_ind,2], 0),
                     "Recruitment (age 1, millions)"           = round(h2_mod[[1]]$output[[1]]$R[,2], 0),
                     "Fishing Mortality (mean over ages 1-12)" = round(h2_mod[[1]]$output[[1]]$msy_mt[,6], 2),
@@ -108,7 +108,7 @@ Table_35 <- data.frame(Year  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
 y_ind <- h2_mod[[1]]$output[[2]]$SSB[,1] %in% h2_mod[[1]]$output[[2]]$msy_mt[,1]
 Table_36 <- data.frame(Year  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
                   mutate(
-                    "Landings ('000 t)"                       = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton)), 0),
+                    "Landings ('000 t)"                       = round(as.vector(h2_mod[[1]]$data$Fcaton[,3]), 0),
                     "SSB ('000 t)"                            = round(h2_mod[[1]]$output[[2]]$SSB[y_ind,2], 0),
                     "Recruitment (age 1, millions)"           = round(h2_mod[[1]]$output[[2]]$R[,2], 0),
                     "Fishing Mortality (mean over ages 1-12)" = round(h2_mod[[1]]$output[[2]]$msy_mt[,6], 2),

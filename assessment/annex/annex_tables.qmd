@@ -1,0 +1,778 @@
+# Tables
+
+```{r}
+#| include: false
+library(jjmR)
+library(tidyverse)
+library(readxl)
+library(here)
+library(flextable)
+library(kableExtra)
+
+options(knitr.kable.NA = '')
+
+set_flextable_defaults(
+  font.family = "Calibri Light",
+  font.size = 9,
+  padding.top = 0,
+  padding.bottom = 0,
+  post_process_docx = autofit
+  )
+```
+
+```{r}
+#| include: false
+h1nm <- "h1_1.07"
+h2nm <- "h2_1.07"
+
+h1_mod <- readJJM(h1nm, path = here::here("config"), input = here::here("input"), output = here::here("results"))
+h1_diag <- diagnostics(h1_mod, plot=F)
+
+h2_mod <- readJJM(h2nm,path = here::here("config"), input = here::here("input"), output = here::here("results"))
+h2_diag <- diagnostics(h2_mod, plot=F)
+
+h1_tidy <- tidy_JJM(h1_mod)
+h2_tidy <- tidy_JJM(h2_mod)
+
+ages <- seq(h1_mod[[1]]$info$data$age[1], h1_mod[[1]]$info$data$age[2])
+
+lengths <- seq(h1_mod[[1]]$info$data$length[1], h1_mod[[1]]$info$data$length[2])
+
+curryr <- as.numeric(format(Sys.time(), "%Y"))
+
+```
+
+```{r}
+#| label: tbl-catch-annex
+#| tbl-cap: !expr paste0("Sources and values of catch (t) compiled for the four fleets used for the assessment (note that data for ", curryr-1, " are preliminary, and ", curryr, " are predictions).")
+
+catch_countries <- read_xlsx("~/Downloads/SC12-JM03-Annex-1.xlsx") 
+fnames <- c("", str_extract(names(catch_countries)[-1], "[0-9]+"), "")
+fpos <- which(fnames != lag(fnames, default = first(fnames)))
+
+# catch_countries %>%
+#   rename_at(
+#     vars(-year),
+#     ~gsub("([A-Z]+)_(\\d+)", "Fleet \\2_\\1",.)
+#   ) %>%
+#   mutate(Total = rowSums(select(., -year), na.rm = TRUE)) %>%
+#   rename(Year = year) %>%
+#   kable() %>%
+#   header_separate(sep = "_")
+
+catch_countries %>%
+  rename_at(
+    vars(-year),
+    ~gsub("([A-Z]+)_(\\d+)", "Fleet \\2_\\1",.)
+  ) %>%
+  mutate(Total = rowSums(select(., -year), na.rm = TRUE)) %>%
+  rename(Year = year) %>%
+  flextable() %>%
+  separate_header(split = "[\\._]") %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year))) %>%
+  align(align = "center", part = "all") %>%
+  vline(j = fpos-1)
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-catch-fleet
+#| tbl-cap: !expr paste0("Input catch (kilo tonnes) by fleet (combined) for the stock assessment model. Note that data for ",curryr-1," and ", curryr, " are preliminary.")
+
+tab_catch_fleet <- h1_mod[[1]]$data$Fcaton %>% 
+  as_tibble(rownames = "Year") %>% 
+  rename_with(
+    ~ str_replace(., "^fishery(\\d+)$", "Fleet \\1"), 
+    starts_with("fishery")
+  ) %>% 
+  mutate(across(-Year, ~ round(.x, 2))) %>%
+  flextable()
+
+tab_catch_fleet
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-catchage-f1
+#| tbl-cap: Input catch at age for Fleet 1. Units are relative value (they are normalized to sum to 100 for each year in the model).
+
+tab_catchage_f1 <- h1_mod[[1]]$output[[1]]$pobs_fsh_1 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_catchage_f1
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-catchage-f2
+#| tbl-cap: Input catch at age for Fleet 2. Units are relative value (they are normalized to sum to 100 for each year in the model).
+
+tab_catchage_f2 <- h1_mod[[1]]$output[[1]]$pobs_fsh_2 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+tab_catchage_f2
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-catchage-f4
+#| tbl-cap: Input catch at age for Fleet 4. Units are relative value (they are normalized to sum to 100 for each year in the model).
+
+tab_catchage_f4 <- h1_mod[[1]]$output[[1]]$pobs_fsh_4 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_catchage_f4
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-catchlen-f3
+#| tbl-cap: Input catch at length for Fleet 3. Units are relative value (they are normalized to sum to 100 for each year in the model.
+
+tab_catchlen_f3 <- h1_mod[[1]]$output[[1]]$pobs_len_fsh_3 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", lengths))  %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Total length (cm)"), 
+    colwidths=c(1, length(lengths)))
+
+tab_catchlen_f3
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-indices
+#| tbl-cap: Abundance index values used within the assessment model.
+
+tab_indices <- h1_tidy$index_fits %>%
+  select(year, fleet_name, observed_ind) %>%
+  pivot_wider(names_from=fleet_name, values_from = observed_ind) %>%
+  rename_all(~c('Year','Chile (1)','Chile (2)','Chile (3)','Chile (4)','Peru(2)', 'Peru(3)','Offshore')) %>%
+  mutate(across(-Year, ~ signif(.x, 4))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year))) 
+
+tab_indices
+```
+
+Legend:
+Chile (1):	Acoustics for south-central zone in Chile
+Chile (2):	Acoustics for northern zone in Chile
+Chile (3):	Chilean south-central fishery CPUE for Fleet 1
+Chile (4):	Daily Egg Production Method
+Peru(1):	Peruvian acoustic index in Fleet 3
+Peru(2):	Peruvian fishery CPUE in Fleet 3
+Offshore:	Combined CPUE for China, EU, South Korea, Russia, and Vanuatu in Fleet 4
+
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-catchage-i1
+#| tbl-cap: Input catch at age for acoustic surveys in southern Chile. Units are relative value (they are normalized to sum to 100 for each year in the model).
+
+tab_catchage_i1 <- h1_mod[[1]]$output[[1]]$pobs_ind_1 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year))) %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_catchage_i1
+```
+
+
+```{r}
+#| label: tbl-catchage-i2
+#| tbl-cap: Input catch at age for acoustic surveys in northern Chile. Units are relative value (they are normalized to sum to 100 for each year in the model).
+
+tab_catchage_i2 <- h1_mod[[1]]$output[[1]]$pobs_ind_2 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year))) %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_catchage_i2
+```
+
+
+
+```{r}
+#| label: tbl-catchage-i4
+#| tbl-cap: Input catch at age for DEPM surveys in southern Chile. Units are relative value (they are normalized to sum to 100 for each year in the model).
+
+tab_catchage_i4 <- h1_mod[[1]]$output[[1]]$pobs_ind_4 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate(across(-Year, ~ round(.x * 100, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year))) %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_catchage_i4
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-matatage
+#| tbl-cap: Jack mackerel sexual maturity by age used in the JJM models.
+
+h2_mod[[1]]$control$Pmatatage %>%
+  as_tibble() %>%
+  mutate(Stock = c("Single / Southern", "Far North")) %>%
+  rename_all(~c(ages, "Stock")) %>%
+  relocate(Stock, 1) %>%
+  flextable() %>%
+  colformat_double(digits = 2)
+```
+
+```{r}
+#| label: tbl-pars
+#| tbl-cap: Jack mackerel growth (von Bertalanffy) and natural mortality parameters used in JJM models. 
+
+pars_growth <- c("log_Linf", "log_k", "log_Lo", "N_Mort")
+
+h2_mod[[1]]$parameters %>% 
+  enframe() %>%
+  filter(name %in% pars_growth) %>%
+  unnest(value) %>%
+  mutate(Stock = rep(c("Single / South Stock", "Far North Stock"), length(pars_growth))) %>%
+  mutate(value = ifelse(str_detect(name, "log"), exp(value), value)) %>%
+  pivot_wider(names_from = Stock, values_from = value) %>%
+  mutate(name = str_remove(name, "log_")) %>%
+  mutate(name = case_when(
+    str_detect(name, "N_Mort") ~ "M (year^{-1})",
+    str_detect(name, "Linf") ~ "L_{\\infty} (cm; Fork Length)",
+    str_detect(name, "Lo") ~ "L_{0} (cm)",
+    .default = name
+  )) %>%
+  rename(Parameter = name) %>%
+  flextable() %>%
+  compose(j = "Parameter", value = as_paragraph(as_equation(Parameter)))
+
+```
+
+L~0~ is the mean length at the recruitment age (1 yrs).
+
+
+```{r}
+#| label: tbl-ageerror
+#| tbl-cap: Ageing error matrix of jack mackerel. Columns represent the observed ages, while the rows represent the true age. These data are not used in the stock assessment.
+
+h1_mod[[1]]$data$Pageerr %>%
+  as_tibble() %>%
+  rownames_to_column(var = "Age") %>%
+  flextable() %>%
+  colformat_double(digits = 3)
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-wtatage-f1
+#| tbl-cap: Input mean body mass (kg) at age over time assumed for Fleet 1.
+
+tab_wtatage_f1 <- h1_mod[[1]]$output[[1]]$wt_fsh_1 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate_at(vars(-Year), ~round(., digits=3)) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_wtatage_f1
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-wtatage-f2
+#| tbl-cap: Input mean body mass (kg) at age over time assumed for Fleet 2.
+
+tab_wtatage_f2 <- h1_mod[[1]]$output[[1]]$wt_fsh_2 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate_at(vars(-Year), ~round(., digits=3)) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_wtatage_f2
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-wtatage-f3
+#| tbl-cap: Input mean body mass (kg) at age over time assumed for Fleet 3.
+
+tab_wtatage_f3 <- h1_mod[[1]]$output[[1]]$wt_fsh_3 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate_at(vars(-Year), ~round(., digits=3)) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_wtatage_f3
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-wtatage-f4
+#| tbl-cap: Input mean body mass (kg) at age over time assumed for Fleet 4.
+
+tab_wtatage_f4 <- h1_mod[[1]]$output[[1]]$wt_fsh_4 %>%
+  as_tibble() %>% 
+  rename_all(~c("Year", ages)) %>% 
+  mutate_at(vars(-Year), ~round(., digits=3)) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+tab_wtatage_f4
+```
+
+
+{{< pagebreak >}}
+|**Fleet**                           | **Catch-at-age**  | **Catch-at-length** | **Landings**      | **CPUE**             | **Acoustic**                             | **DEPM** |
+|:-----------------------------------|:-----------------:|:-------------------:|:-----------------:|:--------------------:|:----------------------------------------:|:--------:|
+| 1) North Chile purse seine         | 1980-`{r} curryr` | \-                  | 1970-`{r} curryr` | \-                   | Index: 1984-1988; 1991; 2006-2021, 2023-`{r} curryr`; Age comps: 2006-2007, 2009; 2013-2021, 2023-`{r} curryr` | \- |
+| 2) South-central Chile purse seine | 1980-`{r} curryr` | \-                  | 1970-`{r} curryr` | 1983-`{r} curryr`    | Index: 1997-2009; Age comps: 2001-2009   | Index: 1999-2001; 2003-2008; Age comps: 2001; 2003-2006, 2008 |
+| 3) FarNorth                        | \-                | 1980-`{r} curryr`   | 1970-`{r} curryr` | 2002-`{r} curryr`    | 1985-2008; 2010-2013                     | \-       |
+| 4) International trawl off Chile   | 2015-`{r} curryr` | 2015-`{r} curryr`\* | 1970-`{r} curryr` | China, EU, Korea, Russia, & Vanuatu (2008-`{r} curryr-1`) | \-  | \-       |
+
+: Years and types of information used in the JJM assessment models. {#tbl-datused}
+
+(*) Converted to age using age-length keys of central-southern area off Chile, the EU, and Russia.
+
+
+```{r}
+#| label: tbl-symbols
+#| tbl-cap: Symbols and definitions used for model equations.
+
+kable("copypasta")
+```
+
+{{< pagebreak >}}
+```{r}
+#| label: tbl-eqs
+#| tbl-cap: Variables and equations describing implementation of the Joint Jack Mackerel assessment model (JJM).
+
+kable("copypasta")
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-objfun
+#| tbl-cap: Specification of objective function that is minimised (i.e., the penalised negative of the log-likelihood).
+
+kable("copypasta")
+```
+
+{{< pagebreak >}}
+
+|**Abundance Index**                         | **CV** |**Catch Biomass Likelihood**                  | **CV**     |
+|:-------------------------------------------|:------:|:---------------------------------------------|:----------:|
+| Acoustic CS-Chile                          | 0.20   | N-Chile                                      | 0.05       |
+| Acoustic N-Chile                           | 0.50   | CS-Chile                                     | 0.05       |
+| CPUE – Chile                               | 0.15   | Farnorth                                     | 0.05       |
+| DEPM – Chile                               | 0.50   | Offshore                                     | 0.05       |
+| Acoustic –Peru                             | 0.20   |                                              |            |
+| CPUE – Peru                                | 0.20   |                                              |            |
+| CPUE – Offshore                            | 0.20   |                                              |            |
+|                                            |        |                                              |            |
+|**Smoothness for Selectivities (Indices)**  | **Λ**  | **Proportion at Age Likelihood (Indices)**   | **n**      |
+| Acoustic CS-Chile                          | 100    | Acoustic CS-Chile                            | 6.8 (150)  |
+| Acoustic N-Chile                           | 100    | Acoustic N-Chile                             | 12.4 (150) |
+| CPUE – Chile                               | 100    | DEPM – Chile                                 | 1          |
+| CPUE – Offshore                            | 100    |                                              |            |
+|                                            |        |                                              |            |
+|**Smoothness for Selectivities (Fleets)**   | **λ**  |**Proportion at Age (or Length) Likelihood**  | n          |
+| N -Chile                                   | 1      | N-Chile                                      | 23.9 (100) |
+| CS-Chile                                   | 25     | CS-Chile                                     | 64.3 (250) |
+| Farnorth                                   | 12.5   | Farnorth (length)                            | 30         |
+| Offshore                                   | 12.5   | Offshore                                     | 12.6 (150) |
+|                                            |        |                                              |            |
+|**Recruitment Regularity**                  | **λ**  |**Stock – Recruitment Curve Fit**             | **CV**     |
+|                                            | 1.4    |                                              | 0.6        |
+
+: Coefficients of variation and sample sizes used in likelihood functions, with adjustments based on calculated Francis weights. Initial sample sizes are in parentheses. {#tbl-cv}
+
+
+| **Item**       | **Description**                                          | **Selectivity assumption** |
+|:---------------|:---------------------------------------------------------|:---------------------------|
+| *Fisheries*    |                                                          |                            |
+|                |                                                          |                            |
+| 1)             | Chilean northern area fishery                            | Estimated from age composition data. Annual variations were considered since 1984   |
+| 2)             | Chilean central and southern area fishery                | Estimated from age composition data. Annual variations were considered since 1984.  |
+| 3)             | Peruvian and Ecuadorian area fishery                     | Estimated from length composition data (converted to age inside the model). Annual variations were considered since 1981.   |
+| 4)             | Offshore trawl fishery                                   | Estimated from age composition data. Annual variations were considered since 1980. Additional flexibility in selectivity was allowed for 2021 to reflect a change in the fishing pattern. |
+|                |                                                          |                            |
+| *Index series* |                                                          |                            |
+| 5)             | Acoustic survey in central and southern Chile            | Estimated from age composition data. Two time-blocks were considered 1970-2004; 2005-2009.  |
+| 6)             | Acoustic survey in northern Chile                        | Estimated from age composition data 2006-2016. Selectivity changes were implemented in 2015 and 2016   |
+| 7)             | Central and southern fishery CPUE                        | Assumed to be the same as 2)   |
+| 8)             | Egg production survey                                    | Estimated from age composition data 2001, 2003-2006, 2008. Two time-blocks were considered around 2003.   |
+| 9)             | Acoustic survey in Peru                                  | Assumed to be the same as 3)   |
+| 10)            | Peruvian fishery CPUE                                    | Assumed to be the same as 3)   |
+| 11)            | Offshore fleet (Vanuatu, Russia, Korea, EU & China) CPUE | Assumed to be the same as 4)   |
+
+: Description of JJM model components and how selectivity was treated under the single-stock hypothesis. {#tbl-sel-h1}
+
+|**Item**        |**Description**                                           |**Selectivity assumption**    |
+|:---------------|:---------------------------------------------------------|:-----------------------------|
+| *Fisheries*    |                                                          |                              |
+|                |                                                          |                              |
+| 1)  | Chilean northern area fishery              | Estimated from age composition data. Annual variations were considered since 1984  |
+| 2)  | Chilean central and southern area fishery  | Estimated from age composition data. Annual variations were considered since 1984. |
+| 3)  | Offshore trawl fishery                     | Estimated from age composition data. Annual variations were considered since 1980. Additional flexibility in selectivity was allowed for 2021 to reflect a change in the fishing pattern. |
+|                |                                                          |                              |
+| *Index series* |                                                          |                              |
+| 4)             | Acoustic survey in central and southern Chile            | Estimated from age composition data. Two time-blocks were considered 1970-2004; 2005-2009.   |
+| 5)             | Acoustic survey in northern Chile                        | Estimated from age composition data. Selectivity changes were implemented in 2012 and 2016. |
+| 6)             | Central and southern fishery CPUE                        | Assumed to be the same as 2) |
+| 7)             | Egg production survey                                    | Estimated from age composition data. Two time-blocks were considered 1970-2002; 2003-2008.  |
+| 8)             | Offshore fleet (China, EU, Korea, Russia, Vanuatu) CPUE | Assumed to be the same as 3)  |
+
+
+: Description of JJM model components and how selectivity was treated (two-stock hypothesis; southern stock). {#tbl-sel-h2-s1}
+
+
+|**Item**        |**Description**                                           |**Selectivity assumption**    |
+|:---------------|:---------------------------------------------------------|:-----------------------------|
+| *Fisheries*    |                                                          |                              |
+|                |                                                          |                              |
+| 1)             | Peruvian and Ecuadorian area fishery | Selectivity in the model under the two-stock hypothesis was estimated from length composition data (converted to age inside the model). Two regimes were considered – before and after 2002. This is a different assumption from the single-stock hypothesis, which has annual variations in selectivity between 1981 and `{r} curryr`. |
+|                |                                      |                            |
+| *Index series* |                                      |                            |
+| 2)             | Acoustic survey in Peru              | Assumed to be the same as in fishery 1) |
+| 3)             | Peruvian fishery CPUE                | Assumed to be the same as in fishery 1) |
+
+: Description of JJM model components and how selectivity was treated (two-stock hypothesis; far north stock). {#tbl-sel-h2-s2}
+
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-modruns
+#| tbl-cap: !expr paste0("Systematic model progression from the ", curryr-1, " assessment data to the agreed revised datasets for ", curryr, ". Note that the data file names corresponding to each model follow the same naming convention, but with the stock-structure hypothesis denoted as h1 for the single-stock and h2 for the two-stock (e.g., `0.01.dat` with `h1_0.01.ctl` and `h2_0.01.ctl`).")
+
+modruns <- read_csv(here::here("data", "SC12_runs.csv"))
+
+modruns %>% 
+  kable(align = "l")
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-histssb
+#| tbl-cap: Spawning biomass of jack mackerel (base model under the single-stock hypothesis) estimated in previous SPRFMO SC meetings.
+
+sc_years <- tibble(Assessmentyear=2013:curryr, SC=paste0("SC",1:(curryr-2013+1)))
+
+read_csv(here("hist_retro","SPRFMO historical retro.csv")) %>% 
+  filter(assessmenttype %in% c("assessment","update")) %>%
+  select(Assessmentyear, Year, SSB) %>% 
+  left_join(sc_years) %>% 
+  select(-Assessmentyear) %>% 
+  pivot_wider(names_from=SC, values_from=SSB) %>%
+  kable(digits = 0)
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-natage-h1
+#| tbl-cap: !expr paste0("Estimated begin-year numbers at age (Model ", h1nm,"; single-stock hypothesis).")
+
+h1_mod[[1]]$output$Stock_1$N %>% 
+  as_tibble() %>% 
+  rename_all(~c('Year', ages)) %>%
+  mutate(across(-Year, ~ round(.x, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-natage-h2-s1
+#| tbl-cap: !expr paste0("Estimated begin-year numbers at age (Model ", h2nm,"; two-stock hypothesis; southern stock).")
+
+h2_mod[[1]]$output$Stock_1$N %>% 
+  as_tibble() %>% 
+  rename_all(~c('Year', ages)) %>%
+  mutate(across(-Year, ~ round(.x, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-natage-h2-s2
+#| tbl-cap: !expr paste0("Estimated begin-year numbers at age (Model ", h2nm,"; two-stock hypothesis; northern stock).")
+
+h2_mod[[1]]$output$Stock_2$N %>% 
+  as_tibble() %>% 
+  rename_all(~c('Year', ages)) %>%
+  mutate(across(-Year, ~ round(.x, 0))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-fatage-h1
+#| tbl-cap: !expr paste0("Estimated total fishing mortality at age (Model ", h1nm,"; single-stock hypothesis).")
+
+cbind(h1_mod[[1]]$output$Stock_1$N[,1],h1_mod[[1]]$output$Stock_1$TotF) %>% 
+  as_tibble() %>% 
+  rename_all(~c('Year', ages)) %>%
+  mutate(across(-Year, ~ round(.x, 3))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+# cbind(h1_mod[[1]]$output$Stock_1$N[,1],h1_mod[[1]]$output$Stock_1$TotF) %>% 
+#   as_tibble() %>% 
+#   rename_all(~c('Year', ages)) %>%
+#   flextable() %>%
+#   bg(j = -1,
+#     bg = col_numeric(
+#       palette = c("white", "#05427b"),
+#       domain = c(0, max(h1_mod[[1]]$output$Stock_1$TotF))
+#       )
+#   )
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-fatage-h2-s1
+#| tbl-cap: !expr paste0("Estimated total fishing mortality at age (Model ", h2nm,"; two-stock hypothesis; southern stock).")
+
+cbind(h2_mod[[1]]$output$Stock_1$N[,1],h2_mod[[1]]$output$Stock_1$TotF) %>% 
+  as_tibble() %>% 
+  rename_all(~c('Year', ages)) %>%
+  mutate(across(-Year, ~ round(.x, 3))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-fatage-h2-s2
+#| tbl-cap: !expr paste0("Estimated total fishing mortality at age (Model ", h2nm,"; two-stock hypothesis; far north stock).")
+
+cbind(h2_mod[[1]]$output$Stock_2$N[,1],h2_mod[[1]]$output$Stock_2$TotF) %>% 
+  as_tibble() %>% 
+  rename_all(~c('Year', ages)) %>%
+  mutate(across(-Year, ~ round(.x, 3))) %>%
+  flextable() %>%
+  compose(j = "Year", value = as_paragraph(as.character(Year)))  %>%
+  add_header_row(values=c("", "Age group (years)"), 
+    colwidths=c(1, length(ages)))
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-sum-h1
+#| tbl-cap: !expr paste0("Summary of results for Model ", h1nm," (single-stock hypothesis). Note that MSY values are a function of time-varying selectivity and average weight.")
+
+totals_h1 <- h1_tidy$totals %>% 
+  filter(metric == "SSB" | metric == "R") %>% 
+  select(year, value, metric) %>% 
+  pivot_wider(names_from = metric, values_from = value) %>%
+  drop_na()
+
+h1_tidy$msy_mt %>%
+  as_tibble() %>%
+  select(year, f, fmsy, bmsy) %>%
+  mutate(landings = h1_mod[[1]]$data$Fcaton %>% rowSums()) %>%
+  left_join(totals_h1) %>%
+  relocate(landings, .after=year) %>%
+  relocate(SSB:R, .after = landings) %>%
+  flextable() %>% 
+  colformat_double(
+    j = c(
+      "landings",
+      "R", 
+      "SSB",
+      "bmsy"),
+      digits = 0) %>%
+  colformat_double(
+    j = c("f", "fmsy"),
+      digits = 2) %>%
+  compose(j = "year", value = as_paragraph(as.character(year))) %>%
+  set_header_labels(
+    values = c(
+    "Year",
+    "Landings ('000 t)",
+    "SSB ('000 t)",
+    "Recruitment (age 1, millions)",
+    "Fishing Mortality (mean over ages 1-12)",
+    "F_MSY",
+    "SSB_MSY ('000 t)")) 
+
+
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-sum-h2-s1
+#| tbl-cap: !expr paste0("Summary of results for Model ", h2nm," (two-stock hypothesis; south stock). Note that MSY values are a function of time-varying selectivity and average weight.")
+
+totals_h2 <- h2_tidy$totals %>% 
+  filter(metric == "SSB" | metric == "R") %>% 
+  select(year, value, metric, stock) %>% 
+  pivot_wider(names_from = metric, values_from = value) %>%
+  drop_na()
+
+h2_tidy$msy_mt %>%
+  as_tibble() %>%
+  filter(stock=="Stock_1") %>%
+  select(year, f, fmsy, bmsy) %>%
+  mutate(landings = h2_mod[[1]]$data$Fcaton[,-3] %>% rowSums()) %>%
+  left_join(totals_h2 %>% filter(stock == "Stock_1") %>% select(-stock)) %>%
+  relocate(landings, .after=year) %>%
+  relocate(SSB:R, .after = landings) %>%
+  flextable() %>% 
+  colformat_double(
+    j = c(
+      "landings",
+      "R", 
+      "SSB",
+      "bmsy"),
+      digits = 0) %>%
+  colformat_double(
+    j = c("f", "fmsy"),
+      digits = 2) %>%
+  compose(j = "year", value = as_paragraph(as.character(year))) %>%
+  set_header_labels(
+    values = c(
+    "Year",
+    "Landings ('000 t)",
+    "SSB ('000 t)",
+    "Recruitment (age 1, millions)",
+    "Fishing Mortality (mean over ages 1-12)",
+    "F_MSY",
+    "SSB_MSY ('000 t)")) 
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-sum-h2-s2
+#| tbl-cap: !expr paste0("Summary of results for Model ", h2nm," (two-stock hypothesis; far north stock). Note that MSY values are a function of time-varying selectivity and average weight.")
+
+h2_tidy$msy_mt %>%
+  as_tibble() %>%
+  filter(stock=="Stock_2") %>%
+  select(year, f, fmsy, bmsy) %>%
+  mutate(landings = h2_mod[[1]]$data$Fcaton[,3]) %>%
+  left_join(totals_h2 %>% filter(stock == "Stock_2") %>% select(-stock)) %>%
+  relocate(landings, .after=year) %>%
+  relocate(SSB:R, .after = landings) %>%
+  flextable() %>% 
+  colformat_double(
+    j = c(
+      "landings",
+      "R", 
+      "SSB",
+      "bmsy"),
+      digits = 0) %>%
+  colformat_double(
+    j = c("f", "fmsy"),
+      digits = 2) %>%
+  compose(j = "year", value = as_paragraph(as.character(year))) %>%
+  set_header_labels(
+    values = c(
+    "Year",
+    "Landings ('000 t)",
+    "SSB ('000 t)",
+    "Recruitment (age 1, millions)",
+    "Fishing Mortality (mean over ages 1-12)",
+    "F_MSY",
+    "SSB_MSY ('000 t)")) 
+```
+
+{{< pagebreak >}}
+
+```{r}
+#| label: tbl-risk-h1
+#| tbl-cap: !expr paste0("Summary results for the short, medium, and long-term predictions for Model ", "h1nm", ".ls (single-stock hypothesis, low steepness, short time series). Note that B in all cases represents thousands of tonnes of spawning stock biomass, P represents probability as a percentage and BMSY is taken to be the average BMSY estimated over the last ten years.")
+
+kable("copypasta")
+
+```
+
+```{r}
+#| label: tbl-risk-h2
+#| tbl-cap: !expr paste0("Summary results for the short, medium, and long-term predictions for Model ", "h2nm", ".ls (two-stock hypothesis, low steepness, short time series). Note that B in all cases represents thousands of tonnes of spawning stock biomass, P represents probability as a percentage and BMSY is taken to be the average BMSY estimated over the last ten years.")
+
+kable("copypasta")
+
+```

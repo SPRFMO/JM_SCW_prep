@@ -83,8 +83,8 @@ fn_plotind <- function(mods2compare, indname) {
   p <- map_dfr(dat2use, ~as_tibble(.)) %>%
         mutate(assessment_year=as.factor(assessment_year)) %>%
         ggplot() +
-        geom_line(aes(x=year,y=value,colour=assessment_year)) +
-        scale_x_continuous(breaks= scales::pretty_breaks())
+          geom_line(aes(x=year,y=value,colour=assessment_year)) +
+          scale_x_continuous(breaks= scales::pretty_breaks())
   print(p)
 }
 

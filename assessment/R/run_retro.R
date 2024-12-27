@@ -34,4 +34,5 @@ dev.off()
 
 plot(ret, var="SSB") # only SSB
 #Calculation of Mohn's Rho courtesy of Arni Magnusson
-icesAdvice::mohn(ret$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
+icesAdvice::mohn(ret$Stock_2$SSB$var[,1,1:6],peel=5,details=T)$rho
+icesAdvice::mohn(ret$Stock_2$R$var[,1,1:6],peel=5,details=T)$rho

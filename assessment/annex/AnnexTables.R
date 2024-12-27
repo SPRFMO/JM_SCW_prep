@@ -56,7 +56,7 @@ h2_mod[[1]]$output$Stock_2$TotF
 
 # Summary of results
 y_ind <- h1_mod[[1]]$output[[1]]$SSB[,1] %in% h1_mod[[1]]$output[[1]]$msy_mt[,1]
-res_h1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
+res_h1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                   mutate(
                     landings  = round(as.vector(rowSums(h1_mod[[1]]$data$Fcaton)), 0),
                     ssb       = round(h1_mod[[1]]$output[[1]]$SSB[y_ind,2], 0),
@@ -68,7 +68,7 @@ res_h1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
 res_h1
 
 y_ind <- h2_mod[[1]]$output[[1]]$SSB[,1] %in% h2_mod[[1]]$output[[1]]$msy_mt[,1]
-res_h2_1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
+res_h2_1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                   mutate(
                     landings  = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton)), 0),
                     ssb       = round(h2_mod[[1]]$output[[1]]$SSB[y_ind,2], 0),
@@ -80,7 +80,7 @@ res_h2_1 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
 res_h2_1
 
 y_ind <- h2_mod[[1]]$output[[2]]$SSB[,1] %in% h2_mod[[1]]$output[[2]]$msy_mt[,1]
-res_h2_2 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>% 
+res_h2_2 <- data.frame(yr  = h1_mod[[1]]$output[[1]]$msy_mt[,1]) %>%
                   mutate(
                     landings      = round(as.vector(rowSums(h2_mod[[1]]$data$Fcaton)), 0),
                     ssb       = round(h2_mod[[1]]$output[[2]]$SSB[y_ind,2], 0),
@@ -114,8 +114,7 @@ h2_2_f_b / h2_2_uf_b
 # Current SSB (year, SSB, SSB.sd, lower bound, upper bound)
 #########
 h1_mod[[1]]$output[[1]]$SSB
-
-h2_mod[[1]]$output[[1]]$SSB
+(rev(h1_mod[[1]]$output[[1]]$SSB[,2])[2] / 1000) %>% round(digits=2)
 h2_mod[[1]]$output[[2]]$SSB
 
 
