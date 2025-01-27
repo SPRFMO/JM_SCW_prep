@@ -51,7 +51,6 @@ h2_tidy <- tidy_JJM(h2_mod)
 
 curryr <- as.numeric(format(Sys.time(), "%Y"))
 
-
 load(paste0("results/",h1nm,"_retrospective.RData"))
 h1_ret<-output
 h1_mohn_ssb <- round(icesAdvice::mohn(h1_ret$Stock_1$SSB$var[,1,1:6],peel=5,details=T)$rho, digits = 2)

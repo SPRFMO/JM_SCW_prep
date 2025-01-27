@@ -22,24 +22,8 @@ set_flextable_defaults(
 
 ```{r}
 #| include: false
-h1nm <- "h1_1.07"
-h2nm <- "h2_1.07"
-
-h1_mod <- readJJM(h1nm, path = here::here("config"), input = here::here("input"), output = here::here("results"))
-h1_diag <- diagnostics(h1_mod, plot=F)
-
-h2_mod <- readJJM(h2nm,path = here::here("config"), input = here::here("input"), output = here::here("results"))
-h2_diag <- diagnostics(h2_mod, plot=F)
-
-h1_tidy <- tidy_JJM(h1_mod)
-h2_tidy <- tidy_JJM(h2_mod)
-
 ages <- seq(h1_mod[[1]]$info$data$age[1], h1_mod[[1]]$info$data$age[2])
-
 lengths <- seq(h1_mod[[1]]$info$data$length[1], h1_mod[[1]]$info$data$length[2])
-
-curryr <- as.numeric(format(Sys.time(), "%Y"))
-
 ```
 
 ```{r}
@@ -174,7 +158,8 @@ tab_indices <- h1_tidy$index_fits %>%
   select(year, fleet_name, observed_ind) %>%
   pivot_wider(names_from=fleet_name, values_from = observed_ind) %>%
   rename_all(~c('Year','Chile (1)','Chile (2)','Chile (3)','Chile (4)','Peru(2)', 'Peru(3)','Offshore')) %>%
-  mutate(across(-Year, ~ signif(.x, 4))) %>%
+  mutate(across(-Year, ~ signif(.x, 4))) %>% 
+  arrange(Year) %>% 
   flextable() %>%
   compose(j = "Year", value = as_paragraph(as.character(Year))) 
 
@@ -496,12 +481,14 @@ kable("copypasta")
 
 ```{r}
 #| label: tbl-modruns
-#| tbl-cap: !expr paste0("Systematic model progression from the ", curryr-1, " assessment data to the agreed revised datasets for ", curryr, ". Note that the data file names corresponding to each model follow the same naming convention, but with the stock-structure hypothesis denoted as h1 for the single-stock and h2 for the two-stock (e.g., `0.01.dat` with `h1_0.01.ctl` and `h2_0.01.ctl`).")
+#| tbl-cap: !expr paste0("Systematic model progression from the ", curryr-1, " assessment data to the agreed revised datasets for ", curryr, ". Note that the data file names corresponding to each model follow the same naming convention, but with the stock-structure hypothesis denoted as h1 for the single-stock and h2 for the two-stock (e.g., 0.01.dat with h1_0.01.ctl and h2_0.01.ctl).")
 
 modruns <- read_csv(here::here("data", "SC12_runs.csv"))
 
 modruns %>% 
   kable(align = "l")
+
+# Need to figure out bolding and highlighting
 ```
 
 {{< pagebreak >}}
