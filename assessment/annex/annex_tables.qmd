@@ -26,6 +26,8 @@ ages <- seq(h1_mod[[1]]$info$data$age[1], h1_mod[[1]]$info$data$age[2])
 lengths <- seq(h1_mod[[1]]$info$data$length[1], h1_mod[[1]]$info$data$length[2])
 ```
 
+:::{.landscape}
+
 ```{r}
 #| label: tbl-catch-annex
 #| tbl-cap: !expr paste0("Sources and values of catch (t) compiled for the four fleets used for the assessment (note that data for ", curryr-1, " are preliminary, and ", curryr, " are predictions).")
@@ -58,6 +60,8 @@ catch_countries %>%
   vline(j = fpos-1)
 
 ```
+
+:::
 
 {{< pagebreak >}}
 
@@ -132,6 +136,8 @@ tab_catchage_f4
 
 {{< pagebreak >}}
 
+:::{.landscape}
+
 ```{r}
 #| label: tbl-catchlen-f3
 #| tbl-cap: Input catch at length for Fleet 3. Units are relative value (they are normalized to sum to 100 for each year in the model.
@@ -147,6 +153,8 @@ tab_catchlen_f3 <- h1_mod[[1]]$output[[1]]$pobs_len_fsh_3 %>%
 
 tab_catchlen_f3
 ```
+
+:::
 
 {{< pagebreak >}}
 
@@ -400,7 +408,7 @@ kable("copypasta")
 |**Abundance Index**                         | **CV** |**Catch Biomass Likelihood**                  | **CV**     |
 |:-------------------------------------------|:------:|:---------------------------------------------|:----------:|
 | Acoustic CS-Chile                          | 0.20   | N-Chile                                      | 0.05       |
-| Acoustic N-Chile                           | 0.50   | CS-Chile                                     | 0.05       |
+| Acoustic N-Chile                           | 0.30   | CS-Chile                                     | 0.05       |
 | CPUE – Chile                               | 0.15   | Farnorth                                     | 0.05       |
 | DEPM – Chile                               | 0.50   | Offshore                                     | 0.05       |
 | Acoustic –Peru                             | 0.20   |                                              |            |
@@ -436,7 +444,7 @@ kable("copypasta")
 |                |                                                          |                            |
 | *Index series* |                                                          |                            |
 | 5)             | Acoustic survey in central and southern Chile            | Estimated from age composition data. Two time-blocks were considered 1970-2004; 2005-2009.  |
-| 6)             | Acoustic survey in northern Chile                        | Estimated from age composition data 2006-2016. Selectivity changes were implemented in 2015 and 2016   |
+| 6)             | Acoustic survey in northern Chile                        | Estimated from age composition data 2006-2016. Selectivity changes were implemented in 2012 and 2016   |
 | 7)             | Central and southern fishery CPUE                        | Assumed to be the same as 2)   |
 | 8)             | Egg production survey                                    | Estimated from age composition data 2001, 2003-2006, 2008. Two time-blocks were considered around 2003.   |
 | 9)             | Acoustic survey in Peru                                  | Assumed to be the same as 3)   |
