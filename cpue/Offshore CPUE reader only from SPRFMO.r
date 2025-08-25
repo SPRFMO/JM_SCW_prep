@@ -47,7 +47,7 @@
 # -----------------------------------------------------------------------------------
 
 offshore_all <-
-  read_excel(file.path(data_path,fn), 
+  read_excel(file.path(rawdata_path,fn), 
              sheet     = 1, 
              col_names = TRUE, 
              col_types = "text", 
@@ -68,7 +68,7 @@ offshore_all <-
     haullat        = endlatitude,
     haullon        = endlongitude,
     species        = caughtspeciescode,
-    catch          = retainedspecieston
+    catch          = retainedspeciesweightton
   ) %>% 
   
   # change variabele type
@@ -109,7 +109,7 @@ offshore_all <-
   filter(!is.na(catch)) %>% 
   
   # added during 2020
-  filter(validfishing == 1) %>% 
+  #filter(validfishing == 1) %>% 
   
   filter(!vesselcode %in% c("1704","9505073-6210008")) %>%    #remove vessels that have problem with units of catch
   
