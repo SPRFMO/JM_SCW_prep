@@ -136,48 +136,48 @@ quants_fut <- map_dfr(repfilenames, fn_pullfuts) %>%
   bind_rows(map_dfr(filenamesF, fn_pullfutF, scen = 3))
 
 quants_proj <- quants_fut %>%
-				select(year, catch, ssb, sd, hyp, stock, scenario) %>%
-				bind_rows(quants_hist)
+  select(year, catch, ssb, sd, hyp, stock, scenario) %>%
+  bind_rows(quants_hist)
 
 quants_rm <- quants_proj %>%
-				filter((year <= yr_curr & scenario!=paste0("F",yr_curr, " SQ")) |
-						str_detect(scenario, "FTAC"))
+  filter((year <= yr_curr & scenario != paste0("F", yr_curr, " SQ")) |
+  		str_detect(scenario, "FTAC"))
 
 quants_curr <- quants_proj %>%
-				filter(year==yr_curr | year==yr_curr+1) %>%
-				complete(year,hyp,stock,scenario) %>%
-				filter(year==yr_curr) %>%
-				arrange(year,hyp,stock) %>%
-				group_by(year,hyp,stock) %>%
-				fill(everything(),.direction="updown") %>%
-				drop_na(catch, ssb) %>%
-				ungroup()
+  filter(year==yr_curr | year==yr_curr+1) %>%
+  complete(year,hyp,stock,scenario) %>%
+  filter(year==yr_curr) %>%
+  arrange(year,hyp,stock) %>%
+  group_by(year,hyp,stock) %>%
+  fill(everything(),.direction="updown") %>%
+  drop_na(catch, ssb) %>%
+  ungroup()
 
 quants_proj <- quants_proj %>%
-				anti_join(quants_rm) %>%
-				bind_rows(quants_curr) %>%
-				distinct()
+  anti_join(quants_rm) %>%
+  bind_rows(quants_curr) %>%
+  distinct()
 
 
 yrs2use <- c(yr_curr+2, yr_curr+6, yr_curr+10)
 
 risk_table_cat <- quants_fut %>%
-					select(year, catch, hyp, stock, scenario) %>%
-					filter(year==yr_curr+1 | year==yr_curr+2) %>%
-					mutate(catch=round(catch)) %>%
-					pivot_wider(names_from=year,values_from=catch,names_prefix="catch_")
+  select(year, catch, hyp, stock, scenario) %>%
+  filter(year==yr_curr+1 | year==yr_curr+2) %>%
+  mutate(catch=round(catch)) %>%
+  pivot_wider(names_from=year,values_from=catch,names_prefix="catch_")
 
 risk_table <- quants_fut %>%
-				select(year, ssb, sd, hyp, stock, scenario) %>%
-				filter(year %in% yrs2use) %>%
-				left_join(quants_msy) %>%
-				mutate(prob=round((1 - pnorm(bmsy, ssb, sd))*100),
-						ssb=round(ssb)) %>%
-				select(-bmsy, -sd) %>%
-				pivot_wider(names_from=year,values_from=c(ssb,prob), names_sep="_",names_vary="slowest") %>%
-				left_join(risk_table_cat) %>%
-				arrange(hyp, stock, scenario) %>%
-				write_csv("risk_tables/tac.csv")
+  select(year, ssb, sd, hyp, stock, scenario) %>%
+  filter(year %in% yrs2use) %>%
+  left_join(quants_msy) %>%
+  mutate(prob=round((1 - pnorm(bmsy, ssb, sd))*100),
+  		ssb=round(ssb)) %>%
+  select(-bmsy, -sd) %>%
+  pivot_wider(names_from=year,values_from=c(ssb,prob), names_sep="_",names_vary="slowest") %>%
+  left_join(risk_table_cat) %>%
+  arrange(hyp, stock, scenario) %>%
+  write_csv("risk_tables/tac.csv")
 
 ggplot(quants_proj %>% filter(year>=2000)) +
 	geom_line(aes(x=year,y=catch,colour=scenario)) +
