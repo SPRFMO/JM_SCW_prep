@@ -39,6 +39,8 @@ fn_update <- function(newmod, newmodname, h) {
   writeJJM(newmod,datPath="input",ctlPath="config")
 }
 
+# If fail to converge, ./jjm -binp jjm.b02 -ind xx.ctl
+
 #---------------------------
 # Save previous year's model
 #---------------------------
@@ -87,17 +89,19 @@ dat_catch <- read_excel(file_input, sheet=5) %>%
   rename_with(~ gsub("F", "fishery", .x, fixed = TRUE))
 
 # Not sure if new system for SC13?
-# dat_wtatage_peru <- read_excel("data/WatAge_Peru_updated2023-preliminar2024.xlsx", sheet=1) %>%
-#   mutate(fleet=3) %>%
-#   filter(year>=yr_prev)
+  # No not yet...
+dat_wtatage_peru <- read_excel("data/WatAge_update_2025.xlsx", sheet=1) %>%
+  rename(year = yy) %>%
+  mutate(fleet=3) %>%
+  filter(year>=yr_prev)
 
 dat_wtatage_f <- read_excel(file_input, sheet=2) %>%
   pivot_longer(cols=contains("F"), names_to="fleet") %>%
   pivot_wider(names_from=age, values_from=value) %>%
   mutate(fleet=as.numeric(str_extract(fleet,"\\d"))) %>%
-  select(-`0`) # %>%
-  # filter(fleet!=3) %>%
-  # add_row(dat_wtatage_peru)
+  select(-`0`) %>%
+  filter(fleet!=3) %>%
+  add_row(dat_wtatage_peru)
 
 dat_lencomp_f <- read_excel(file_input, sheet=3) %>%
   pivot_longer(contains("F", ignore.case=F), names_to="fleet") %>%
@@ -277,7 +281,7 @@ for(i in 1:mod_new[[1]]$data$Inum) {
 
 # fn_bridge(mod_new, "0.05")
 # mod0.05 <- runit(geth("0.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
-mod_prev <- mod_new
+
 
 #----------
 # 0.06 Add current year's fishery length and age comps
@@ -358,7 +362,8 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
 }
 
 # fn_bridge(mod_new, "0.07")
-# mod0.07 <- runit(geth("0.07",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod0.07 <- runit(geth("0.07",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjms",parallel=T)
+
 mod_prev <- mod_new
 
 #----------
@@ -460,7 +465,6 @@ for(f in 1:mod_h1[[1]]$data$Fnum) {
   mod_h1_new[[1]]$control[[paste0(ff,"selchangeYear")]] <- c(mod_h1[[1]]$control[[paste0(ff,"selchangeYear")]],(tail(mod_h1[[1]]$control[[paste0(ff,"selchangeYear")]],1)+1))
   mod_h1_new[[1]]$control[[paste0(ff,"selchange")]] <- c(mod_h1[[1]]$control[[paste0(ff,"selchange")]],tail(mod_h1[[1]]$control[[paste0(ff,"selchange")]],1))
 }
-
 
 mod_h2_new[[1]]$control[["Nyrs_sr"]][1] <- mod_h2[[1]]$control[["Nyrs_sr"]][1]+1
 mod_h2_new[[1]]$control[["Nyrs_sr_1"]] <- c(mod_h2[[1]]$control[["Nyrs_sr_1"]],(tail(mod_h2[[1]]$control[["Nyrs_sr_1"]],1)+1))

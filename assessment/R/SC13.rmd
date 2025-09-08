@@ -63,18 +63,22 @@ theme_set(theme_jjm(base_size = 15))
 
 pwd <- getwd()
 
+fn_seldata <- function(x, i) {
+  x$data$Index[,i] %>%
+    bind_rows() %>%
+    pivot_longer(everything(), names_to="year") %>%
+    drop_na() %>%
+    mutate(
+      year = as.numeric(year),
+      assessment_year = ifelse(
+        i==7,
+        max(year)+1,
+        max(year)
+        )
+    )
+}  
+
 fn_plotind <- function(mods2compare, indname) {
-
-  fn_seldata <- function(x, i) {
-    x$data$Index[,i] %>%
-      bind_rows() %>%
-      pivot_longer(everything(), names_to="year") %>%
-      drop_na() %>%
-      mutate(year=as.numeric(year),
-              assessment_year=max(year)
-      )
-  }  
-
   mods <- compareModels(geth(mods2compare, "h1"))
   i <- grep(indname,mods[[1]]$data$Inames)
   dat2use <- list()
@@ -91,6 +95,9 @@ fn_plotind <- function(mods2compare, indname) {
 }
 
 finmodname <- "1.00"
+
+yr_prev <- as.numeric(format(Sys.time(), "%Y"))-1
+yr_curr <- as.numeric(format(Sys.time(), "%Y"))
 
 ```
 
@@ -268,7 +275,7 @@ plot(Dat_Curr,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 #### Biomass
 ```{r, biomass_h2_datcurr, fig.cap=paste0("Plot comparing biomass estimated with last year's data using the same model (", geth(mods2compare[1]),") but with data updated to ",as.numeric(format(Sys.time(), "%Y")),".")}
 hyp <- "h2"
-Dat_Curr <- compareModels(geth(mods2compare))
+Dat_Curr <- compareModels(geth(mods2compare, "h2"))
 
 plot(Dat_Curr,combine=T,what="biomass",stack=F,main="Biomass")
 ```
@@ -379,6 +386,8 @@ plot(Peru_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 ### Offshore CPUE
+Note that this time series ends in **`r yr_prev`**.
+
 ```{r, fig.height=3}
 mods2compare <- c("0.03", "0.04")
 
@@ -472,7 +481,7 @@ plot(dat_fin,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 # Model Update
-These results are from updating the model to include selectivity changes in the most recent year, and to extend the recruitment regime shift time series. This was the same procedure that was applied in previous years.
+These results are from updating the model to include selectivity changes in the most recent year, and to extend the recruitment regime shift time series. This is the same procedure that was applied in previous years.
 
 ```{r}
 mods2compare <- c("0.00","1.00")
@@ -525,7 +534,7 @@ Only indices with recent data are considered: CPUE indices for Chile, Peru and o
 
 
 |  Model |  Leaves In  |
-|:-------|------------:|
+|:-------|:------------|
 | 1.01   | Chile CPUE |
 | 1.02   | Offshore CPUE |
 | 1.03   | Peru CPUE |
@@ -567,10 +576,84 @@ p1 <- res_tidy$index_fits %>%
 print(p1)
 ```
 
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates  ", mod_cap), fig.height = 8}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare, "h2"))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Fit to Survey
+```{r}
+h2_tidy <- res_tidy$index_fits %>%
+  filter(model == "h2_1.00") %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se)
+
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name %in% dw) %>%
+  left_join(h2_tidy) %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = low, ymax =  upp), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y")
+print(p1)
+```
+
+## Leave-one-out Analysis
+Only indices with recent data are considered: CPUE indices for Chile, Peru and offshore, and Chile Acoustic N. Age composition data were left in.
+
+
+|  Model  |  Leaves Out  |
+|:-------:|:------------|
+|  1.06   | Chile CPUE |
+|  1.07   | Offshore CPUE |
+|  1.08   | Peru CPUE |
+|  1.09   | Acoustic N Chile |
+
+```{r}
+mods2compare <- c("1.00", "1.06", "1.07", "1.08", "1.09")
+mod_cap <- "from leaving one index abundance out."
+```
+
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+dw <- c("Chile_CPUE", "Offshore_CPUE", "Peru_CPUE", "Chile_AcousN")
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Fit to Survey
+```{r}
+h1_tidy <- res_tidy$index_fits %>%
+  filter(model == "h1_1.00") %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se)
+
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name %in% dw) %>%
+  left_join(h1_tidy) %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = low, ymax =  upp), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y")
+print(p1)
+```
+
 
 ### Two-stock hypothesis {.tabset}
 #### Biomass
-```{r, fig.cap=paste0("Plot comparing biomass estimates  ", mod_cap)}
+```{r, fig.cap=paste0("Plot comparing biomass estimates  ", mod_cap), fig.height=8}
 hyp <- "h2"
 res <- compareModels(geth(mods2compare, "h2"))
 res_tidy <- tidy_JJM(res)
@@ -599,7 +682,7 @@ print(p1)
 
 ---
 
-# Final Model
+# Final Model (NOT SELECTED YET)
 Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`.
 
 ## Comparison to last year

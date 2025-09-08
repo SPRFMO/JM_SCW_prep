@@ -21,18 +21,25 @@ Model      | Description
 0.09     |  As 0.08 but replaced Peru_CPUE index
 0.10     |  As 0.09 but updated AcousN 2025 index, with associated age composition and weight at age
 -----------|--------------
-**Models 1.x**| **Updated Model and Sensitivities**
-1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2025; 0.10 data file
-1.01  | As 1.00 but with downweighted Chile AcousN, Offshore CPUE, and Peru CPUE
-1.02  | As 1.00 but with downweighted Chile AcousN, Chile CPUE, and Peru CPUE
-1.03  | As 1.00 but with downweighted Chile CPUE, Offshore CPUE, and Chile AcousN
-1.04  | As 1.00 but with downweighted Chile CPUE, Offshore CPUE, and Peru CPUE
-1.05  | As 1.00 but with downweighted Chile CPUE, Offshore CPUE, Peru CPUE, and pre-2000 AcousN
-1.06  | As 1.00 but with selectivity change implemented for 2025 Offshore fishery (not run yet)
-1.07  | As 1.00 but with selectivity change implemented for 2025 CS Chile fishery (not run yet)
+Models 1.x | Updated Model and Sensitivities
+1.00       |  As 0.10 but with updated model (selectivity changes, recruitment) to 2025; 0.10 data file
+**Leave one in analysis** | --------------
+1.01       |  As 1.00 but with downweighted Chile AcousN, Offshore CPUE, and Peru CPUE
+1.02       |  As 1.00 but with downweighted Chile AcousN, Chile CPUE, and Peru CPUE
+1.03       |  As 1.00 but with downweighted Chile CPUE, Offshore CPUE, and Chile AcousN
+1.04       |  As 1.00 but with downweighted Chile CPUE, Offshore CPUE, and Peru CPUE
+1.05       |  As 1.00 but with downweighted Chile CPUE, Offshore CPUE, Peru CPUE, and pre-2000 AcousN
+**Leave one out analysis**  | --------------
+1.06       |  As 1.00 but with downweighted Chile CPUE
+1.07       |  As 1.00 but with downweighted Offshore CPUE
+1.08       |  As 1.00 but with downweighted Peru CPUE
+1.09       |  As 1.00 but with downweighted Chile AcousN
+**Regularly scheduled sensitivities** | --------------
+1.10       |  As 1.00 but with selectivity change implemented for 2025 Offshore fishery (not run yet)
+1.11       |  As 1.00 but with selectivity change implemented for 2025 CS Chile fishery (not run yet)
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
-**1.07.xx**     |  As 1.07 but **l**ow steepness and **s**hort recruitment time series (2001-2015)
+**1.xx.xx**     |  As 1.xx but **l**ow steepness and **s**hort recruitment time series (2001-2015)
 
 ## 2024 SC12 Model runs
 ### Notes
