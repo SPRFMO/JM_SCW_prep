@@ -1,8 +1,42 @@
 Jack mackerel assessment 
 =================================
+## 2025 SC13 Model runs
+### Notes
+Update assessment in Wellington, New Zealand, September 2025.
+
+### Naming convention
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     |  Exact 2024 (single stock `h1` and two-stock `h2`) model and data set (model 1.07) from SC12.
+0.01     |  As 0.00 but with revised catches through 2024 (currently still estimates)
+0.02     |  As 0.01 but with updated 2024 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2024 fishery length composition data for FarNorth
+0.03     |  As 0.02 but with updated 2024 weight at age data for all fisheries and their associated CPUE indices
+0.04     |  As 0.03 but replaced offshore CPUE up to 2024
+0.05     |  As 0.04 but with 2025 catch projections
+0.06     |  As 0.05 but with updated 2025 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2025 fishery length composition data for FarNorth
+0.07     |  As 0.06 but with updated 2025 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
+0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10     |  As 0.09 but updated AcousN 2025 index, with associated age composition and weight at age
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00  | As 0.10 but with updated model (selectivity changes, recruitment) to 2025; 0.10 data file
+1.01  | As 1.00 but with downweighted Chile AcousN, Offshore CPUE, and Peru CPUE
+1.02  | As 1.00 but with downweighted Chile AcousN, Chile CPUE, and Peru CPUE
+1.03  | As 1.00 but with downweighted Chile CPUE, Offshore CPUE, and Chile AcousN
+1.04  | As 1.00 but with downweighted Chile CPUE, Offshore CPUE, and Peru CPUE
+1.05  | As 1.00 but with downweighted Chile CPUE, Offshore CPUE, Peru CPUE, and pre-2000 AcousN
+1.06  | As 1.00 but with selectivity change implemented for 2025 Offshore fishery (not run yet)
+1.07  | As 1.00 but with selectivity change implemented for 2025 CS Chile fishery (not run yet)
+-----------|--------------
+**Models 1.xx.yy**| **Base Model Projections**
+**1.07.xx**     |  As 1.07 but **l**ow steepness and **s**hort recruitment time series (2001-2015)
+
 ## 2024 SC12 Model runs
 ### Notes
-Update assessment in Lima, Peru, Sep-Oct 2023.
+Update assessment in Lima, Peru, Sep-Oct 2024.
 
 ### Naming convention
 
@@ -15,7 +49,7 @@ Model      | Description
 0.03     | 	As 0.02 but with updated 2023 weight at age data for all fisheries and their associated CPUE indices
 0.04     | 	As 0.03 but replaced offshore CPUE up to 2023
 0.05     |  As 0.04 but with 2024 catch projections
-0.06     |  As 0.05 but with updated 2024 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2023 fishery length composition data for FarNorth
+0.06     |  As 0.05 but with updated 2024 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2024 fishery length composition data for FarNorth
 0.07     |  As 0.06 but with updated 2024 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
 0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.09     |  As 0.08 but replaced Peru_CPUE index
