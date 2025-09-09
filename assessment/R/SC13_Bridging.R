@@ -279,7 +279,7 @@ for(i in 1:mod_new[[1]]$data$Inum) {
     mod_new[[1]]$data$Iwtatage[,,i] <- rbind(mod_prev[[1]]$data$Iwtatage[,,i],tail(mod_prev[[1]]$data$Iwtatage[,,i],5) %>% colMeans())
 }
 
-# fn_bridge(mod_new, "0.05")
+fn_bridge(mod_new, "0.05")
 # mod0.05 <- runit(geth("0.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
@@ -326,7 +326,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
   }
 }
 
-# fn_bridge(mod_new, "0.06")
+fn_bridge(mod_new, "0.06")
 # mod0.06 <- runit(geth("0.06",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
@@ -361,8 +361,8 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
   }
 }
 
-# fn_bridge(mod_new, "0.07")
-mod0.07 <- runit(geth("0.07",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjms",parallel=T)
+fn_bridge(mod_new, "0.07")
+# mod0.07 <- runit(geth("0.07",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjms",parallel=T)
 
 mod_prev <- mod_new
 
@@ -381,7 +381,7 @@ mod_new[[1]]$data$Index[rows2use,i] <- dat2use$index
 mod_new[[1]]$data$Indexerr[rows2use,i] <- dat2use$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat2use$year
 
-# fn_bridge(mod_new, "0.08")
+fn_bridge(mod_new, "0.08")
 # mod0.08 <- runit(geth("0.08",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
@@ -401,7 +401,7 @@ mod_new[[1]]$data$Index[rows2use,i] <- dat2use$index
 mod_new[[1]]$data$Indexerr[rows2use,i] <- dat2use$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat2use$year
 
-# fn_bridge(mod_new, "0.09")
+fn_bridge(mod_new, "0.09")
 # mod0.09 <- runit(geth("0.09",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
@@ -440,7 +440,7 @@ mod_new[[1]]$data$Ipropage[rows2use,,i] <- dat_acous$agecomp
 mod_new[[1]]$data$Iagesample[rows2use,i] <- mod_new[[1]]$data$Iagesample[rev(which(!is.na(mod_new[[1]]$data$Iagesample[,i])))[1],i]
 
 
-# fn_bridge(mod_new, "0.10")
+fn_bridge(mod_new, "0.10")
 # mod0.10 <- runit(geth("0.10",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 

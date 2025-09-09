@@ -11,7 +11,6 @@
 library(jjmR)
 library(tidyverse)
 
-
 #---If running models in parallel
 
 library(foreach)
@@ -238,34 +237,40 @@ mod1.09 <- runit(geth("1.09",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../sr
 # 1.10 Changing selectivity and catchability for offshore fleet in 2025
 #-------------------
 
-
 h1_1.10 <- h1_1.00
 h2_1.10 <- h2_1.00
 
 yr2change <- 2025
 
 i <- grep("Offshore", h1_1.10[[1]]$data$Inames)
+
+# Downweight selectivity change penalty (increase flexibility) in 2025
 f <- grep("Offshore", h1_1.10[[1]]$data$Fnames)
-
-
-# Downweight selectivity change penalty (increase flexibility) in 2021
-ff <- which(h1_1.10[[1]]$control[[paste0("F",f,"_","selchangeYear")]]==2021)
-h1_1.01[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- h2_1.01[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- .8
-
-# Add break in q
-h1_1.10[[1]]$control$RW_q_phases[i] <- h2_1.01[[1]]$control$RW_q_phases[i] <- 1 # Make sure it's estimated
-h1_1.10[[1]]$control$RW_nyrs_q[i] <- h2_1.01[[1]]$control$RW_nyrs_q[i] <- h1_1.01[[1]]$control$RW_nyrs_q[i]+1  # Add number of years for change
-h1_1.10[[1]]$control$RW_q_yrs <- h2_1.01[[1]]$control$RW_q_yrs <- c(h1_1.01[[1]]$control$RW_q_yrs, 2021) # Add year of change
-h1_1.10[[1]]$control$RW_q_sigmas <- h2_1.01[[1]]$control$RW_q_sigmas <- c(h1_1.01[[1]]$control$RW_q_sigmas, h1_1.01[[1]]$control$RW_q_sigmas[1]) # Sigma for random walk
-
-# Change CV back to usual
-cv_cpue <- 0.2
-y <- which(rownames(h1_1.01[[1]]$data$Index) == 2022)
-h1_1.10[[1]]$data$Indexerr[y,i] <- h2_1.01[[1]]$data$Indexerr[y,i] <- h1_1.01[[1]]$data$Index[y,i] * cv_cpue
+ff <- which(h1_1.10[[1]]$control[[paste0("F",f,"_","selchangeYear")]]==yr2change)
+h1_1.10[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- h2_1.10[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- .9
 
 fn_update(h1_1.10, "1.10", "h1")
 fn_update(h2_1.10, "1.10", "h2")
-mod_1.10 <- runit(geth("1.10",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE, adflags=paste0("-tac ", tac_prev))
+mod_1.10 <- runit(geth("1.10",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
+
+
+#-------------------
+# 1.11 Changing selectivity and catchability for offshore fleet in 2025
+#-------------------
+
+h1_1.11 <- readJJM(geth("1.10","h1"), path = "config", input = "input")
+h2_1.11 <- readJJM(geth("1.10","h2"), path = "config", input = "input")
+
+yr2change <- 2025
+
+# Downweight selectivity change penalty (increase flexibility) in 2025
+f <- grep("SC_Chile_PS", h1_1.00[[1]]$data$Fnames)
+ff <- which(h1_1.11[[1]]$control[[paste0("F",f,"_","selchangeYear")]]==yr2change)
+h1_1.11[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- h2_1.11[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- .9
+
+fn_update(h1_1.11, "1.11", "h1")
+fn_update(h2_1.11, "1.11", "h2")
+mod_1.11 <- runit(geth("1.11",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
 
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
