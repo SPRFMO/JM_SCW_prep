@@ -35,8 +35,11 @@ Models 1.x | Updated Model and Sensitivities
 1.08       |  As 1.00 but with downweighted Peru CPUE
 1.09       |  As 1.00 but with downweighted Chile AcousN
 **Regularly scheduled sensitivities** | --------------
-1.10       |  As 1.00 but with selectivity change implemented for 2025 Offshore fishery (not run yet)
-1.11       |  As 1.00 but with selectivity change implemented for 2025 CS Chile fishery (not run yet)
+1.10       |  As 1.00 but with selectivity change implemented for 2025 Offshore fishery
+1.11       |  As 1.00 but with selectivity change implemented for 2025 CS Chile fishery
+1.12       |  As 1.11 but with increased weight for 2025 age compositions in the offshore and SC Chile fishery
+1.13       |  As 1.12 but with downweighted early years (pre-2000) of AcousN
+1.14       |  As 1.13 but with updates to historical weight at age for the FarNorth fleet
 -----------|--------------
 **Models 1.xx.yy**| **Base Model Projections**
 **1.xx.xx**     |  As 1.xx but **l**ow steepness and **s**hort recruitment time series (2001-2015)

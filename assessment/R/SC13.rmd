@@ -94,7 +94,7 @@ fn_plotind <- function(mods2compare, indname) {
   print(p)
 }
 
-finmodname <- "1.00"
+finmodname <- "1.14"
 
 yr_prev <- as.numeric(format(Sys.time(), "%Y"))-1
 yr_curr <- as.numeric(format(Sys.time(), "%Y"))
@@ -827,7 +827,25 @@ print(p1)
 ```
 
 ## Selectivity Changes for 2025
-The age composition data for offshore and the SC Chilean fleet.
+The model showed a very poor fit to recent data, particularly for the SC Chile and the offshore fleets. Efforts were made to improve the fit, namely by 1) allowing for additional flexibility in selectivity patterns for those fleets in 2025, and 2) increasing the weight of the age composition data in 2025.
+
+Within-year fishery data are typically downweighted by a factor of 0.1. For example:
+
+| Data Source | Years | Sample Size |
+|:------------|:-----:|:-----------:|
+| SC Chile    | < 2025| 64.3        |
+| SC Chile    | 2025  | 6.43        |
+| Offshore    | < 2025| 12.6        |
+| Offshore    | 2025  | 1.26        |
+
+Proposed Changes:
+
+| Data Source | Years | Sample Size |
+|:------------|:-----:|:-----------:|
+| SC Chile    | < 2025| 64.3        |
+| SC Chile    | 2025  | **32.1**    |
+| Offshore    | < 2025| 12.6        |
+| Offshore    | 2025  | **6.29**    |
 
 ```{r}
 mods2compare <- c("1.00", "1.10", "1.11", "1.12")
@@ -860,7 +878,7 @@ p1 <- res_tidy$index_fits %>%
     geom_path(aes(year, pred_ind, colour = model), alpha = .6) + 
     scale_x_continuous(name = "Year") + 
     scale_y_continuous(name = "Index Values") +
-    facet_wrap(vars(fleet_name), scales = "free_y")
+    facet_wrap(vars(fleet_name), scales = "free_y", ncol = 1)
 print(p1)
 ```
 
@@ -881,6 +899,12 @@ dat_age <- res_tidy$age_fits %>%
     scale_x_continuous(breaks = 1:12)
 
 print(dat_age)
+```
+
+#### Selectivity Estimates
+```{r}
+plot(res, what="selectivity", fleet="fsh", alpha = 0.1, scale = 10, years = 2025)
+
 ```
 
 ### Two-stock hypothesis {.tabset}
@@ -937,6 +961,111 @@ dat_age <- res_tidy$age_fits %>%
     scale_x_continuous(breaks = 1:12)
 
 print(dat_age)
+```
+
+## Downweighting (removal of) early years of Chile_AcousN survey data
+These years were very long ago (pre-2000) and the data still have an impact on the assessment. We don't like them and want them to go away.
+
+```{r}
+mods2compare <- c("1.12", "1.13")
+mod_cap <- "from severely downweighting the early years of Chile's acoustic survey data."
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Fit to survey
+```{r}
+h1_tidy <- res_tidy$index_fits %>%
+  filter(model == "h1_1.12") %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se)
+
+p1 <- res_tidy$index_fits %>%
+  left_join(h1_tidy) %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = low, ymax =  upp), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y")
+print(p1)
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Fit to survey
+```{r}
+h2_tidy <- res_tidy$index_fits %>%
+  filter(model == "h2_1.12") %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se)
+
+p1 <- res_tidy$index_fits %>%
+  left_join(h2_tidy) %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = low, ymax =  upp), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model)) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y")
+print(p1)
+```
+
+## FarNorth Weight at Age
+The historical weight at age in the assessment were not updated even though the data had been provided. Also, the mean weight at age for the older fish used a short-term historical mean. We instead would like to use the mean over the entire time series for these older fish (age 9-12) instead.
+
+```{r}
+mods2compare <- c("1.13", "1.14")
+mod_cap <- "from updating the FarNorth weight at age data."
+```
+
+### Data {.tabset}
+#### Current
+```{r}
+newmod <- readJJM(geth(mods2compare[1],"h1"), path = "config", input = "input")
+mod_diag <- diagnostics(newmod, plot = F)
+plot(mod_diag, var = "weightFishery")
+```
+
+#### Proposed
+```{r}
+newmod <- readJJM(geth(mods2compare[2],"h1"), path = "config", input = "input")
+mod_diag <- diagnostics(newmod, plot = F)
+plot(mod_diag, var = "weightFishery")
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
 ---
@@ -1098,4 +1227,3 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 ## General
 
 ## Other models to run
-- Downweight early years of Chile_AcousN

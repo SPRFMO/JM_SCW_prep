@@ -314,6 +314,75 @@ fn_bridge(h1_1.13, "1.13", h2mod = h2_1.12_ctl)
 mod1.13 <- runit(geth("1.13",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
+#-------------------
+# 1.14 Fixing weight at age for older fish at long-term average for F3
+#-------------------
+
+h1_1.13 <- readJJM(geth("1.13","h1"), path = "config", input = "input")
+h2_ctl <- readLines("config/h2_1.13.ctl")
+
+h1_1.14 <- h1_1.13
+
+yr2change <- 2013
+
+i <- grep("Peru_CPUE", h1_1.14[[1]]$data$Inames)
+f <- grep("FarNorth", h1_1.14[[1]]$data$Fnames)
+
+rows2use <- which(rownames(h1_1.14[[1]]$data$Fwtatage[,,f]) >= yr2change)
+
+wt_mean <- h1_1.14[[1]]$data$Fwtatage[,,f] %>%
+  as_tibble(rownames = "year") %>%
+  filter(year < yr2change) %>%
+  pivot_longer(-year, names_to = "age") %>%
+  mutate(age = as.numeric(age)) %>%
+  filter(age >= 9) %>%
+  group_by(age) %>%
+  summarise(wt = mean(value)) %>%
+  pivot_wider(names_from = age, values_from = wt)
+
+dat_wtatage_peru <- readxl::read_excel("data/WatAge_update_2025.xlsx", sheet=1) %>%
+  rename(year = yy) %>%
+  filter(year >= yr2change) %>%
+  bind_cols(wt_mean)
+
+dat_wtatage_peru %>%
+  pivot_longer(-year, names_to = "age", values_to = "wt") %>%
+  ggplot() +
+    geom_line(aes(x = year, y = wt, colour = age))
+
+
+dat2use <- dat_wtatage_peru %>%
+  select(-year) %>%
+  as.data.frame()
+
+for(y in seq_along(rows2use)) {
+  for(a in seq_along(dat2use)) {
+    h1_1.14[[1]]$data$Fwtatage[rows2use[y],a,f] <- dat2use[y,a]
+  }
+}
+
+h1_1.13[[1]]$data$Fwtatage[,,f] %>%
+  as_tibble(rownames = "year") %>%
+  mutate(year = as.numeric(year)) %>%
+  pivot_longer(-year, names_to = "age", values_to = "wt") %>%
+  ggplot() +
+    geom_line(aes(x = year, y = wt, colour = age))
+
+h1_1.14[[1]]$data$Fwtatage[,,f] %>%
+  as_tibble(rownames = "year") %>%
+  mutate(year = as.numeric(year)) %>%
+  pivot_longer(-year, names_to = "age", values_to = "wt") %>%
+  ggplot() +
+    geom_line(aes(x = year, y = wt, colour = age))
+
+# Update wtatage for CPUE
+rows2use <- which(rownames(h1_1.14[[1]]$data$Iwtatage[,,i]) >= yr2change)
+h1_1.14[[1]]$data$Iwtatage[rows2use,,i] <- h1_1.14[[1]]$data$Fwtatage[rows2use,,f]
+
+fn_bridge(h1_1.14, "1.14", h2mod = h2_ctl)
+mod1.14 <- runit(geth("1.14",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+
+
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
