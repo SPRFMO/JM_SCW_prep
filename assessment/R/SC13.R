@@ -87,7 +87,7 @@ for(i in vec_i) {
 }
 
 fn_bridge(mod_new, "1.01", h2mod = h2_ctl)
-mod1.01 <- runit(geth("1.01",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.01 <- runit(geth("1.01",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -105,7 +105,7 @@ for(i in vec_i) {
 }
 
 fn_bridge(mod_new, "1.02", h2mod = h2_ctl)
-mod1.02 <- runit(geth("1.02",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.02 <- runit(geth("1.02",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -123,7 +123,7 @@ for(i in vec_i) {
 }
 
 fn_bridge(mod_new, "1.03", h2mod = h2_ctl)
-mod1.03 <- runit(geth("1.03",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.03 <- runit(geth("1.03",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -141,7 +141,7 @@ for(i in vec_i) {
 }
 
 fn_bridge(mod_new, "1.04", h2mod = h2_ctl)
-mod1.04 <- runit(geth("1.04",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.04 <- runit(geth("1.04",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -164,7 +164,7 @@ rows2use <- which(rownames(mod_new[[1]]$data$Index) < 2000)
 mod_new[[1]]$data$Indexerr[rows2use, i] <- h1_1.00[[1]]$data$Indexerr[rows2use, i] * 100
 
 fn_bridge(mod_new, "1.05", h2mod = h2_ctl)
-mod1.05 <- runit(geth("1.05",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.05 <- runit(geth("1.05",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -180,7 +180,7 @@ rows2use <- !is.na(mod_new[[1]]$data$Index[,i])
 mod_new[[1]]$data$Indexerr[rows2use, i] <- h1_1.00[[1]]$data$Indexerr[rows2use, i] * 100
 
 fn_bridge(mod_new, "1.06", h2mod = h2_ctl)
-mod1.06 <- runit(geth("1.06",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.06 <- runit(geth("1.06",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -196,7 +196,7 @@ rows2use <- !is.na(mod_new[[1]]$data$Index[,i])
 mod_new[[1]]$data$Indexerr[rows2use, i] <- h1_1.00[[1]]$data$Indexerr[rows2use, i] * 100
 
 fn_bridge(mod_new, "1.07", h2mod = h2_ctl)
-mod1.07 <- runit(geth("1.07",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.07 <- runit(geth("1.07",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -212,8 +212,7 @@ rows2use <- !is.na(mod_new[[1]]$data$Index[,i])
 mod_new[[1]]$data$Indexerr[rows2use, i] <- h1_1.00[[1]]$data$Indexerr[rows2use, i] * 100
 
 fn_bridge(mod_new, "1.08", h2mod = h2_ctl)
-mod1.08 <- runit(geth("1.08",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
-
+mod1.08 <- runit(geth("1.08",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #-------------------
@@ -229,12 +228,12 @@ rows2use <- !is.na(mod_new[[1]]$data$Index[,i])
 mod_new[[1]]$data$Indexerr[rows2use, i] <- h1_1.00[[1]]$data$Indexerr[rows2use, i] * 100
 
 fn_bridge(mod_new, "1.09", h2mod = h2_ctl)
-mod1.09 <- runit(geth("1.09",c("h1","h2")),pdf=T,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod1.09 <- runit(geth("1.09",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 
 #-------------------
-# 1.10 Changing selectivity and catchability for offshore fleet in 2025
+# 1.10 Changing selectivity for offshore fleet in 2025
 #-------------------
 
 h1_1.10 <- h1_1.00
@@ -251,26 +250,68 @@ h1_1.10[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- h2_1.10[[1]]$contro
 
 fn_update(h1_1.10, "1.10", "h1")
 fn_update(h2_1.10, "1.10", "h2")
-mod_1.10 <- runit(geth("1.10",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
+mod_1.10 <- runit(geth("1.10",c("h1","h2")),pdf=FALSE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
 
 
 #-------------------
-# 1.11 Changing selectivity and catchability for offshore fleet in 2025
+# 1.11 Changing selectivity for SC Chile fleet in 2025
 #-------------------
 
-h1_1.11 <- readJJM(geth("1.10","h1"), path = "config", input = "input")
-h2_1.11 <- readJJM(geth("1.10","h2"), path = "config", input = "input")
+h1_1.10 <- readJJM(geth("1.10","h1"), path = "config", input = "input")
+h2_1.10 <- readJJM(geth("1.10","h2"), path = "config", input = "input")
+
+h1_1.11 <- h1_1.10
+h2_1.11 <- h2_1.10
 
 yr2change <- 2025
 
 # Downweight selectivity change penalty (increase flexibility) in 2025
-f <- grep("SC_Chile_PS", h1_1.00[[1]]$data$Fnames)
+f <- grep("SC_Chile_PS", h1_1.11[[1]]$data$Fnames)
 ff <- which(h1_1.11[[1]]$control[[paste0("F",f,"_","selchangeYear")]]==yr2change)
 h1_1.11[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- h2_1.11[[1]]$control[[paste0("F",f,"_","selchange")]][ff] <- .9
 
 fn_update(h1_1.11, "1.11", "h1")
 fn_update(h2_1.11, "1.11", "h2")
-mod_1.11 <- runit(geth("1.11",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
+mod_1.11 <- runit(geth("1.11",c("h1","h2")),pdf=FALSE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
+
+#-------------------
+# 1.12 Increasing weight of age composition data from offshore and SC Chile fleet in 2025
+#-------------------
+
+h1_1.11 <- readJJM(geth("1.11","h1"), path = "config", input = "input")
+h2_1.11_ctl <- readLines("config/h2_1.11.ctl")
+
+h1_1.12 <- h1_1.11
+
+fsh <- c("SC_Chile_PS", "Offshore_Trawl")
+fsh_ind <- which(h1_1.12[[1]]$data$Fnames %in% fsh)
+
+yr2change <- 2025
+
+for(f in fsh_ind) {
+  rows2use <- which(rownames(h1_1.12[[1]]$data$Fagecomp[,,f])==yr2change)
+  h1_1.12[[1]]$data$Fagesample[rows2use,f] <- h1_1.12[[1]]$data$Fagesample[(rows2use-1),f] * .5
+}
+
+fn_bridge(h1_1.12, "1.12", h2_1.11_ctl)
+mod_1.12 <- runit(geth("1.12",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
+
+
+#-------------------
+# 1.13 Increasing weight of age composition data from offshore and SC Chile fleet in 2025
+#-------------------
+
+h1_1.12 <- readJJM(geth("1.12","h1"), path = "config", input = "input")
+h2_1.12_ctl <- readLines("config/h2_1.12.ctl")
+
+h1_1.13 <- h1_1.12
+
+i <- which(h1_1.13[[1]]$data$Inames == "Chile_AcousN")
+rows2use <- which(rownames(h1_1.13[[1]]$data$Index) < 2000)
+h1_1.13[[1]]$data$Indexerr[rows2use, i] <- h1_1.12[[1]]$data$Indexerr[rows2use, i] * 100
+
+fn_bridge(h1_1.13, "1.13", h2mod = h2_1.12_ctl)
+mod1.13 <- runit(geth("1.13",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000

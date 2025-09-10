@@ -79,7 +79,7 @@ mod_new <- mod_prev
 cv_cpue <- 0.2
 cv_acousN <- .3
 
-file_input <- "data/SC13_2025assessmentInputData_V2.xlsx" # From https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository
+file_input <- "data/SC13_2025assessmentInputData_V3.xlsx" # From https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository
 names_input <- excel_sheets(file_input)
 
 # Age-0 fish are generally deleted from all the comp data.
@@ -146,7 +146,7 @@ catch_prev <- dat_catch %>%
 
 mod_new[[1]]$data$Fcaton[which(rownames(mod_new[[1]]$data$Fcaton)==yr_prev),] <- catch_prev
 
-# fn_bridge(mod_new, "0.01")
+fn_bridge(mod_new, "0.01")
 # mod0.01 <- runit(geth("0.01",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 mod_prev <- mod_new
@@ -193,7 +193,7 @@ for(f in 1:mod_new[[1]]$data$Fnum) {
     }
 }
 
-# fn_bridge(mod_new, "0.02")
+fn_bridge(mod_new, "0.02")
 # mod0.02 <- runit(geth("0.02",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
@@ -226,7 +226,7 @@ for(f in seq_along(mod_new[[1]]$data$Fnames)) {
   }
 }
 
-# fn_bridge(mod_new, "0.03")
+fn_bridge(mod_new, "0.03")
 # mod0.03 <- runit(geth("0.03",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 
@@ -246,7 +246,7 @@ mod_new[[1]]$data$Index[rows2use,i] <- dat2use$index
 mod_new[[1]]$data$Indexerr[rows2use,i] <- dat2use$err
 mod_new[[1]]$data$Iyears[rows2use,i] <- dat2use$year
 
-# fn_bridge(mod_new, "0.04")
+fn_bridge(mod_new, "0.04")
 # mod0.04 <- runit(geth("0.04",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 mod_prev <- mod_new
 

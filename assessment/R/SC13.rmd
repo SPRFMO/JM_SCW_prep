@@ -66,7 +66,7 @@ pwd <- getwd()
 fn_seldata <- function(x, i) {
   x$data$Index[,i] %>%
     bind_rows() %>%
-    pivot_longer(everything(), names_to="year") %>%
+    pivot_longer(everything(), names_to = "year") %>%
     drop_na() %>%
     mutate(
       year = as.numeric(year),
@@ -74,9 +74,9 @@ fn_seldata <- function(x, i) {
         i==7,
         max(year)+1,
         max(year)
-        )
+      )
     )
-}  
+} 
 
 fn_plotind <- function(mods2compare, indname) {
   mods <- compareModels(geth(mods2compare, "h1"))
@@ -87,10 +87,10 @@ fn_plotind <- function(mods2compare, indname) {
   }
 
   p <- map_dfr(dat2use, ~as_tibble(.)) %>%
-        mutate(assessment_year=as.factor(assessment_year)) %>%
-        ggplot() +
-          geom_line(aes(x=year,y=value,colour=assessment_year)) +
-          scale_x_continuous(breaks= scales::pretty_breaks())
+    mutate(assessment_year=as.factor(assessment_year)) %>%
+    ggplot() +
+      geom_line(aes(x=year,y=value,colour=assessment_year)) +
+      scale_x_continuous(breaks= scales::pretty_breaks())
   print(p)
 }
 
@@ -140,7 +140,7 @@ names(mod_prev_h1) <- mod_prev_h1[[1]]$control$modelName <- "mod_prev"
 ```{r biomass_h1_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h1), ") with a re-run of the model this year (", names(h1_mod0.00),").")}
 
 oldnewMods <- combineModels(h1_mod0.00, mod_prev_h1) %>%
-                changeNameModel(c("SC11 mod0.00","SC10 mod1.02"))
+  changeNameModel(c("SC13 mod0.00","SC12 mod1.07"))
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 
 ```
@@ -171,10 +171,10 @@ names(mod_prev_h2) <- mod_prev_h2[[1]]$control$modelName <- "mod_prev"
 
 ### Biomass
 
-```{r biomass_h2_0.00 , fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(h2_mod0.00),").")}
+```{r biomass_h2_0.00, fig.cap=paste0("Plot comparing biomass estimated by last year's model (", names(mod_prev_h2), ") with a re-run of the model this year (", names(h2_mod0.00),").")}
 
 oldnewMods <- combineModels(h2_mod0.00,mod_prev_h2) %>%
-                changeNameModel(geth(c("SC11 mod0.00","SC10 mod1.02")))
+                changeNameModel(geth(c("SC13 mod0.00","SC12 mod1.07")))
 
 plot(oldnewMods,combine=T,what="biomass",stack=F,main="Biomass")
 
@@ -192,6 +192,94 @@ plot(oldnewMods,combine=T,what="recruitment",stack=F,main="Recruitment")
 
 plot(oldnewMods,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
+
+# Updated Data
+## Datasets {.tabset}
+```{r dat_read}
+mod_dat <- readJJM("h1_0.10", path = "config", input = "input")
+mod_dat_diag <- diagnostics(mod_dat, plot=F)
+res_tidy <- tidy_JJM(mod_dat)
+
+```
+
+### Catch by Fleet
+```{r, dat_catch}
+catch <- mod_dat[[1]]$data$Fcaton
+colnames(catch) <- mod_dat[[1]]$data$Fnames
+
+catch <- as_tibble(catch, rownames = "year") %>%
+  mutate(year = as.numeric(year)) %>%
+  janitor::clean_names() %>%
+  rowwise(year) %>%
+  mutate(total = sum(c_across(n_chile:offshore_trawl))) %>%
+  ungroup() %>%
+  pivot_longer(n_chile:total, names_to = "fleet")
+
+dat_catch <- ggplot() +
+  geom_col(aes(x = year, y = value), data = catch %>% filter(fleet == "total"), fill = "lightgray") +
+  geom_density(aes(x = year, y = value, fill = fleet, colour = fleet), data = catch %>% filter(fleet != "total"), alpha = 0.4, stat = "identity") +
+  scale_x_continuous(name = "Year", guide = guide_axis(n.dodge = 2)) +
+  scale_fill_viridis_d() +
+  scale_colour_viridis_d()
+
+print(dat_catch)
+
+```
+
+### Indices of Abundance
+```{r, dat_index, fig.width = 7}
+dat_index <- res_tidy$index_fits %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se) %>%
+  ggplot() + 
+  geom_point(aes(x = year, y = observed_ind), alpha = 0.6) +
+  geom_line(aes(x = year, y = observed_ind)) +
+  scale_x_continuous(name = "Year", guide = guide_axis(n.dodge = 2)) + 
+  scale_y_continuous(name = "Index Values") +
+  facet_wrap(vars(fleet_name), scales = "free_y")
+
+print(dat_index)
+
+```
+
+### Age Composition
+```{r, dat_ages, fig.height = 8, fig.width = 8}
+dat_age <- res_tidy$age_fits %>%
+  filter(year > (yr_curr - 10)) %>% 
+  mutate(birthyear = year - age) %>%
+  mutate(cohort = as.factor(birthyear)) %>%
+  ggplot() + 
+  geom_col(aes(age, observed, fill = cohort)) + 
+  facet_grid(year~fleet_name) +
+  scale_fill_viridis_d(option = "turbo") +
+  guides(fill = "none") +
+  scale_x_continuous(breaks = 1:12)
+
+print(dat_age)
+
+```
+
+### Length Composition
+```{r, dat_lengths, fig.height = 8}
+dat_len <- res_tidy$len_fits %>%
+  filter(year > (yr_curr - 10)) %>% 
+  ggplot() + 
+  geom_col(aes(len, observed)) + 
+  facet_wrap(~year, ncol = 1, strip.position = "right")
+
+print(dat_len)
+
+```
+
+### Fishery Weight at Age
+```{r wtatagefsh}
+plot(mod_dat_diag, var = "weightFishery")
+```
+
+### Survey Weight at Age
+```{r wtatagesrv}
+plot(mod_dat_diag, var = "weightAge")
+```
+
 
 # Incremental Data Updates
 
@@ -253,7 +341,7 @@ mods2compare <- c("0.04","0.05","0.06","0.07", "0.08", "0.09", "0.09","0.10")
 ### Single-stock hypothesis {.tabset}
 #### Biomass
 ```{r, biomass_h1_datcurr, fig.cap=paste0("Plot comparing biomass estimated with last year's data using the same model (", geth(mods2compare[1]),") but with data updated to ",as.numeric(format(Sys.time(), "%Y")),".")}
-hyp <- "h1"
+hyp <- "h2"
 Dat_Curr <- compareModels(geth(mods2compare))
 
 plot(Dat_Curr,combine=T,what="biomass",stack=F,main="Biomass")
@@ -395,6 +483,64 @@ fn_plotind(mods2compare, "Offshore_CPUE")
 
 ```
 
+#### Comparison of the index from previous years
+```{r, fig.height = 4, fig.width = 7}
+filenames <- c(
+  "input/1.00.dat",
+  "input/arc/2024/1.07.dat",
+  "input/arc/2023/1.07.dat",
+  "input/arc/2022/1.02.dat",
+  "input/arc/2021/1.05.dat",
+  "input/arc/2020/1.00.dat",
+  "input/arc/2019/mod0.17.dat"
+)
+
+fn_extract <- function(fn) {
+  file_dat <- readLines(fn)
+  pat <- ifelse(
+    sum(grep("\t", file_dat)) > 100,
+    "\t",
+    " "
+  )
+
+  line_i <- grep("#Inames", file_dat) + 1
+  inames <- str_split_1(file_dat[line_i], pattern = "%")
+  ii <- which(str_detect(inames, "Offshore"))
+
+  line_in <- grep("#Index", file_dat)[1] + ii
+  index <- as.numeric(str_split_1(file_dat[line_in], pattern = pat))
+  
+  line_yr <- grep("#Iyears", file_dat)[1] + ii
+  yr <- as.numeric(str_split_1(file_dat[line_yr], pattern = pat))
+
+  line_assyr <- grep("#years", file_dat) + 2
+  assyr <- as.numeric(str_split_1(file_dat[line_assyr], pattern = pat))[1]
+
+  tibble(year = yr, value = index, assessment_year = assyr) %>% 
+    remove_missing()
+}
+
+offshore <- filenames %>%
+  map_dfr(fn_extract) 
+
+offshore_first <- offshore %>%
+  filter(year == min(year)) %>%
+  select(-year) %>%
+  rename(firstyr = value)
+
+offshore_std <- offshore %>%
+  left_join(offshore_first) %>%
+  mutate(std_value = value / firstyr) %>%
+  mutate(assessment_year = as.factor(assessment_year)) %>%
+  ggplot() + 
+    geom_line(aes(x = year, y = std_value, colour = assessment_year)) +
+    geom_point(aes(x = year, y = std_value, colour = assessment_year), alpha = .5) +
+    scale_colour_viridis_d()
+
+print(offshore_std)
+
+```
+
 #### Single-stock hypothesis {.tabset}
 ##### Biomass
 ```{r}
@@ -434,7 +580,7 @@ plot(Offshore_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ```
 
 # Final Data Update
-This just shows the final data update, using the exact same model (i.e., with the same control files).
+This shows the final data update, using the exact same model (i.e., with the same control files).
 
 ```{r}
 mods2compare <- c("0.00","0.10")
@@ -532,6 +678,7 @@ plot(Mod_Update,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ## Leave-one-in Analysis
 Only indices with recent data are considered: CPUE indices for Chile, Peru and offshore, and Chile Acoustic N. Age composition data were left in.
 
+Worth noting that both indices from the north (Acoustic N and Peru CPUE) have a positive impact on biomass, whereas the "southern" indices have a negative impact on biomass.
 
 |  Model |  Leaves In  |
 |:-------|:------------|
@@ -572,7 +719,7 @@ p1 <- res_tidy$index_fits %>%
     geom_path(aes(year, pred_ind, colour = model)) + 
     scale_x_continuous(name = "Year") + 
     scale_y_continuous(name = "Index Values") +
-    facet_wrap(vars(fleet_name), scales = "free_y")
+    facet_wrap(vars(fleet_name), scales = "free_y", ncol = 1)
 print(p1)
 ```
 
@@ -679,6 +826,118 @@ p1 <- res_tidy$index_fits %>%
 print(p1)
 ```
 
+## Selectivity Changes for 2025
+The age composition data for offshore and the SC Chilean fleet.
+
+```{r}
+mods2compare <- c("1.00", "1.10", "1.11", "1.12")
+mod_cap <- "from allowing additional flexibility in selectivity patterns for the offshore and the SC Chilean fleets in 2025."
+```
+
+### Single-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h1"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+srv <- c("Chile_CPUE", "Offshore_CPUE")
+fsh <- c("SC_Chile_PS", "Offshore_Trawl")
+plot(res,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+#### Fit to Survey
+```{r}
+h1_tidy <- res_tidy$index_fits %>%
+  filter(model == "h1_1.00") %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se)
+
+p1 <- res_tidy$index_fits %>%
+  filter(fleet_name %in% srv) %>%
+  left_join(h1_tidy) %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = low, ymax =  upp), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model), alpha = .6) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y")
+print(p1)
+```
+
+#### Fit to Age Composition
+```{r, fig.height = 8, fig.width = 8}
+dat_age <- res_tidy$age_fits %>%
+  filter(year > (yr_curr - 3),
+    fleet_name %in% fsh) %>% 
+  mutate(birthyear = year - age) %>%
+  mutate(cohort = as.factor(birthyear)) %>%
+  ggplot() + 
+    geom_col(aes(age, observed, fill = cohort)) + 
+    geom_path(aes(age, predicted, colour = model), linewidth = 1, alpha = .8) +
+    geom_point(aes(age, predicted, colour = model), alpha = .8) +
+    facet_grid(year~fleet_name) +
+    scale_fill_viridis_d(option = "turbo") +
+    guides(fill = "none") +
+    scale_x_continuous(breaks = 1:12)
+
+print(dat_age)
+```
+
+### Two-stock hypothesis {.tabset}
+#### Biomass
+```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
+hyp <- "h2"
+res <- compareModels(geth(mods2compare))
+res_tidy <- tidy_JJM(res)
+
+srv <- c("Chile_CPUE", "Offshore_CPUE")
+fsh <- c("SC_Chile_PS", "Offshore_Trawl")
+
+biom <- res_tidy$totals %>%
+  as_tibble() %>%
+  filter(metric == "TotBiom") %>%
+  ggplot() +
+    geom_path(aes(x = year, y = value, colour = model, linetype = stock)) +
+    ggtitle("Biomass")
+print(biom)
+```
+
+#### Fit to Survey
+```{r}
+h2_tidy <- res_tidy$index_fits %>%
+  filter(model == "h2_1.00") %>%
+  mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se)
+
+p2 <- res_tidy$index_fits %>%
+  filter(fleet_name %in% srv) %>%
+  left_join(h2_tidy) %>%
+  ggplot() + 
+    geom_pointrange(aes(year, observed_ind, ymin = low, ymax =  upp), alpha = 0.5) +
+    geom_path(aes(year, pred_ind, colour = model), alpha = .6) + 
+    scale_x_continuous(name = "Year") + 
+    scale_y_continuous(name = "Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y", ncol = 1)
+print(p2)
+```
+
+#### Fit to Age Composition
+```{r, fig.height = 8, fig.width = 8}
+dat_age <- res_tidy$age_fits %>%
+  filter(year > (yr_curr - 3),
+    fleet_name %in% fsh) %>% 
+  mutate(birthyear = year - age) %>%
+  mutate(cohort = as.factor(birthyear)) %>%
+  ggplot() + 
+    geom_col(aes(age, observed, fill = cohort)) + 
+    geom_path(aes(age, predicted, colour = model), linewidth = 1, alpha = .8) +
+    geom_point(aes(age, predicted, colour = model), alpha = .8) +
+    facet_grid(year~fleet_name) +
+    scale_fill_viridis_d(option = "turbo") +
+    guides(fill = "none") +
+    scale_x_continuous(breaks = 1:12)
+
+print(dat_age)
+```
 
 ---
 
@@ -697,7 +956,6 @@ res_tidy <- tidy_JJM(res)
 
 mod_cap <- "from last year's model with the final model selected for this year."
 ```
-
 
 ### Single-stock hypothesis {.tabset}
 #### Biomass
@@ -786,7 +1044,6 @@ plot(bmsy_diag, var = "summarySheet")
 
 
 ### Two-Stock Hypothesis
-
 ```{r results=F}
 new_bmsy_s <- mean(rev(h2_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
 new_bmsy_n <- mean(rev(h2_mod[[1]]$output[[2]]$msy_mt[,10])[1:10])
@@ -837,15 +1094,8 @@ knitr::kable(LL) %>% kableExtra::kable_styling()
 
 # Other Business
 ## Data needs
-- Mean weight at age for F3
-- F4 2025 projected catch data
-  - Only using projections for EU
-  - Korea and Russian Federation not fishing
-
 
 ## General
 
 ## Other models to run
-- Leave one out for CPUE indices
-- Selex change for 2025 offshore
-- Selex change for 2025 Chile
+- Downweight early years of Chile_AcousN
