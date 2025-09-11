@@ -8,12 +8,71 @@ library(ggthemes)
 # summarize H1 and H2
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
-finmodname_h1 <- geth("1.07", h="h1")
-finmodname_h2 <- geth("1.07", h="h2")
+finmodname_h1 <- geth("1.14", h="h1")
+finmodname_h2 <- geth("1.14", h="h2")
+
+finmodnm <- "1.14"
 
 # Was using mod.ls for previous SCs, changed in SC12
-mod_h1 <- readJJM(paste0(finmodname_h1),path="config",input="input")
-mod_h2 <- readJJM(paste0(finmodname_h2),path="config",input="input")
+mod_h1 <- readJJM(finmodname_h1,path="config",input="input")
+mod_h2 <- readJJM(finmodname_h2,path="config",input="input")
+
+res <- compareModels(geth(finmodnm, c("h1","h2")))
+res_tidy <- tidy_JJM(res)
+
+mt <- res_tidy$msy_mt %>%
+  select(model, stock, year, f) %>%
+  rename(value = f) %>%
+  mutate(metric = "f")
+
+msy <- res_tidy$msy_mt %>%
+  select(model, stock, year, fmsy, bmsy) %>%
+  pivot_longer(fmsy:bmsy, names_to = "metric", values_to = "msy") %>%
+  mutate(metric = str_remove(metric, "msy"))
+
+rec <- res_tidy$totals %>%
+  filter(metric %in% c("R", "SSB")) %>%
+  mutate(metric = case_when(
+    metric == "R" ~ "rec",
+    metric == "SSB" ~ "b"
+    )
+  ) %>%
+  select(model, stock, year, metric, value, lowerbound, upperbound)
+
+tb <- mt %>%
+  bind_rows(rec) %>%
+  left_join(msy) %>%
+  filter(year >= 1970) %>%
+  mutate(
+    stock = ifelse(
+      str_detect(model, "h1"),
+      "comb",
+      ifelse(
+        str_detect(stock, "1"),
+        "south",
+        "north"
+      )
+    )
+  ) %>%
+  mutate(
+    model = ifelse(
+      str_detect(model, "h1"),
+      "h1 (one stock)",
+      "h2 (two stock)"
+    )
+  ) %>%
+  mutate(
+    refpoint = case_when(
+      stock == "comb" & metric == "f" ~ "Fmsy",
+      stock == "comb" & metric == "b" ~ "Bmsy",
+
+      stock == "north" & metric == "f" ~ "Fmsy north",
+      stock == "north" & metric == "b" ~ "Bmsy north",
+
+      stock == "south" & metric == "f" ~ "Fmsy south",
+      stock == "south" & metric == "b" ~ "Bmsy south",
+    )
+  )
 
 rp <-
             data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="Fishing mortality", Refpoint="Fmsy",
@@ -21,20 +80,20 @@ rp <-
                        Value=mod_h1[[1]]$output$Stock_1$msy_mt[,5]) %>%
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="south",Var="Fishing mortality", Refpoint="Fmsy south",
                        Year =mod_h2[[1]]$output$Stock_1$msy_mt[,1],
-                       Value=mod_h2[[1]]$output$Stock_1$msy_mt[,5])) %>% 
+                       Value=mod_h2[[1]]$output$Stock_1$msy_mt[,5])) %>%
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="north",Var="Fishing mortality", Refpoint="Fmsy north",
                        Year =mod_h2[[1]]$output$Stock_2$msy_mt[,1],
-                       Value=mod_h2[[1]]$output$Stock_2$msy_mt[,5])) %>% 
+                       Value=mod_h2[[1]]$output$Stock_2$msy_mt[,5])) %>%
 
   bind_rows(data.frame(Hyp="H1 (one stock)", Model="LS, SS", Stock="comb" ,Var="SSB", Refpoint="Bmsy",
                        Year=mod_h1[[1]]$output$Stock_1$msy_mt[,1],
                        Value=fixed_bmsy(mod_h1)[[1]]$output$Stock_1$msy_mt[,10])) %>%
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="south",Var="SSB", Refpoint="Bmsy south",
                        Year =mod_h2[[1]]$output$Stock_1$msy_mt[,1],
-                       Value=fixed_bmsy(mod_h2)[[1]]$output$Stock_1$msy_mt[,10])) %>% 
+                       Value=fixed_bmsy(mod_h2)[[1]]$output$Stock_1$msy_mt[,10])) %>%
   bind_rows(data.frame(Hyp="H2 (two stock)", Model="LS, SS", Stock="north",Var="SSB", Refpoint="Bmsy north",
                        Year =mod_h2[[1]]$output$Stock_2$msy_mt[,1],
-                       Value=fixed_bmsy(mod_h2)[[1]]$output$Stock_2$msy_mt[,10]))  
+                       Value=fixed_bmsy(mod_h2)[[1]]$output$Stock_2$msy_mt[,10]))
 
 
 # assessment
@@ -42,30 +101,30 @@ mdf <-
             data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="SSB",
                        mod_h1[[1]]$output[[1]]$SSB) %>%
   bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="SSB",
-                       mod_h2[[1]]$output[[1]]$SSB)) %>% 
+                       mod_h2[[1]]$output[[1]]$SSB)) %>%
   bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="SSB",
-                       mod_h2[[1]]$output[[2]]$SSB)) %>% 
+                       mod_h2[[1]]$output[[2]]$SSB)) %>%
 
   bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Recruitment",
                        mod_h1[[1]]$output[[1]]$R)) %>%
   bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="Recruitment",
-                       mod_h2[[1]]$output[[1]]$R)) %>% 
+                       mod_h2[[1]]$output[[1]]$R)) %>%
   bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="Recruitment",
-                       mod_h2[[1]]$output[[2]]$R)) %>% 
+                       mod_h2[[1]]$output[[2]]$R)) %>%
 
   bind_rows(
       bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Fishing mortality",
                          mod_h1[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>%
       bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south",Var="Fishing mortality",
-                           mod_h2[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>% 
+                           mod_h2[[1]]$output[[1]]$msy_mt[,c(1,6)])) %>%
       bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north",Var="Fishing mortality",
-                           mod_h2[[1]]$output[[2]]$msy_mt[,c(1,6)])) %>% 
+                           mod_h2[[1]]$output[[2]]$msy_mt[,c(1,6)])) %>%
       setNames(gsub("year","X1",names(.))) %>%
       setNames(gsub("f","X2",names(.)))
   ) %>%
 
   setNames( c("Hyp", "Scenario","Stock","Var", "Year","Value","SD","lb","ub")) %>%
-  mutate(Var = factor(Var, levels=c("Catch", "SSB","Fishing mortality","Recruitment"))) %>%
+  mutate(Var = factor(Var, levels=c("Catch", "SSB (kt)","Fishing mortality","Recruitment (numbers)"))) %>%
   mutate(Stock = tolower(Stock)) %>%
   mutate(Hyp = ifelse(Hyp=="H1", "H1 (one stock)", "H2 (two stock)"))
 # %>%
@@ -101,14 +160,14 @@ fc <-
                        X2=0.00 ))%>%
 
   setNames( c("Hyp", "Scenario","Stock","Var", "Fmult", "Year","Value","SD","lb","ub")) %>%
-  mutate(Var = factor(Var, levels=c("Catch", "SSB","Fishing mortality","Recruitment"))) %>%
+  mutate(Var = factor(Var, levels=c("Catch", "SSB (kt)","Fishing Mortality","Recruitment (numbers)"))) %>%
   mutate(Hyp = ifelse(Hyp=="H1", "H1 (one stock)", "H2 (two stock)"))  %>%
   mutate(Stock = ifelse(Stock=="comb","", Stock))
 
 # NOT USED
 cc1 <-
             data.frame(Hyp="H1", Model="LS, SS", Var="Catch", rownames_to_column(as.data.frame(mod_h1[[1]]$data$Fcaton), var="Year") ) %>%
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", Var="Catch", rownames_to_column(as.data.frame(mod_h2[[1]]$data$Fcaton), var="Year")) ) %>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", Var="Catch", rownames_to_column(as.data.frame(mod_h2[[1]]$data$Fcaton), var="Year")) ) %>%
 
   pivot_longer(names_to="Stock", values_to="Value", fishery1:fishery4) %>%
   mutate(Stock = ifelse(Hyp=="H1", "comb", Stock)) %>%
@@ -117,7 +176,7 @@ cc1 <-
   group_by(Hyp, Model, Stock, Var, Year) %>%
   summarise(Value = sum(Value, na.rm=TRUE)) %>%
   mutate(Year = as.numeric(Year)) %>%
-  mutate(Var = factor(Var, levels=c("Catch","SSB","Fishing mortality","Recruitment")))  %>%
+  mutate(Var = factor(Var, levels=c("Catch","SSB (kt)","Fishing Mortality","Recruitment (numbers)")))  %>%
   mutate(Hyp = ifelse(Hyp=="H1", "H1 (one stock)", "H2 (two stock)"))  %>%
   mutate(Stock = ifelse(Stock=="comb","", Stock))
 
@@ -130,22 +189,22 @@ cc2 <-
   bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Catch", Fmult="FMSY", mod_h1[[1]]$output[[1]]$Catch_fut_4))%>%
   bind_rows(data.frame(Hyp="H1", Model="LS, SS", stock="comb" ,Var="Catch", Fmult="0.0", mod_h1[[1]]$output[[1]]$Catch_fut_5))%>%
 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="1.0", mod_h2[[1]]$output[[1]]$Catch_fut_1)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="0.75", mod_h2[[1]]$output[[1]]$Catch_fut_2)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="1.25", mod_h2[[1]]$output[[1]]$Catch_fut_3))%>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="FMSY", mod_h2[[1]]$output[[1]]$Catch_fut_4))%>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="0.0", mod_h2[[1]]$output[[1]]$Catch_fut_5))%>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="1.0", mod_h2[[1]]$output[[1]]$Catch_fut_1)) %>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="0.75", mod_h2[[1]]$output[[1]]$Catch_fut_2)) %>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="1.25", mod_h2[[1]]$output[[1]]$Catch_fut_3))%>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="FMSY", mod_h2[[1]]$output[[1]]$Catch_fut_4))%>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="south" ,Var="Catch", Fmult="0.0", mod_h2[[1]]$output[[1]]$Catch_fut_5))%>%
 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="1.0", mod_h2[[1]]$output[[2]]$Catch_fut_1)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="0.75", mod_h2[[1]]$output[[2]]$Catch_fut_2)) %>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="1.25", mod_h2[[1]]$output[[2]]$Catch_fut_3))%>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="FMSY", mod_h2[[1]]$output[[2]]$Catch_fut_4))%>% 
-  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="0.0", mod_h2[[1]]$output[[2]]$Catch_fut_5))%>% 
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="1.0", mod_h2[[1]]$output[[2]]$Catch_fut_1)) %>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="0.75", mod_h2[[1]]$output[[2]]$Catch_fut_2)) %>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="1.25", mod_h2[[1]]$output[[2]]$Catch_fut_3))%>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="FMSY", mod_h2[[1]]$output[[2]]$Catch_fut_4))%>%
+  bind_rows(data.frame(Hyp="H2", Model="LS, SS", stock="north" ,Var="Catch", Fmult="0.0", mod_h2[[1]]$output[[2]]$Catch_fut_5))%>%
 
 
   setNames( c("Hyp", "Scenario","Stock","Var", "Fmult", "Year","Value")) %>%
   mutate(Year = as.numeric(Year)) %>%
-  mutate(Var = factor(Var, levels=c("Catch","SSB","Fishing mortality","Recruitment")))  %>%
+  mutate(Var = factor(Var, levels=c("Catch","SSB (kt)","Fishing Mortality","Recruitment (numbers)")))  %>%
   mutate(Hyp = ifelse(Hyp=="H1", "H1 (one stock)", "H2 (two stock)"))  %>%
   mutate(Stock = ifelse(Stock=="comb","", Stock)) %>%
   mutate(fcgroup = paste0(Fmult, Stock))

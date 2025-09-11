@@ -383,6 +383,7 @@ fn_bridge(h1_1.14, "1.14", h2mod = h2_ctl)
 mod1.14 <- runit(geth("1.14",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 
+
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 # Projection runs
 #0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -405,6 +406,9 @@ write.csv(summary(finmod)$like,"results/SummaryLikelihoods_h1.csv")
 finmod <- readJJM(geth(finmodname,"h2"),path="config",input="input")
 write.csv(summary(finmod)$like,"results/SummaryLikelihoods_h2.csv")
 
+
+source(here::here("R", "plot_metadataoverview.R"))
+print(p1)
 #------------------
 # Kobe for main doc
 # Summary sheets

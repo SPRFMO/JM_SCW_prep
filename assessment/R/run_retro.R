@@ -17,7 +17,7 @@ devtools::load_all()
 setwd(dir.jjm)
 
 
-modnm <- "h1_1.07"
+modnm <- "h2_1.14"
 
 mod <- readJJM(modnm, path = "config", input = "input")
 mod_r <- mod

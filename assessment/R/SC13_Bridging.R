@@ -77,7 +77,7 @@ yr_curr <- as.numeric(format(Sys.time(), "%Y"))
 mod_new <- mod_prev
 
 cv_cpue <- 0.2
-cv_acousN <- .3
+cv_acousN <- 0.3
 
 file_input <- "data/SC13_2025assessmentInputData_V3.xlsx" # From https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository
 names_input <- excel_sheets(file_input)
@@ -124,7 +124,7 @@ dat_cpue <- read_excel(file_input, sheet=4) %>%
   pivot_longer(contains("F"), names_to="fleet", values_to="index") %>%
   mutate(fleet=as.numeric(str_extract(fleet,"\\d")),
          err=ifelse(year == yr_curr, cv_cpue * index * 2, cv_cpue * index)
-       )
+  )
 
 dat_acous <- read_excel(file_input, sheet=6) %>%
   pivot_longer(contains("F"), names_to="fleet") %>%

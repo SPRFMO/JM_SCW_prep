@@ -10,7 +10,7 @@ Models 0.x,Data introductions
 0.07,"  As 0.06 but with updated 2025 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices"
 0.08,  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
 0.09,  As 0.08 but replaced Peru_CPUE index
-0.10,"  As 0.09 but updated 2025 AcousN index, with associated age composition and weight at age"
+0.1,"  As 0.09 but updated 2025 AcousN index, with associated age composition and weight at age"
 Models 1.x,Updated Model and Sensitivities
 1.00," As 0.10 but with updated model (selectivity changes, recruitment) to 2025; 0.10 data file"
 **Leave one in analysis**,

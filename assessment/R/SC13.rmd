@@ -1,5 +1,5 @@
 ---
-title: "Jack Mackerel Assessment SC13 (Preliminary)"
+title: "Jack Mackerel Assessment SC13"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -219,6 +219,7 @@ dat_catch <- ggplot() +
   geom_col(aes(x = year, y = value), data = catch %>% filter(fleet == "total"), fill = "lightgray") +
   geom_density(aes(x = year, y = value, fill = fleet, colour = fleet), data = catch %>% filter(fleet != "total"), alpha = 0.4, stat = "identity") +
   scale_x_continuous(name = "Year", guide = guide_axis(n.dodge = 2)) +
+  scale_y_continuous(name = "Catch (kt)") +
   scale_fill_viridis_d() +
   scale_colour_viridis_d()
 
@@ -231,11 +232,11 @@ print(dat_catch)
 dat_index <- res_tidy$index_fits %>%
   mutate(low = observed_ind - 1.96 * observed_se, upp =  observed_ind + 1.96 * observed_se) %>%
   ggplot() + 
-  geom_point(aes(x = year, y = observed_ind), alpha = 0.6) +
-  geom_line(aes(x = year, y = observed_ind)) +
-  scale_x_continuous(name = "Year", guide = guide_axis(n.dodge = 2)) + 
-  scale_y_continuous(name = "Index Values") +
-  facet_wrap(vars(fleet_name), scales = "free_y")
+    geom_point(aes(x = year, y = observed_ind), alpha = 0.6) +
+    geom_line(aes(x = year, y = observed_ind)) +
+    xlab("Year") + 
+    ylab("Index Values") +
+    facet_wrap(vars(fleet_name), scales = "free_y")
 
 print(dat_index)
 
@@ -252,7 +253,8 @@ dat_age <- res_tidy$age_fits %>%
   facet_grid(year~fleet_name) +
   scale_fill_viridis_d(option = "turbo") +
   guides(fill = "none") +
-  scale_x_continuous(breaks = 1:12)
+  scale_x_continuous(name = "Age", breaks = 1:12) +
+  ylab("Observed Proportions")
 
 print(dat_age)
 
@@ -388,6 +390,64 @@ fn_plotind(mods2compare, "Chile_CPUE")
 
 ```
 
+
+```{r}
+filenames <- c(
+  "input/1.00.dat",
+  "input/arc/2024/1.07.dat",
+  "input/arc/2023/1.07.dat",
+  "input/arc/2022/1.02.dat",
+  "input/arc/2021/1.05.dat",
+  "input/arc/2020/1.00.dat",
+  "input/arc/2019/mod0.17.dat"
+)
+
+fn_extract <- function(fn, inm) {
+  file_dat <- readLines(fn)
+  pat <- ifelse(
+    sum(grep("\t", file_dat)) > 100,
+    "\t",
+    " "
+  )
+
+  line_i <- grep("#Inames", file_dat) + 1
+  inames <- str_split_1(file_dat[line_i], pattern = "%")
+  ii <- which(str_detect(inames, inm))
+
+  line_in <- grep("#Index", file_dat)[1] + ii
+  index <- as.numeric(str_split_1(file_dat[line_in], pattern = pat))
+  
+  line_yr <- grep("#Iyears", file_dat)[1] + ii
+  yr <- as.numeric(str_split_1(file_dat[line_yr], pattern = pat))
+
+  line_assyr <- grep("#years", file_dat) + 2
+  assyr <- as.numeric(str_split_1(file_dat[line_assyr], pattern = pat))[1]
+
+  tibble(year = yr, value = index, assessment_year = assyr) %>% 
+    remove_missing()
+}
+
+chile <- filenames %>%
+  map_dfr(fn_extract, "Chile_CPUE") 
+
+chile_first <- chile %>%
+  filter(year == min(year)) %>%
+  select(-year) %>%
+  rename(firstyr = value)
+
+chile_std <- chile %>%
+  left_join(chile_first) %>%
+  mutate(std_value = value / firstyr) %>%
+  mutate(assessment_year = as.factor(assessment_year)) %>%
+  ggplot() + 
+    geom_line(aes(x = year, y = std_value, colour = assessment_year)) +
+    geom_point(aes(x = year, y = std_value, colour = assessment_year), alpha = .5) +
+    scale_colour_viridis_d()
+
+print(chile_std)
+
+```
+
 #### Single-stock hypothesis {.tabset}
 ##### Biomass
 ```{r}
@@ -431,6 +491,30 @@ plot(Chile_CPUE,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 mods2compare <- c("0.08", "0.09")
 
 fn_plotind(mods2compare, "Peru_CPUE")
+
+```
+
+
+#### Comparison of the index from previous years
+```{r, fig.height = 4, fig.width = 7}
+peru <- filenames %>%
+  map_dfr(fn_extract, "Peru_CPUE") 
+
+peru_first <- peru %>%
+  filter(year == min(year)) %>%
+  select(-year) %>%
+  rename(firstyr = value)
+
+peru_std <- peru %>%
+  left_join(peru_first) %>%
+  mutate(std_value = value / firstyr) %>%
+  mutate(assessment_year = as.factor(assessment_year)) %>%
+  ggplot() + 
+    geom_line(aes(x = year, y = std_value, colour = assessment_year)) +
+    geom_point(aes(x = year, y = std_value, colour = assessment_year), alpha = .5) +
+    scale_colour_viridis_d()
+
+print(peru_std)
 
 ```
 
@@ -485,43 +569,8 @@ fn_plotind(mods2compare, "Offshore_CPUE")
 
 #### Comparison of the index from previous years
 ```{r, fig.height = 4, fig.width = 7}
-filenames <- c(
-  "input/1.00.dat",
-  "input/arc/2024/1.07.dat",
-  "input/arc/2023/1.07.dat",
-  "input/arc/2022/1.02.dat",
-  "input/arc/2021/1.05.dat",
-  "input/arc/2020/1.00.dat",
-  "input/arc/2019/mod0.17.dat"
-)
-
-fn_extract <- function(fn) {
-  file_dat <- readLines(fn)
-  pat <- ifelse(
-    sum(grep("\t", file_dat)) > 100,
-    "\t",
-    " "
-  )
-
-  line_i <- grep("#Inames", file_dat) + 1
-  inames <- str_split_1(file_dat[line_i], pattern = "%")
-  ii <- which(str_detect(inames, "Offshore"))
-
-  line_in <- grep("#Index", file_dat)[1] + ii
-  index <- as.numeric(str_split_1(file_dat[line_in], pattern = pat))
-  
-  line_yr <- grep("#Iyears", file_dat)[1] + ii
-  yr <- as.numeric(str_split_1(file_dat[line_yr], pattern = pat))
-
-  line_assyr <- grep("#years", file_dat) + 2
-  assyr <- as.numeric(str_split_1(file_dat[line_assyr], pattern = pat))[1]
-
-  tibble(year = yr, value = index, assessment_year = assyr) %>% 
-    remove_missing()
-}
-
 offshore <- filenames %>%
-  map_dfr(fn_extract) 
+  map_dfr(fn_extract, "Offshore_CPUE") 
 
 offshore_first <- offshore %>%
   filter(year == min(year)) %>%
@@ -719,7 +768,7 @@ p1 <- res_tidy$index_fits %>%
     geom_path(aes(year, pred_ind, colour = model)) + 
     scale_x_continuous(name = "Year") + 
     scale_y_continuous(name = "Index Values") +
-    facet_wrap(vars(fleet_name), scales = "free_y", ncol = 1)
+    facet_wrap(vars(fleet_name), scales = "free_y")
 print(p1)
 ```
 
@@ -904,7 +953,6 @@ print(dat_age)
 #### Selectivity Estimates
 ```{r}
 plot(res, what="selectivity", fleet="fsh", alpha = 0.1, scale = 10, years = 2025)
-
 ```
 
 ### Two-stock hypothesis {.tabset}
@@ -961,6 +1009,11 @@ dat_age <- res_tidy$age_fits %>%
     scale_x_continuous(breaks = 1:12)
 
 print(dat_age)
+```
+
+#### Selectivity Estimates
+```{r}
+plot(res, what="selectivity", fleet="fsh", alpha = 0.1, scale = 10, years = 2025)
 ```
 
 ## Downweighting (removal of) early years of Chile_AcousN survey data
@@ -1048,8 +1101,8 @@ mod_diag <- diagnostics(newmod, plot = F)
 plot(mod_diag, var = "weightFishery")
 ```
 
-### Single-stock hypothesis {.tabset}
-#### Biomass
+### Biomass {.tabset}
+#### Single-stock
 ```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
 hyp <- "h1"
 res <- compareModels(geth(mods2compare))
@@ -1058,8 +1111,7 @@ res_tidy <- tidy_JJM(res)
 plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 ```
 
-### Two-stock hypothesis {.tabset}
-#### Biomass
+#### Two-stock hypothesis
 ```{r, fig.cap=paste0("Plot comparing biomass estimates ", mod_cap)}
 hyp <- "h2"
 res <- compareModels(geth(mods2compare))
@@ -1070,8 +1122,8 @@ plot(res,combine=T,what="biomass",stack=F,main="Biomass")
 
 ---
 
-# Final Model (NOT SELECTED YET)
-Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`.
+# Final Model
+Model `r finmodname` was selected as the final model for `r format(Sys.time(), "%Y")`. This model incorporates data updated to 2025, flexibility in selectivity patterns for the SC Chile and Offshore fleets in 2025, and increased confidence (decreased CV) for the 2025 age composition data from the same fleets. The early years of Chile acoustic north survey data were downweighted, and the changes in Peruvian weight at age for older fish were corrected.
 
 ## Comparison to last year
 ```{r}
@@ -1134,7 +1186,6 @@ plot(res,combine=T,what="ftot",stack=F,main="Total Fishing Mortality")
 ### Single-Stock Hypothesis
 ```{r results=F}
 new_bmsy <- mean(rev(h1_mod[[1]]$output[[1]]$msy_mt[,10])[1:10])
-
 ```
 
 The $B_{MSY}$ for this year (an average of the most recent ten years) will be ***`r round(new_bmsy)/1000`*** million tons.
@@ -1160,13 +1211,30 @@ plot(h1_diag, var = "ageFitsSurvey")
 plot(h1_diag, var = "predictedObservedIndices")
 ```
 
+
+#### Projections {.tabset}
+
+Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
+
+##### SSB
+```{r}
+h1_mod_ls <- readJJM(paste0(h1nm,".ls"), path="config", input="input")
+h1_diag_ls <- diagnostics(h1_mod_ls, plots=F)
+plot(h1_diag_ls, var = "ssbPrediction")
+```
+
+##### Catch
+```{r}
+plot(h1_diag_ls, var = "catchPrediction")
+```
+
 #### Kobe Plot
 ```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons.")}
 kobe(fixed_bmsy(h1_mod), engine="ggplot")
 ```
 
 #### Summary Plot
-```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy)/1000, " million tons, shown by the orange line. The blue lines show the reference points estimated by the model.")}
+```{r, fig.cap=paste0("BMSY is fixed at ", round(new_bmsy)/1000, " million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.")}
 bmsy_diag <- diagnostics(fixed_bmsy(h1_mod), plots = F)
 plot(bmsy_diag, var = "summarySheet")
 ```
@@ -1203,13 +1271,29 @@ plot(h2_diag, var = "ageFitsSurvey")
 plot(h2_diag, var = "predictedObservedIndices")
 ```
 
+
+#### Projections {.tabset}
+Projections done under a conservative recruitment regime (steepness 0.65, recruitment curve estimated from 2001:2015).
+
+##### SSB
+```{r}
+h2_mod_ls <- readJJM(paste0(h2nm,".ls"), path="config", input="input")
+h2_diag_ls <- diagnostics(h2_mod_ls, plots=F)
+plot(h2_diag_ls, var = "ssbPrediction")
+```
+
+##### Catch
+```{r}
+plot(h2_diag_ls, var = "catchPrediction")
+```
+
 #### Kobe Plot
 ```{r, fig.width=8, fig.cap=paste0("BMSY fixed at ", round(new_bmsy_s)/1000, " million tons for the south stock and ", round(new_bmsy_n)/1000, " million tons for the north stock.")}
-kobe(fixed_bmsy(h2_mod), engine="ggplot") + facet_wrap(~stock, scale="free")
+kobe(fixed_bmsy(h2_mod_ls), engine="ggplot") + facet_wrap(~stock, scale="free")
 ```
 
 #### Summary Plot
-```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy_s)/1000, " million tons for the south stock and ", round(new_bmsy_n)/1000, "million tons for the north stock, shown as the orange line. The blue lines show the reference points estimated by the model.")}
+```{r, fig.cap=paste0("BMSY fixed at ", round(new_bmsy_s)/1000, " million tons for the south stock and ", round(new_bmsy_n)/1000, "million tons for the north stock, shown as the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.")}
 plot(h2_bmsy_diag, var = "summarySheet")
 ```
 
