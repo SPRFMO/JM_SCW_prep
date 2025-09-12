@@ -67,9 +67,9 @@ h2_1.00 <- readJJM(geth("1.00","h2"), path = "config", input = "input")
 
 file_dat <- h1_1.00[[1]]$data
 
-finmodname <- "1.07"
+finmodname <- "1.14"
 
-tac_prev <- sum(tail(h1_1.00[[1]]$data$Fcaton,1))
+tac_prev <- 1552500/1000 # From CMM 01-2025
 
 
 #-------------------
@@ -89,9 +89,6 @@ for(i in vec_i) {
 fn_bridge(mod_new, "1.01", h2mod = h2_ctl)
 mod1.01 <- runit(geth("1.01",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
-mod1.14 <- runit(geth("1.14",c("h1")),pdf=F,portrait=TRUE,est=TRUE,exec="../src/jjm",parallel=T)
-mod2.00 <- runit(geth("1.00",c("h2")),pdf=F,portrait=TRUE,est=TRUE,exec="../src/jjm",parallel=T)
-mod2.10 <- runit(geth("1.10",c("h2")),pdf=F,portrait=TRUE,est=TRUE,exec="../src/jjm",parallel=T)
 
 #-------------------
 # 1.02 Leave in Offshore CPUE
@@ -298,7 +295,6 @@ for(f in fsh_ind) {
 
 fn_bridge(h1_1.12, "1.12", h2_1.11_ctl)
 mod_1.12 <- runit(geth("1.12",c("h1","h2")),pdf=TRUE,portrait=F,est=TRUE,exec="../src/jjm", parallel=TRUE)
-
 
 #-------------------
 # 1.13 Increasing weight of age composition data from offshore and SC Chile fleet in 2025

@@ -439,10 +439,65 @@ rows2use <- which(rownames(mod_new[[1]]$data$Ipropage[,,i]) %in% unique(dat_acou
 mod_new[[1]]$data$Ipropage[rows2use,,i] <- dat_acous$agecomp
 mod_new[[1]]$data$Iagesample[rows2use,i] <- mod_new[[1]]$data$Iagesample[rev(which(!is.na(mod_new[[1]]$data$Iagesample[,i])))[1],i]
 
-
 fn_bridge(mod_new, "0.10")
 # mod0.10 <- runit(geth("0.10",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
+mod_prev <- mod_new
 
+#-------------
+# 0.11 Update historical catches
+#-------------
+
+mod_new <- mod_prev <- readJJM(geth("0.10","h1"), path = "config", input = "input")
+
+catch_tab <- read_xlsx("~/Downloads/SC13-JM03-Annex-1_rev1 (1).xlsx") %>%
+  select(-Total) %>%
+  pivot_longer(-year, names_to = c("country", "fleet"), names_pattern = "(.*)_(.)") %>%
+  group_by(year, fleet) %>%
+  summarise(tab = sum(value, na.rm = T)) %>%
+  mutate(tab = ifelse(tab==0, 1000, tab)) %>%
+  ungroup()
+
+catch_ass <- mod_new[[1]]$data$Fcaton %>%
+  as_tibble(rownames = "year") %>%
+  mutate(year = as.numeric(year)) %>%
+  pivot_longer(-year, names_to = "fleet", values_to = "ass", names_prefix = "fishery") %>%
+  mutate(ass = ass*1000)
+
+catches <- catch_tab %>%
+  left_join(catch_ass) %>%
+  mutate(diff = tab - ass) %>%
+  mutate(prop = diff/tab) %>%
+  ungroup() %>%
+  remove_missing()
+
+catches %>% filter(abs(prop) > .01)
+
+catches %>%
+  ggplot() + geom_histogram(aes(diff))
+
+catches %>%
+  pivot_longer(tab:ass, names_to = "source") %>%
+  ggplot() +
+    geom_line(aes(x = year, y = value, colour = fleet, linetype = source)) +
+    geom_point(aes(x = year, y = value, colour = fleet, size = log(abs(prop))))
+
+catches %>%
+  ggplot() +
+    geom_line(aes(x = year, y = diff, colour = fleet))
+
+dat_catch_tab <- catch_tab %>%
+  mutate(tab = tab/1000) %>%
+  pivot_wider(names_from = fleet, names_prefix = "fishery", values_from = tab) %>%
+  select(-year) %>%
+  as.data.frame()
+
+rownames(dat_catch_tab) <- rownames(mod_prev[[1]]$data$Fcaton)
+
+mod_new[[1]]$data$Fcaton <- dat_catch_tab
+mod_prev[[1]]$data$Fcaton
+
+fn_bridge(mod_new, "0.11")
+mod0.11 <- runit(geth("0.11",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
 #-------------
 # 1.00 Update CTL
@@ -450,7 +505,8 @@ fn_bridge(mod_new, "0.10")
 mod_h1 <- readJJM(geth("0.10","h1"), path = "config", input = "input")
 mod_h2 <- readJJM(geth("0.10","h2"), path = "config", input = "input")
 
-tac_prev <- sum(tail(mod_h1[[1]]$data$Fcaton,1))
+# tac_prev <- sum(tail(mod_h1[[1]]$data$Fcaton,1))
+tac_prev <- 1552500/1000
 
 mod_h1_new <- mod_h1
 mod_h2_new <- mod_h2

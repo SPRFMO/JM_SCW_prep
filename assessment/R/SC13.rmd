@@ -227,6 +227,18 @@ print(dat_catch)
 
 ```
 
+```{r tab_catch}
+tab_catch <- catch %>%
+  pivot_wider(names_from = fleet, values_from = value) %>%
+  filter(year >= (yr_curr - 4)) %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(4, bold = TRUE, background = "#1268b9", color = "white") %>%
+  row_spec(5, bold = TRUE, background = "#05427b", color = "white")
+
+tab_catch
+```
+
 ### Indices of Abundance
 ```{r, dat_index, fig.width = 7}
 dat_index <- res_tidy$index_fits %>%
@@ -681,6 +693,7 @@ These results are from updating the model to include selectivity changes in the 
 ```{r}
 mods2compare <- c("0.00","1.00")
 ```
+
 ## Single-stock hypothesis {.tabset}
 ### Biomass
 ```{r, biomass_h1_base, fig.cap=paste0("Plot comparing biomass estimates from last year's model (", geth(mods2compare[1]), ") to this year's (",geth(mods2compare[2]),").")}
