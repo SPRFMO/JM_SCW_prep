@@ -5768,6 +5768,8 @@ FUNCTION Write_R
     report_name = "For_R_"+ str(s) + ".rep";
     ofstream R_report(report_name);
     ofstream csv_report(report_csv);
+    R_report<< "$sel_msy"<<endl<<sel_msy<<endl; 
+    R_report<< "$sel_fut"<<endl<<sel_fut<<endl; 
     R_report<< "$repl_F"<<endl<<repl_F(s)<<endl; 
     R_report<< "$repl_yld"<<endl<<repl_yld(s)<<endl; 
     R_report<< "$repl_SSB"<<endl<<repl_SSB(s)<<endl; 
