@@ -328,7 +328,7 @@ DATA_SECTION
 	int fut_sel;
 	int msy_sel;
  LOCAL_CALCS
-  msy_sel=25;
+  msy_sel=15;
   log_input(msy_sel);
   fut_sel = 0;
   if ( (on=option_match(argc,argv,"-fut_sel"))>-1)
@@ -2777,14 +2777,11 @@ FUNCTION Calc_Dependent_Vars
   seltmp.initialize();
   Fatmp.initialize();
   Ztmp.initialize();
-  // for (k=1;k<=nfsh;k++)
-    // seltmp(k) = (sel_fsh(k,endyr));
-	seltmp = sel_fut;
   for (s=1;s<=nstk;s++)
     Ztmp(s) = (M(s,styr));
   for (k=1;k<=nfsh;k++)
   { 
-    Fatmp(k)            = (Fratio(k) * Fmsy(sel_map(1,k)) * seltmp(k));
+    Fatmp(k)            = (Fratio(k) * Fmsy(sel_map(1,k)) * sel_fut(k));
     Ztmp(sel_map(1,k)) += Fatmp(k);
   }
   dvar_matrix survmsy(1,nstk,1,nages);
@@ -3403,9 +3400,6 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
     Ftottmp.initialize();
     F_fut_tmp.initialize();
     dvector p_lastyr(1,nfsh);
-    seltmp.initialize();
-
-
 		// Need to remap F_fut_tmp to be based on mean selectivity when -fut_sel flag is non-zero
 		if (fut_sel)
 		{
@@ -3422,7 +3416,6 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
 		}
 		else
 		{
-		  seltmp  = sel_fut;
       for (k=1;k<=nfsh;k++)
 			{
         F_fut_tmp(k) = F(k,endyr);
@@ -3457,7 +3450,7 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
         // f_tmp = SolveF2(endyr,nage_future(i), 0.5 * catch_lastyr );
         //for (int k=1;k<=nfsh;k++) f_tmp(k) = .5*mean(F(k,endyr));
         F_fut_tmp *= 1.25;
-        // for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = seltmp(k)*Fratio(k)*Fmsy(s); // mean(F(k,endyr));
+        // for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = sel_fut(k)*Fratio(k)*Fmsy(s); // mean(F(k,endyr));
         break;
       case 4:
         // for (int k=1;k<=nfsh;k++) f_tmp(k) = .25*mean(F(k,endyr));
@@ -3477,7 +3470,7 @@ FUNCTION void get_future_Fs(const int& s,const int& i,const int& iscenario)
           F_fut_tmp(k) = f_tmp(k)*sel_fsh(k,endyr);
 				}
         // f_tmp = SolveF3(endyr, natage(s,endyr+1), hcr_tac, s);
-        // for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = f_tmp(k)*seltmp(k);
+        // for (int k=1;k<=nfsh;k++) F_fut_tmp(k) = f_tmp(k)*sel_fut(k);
         // cout<<catch_lastyr<<endl;// <<F_fut_tmp<<endl;exit(1);
         // cout << F_fut_tmp<<endl<<" ftmp2 "<<Fratio*ftmp2<<endl;exit(1);
         break;
@@ -3781,11 +3774,11 @@ FUNCTION dvar_vector yld(const dvar_vector& Fratio, const dvariable& Ftmp,int is
   msy_stuff.initialize();
 
   dvar_matrix seltmp4(1,nfsh,1,nages);
-  seltmp.initialize();
-  // for (k=1;k<=nfsh;k++)
-    // if (sel_map(1,k) == istk)
-      // seltmp(k) = sel_fsh(k,iyr); // NOTE uses last-year of fishery selectivity for projections.
-	seltmp4 = sel_msy;
+  seltmp4.initialize();
+  for (k=1;k<=nfsh;k++)
+    if (sel_map(1,k) == istk)
+      seltmp4(k) = sel_fsh(k,iyr); // NOTE uses last-year of fishery selectivity for projections.
+	// seltmp4 = sel_msy;
 
   dvar_matrix Fatmp(1,nfsh,1,nages);
   dvar_vector Ztmp(1,nages);
@@ -3835,10 +3828,10 @@ FUNCTION dvar_vector yld(const dvar_vector& Fratio, const dvariable& Ftmp, int i
 
   dvar_matrix seltmp5(1,nfsh,1,nages);
   seltmp5.initialize();
-  // for (k=1;k<=nfsh;k++)
-    // if (sel_map(1,k) == istk)
-      // seltmp(k) = sel_fsh(k,endyr); // NOTE uses last-year of fishery selectivity for projections.
-	seltmp5 = sel_msy;
+  for (k=1;k<=nfsh;k++)
+    if (sel_map(1,k) == istk)
+      seltmp5(k) = sel_msy(k); //Ojo // NOTE uses last-year of fishery selectivity for projections.
+	// seltmp5 = sel_msy;
 
   dvar_matrix Fatmp(1,nfsh,1,nages);
   dvar_vector Ztmp(1,nages);
@@ -3932,10 +3925,10 @@ FUNCTION dvariable yield(const dvar_vector& Fratio, const dvariable& Ftmp,int is
 
   dvar_matrix seltmp7(1,nfsh,1,nages);
   seltmp7.initialize();
-	seltmp7 = sel_msy;
-  // for (k=1;k<=nfsh;k++)
-    // if (sel_map(1,k) == istk)
-      // seltmp(k) = sel_fsh(k,endyr); // NOTE uses last-year of fishery selectivity for projections.
+	// seltmp7 = sel_msy;
+  for (k=1;k<=nfsh;k++)
+    if (sel_map(1,k) == istk)
+      seltmp7(k) = sel_msy(k); // NOTE uses last-year of fishery selectivity for projections.
 
   dvar_matrix Fatmp(1,nfsh,1,nages);
   dvar_vector Ztmp(1,nages);
@@ -3977,10 +3970,10 @@ FUNCTION dvariable yield(const dvar_vector& Fratio, dvariable& Ftmp, dvariable& 
   dvariable   yield   = 0.;
 
   // dvar_matrix seltmp(1,nfsh,1,nages);
-  // for (k=1;k<=nfsh;k++)
-    // if (sel_map(1,k) == istk)
-      // seltmp(k) = sel_fsh(k,endyr); // NOTE uses last-year of fishery selectivity for projections.
-	seltmp = sel_msy;
+  for (k=1;k<=nfsh;k++)
+    if (sel_map(1,k) == istk)
+      seltmp(k) = sel_msy(k); // NOTE uses last-year of fishery selectivity for projections.
+	// seltmp = sel_msy;
 
   dvar_matrix Fatmp(1,nfsh,1,nages);
   dvar_vector Ztmp(1,nages);

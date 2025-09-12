@@ -89,6 +89,9 @@ for(i in vec_i) {
 fn_bridge(mod_new, "1.01", h2mod = h2_ctl)
 mod1.01 <- runit(geth("1.01",c("h1","h2")),pdf=F,portrait=F,est=TRUE,exec="../src/jjm",parallel=T)
 
+mod1.14 <- runit(geth("1.14",c("h1")),pdf=F,portrait=TRUE,est=TRUE,exec="../src/jjm",parallel=T)
+mod2.00 <- runit(geth("1.00",c("h2")),pdf=F,portrait=TRUE,est=TRUE,exec="../src/jjm",parallel=T)
+mod2.10 <- runit(geth("1.10",c("h2")),pdf=F,portrait=TRUE,est=TRUE,exec="../src/jjm",parallel=T)
 
 #-------------------
 # 1.02 Leave in Offshore CPUE
