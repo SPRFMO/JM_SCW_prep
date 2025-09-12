@@ -3384,9 +3384,9 @@ FUNCTION void get_future_sel()
 		}
 		else
 		{
-			f_tmp(k) = mean(F(k,endyr));
       for (k=1;k<=nfsh;k++)
 			{
+			  f_tmp(k)      = mean(F(k,endyr));
 				sel_fut(k)    = (sel_fsh(k,endyr));
 			  Ftot_fut(1)  += f_tmp(k)*sel_fut(k);
 			}
