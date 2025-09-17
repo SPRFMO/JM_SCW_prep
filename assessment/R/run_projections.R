@@ -25,13 +25,13 @@ tac_prev <- 1428 # From SC recommended quota
 tac_new <- 1428*1.15 # From SC recommended quota
 # tac_prev <- sum(tail(finmod_h1[[1]]$data$Fcaton,1))
 
-# mod_tac <- runit(geth(finmodname,c("h1","h2")), pdf=T ,portrait=F ,est=T ,exec="../src/jjm",parallel=T, adflags=paste0("-tac ", tac_prev, " -fut_sel 3"))
+mod_tac <- runit(geth(finmodname,c("h1","h2")), pdf=T ,portrait=F ,est=T ,exec="../src/jjm",parallel=T, adflags=paste0("-tac ", tac_prev, " -fut_sel 3"))
 
 finmod_h1 <- readJJM(geth(finmodname,"h1"),path="config",input="input")
 finmod_h2 <- readJJM(geth(finmodname,"h2"),path="config",input="input")
 
 #---------
-h1_modls <- finmod_h1
+h1_modls <- finmod_h1sy
 h2_modls <- finmod_h2
 
 h1_modls[[1]]$control$Steepness[1,1] <- h2_modls[[1]]$control$Steepness[1,1:3] <- .65

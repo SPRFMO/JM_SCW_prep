@@ -1,35 +1,35 @@
 # Need to be in separate directory where runs will be conducted
 # h1 and h2 should be in different directories as results files will be over-written
 
-tac <- 1242
+tac <- 1428
 tac15 <- tac * 1.15
-tac20 <- tac * 1.2
-tac75 <- tac * 1.75
+tac25 <- 1785.375
 tac100 <- tac * 2
 
 h <- "h2"
-finmodnm <- "1.07"
+finmodnm <- "1.14"
 
 # To get .bar file
 system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl"))
+system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.b02"))
 
-system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -tac ", tac, " -sdonly"))
+system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -fut_sel 3 -tac ", tac, " -sdonly"))
 file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac.rep"))
 if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac.rep"))
 
-system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -tac ", tac15, " -sdonly"))
+system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -fut_sel 3 -tac ", tac15, " -sdonly"))
 file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac15.rep"))
 if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac15.rep"))
 
-system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -tac ", tac20, " -sdonly"))
+system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -fut_sel 3 -tac ", tac20, " -sdonly"))
 file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac20.rep"))
 if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac20.rep"))
 
-system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -tac ", tac75, " -sdonly"))
-file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac75.rep"))
-if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac75.rep"))
+system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -fut_sel 3 -tac ", tac25, " -sdonly"))
+file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac25.rep"))
+if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac25.rep"))
 
-system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -tac ", tac100, " -sdonly"))
+system(paste0("./jjm -ind ", h, "_", finmodnm, ".ls.ctl -binp jjm.bar -phase 22 -fut_sel 3 -tac ", tac100, " -sdonly"))
 file.rename(from="For_R_1.rep", to=paste0(h,"_For_R_1_tac100.rep"))
 if(h=="h2") file.rename(from="For_R_2.rep", to=paste0(h,"_For_R_2_tac100.rep"))
 
@@ -42,7 +42,7 @@ library(tidyverse)
 devtools::load_all("../../jjmR")
 source("R/read-admb.R")
 
-finmodnm <- "1.07"
+finmodnm <- "1.14"
 yr_curr <- as.numeric(format(Sys.time(), "%Y"))
 h1_modls <- readJJM(paste0("h1_",finmodnm,".ls"), path = "config", input = "input") %>% fixed_bmsy()
 h2_modls <- readJJM(paste0("h2_",finmodnm,".ls"), path = "config", input = "input") %>% fixed_bmsy()
@@ -131,19 +131,21 @@ quants_fut <- map_dfr(repfilenames, fn_pullfuts) %>%
   mutate(
     scenario = str_remove(scenario,".rep"),
     scenario = str_replace(scenario, "tac", paste0("TAC",yr_curr, " x1."))
-) %>%
-  bind_rows(map_dfr(filenamesF, fn_pullfutF, scen = 2)) %>%
-  bind_rows(map_dfr(filenamesF, fn_pullfutF, scen = 3))
+)
 
-quants_proj <- quants_fut %>%
+  # %>%
+  # bind_rows(map_dfr(filenamesF, fn_pullfutF, scen = 2)) %>%
+  # bind_rows(map_dfr(filenamesF, fn_pullfutF, scen = 3))
+
+quants_proj_all <- quants_fut %>%
   select(year, catch, ssb, sd, hyp, stock, scenario) %>%
   bind_rows(quants_hist)
 
-quants_rm <- quants_proj %>%
+quants_rm <- quants_proj_all %>%
   filter((year <= yr_curr & scenario != paste0("F", yr_curr, " SQ")) |
   		str_detect(scenario, "FTAC"))
 
-quants_curr <- quants_proj %>%
+quants_curr <- quants_proj_all %>%
   filter(year==yr_curr | year==yr_curr+1) %>%
   complete(year,hyp,stock,scenario) %>%
   filter(year==yr_curr) %>%
@@ -153,10 +155,17 @@ quants_curr <- quants_proj %>%
   drop_na(catch, ssb) %>%
   ungroup()
 
-quants_proj <- quants_proj %>%
+quants_proj <- quants_proj_all %>%
   anti_join(quants_rm) %>%
   bind_rows(quants_curr) %>%
-  distinct()
+  distinct()    %>%
+  mutate(scenario = case_when(
+    scenario == "TAC2025 x1." ~ "ADV2025",
+    scenario == "TAC2025 x1.15" ~ "ADV2025 x15",
+    scenario == "TAC2025 x1.25" ~ "TAC2025 x1.15",
+    .default = scenario
+  )
+)
 
 
 yrs2use <- c(yr_curr+2, yr_curr+6, yr_curr+10)
@@ -176,15 +185,28 @@ risk_table <- quants_fut %>%
   select(-bmsy, -sd) %>%
   pivot_wider(names_from=year,values_from=c(ssb,prob), names_sep="_",names_vary="slowest") %>%
   left_join(risk_table_cat) %>%
+  mutate(scenario = case_when(
+    scenario == "TAC2025 x1." ~ "ADV2025",
+    scenario == "TAC2025 x1.15" ~ "ADV2025 x1.15",
+    scenario == "TAC2025 x1.25" ~ "TAC2025 x1.15",
+    .default = scenario
+    )
+  ) %>%
   arrange(hyp, stock, scenario) %>%
   write_csv("risk_tables/tac.csv")
 
 ggplot(quants_proj %>% filter(year>=2000)) +
-	geom_line(aes(x=year,y=catch,colour=scenario)) +
+	geom_line(aes(x=year,y=catch,colour=scenario), alpha = 0.8) +
 	facet_grid(stock~hyp, scales="free_y") +
-	theme_jjm()
+  ylab("Catch ('000 t)") +
+  xlab("Year") +
+	theme_jjm() +
+  scale_color_viridis_d(option="turbo")
 
 ggplot(quants_proj %>% filter(year>=2000)) +
 	geom_line(aes(x=year,y=ssb,colour=scenario)) +
 	facet_grid(stock~hyp, scales="free_y") +
-	theme_jjm()
+	ylab("SSB ('000 t)") +
+  xlab("Year") +
+  theme_jjm() +
+  scale_color_viridis_d(option="turbo")

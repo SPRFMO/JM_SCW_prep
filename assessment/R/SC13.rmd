@@ -1238,7 +1238,7 @@ plot(h1_diag_ls, var = "ssbPrediction")
 
 ##### Catch
 ```{r}
-plot(h1_diag_ls, var = "catchPrediction", scenarios=c(0, .75, 1, 1.25, "FMSY", "FTAC 1.15"))
+plot(h1_diag_ls, var = "catchPrediction", cols=c(0, .75, 1, 1.25, "FMSY", "FTAC 1.15"))
 ```
 
 #### Kobe Plot

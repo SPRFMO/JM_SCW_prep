@@ -3704,7 +3704,7 @@ FUNCTION void get_msy(int iyr)
   {
     dvariable F1;
     F1.initialize();
-    F1 = (0.8*natmortprior(mort_map(istk,1))); //Ojo First year //nreg(s) //yy_sr(s,iyr)
+    F1 = (0.98*natmortprior(mort_map(istk,1))); //Ojo First year //nreg(s) //yy_sr(s,iyr)
     dvariable F2;
     dvariable F3;
     dvariable yld1;

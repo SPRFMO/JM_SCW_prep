@@ -43,7 +43,7 @@ p1 <-
   d %>%
   filter(!is.na(ssb)) %>%
   ggplot(aes(year,ssb, group=assessmentyear)) +
-  theme_publication() +
+  jjmR::theme_jjm() +
   theme(legend.title=element_blank(),
         axis.text.x = element_text(angle = 0, vjust = 0.5, size=9),
         axis.text.y = element_text(size=9),
@@ -51,7 +51,7 @@ p1 <-
         legend.position = "null") +
   geom_ribbon(aes(ymin = ssblow, ymax = ssbupp, fill = assessmenttype), alpha=0.2 ) +
   scale_fill_manual (values=c(last   = "red", assess = "white")) +
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
   geom_dl(aes(label  = tyear, colour=assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
   scale_colour_manual(values=c(last   = "red", assess = "black")) +
@@ -59,13 +59,13 @@ p1 <-
                                  assess = "solid",
                                  bench  = "dashed",
                                  old    = "dotdash")) +
-  scale_size_manual(values=c(last   = 1.5,
+  scale_linewidth_manual(values=c(last   = 1.5,
                              assess = 0.8,
                              bench  = 1.2,
                              old    = 0.8)) +
   expand_limits(y = 0) +
   # xlim(2005,2020) +
-  labs(x = NULL, y = NULL , title = "SSB")
+  labs(x = NULL, y = NULL , title = "SSB ('000 t)")
 
 
 # plot f
@@ -75,7 +75,7 @@ p2 <-
 
   ggplot(aes(year,f, group=tyear)) +
 
-  theme_publication() +
+  jjmR::theme_jjm() +
   theme(legend.title=element_blank(),
         axis.text.x = element_text(angle = 0, vjust = 0.5, size=9),
         axis.text.y = element_text(size=9),
@@ -85,7 +85,7 @@ p2 <-
   # geom_ribbon(aes(ymin = flow, ymax = fupp, fill = assessmenttype), alpha=0.2 ) +
   # scale_fill_manual (values=c(last   = "red", assess = "white")) +
 
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
 
   geom_dl(aes(label  = tyear, colour = assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
@@ -100,7 +100,7 @@ p2 <-
                                  bench  = "dashed",
                                  old    = "dotdash")) +
 
-  scale_size_manual(values=c(last   = 1.5,
+  scale_linewidth_manual(values=c(last   = 1.5,
                              assess = 0.8,
                              bench  = 1.2,
                              old    = 0.8)) +
@@ -116,7 +116,7 @@ p3 <-
 
   ggplot(aes(year,r, group=tyear)) +
 
-  theme_publication() +
+  jjmR::theme_jjm() +
   theme(legend.title=element_blank(),
         axis.text.x = element_text(angle = 0, vjust = 0.5, size=9),
         axis.text.y = element_text(size=9),
@@ -126,7 +126,7 @@ p3 <-
   geom_ribbon(aes(ymin = rlow, ymax = rupp, fill = assessmenttype), alpha=0.2 ) +
   scale_fill_manual (values=c(last   = "red", assess = "white")) +
 
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
 
   geom_dl(aes(label  = tyear, colour = assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
@@ -141,14 +141,14 @@ p3 <-
                                  bench  = "dashed",
                                  old    = "dotdash")) +
 
-  scale_size_manual(values=c(last   = 1.5,
+  scale_linewidth_manual(values=c(last   = 1.5,
                              assess = 0.8,
                              bench  = 1.2,
                              old    = 0.8)) +
 
   expand_limits(y = 0) +
   # xlim(2005,2020) +
-  labs(x = NULL, y = NULL , title = "Recruitment")
+  labs(x = NULL, y = NULL , title = "Recruitment (age 1; millions)")
 
 
 # show plot
@@ -183,7 +183,7 @@ p4 <-
         # strip.background = element_blank(),
         legend.position = "null") +
 
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
   geom_dl(aes(label  = tyear, colour=assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
 
@@ -216,7 +216,7 @@ p5 <-
         # strip.background = element_blank(),
         legend.position = "null") +
 
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
   geom_dl(aes(label  = tyear, colour=assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
 
@@ -250,7 +250,7 @@ p6 <-
         # strip.background = element_blank(),
         legend.position = "null") +
 
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
   geom_dl(aes(label  = tyear, colour=assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
 
@@ -284,7 +284,7 @@ p7 <-
         # strip.background = element_blank(),
         legend.position = "null") +
 
-  geom_line(aes(colour = assessmenttype, size=assessmenttype, linetype=assessmenttype) ) +
+  geom_line(aes(colour = assessmenttype, linewidth=assessmenttype, linetype=assessmenttype) ) +
   geom_dl(aes(label  = tyear, colour=assessmenttype),
           method = list(dl.combine("last.points"), cex = 0.8)) +
 
