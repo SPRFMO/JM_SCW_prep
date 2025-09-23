@@ -32,7 +32,8 @@ lengths <- seq(h1_mod[[1]]$info$data$length[1], h1_mod[[1]]$info$data$length[2])
 #| label: tbl-catch-annex
 #| tbl-cap: !expr paste0("Sources and values of catch (t) compiled for the four fleets used for the assessment (note that data for ", curryr-1, " are preliminary, and ", curryr, " are predictions).")
 
-catch_countries <- read_xlsx("~/Downloads/SC12-JM03-Annex-1.xlsx") 
+ catch_countries <- read_xlsx("~/Downloads/SC12-JM03-Annex-1.xlsx") 
+#catch_countries <- read_xlsx( here("SC13-JM01-Annex-1-final.xlsx"))
 fnames <- c("", str_extract(names(catch_countries)[-1], "[0-9]+"), "")
 fpos <- which(fnames != lag(fnames, default = first(fnames)))
 
@@ -491,7 +492,8 @@ kable("copypasta")
 #| label: tbl-modruns
 #| tbl-cap: !expr paste0("Systematic model progression from the ", curryr-1, " assessment data to the agreed revised datasets for ", curryr, ". Note that the data file names corresponding to each model follow the same naming convention, but with the stock-structure hypothesis denoted as h1 for the single-stock and h2 for the two-stock (e.g., 0.01.dat with h1_0.01.ctl and h2_0.01.ctl).")
 
-modruns <- read_csv(here::here("data", "SC12_runs.csv"))
+#modruns <- read_csv(here::here("data", "SC12_runs.csv"))
+modruns <- read_csv(here::here("data", "SC13_runs.csv"))
 
 modruns %>% 
   kable(align = "l")

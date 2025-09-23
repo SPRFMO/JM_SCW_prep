@@ -1,7 +1,16 @@
 ---
-title: "SPRFMO SC12 Report"
+title: "SPRFMO SC13 Report"
 subtitle: "Annex 7. Jack Mackerel Technical Annex"
 format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-summary: "Click to show/hide code"
+    theme: flatly
+    css: styles.css
+    embed-resources: true
   docx:
     number-sections: false
     reference-doc: custom-reference-doc.docx
@@ -15,6 +24,8 @@ execute:
   results: false
 bibliography: refs.bib
 csl: apa.csl  
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
@@ -33,7 +44,7 @@ knitr::opts_knit$set(root.dir=here::here())
 ```{r}
 #| include: false
 
-finmodname <- "1.07"
+finmodname <- "1.14"
 h1nm <- geth(finmodname, "h1")
 h2nm <- geth(finmodname, "h2")
 
