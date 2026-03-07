@@ -1990,6 +1990,7 @@ FUNCTION write_mceval
         // SELEX F
         mceval<< mc_count<<" Sel_fsh "<<k<<" "<<i<<" "<<j<<" "<<sel_fsh(k,i,j)<<  endl; 
         mceval<< mc_count<<" C_fsh "<<k<<" "<<i<<" "<<j<<" "<<catage(k,i,j)<<  endl; 
+        mceval<< mc_count<<" F_stock "<<k<<" "<<i<<" "<<j<<" "<<F(k,i,j)<<  endl; 
       }
     }
   }
