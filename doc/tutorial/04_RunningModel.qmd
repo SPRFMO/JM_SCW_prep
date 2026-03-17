@@ -1,0 +1,93 @@
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
+# Running a jjm assessment model
+There are two ways you can run the assessment model- using `R` to run the executable, or using the command line.
+
+**Before we start, please make sure you have an executable file. You can find the instructions to compile your own in the Pre-Workshop [document](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/Documents?csf=1&web=1&e=v9hiV4), or you can download it directly from [Teams](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/src?csf=1&web=1&e=cXKA29).**
+
+## Using R
+Pros:
+
+- Automatically generates files needed to create model diagnostics
+
+- Creates a `jjm` object in R for plotting purposes (i.e. the outputs are automatically read back into R)
+
+- Easy to script
+
+Cons:
+
+- Hard to debug if the model goes wrong, as the function creates a temporary folder on your local machine where the model is run.
+    - Once the model run is complete, the `runit` function produces this message like this in the console:
+
+    ```
+    Models were run at /var/folders/dr/lbjfwmm567d2kcmh348218lc0000gn/T//RtmpQtQLls folder.
+    ```
+
+    If need be, you can also navigate to this folder to find the output files from ADMB.
+
+The code below runs the 2021 assessment from SC9.
+
+```{r}
+library(jjmR)
+
+# The runit() function is a wrapper function that runs the model, reads the output, and plots the runs.
+# ?runit
+# mod = name of the control file
+# est = TRUE/FALSE to estimate the parameters; default is FALSE
+# pdf = plot to a pdf
+# exec = path to the executable file
+# By default it assumes that the control file will be found in "config", data file in "input", and the output will be written to a "results" folder. This function is thus best run when in the jjm/assessment folder.
+
+h1.mod <- runit(mod="h1_1.00",pdf=TRUE,est=TRUE,exec="../src/jjms")
+h2.mod <- runit(mod="h2_1.00",pdf=TRUE,est=TRUE,exec="../src/jjms")
+```
+
+## Using the Command Line
+Pros:
+
+- Easier to include ADMB flags (useful for debugging)
+    - Examples can be found in the handy dandy [Reference card](http://www.admb-project.org/docs/refcards/admb-additional-reference-card.pdf)
+    - Common ones to use include `-nohess` and `-noest`
+
+- Easy for debugging if the model is producing nonsensical results
+    - The executable produces an  `input.log` file that the R function automatically deletes from the main working directory as part of cleanup (you can still access it by navigating to the temporary folder as mentioned above). This file shows exactly how the executable reads in each input file, and where it stopped should it encounter an error.
+
+Cons:
+
+- Familiarity with ADMB will make it more helpful
+
+- Requires more / custom code to read in the output and convert it in R for making diagnostics
+
+```{r}
+# For Windows
+jjms -ind h1_1.00.ctl
+
+# For Mac / Linux
+./jjms -ind h1_1.00.ctl
+```
+
+# Assessment Model Outputs
+
+Once the model is run, we'll have:
+
+```
+- R.rep
+- .cor
+- .par
+- .rep
+- .std
+- .yld
+```
+
+We'll go through the outputs in more detail in another document.
+
+# Checking for Convergence
+- Maximum gradient component
+- When the hessian is inverted
+
+# Exercise
+- Run the 2021 assessment (1.05) for the one-stock and two-stock models.

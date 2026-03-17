@@ -1,0 +1,97 @@
+---
+title: "Retrospectives"
+output:
+  html_document:
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
+# What it is
+In addition to checking for model convergence and fit to data, another diagnostic we use is the retrospective analysis. In essence, it involves removing the most recent years of data (a practice known as "peeling") and fitting the model to each reduced dataset. We typically peel a total of five years.
+
+What we look for here is systematic bias in the derived quantities, namely in estimates of biomass. These biases could exist for a myriad of reasons, ranging from data inconsistencies to model misspecification. Ideally, the model will have low but equal likelihoods of both over-estimating and under-estimating biomass. 
+
+# How to do this for jjm
+There is a single function in jjmR that allows you to do this. However, my current workflow is a bit clunky, because I don't think the retro function currently is exported. It thus requires a cloned (or downloaded) repository for jjmR.
+
+- Open R
+- Navigate to jjmR directory
+- Load all the functions within that directory
+- Return to jjm/assessment directory
+- Run retro function
+
+```{r}
+# Run the five models in parellel
+library(foreach)
+library(doParallel)
+registerDoParallel(5)
+
+# Set file path to jjmR package and also to jjm working directory
+dir.jjmR <- "../../jjmR"
+dir.jjm <- getwd()
+setwd(dir.jjmR)
+
+# Load all the functions that aren't exported with jjmR
+devtools::load_all()
+setwd(dir.jjm)
+
+
+FinMod <- "h1_1.05"
+finmod.h1 <- readJJM(FinMod, path = "config", input = "input")
+finmod.h1r <- finmod.h1
+names(finmod.h1r) <- FinMod
+Npeels<-5
+
+ret1 <- retro(model = finmod.h1r, n = Npeels, output = "results", exec="../src/jjms",parallel=T)
+
+
+FinMod <- "h2_1.05"
+finmod.h2 <- readJJM(FinMod, path = "config", input = "input")
+finmod.h2r <- finmod.h2
+names(finmod.h2r) <- FinMod
+Npeels<-5
+
+
+# The output is also saved to an Rdata file in the jjm/assessment/results folder as "modelname_retrospective.Rdata"
+ret2 <- retro(model = finmod.h2r, n = 5, output = "results", exec="../src/jjms",parallel=T)
+
+```
+
+```{r}
+plot(ret2, var="SSB") # only SSB
+```
+
+```{r, echo=F}
+knitr::include_graphics("imgs/h1_retro.png")
+```
+
+```{r, echo=F}
+knitr::include_graphics("imgs/h2_retro_1.png")
+```
+
+```{r, echo=F}
+knitr::include_graphics("imgs/h2_retro_2.png")
+```
+
+```{r}
+#install.packages("icesAdvice")
+#Calculation of Mohn's Rho courtesy of Arni Magnusson
+# ?icesAdvice::mohn
+icesAdvice::mohn(ret2$Stock_1$SSB$var[,1,1:6],peel=5,details=T)
+icesAdvice::mohn(ret2$Stock_2$SSB$var[,1,1:6],peel=5,details=T)
+
+```
+
+Relative bias is defined as
+
+                  relbias= (retro - base) / base
+
+and Mohn's rho is the average relative bias:
+
+                        rho = mean(relbias)
+
+High values of Mohn's Rho indicate high levels of bias, and that the model and the data deserve a closer look.

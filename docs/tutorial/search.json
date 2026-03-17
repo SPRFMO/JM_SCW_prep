@@ -1,0 +1,282 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "JJM Tutorial",
+    "section": "",
+    "text": "Tutorial goals\nThe following outline shows the goals of different sections of the tutorial. See table of contents (left) for specific section details and practical considerations.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tutorial goals</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#basic-running-of-examples",
+    "href": "index.html#basic-running-of-examples",
+    "title": "JJM Tutorial",
+    "section": "Basic running of examples",
+    "text": "Basic running of examples\n\nIntroduction to the jjm model (Link here)\n\nRunning the model from start to finish\nData input (ALK excel files)\nData input into JJM\nModel setting, Model equations, Parameters (refer to technical annex)\nRunning the 2021 assessment\nUpdating input data\nUpdating control file\nSingle-stock vs two-stock models",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tutorial goals</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#outputs-and-diagnostics",
+    "href": "index.html#outputs-and-diagnostics",
+    "title": "JJM Tutorial",
+    "section": "Outputs and Diagnostics",
+    "text": "Outputs and Diagnostics\n\nUnderstanding the Outputs\n\nAscii files (difference between standard ADMB output and specialized ones for JJM)\nJJM outputs (standard)\nPulling out important quantities from the jjm object (e.g. MSY table)\nMaking plots from JJM (custom)\nStock status under different regimes\n\nGenerating new plots for diagnostic purposes\nRetrospective analysis",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tutorial goals</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#sensitivity-analyses-and-model-comparisons",
+    "href": "index.html#sensitivity-analyses-and-model-comparisons",
+    "title": "JJM Tutorial",
+    "section": "Sensitivity analyses and model comparisons",
+    "text": "Sensitivity analyses and model comparisons\n\nSensitivities in data – e.g. include/drop data\n\nReplacing CPUE indices\nReplacing age composition data\n\nSensitivities in model settings\n\nChanging individual parameters\n\nComparing model runs\n\nCurrent diagnostics available\nMaking custom diagnostics\n\nAlternative uncertainty estimates",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tutorial goals</span>"
+    ]
+  },
+  {
+    "objectID": "00_PreWorkshop.html",
+    "href": "00_PreWorkshop.html",
+    "title": "Workshop Overview",
+    "section": "",
+    "text": "Workshop Logistics\nThe main goal of this workshop is to broaden the expertise of the participants in running and understanding the jack mackerel assessment model. The workshop will involve a combination of presentations and hands-on exercises. There will be optional exercises for participants to work on in their own time, and time will be set aside during the workshop for questions about them. Some competency in the R language will be helpful, but help will be provided as requested.\nBy the end of the workshop, participants should be able to:\nPrior to the start of the workshop, it is expected that you will have:",
+    "crumbs": [
+      "Workshop Overview"
+    ]
+  },
+  {
+    "objectID": "00_PreWorkshop.html#cloning-the-repository-recommended",
+    "href": "00_PreWorkshop.html#cloning-the-repository-recommended",
+    "title": "Workshop Overview",
+    "section": "Cloning the repository (recommended)",
+    "text": "Cloning the repository (recommended)\nCloning the repository offers the benefit of version control, and allows you to continuously update the repository in a convenient manner. Changes made to the virtual repository can be pulled to your local machine, while changes made to your local repository can be pushed to the virtual one. That way, work can be shared. Note that changes you make on your local machine will remain local unless you choose to push it to the virtual repository.\nIf you do not feel that you will need use the files beyond this workshop, feel free to use the second option below to directly download the entire repository. Otherwise, I would recommend cloning it. There are several applications that will allow you to do so (e.g. GitHub Desktop, GitKraken, or Sublime Merge, but I will just outline two methods here. The general steps should be the same, however.\nBefore we start, you will need to make sure that Git is installed on your system. Installation instructions are found here.\n\nVia RStudio (easier)\n\nFile &gt; New Project &gt; Version Control &gt; Git\nRepository URL: https://github.com/SPRFMO/jjm.git\nProject directory name: jjm (or whatever you want your folder to be named)\nCreate project as subdirectory of: NAMEOFYOURDIRECTORY (whatever folder you want to store the assessment in)\nThe JJM repository can now be found in NAMEOFYOURDIRECTORY/jjm\n\n\n\nVia the Command Line\n\nNavigate to the JJM Github repository\nOpen up a Command (Windows) or Terminal (Mac) window from your applications. If you’re using Linux, I assume you’ll be familiar with this procedure.\nNavigate to your chosen working directory using cd NAMEOFYOURDIRECTORY\n\nFor example, you could choose cd C:\\Documents\\SPRFMO (Windows) or cd /Users/myname/Documents/SPRFMO\nNote: If you have a space in your file path, make sure to insert \\ before the space. E.g. /Name\\ of\\ directory\n\nClone the JJM repository to your local machine with git clone https://github.com/SPRFMO/jjm.git\nThe JJM repository can now be found in NAMEOFYOURDIRECTORY/jjm\n\n\n\n\n\n\n\n\n\n\n\n\nWhen you’re done\nAt the end of this process, you should have a repository containing five folders, including:\n\nassessment\ncatch\ncpue\ndocs\nsrc\n\nWorkshop participants are encouraged to explore this repository and familiarise themselves with its general structure. In particular, we will be spending a lot of time in the assessment folder.",
+    "crumbs": [
+      "Workshop Overview"
+    ]
+  },
+  {
+    "objectID": "00_PreWorkshop.html#downloading-the-repository-as-a-zip-file-easier",
+    "href": "00_PreWorkshop.html#downloading-the-repository-as-a-zip-file-easier",
+    "title": "Workshop Overview",
+    "section": "Downloading the repository as a ZIP file (easier)",
+    "text": "Downloading the repository as a ZIP file (easier)\nDownloading the repository as a ZIP file gives you a snapshot of the repository at the time of the download. You will not have version control, and any changes you make will remain on your local machine.\n\nNavigate to the jjm repository\nIn the top right hand corner, select the green Code button\nSelect Download ZIP\nUnzip the downloaded file",
+    "crumbs": [
+      "Workshop Overview"
+    ]
+  },
+  {
+    "objectID": "01_Intro.html",
+    "href": "01_Intro.html",
+    "title": "SPRFMO assessments",
+    "section": "",
+    "text": "Main Objectives",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>SPRFMO assessments</span>"
+    ]
+  },
+  {
+    "objectID": "01_Intro.html#update-assessments",
+    "href": "01_Intro.html#update-assessments",
+    "title": "SPRFMO assessments",
+    "section": "Update Assessments",
+    "text": "Update Assessments\n\nFocus on updating the data for the year\nLimited number of sensitivity analyses conducted\nRarely result in changes to model settings\n\n\nExample of the Process\n\nMembers send data to Secretariat\nData get processed to go into the assessment\nData get incrementally introduced to the model (exercise called data bridging)\nControl file gets updated\nAssessment gets run\nCheck diagnostics\nRun (limited number of) sensitivities\nChoose final model\nDo projections under four different recruitment scenarios using the final model\nDo retrospective analysis (both analytical and historical) using the final model\nOutput from “most conservative” model gets put into the harvest control rule\nHarvest control rule determines catch advice that is presented to the Commission\n\n\n\nExample of the Model Runs\nExample of models run during an update (from SC9, also here)\n\n\n\n\n\n\n\nModel\nDescription\n\n\n\n\nModels 0.x\nData introductions\n\n\n0.00\nExact 2020 (single stock h1 and two-stock h2) model and data set through 2020 (mod1.0 from SC08)\n\n\n0.01\nAs 0.00 but with revised catches through 2020 (currently still estimates)\n\n\n0.02\nAs 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth\n\n\n0.03\nAs 0.02 but with updated 2020 weight at age data for all fisheries and their associated CPUE indices\n\n\n0.04\nAs 0.03 but replaced offshore CPUE up to 2020\n\n\n0.05\nAs 0.04 but with 2021 catch projections\n\n\n0.06\nAs 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth\n\n\n0.07\nAs 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices\n\n\n0.08\nAs 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)\n\n\n0.09\nAs 0.08 but replaced Peru_CPUE index\n\n\n0.10\nAs 0.09 but with updated AcousN 2021 index, with associated age composition and weight at age\n\n\n———–\n————–\n\n\nModels 1.x\nUpdated Model and Sensitivities\n\n\n1.00\nUpdate model (selectivity changes, recruitment) to 2021; 0.10 data file\n\n\n1.01\nAs 1.00 but use revised data series “antiguo” of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)\n\n\n1.02\nAs 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)\n\n\n1.03\nAs 1.02 but M=0.45 (NOT RUN)\n\n\n1.04\nAs 1.01 but with increased uncertainty (CV=0.4) for final year CPUE indices\n\n\n1.05\nAs 1.04 but replacing 2020/2021 weight at age with 2019 revised “antiguo” data for N_Chile",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>SPRFMO assessments</span>"
+    ]
+  },
+  {
+    "objectID": "01_Intro.html#what-happens-during-a-benchmark",
+    "href": "01_Intro.html#what-happens-during-a-benchmark",
+    "title": "SPRFMO assessments",
+    "section": "What Happens During a Benchmark",
+    "text": "What Happens During a Benchmark\n\nFocus on updating the model settings and testing different model configurations\nCan also include updates to entire datasets (e.g. if methodology for CPUE analysis has changed)\n\n\nExample of the Process\n\nMembers discuss sensitivity analyses they would like to see\nConfigure and run sensitivity analyses\nView results and discuss\nRepeat until a final model can be decided upon\n\n\n\nExample of Models Run\nExample of models run during a benchmark assessment (from SC6, also here)\n\n\n\n\n\n\n\nModel\nDescription\n\n\n\n\n1.0\nAs 0.7 in 2017, selectivity change in Chile N acoustic in 2015 and 2016\n\n\n1.1\nAs 1.0, but constant selectivity for Chile N Acoustic all years\n\n\n1.2\nAs 1.1, but constant selectivity for S-C Chile acoustic all years\n\n\n1.3\nAs 1.2, but constant selectivity for DEPM all years (was change in 2003)\n\n\n1.4\nAs 0.7 in 2017, selectivity change in Chile N acoustic in 2012 and 2016\n\n\n1.5\nAs 1.4, but replace offshore CPUE w/ new version CV=0.2…dropping Russian nominal\n\n\n1.5_r\nAs 1.5, retros to evaluate if Francis weights are stable\n\n\n1.6\nAs 1.5, but without Chinese CPUE?\n\n\n1.7\nAs 1.5, but without Offshore (and Russian) CPUE\n\n\n1.8\nAs 1.5, but only Offshore CPUE included (all other indices downweighted)\n\n\n1.9\nAs 1.5, but only Chinese CPUE included (all other indices downweighted)\n\n\n1.10\nAs 1.5, but without the Acoustic N data\n\n\n1.11\nAs 1.5, but allow fishery selectivity to change up until age 11 and reduce penalty on domedness\n\n\n1.12\nAs 1.5, but constant average weight at age w/in fleets and surveys (no time varying)\n\n\n1.13\nAs 1.5 but rescale sample size using Francis T1.8 method (one iteration)\n\n\n1.14\nAs 1.12, but use ageing error consistent growth relationship (w/ aL^b for wt-age) and supply Maturity at length to get conversion\n\n\n1.15\nAs 1.5, but change catchability in 2012 for Chilean CPUE\n\n\n1.16\nAs 1.14, but look at alternative values for M, = 0.28?\n\n\n1.1x\nAs 1.13?, but estimate M with prior? Do MCMC?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>SPRFMO assessments</span>"
+    ]
+  },
+  {
+    "objectID": "02_DataProcessing.html",
+    "href": "02_DataProcessing.html",
+    "title": "Data Processing (SPRFMO)",
+    "section": "",
+    "text": "```{=html}\n\n\n\n  \n    \n      \n    \n    \n      SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\n```\n\n\n\n\n\nMembers send data to the Secretariat\n\nCatch data submitted officially to secretariat\nCatch data also submitted via ALK templates\n\nEstimate on catches of the current year based on projection. Projection informed by members, TAC and recent practice\nRecent practice not strictly defined, depends on available information\n\nComposition data submitted in ALK templates, both for fisheries as research cruises\n\nManual check on quality / missing variables of the sheets\nVisualisation of the data in these ALK sheets\nLinking Length-Frequency data to ALK data Presentation\nAutomated workflow reading all historic files, new ALK from Chile to produce updated catch-at-age is almost finished\n\nCPUE\n\nEach individual fleet does their own standardisation process, details found in the technical annex and WDs\n\nResearch surveys\n\nInformation from research surveys is submitted via the SURVEY template\nManual check on quality / missing variables of the sheets\n\n\nThese data are stored on the Teams Data Repo\n\n\nExercise\n\nTake a completed ALK from Chile and an incomplete ALK from China and convert the lengths in the Chinese set to catch numbers-at-age by quarter and catch weight-at-age by quarter.\nThe complete ALK can be found here\nThe incomplete ALK can be found here",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Processing (SPRFMO)</span>"
+    ]
+  },
+  {
+    "objectID": "03_InputFiles.html",
+    "href": "03_InputFiles.html",
+    "title": "jjm Input Files",
+    "section": "",
+    "text": "Executable File\nThere are three files required to run the jjm assessment. You will need:\nThese files are typically stored in the jjm/assessment folder on the Github site.\nIn general computing, an executable is a programme generated by machine code instructions. The programme can take user-specified input, processes it, and produces output. In the context of the jack mackerel assessment, the model equations are coded up in a .TPL file and compiled into a single executable. The executable estimates the best parameters for the model and the data by minimizing a pre-specified objective (likelihood) function.\nAs such,\n#Steepness \n0.65 0.65 0.65\n300 300 300\n-6 -6 -6\nis read as\n#Steepness \n0.65 0.65 0.65 300 300 300 -6 -6 -6",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>jjm Input Files</span>"
+    ]
+  },
+  {
+    "objectID": "03_InputFiles.html#things-to-note",
+    "href": "03_InputFiles.html#things-to-note",
+    "title": "jjm Input Files",
+    "section": "Things to Note",
+    "text": "Things to Note\n\nThe first line of the control file defines the name of the data file to be used.\n\nWith this setting, you can use several different control files with the same data file.\n\n\n\n#dataFile\n0.00.dat\n#modelName \nh2_0.00\n\n\nSelectivity sharing vector defines the selectivity patterns of each fleet (fishery and survey).\n\n\n# From the TPL file\n# // Matrix of selectivity mappings--row 1 is index of stock\n# //  row 2 is type (1=fishery, 2=index) and row 3 is index within that type\n# //  e.g., the following for 2 fisheries and 4 indices means that index 3 uses fishery 1 selectivities,\n# //         the other fisheries and indices use their own parameterization\n\n# Selectivity sharing vector (number_fisheries + number_surveys)  \n#Fsh_1 Fsh_2 Fsh_3 Fsh_4 Srv_1 Srv_2 Srv_3 Srv_4 Srv_5 Srv_6 Srv_7\n#N_Chile_Fsh CS_Chile_Fsh FarNorth_Fsh Offshore_Trawl_Fsh Chile_AcousCS Chile_AcousN Chilean_CPUE DEPM Peru_Acoustic Peru_CPUE Offshore_CPUE #  \n# 2 3 4 1 2 3 4 5 6 7\n1 1 1 1 1 1 1 1 1 1 1\n1 1 1 1 2 2 1 2 1 1 1\n1 2 3 4 1 2 2 4 3 3 4\n\n\nFor each parameter, we define a prior, a coefficient of variance (CV), and a phase of estimation.\n\nNegative phases indicate that the parameter is not estimated in the model\n\n\n\n#Steepness \n0.65 \n300 \n-6\n\n#catchability \n1.143881847 0.029045376 0.000159487 0.519171913 0.002284038 0.007987171 0.033884372\n12  12  12  12  12  12  12\n3  5  3  3  3  4  4  \n\n\nUser defines the years of data used to estimate the stock-recruitment relationship\n\nTwo types of stock-recruit relationships available: Ricker (Option 1) and Beverton-Holt (Option 2)\n\nThe retro input defines how many years of data to “peel” off for the retrospective analysis\n\n\n#Number of regimes (by stock)\n1\n#Sr_type \n2  \n#AgeError \n0  \n#Retro \n0  \n#Recruitment sharing matrix (number_stocks, number_regimes)\n1\n\n\nSelectivity patterns are defined per fleet\n\n\n# Fishery 1 N Chile  \n1  #selectivity type\n9  #n_sel_ages\n2  #phase sel\n1  #curvature penalty\n1  #Dome-shape penalty\n# Years of selectivity change Fishery 1 N Chile  \n36                                                          \n1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996  1997  1998  1999  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013    2014    2015    2016  2017  2018  2019\n0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n# Initial values for coefficitients at each change (one for every change plus 1)  \n# 2 3 4 5 6 7 8 9 10 11 12  \n0.2 0.7 1 1 1 1 1 1 1 1 1 1",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>jjm Input Files</span>"
+    ]
+  },
+  {
+    "objectID": "03_InputFiles.html#things-to-note-1",
+    "href": "03_InputFiles.html#things-to-note-1",
+    "title": "jjm Input Files",
+    "section": "Things to Note",
+    "text": "Things to Note\n\nThe years define how many years are in the model.\n\n\n#years \n1970 \n2021 \n#ages \n1 \n12\n\n\nFishery data comes first, and each fishery data component is denoted with an F. Index data are denoted with an I\nMany of the num components define the length of the subsequent data vector\nFishery catch data (Fcaton and Fcatonerr) have to have a value in place for every year of the model for every fleet\n\n\n#Fnum \n4 \n#Fnames \nN_Chile%SC_Chile_PS%FarNorth%Offshore_Trawl \n#Fcaton \n101.69 143.45 64.46 83.2 164.76 207.33 257.7 226.23 398.41 344.05 288.81 474.82 789.91 301.93 727 511.15 55.21 313.31 325.46 338.6 323.09 346.25 304.24 379.47 222.25 230.18 278.44 104.2 30.27 55.65 118.73 248.1 108.73 143.28 158.66 165.63 155.26 172.701 167.258 134.022 169.012 30.825 13.256 16.361 18.219 34.886 24.657 35.002 11.551 11.875 44.155 61.359 \n10.31 14.99 22.55 38.39 28.75 53.88 84.57 114.57 188.27 253.46 273.45 586.09 704.77 563.34 699.3 945.84 1129.11 1456.73 1812.79 2051.52 2148.79 2674.27 2907.82 2856.78 3819.19 4174.02 3604.89 2812.87 1582.64 1164.04 1115.57 1401.84 1410.27 1278.02 1292.94 1264.81 1224.69 1130.083 728.85 700.905 295.796 216.47 214.204 214.999 254.295 250.327 295.16 311.863 415.149 432.447 517.665 567.267 \n4.71 9.19 18.78 42.78 129.21 37.9 54.15 504.99 386.79 333.81 414.3 445.64 143.72 110.69 200.67 114.62 51.03 46.3 244.23 316.25 370.82 213.45 111.68 133.35 233.35 550.99 495.52 680.05 412.85 203.75 303.7 857.74 154.82 217.73 187.37 80.66 277.57 255.36 169.537 76.629 22.172 326.394 187.396 80.586 74.532 22.447 15.088 8.867 57.163 135.784 140.116 129.3243 \n0 0 5.5 0 0 0 0.04 2.27 51.29 370.29 339.8 438.12 733.2 894.3 1059.93 799.32 837.5 863.42 863.22 875.82 872.06 543.66 37.93 0 0 0 0 0 0 0.01 2.32 20.09 76.26 158.2 295.44 243.58 362.63 438.8306 406.9864 371.9176 239.593 60.89131 39.91786 41.177 63.652 86.672 54.163 49.113 42.46 51.439 4.739 55.309 \n#Fcatonerr \n0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 \n0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 \n0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 \n0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 \n\n\nAge composition data appear before length composition data\nWeight at age is required for every fleet in every year of the model\n\nHistorically, when the year is updated but not the weight-at-age data (e.g. if the weight at age for a particular fleet is unavailable at the time of the SC), the previous year’s data are used.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>jjm Input Files</span>"
+    ]
+  },
+  {
+    "objectID": "04_RunningModel.html",
+    "href": "04_RunningModel.html",
+    "title": "Running a jjm assessment model",
+    "section": "",
+    "text": "Using R\nThere are two ways you can run the assessment model- using R to run the executable, or using the command line.\nBefore we start, please make sure you have an executable file. You can find the instructions to compile your own in the Pre-Workshop document, or you can download it directly from Teams.\nPros:\nCons:\nThe code below runs the 2021 assessment from SC9.\nlibrary(jjmR)\n\n# The runit() function is a wrapper function that runs the model, reads the output, and plots the runs.\n# ?runit\n# mod = name of the control file\n# est = TRUE/FALSE to estimate the parameters; default is FALSE\n# pdf = plot to a pdf\n# exec = path to the executable file\n# By default it assumes that the control file will be found in \"config\", data file in \"input\", and the output will be written to a \"results\" folder. This function is thus best run when in the jjm/assessment folder.\n\nh1.mod &lt;- runit(mod=\"h1_1.00\",pdf=TRUE,est=TRUE,exec=\"../src/jjms\")\nh2.mod &lt;- runit(mod=\"h2_1.00\",pdf=TRUE,est=TRUE,exec=\"../src/jjms\")",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Running a jjm assessment model</span>"
+    ]
+  },
+  {
+    "objectID": "04_RunningModel.html#using-r",
+    "href": "04_RunningModel.html#using-r",
+    "title": "Running a jjm assessment model",
+    "section": "",
+    "text": "Automatically generates files needed to create model diagnostics\nCreates a jjm object in R for plotting purposes (i.e. the outputs are automatically read back into R)\nEasy to script\n\n\n\nHard to debug if the model goes wrong, as the function creates a temporary folder on your local machine where the model is run.\n\nOnce the model run is complete, the runit function produces this message like this in the console:\n\nModels were run at /var/folders/dr/lbjfwmm567d2kcmh348218lc0000gn/T//RtmpQtQLls folder.\nIf need be, you can also navigate to this folder to find the output files from ADMB.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Running a jjm assessment model</span>"
+    ]
+  },
+  {
+    "objectID": "04_RunningModel.html#using-the-command-line",
+    "href": "04_RunningModel.html#using-the-command-line",
+    "title": "Running a jjm assessment model",
+    "section": "Using the Command Line",
+    "text": "Using the Command Line\nPros:\n\nEasier to include ADMB flags (useful for debugging)\n\nExamples can be found in the handy dandy Reference card\nCommon ones to use include -nohess and -noest\n\nEasy for debugging if the model is producing nonsensical results\n\nThe executable produces an input.log file that the R function automatically deletes from the main working directory as part of cleanup (you can still access it by navigating to the temporary folder as mentioned above). This file shows exactly how the executable reads in each input file, and where it stopped should it encounter an error.\n\n\nCons:\n\nFamiliarity with ADMB will make it more helpful\nRequires more / custom code to read in the output and convert it in R for making diagnostics\n\n\n# For Windows\njjms -ind h1_1.00.ctl\n\n# For Mac / Linux\n./jjms -ind h1_1.00.ctl",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Running a jjm assessment model</span>"
+    ]
+  },
+  {
+    "objectID": "05_ModifyingInputs.html",
+    "href": "05_ModifyingInputs.html",
+    "title": "Data Bridging",
+    "section": "",
+    "text": "```{=html}\n\n\n\n  \n    \n      \n    \n    \n      SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\n```\n\n\n\n\n\n\n\n\nData Bridging\n\nWhen data are added incrementally to the assessment\nUsed to be done by hand\n\nAnnotated Excel spreadsheet found here (SC8; with highlighted changes) and here (SC9; without highlighted changes but with accompanying R file; also in jjm/assessment/data)\n\nSince SC9, there’s an R script to do it\n\njjm/assessment/R/SC09_Bridging.R\nGoes from 0.00 to 1.00 for both single-stock and two-stock hypotheses\n\nFor every data point you add to a time series (e.g. for catch or for index data), a corresponding error term must be added.\n\nDon’t forget to increment the number of years (Inumyears and Iyears) for the indices\nIndex error is computed by multiplying the index value with the CV (from technical annex)\n\nWhen adding a data point to composition data, the numyears, years, and sample need to be incremented as well.\n\nSample size for composition data gets incremented, but the final data point for each fleet is downweighted\n\nReminder: weight at age is required for every fleet in every year of the model\n\nHistorically, when the year is updated but not the weight-at-age data (e.g. if the weight at age for a particular fleet is unavailable at the time of the SC), the previous year’s data are used.\n\nFor each new data file created, a corresponding control file will have to be made as well. The control files during the data bridging exercise remain relatively static, except for changing the name of the data file and adding the one extra year at the top.\n\n\n\nUpdating the Control File\n\nIncrements years used to estimate the stock-recruitment relationship by 1\n\n\n# h2_0.10.ctl\n#Nyrs_sr\n18\n27\n16\n#yrs_sr\n2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016  2017\n1970  1971  1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996\n2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016\n\n---\n\n# h2_1.00.ctl\n#Nyrs_sr \n19 27 16 \n#Nyrs_sr_1 \n2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 \n#Nyrs_sr_2 \n1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 \n#Nyrs_sr_3 \n2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 \n\n\nIncrements final year for selectivity change by 1\n\n\n# h2_0.10.ctl\n# Fishery 1 N Chile  \n1  #selectivity type\n9  #n_sel_ages\n2  #phase sel\n1  #curvature penalty\n1  #Dome-shape penalty\n# Years of selectivity change Fishery 1 N Chile  \n36                                                            \n1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996  1997  1998  1999  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013    2014    2015    2016  2017  2018  2019\n0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n# Initial values for coefficients at each change (one for every change plus 1)  \n# 2 3 4 5 6 7 8 9 10 11 12  \n0.2 0.7 1 1 1 1 1 1 1 1 1 1  \n\n---\n\n# h2_1.00.ctl\n#F1_info \n1 9 2 1 1 37 \n#F1_selchangeYear \n1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 \n#F1_selchange \n0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 \n#F1_selbyage \n0.2 0.7 1 1 1 1 1 1 1 1 1 1 \n\n\n\nExercises (using either Excel or R)\n\nAdd one year of catch data (as was done in the bridging exercise for 0.04 to 0.05) to the 2021 data file (1.00.dat). Run the model with the updated data file.\nUpdate the control file from 2021 (h1_1.00.ctl and h2_1.00) for 2022. Run the updated 2022 model.\n(If you have time) Go through the SC9 model runs and select a couple of models from the table to recreate.\n\n\n\nDebugging Tips and Tricks\n\nIf you’ve edited the input files and the model seems to be giving nonsensical results, it might be that you’ve missed number or a line in the input.\n\nIdeally check the input.log file, as mentioned in the RunningModel document.\nThe control file contains a “Test” value at the end. This acts as a check that the control file was read in correctly.\n\n\n#Test  \n123456789",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Bridging</span>"
+    ]
+  },
+  {
+    "objectID": "06_ModelOutputs.html",
+    "href": "06_ModelOutputs.html",
+    "title": "Model Outputs",
+    "section": "",
+    "text": "Main Objectives",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Model Outputs</span>"
+    ]
+  },
+  {
+    "objectID": "06_ModelOutputs.html#things-to-note",
+    "href": "06_ModelOutputs.html#things-to-note",
+    "title": "Model Outputs",
+    "section": "Things to Note",
+    "text": "Things to Note\n\nOne of the most important tables (in my opinion) in the output object is msy_mt. It contains a matrix with the time series of derived quantities and estimated reference points.\n\nNote to self: Set colnames in jjmR output function for this table\n\n\n\n# // Yr Fspr 1-Fspr F/Fmsy Fmsy F Fsprmsy MSY MSYL Bmsy Bzero SSB B/Bmsy\n\nh1.mod[[1]]$output[[1]]$msy_mt\n\n\nFW_* denotes the Francis Weights for each fleet.\n\n\n$FW_N_Chile\n0.915323\n$FW_SC_Chile_PS\n0.910934\n$FW_Offshore_Trawl\n0.681234\n$FW_Chile_AcousCS\n0.92536\n$FW_Chile_AcousN\n0.91344\n$FW_DEPM\n1.07482\n\n\nSSB_fut_1 to SSB_fut_5 denotes future spawning stock biomass projected under five different fishing scenarios (more on this later).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Model Outputs</span>"
+    ]
+  },
+  {
+    "objectID": "07_Retrospectives.html",
+    "href": "07_Retrospectives.html",
+    "title": "Retrospectives",
+    "section": "",
+    "text": "```{=html}\n\n\n\n  \n    \n      \n    \n    \n      SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\n```\n\n\n\n\n\nWhat it is\nIn addition to checking for model convergence and fit to data, another diagnostic we use is the retrospective analysis. In essence, it involves removing the most recent years of data (a practice known as “peeling”) and fitting the model to each reduced dataset. We typically peel a total of five years.\nWhat we look for here is systematic bias in the derived quantities, namely in estimates of biomass. These biases could exist for a myriad of reasons, ranging from data inconsistencies to model misspecification. Ideally, the model will have low but equal likelihoods of both over-estimating and under-estimating biomass.\n\n\nHow to do this for jjm\nThere is a single function in jjmR that allows you to do this. However, my current workflow is a bit clunky, because I don’t think the retro function currently is exported. It thus requires a cloned (or downloaded) repository for jjmR.\n\nOpen R\nNavigate to jjmR directory\nLoad all the functions within that directory\nReturn to jjm/assessment directory\nRun retro function\n\n\n# Run the five models in parellel\nlibrary(foreach)\nlibrary(doParallel)\nregisterDoParallel(5)\n\n# Set file path to jjmR package and also to jjm working directory\ndir.jjmR &lt;- \"../../jjmR\"\ndir.jjm &lt;- getwd()\nsetwd(dir.jjmR)\n\n# Load all the functions that aren't exported with jjmR\ndevtools::load_all()\nsetwd(dir.jjm)\n\n\nFinMod &lt;- \"h1_1.05\"\nfinmod.h1 &lt;- readJJM(FinMod, path = \"config\", input = \"input\")\nfinmod.h1r &lt;- finmod.h1\nnames(finmod.h1r) &lt;- FinMod\nNpeels&lt;-5\n\nret1 &lt;- retro(model = finmod.h1r, n = Npeels, output = \"results\", exec=\"../src/jjms\",parallel=T)\n\n\nFinMod &lt;- \"h2_1.05\"\nfinmod.h2 &lt;- readJJM(FinMod, path = \"config\", input = \"input\")\nfinmod.h2r &lt;- finmod.h2\nnames(finmod.h2r) &lt;- FinMod\nNpeels&lt;-5\n\n\n# The output is also saved to an Rdata file in the jjm/assessment/results folder as \"modelname_retrospective.Rdata\"\nret2 &lt;- retro(model = finmod.h2r, n = 5, output = \"results\", exec=\"../src/jjms\",parallel=T)\n\n\nplot(ret2, var=\"SSB\") # only SSB\n\n\n#install.packages(\"icesAdvice\")\n#Calculation of Mohn's Rho courtesy of Arni Magnusson\n# ?icesAdvice::mohn\nicesAdvice::mohn(ret2$Stock_1$SSB$var[,1,1:6],peel=5,details=T)\nicesAdvice::mohn(ret2$Stock_2$SSB$var[,1,1:6],peel=5,details=T)\n\nRelative bias is defined as\n              relbias= (retro - base) / base\nand Mohn’s rho is the average relative bias:\n                    rho = mean(relbias)\nHigh values of Mohn’s Rho indicate high levels of bias, and that the model and the data deserve a closer look.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Retrospectives</span>"
+    ]
+  },
+  {
+    "objectID": "08_SensitivityAnalyses.html",
+    "href": "08_SensitivityAnalyses.html",
+    "title": "Sensitivity Analyses",
+    "section": "",
+    "text": "Main Objective",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Sensitivity Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "08_SensitivityAnalyses.html#base",
+    "href": "08_SensitivityAnalyses.html#base",
+    "title": "Sensitivity Analyses",
+    "section": "Base",
+    "text": "Base\n\nplot(h1h2)",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Sensitivity Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "08_SensitivityAnalyses.html#biomass",
+    "href": "08_SensitivityAnalyses.html#biomass",
+    "title": "Sensitivity Analyses",
+    "section": "Biomass",
+    "text": "Biomass\n\nplot(h1h2,combine=T,what=\"biomass\",stack=F,main=\"Biomass\")",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Sensitivity Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "08_SensitivityAnalyses.html#recruitment",
+    "href": "08_SensitivityAnalyses.html#recruitment",
+    "title": "Sensitivity Analyses",
+    "section": "Recruitment",
+    "text": "Recruitment\n\nplot(h1h2,combine=T,what=\"recruitment\",stack=F,main=\"Recruitment\")",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Sensitivity Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "08_SensitivityAnalyses.html#fishing-mortality",
+    "href": "08_SensitivityAnalyses.html#fishing-mortality",
+    "title": "Sensitivity Analyses",
+    "section": "Fishing Mortality",
+    "text": "Fishing Mortality\n\nplot(h1h2,combine=T,what=\"ftot\",stack=F,main=\"Fishing Mortality\")",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Sensitivity Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "08_SensitivityAnalyses.html#likelihood-tables",
+    "href": "08_SensitivityAnalyses.html#likelihood-tables",
+    "title": "Sensitivity Analyses",
+    "section": "Likelihood Tables",
+    "text": "Likelihood Tables\nWe can also easily create likelihood tables. Here, we are comparing likelihoods from the 1-stock and the 2-stock models (just an example; not sure if this comparison is valid).\nLL &lt;- summary(h1h2)$like\n\n# Just for display purposes in this document\nlibrary(dplyr)\nknitr::kable(LL) %&gt;% kableExtra::kable_styling()",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Sensitivity Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "```{=html}\n\n\n\n  \n    \n      \n    \n    \n      SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\n```\n\n\n\n\nDeveloped by Lee Qi for SPRFMO workshop.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>About</span>"
+    ]
+  }
+]

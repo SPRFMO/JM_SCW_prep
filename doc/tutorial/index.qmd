@@ -1,0 +1,50 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Tutorial goals
+
+The following outline shows the goals of different sections of the
+tutorial. See table of contents (left) for specific section details and
+practical considerations.
+
+## Basic running of examples
+
+1.  Introduction to the jjm model (Link
+    [here](https://github.com/SPRFMO/jjm))
+    a.  Running the model from start to finish
+    b.  Data input (ALK excel files)
+    c.  Data input into JJM
+    d.  Model setting, Model equations, Parameters (refer to technical
+        annex)
+    e.  Running the 2021 assessment
+    f.  Updating input data
+    g.  Updating control file
+    h.  Single-stock vs two-stock models
+
+## Outputs and Diagnostics
+
+1.  Understanding the Outputs
+    a.  Ascii files (difference between standard ADMB output and
+        specialized ones for JJM)
+    b.  JJM outputs (standard)
+    c.  Pulling out important quantities from the jjm object (e.g. MSY
+        table)
+    d.  Making plots from JJM (custom)
+    e.  Stock status under different regimes
+2.  Generating new plots for diagnostic purposes
+3.  Retrospective analysis
+
+## Sensitivity analyses and model comparisons
+
+1.  Sensitivities in data -- e.g. include/drop data
+    a.  Replacing CPUE indices
+    b.  Replacing age composition data
+2.  Sensitivities in model settings
+    a.  Changing individual parameters
+3.  Comparing model runs
+    a.  Current diagnostics available
+    b.  Making custom diagnostics
+4.  Alternative uncertainty estimates

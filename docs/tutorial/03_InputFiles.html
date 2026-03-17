@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>jjm Input Files – JJM Tutorial</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04_RunningModel.html" rel="next">
+<link href="./02_DataProcessing.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_InputFiles.html"><span class="chapter-title">jjm Input Files</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">JJM Tutorial</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial goals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_PreWorkshop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workshop Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">SPRFMO assessments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_DataProcessing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Processing (SPRFMO)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_InputFiles.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">jjm Input Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_RunningModel.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a jjm assessment model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_ModifyingInputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Bridging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_ModelOutputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Model Outputs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_Retrospectives.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrospectives</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_SensitivityAnalyses.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sensitivity Analyses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#executable-file" id="toc-executable-file" class="nav-link active" data-scroll-target="#executable-file">Executable File</a></li>
+  <li><a href="#control-file" id="toc-control-file" class="nav-link" data-scroll-target="#control-file">Control File</a>
+  <ul class="collapse">
+  <li><a href="#things-to-note" id="toc-things-to-note" class="nav-link" data-scroll-target="#things-to-note">Things to Note</a></li>
+  </ul></li>
+  <li><a href="#data-file" id="toc-data-file" class="nav-link" data-scroll-target="#data-file">Data File</a>
+  <ul class="collapse">
+  <li><a href="#things-to-note-1" id="toc-things-to-note-1" class="nav-link" data-scroll-target="#things-to-note-1">Things to Note</a></li>
+  </ul></li>
+  <li><a href="#reading-and-writing-input-files-in-r" id="toc-reading-and-writing-input-files-in-r" class="nav-link" data-scroll-target="#reading-and-writing-input-files-in-r">Reading and Writing Input Files in R</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+```{=html}
+<style>
+.quarto-title-block {
+  display: none;
+}
+
+.sprfmo-front {
+  margin: 0 0 0.5rem 0;
+}
+
+.sprfmo-banner {
+  display: flex;
+  align-items: stretch;
+  gap: 1.75rem;
+  margin: 0 0 1rem 0;
+}
+
+.sprfmo-mark {
+  flex: 0 0 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1.5rem;
+  border-right: 4px solid #1b4576;
+}
+
+.sprfmo-mark img {
+  display: block;
+  width: 150px;
+  max-width: 100%;
+  height: auto;
+}
+
+.sprfmo-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sprfmo-wordmark {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 5.8vw, 4.6rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: #0f4c8a;
+}
+
+.sprfmo-subtitle {
+  margin: 0.15rem 0 1rem 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  color: #0f4c8a;
+}
+
+.sprfmo-rule {
+  height: 4px;
+  margin: 0 0 0.8rem 0;
+  background: #ea9b1f;
+}
+
+.sprfmo-group {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  line-height: 1.12;
+  font-weight: 700;
+  color: #233f73;
+}
+
+.paper-title {
+  margin: 0.25rem 0 1.75rem 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+  line-height: 1.15;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+@media (max-width: 800px) {
+  .sprfmo-banner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sprfmo-mark {
+    flex-basis: auto;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    border-right: 0;
+    border-bottom: 4px solid #1b4576;
+  }
+}
+</style>
+
+<div class="sprfmo-front">
+  <div class="sprfmo-banner">
+    <div class="sprfmo-mark" aria-hidden="true">
+      <img src="../annex/logo.png" alt="SPRFMO logo">
+    </div>
+    <div class="sprfmo-copy">
+      <h1 class="sprfmo-wordmark">SPRFMO</h1>
+      <div class="sprfmo-subtitle">South Pacific Regional Fisheries Management Organisation</div>
+      <div class="sprfmo-rule"></div>
+      <div class="sprfmo-group">Jack Mackerel Working Group</div>
+    </div>
+  </div>
+</div>
+```
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">jjm Input Files</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<style type="text/css">
+pre {
+  overflow-x: scroll
+}
+
+pre code {
+  white-space: pre;
+}
+</style>
+</div>
+<p>There are three files required to run the <code>jjm</code> assessment. You will need:</p>
+<ol type="1">
+<li>An executable file</li>
+<li>A <code>.ctl</code> file</li>
+<li>A <code>.dat</code> file</li>
+</ol>
+<p>These files are typically stored in the <code>jjm/assessment</code> folder on the Github site.</p>
+<section id="executable-file" class="level1">
+<h1>Executable File</h1>
+<p>In general computing, an executable is a programme generated by machine code instructions. The programme can take user-specified input, processes it, and produces output. In the context of the jack mackerel assessment, the model equations are coded up in a <code>.TPL</code> file and compiled into a single executable. The executable estimates the best parameters for the model and the data by minimizing a pre-specified objective (likelihood) function.</p>
+<ul>
+<li><p>Specific to operating systems (<code>jjms.exe</code> for Windows, <code>jjms</code> for Mac and Linux)</p></li>
+<li><p>Stored on the Teams <a href="https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/src?csf=1&amp;web=1&amp;e=FSAJ65">site</a></p>
+<ul>
+<li>These are not stored on the Github site for security reasons- many computer viruses are sent around as executable files.</li>
+<li>Can / should we find a better place to store it?</li>
+<li>Right now just Windows and Mac executables - does anyone need Linux?</li>
+<li><strong><em>If you haven’t already compiled it, please copy/paste it in the <code>jjm/src</code> folder</em></strong></li>
+</ul></li>
+<li><p>Source code is found in <code>jjm/src/jjms.TPL</code></p>
+<ul>
+<li>The <code>jjm</code> file is deprecated</li>
+<li>You can use this file to see exactly how the input files are being used in the assessment model.</li>
+</ul></li>
+<li><p>Compiled using AD Model Builder (<a href="http://www.admb-project.org/">ADMB</a>)</p>
+<ul>
+<li>Instructions for compilation can be found in the <a href="https://southpacificrfmo.sharepoint.com/:u:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/Tutorials/PreWorkshop.html?csf=1&amp;web=1&amp;e=6vIvxK">PreWorkshop document</a></li>
+</ul></li>
+<li><p>Comments are made using the <code>//</code></p></li>
+<li><p>An important thing to note for the input files is that the executable ignores line breaks. The files are read in linearly, so it doesn’t matter (to the executable) if values are separated by a space or by a line break. We often use the line breaks to make the files more readable to the human, but that’s not how the software reads it.</p></li>
+</ul>
+<p>As such,</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Steepness </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0.65</span> <span class="fl">0.65</span> <span class="fl">0.65</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">300</span> <span class="dv">300</span> <span class="dv">300</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">6</span> <span class="sc">-</span><span class="dv">6</span> <span class="sc">-</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>is read as</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Steepness </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0.65</span> <span class="fl">0.65</span> <span class="fl">0.65</span> <span class="dv">300</span> <span class="dv">300</span> <span class="dv">300</span> <span class="sc">-</span><span class="dv">6</span> <span class="sc">-</span><span class="dv">6</span> <span class="sc">-</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="control-file" class="level1">
+<h1>Control File</h1>
+<ul>
+<li><p>Contains the settings for the model</p></li>
+<li><p>Files used to run the most recent assessment can be found in <code>jjm/assessment/config</code>, or <a href="https://github.com/SPRFMO/jjm/tree/master/assessment/config">here</a> on the Github site.</p></li>
+<li><p>Comments are made using <code>#</code></p></li>
+</ul>
+<section id="things-to-note" class="level2">
+<h2 class="anchored" data-anchor-id="things-to-note">Things to Note</h2>
+<ul>
+<li><p>The first line of the control file defines the name of the data file to be used.</p>
+<ul>
+<li>With this setting, you can use several different control files with the same data file.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dataFile</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>.<span class="fl">00.</span>dat</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#modelName </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>h2_0<span class="fl">.00</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Selectivity sharing vector defines the selectivity patterns of each fleet (fishery and survey).</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From the TPL file</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># // Matrix of selectivity mappings--row 1 is index of stock</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># //  row 2 is type (1=fishery, 2=index) and row 3 is index within that type</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># //  e.g., the following for 2 fisheries and 4 indices means that index 3 uses fishery 1 selectivities,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># //         the other fisheries and indices use their own parameterization</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Selectivity sharing vector (number_fisheries + number_surveys)  </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Fsh_1 Fsh_2 Fsh_3 Fsh_4 Srv_1 Srv_2 Srv_3 Srv_4 Srv_5 Srv_6 Srv_7</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#N_Chile_Fsh CS_Chile_Fsh FarNorth_Fsh Offshore_Trawl_Fsh Chile_AcousCS Chile_AcousN Chilean_CPUE DEPM Peru_Acoustic Peru_CPUE Offshore_CPUE #  </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 3 4 1 2 3 4 5 6 7</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>For each parameter, we define a prior, a coefficient of variance (CV), and a phase of estimation.</p>
+<ul>
+<li>Negative phases indicate that the parameter is not estimated in the model</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Steepness </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0.65</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">300</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">6</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#catchability </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.143881847</span> <span class="fl">0.029045376</span> <span class="fl">0.000159487</span> <span class="fl">0.519171913</span> <span class="fl">0.002284038</span> <span class="fl">0.007987171</span> <span class="fl">0.033884372</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span>  <span class="dv">12</span>  <span class="dv">12</span>  <span class="dv">12</span>  <span class="dv">12</span>  <span class="dv">12</span>  <span class="dv">12</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">3</span>  <span class="dv">3</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">4</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>User defines the years of data used to estimate the stock-recruitment relationship</p>
+<ul>
+<li>Two types of stock-recruit relationships available: Ricker (Option 1) and Beverton-Holt (Option 2)</li>
+</ul></li>
+<li><p>The retro input defines how many years of data to “peel” off for the retrospective analysis</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of regimes (by stock)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Sr_type </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#AgeError </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>  </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Retro </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>  </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Recruitment sharing matrix (number_stocks, number_regimes)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Selectivity patterns are defined per fleet</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fishery 1 N Chile  </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="co">#selectivity type</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span>  <span class="co">#n_sel_ages</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="co">#phase sel</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="co">#curvature penalty</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="co">#Dome-shape penalty</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Years of selectivity change Fishery 1 N Chile  </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dv">36</span>                                                          </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dv">1984</span>  <span class="dv">1985</span>  <span class="dv">1986</span>  <span class="dv">1987</span>  <span class="dv">1988</span>  <span class="dv">1989</span>  <span class="dv">1990</span>  <span class="dv">1991</span>  <span class="dv">1992</span>  <span class="dv">1993</span>  <span class="dv">1994</span>  <span class="dv">1995</span>  <span class="dv">1996</span>  <span class="dv">1997</span>  <span class="dv">1998</span>  <span class="dv">1999</span>  <span class="dv">2000</span>  <span class="dv">2001</span>  <span class="dv">2002</span>  <span class="dv">2003</span>  <span class="dv">2004</span>  <span class="dv">2005</span>  <span class="dv">2006</span>  <span class="dv">2007</span>  <span class="dv">2008</span>  <span class="dv">2009</span>  <span class="dv">2010</span>  <span class="dv">2011</span>  <span class="dv">2012</span>  <span class="dv">2013</span>    <span class="dv">2014</span>    <span class="dv">2015</span>    <span class="dv">2016</span>  <span class="dv">2017</span>  <span class="dv">2018</span>  <span class="dv">2019</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span> <span class="fl">0.5</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial values for coefficitients at each change (one for every change plus 1)  </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 3 4 5 6 7 8 9 10 11 12  </span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fl">0.2</span> <span class="fl">0.7</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="data-file" class="level1">
+<h1>Data File</h1>
+<ul>
+<li><p>Contains processed data for the assessment</p></li>
+<li><p>Files used to run the most recent assessment can be found in <code>jjm/assessment/input</code>, or <a href="https://github.com/SPRFMO/jjm/tree/master/assessment/input">here</a> on the Github site.</p></li>
+<li><p>An annotated accompanying Excel file can be found in <code>jjm/assessment/data/JM Data files for SC09.xlsx</code>, or <a href="https://github.com/SPRFMO/jjm/blob/master/assessment/data/JM%20Data%20files%20for%20SC09.xlsx">here</a>.</p></li>
+<li><p>Comments are made using <code>#</code></p></li>
+</ul>
+<section id="things-to-note-1" class="level2">
+<h2 class="anchored" data-anchor-id="things-to-note-1">Things to Note</h2>
+<ul>
+<li>The years define how many years are in the model.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#years </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1970</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2021</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ages </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dv">12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>Fishery data comes first, and each fishery data component is denoted with an <code>F</code>. Index data are denoted with an <code>I</code></p></li>
+<li><p>Many of the <code>num</code> components define the length of the subsequent data vector</p></li>
+<li><p>Fishery catch data (<code>Fcaton</code> and <code>Fcatonerr</code>) have to have a value in place for every year of the model for every fleet</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Fnum </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Fnames </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>N_Chile<span class="sc">%SC_Chile_PS%</span>FarNorth%Offshore_Trawl </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Fcaton </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fl">101.69</span> <span class="fl">143.45</span> <span class="fl">64.46</span> <span class="fl">83.2</span> <span class="fl">164.76</span> <span class="fl">207.33</span> <span class="fl">257.7</span> <span class="fl">226.23</span> <span class="fl">398.41</span> <span class="fl">344.05</span> <span class="fl">288.81</span> <span class="fl">474.82</span> <span class="fl">789.91</span> <span class="fl">301.93</span> <span class="dv">727</span> <span class="fl">511.15</span> <span class="fl">55.21</span> <span class="fl">313.31</span> <span class="fl">325.46</span> <span class="fl">338.6</span> <span class="fl">323.09</span> <span class="fl">346.25</span> <span class="fl">304.24</span> <span class="fl">379.47</span> <span class="fl">222.25</span> <span class="fl">230.18</span> <span class="fl">278.44</span> <span class="fl">104.2</span> <span class="fl">30.27</span> <span class="fl">55.65</span> <span class="fl">118.73</span> <span class="fl">248.1</span> <span class="fl">108.73</span> <span class="fl">143.28</span> <span class="fl">158.66</span> <span class="fl">165.63</span> <span class="fl">155.26</span> <span class="fl">172.701</span> <span class="fl">167.258</span> <span class="fl">134.022</span> <span class="fl">169.012</span> <span class="fl">30.825</span> <span class="fl">13.256</span> <span class="fl">16.361</span> <span class="fl">18.219</span> <span class="fl">34.886</span> <span class="fl">24.657</span> <span class="fl">35.002</span> <span class="fl">11.551</span> <span class="fl">11.875</span> <span class="fl">44.155</span> <span class="fl">61.359</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fl">10.31</span> <span class="fl">14.99</span> <span class="fl">22.55</span> <span class="fl">38.39</span> <span class="fl">28.75</span> <span class="fl">53.88</span> <span class="fl">84.57</span> <span class="fl">114.57</span> <span class="fl">188.27</span> <span class="fl">253.46</span> <span class="fl">273.45</span> <span class="fl">586.09</span> <span class="fl">704.77</span> <span class="fl">563.34</span> <span class="fl">699.3</span> <span class="fl">945.84</span> <span class="fl">1129.11</span> <span class="fl">1456.73</span> <span class="fl">1812.79</span> <span class="fl">2051.52</span> <span class="fl">2148.79</span> <span class="fl">2674.27</span> <span class="fl">2907.82</span> <span class="fl">2856.78</span> <span class="fl">3819.19</span> <span class="fl">4174.02</span> <span class="fl">3604.89</span> <span class="fl">2812.87</span> <span class="fl">1582.64</span> <span class="fl">1164.04</span> <span class="fl">1115.57</span> <span class="fl">1401.84</span> <span class="fl">1410.27</span> <span class="fl">1278.02</span> <span class="fl">1292.94</span> <span class="fl">1264.81</span> <span class="fl">1224.69</span> <span class="fl">1130.083</span> <span class="fl">728.85</span> <span class="fl">700.905</span> <span class="fl">295.796</span> <span class="fl">216.47</span> <span class="fl">214.204</span> <span class="fl">214.999</span> <span class="fl">254.295</span> <span class="fl">250.327</span> <span class="fl">295.16</span> <span class="fl">311.863</span> <span class="fl">415.149</span> <span class="fl">432.447</span> <span class="fl">517.665</span> <span class="fl">567.267</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fl">4.71</span> <span class="fl">9.19</span> <span class="fl">18.78</span> <span class="fl">42.78</span> <span class="fl">129.21</span> <span class="fl">37.9</span> <span class="fl">54.15</span> <span class="fl">504.99</span> <span class="fl">386.79</span> <span class="fl">333.81</span> <span class="fl">414.3</span> <span class="fl">445.64</span> <span class="fl">143.72</span> <span class="fl">110.69</span> <span class="fl">200.67</span> <span class="fl">114.62</span> <span class="fl">51.03</span> <span class="fl">46.3</span> <span class="fl">244.23</span> <span class="fl">316.25</span> <span class="fl">370.82</span> <span class="fl">213.45</span> <span class="fl">111.68</span> <span class="fl">133.35</span> <span class="fl">233.35</span> <span class="fl">550.99</span> <span class="fl">495.52</span> <span class="fl">680.05</span> <span class="fl">412.85</span> <span class="fl">203.75</span> <span class="fl">303.7</span> <span class="fl">857.74</span> <span class="fl">154.82</span> <span class="fl">217.73</span> <span class="fl">187.37</span> <span class="fl">80.66</span> <span class="fl">277.57</span> <span class="fl">255.36</span> <span class="fl">169.537</span> <span class="fl">76.629</span> <span class="fl">22.172</span> <span class="fl">326.394</span> <span class="fl">187.396</span> <span class="fl">80.586</span> <span class="fl">74.532</span> <span class="fl">22.447</span> <span class="fl">15.088</span> <span class="fl">8.867</span> <span class="fl">57.163</span> <span class="fl">135.784</span> <span class="fl">140.116</span> <span class="fl">129.3243</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="dv">0</span> <span class="fl">5.5</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="fl">0.04</span> <span class="fl">2.27</span> <span class="fl">51.29</span> <span class="fl">370.29</span> <span class="fl">339.8</span> <span class="fl">438.12</span> <span class="fl">733.2</span> <span class="fl">894.3</span> <span class="fl">1059.93</span> <span class="fl">799.32</span> <span class="fl">837.5</span> <span class="fl">863.42</span> <span class="fl">863.22</span> <span class="fl">875.82</span> <span class="fl">872.06</span> <span class="fl">543.66</span> <span class="fl">37.93</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="fl">0.01</span> <span class="fl">2.32</span> <span class="fl">20.09</span> <span class="fl">76.26</span> <span class="fl">158.2</span> <span class="fl">295.44</span> <span class="fl">243.58</span> <span class="fl">362.63</span> <span class="fl">438.8306</span> <span class="fl">406.9864</span> <span class="fl">371.9176</span> <span class="fl">239.593</span> <span class="fl">60.89131</span> <span class="fl">39.91786</span> <span class="fl">41.177</span> <span class="fl">63.652</span> <span class="fl">86.672</span> <span class="fl">54.163</span> <span class="fl">49.113</span> <span class="fl">42.46</span> <span class="fl">51.439</span> <span class="fl">4.739</span> <span class="fl">55.309</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Fcatonerr </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> <span class="fl">0.05</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>Age composition data appear before length composition data</p></li>
+<li><p>Weight at age is required for every fleet in every year of the model</p>
+<ul>
+<li>Historically, when the year is updated but not the weight-at-age data (e.g.&nbsp;if the weight at age for a particular fleet is unavailable at the time of the SC), the previous year’s data are used.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="reading-and-writing-input-files-in-r" class="level1">
+<h1>Reading and Writing Input Files in R</h1>
+<p>You can edit the files by hand, or within R. <strong>If you’re planning to use <code>jjmR</code> to read and edit input files, you’ll have to start with a model that is already run.</strong> An example could be last year’s model.</p>
+<p>The code here will update the name of the model from <code>1.00</code> to <code>1.01</code>, and write the new control and data files to the specified <code>ctlPath</code> and <code>datPath</code> directories respectively. We will look more closely at how to modify these input files in the next document.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jjmR)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ?readJJM</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ?writeJJM</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming we're in the jjm/assessment folder</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># path = where control files are stored</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># input = where data files are stored</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># output = where model output files are stored; default is "results"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>mod_current <span class="ot">&lt;-</span> <span class="fu">readJJM</span>(<span class="st">"h1_1.00"</span>, <span class="at">path =</span> <span class="st">"config"</span>, <span class="at">input =</span> <span class="st">"input"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>mod_new <span class="ot">&lt;-</span> mod_current</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new) <span class="ot">&lt;-</span> mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>control<span class="sc">$</span>modelName <span class="ot">&lt;-</span> <span class="st">"h1_1.01"</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>control<span class="sc">$</span>dataFile <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"h1_1.01"</span>,<span class="st">".dat"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># writeJJM(newmod,datPath="input",ctlPath="config")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Examining the <code>jjm</code> object can give you some insight as to what the object contains. The names of the data, control, and output objects generally correspond to the comments found in the <code>.dat</code>, <code>.ctl</code>, and <code>xx_R.rep</code> files respectively.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new[[<span class="dv">1</span>]])</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>info</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>data)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>control)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>output)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mod_new[[<span class="dv">1</span>]]<span class="sc">$</span>output[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<ul>
+<li><p>How do the model settings for the single-stock (<code>h1</code>) and the two-stock (<code>h2</code>) models differ? You can look at <code>h1_1.00.ctl</code> and <code>h2_1.00.ctl</code>.</p></li>
+<li><p>How does the <code>readJJM</code> object differ for the two-stock model (<code>h2_1.00</code>)?</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02_DataProcessing.html" class="pagination-link" aria-label="Data Processing (SPRFMO)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Data Processing (SPRFMO)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04_RunningModel.html" class="pagination-link" aria-label="Running a jjm assessment model">
+        <span class="nav-page-text"><span class="chapter-title">Running a jjm assessment model</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

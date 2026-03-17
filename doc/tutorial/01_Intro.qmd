@@ -1,0 +1,134 @@
+---
+title: "SPRFMO assessments"
+output:
+  html_document:
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
+---
+
+# Main Objectives
+
+- Process the data that go into the assessment model
+- Run the current jack mackerel assessment model
+- Understand the main components of the model
+- Be able to update the data and control files with an extra year of data, similar to an update assessment
+
+---
+
+# Overview of the Jack Mackerel Assessment Process
+
+The assessment is done every year during the Scientific Committee meeting to provide scientific advice for the management of jack mackerel. The current jack mackerel assessment model was adopted in 2010, with several updates since.
+
+There are two types of assessment updates we do- update assessments and benchmark assessments.
+
+## Update Assessments
+
+- Focus on updating the data for the year
+
+- Limited number of sensitivity analyses conducted
+
+- Rarely result in changes to model settings
+
+
+### Example of the Process
+1. Members send data to Secretariat
+
+1. Data get processed to go into the assessment
+
+1. Data get incrementally introduced to the model (exercise called data bridging)
+
+1. Control file gets updated
+
+1. Assessment gets run
+
+1. Check diagnostics
+
+1. Run (limited number of) sensitivities
+
+1. Choose final model
+
+1. Do projections under four different recruitment scenarios using the final model
+
+1. Do retrospective analysis (both analytical and historical) using the final model
+
+1. Output from "most conservative" model gets put into the harvest control rule
+
+1. Harvest control rule determines catch advice that is presented to the Commission
+
+
+### Example of the Model Runs
+Example of models run during an update (from SC9, also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
+
+
+Model      | Description
+-----------|--------------
+**Models 0.x**| **Data introductions**
+0.00     |  Exact 2020 (single stock `h1` and two-stock `h2`) model and data set through 2020 (mod1.0 from SC08)
+0.01     |  As 0.00 but with revised catches through 2020 (currently still estimates)
+0.02     |  As 0.01 but with updated 2020 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.03     |  As 0.02 but with updated 2020 weight at age data for all fisheries and their associated CPUE indices
+0.04     |  As 0.03 but replaced offshore CPUE up to 2020
+0.05     |  As 0.04 but with 2021 catch projections
+0.06     |  As 0.05 but with updated 2021 fishery age composition data for N_Chile, SC_Chile, and Offshore_Trawl, and updated 2020 fishery length composition data for FarNorth
+0.07     |  As 0.06 but but with updated 2021 weight at age data for N_Chile, SC_Chile, and FarNorth fleets, and for their associated CPUE indices
+0.08     |  As 0.07 but replaced SC_Chile_CPUE index (traditional absolute scaled CPUE by trip)
+0.09     |  As 0.08 but replaced Peru_CPUE index
+0.10     |  As 0.09 but with updated AcousN 2021 index, with associated age composition and weight at age
+-----------|--------------
+**Models 1.x**| **Updated Model and Sensitivities**
+1.00     | Update model (selectivity changes, recruitment) to 2021; 0.10 data file
+1.01     | As 1.00 but use revised data series "antiguo" of age composition and weight at age data for both Chilean fisheries and both Chilean acoustic surveys (assessment/NewAgeData/AgeDataInAssessment.csv)
+1.02     | As 1.01 but incorporate revised (validated) age data for surveys and fleets with M and maturity updated (M=0.35) (NOT RUN)
+1.03     | As 1.02 but M=0.45 (NOT RUN)
+1.04     | As **1.01** but with increased uncertainty (CV=0.4) for final year CPUE indices
+1.05     | As **1.04** but replacing 2020/2021 weight at age with 2019 revised "antiguo" data for N_Chile
+
+
+## What Happens During a Benchmark
+
+- Focus on updating the model settings and testing different model configurations
+
+- Can also include updates to entire datasets (e.g. if methodology for CPUE analysis has changed)
+
+### Example of the Process
+1. Members discuss sensitivity analyses they would like to see
+
+1. Configure and run sensitivity analyses
+
+1. View results and discuss
+
+1. Repeat until a final model can be decided upon
+
+### Example of Models Run
+Example of models run during a benchmark assessment (from SC6, also [here](https://github.com/SPRFMO/jjm/tree/master/assessment))
+
+Model      | Description
+-----------|--------------
+1.0        | As 0.7 in 2017, selectivity change in Chile N acoustic in 2015 and 2016 
+1.1        | As 1.0, but constant selectivity for Chile N Acoustic all years
+1.2        | As 1.1, but constant selectivity for S-C Chile acoustic all years
+1.3        | As 1.2, but constant selectivity for DEPM all years (was change in 2003)
+1.4        | As 0.7 in 2017, selectivity change in Chile N acoustic in 2012 and 2016 
+1.5        | As 1.4, but replace offshore CPUE w/ new version CV=0.2...dropping Russian nominal
+1.5_r      | As 1.5, retros to evaluate if Francis weights are stable
+1.6        | As 1.5, but without Chinese CPUE?
+1.7        | As 1.5, but without Offshore (and Russian) CPUE
+1.8        | As 1.5, but only Offshore CPUE included (all other indices downweighted)
+1.9        | As 1.5, but only Chinese CPUE included (all other indices downweighted)
+1.10       | As 1.5, but without the Acoustic N data
+1.11       | As 1.5, but allow fishery selectivity to change up until age 11 and reduce penalty on domedness
+1.12       | As 1.5, but constant average weight at age w/in fleets and surveys (no time varying)
+**1.13**   | As 1.5 but rescale sample size using Francis T1.8 method (one iteration)
+1.14       | As 1.12, but use ageing error consistent growth relationship (w/ aL^b for wt-age) and supply Maturity at length to get conversion
+1.15       | As 1.5, but change catchability in 2012 for Chilean CPUE
+1.16       | As 1.14, but look at alternative values for M, = 0.28?
+1.1x       | As 1.13?, but estimate M with prior? Do MCMC?
+
+---
+

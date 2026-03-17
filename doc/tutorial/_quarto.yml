@@ -1,0 +1,44 @@
+project:
+  type: book
+  output-dir: ../../docs/tutorial
+  
+book:
+  title: "JJM Tutorial"
+  reader-mode: true
+  chapters:
+      - index.qmd
+      - 00_PreWorkshop.qmd
+      - 01_Intro.qmd
+      - 02_DataProcessing.qmd
+      - 03_InputFiles.qmd
+      - 04_RunningModel.qmd
+      - 05_ModifyingInputs.qmd
+      - 06_ModelOutputs.qmd
+      - 07_Retrospectives.qmd
+      - 08_SensitivityAnalyses.qmd
+      - about.qmd
+number-sections: false
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc_float: true
+    include-before-body: ../_includes/sprfmo-banner-nested.html
+
+website:
+  title: "JJM Tutorial"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - 00_PreWorkshop.qmd
+      - 01_Intro.qmd
+      - 02_DataProcessing.qmd
+      - 03_InputFiles.qmd
+      - 04_RunningModel.qmd
+      - 05_ModifyingInputs.qmd
+      - 06_ModelOutputs.qmd
+      - 07_Retrospectives.qmd
+      - 08_SensitivityAnalyses.qmd
+      - about.qmd

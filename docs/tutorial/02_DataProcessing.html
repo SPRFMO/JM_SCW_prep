@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>JJM Assessment Documents – SPRFMO Jack Mackerel Working Group</title>
+<title>Data Processing (SPRFMO) – JJM Tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./03_InputFiles.html" rel="next">
+<link href="./01_Intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -40,13 +42,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -70,93 +72,123 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">SPRFMO Jack Mackerel Working Group</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./JM-WP-BM-01.html"> 
-<span class="menu-text">JM-WP-BM-01</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./SC13.html"> 
-<span class="menu-text">SC13</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./helper_scripts_guide.html"> 
-<span class="menu-text">Script Guide</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_DataProcessing.html"><span class="chapter-title">Data Processing (SPRFMO)</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">JJM Tutorial</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial goals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_PreWorkshop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workshop Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">SPRFMO assessments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_DataProcessing.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Data Processing (SPRFMO)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_InputFiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">jjm Input Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_RunningModel.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running a jjm assessment model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_ModifyingInputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Bridging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_ModelOutputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Model Outputs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_Retrospectives.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrospectives</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_SensitivityAnalyses.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sensitivity Analyses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#document-guide" id="toc-document-guide" class="nav-link" data-scroll-target="#document-guide"><span class="header-section-number">2</span> Document Guide</a>
-  <ul class="collapse">
-  <li><a href="#jm-wp-bm-01" id="toc-jm-wp-bm-01" class="nav-link" data-scroll-target="#jm-wp-bm-01"><span class="header-section-number">2.1</span> JM-WP-BM-01</a></li>
-  <li><a href="#sc13-assessment-update" id="toc-sc13-assessment-update" class="nav-link" data-scroll-target="#sc13-assessment-update"><span class="header-section-number">2.2</span> SC13 Assessment Update</a></li>
-  <li><a href="#helper-scripts-guide" id="toc-helper-scripts-guide" class="nav-link" data-scroll-target="#helper-scripts-guide"><span class="header-section-number">2.3</span> Helper Scripts Guide</a></li>
-  <li><a href="#user-guide" id="toc-user-guide" class="nav-link" data-scroll-target="#user-guide"><span class="header-section-number">2.4</span> User Guide</a></li>
-  <li><a href="#tutorial-guide" id="toc-tutorial-guide" class="nav-link" data-scroll-target="#tutorial-guide"><span class="header-section-number">2.5</span> Tutorial Guide</a></li>
-  <li><a href="#archive" id="toc-archive" class="nav-link" data-scroll-target="#archive"><span class="header-section-number">2.6</span> Archive</a></li>
-  </ul></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">3</span> Notes</a></li>
+  <ul>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">JJM Assessment Documents</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+```{=html}
 <style>
 .quarto-title-block {
   display: none;
@@ -250,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="sprfmo-front">
   <div class="sprfmo-banner">
     <div class="sprfmo-mark" aria-hidden="true">
-      <img src="annex/logo.png" alt="SPRFMO logo">
+      <img src="../annex/logo.png" alt="SPRFMO logo">
     </div>
     <div class="sprfmo-copy">
       <h1 class="sprfmo-wordmark">SPRFMO</h1>
@@ -260,56 +292,62 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </div>
-<div class="paper-title">JJM Assessment Documents</div>
-<section id="overview" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
-<p>This site collects the main Quarto documents in the <code>doc/</code> directory and renders them for direct browsing through GitHub Pages.</p>
-<p>The current published documents are:</p>
-<ol type="1">
-<li><a href="./JM-WP-BM-01.html">JM-WP-BM-01</a></li>
-<li><a href="./SC13.html">SC13 Assessment Update</a></li>
-<li><a href="./helper_scripts_guide.html">Helper Scripts Guide</a></li>
-<li><a href="userguide/">User Guide</a></li>
-<li><a href="tutorial/">Tutorial Guide</a></li>
-<li><a href="archive/">Archive</a></li>
-</ol>
-</section>
-<section id="document-guide" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Document Guide</h1>
-<section id="jm-wp-bm-01" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="jm-wp-bm-01"><span class="header-section-number">2.1</span> JM-WP-BM-01</h2>
-<p>This is the main benchmark working-paper draft currently tracked as <code>JM-WP-BM-01.qmd</code>.</p>
-</section>
-<section id="sc13-assessment-update" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sc13-assessment-update"><span class="header-section-number">2.2</span> SC13 Assessment Update</h2>
-<p>This is the converted Quarto version of the incremental SC13 assessment update document originally maintained as <code>assessment/R/SC13.rmd</code>.</p>
-</section>
-<section id="helper-scripts-guide" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="helper-scripts-guide"><span class="header-section-number">2.3</span> Helper Scripts Guide</h2>
-<p>This guide documents the reusable helper scripts added for:</p>
+```
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Data Processing (SPRFMO)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <ul>
-<li>creating the reduced <code>2.00</code> data file</li>
-<li>creating the matching <code>h1_2.00</code> control file</li>
-<li>running standard JJM fits</li>
-<li>running short <code>adnuts</code> MCMC benchmarks</li>
+<li>Members send data to the Secretariat
+<ul>
+<li>Catch data submitted officially to secretariat</li>
+<li>Catch data also submitted via <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SC-template-ALK-SPRFMO-V3.2.xlsm?d=wca07804cd4bf463b8ae7e07ee32b2e25&amp;csf=1&amp;web=1&amp;e=5WZ53z">ALK templates</a>
+<ul>
+<li>Estimate on catches of the current year based on projection. Projection informed by members, TAC and recent practice</li>
+<li>Recent practice not strictly defined, depends on available information</li>
+</ul></li>
+<li>Composition data submitted in ALK templates, both for fisheries as research cruises
+<ul>
+<li>Manual check on quality / missing variables of the sheets</li>
+<li>Visualisation of the data in these <a href="https://southpacificrfmo.sharepoint.com/:u:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/SC9%20Data%20Processing%20Files/01_readALK_generateRaisedData.R?csf=1&amp;web=1&amp;e=fxobad">ALK sheets</a></li>
+<li>Linking Length-Frequency data to ALK data <a href="https://southpacificrfmo.sharepoint.com/:p:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/03%20Presentations/SCW11-03%20Raising%20the%20offshore%20fleet%20data.pptx?d=w28add1b87d224b92b2616fb926e23695&amp;csf=1&amp;web=1&amp;e=oq0BCM">Presentation</a></li>
+<li>Automated workflow reading all historic files, new ALK from Chile to produce updated catch-at-age is almost finished</li>
+</ul></li>
+<li>CPUE
+<ul>
+<li>Each individual fleet does their own standardisation process, details found in the technical annex and WDs</li>
+</ul></li>
+<li>Research surveys
+<ul>
+<li>Information from research surveys is submitted via the <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SURVEY_SPRFMO_2021.xlsx?d=w0ee4b1db7f40419fb0bc432dccb37a75&amp;csf=1&amp;web=1&amp;e=ZaLgNK">SURVEY template</a></li>
+<li>Manual check on quality / missing variables of the sheets</li>
+</ul></li>
+</ul></li>
+<li>These data are stored on the Teams <a href="https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&amp;web=1&amp;e=huLIns">Data Repo</a></li>
 </ul>
-</section>
-<section id="user-guide" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="user-guide"><span class="header-section-number">2.4</span> User Guide</h2>
-<p>This is the Quarto version of the JJM user guide converted from <code>doc/userguide/main.tex</code>.</p>
-</section>
-<section id="tutorial-guide" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="tutorial-guide"><span class="header-section-number">2.5</span> Tutorial Guide</h2>
-<p>This is the workshop tutorial book published from <code>doc/tutorial/</code>.</p>
-</section>
-<section id="archive" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="archive"><span class="header-section-number">2.6</span> Archive</h2>
-<p>This section collects the legacy annual and validation <code>RMarkdown</code> assessment reports moved from <code>assessment/R/</code> and published under <code>archive/</code>.</p>
-</section>
-</section>
-<section id="notes" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Notes</h1>
-<p>The website is rendered from the <code>doc/</code> directory into the repository <code>docs/</code> folder so it can be served by GitHub Pages in the standard way. The underlying model code, inputs, and results remain in <code>assessment/</code>.</p>
+<section id="exercise" class="level1">
+<h1>Exercise</h1>
+<ul>
+<li>Take a completed ALK from Chile and an incomplete ALK from China and convert the lengths in the Chinese set to catch numbers-at-age by quarter and catch weight-at-age by quarter.</li>
+<li>The complete ALK can be found <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/completeALK.xlsm?d=wbf0f406e63dd496fb55e51f5b80d1648&amp;csf=1&amp;web=1&amp;e=5Uhiaj">here</a></li>
+<li>The incomplete ALK can be found <a href="https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/incompleteALK.xlsm?d=w52c4e6a6a8c444829cef938f30f2668b&amp;csf=1&amp;web=1&amp;e=9bPWoj">here</a></li>
+</ul>
 
 
 </section>
@@ -715,6 +753,18 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01_Intro.html" class="pagination-link" aria-label="SPRFMO assessments">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">SPRFMO assessments</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03_InputFiles.html" class="pagination-link" aria-label="jjm Input Files">
+        <span class="nav-page-text"><span class="chapter-title">jjm Input Files</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

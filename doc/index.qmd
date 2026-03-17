@@ -18,7 +18,8 @@ The current published documents are:
 2. [SC13 Assessment Update](SC13.qmd)
 3. [Helper Scripts Guide](helper_scripts_guide.qmd)
 4. [User Guide](userguide/)
-5. [Archive](archive/)
+5. [Tutorial Guide](tutorial/)
+6. [Archive](archive/)
 
 # Document Guide
 
@@ -42,6 +43,10 @@ This guide documents the reusable helper scripts added for:
 ## User Guide
 
 This is the Quarto version of the JJM user guide converted from `doc/userguide/main.tex`.
+
+## Tutorial Guide
+
+This is the workshop tutorial book published from `doc/tutorial/`.
 
 ## Archive
 

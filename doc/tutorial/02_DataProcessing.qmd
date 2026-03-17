@@ -1,0 +1,24 @@
+# Data Processing (SPRFMO)
+
+-   Members send data to the Secretariat
+    -   Catch data submitted officially to secretariat
+    -   Catch data also submitted via [ALK templates](https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SC-template-ALK-SPRFMO-V3.2.xlsm?d=wca07804cd4bf463b8ae7e07ee32b2e25&csf=1&web=1&e=5WZ53z)
+        -   Estimate on catches of the current year based on projection. Projection informed by members, TAC and recent practice
+        -   Recent practice not strictly defined, depends on available information
+    -   Composition data submitted in ALK templates, both for fisheries as research cruises
+        -   Manual check on quality / missing variables of the sheets
+        -   Visualisation of the data in these [ALK sheets](https://southpacificrfmo.sharepoint.com/:u:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/SC9%20Data%20Processing%20Files/01_readALK_generateRaisedData.R?csf=1&web=1&e=fxobad)
+        -   Linking Length-Frequency data to ALK data [Presentation](https://southpacificrfmo.sharepoint.com/:p:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/03%20Presentations/SCW11-03%20Raising%20the%20offshore%20fleet%20data.pptx?d=w28add1b87d224b92b2616fb926e23695&csf=1&web=1&e=oq0BCM)
+        -   Automated workflow reading all historic files, new ALK from Chile to produce updated catch-at-age is almost finished
+    -   CPUE
+        -   Each individual fleet does their own standardisation process, details found in the technical annex and WDs
+    -   Research surveys
+        -   Information from research surveys is submitted via the [SURVEY template](https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/General/SURVEY_SPRFMO_2021.xlsx?d=w0ee4b1db7f40419fb0bc432dccb37a75&csf=1&web=1&e=ZaLgNK)
+        -   Manual check on quality / missing variables of the sheets
+-   These data are stored on the Teams [Data Repo](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20repository?csf=1&web=1&e=huLIns)
+
+# Exercise
+
+-   Take a completed ALK from Chile and an incomplete ALK from China and convert the lengths in the Chinese set to catch numbers-at-age by quarter and catch weight-at-age by quarter.
+-   The complete ALK can be found [here](https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/completeALK.xlsm?d=wbf0f406e63dd496fb55e51f5b80d1648&csf=1&web=1&e=5Uhiaj)
+-   The incomplete ALK can be found [here](https://southpacificrfmo.sharepoint.com/:x:/r/sites/SPRFMOSCJackMackerelWorkingGroup/Shared%20Documents/Data%20Workshop%202021/07%20Personal%20folders/incompleteALK.xlsm?d=w52c4e6a6a8c444829cef938f30f2668b&csf=1&web=1&e=9bPWoj)

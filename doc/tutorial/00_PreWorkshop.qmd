@@ -1,0 +1,170 @@
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
+# Workshop Overview {-}
+The main goal of this workshop is to broaden the expertise of the participants in running and understanding the jack mackerel assessment model. The workshop will involve a combination of presentations and hands-on exercises. There will be optional exercises for participants to work on in their own time, and time will be set aside during the workshop for questions about them. Some competency in the R language will be helpful, but help will be provided as requested.
+
+By the end of the workshop, participants should be able to:
+
+1. Know how the data are processed prior to inclusion in the assessment
+1. Have the technical capabilities to run the asssessment in different configurations, under scenarios with different data and/or model assumptions
+1. Understand the assessment process and know where to find the necessary components of it
+1. Be able to pull output from model runs to create custom model diagnostics
+1. Identify areas of improvement for the technical aspects of the assessment process
+
+
+# Workshop Logistics {-}
+Prior to the start of the workshop, it is expected that you will have:
+
+- Filled out the [pre-workshop survey](https://www.surveymonkey.com/r/DLV72R6)
+- Read through the most recent [Technical Annex](https://www.sprfmo.int/assets/2021-SC9/Report/SC9-Report-Annex-10-Jack-mackerel-Technical-advice-RS.pdf)
+- Have a [Github](https://github.com) account with access to the [JJM Github repository](https://github.com/SPRFMO/jjm)
+    * Please contact Jim Ianelli (jim.ianelli@gmail.com) if you cannot access this site
+- Have access to the SPRFMO SC 10 [Teams site](https://teams.microsoft.com/l/channel/19%3ae3ac467d0d84429194669917778dee03%40thread.tacv2/Jack%2520Mackerel?groupId=409107b8-bb73-4b0a-aec8-cd231edba372&tenantId=0937bffc-7bac-407c-b522-4a917f209773)
+    * Please contact Susana Delgado (sdelgado@sprfmo.int ) if you don't have access to this
+- Installed [R](https://www.r-project.org/)
+- Installed a text editor of your choice. For example:
+    * [RStudio](https://www.rstudio.com/)
+    * [Sublime Text 3](https://www.sublimetext.com/)
+    * [Atom](https://atom.io/)
+- ***Optional***: Installed [AD Model Builder](http://www.admb-project.org/)
+    * For more advanced users
+
+
+# Github Instructions
+*Largely adapted from a SPRFMO [document](https://github.com/SPRFMO/jjm/blob/master/docs/Github_SPRFMO_Howto.docx) and Dan Ovando's [tutorial](https://github.com/super-advanced-r-fall-2019/git-and-github).*
+
+[Github](https://github.com) is a web-based hosting service for software development projects. It allows the SC to share code and results under version control, and facilitates collaboration. The full suite of files and folders required to run the jack mackerel assessment are stored in a single repository.
+
+The repository is stored online, on a cloud. Any updates or changes to the files within the repository can be commited and pushed directly onto the cloud. While you can make changes to the files via the web interface, you will need to download the repository to your local machine in order to run the jack mackerel assessment.
+
+There are two ways for you to copy the repository from the cloud onto your local machine.
+
+## Cloning the repository (recommended)
+
+Cloning the repository offers the benefit of version control, and allows you to continuously update the repository in a convenient manner. Changes made to the virtual repository can be **pull**ed to your local machine, while changes made to your local repository can be **push**ed to the virtual one. That way, work can be shared. Note that changes you make on your local machine will remain local unless you choose to push it to the virtual repository.
+
+If you do not feel that you will need use the files beyond this workshop, feel free to use the second option below to directly download the entire repository. Otherwise, I would recommend cloning it. There are several applications that will allow you to do so (e.g. [GitHub Desktop](https://desktop.github.com/), [GitKraken](https://www.gitkraken.com/), or [Sublime Merge](https://www.sublimemerge.com/), but I will just outline two methods here. The general steps should be the same, however.
+
+***Before we start, you will need to make sure that Git is installed on your system. Installation instructions are found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).***
+
+### Via RStudio (easier)
+1. File > New Project > Version Control > Git
+
+1. Repository URL: *https://github.com/SPRFMO/jjm.git*
+
+1. Project directory name: *jjm* (or whatever you want your folder to be named)
+
+1. Create project as subdirectory of: *NAMEOFYOURDIRECTORY* (whatever folder you want to store the assessment in)
+
+1. The JJM repository can now be found in `NAMEOFYOURDIRECTORY/jjm`
+
+```{r, echo=F}
+knitr::include_graphics("imgs/rstudio.png")
+```
+
+### Via the Command Line
+1. Navigate to the [JJM Github repository](https://github.com/SPRFMO/jjm)
+
+1. Open up a Command (Windows) or Terminal (Mac) window from your applications. If you're using Linux, I assume you'll be familiar with this procedure.
+
+1. Navigate to your chosen working directory using `cd NAMEOFYOURDIRECTORY`
+    * For example, you could choose `cd C:\Documents\SPRFMO` (Windows) or `cd /Users/myname/Documents/SPRFMO`
+    * Note: If you have a space in your file path, make sure to insert `\` before the space. E.g. `/Name\ of\ directory`
+
+1. Clone the JJM repository to your local machine with `git clone https://github.com/SPRFMO/jjm.git`
+
+1. The JJM repository can now be found in `NAMEOFYOURDIRECTORY/jjm`
+
+```{r, echo=F, eval=T}
+knitr::include_graphics(here::here("imgs/cmd.png"))
+```
+
+### When you're done
+At the end of this process, you should have a repository containing five folders, including:
+
+- assessment
+- catch
+- cpue
+- docs
+- src
+
+Workshop participants are encouraged to explore this repository and familiarise themselves with its general structure. In particular, we will be spending a lot of time in the assessment folder.
+
+## Downloading the repository as a ZIP file (easier)
+
+Downloading the repository as a ZIP file gives you a snapshot of the repository at the time of the download. You will not have version control, and any changes you make will remain on your local machine.
+
+1. Navigate to the [jjm repository](https://github.com/SPRFMO/jjm)
+1. In the top right hand corner, select the green `Code` button
+1. Select `Download ZIP`
+1. Unzip the downloaded file
+
+```{r, echo=F}
+knitr::include_graphics("imgs/github.png")
+```
+
+# R Instructions
+
+[R](https://www.r-project.org/) is a free language and software programme used largely for statistical computing and graphics. While not strictly required to run the jack mackerel assessment model, R is used to analyse the model outputs and create plots for diagnostics and result presentation. Currently, most of the plots found in the technical annex are produced using the `jjmR` package.
+
+The [`jjmR`](https://github.com/sprfmo/jjmr) package was adapted from the [`jjmTools`](https://github.com/imarpe/jjmTools) package developed by scientists at IMARPE. The package contains many useful functions for the assessment process, and will form the basis for most of this workshop.
+
+**Even if you've previously installed `jjmR`, please go through this process again to ensure that you have the most updated version of the package.**
+
+To install the package:
+
+1. Open R (or RStudio) from your applications.
+
+1. Install the [`devtools`](https://www.r-project.org/nosvn/pandoc/devtools.html) package.
+
+1. Install the [`jjmR`](https://github.com/SPRFMO/jjmr) package.
+
+You can copy and paste the code from below into the R console to do so.
+
+```{r, echo=T, eval=F}
+install.packages("devtools")
+devtools::install_github("SPRFMO/jjmR")
+```
+
+# Running `jjmR`
+1. Open R (or RStudio) from your applications
+1. Navigate to the `asssessment` folder within the `jjm` repository
+1. Read in the SC09 assessment
+1. Make a Kobe plot based on the assessment results
+
+You can copy and paste the code from below into the R console to do so.
+```{r, echo=T, eval=F}
+setwd("NAMEOFYOURDIRECTORY/jjm/assessment") # Make sure to keep the quotation marks!
+
+h1.mod <- jjmR::readJJM("h1_1.00", path = "config", input = "input")
+jjmR::kobe(h1.mod)
+```
+If everything is installed correctly, you should see this Kobe plot. If not, please take note of any errors and ask about them.
+
+```{r, echo=F}
+knitr::include_graphics("imgs/kobe.png")
+```
+
+# ADMB Instructions (for advanced users only)
+
+The jack mackerel assessment model is implemented in [AD Model Builder](http://www.admb-project.org). The code for the model structure (`jjms.tpl`) can be found in the `src` folder of the `jjm` repo, or [here](https://github.com/SPRFMO/jjm/blob/master/src/jjms.tpl). This code is compiled into an executable file that will be stored somewhere on the Teams [page](https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/src?csf=1&web=1&e=qlW5RW). **With those executable files, you will not have to install ADMB for most assessment runs and sensitivity analyses**.
+
+However, if you would like to make changes to the model's structure in the source code, you will need ADMB to re-compile the executable file for your own use.
+
+Instructions for ADMB installation can be found [here](http://www.admb-project.org/downloads/admb-12.3/).
+
+To compile the `jjms` executable:
+
+1. Open a command window
+1. Check that `admb` is properly installed by running `admb --version`
+1. Navigate to your jjm/src directory with `cd NAMEOFYOURDIRECTORY/jjm/src`
+1. Run either `make jjms` or `admb jjms`
+
+We will (most likely) not be spending a lot of time on this aspect of the assesssment process during the workshop. Should you be interested in learning more, please reach out!
+
+# Questions? {-}
+Please feel free to email Lee Qi at leeqi@uw.edu with any questions, errors, or concerns. I'd be happy to walk you through this document!
+

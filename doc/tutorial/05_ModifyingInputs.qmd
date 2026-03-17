@@ -1,0 +1,132 @@
+---
+title: "Data Bridging"
+output:
+  html_document:
+    theme: journal
+---
+
+```{css, echo=F}
+pre {
+  overflow-x: scroll
+}
+
+pre code {
+  white-space: pre;
+}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F, eval=F)
+```
+
+# Data Bridging
+
+-   When data are added incrementally to the assessment
+
+-   Used to be done by hand
+
+    -   Annotated Excel spreadsheet found [here](https://southpacificrfmo.sharepoint.com/:x:/s/SPRFMOSC8/EXbb-znBI91FiUeMF-8BpTkBkl_8cbt5pKpl3XcU8wRTJA?e=VW0d1j) (SC8; with highlighted changes) and [here](https://github.com/SPRFMO/jjm/blob/master/assessment/data/JM%20Data%20files%20for%20SC09.xlsx) (SC9; without highlighted changes but with accompanying R file; also in `jjm/assessment/data`)
+
+-   Since SC9, there's an R script to do it
+
+    -   [`jjm/assessment/R/SC09_Bridging.R`](https://github.com/SPRFMO/jjm/blob/master/assessment/R/SC09_Bridging.R)
+
+    -   Goes from 0.00 to 1.00 for both single-stock and two-stock hypotheses
+
+-   For every data point you add to a time series (e.g. for catch or for index data), a corresponding error term must be added.
+
+    -   Don't forget to increment the number of years (`Inumyears` and `Iyears`) for the indices
+
+    -   Index error is computed by multiplying the index value with the CV (from technical annex)
+
+-   When adding a data point to composition data, the `numyears`, `years`, and `sample` need to be incremented as well.
+
+    -   Sample size for composition data gets incremented, but the final data point for each fleet is downweighted
+
+-   Reminder: weight at age is required for every fleet in every year of the model
+
+    -   Historically, when the year is updated but not the weight-at-age data (e.g. if the weight at age for a particular fleet is unavailable at the time of the SC), the previous year's data are used.
+
+-   For each new data file created, a corresponding control file will have to be made as well. The control files during the data bridging exercise remain relatively static, except for changing the name of the data file and adding the one extra year at the top.
+
+# Updating the Control File
+
+-   Increments years used to estimate the stock-recruitment relationship by 1
+
+```{r}
+# h2_0.10.ctl
+#Nyrs_sr
+18
+27
+16
+#yrs_sr
+2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016  2017
+1970  1971  1972  1973  1974  1975  1976  1977  1978  1979  1980  1981  1982  1983  1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996
+2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013  2014  2015  2016
+
+---
+
+# h2_1.00.ctl
+#Nyrs_sr 
+19 27 16 
+#Nyrs_sr_1 
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 
+#Nyrs_sr_2 
+1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 
+#Nyrs_sr_3 
+2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 
+
+```
+
+-   Increments final year for selectivity change by 1
+
+```{r}
+# h2_0.10.ctl
+# Fishery 1 N Chile  
+1  #selectivity type
+9  #n_sel_ages
+2  #phase sel
+1  #curvature penalty
+1  #Dome-shape penalty
+# Years of selectivity change Fishery 1 N Chile  
+36                                                            
+1984  1985  1986  1987  1988  1989  1990  1991  1992  1993  1994  1995  1996  1997  1998  1999  2000  2001  2002  2003  2004  2005  2006  2007  2008  2009  2010  2011  2012  2013    2014    2015    2016  2017  2018  2019
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+# Initial values for coefficients at each change (one for every change plus 1)  
+# 2 3 4 5 6 7 8 9 10 11 12  
+0.2 0.7 1 1 1 1 1 1 1 1 1 1  
+
+---
+
+# h2_1.00.ctl
+#F1_info 
+1 9 2 1 1 37 
+#F1_selchangeYear 
+1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 2020 
+#F1_selchange 
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 
+#F1_selbyage 
+0.2 0.7 1 1 1 1 1 1 1 1 1 1 
+
+```
+
+# Exercises (using either Excel or R)
+
+-   Add one year of catch data (as was done in the bridging exercise for `0.04` to `0.05`) to the 2021 data file (`1.00.dat`). Run the model with the updated data file.
+
+-   Update the control file from 2021 (`h1_1.00.ctl` and `h2_1.00`) for 2022. Run the updated 2022 model.
+
+-   (If you have time) Go through the SC9 model runs and select a couple of models from the table to recreate.
+
+# Debugging Tips and Tricks
+
+-   If you've edited the input files and the model seems to be giving nonsensical results, it might be that you've missed number or a line in the input.
+
+    -   Ideally check the `input.log` file, as mentioned in the RunningModel document.
+    -   The control file contains a "Test" value at the end. This acts as a check that the control file was read in correctly.
+
+    ```{r}
+    #Test  
+    123456789  
+    ```

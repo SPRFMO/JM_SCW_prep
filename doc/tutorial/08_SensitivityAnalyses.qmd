@@ -1,0 +1,111 @@
+---
+title: "Sensitivity Analyses"
+output:
+  html_document:
+    theme: journal
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir=here::here())
+knitr::opts_chunk$set(warning=F, message=F)
+```
+
+# Main Objective
+
+- Understand how to modify input files to explore sensitivity analyses such as:
+    - Replacing a dataset
+    - Fixing parameters to new values
+- Be able to compare output from several model runs with plots and tables
+- Understand current model diagnostics and have ideas for potential new ones
+
+# Sensitivity Analyses
+As mentioned in a previous document, sensitivity analyses occur after the bridging exercise is complete (although technically the bridging exercise is a sensitivity analysis itself- we're testing the sensitivity of the model to updates of individual pieces of data). The ones we'll talk about today will be examples taken from previous SC meetings.
+
+# Comparing Model Runs {.tabset}
+Before we jump into running examples, let's look at how to combine output from different models and compare them.
+
+For example, now that we've gone through the bridging exercise, we might want to look at how the overall data update affected the model estimates certain quantities. As such, we will compare output from model 0.00 with model 0.10.
+
+This code and more of the like can be found in `jjm/assessment/SC09.rmd`
+
+```{r compare,eval=FALSE}
+library(jjmR)
+
+# ?combineModels
+# ?compareModels (wrapper function for `combineModels`)
+
+# geth <- function(mod,h=hyp) paste0(h,"_", mod)
+
+mods2compare <- c("h1_1.00","h2_1.00")
+
+h1h2 <- compareModels(mods2compare)
+
+```
+
+If we examine the `h1h2` object more closely, we might find its components quite familiar.
+
+```{r,eval=F}
+names(h1h2)
+
+names(h1h2[[1]])
+
+summary(h1h2)
+```
+
+From there, we can easily plot the results. Currently, I believe these are the only three options available for combined model plotting, but I'd have to check to make sure.
+
+## Base
+```{r, eval=F}
+plot(h1h2)
+```
+
+## Biomass
+```{r, eval=F}
+plot(h1h2,combine=T,what="biomass",stack=F,main="Biomass")
+```
+
+## Recruitment
+```{r, eval=F}
+plot(h1h2,combine=T,what="recruitment",stack=F,main="Recruitment")
+```
+
+## Fishing Mortality
+```{r, eval=F}
+plot(h1h2,combine=T,what="ftot",stack=F,main="Fishing Mortality")
+```
+
+#
+
+## Likelihood Tables
+We can also easily create likelihood tables. Here, we are comparing likelihoods from the 1-stock and the 2-stock models (just an example; not sure if this comparison is valid).
+
+```{r results="asis",eval=F}
+LL <- summary(h1h2)$like
+
+# Just for display purposes in this document
+library(dplyr)
+knitr::kable(LL) %>% kableExtra::kable_styling()
+```
+
+# Examples
+
+Take a look at the tables of model runs listed on [Github](https://github.com/SPRFMO/jjm/tree/master/assessment) and let's select a few to go through.
+
+Point to note: R scripts for sensitivity analyses were only made available during (and after?) SC9 (`jjm/assessment/R/SC09.R`). Previous years' analyses were done by hand.
+
+# Exercises
+- Every year, we run the final model using four different settings for estimating recruitment. They are:
+    1. ll - **l**ow steepness (0.65) and **l**ong recruitment time series (1970-2015)
+    1. ls - **l**ow steepness (0.65) and **s**hort recruitment time series (2000-2015)
+    1. hl - **h**igh steepness (0.8) and **l**ong recruitment time series (1970-2015)
+    1. hs - **h**igh steepness (0.8) and **s**hort recruitment time series (2000-2015)
+  
+  How would you run these scenarios? What files and what elements within it would you change?
+    - Hint: There exists a `jjm/assessment/R/SC09_Projections.R` file, if you get stuck.
+
+- Replace the SC_Chile_CPUE index with another time series (`jjm/assessment/data/SC09_CPUE_Chile_Trip.csv`).
+
+```{r, eval=F}
+library(tidyverse)
+dat.chile.cpue <- read_csv(file.path("data/SC09_CPUE_Chile_Trip.csv"))
+```

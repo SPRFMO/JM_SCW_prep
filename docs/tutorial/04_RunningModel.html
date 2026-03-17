@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>JJM Assessment Documents – SPRFMO Jack Mackerel Working Group</title>
+<title>Running a jjm assessment model – JJM Tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,6 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./05_ModifyingInputs.html" rel="next">
+<link href="./03_InputFiles.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -40,13 +77,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -70,93 +107,127 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">SPRFMO Jack Mackerel Working Group</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./JM-WP-BM-01.html"> 
-<span class="menu-text">JM-WP-BM-01</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./SC13.html"> 
-<span class="menu-text">SC13</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./helper_scripts_guide.html"> 
-<span class="menu-text">Script Guide</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_RunningModel.html"><span class="chapter-title">Running a jjm assessment model</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">JJM Tutorial</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial goals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_PreWorkshop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workshop Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_Intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">SPRFMO assessments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_DataProcessing.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Processing (SPRFMO)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_InputFiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">jjm Input Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_RunningModel.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Running a jjm assessment model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_ModifyingInputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Data Bridging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_ModelOutputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Model Outputs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_Retrospectives.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Retrospectives</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_SensitivityAnalyses.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sensitivity Analyses</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#document-guide" id="toc-document-guide" class="nav-link" data-scroll-target="#document-guide"><span class="header-section-number">2</span> Document Guide</a>
-  <ul class="collapse">
-  <li><a href="#jm-wp-bm-01" id="toc-jm-wp-bm-01" class="nav-link" data-scroll-target="#jm-wp-bm-01"><span class="header-section-number">2.1</span> JM-WP-BM-01</a></li>
-  <li><a href="#sc13-assessment-update" id="toc-sc13-assessment-update" class="nav-link" data-scroll-target="#sc13-assessment-update"><span class="header-section-number">2.2</span> SC13 Assessment Update</a></li>
-  <li><a href="#helper-scripts-guide" id="toc-helper-scripts-guide" class="nav-link" data-scroll-target="#helper-scripts-guide"><span class="header-section-number">2.3</span> Helper Scripts Guide</a></li>
-  <li><a href="#user-guide" id="toc-user-guide" class="nav-link" data-scroll-target="#user-guide"><span class="header-section-number">2.4</span> User Guide</a></li>
-  <li><a href="#tutorial-guide" id="toc-tutorial-guide" class="nav-link" data-scroll-target="#tutorial-guide"><span class="header-section-number">2.5</span> Tutorial Guide</a></li>
-  <li><a href="#archive" id="toc-archive" class="nav-link" data-scroll-target="#archive"><span class="header-section-number">2.6</span> Archive</a></li>
-  </ul></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">3</span> Notes</a></li>
+  <ul>
+  <li><a href="#using-r" id="toc-using-r" class="nav-link active" data-scroll-target="#using-r">Using R</a></li>
+  <li><a href="#using-the-command-line" id="toc-using-the-command-line" class="nav-link" data-scroll-target="#using-the-command-line">Using the Command Line</a></li>
+  <li><a href="#assessment-model-outputs" id="toc-assessment-model-outputs" class="nav-link" data-scroll-target="#assessment-model-outputs">Assessment Model Outputs</a></li>
+  <li><a href="#checking-for-convergence" id="toc-checking-for-convergence" class="nav-link" data-scroll-target="#checking-for-convergence">Checking for Convergence</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">JJM Assessment Documents</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+```{=html}
 <style>
 .quarto-title-block {
   display: none;
@@ -250,7 +321,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="sprfmo-front">
   <div class="sprfmo-banner">
     <div class="sprfmo-mark" aria-hidden="true">
-      <img src="annex/logo.png" alt="SPRFMO logo">
+      <img src="../annex/logo.png" alt="SPRFMO logo">
     </div>
     <div class="sprfmo-copy">
       <h1 class="sprfmo-wordmark">SPRFMO</h1>
@@ -260,56 +331,112 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </div>
-<div class="paper-title">JJM Assessment Documents</div>
-<section id="overview" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
-<p>This site collects the main Quarto documents in the <code>doc/</code> directory and renders them for direct browsing through GitHub Pages.</p>
-<p>The current published documents are:</p>
-<ol type="1">
-<li><a href="./JM-WP-BM-01.html">JM-WP-BM-01</a></li>
-<li><a href="./SC13.html">SC13 Assessment Update</a></li>
-<li><a href="./helper_scripts_guide.html">Helper Scripts Guide</a></li>
-<li><a href="userguide/">User Guide</a></li>
-<li><a href="tutorial/">Tutorial Guide</a></li>
-<li><a href="archive/">Archive</a></li>
-</ol>
-</section>
-<section id="document-guide" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Document Guide</h1>
-<section id="jm-wp-bm-01" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="jm-wp-bm-01"><span class="header-section-number">2.1</span> JM-WP-BM-01</h2>
-<p>This is the main benchmark working-paper draft currently tracked as <code>JM-WP-BM-01.qmd</code>.</p>
-</section>
-<section id="sc13-assessment-update" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sc13-assessment-update"><span class="header-section-number">2.2</span> SC13 Assessment Update</h2>
-<p>This is the converted Quarto version of the incremental SC13 assessment update document originally maintained as <code>assessment/R/SC13.rmd</code>.</p>
-</section>
-<section id="helper-scripts-guide" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="helper-scripts-guide"><span class="header-section-number">2.3</span> Helper Scripts Guide</h2>
-<p>This guide documents the reusable helper scripts added for:</p>
+```
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Running a jjm assessment model</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>There are two ways you can run the assessment model- using <code>R</code> to run the executable, or using the command line.</p>
+<p><strong>Before we start, please make sure you have an executable file. You can find the instructions to compile your own in the Pre-Workshop <a href="https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/Documents?csf=1&amp;web=1&amp;e=v9hiV4">document</a>, or you can download it directly from <a href="https://southpacificrfmo.sharepoint.com/:f:/r/sites/SPRFMOSC10/Shared%20Documents/Jack%20Mackerel/JJM%20Workshop/src?csf=1&amp;web=1&amp;e=cXKA29">Teams</a>.</strong></p>
+<section id="using-r" class="level2">
+<h2 class="anchored" data-anchor-id="using-r">Using R</h2>
+<p>Pros:</p>
 <ul>
-<li>creating the reduced <code>2.00</code> data file</li>
-<li>creating the matching <code>h1_2.00</code> control file</li>
-<li>running standard JJM fits</li>
-<li>running short <code>adnuts</code> MCMC benchmarks</li>
+<li><p>Automatically generates files needed to create model diagnostics</p></li>
+<li><p>Creates a <code>jjm</code> object in R for plotting purposes (i.e.&nbsp;the outputs are automatically read back into R)</p></li>
+<li><p>Easy to script</p></li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Hard to debug if the model goes wrong, as the function creates a temporary folder on your local machine where the model is run.
+<ul>
+<li>Once the model run is complete, the <code>runit</code> function produces this message like this in the console:</li>
+</ul>
+<pre><code>Models were run at /var/folders/dr/lbjfwmm567d2kcmh348218lc0000gn/T//RtmpQtQLls folder.</code></pre>
+If need be, you can also navigate to this folder to find the output files from ADMB.</li>
+</ul>
+<p>The code below runs the 2021 assessment from SC9.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jjmR)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The runit() function is a wrapper function that runs the model, reads the output, and plots the runs.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ?runit</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mod = name of the control file</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># est = TRUE/FALSE to estimate the parameters; default is FALSE</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># pdf = plot to a pdf</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># exec = path to the executable file</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># By default it assumes that the control file will be found in "config", data file in "input", and the output will be written to a "results" folder. This function is thus best run when in the jjm/assessment folder.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>h1.mod <span class="ot">&lt;-</span> <span class="fu">runit</span>(<span class="at">mod=</span><span class="st">"h1_1.00"</span>,<span class="at">pdf=</span><span class="cn">TRUE</span>,<span class="at">est=</span><span class="cn">TRUE</span>,<span class="at">exec=</span><span class="st">"../src/jjms"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>h2.mod <span class="ot">&lt;-</span> <span class="fu">runit</span>(<span class="at">mod=</span><span class="st">"h2_1.00"</span>,<span class="at">pdf=</span><span class="cn">TRUE</span>,<span class="at">est=</span><span class="cn">TRUE</span>,<span class="at">exec=</span><span class="st">"../src/jjms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="using-the-command-line" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-command-line">Using the Command Line</h2>
+<p>Pros:</p>
+<ul>
+<li>Easier to include ADMB flags (useful for debugging)
+<ul>
+<li>Examples can be found in the handy dandy <a href="http://www.admb-project.org/docs/refcards/admb-additional-reference-card.pdf">Reference card</a></li>
+<li>Common ones to use include <code>-nohess</code> and <code>-noest</code></li>
+</ul></li>
+<li>Easy for debugging if the model is producing nonsensical results
+<ul>
+<li>The executable produces an <code>input.log</code> file that the R function automatically deletes from the main working directory as part of cleanup (you can still access it by navigating to the temporary folder as mentioned above). This file shows exactly how the executable reads in each input file, and where it stopped should it encounter an error.</li>
+</ul></li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li><p>Familiarity with ADMB will make it more helpful</p></li>
+<li><p>Requires more / custom code to read in the output and convert it in R for making diagnostics</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Windows</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>jjms <span class="sc">-</span>ind h1_1.<span class="fl">00.</span>ctl</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For Mac / Linux</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>jjms <span class="sc">-</span>ind h1_1.<span class="fl">00.</span>ctl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="assessment-model-outputs" class="level1">
+<h1>Assessment Model Outputs</h1>
+<p>Once the model is run, we’ll have:</p>
+<pre><code>- R.rep
+- .cor
+- .par
+- .rep
+- .std
+- .yld</code></pre>
+<p>We’ll go through the outputs in more detail in another document.</p>
+</section>
+<section id="checking-for-convergence" class="level1">
+<h1>Checking for Convergence</h1>
+<ul>
+<li>Maximum gradient component</li>
+<li>When the hessian is inverted</li>
 </ul>
 </section>
-<section id="user-guide" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="user-guide"><span class="header-section-number">2.4</span> User Guide</h2>
-<p>This is the Quarto version of the JJM user guide converted from <code>doc/userguide/main.tex</code>.</p>
-</section>
-<section id="tutorial-guide" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="tutorial-guide"><span class="header-section-number">2.5</span> Tutorial Guide</h2>
-<p>This is the workshop tutorial book published from <code>doc/tutorial/</code>.</p>
-</section>
-<section id="archive" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="archive"><span class="header-section-number">2.6</span> Archive</h2>
-<p>This section collects the legacy annual and validation <code>RMarkdown</code> assessment reports moved from <code>assessment/R/</code> and published under <code>archive/</code>.</p>
-</section>
-</section>
-<section id="notes" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Notes</h1>
-<p>The website is rendered from the <code>doc/</code> directory into the repository <code>docs/</code> folder so it can be served by GitHub Pages in the standard way. The underlying model code, inputs, and results remain in <code>assessment/</code>.</p>
+<section id="exercise" class="level1">
+<h1>Exercise</h1>
+<ul>
+<li>Run the 2021 assessment (1.05) for the one-stock and two-stock models.</li>
+</ul>
 
 
 </section>
@@ -715,6 +842,18 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03_InputFiles.html" class="pagination-link" aria-label="jjm Input Files">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">jjm Input Files</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05_ModifyingInputs.html" class="pagination-link" aria-label="Data Bridging">
+        <span class="nav-page-text"><span class="chapter-title">Data Bridging</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
