@@ -1,0 +1,87 @@
+html/
+docs/api/html/
+jjmR.Rcheck
+jjm*.cpp
+jjm*.exe
+jjm*.htp
+jjm*.obj
+jjm
+jjms
+unbounded.csv
+gradient*
+assessment/jjm
+*swo
+*~
+*png
+*.DS_Store
+# Latex files
+*.swp
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.nav
+*.toc
+*.snm
+*.vrb
+*.tex.bak
+auto/
+# jjm files
+*.prj
+assessment/arc/*
+# R files
+*.zip
+.Rproj.user
+*.Rout
+*.R~
+.RData
+.Rhistory
+*.Rmd.bak
+Rplots.pdf
+# ADMB standard output files
+*.b0*
+*.bar
+*.cor
+*.cov
+*.dep
+*.ecm
+*.eva
+*.hes
+*.log
+*.mc2
+*.mcm
+*.p0*
+*.psv
+*.hst
+#*.pdf
+#*.par
+#*.rep
+*.r0*
+*.std
+*_in.ctl
+*_in.dat
+variance
+meval.dat
+sims
+# ss files
+*.ss*result
+*.Rproj
+**/*.exe
+**/.DS_Store
+**/*.cor
+assessment/test/
+assessment/result/
+!*.yld
+!*.R.rep
+!*.par
+*.html
+#assessment/risk_tables/
+*.txt
+*.doc
+assessment/annex\ plots
+docs/Model_Notes.md
+# *.pdf
+*.html
+~$*
+*.docx
+openMSE_assess_proj/Proj_1.rda

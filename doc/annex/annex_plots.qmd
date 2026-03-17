@@ -1,0 +1,321 @@
+# Figures
+
+
+```{r}
+#| label: fig-catchbyfleet
+#| fig-cap: "Catch of jack mackerel by fleet. Blue is the northern Chilean fleet, green is the south-central Chilean fleet, red is the far north fleet, and black is the offshore trawl fleet."
+plot(h1_diag, var = "totalCatchByFleet")
+```
+
+
+```{r}
+#| label: fig-metadata
+#| fig-cap: "Years and types of information used in the jack mackerel assessment models."
+source("../assessment/R/plot_metadataoverview.R")
+print(p1)
+```
+
+
+
+```{r}
+#| label: fig-retro-ssb-h1
+#| fig-cap: !expr paste0("Model retrospective of spawning biomass from 5 separate model runs, based on Model ",h1nm," (single-stock hypothesis).")
+load(file = file.path("../assessment/results", paste0(h1nm, "_retrospective", ".RData")))
+h1_retro <- output
+plot(h1_retro, var = "SSB")
+```
+
+
+
+```{r}
+#| label: fig-retro-r-h1
+#| fig-cap: !expr paste0("Model retrospective of recruitment from 5 separate model runs, based on Model ",h1nm," (single-stock hypothesis).")
+plot(h1_retro, var = "R")
+```
+
+
+```{r}
+#| label: fig-retro-ssb-h2
+#| fig-cap: !expr paste0("Model retrospective of spawning biomass from 5 separate model runs for the southern stock (top) and far north stock (bottom), based on Model ", h2nm, " (two-stock hypothesis).")
+#| fig-height: 10
+load(file = file.path("../assessment/results", paste0(h2nm, "_retrospective", ".RData")))
+h2_retro <- output
+par(mfrow=c(2,1),mar=c(3,4,2,1))
+plot(h2_retro, var = "SSB")
+par(mfrow=c(1,1))
+```
+
+
+```{r}
+#| label: fig-retro-r-h2
+#| fig-cap: !expr paste0("Model retrospective of southern stock recruitment from 5 separate model runs for the southern stock (top) and far north stock (bottom), based on Model ", h2nm, " (two-stock hypothesis).")
+#| fig-height: 12
+par(mfrow=c(2,1),mar=c(3,4,2,1))
+plot(h2_retro, var = "R")
+par(mfrow=c(1,1))
+```
+
+
+```{r}
+#| label: fig-histretroquants
+#| fig-cap: !expr paste0("Historical retrospective of spawning stock biomass, fishing mortality, and recruitment estimated from Model ",h1nm," (single-stock hypothesis), as estimated and used for advice from SPFRMO Scientific Committees 2013-",as.numeric(format(Sys.time(), "%Y")))
+#| fig-heigh: 10
+source("../assessment/R/plot_historicretro.R")
+print(pg)
+```
+
+```{r}
+#| label: fig-histretrorefpts
+#| fig-cap: !expr paste0("Historical retrospective of management reference points estimated from Model ",h1nm," (single-stock hypothesis), as estimated and used for advice from past (and present) SPRFMO scientific committees.")
+#| fig-heigh: 10
+print(pg2)
+```
+
+
+```{r}
+#| label: fig-wtatagefsh
+#| fig-cap: !expr paste0("Mean weights-at-age (kg) over time used for the fisheries in the JJM models. Each line represents an age from 1 to 12.")
+plot(h1_diag, var = "weightFishery")
+```
+
+
+```{r}
+#| label: fig-wtatagesrv
+#| fig-cap: !expr paste0("Mean weights-at-age (kg) over time used for the surveys in the JJM models. Each line represents an age from 1 to 12.")
+plot(h1_diag, var = "weightAge")
+```
+
+
+```{r}
+#| label: fig-agefitsfshh1-1
+#| fig-cap: !expr paste0("Model ",h1nm," (single-stock hypothesis) fit to the age compositions for the Chilean northern zone fishery (Fleet 1). Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "ageFitsCatch", fleet="N_Chile")
+
+age_fits <- get_age_fits(h1_mod)
+
+```
+
+
+```{r}
+#| label: fig-agefitsfshh2-1
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) fit to the age compositions for the Chilean northern zone fishery (Fleet 1). Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "ageFitsCatch", fleet="N_Chile")
+```
+
+
+```{r}
+#| label: fig-agefitsfshh1-2
+#| fig-cap: !expr paste0("Model ",h1nm, " (single-stock hypothesis) fit to the age compositions for the South-Central Chilean purse seine fishery (Fleet 2). Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "ageFitsCatch", fleet="SC_Chile_PS")
+```
+
+
+```{r}
+#| label: fig-agefitsfshh2-2
+#| fig-cap: !expr paste0("Model ",h2nm, " (two-stock hypothesis) fit to the age compositions for the South-Central Chilean purse seine fishery (Fleet 2). Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "ageFitsCatch", fleet="SC_Chile_PS")
+```
+
+
+```{r}
+#| label: fig-agefitsfshh1-4
+#| fig-cap: !expr paste0("Model ",h1nm, " (single-stock hypothesis) fit to the age compositions for the offshore trawl fishery (Fleet 4). Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "ageFitsCatch", fleet="Offshore_Trawl")
+```
+
+
+```{r}
+#| label: fig-agefitsfshh2-4
+#| fig-cap: !expr paste0("Model ",h2nm, " (two-stock hypothesis) fit to the age compositions for the offshore trawl fishery (Fleet 4). Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "ageFitsCatch", fleet="Offshore_Trawl")
+```
+
+
+```{r}
+#| label: fig-lenfitsfshh1
+#| fig-cap: !expr paste0("Model ",h1nm, " (single-stock hypothesis) fit to the length compositions for the far north fishery (Fleet 3). Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "lengthFitsCatch")
+```
+
+
+```{r}
+#| label: fig-lenfitsfshh2
+#| fig-cap: !expr paste0("Model ",h2nm, " (two-stock hypothesis) fit to the length compositions for the far north fishery (Fleet 3). Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "lengthFitsCatch")
+```
+
+
+```{r}
+#| label: fig-agefits-srv-h1-1
+#| fig-cap: !expr paste0("Model ",h1nm, " (single-stock hypothesis) fit to the age compositions for the South-Central Acoustic survey. Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "ageFitsSurvey", fleet="Chile_AcousCS")
+```
+
+
+```{r}
+#| label: fig-agefits-srv-h2-1
+#| fig-cap: !expr paste0("Model ",h2nm, " (two-stock hypothesis) fit to the age compositions for the South-Central Acoustic survey. Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "ageFitsSurvey", fleet="Chile_AcousCS")
+```
+
+
+```{r}
+#| label: fig-agefits-srv-h1-2
+#| fig-cap: !expr paste0("Model ",h1nm," (single-stock hypothesis) fit to the age compositions for the North Chilean acoustic survey. Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "ageFitsSurvey", fleet="Chile_AcousN")
+```
+
+
+```{r}
+#| label: fig-agefits-srv-h2-2
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) fit to the age compositions for the North Chilean acoustic survey. Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "ageFitsSurvey", fleet="Chile_AcousN")
+```
+
+
+```{r}
+#| label: fig-agefits-srv-h1-3
+#| fig-cap: !expr paste0("Model ",h1nm," (single-stock hypothesis) fit to the age compositions for the Daily Egg Production Method (DEPM) survey. Bars represent the observed data and lines represent the model predictions.")
+plot(h1_diag, var = "ageFitsSurvey", fleet="DEPM")
+```
+
+
+```{r}
+#| label: fig-agefits-srv-h2-3
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) fit to the age compositions for the Daily Egg Production Method (DEPM) survey. Bars represent the observed data and lines represent the model predictions.")
+plot(h2_diag, var = "ageFitsSurvey", fleet="DEPM")
+```
+
+
+```{r}
+#| label: fig-indfitsh1
+#| fig-cap: !expr paste0("Model ",h1nm," (single-stock hypothesis) fit to different indices. Vertical bars represent 2 standard deviations around the observations.")
+plot(h1_diag, var = "predictedObservedIndices")
+```
+
+
+```{r}
+#| label: fig-indfitsh2-1
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) fit to indices for the south stock. Vertical bars represent 2 standard deviations around the observations.")
+plot(h2_diag, var = "predictedObservedIndices", stock=1)
+```
+
+
+```{r}
+#| label: fig-indfitsh2-2
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) fit to indices for the north stock. Vertical bars represent 2 standard deviations around the observations.")
+plot(h2_diag, var = "predictedObservedIndices", stock=2)
+```
+
+
+```{r}
+#| label: fig-meanagefshh1
+#| fig-cap: !expr paste0("Mean age by year and fishery. Line represents the Model ",h1nm," (single-stock hypothesis) predictions and dots observed values with implied input error bars.")
+plot(h1_diag, var = "fisheryMeanAge")
+```
+
+
+```{r}
+#| label: fig-meanagefshh2
+#| fig-cap: !expr paste0("Mean age by year and fishery. Line represents the Model ",h2nm," (two-stock hypothesis) predictions and dots observed values with implied input error bars.")
+plot(h2_diag, var = "fisheryMeanAge")
+```
+
+
+```{r}
+#| label: fig-meanagesrvh1
+#| fig-cap: !expr paste0("Mean age by year and survey. Line represents the Model ",h1nm," (single-stock hypothesis) predictions and dots observed values with implied input error bars.")
+plot(h1_diag, var = "surveyMeanAge")
+```
+
+
+```{r}
+#| label: fig-meanagesrvh2
+#| fig-cap: !expr paste0("Mean age by year and survey. Line represents the Model ",h2nm," (two-stock hypothesis) predictions and dots observed values with implied input error bars.")
+plot(h2_diag, var = "surveyMeanAge")
+```
+
+
+```{r}
+#| label: fig-meanlenfshh1
+#| fig-cap: !expr paste0("Mean length by year in Fleet 3 (Far North). Line represents the Model ",h1nm," (single-stock hypothesis) predictions and dots observed values with implied input error bars.")
+plot(h1_diag, var = "fisheryMeanLength")
+```
+
+
+```{r}
+#| label: fig-meanlenfshh2
+#| fig-cap: !expr paste0("Mean length by year in Fleet 3 (Far North). Line represents the Model ",h2nm," (two-stock hypothesis) predictions and dots observed values with implied input error bars.")
+plot(h2_diag, var = "fisheryMeanLength")
+```
+
+
+```{r}
+#| label: fig-selfshh1
+#| fig-cap: !expr paste0("Estimates of selectivity by fishery over time for Model ",h1nm," (single-stock hypothesis).")
+h1_sel <- get_selectivities(h1_mod) %>% plot_selectivities()
+print(h1_sel)
+```
+
+
+```{r}
+#| label: fig-selfshh2
+#| fig-cap: !expr paste0("Estimates of selectivity by fishery over time for Model ",h2nm," (two-stock hypothesis).")
+h2_sel <- get_selectivities(h2_mod) %>% plot_selectivities()
+print(h2_sel)
+```
+
+
+```{r}
+#| label: fig-selsrvh1
+#| fig-cap: !expr paste0("Estimates of selectivity by survey over time for Model ",h1nm," (single-stock hypothesis).")
+plot(h1_mod,what="selectivity",fleet="ind", alpha = 0.2, scale = 10)
+```
+
+
+```{r}
+#| label: fig-selsrvh2
+#| fig-cap: !expr paste0("Estimates of selectivity by survey over time for Model ",h2nm," (two-stock hypothesis).")
+plot(h2_mod,what="selectivity",fleet="ind", alpha = 0.2, scale = 10)
+```
+
+
+```{r}
+#| label: fig-sumsheet-h1
+#| fig-cap: !expr paste0("Model ",h1nm," (single-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right). Blue lines represent  dynamic estimates of B~MSY~ (upper left) and dynamic estimates of F~MSY~ (upper right). The orange line represents the average B~MSY~ over the most recent ten years.")
+plot(bmsy_diag_h1, var = "summarySheet")
+```
+
+```{r}
+#| label: fig-unfshbio-h1
+#| fig-cap: !expr paste0("Model ",h1nm," (single-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line), beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is ", round((tail(h1_mod[[1]]$output[[1]]$TotBiom[,2],1) / tail(h1_mod[[1]]$output[[1]]$TotBiom_NoFish[,2],1)),2),".")
+plot(h1_diag, var = "fishedUnfishedBiomass")
+```
+
+```{r}
+#| label: fig-sumsheet-h2-1
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the south stock. Blue lines represent dynamic estimates of B~MSY~ (upper left) and of F~MSY~ (upper right). The orange line represents the average B~MSY~ over the most recent ten years.")
+plot(bmsy_diag_h2, var = "summarySheet", stock=1)
+```
+
+
+```{r}
+#| label: fig-sumsheet-h2-2
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) summary estimates over time showing spawning biomass (kt; top left), recruitment at age 1 (millions; lower left), total fishing mortality (top right), and total catch (kt; bottom right) for the far north stock. Blue lines represent dynamic estimates of B~MSY~ (upper left) and of F~MSY~ (upper right). The orange line represents the average B~MSY~ over the most recent ten years.")
+plot(bmsy_diag_h2, var = "summarySheet", stock=2)
+```
+
+
+```{r}
+#| label: fig-unfshbio-h2-1
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the south stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is ", round((tail(h2_mod[[1]]$output[[1]]$TotBiom[,2],1) / tail(h2_mod[[1]]$output[[1]]$TotBiom_NoFish[,2],1)),2),".")
+plot(h2_diag, var = "fishedUnfishedBiomass",stock=1)
+
+```
+
+
+```{r}
+#| label: fig-unfshbio-h2-2
+#| fig-cap: !expr paste0("Model ",h2nm," (two-stock hypothesis) results for the estimated total biomass (solid line) and the estimated total biomass that would have occurred if no fishing had taken place (dotted line) for the far north stock, beginning in 1970. This year, the ratio of total biomass to total biomass without fishing is ", round((tail(h2_mod[[1]]$output[[2]]$TotBiom[,2],1) / tail(h2_mod[[1]]$output[[2]]$TotBiom_NoFish[,2],1)),2),".")
+plot(h2_diag, var = "fishedUnfishedBiomass",stock=2)
+```

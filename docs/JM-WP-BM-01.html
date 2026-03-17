@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Developments of the base SC13 model for benchmark and MSE considerations – JJM Assessment Documents</title>
+<title>Developments of the base SC13 model for benchmark and MSE considerations – SPRFMO Jack Mackerel Working Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3963,7 +3963,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">JJM Assessment Documents</span>
+    <span class="navbar-title">SPRFMO Jack Mackerel Working Group</span>
     </a>
   </div>
             <div id="quarto-search" class title="Search"></div>
@@ -3979,6 +3979,10 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link active" href="./JM-WP-BM-01.html" aria-current="page"> 
 <span class="menu-text">JM-WP-BM-01</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SC13.html"> 
+<span class="menu-text">SC13</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./helper_scripts_guide.html"> 
@@ -4072,13 +4076,13 @@ window.Quarto = {
 display: none;
 }
 .sprfmo-front {
-margin: 0 0 2rem 0;
+margin: 0 0 0.5rem 0;
 }
 .sprfmo-banner {
 display: flex;
 align-items: stretch;
 gap: 1.75rem;
-margin: 0 0 1.5rem 0;
+margin: 0 0 1rem 0;
 }
 .sprfmo-mark {
 flex: 0 0 170px;
@@ -4124,7 +4128,7 @@ font-weight: 700;
 color: #233f73;
 }
 .paper-title {
-margin: 0.25rem 0 0 0;
+margin: 0.25rem 0 1.75rem 0;
 font-size: clamp(1.6rem, 3.4vw, 2.35rem);
 line-height: 1.15;
 font-weight: 700;
@@ -4157,8 +4161,8 @@ border-bottom: 4px solid #1b4576;
       <div class="sprfmo-group">Jack Mackerel Working Group</div>
     </div>
   </div>
-  <div class="paper-title">Extension of the base (SC13) models for benchmark and MSE considerations</div>
 </div>
+<div class="paper-title">Extension of the base (SC13) models for benchmark and MSE considerations</div>
 <section id="abstract" class="level1 unnumbered">
 <h1 class="unnumbered">Abstract</h1>
 <p>This working paper documents the base SC13 jack mackerel assessment model used for advice under the single-stock and two-stock hypotheses, corresponding to model configurations <code>h1_1.14</code> and <code>h2_1.14</code>. The paper is intended as a bridge between the full technical annex and a future management strategy evaluation (MSE) framework. Its specific purpose is to describe the Joint Jack Mackerel Model (JJM) as implemented for SC13, identify the principal differences between the two advice models, and define a starting point for evaluating simplified alternatives.</p>
@@ -4167,20 +4171,20 @@ border-bottom: 4px solid #1b4576;
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>The Joint Jack Mackerel Model has been the core age-structured assessment framework used by SPRFMO for jack mackerel over a series of annual updates and technical workshops. In general terms, the model belongs to the class of forward-projecting statistical catch-at-age models developed for fisheries assessment, with estimated population dynamics linked to catch, abundance indices, and composition data through a likelihood-based framework <span class="citation" data-cites="fournier1982catchage hilborn1992quantitative">(<a href="#ref-fournier1982catchage" role="doc-biblioref">D. Fournier &amp; Archibald, 1982</a>; <a href="#ref-hilborn1992quantitative" role="doc-biblioref">Hilborn &amp; Walters, 1992</a>)</span>. The broader modelling approach also depends on standard growth and generalized linear model concepts used throughout fisheries science <span class="citation" data-cites="vonbertalanffy1957growth nelder1972glm mccullagh1989glm">(<a href="#ref-vonbertalanffy1957growth" role="doc-biblioref">Bertalanffy, 1957</a>; <a href="#ref-mccullagh1989glm" role="doc-biblioref">McCullagh &amp; Nelder, 1989</a>; <a href="#ref-nelder1972glm" role="doc-biblioref">Nelder &amp; Wedderburn, 1972</a>)</span>.</p>
-<p>Within the present repository, the SC13 assessment update is represented by model series <code>1.14</code>. The local <code>README.md</code> documents the sequence of changes leading to this configuration. In summary, the 2025 assessment update began with a base update to data and model structure (<code>1.00</code>) and then proceeded through a sequence of modifications affecting 2025 selectivity, weighting of 2025 age compositions, downweighting of early years of the northern Chile acoustic index, and historical weight-at-age for the Far North fleet. The final advice models were fitted under both stock hypotheses: <code>h1_1.14</code> for the single-stock hypothesis and <code>h2_1.14</code> for the two-stock hypothesis.</p>
+<p>Within the present repository, the SC13 assessment update is represented by model series <code>1.14</code>. The file <code>assessment/README.md</code> documents the sequence of changes leading to this configuration. In summary, the 2025 assessment update began with a base update to data and model structure (<code>1.00</code>) and then proceeded through a sequence of modifications affecting 2025 selectivity, weighting of 2025 age compositions, downweighting of early years of the northern Chile acoustic index, and historical weight-at-age for the Far North fleet. The final advice models were fitted under both stock hypotheses: <code>h1_1.14</code> for the single-stock hypothesis and <code>h2_1.14</code> for the two-stock hypothesis.</p>
 <p>The motivation for documenting these models in a separate working paper is practical. MSE is most useful when the operating model and the management procedure are both transparent, interpretable, and robust to the major uncertainties that matter for management <span class="citation" data-cites="butterworth1999procedures punt2016bestpractices siple2021smallpelagics">(<a href="#ref-butterworth1999procedures" role="doc-biblioref">Butterworth &amp; Punt, 1999</a>; <a href="#ref-punt2016bestpractices" role="doc-biblioref">Punt et al., 2016</a>; <a href="#ref-siple2021smallpelagics" role="doc-biblioref">Siple et al., 2021</a>)</span>. The July 2025 MSE workshop concluded that direct transfer of the full SC13 assessment structure into MSE would likely import avoidable complexity. This paper therefore treats <code>h1_1.14</code> and <code>h2_1.14</code> as the base assessment formulations that must first be documented clearly before any simplification is attempted.</p>
 </section>
 <section id="materials-used-for-this-paper" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Materials Used for This Paper</h1>
 <p>This paper is based on the contents of the assessment directory, with the following files providing the main technical basis for the description:</p>
 <ol type="1">
-<li><code>README.md</code>, which documents the model progression to SC13;</li>
-<li><code>annex/annex_text.qmd</code>, which contains the technical annex narrative;</li>
-<li><code>R/SC13.rmd</code>, which records the SC13 update process and the rationale for the final model;</li>
-<li><code>R/run_projections.R</code>, which records the projection logic applied to the base model;</li>
-<li><code>input/1.14.dat</code>, the common data file used by both stock hypotheses;</li>
-<li><code>config/h1_1.14.ctl</code> and <code>config/h2_1.14.ctl</code>, which define the stock-specific control structures;</li>
-<li><code>results/h1_1.14.rep</code> and <code>results/h2_1.14.rep</code>, which summarize fitted model outputs and likelihood components.</li>
+<li><code>assessment/README.md</code>, which documents the model progression to SC13;</li>
+<li><code>doc/annex/annex_text.qmd</code>, which contains the technical annex narrative;</li>
+<li><code>assessment/R/SC13.rmd</code>, which records the SC13 update process and the rationale for the final model;</li>
+<li><code>assessment/R/run_projections.R</code>, which records the projection logic applied to the base model;</li>
+<li><code>assessment/input/1.14.dat</code>, the common data file used by both stock hypotheses;</li>
+<li><code>assessment/config/h1_1.14.ctl</code> and <code>assessment/config/h2_1.14.ctl</code>, which define the stock-specific control structures;</li>
+<li><code>assessment/results/h1_1.14.rep</code> and <code>assessment/results/h2_1.14.rep</code>, which summarize fitted model outputs and likelihood components.</li>
 </ol>
 <p>The objective here is not to reproduce every detail already contained in the annex. Rather, the objective is to extract from those materials a concise but technically defensible description of the SC13 base model for later MSE use.</p>
 </section>
@@ -4189,7 +4193,7 @@ border-bottom: 4px solid #1b4576;
 <section id="overview" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">3.1</span> Overview</h2>
 <p>The annex describes the JJM as an explicitly age-structured forward projection model estimated by maximum likelihood. That places it firmly within the standard family of integrated fisheries assessment models derived from statistical catch-at-age theory <span class="citation" data-cites="fournier1982catchage schnute1995error">(<a href="#ref-fournier1982catchage" role="doc-biblioref">D. Fournier &amp; Archibald, 1982</a>; <a href="#ref-schnute1995error" role="doc-biblioref">Schnute &amp; Richards, 1995</a>)</span>. In practical implementation, the JJM is also a highly parameterized nonlinear model fitted through AD Model Builder, which is consistent with the long use of ADMB in stock assessment applications <span class="citation" data-cites="fournier2012admb">(<a href="#ref-fournier2012admb" role="doc-biblioref">D. A. Fournier et al., 2012</a>)</span>.</p>
-<p>For SC13, the model is run over years 1970-2025 and ages 1-12. The common data file <code>input/1.14.dat</code> specifies four fishery fleets, seven abundance indices, age-composition observations for multiple fisheries and surveys, length compositions for the Far North fleet, annual catches by fleet, and weight-at-age schedules used in both fishery and survey components. The control files then assign those data to either one or two modeled stocks depending on the hypothesis being fitted.</p>
+<p>For SC13, the model is run over years 1970-2025 and ages 1-12. The common data file <code>assessment/input/1.14.dat</code> specifies four fishery fleets, seven abundance indices, age-composition observations for multiple fisheries and surveys, length compositions for the Far North fleet, annual catches by fleet, and weight-at-age schedules used in both fishery and survey components. The control files then assign those data to either one or two modeled stocks depending on the hypothesis being fitted.</p>
 </section>
 <section id="data-structure" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="data-structure"><span class="header-section-number">3.2</span> Data Structure</h2>
@@ -4200,7 +4204,7 @@ border-bottom: 4px solid #1b4576;
 <li><code>FarNorth</code>;</li>
 <li><code>Offshore_Trawl</code>.</li>
 </ol>
-<p>The composition data structure differs by fleet. Age compositions are used for <code>N_Chile</code>, <code>SC_Chile_PS</code>, and <code>Offshore_Trawl</code>, while the <code>FarNorth</code> fleet is fitted to length compositions through the modelled growth relationship. The file <code>input/1.14.dat</code> indicates that age-composition observations extend from 1980-2025 for the Chilean fleets and 2015-2025 for the offshore fleet, while length-composition observations are available for the Far North fleet from 1980-2025.</p>
+<p>The composition data structure differs by fleet. Age compositions are used for <code>N_Chile</code>, <code>SC_Chile_PS</code>, and <code>Offshore_Trawl</code>, while the <code>FarNorth</code> fleet is fitted to length compositions through the modelled growth relationship. The file <code>assessment/input/1.14.dat</code> indicates that age-composition observations extend from 1980-2025 for the Chilean fleets and 2015-2025 for the offshore fleet, while length-composition observations are available for the Far North fleet from 1980-2025.</p>
 <p>The same data file also includes seven abundance indices:</p>
 <ol type="1">
 <li><code>Chile_AcousCS</code>;</li>
@@ -4223,20 +4227,20 @@ border-bottom: 4px solid #1b4576;
 <section id="reference-points-and-projections" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="reference-points-and-projections"><span class="header-section-number">3.4</span> Reference Points and Projections</h2>
 <p>The SC13 annex states that <code>MSY</code>, <code>FMSY</code>, and <code>BMSY</code> are calculated internally within the JJM using equilibrium calculations based on terminal-year catch shares, selectivity-at-age, and weights-at-age. Accordingly, these reference points are dynamic rather than fixed. The annex also notes that recent advice has used a ten-year average of model-estimated <code>BMSY</code> as the reference biomass quantity for comparison.</p>
-<p>The projection scripts in <code>R/run_projections.R</code> add a second layer of structure. Future projections are conducted using fixed terminal selectivity and, for the <code>.ls</code> alternatives, a shorter and more conservative recruitment history. This means the advice process combines a fitted assessment model with a somewhat different projection model. That approach is defensible in annual advice, but it is exactly thJack Mackerel Working Groupe kind of multi-stage complexity that MSE seeks to simplify and evaluate explicitly <span class="citation" data-cites="punt2016bestpractices siple2021smallpelagics">(<a href="#ref-punt2016bestpractices" role="doc-biblioref">Punt et al., 2016</a>; <a href="#ref-siple2021smallpelagics" role="doc-biblioref">Siple et al., 2021</a>)</span>.</p>
+<p>The projection scripts in <code>assessment/R/run_projections.R</code> add a second layer of structure. Future projections are conducted using fixed terminal selectivity and, for the <code>.ls</code> alternatives, a shorter and more conservative recruitment history. This means the advice process combines a fitted assessment model with a somewhat different projection model. That approach is defensible in annual advice, but it is exactly the kind of multi-stage complexity that MSE seeks to simplify and evaluate explicitly <span class="citation" data-cites="punt2016bestpractices siple2021smallpelagics">(<a href="#ref-punt2016bestpractices" role="doc-biblioref">Punt et al., 2016</a>; <a href="#ref-siple2021smallpelagics" role="doc-biblioref">Siple et al., 2021</a>)</span>.</p>
 </section>
 </section>
 <section id="the-sc13-base-advice-models" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> The SC13 Base Advice Models</h1>
 <section id="single-stock-hypothesis-h1_1.14" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="single-stock-hypothesis-h1_1.14"><span class="header-section-number">4.1</span> Single-Stock Hypothesis: <code>h1_1.14</code></h2>
-<p>The control file <code>config/h1_1.14.ctl</code> defines the single-stock advice model. It specifies one stock, one recruitment regime, one maturity schedule, one population weight-at-age schedule, and a single natural mortality value of 0.28. The stock recruitment component uses steepness 0.65 and recruitment variability 0.6, with recruitment years 2000-2022 entering the stock recruitment specification.</p>
+<p>The control file <code>assessment/config/h1_1.14.ctl</code> defines the single-stock advice model. It specifies one stock, one recruitment regime, one maturity schedule, one population weight-at-age schedule, and a single natural mortality value of 0.28. The stock recruitment component uses steepness 0.65 and recruitment variability 0.6, with recruitment years 2000-2022 entering the stock recruitment specification.</p>
 <p>From a structural point of view, <code>h1_1.14</code> is the simpler of the two advice models. All fishery and survey information is interpreted as informing a common population. However, the model still retains considerable complexity because selectivity is allowed to vary over time and because the Far North fleet is represented with annual selectivity changes extending back to 1981. In effect, the single-stock hypothesis avoids stock splitting but compensates with a flexible fleet-history interpretation.</p>
-<p>The fitted report file indicates that the model is strongly informed by composition and selectivity components. The total objective function reported in <code>results/h1_1.14.rep</code> is 1323.82, with large contributions from fishery age likelihood, fishery length likelihood, fishery selectivity penalties, index likelihood, and survey age likelihood. This confirms that <code>h1_1.14</code> should not be viewed as a simplified baseline in itself. It is already a sophisticated assessment model.</p>
+<p>The fitted report file indicates that the model is strongly informed by composition and selectivity components. The total objective function reported in <code>assessment/results/h1_1.14.rep</code> is 1323.82, with large contributions from fishery age likelihood, fishery length likelihood, fishery selectivity penalties, index likelihood, and survey age likelihood. This confirms that <code>h1_1.14</code> should not be viewed as a simplified baseline in itself. It is already a sophisticated assessment model.</p>
 </section>
 <section id="two-stock-hypothesis-h2_1.14" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="two-stock-hypothesis-h2_1.14"><span class="header-section-number">4.2</span> Two-Stock Hypothesis: <code>h2_1.14</code></h2>
-<p>The control file <code>config/h2_1.14.ctl</code> defines the two-stock advice model. It specifies two stocks, a more complex recruitment assignment, stock-specific biology for the second stock, and different treatment of the Far North observations. In the terminology used in the annex, the two stocks correspond to a southern stock and a far north stock.</p>
+<p>The control file <code>assessment/config/h2_1.14.ctl</code> defines the two-stock advice model. It specifies two stocks, a more complex recruitment assignment, stock-specific biology for the second stock, and different treatment of the Far North observations. In the terminology used in the annex, the two stocks correspond to a southern stock and a far north stock.</p>
 <p>The most consequential structural difference lies in recruitment and biological assignment. The two-stock control file specifies <code>nregbyStock = 1 2</code>, <code>RecMatrix = 1 2 3</code>, and <code>RegShift = 1999</code>. In practical terms, this means that the northern component is not represented simply as a second stock with otherwise identical rules. It is represented with a different recruitment structure that includes a regime shift. The recruitment year blocks in the file are 2000-2022, 1970-1996, and 2001-2016 for the three recruitment assignments. The model also assigns a higher natural mortality value to the second stock (0.33), along with a separate maturity schedule and separate population weight-at-age schedule.</p>
 <p>The treatment of the Far North fleet also changes substantially under <code>h2_1.14</code>. Whereas <code>h1_1.14</code> allows a long annual history of selectivity variation for the Far North fleet, <code>h2_1.14</code> uses a much simpler regime treatment centered on 2002. This is an important point for later MSE development because the difference between <code>h1</code> and <code>h2</code> is not purely a question of stock structure. It is partly a difference in how northern observations are interpreted and regularized.</p>
 <p>The fitted report file for <code>h2_1.14</code> indicates a total objective function of 1194.09. As with the single-stock model, substantial contributions arise from fishery age, fishery length, selectivity penalties, and abundance indices. The lower total objective function relative to <code>h1_1.14</code> does not by itself establish superiority, but it does confirm that the two-stock hypothesis is a comparably rich fitted model rather than a stripped-down alternative.</p>
@@ -4270,8 +4274,8 @@ border-bottom: 4px solid #1b4576;
 </tr>
 <tr class="odd">
 <td>Data file</td>
-<td><code>input/1.14.dat</code></td>
-<td><code>input/1.14.dat</code></td>
+<td><code>assessment/input/1.14.dat</code></td>
+<td><code>assessment/input/1.14.dat</code></td>
 </tr>
 <tr class="even">
 <td>Natural mortality</td>

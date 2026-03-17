@@ -1,0 +1,32 @@
+---
+title: "Archive"
+---
+
+{{< include ../_includes/sprfmo-banner-nested.html >}}
+
+```{=html}
+<div class="paper-title">Archived R Markdown Reports</div>
+```
+
+# Overview
+
+This archive contains legacy assessment and validation reports that remain in `RMarkdown` format and are published from `doc/archive/`.
+
+The archived reports are:
+
+1. [SC08](SC08.html)
+2. [SC09](SC09.html)
+3. [SC09 Validacion](SC09_Validacion.html)
+4. [SC10](SC10.html)
+5. [SC10 Validacion](SC10_Validacion.html)
+6. [SC11](SC11.html)
+7. [SC12](SC12.html)
+8. [SC13 R Markdown version](SC13.html)
+9. [SCW14](SCW14.html)
+10. [SCW14 Word report](SCW14_docx.docx)
+
+# Notes
+
+These files were moved from `assessment/R/` into `doc/archive/` for organization, but they still execute against the model inputs, data, and results kept under `assessment/`.
+
+Where a full rebuild is no longer reproducible from the current repository snapshot, the archive publishes either the last available compiled artifact or an archive note page that links to the moved source file and describes the missing historical inputs.

@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: ../docs
+  resources:
+    - archive/*.html
+    - archive/*.docx
+    - archive/*.rmd
+  render:
+    - index.qmd
+    - archive/index.qmd
+    - JM-WP-BM-01.qmd
+    - SC13.qmd
+    - helper_scripts_guide.qmd
+    - userguide/index.qmd
+
+website:
+  title: "SPRFMO Jack Mackerel Working Group"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: JM-WP-BM-01.qmd
+        text: JM-WP-BM-01
+      - href: SC13.qmd
+        text: SC13
+      - href: helper_scripts_guide.qmd
+        text: Script Guide
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    number-sections: true

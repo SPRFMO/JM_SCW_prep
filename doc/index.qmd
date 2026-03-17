@@ -1,0 +1,52 @@
+---
+title: "JJM Assessment Documents"
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div class="paper-title">JJM Assessment Documents</div>
+```
+
+# Overview
+
+This site collects the main Quarto documents in the `doc/` directory and renders them for direct browsing through GitHub Pages.
+
+The current published documents are:
+
+1. [JM-WP-BM-01](JM-WP-BM-01.qmd)
+2. [SC13 Assessment Update](SC13.qmd)
+3. [Helper Scripts Guide](helper_scripts_guide.qmd)
+4. [User Guide](userguide/)
+5. [Archive](archive/)
+
+# Document Guide
+
+## JM-WP-BM-01
+
+This is the main benchmark working-paper draft currently tracked as `JM-WP-BM-01.qmd`.
+
+## SC13 Assessment Update
+
+This is the converted Quarto version of the incremental SC13 assessment update document originally maintained as `assessment/R/SC13.rmd`.
+
+## Helper Scripts Guide
+
+This guide documents the reusable helper scripts added for:
+
+- creating the reduced `2.00` data file
+- creating the matching `h1_2.00` control file
+- running standard JJM fits
+- running short `adnuts` MCMC benchmarks
+
+## User Guide
+
+This is the Quarto version of the JJM user guide converted from `doc/userguide/main.tex`.
+
+## Archive
+
+This section collects the legacy annual and validation `RMarkdown` assessment reports moved from `assessment/R/` and published under `archive/`.
+
+# Notes
+
+The website is rendered from the `doc/` directory into the repository `docs/` folder so it can be served by GitHub Pages in the standard way. The underlying model code, inputs, and results remain in `assessment/`.

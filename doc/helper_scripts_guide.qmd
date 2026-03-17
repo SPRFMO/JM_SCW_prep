@@ -1,0 +1,312 @@
+---
+title: "Helper Scripts Guide"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div class="paper-title">Helper Scripts Guide</div>
+```
+
+# Purpose
+
+This guide documents the small reusable scripts that were added to support the reduced-index sensitivity and short MCMC benchmarking workflows. It is intended to answer two practical questions:
+
+1. What does each script do?
+2. How should it be run and adapted later?
+
+The scripts covered here are:
+
+1. `assessment/R/make_2_00_dat.R`
+2. `assessment/R/make_h1_2_00_ctl.R`
+3. `assessment/R/run_jjm_model.R`
+4. `assessment/R/run_adnuts_mcmc.R`
+
+## Typical Workflow
+
+For the current reduced-index sensitivity, the intended sequence is:
+
+1. Build the reduced data file with `assessment/R/make_2_00_dat.R`.
+2. Build the matching control file with `assessment/R/make_h1_2_00_ctl.R`.
+3. Fit the model with `assessment/R/run_jjm_model.R`.
+4. Run short `adnuts` MCMC benchmarks with `assessment/R/run_adnuts_mcmc.R`.
+
+In practice, steps 1 and 2 are usually run once, step 3 is rerun whenever the model changes, and step 4 is rerun when you want to compare MCMC settings or diagnostics.
+
+# Script Reference
+
+## `assessment/R/make_2_00_dat.R`
+
+### What It Does
+
+This script reads `assessment/input/1.14.dat` through the local JJM reader/writer path in `jjmR`, removes three abundance indices by name, trims the retained `Chile_AcousN` series to years 2000 and later, and writes the result as `assessment/input/2.00.dat`.
+
+The default transformation is:
+
+- remove `Chile_AcousCS`
+- remove `DEPM`
+- remove `Peru_Acoustic`
+- drop pre-2000 `Chile_AcousN` observations
+
+### Default Usage
+
+```bash
+Rscript assessment/R/make_2_00_dat.R
+```
+
+### Custom Usage
+
+```bash
+Rscript assessment/R/make_2_00_dat.R assessment/input/1.14.dat assessment/input/2.00.dat "Chile_AcousCS,DEPM,Peru_Acoustic"
+```
+
+### Inputs
+
+- source data file
+- optional output file
+- optional comma-separated list of index names to remove
+
+### Output
+
+- a rewritten JJM data file, usually `assessment/input/2.00.dat`
+
+### Notes
+
+- Indices are removed by name, not by position.
+- The script updates all linked index sections together, not just `Inames`.
+- The `Chile_AcousN` year filter is built into the script because that is part of the current `2.00.dat` definition.
+
+## `assessment/R/make_h1_2_00_ctl.R`
+
+### What It Does
+
+This script reads the fitted `h1_1.14` model objects, reads `assessment/input/2.00.dat`, and writes a matching control file `assessment/config/h1_2.00.ctl`.
+
+It keeps the control structure aligned with the reduced data file by:
+
+- changing `dataFile` to `2.00.dat`
+- changing `modelName` to `h1_2.00`
+- reducing index-linked blocks to the retained indices
+- preserving the intended single-stock / single-survey selectivity mapping in `SelMatrix`
+
+### Default Usage
+
+```bash
+Rscript assessment/R/make_h1_2_00_ctl.R
+```
+
+### Inputs
+
+- source control file, default `assessment/config/h1_1.14.ctl`
+- source input directory, default `assessment/input`
+- source results directory, default `assessment/results`
+- target data file, default `assessment/input/2.00.dat`
+- target control file, default `assessment/config/h1_2.00.ctl`
+
+### Output
+
+- a rewritten control file, usually `assessment/config/h1_2.00.ctl`
+
+### Notes
+
+- This script depends on `assessment/results/h1_1.14.*` being present because it uses `readJJM()` on the fitted base model.
+- The current script is deliberately specific to the `h1_2.00` reduced-index sensitivity, not a fully general control-file editor.
+
+## `assessment/R/run_jjm_model.R`
+
+### What It Does
+
+This is the generic wrapper for standard JJM fits through `jjmR::runit()`. It is the preferred way to run one or more configured models from this repository without rewriting the same `runit()` call each time.
+
+### Default Usage
+
+```bash
+Rscript assessment/R/run_jjm_model.R h1_2.00
+```
+
+### Multiple Models
+
+```bash
+Rscript assessment/R/run_jjm_model.R h1_2.00 h2_2.00 --parallel=true
+```
+
+### With ADMB Flags
+
+```bash
+Rscript assessment/R/run_jjm_model.R h1_2.00 --adflags='-tac 1428 -fut_sel 3'
+```
+
+### Main Options
+
+- `--exec=src/jjm`
+- `--path=assessment/config`
+- `--input=assessment/input`
+- `--output=assessment/results`
+- `--pdf=false`
+- `--portrait=false`
+- `--parallel=false`
+- `--iprint=100`
+- `--est=true`
+- `--adflags='...'`
+
+### Outputs
+
+The model writes the usual JJM result files into the chosen output directory, for example:
+
+- `.rep`
+- `.par`
+- `.std`
+- `.cor`
+- `.yld`
+
+The script also prints a compact summary including:
+
+- number of indices and fisheries
+- retained index names
+- objective function
+- maximum gradient
+
+### Notes
+
+- This wrapper is for deterministic model fitting, not MCMC.
+- It assumes the control file name matches the model name, for example `h1_2.00` with `assessment/config/h1_2.00.ctl`.
+
+## `assessment/R/run_adnuts_mcmc.R`
+
+### What It Does
+
+This is the generic wrapper for short `adnuts` runs on JJM models. It was written for `h1_2.00` first, but it is meant to work for other control files as well.
+
+It does four things:
+
+1. identifies the control and data files
+2. stages a reusable base directory with the executable and fitted-model artifacts
+3. runs `adnuts::sample_nuts()` in a separate per-run directory
+4. writes a small diagnostics bundle for later comparison
+
+### Default Usage
+
+```bash
+Rscript assessment/R/run_adnuts_mcmc.R h1_2.00 --iter=2000 --warmup=1000 --chains=6 --cores=6
+```
+
+### Named Run For Comparison
+
+```bash
+Rscript assessment/R/run_adnuts_mcmc.R h1_2.00 \
+  --iter=2000 \
+  --warmup=1000 \
+  --chains=6 \
+  --cores=6 \
+  --run-label=short2000
+```
+
+### Stage Base Directory Only
+
+```bash
+Rscript assessment/R/run_adnuts_mcmc.R h1_2.00 --prepare-only=true
+```
+
+### Dry Run
+
+```bash
+Rscript assessment/R/run_adnuts_mcmc.R h1_2.00 --dry-run=true
+```
+
+### Main Options
+
+- `--config=assessment/config`
+- `--input=assessment/input`
+- `--results=assessment/results`
+- `--exec=src/jjm`
+- `--run-root=mcmc_runs`
+- `--run-label=<label>`
+- `--iter=2000`
+- `--warmup=1000`
+- `--chains=6`
+- `--cores=6`
+- `--thin=1`
+- `--seed=12345`
+- `--metric=unit` or `--metric=mle`
+- `--adapt-delta=0.9`
+- `--max-treedepth=10`
+- `--refresh=50`
+- `--mceval=false`
+- `--skip-monitor=false`
+- `--skip-unbounded=true`
+- `--prepare-base=true`
+- `--reprepare-base=false`
+- `--prepare-mode=full`
+- `--prepare-only=false`
+- `--dry-run=false`
+- `--adflags=''`
+
+### Directory Layout
+
+The wrapper creates a structure like:
+
+```text
+mcmc_runs/
+  adnuts_run_log.csv
+  h1_2.00/
+    base/
+    h1_2.00_iter2000_chains6_unit_YYYYMMDD_HHMMSS/
+```
+
+The `base/` directory is the reusable staged model. Each timestamped run directory contains one MCMC run.
+
+### Outputs
+
+Each run directory contains:
+
+- `fit.rds`: full `adnuts` fit object
+- `settings.rds`: settings used for the run
+- `summary.csv`: one-row summary with timing and headline diagnostics
+- `monitor.csv`: parameter-level `Rhat` and effective sample size, when monitoring is enabled
+- `sampler_diagnostics.csv`: chain-level divergences and max-treedepth hits
+
+The file `mcmc_runs/adnuts_run_log.csv` appends one row per run so repeated short tests can be compared directly.
+
+### Intended Comparison Metrics
+
+This wrapper is designed to support comparisons such as:
+
+- wall time
+- average chain time
+- maximum `Rhat`
+- minimum bulk effective sample size
+- total divergences
+- total max-treedepth hits
+
+### Important Notes
+
+- The script assumes the model has already been fitted and that matching `.par` and `.cor` files exist in `assessment/results/`.
+- The script stages those fitted artifacts under the executable name expected by `adnuts`, for example `jjm.par` and `jjm.cor`.
+- In this environment, `parallel::detectCores()` returns `NA`, which breaks `adnuts` internally. The wrapper patches that locally during the `sample_nuts()` call.
+- The current wrapper is built for NUTS only. It does not yet expose a random-walk Metropolis path.
+- The exact ADMB preparation requirements can vary by model and executable behavior, so `--prepare-mode=full` is the safest default.
+
+# Practical Recommendations
+
+For this repository, use the scripts as follows:
+
+1. Keep `assessment/README.md` focused on model history and repository-level context.
+2. Use this Quarto guide for operational documentation of helper scripts.
+3. When a script becomes part of a standard workflow, add one example command here immediately.
+4. When a script has assumptions that are easy to forget, document them here rather than in code comments alone.
+
+That division keeps the code readable, the README short enough to scan, and the script documentation easy to expand later.
+
+# Current Recommendation
+
+If you add more wrappers of this kind, keep documenting them in this file rather than creating separate notes each time. If the list gets much longer, the next step should be to split this guide into:
+
+- a short script index
+- one page for deterministic model-running helpers
+- one page for MCMC and diagnostics helpers
