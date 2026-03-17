@@ -24,7 +24,7 @@ format:
     css: styles.css
     toc: true
     toc_float: true
-    include-before-body: ../_includes/sprfmo-banner-nested.html
+    include-before-body: ../_includes/sprfmo-banner-nested-raw.html
 
 website:
   title: "JJM Tutorial"
