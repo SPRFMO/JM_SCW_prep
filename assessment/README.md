@@ -1,5 +1,8 @@
 Jack mackerel assessment 
 =================================
+
+Helper script documentation for the reusable wrappers added in this working branch is in `helper_scripts_guide.qmd`.
+
 ## 2025 SC13 Model runs
 ### Notes
 Update assessment in Wellington, New Zealand, September 2025.
@@ -473,4 +476,3 @@ Note that datafiles from last year need to be modified slightly to this format t
 
 1. length bins specified (uses number of bins, bin values)
 2. indices now accept length frequency data
-

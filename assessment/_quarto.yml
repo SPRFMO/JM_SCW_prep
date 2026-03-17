@@ -1,0 +1,25 @@
+project:
+  type: website
+  output-dir: ../docs
+  render:
+    - index.qmd
+    - JM-WP-BM-01.qmd
+    - helper_scripts_guide.qmd
+
+website:
+  title: "JJM Assessment Documents"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: JM-WP-BM-01.qmd
+        text: JM-WP-BM-01
+      - href: helper_scripts_guide.qmd
+        text: Script Guide
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    number-sections: true

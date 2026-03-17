@@ -1,0 +1,31 @@
+---
+title: "JJM Assessment Documents"
+---
+
+# Overview
+
+This site collects the main Quarto documents in the `assessment/` directory and renders them for direct browsing through GitHub Pages.
+
+The current published documents are:
+
+1. [JM-WP-BM-01](JM-WP-BM-01.qmd)
+2. [Helper Scripts Guide](helper_scripts_guide.qmd)
+
+# Document Guide
+
+## JM-WP-BM-01
+
+This is the main benchmark working-paper draft currently tracked as `JM-WP-BM-01.qmd`.
+
+## Helper Scripts Guide
+
+This guide documents the reusable helper scripts added for:
+
+- creating the reduced `2.00` data file
+- creating the matching `h1_2.00` control file
+- running standard JJM fits
+- running short `adnuts` MCMC benchmarks
+
+# Notes
+
+The website is rendered from the `assessment/` directory into the repository `docs/` folder so it can be served by GitHub Pages in the standard way.

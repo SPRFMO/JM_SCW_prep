@@ -1,0 +1,219 @@
+[
+  {
+    "objectID": "helper_scripts_guide.html",
+    "href": "helper_scripts_guide.html",
+    "title": "Helper Scripts Guide",
+    "section": "",
+    "text": "This guide documents the small reusable scripts that were added to support the reduced-index sensitivity and short MCMC benchmarking workflows. It is intended to answer two practical questions:\n\nWhat does each script do?\nHow should it be run and adapted later?\n\nThe scripts covered here are:\n\nR/make_2_00_dat.R\nR/make_h1_2_00_ctl.R\nR/run_jjm_model.R\nR/run_adnuts_mcmc.R\n\n\n\nFor the current reduced-index sensitivity, the intended sequence is:\n\nBuild the reduced data file with R/make_2_00_dat.R.\nBuild the matching control file with R/make_h1_2_00_ctl.R.\nFit the model with R/run_jjm_model.R.\nRun short adnuts MCMC benchmarks with R/run_adnuts_mcmc.R.\n\nIn practice, steps 1 and 2 are usually run once, step 3 is rerun whenever the model changes, and step 4 is rerun when you want to compare MCMC settings or diagnostics."
+  },
+  {
+    "objectID": "helper_scripts_guide.html#typical-workflow",
+    "href": "helper_scripts_guide.html#typical-workflow",
+    "title": "Helper Scripts Guide",
+    "section": "",
+    "text": "For the current reduced-index sensitivity, the intended sequence is:\n\nBuild the reduced data file with R/make_2_00_dat.R.\nBuild the matching control file with R/make_h1_2_00_ctl.R.\nFit the model with R/run_jjm_model.R.\nRun short adnuts MCMC benchmarks with R/run_adnuts_mcmc.R.\n\nIn practice, steps 1 and 2 are usually run once, step 3 is rerun whenever the model changes, and step 4 is rerun when you want to compare MCMC settings or diagnostics."
+  },
+  {
+    "objectID": "helper_scripts_guide.html#rmake_2_00_dat.r",
+    "href": "helper_scripts_guide.html#rmake_2_00_dat.r",
+    "title": "Helper Scripts Guide",
+    "section": "R/make_2_00_dat.R",
+    "text": "R/make_2_00_dat.R\n\nWhat It Does\nThis script reads input/1.14.dat through the local JJM reader/writer path in jjmR, removes three abundance indices by name, trims the retained Chile_AcousN series to years 2000 and later, and writes the result as input/2.00.dat.\nThe default transformation is:\n\nremove Chile_AcousCS\nremove DEPM\nremove Peru_Acoustic\ndrop pre-2000 Chile_AcousN observations\n\n\n\nDefault Usage\nRscript R/make_2_00_dat.R\n\n\nCustom Usage\nRscript R/make_2_00_dat.R input/1.14.dat input/2.00.dat \"Chile_AcousCS,DEPM,Peru_Acoustic\"\n\n\nInputs\n\nsource data file\noptional output file\noptional comma-separated list of index names to remove\n\n\n\nOutput\n\na rewritten JJM data file, usually input/2.00.dat\n\n\n\nNotes\n\nIndices are removed by name, not by position.\nThe script updates all linked index sections together, not just Inames.\nThe Chile_AcousN year filter is built into the script because that is part of the current 2.00.dat definition."
+  },
+  {
+    "objectID": "helper_scripts_guide.html#rmake_h1_2_00_ctl.r",
+    "href": "helper_scripts_guide.html#rmake_h1_2_00_ctl.r",
+    "title": "Helper Scripts Guide",
+    "section": "R/make_h1_2_00_ctl.R",
+    "text": "R/make_h1_2_00_ctl.R\n\nWhat It Does\nThis script reads the fitted h1_1.14 model objects, reads input/2.00.dat, and writes a matching control file config/h1_2.00.ctl.\nIt keeps the control structure aligned with the reduced data file by:\n\nchanging dataFile to 2.00.dat\nchanging modelName to h1_2.00\nreducing index-linked blocks to the retained indices\npreserving the intended single-stock / single-survey selectivity mapping in SelMatrix\n\n\n\nDefault Usage\nRscript R/make_h1_2_00_ctl.R\n\n\nInputs\n\nsource control file, default config/h1_1.14.ctl\nsource input directory, default input\nsource results directory, default results\ntarget data file, default input/2.00.dat\ntarget control file, default config/h1_2.00.ctl\n\n\n\nOutput\n\na rewritten control file, usually config/h1_2.00.ctl\n\n\n\nNotes\n\nThis script depends on results/h1_1.14.* being present because it uses readJJM() on the fitted base model.\nThe current script is deliberately specific to the h1_2.00 reduced-index sensitivity, not a fully general control-file editor."
+  },
+  {
+    "objectID": "helper_scripts_guide.html#rrun_jjm_model.r",
+    "href": "helper_scripts_guide.html#rrun_jjm_model.r",
+    "title": "Helper Scripts Guide",
+    "section": "R/run_jjm_model.R",
+    "text": "R/run_jjm_model.R\n\nWhat It Does\nThis is the generic wrapper for standard JJM fits through jjmR::runit(). It is the preferred way to run one or more configured models from this repository without rewriting the same runit() call each time.\n\n\nDefault Usage\nRscript R/run_jjm_model.R h1_2.00\n\n\nMultiple Models\nRscript R/run_jjm_model.R h1_2.00 h2_2.00 --parallel=true\n\n\nWith ADMB Flags\nRscript R/run_jjm_model.R h1_2.00 --adflags='-tac 1428 -fut_sel 3'\n\n\nMain Options\n\n--exec=../src/jjm\n--path=config\n--input=input\n--output=results\n--pdf=false\n--portrait=false\n--parallel=false\n--iprint=100\n--est=true\n--adflags='...'\n\n\n\nOutputs\nThe model writes the usual JJM result files into the chosen output directory, for example:\n\n.rep\n.par\n.std\n.cor\n.yld\n\nThe script also prints a compact summary including:\n\nnumber of indices and fisheries\nretained index names\nobjective function\nmaximum gradient\n\n\n\nNotes\n\nThis wrapper is for deterministic model fitting, not MCMC.\nIt assumes the control file name matches the model name, for example h1_2.00 with config/h1_2.00.ctl."
+  },
+  {
+    "objectID": "helper_scripts_guide.html#rrun_adnuts_mcmc.r",
+    "href": "helper_scripts_guide.html#rrun_adnuts_mcmc.r",
+    "title": "Helper Scripts Guide",
+    "section": "R/run_adnuts_mcmc.R",
+    "text": "R/run_adnuts_mcmc.R\n\nWhat It Does\nThis is the generic wrapper for short adnuts runs on JJM models. It was written for h1_2.00 first, but it is meant to work for other control files as well.\nIt does four things:\n\nidentifies the control and data files\nstages a reusable base directory with the executable and fitted-model artifacts\nruns adnuts::sample_nuts() in a separate per-run directory\nwrites a small diagnostics bundle for later comparison\n\n\n\nDefault Usage\nRscript R/run_adnuts_mcmc.R h1_2.00 --iter=2000 --warmup=1000 --chains=6 --cores=6\n\n\nNamed Run For Comparison\nRscript R/run_adnuts_mcmc.R h1_2.00 \\\n  --iter=2000 \\\n  --warmup=1000 \\\n  --chains=6 \\\n  --cores=6 \\\n  --run-label=short2000\n\n\nStage Base Directory Only\nRscript R/run_adnuts_mcmc.R h1_2.00 --prepare-only=true\n\n\nDry Run\nRscript R/run_adnuts_mcmc.R h1_2.00 --dry-run=true\n\n\nMain Options\n\n--config=config\n--input=input\n--results=results\n--exec=../src/jjm\n--run-root=mcmc_runs\n--run-label=&lt;label&gt;\n--iter=2000\n--warmup=1000\n--chains=6\n--cores=6\n--thin=1\n--seed=12345\n--metric=unit or --metric=mle\n--adapt-delta=0.9\n--max-treedepth=10\n--refresh=50\n--mceval=false\n--skip-monitor=false\n--skip-unbounded=true\n--prepare-base=true\n--reprepare-base=false\n--prepare-mode=full\n--prepare-only=false\n--dry-run=false\n--adflags=''\n\n\n\nDirectory Layout\nThe wrapper creates a structure like:\nmcmc_runs/\n  adnuts_run_log.csv\n  h1_2.00/\n    base/\n    h1_2.00_iter2000_chains6_unit_YYYYMMDD_HHMMSS/\nThe base/ directory is the reusable staged model. Each timestamped run directory contains one MCMC run.\n\n\nOutputs\nEach run directory contains:\n\nfit.rds: full adnuts fit object\nsettings.rds: settings used for the run\nsummary.csv: one-row summary with timing and headline diagnostics\nmonitor.csv: parameter-level Rhat and effective sample size, when monitoring is enabled\nsampler_diagnostics.csv: chain-level divergences and max-treedepth hits\n\nThe file mcmc_runs/adnuts_run_log.csv appends one row per run so repeated short tests can be compared directly.\n\n\nIntended Comparison Metrics\nThis wrapper is designed to support comparisons such as:\n\nwall time\naverage chain time\nmaximum Rhat\nminimum bulk effective sample size\ntotal divergences\ntotal max-treedepth hits\n\n\n\nImportant Notes\n\nThe script assumes the model has already been fitted and that matching .par and .cor files exist in results/.\nThe script stages those fitted artifacts under the executable name expected by adnuts, for example jjm.par and jjm.cor.\nIn this environment, parallel::detectCores() returns NA, which breaks adnuts internally. The wrapper patches that locally during the sample_nuts() call.\nThe current wrapper is built for NUTS only. It does not yet expose a random-walk Metropolis path.\nThe exact ADMB preparation requirements can vary by model and executable behavior, so --prepare-mode=full is the safest default."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "JJM Assessment Documents",
+    "section": "",
+    "text": "This site collects the main Quarto documents in the assessment/ directory and renders them for direct browsing through GitHub Pages.\nThe current published documents are:\n\nJM-WP-BM-01\nHelper Scripts Guide"
+  },
+  {
+    "objectID": "index.html#jm-wp-bm-01",
+    "href": "index.html#jm-wp-bm-01",
+    "title": "JJM Assessment Documents",
+    "section": "2.1 JM-WP-BM-01",
+    "text": "2.1 JM-WP-BM-01\nThis is the main benchmark working-paper draft currently tracked as JM-WP-BM-01.qmd."
+  },
+  {
+    "objectID": "index.html#helper-scripts-guide",
+    "href": "index.html#helper-scripts-guide",
+    "title": "JJM Assessment Documents",
+    "section": "2.2 Helper Scripts Guide",
+    "text": "2.2 Helper Scripts Guide\nThis guide documents the reusable helper scripts added for:\n\ncreating the reduced 2.00 data file\ncreating the matching h1_2.00 control file\nrunning standard JJM fits\nrunning short adnuts MCMC benchmarks"
+  },
+  {
+    "objectID": "JM-WP-BM-01.html",
+    "href": "JM-WP-BM-01.html",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n  Extension of the base (SC13) models for benchmark and MSE considerations"
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#overview",
+    "href": "JM-WP-BM-01.html#overview",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "3.1 Overview",
+    "text": "3.1 Overview\nThe annex describes the JJM as an explicitly age-structured forward projection model estimated by maximum likelihood. That places it firmly within the standard family of integrated fisheries assessment models derived from statistical catch-at-age theory (D. Fournier & Archibald, 1982; Schnute & Richards, 1995). In practical implementation, the JJM is also a highly parameterized nonlinear model fitted through AD Model Builder, which is consistent with the long use of ADMB in stock assessment applications (D. A. Fournier et al., 2012).\nFor SC13, the model is run over years 1970-2025 and ages 1-12. The common data file input/1.14.dat specifies four fishery fleets, seven abundance indices, age-composition observations for multiple fisheries and surveys, length compositions for the Far North fleet, annual catches by fleet, and weight-at-age schedules used in both fishery and survey components. The control files then assign those data to either one or two modeled stocks depending on the hypothesis being fitted."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#data-structure",
+    "href": "JM-WP-BM-01.html#data-structure",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "3.2 Data Structure",
+    "text": "3.2 Data Structure\nThe SC13 base data set contains four fleets:\n\nN_Chile;\nSC_Chile_PS;\nFarNorth;\nOffshore_Trawl.\n\nThe composition data structure differs by fleet. Age compositions are used for N_Chile, SC_Chile_PS, and Offshore_Trawl, while the FarNorth fleet is fitted to length compositions through the modelled growth relationship. The file input/1.14.dat indicates that age-composition observations extend from 1980-2025 for the Chilean fleets and 2015-2025 for the offshore fleet, while length-composition observations are available for the Far North fleet from 1980-2025.\nThe same data file also includes seven abundance indices:\n\nChile_AcousCS;\nChile_AcousN;\nChile_CPUE;\nDEPM;\nPeru_Acoustic;\nPeru_CPUE;\nOffshore_CPUE.\n\nThis is therefore not a sparse index-only assessment. It is a fully integrated model in which trends in biomass and recruitment are informed simultaneously by catch, multiple abundance indices, and composition data, with the latter carrying substantial influence over selectivity and year-class interpretation. The use of composition data at this level also means that weighting, effective sample size, and selectivity specification become major determinants of fit and inference (Francis, 2011)."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#population-dynamics-and-observation-model",
+    "href": "JM-WP-BM-01.html#population-dynamics-and-observation-model",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "3.3 Population Dynamics and Observation Model",
+    "text": "3.3 Population Dynamics and Observation Model\nThe annex and control files together indicate a standard age-structured population dynamic framework with stock recruitment, natural mortality, growth, maturity, fleet selectivity, survey selectivity, and catchability. The growth component follows the usual fisheries implementation of the von Bertalanffy growth relationship (Bertalanffy, 1957; Beverton & Holt, 1957). The Far North fleet is modelled through predicted length compositions derived from the age-structured population and the specified growth schedule.\nSelectivity is an especially important feature of the SC13 implementation. The annex describes selectivity as non-parametric, fishery-specific, and time-varying. The control files confirm this, showing fleet-specific selectivity structures, annual or block changes by fleet, and selectivity penalties applied to both fisheries and surveys. Time-varying selectivity is a familiar response to changes in fishery behavior and sampling structure, but it is also known to complicate interpretation in catch-at-age assessments (Linton & Bence, 2011).\nCatchability is index-specific and includes shared settings across the two hypotheses. The annex further notes that standardized CPUE series include explicit assumptions about efficiency creep, consistent with broader literature on fleet evolution and changing fishing power (Rousseau et al., 2019).\nA compact mathematical summary of the core model structure is provided in the appendix so that the main text can stay focused on the SC13 implementation choices rather than on notation."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#reference-points-and-projections",
+    "href": "JM-WP-BM-01.html#reference-points-and-projections",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "3.4 Reference Points and Projections",
+    "text": "3.4 Reference Points and Projections\nThe SC13 annex states that MSY, FMSY, and BMSY are calculated internally within the JJM using equilibrium calculations based on terminal-year catch shares, selectivity-at-age, and weights-at-age. Accordingly, these reference points are dynamic rather than fixed. The annex also notes that recent advice has used a ten-year average of model-estimated BMSY as the reference biomass quantity for comparison.\nThe projection scripts in R/run_projections.R add a second layer of structure. Future projections are conducted using fixed terminal selectivity and, for the .ls alternatives, a shorter and more conservative recruitment history. This means the advice process combines a fitted assessment model with a somewhat different projection model. That approach is defensible in annual advice, but it is exactly thJack Mackerel Working Groupe kind of multi-stage complexity that MSE seeks to simplify and evaluate explicitly (Punt et al., 2016; Siple et al., 2021)."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#single-stock-hypothesis-h1_1.14",
+    "href": "JM-WP-BM-01.html#single-stock-hypothesis-h1_1.14",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "4.1 Single-Stock Hypothesis: h1_1.14",
+    "text": "4.1 Single-Stock Hypothesis: h1_1.14\nThe control file config/h1_1.14.ctl defines the single-stock advice model. It specifies one stock, one recruitment regime, one maturity schedule, one population weight-at-age schedule, and a single natural mortality value of 0.28. The stock recruitment component uses steepness 0.65 and recruitment variability 0.6, with recruitment years 2000-2022 entering the stock recruitment specification.\nFrom a structural point of view, h1_1.14 is the simpler of the two advice models. All fishery and survey information is interpreted as informing a common population. However, the model still retains considerable complexity because selectivity is allowed to vary over time and because the Far North fleet is represented with annual selectivity changes extending back to 1981. In effect, the single-stock hypothesis avoids stock splitting but compensates with a flexible fleet-history interpretation.\nThe fitted report file indicates that the model is strongly informed by composition and selectivity components. The total objective function reported in results/h1_1.14.rep is 1323.82, with large contributions from fishery age likelihood, fishery length likelihood, fishery selectivity penalties, index likelihood, and survey age likelihood. This confirms that h1_1.14 should not be viewed as a simplified baseline in itself. It is already a sophisticated assessment model."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#two-stock-hypothesis-h2_1.14",
+    "href": "JM-WP-BM-01.html#two-stock-hypothesis-h2_1.14",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "4.2 Two-Stock Hypothesis: h2_1.14",
+    "text": "4.2 Two-Stock Hypothesis: h2_1.14\nThe control file config/h2_1.14.ctl defines the two-stock advice model. It specifies two stocks, a more complex recruitment assignment, stock-specific biology for the second stock, and different treatment of the Far North observations. In the terminology used in the annex, the two stocks correspond to a southern stock and a far north stock.\nThe most consequential structural difference lies in recruitment and biological assignment. The two-stock control file specifies nregbyStock = 1 2, RecMatrix = 1 2 3, and RegShift = 1999. In practical terms, this means that the northern component is not represented simply as a second stock with otherwise identical rules. It is represented with a different recruitment structure that includes a regime shift. The recruitment year blocks in the file are 2000-2022, 1970-1996, and 2001-2016 for the three recruitment assignments. The model also assigns a higher natural mortality value to the second stock (0.33), along with a separate maturity schedule and separate population weight-at-age schedule.\nThe treatment of the Far North fleet also changes substantially under h2_1.14. Whereas h1_1.14 allows a long annual history of selectivity variation for the Far North fleet, h2_1.14 uses a much simpler regime treatment centered on 2002. This is an important point for later MSE development because the difference between h1 and h2 is not purely a question of stock structure. It is partly a difference in how northern observations are interpreted and regularized.\nThe fitted report file for h2_1.14 indicates a total objective function of 1194.09. As with the single-stock model, substantial contributions arise from fishery age, fishery length, selectivity penalties, and abundance indices. The lower total objective function relative to h1_1.14 does not by itself establish superiority, but it does confirm that the two-stock hypothesis is a comparably rich fitted model rather than a stripped-down alternative."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#summary-comparison",
+    "href": "JM-WP-BM-01.html#summary-comparison",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "4.3 Summary Comparison",
+    "text": "4.3 Summary Comparison\nTable 1 summarizes the main structural differences between the two SC13 advice models.\n\n\n\n\n\n\n\n\nFeature\nh1_1.14\nh2_1.14\n\n\n\n\nStock hypothesis\nSingle shared stock\nSouthern stock plus far north stock\n\n\nNumber of modeled stocks\n1\n2\n\n\nData file\ninput/1.14.dat\ninput/1.14.dat\n\n\nNatural mortality\n0.28\n0.28 and 0.33\n\n\nMaturity schedule\nOne schedule\nStock-specific schedules\n\n\nPopulation weight-at-age\nOne schedule\nStock-specific schedules\n\n\nRecruitment structure\nOne curve, 2000-2022\nThree assignments with a 1999 regime shift\n\n\nFar North selectivity\nAnnual variation from 1981\nSimplified regime treatment centered on 2002\n\n\nProjection horizon\n20 years\n20 years\n\n\n\nThe commonality between the two models is therefore greater than their difference in terms of data inputs and overall assessment machinery. The key differences lie in stock allocation, biology, recruitment structure, and the degree of complexity assigned to the northern part of the system."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#reduced-number-of-indices",
+    "href": "JM-WP-BM-01.html#reduced-number-of-indices",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "6.1 Reduced number of indices",
+    "text": "6.1 Reduced number of indices\nThere are three indices in the model that are no longer being conducted and generally fit poorly relative to other data. These included the Central-South acoustic survey, the egg-production index, and the Peruvian acoustic surveys. One sensitivity to omitting these data was considered.\nThe resulting sensitivity run is represented here by h1_2.00, which removes Chile_AcousCS, DEPM, and Peru_Acoustic from the single-stock configuration and also trims the retained Chile_AcousN series to years 2000 and later. Relative to h1_1.14, this drops 56 index-year observations in total: 13 from Chile_AcousCS, 9 from DEPM, 28 from Peru_Acoustic, and 6 pre-2000 observations from Chile_AcousN. It also reduces the fitted parameter vector by 44 parameters, from 1865 in h1_1.14 to 1821 in h1_2.00. This comparison is useful because it isolates a specific simplification of the observation model while leaving the broader single-stock population structure unchanged.\n\n\n\n\n\n\n\n\nFigure 1: Comparison of spawning biomass trajectories from the base single-stock model (h1_1.14) and the reduced-index sensitivity (h1_2.00).\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Comparison of recruitment trajectories from the base single-stock model (h1_1.14) and the reduced-index sensitivity (h1_2.00).\n\n\n\n\n\nRelative to h1_1.14, the reduced-index model leaves the broad historical pattern intact but slightly lowers the terminal objective function, from about 1323.8 in h1_1.14 to about 1234.7 in h1_2.00. Terminal-year spawning biomass uncertainty remains very similar between the two fits, although it is slightly higher in the reduced-index run: the 2025 SSB CV is about 0.125 for h1_1.14 and about 0.129 for h1_2.00. As shown in Figure 1 and Figure 2, the series plots are useful as a first diagnostic of whether the omitted indices were materially changing stock perception or mainly adding noise and additional fitting burden. If the trajectories remain broadly similar, then reducing the index set may be a promising simplification for later MSE work."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#simplified-selectivity-alternatives",
+    "href": "JM-WP-BM-01.html#simplified-selectivity-alternatives",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "6.2 Simplified Selectivity Alternatives",
+    "text": "6.2 Simplified Selectivity Alternatives\nOne option is to replace long annual selectivity histories with a limited set of blocks for each fleet, for example a historical block, a modern block, and a current block. This preserves the broad evidence that fishery selectivity has changed while avoiding dozens of annual deviations."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#simplified-recruitment-alternatives",
+    "href": "JM-WP-BM-01.html#simplified-recruitment-alternatives",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "6.3 Simplified Recruitment Alternatives",
+    "text": "6.3 Simplified Recruitment Alternatives\nA second option is to reduce recruitment complexity by using one recruitment relationship per stock hypothesis, or one per stock under the two-stock model, without additional regime splitting unless that feature is shown to be essential for management performance."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#fixed-reference-point-alternatives",
+    "href": "JM-WP-BM-01.html#fixed-reference-point-alternatives",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "6.4 Fixed-Reference-Point Alternatives",
+    "text": "6.4 Fixed-Reference-Point Alternatives\nA third option is to evaluate MSE performance relative to fixed biomass and harvest-rate benchmarks rather than dynamic reference points estimated from terminal-year conditions. This would make the interpretation of management performance much clearer while still allowing later comparison back to the SC13 assessment convention."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#harmonized-northern-treatment",
+    "href": "JM-WP-BM-01.html#harmonized-northern-treatment",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "6.5 Harmonized Northern Treatment",
+    "text": "6.5 Harmonized Northern Treatment\nA fourth option is to harmonize how the Far North observations are treated across the single-stock and two-stock hypotheses. The objective would be to ensure that future comparisons of one-stock and two-stock MSE operating models are driven primarily by stock structure rather than by unrelated differences in selectivity regularization."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#notation",
+    "href": "JM-WP-BM-01.html#notation",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.1 Notation",
+    "text": "7.1 Notation\nLet s index stock, f fishery fleet, i abundance index, a age, l length bin, and y year. Let A denote the plus group age. The main state variable is numbers at age, N_{s,a,y}, at the start of year y.\nThe biological and fishery quantities used below are:\n\nM_{s,a}: natural mortality;\nS^{F}_{f,s,a,y}: fishery selectivity;\nS^{I}_{i,s,a,y}: survey or index selectivity;\nw^{\\mathrm{pop}}_{s,a,y}, w^{\\mathrm{catch}}_{f,s,a,y}, and w^{I}_{i,s,a,y}: population, catch, and index weights at age;\nm_{s,a}: maturity at age;\nq_i: catchability for abundance index i."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#population-update",
+    "href": "JM-WP-BM-01.html#population-update",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.2 Population Update",
+    "text": "7.2 Population Update\nFor each stock, total mortality at age is\n\nZ_{s,a,y} = M_{s,a} + \\sum_f F_{f,s,a,y}.\n\nRecruitment enters age 1:\n\nN_{s,1,y} = R_{s,y}.\n\nFor ages a = 1, \\ldots, A-2, cohort survival follows\n\nN_{s,a+1,y+1} = N_{s,a,y}\\exp(-Z_{s,a,y}).\n\nThe plus group is updated as\n\n\\begin{aligned}\nN_{s,A,y+1}\n&= N_{s,A-1,y}\\exp(-Z_{s,A-1,y}) \\\\\n&\\quad + N_{s,A,y}\\exp(-Z_{s,A,y}).\n\\end{aligned}\n\nSpawning biomass is calculated from mature biomass at the spawning time within the year:\n\nSSB_{s,y} =\n\\sum_a N_{s,a,y}\\exp(-\\tau Z_{s,a,y}) \\, m_{s,a} \\, w^{\\mathrm{pop}}_{s,a,y}.\n\nwhere \\tau is the fraction of annual mortality occurring before spawning."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#stock-recruitment-relationship",
+    "href": "JM-WP-BM-01.html#stock-recruitment-relationship",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.3 Stock-Recruitment Relationship",
+    "text": "7.3 Stock-Recruitment Relationship\nThe annex states that the JJM uses a stochastic Beverton-Holt relationship. In compact form,\n\nR_{s,y} =\n\\frac{4h_s R_{0,s} SSB_{s,y-\\delta}}\n{B_{0,s}(1-h_s) + SSB_{s,y-\\delta}(5h_s - 1)}\n\\exp\\left(\\varepsilon_{s,y} - \\frac{\\sigma_{R,s}^2}{2}\\right).\n\nwhere h_s is steepness, R_{0,s} is unfished recruitment, B_{0,s} is unfished spawning biomass, \\delta is the lag from spawning to recruitment, and \\varepsilon_{s,y} is the annual recruitment deviation.\nUnder h1_1.14, this relationship is applied to a single stock with one recruitment regime. Under h2_1.14, recruitment is assigned across two stocks with a more complex regime structure, including the 1999 shift described in the control file."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#fishing-mortality-and-catch",
+    "href": "JM-WP-BM-01.html#fishing-mortality-and-catch",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.4 Fishing Mortality and Catch",
+    "text": "7.4 Fishing Mortality and Catch\nThe annex describes fishing mortality as the product of fleet-specific selectivity and an annual fishing-intensity term. A compact representation is\n\nF_{f,s,a,y} = f_{f,y} S^{F}_{f,s,a,y}.\n\nwhere f_{f,y} is the year-specific fleet intensity after incorporating the effort-to-mortality scaling and annual deviations used in the fitted model.\nPredicted catch in numbers at age follows the Baranov catch equation:\n\nC^{N}_{f,s,a,y} =\nN_{s,a,y}\n\\, \\frac{F_{f,s,a,y}}{Z_{s,a,y}}\n\\, \\left(1-\\exp(-Z_{s,a,y})\\right).\n\nPredicted catch in biomass for fleet f is then\n\nC^{B}_{f,y} = \\sum_s \\sum_a C^{N}_{f,s,a,y} \\, w^{\\mathrm{catch}}_{f,s,a,y}."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#abundance-indices",
+    "href": "JM-WP-BM-01.html#abundance-indices",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.5 Abundance Indices",
+    "text": "7.5 Abundance Indices\nFor abundance index i, the predicted index is a catchability-scaled vulnerable biomass or abundance quantity:\n\n\\begin{aligned}\nI^{\\mathrm{pred}}_{i,y}\n&= q_i \\sum_s \\sum_a\nN_{s,a,y}\\exp(-\\lambda_i Z_{s,a,y}) \\\\\n&\\quad \\times S^{I}_{i,s,a,y} \\, w^{I}_{i,s,a,y}.\n\\end{aligned}\n\nwhere \\lambda_i places the survey or CPUE observation within the year. This expression is schematic because some indices are closer to numbers-at-age and others to biomass, but it captures the model logic used across the SC13 index components."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#age-and-length-compositions",
+    "href": "JM-WP-BM-01.html#age-and-length-compositions",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.6 Age and Length Compositions",
+    "text": "7.6 Age and Length Compositions\nPredicted fishery or survey age composition is obtained by normalizing predicted numbers-at-age in the relevant observation:\n\np^{\\mathrm{age}}_{g,a,y} =\n\\frac{n^{\\mathrm{pred}}_{g,a,y}}\n{\\sum_a n^{\\mathrm{pred}}_{g,a,y}}.\n\nwhere g denotes the fleet or survey being sampled.\nFor the Far North fleet, predicted age compositions are converted to predicted length compositions through the growth model:\n\np^{\\mathrm{len}}_{f,l,y} = \\sum_a p^{\\mathrm{age}}_{f,a,y} \\, g_{f,l \\mid a}.\n\nwhere g_{f,l \\mid a} is the probability of a fish of age a being observed in length bin l, derived from the von Bertalanffy growth specification used by the model."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#observation-likelihoods",
+    "href": "JM-WP-BM-01.html#observation-likelihoods",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.7 Observation Likelihoods",
+    "text": "7.7 Observation Likelihoods\nThe annex indicates log-normal likelihoods for catches and abundance indices, and multinomial likelihoods for age and length compositions.\nFor catches and indices, the negative log-likelihood contribution is written schematically as\n\n\\ell_{\\mathrm{LN}} =\n\\sum_y\n\\frac{\\left[\\log(O_y)-\\log(P_y)\\right]^2}{2\\sigma_y^2}.\n\nwhere O_y and P_y are observed and predicted values.\nFor age or length compositions, with effective sample size n_{g,y},\n\n\\ell_{\\mathrm{mult}} =\n-\\sum_y n_{g,y} \\sum_k o_{g,k,y}\\log\\left(p_{g,k,y}\\right).\n\nwhere k indexes age or length bins, o_{g,k,y} is the observed proportion, and p_{g,k,y} is the predicted proportion.\nThe SC13 model uses Francis weighting for age-composition effective sample sizes, so the composition likelihood is strongly affected by those externally specified weights."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#objective-function",
+    "href": "JM-WP-BM-01.html#objective-function",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.8 Objective Function",
+    "text": "7.8 Objective Function\nThe full estimation criterion combines data likelihoods, priors, and smoothing penalties:\n\n\\mathcal{L} =\n\\ell_{\\mathrm{catch}}\n+ \\ell_{\\mathrm{index}}\n+ \\ell_{\\mathrm{age}}\n+ \\ell_{\\mathrm{len}}\n+ \\ell_{\\mathrm{priors}}\n+ \\ell_{\\mathrm{sel}}.\n\nThe final term, \\ell_{\\mathrm{sel}}, is especially important in SC13 because the model includes extensive penalties on fishery and survey selectivity trajectories to regularize the time-varying non-parametric selectivity schedules."
+  },
+  {
+    "objectID": "JM-WP-BM-01.html#dynamic-reference-points",
+    "href": "JM-WP-BM-01.html#dynamic-reference-points",
+    "title": "Developments of the base SC13 model for benchmark and MSE considerations",
+    "section": "7.9 Dynamic Reference Points",
+    "text": "7.9 Dynamic Reference Points\nThe annex states that the JJM calculates equilibrium reference points internally using terminal-year catch shares, selectivity-at-age, and weights-at-age. In compact form,\n\nF_{\\mathrm{MSY},y} = \\operatorname*{arg\\,max}_{F} C^{\\mathrm{eq}}_y(F).\n\n\nMSY_y = C^{\\mathrm{eq}}_y(F_{\\mathrm{MSY},y}).\n\n\nB_{\\mathrm{MSY},y} = B^{\\mathrm{eq}}_y(F_{\\mathrm{MSY},y}).\n\nwhere the equilibrium yield and biomass functions are conditional on the terminal-year fishery mix and biological schedules. This is why FMSY, MSY, and BMSY vary through time in the SC13 assessment rather than remaining fixed constants."
+  }
+]
