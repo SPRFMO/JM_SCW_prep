@@ -21,7 +21,16 @@ format:
         \fancyhf{}
         \fancyhead[C]{\textit{Working paper JM-WP-BM-01}}
         \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[C]{\textit{Working paper JM-WP-BM-01}}
+          \fancyfoot[C]{\thepage}
+        }
         \pagestyle{fancy}
+  docx:
+    toc: true
+    number-sections: true
+    number-depth: 2
 bibliography: sc13_base_model_mse_refs.bib
 csl: annex/apa.csl
 execute:
@@ -38,13 +47,35 @@ library(jjmR)
 
 {{< include _includes/sprfmo-banner.html >}}
 
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\textit{Working paper JM-WP-BM-01}\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*Working paper JM-WP-BM-01*
+:::
+
 ```{=html}
 <div style="font-style: italic; margin-top: 0.5rem;">Working paper JM-WP-BM-01</div>
-<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JM-WP-BM-01.pdf">PDF-rendered version</a></div>
-```
-
-```{=latex}
-\begin{center}\textit{Working paper JM-WP-BM-01}\end{center}
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JM-WP-BM-01.pdf">PDF-rendered version</a> | <a href="JM-WP-BM-01.docx">MS Word version</a></div>
 ```
 
 ```{=html}
