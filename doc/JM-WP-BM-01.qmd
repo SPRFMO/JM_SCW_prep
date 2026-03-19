@@ -373,7 +373,7 @@ Rather than projecting with a single terminal selectivity, the projection period
 The block-based formulation should be regarded as the **primary** simplified alternative. The 1-, 5-, 10-, 15-, and 20-year rolling-average selectivity vectors should then be used as **robustness tests** to verify that conclusions about management procedure performance are not overly sensitive to the assumption about future selectivity patterns.
 :::
 
-This hierarchy — block structure as primary, averaging-period variation as robustness — is consistent with the phased approach described in @carruthers2024roadmap and with CCSBT practice in the Bali Procedure review cycle.
+This hierarchy — block structure as primary, averaging-period variation as robustness — is consistent with the staged MSE roadmap described by @carruthers2024roadmap and with the more specific jack mackerel staging discussed in @sprfmo2025mseworkshop, which separates operating-model specification work from robustness testing and management-procedure refinement. It is also consistent with CCSBT practice in the Bali Procedure review cycle.
 ```{r fig-selectivity-blocks-ssb, fig.cap="Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`).", fig.width=8, fig.height=4.8}
 ssb_blk_cmp <- rbind(
   data.frame(
