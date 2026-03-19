@@ -15,6 +15,7 @@ format:
   pdf:
     number-sections: true
     number-depth: 2
+    title-block: false
     include-in-header:
       text: |
         \usepackage{fancyhdr}
@@ -31,6 +32,7 @@ format:
     toc: true
     number-sections: true
     number-depth: 2
+    title-block: false
 bibliography: sc13_base_model_mse_refs.bib
 csl: annex/apa.csl
 execute:
@@ -63,6 +65,7 @@ library(jjmR)
 \end{center}
 \noindent\rule{\linewidth}{1pt}
 \begin{center}\textit{Working paper JM-WP-BM-01}\end{center}
+\begin{center}\Large\bfseries Extension of the base (SC13) models for benchmark and MSE considerations\end{center}
 ```
 :::
 
@@ -71,6 +74,8 @@ library(jjmR)
 |:---:|:---|
 
 *Working paper JM-WP-BM-01*
+
+## Extension of the base (SC13) models for benchmark and MSE considerations
 :::
 
 ```{=html}
@@ -225,6 +230,40 @@ from uncertainty about how model complexity has been allocated within each hypot
 The SC13 base model should therefore be regarded as the reference assessment formulation. Simplified alternatives should be judged according to how much of the essential behavior of the base model they retain while reducing structural complexity that is not strictly necessary for MSE.
 
 A practical first set of alternatives is as follows.
+
+Table @tbl-simplified-model-summary summarizes the main working variants discussed in this section and how each differs from its `1.14` assessment counterpart.
+
+```{r tbl-simplified-model-summary}
+#| tbl-cap: "Summary of the simplified model variants discussed in Section 6."
+model_summary <- data.frame(
+  Model = c("h1_2.00", "h1_2.01", "h1_2.02", "h2_2.02"),
+  `Reference model` = c("h1_1.14", "h1_2.00", "h1_2.00", "h2_1.14"),
+  `Stock structure` = c("Single stock", "Single stock", "Single stock", "Two stock"),
+  `Data changes` = c(
+    "Drops Chile_AcousCS, DEPM, and Peru_Acoustic; trims Chile_AcousN to the reduced-index configuration (`2.00.dat`).",
+    "Same reduced-index data as h1_2.00.",
+    "Same reduced-index data as h1_2.00.",
+    "Applies the same reduced-index data configuration as `2.00.dat` to the two-stock model."
+  ),
+  `Selectivity changes` = c(
+    "No change from h1_1.14 beyond what is implied by the reduced-index fit.",
+    "Adds fleet-specific fishery selectivity blocks for all fisheries.",
+    "Keeps h1_2.00 except harmonizes Far North fishery selectivity to the single 2002 split used in h2_1.14.",
+    "Keeps the h2 Far North selectivity treatment and combines it with the reduced-index data configuration."
+  ),
+  `Main purpose` = c(
+    "Reduced-index baseline sensitivity.",
+    "Tests broad fishery selectivity simplification.",
+    "Isolates Far North selectivity harmonization within the single-stock hypothesis.",
+    "Provides the two-stock reduced-index harmonized comparator for h1_2.02."
+  ),
+  check.names = FALSE
+)
+
+knitr::kable(model_summary, align = c("l", "l", "l", "l", "l", "l"))
+```
+
+No separate `h2_2.00` label is used in the current working set. Instead, `h2_2.02` serves as the two-stock reduced-index analogue while also carrying the harmonized Far North selectivity treatment.
 
 ## Reduced number of indices 
 
@@ -394,6 +433,305 @@ print(h1_blk_sel)
 
 Relative to `h1_2.00`, the block-selectivity run fits the retained data less well and produces a higher recent stock trajectory. The terminal objective function increases from about 1234.7 in `h1_2.00` to about 1544.1 in `h1_2.01`, while the estimated 2025 spawning biomass increases from about 15.9 kt to about 19.9 kt. Terminal recruitment also rises, from about 16.8 million in `h1_2.00` to about 21.4 million in `h1_2.01`. As shown in @fig-selectivity-blocks-ssb and @fig-selectivity-blocks-rec, simplifying selectivity in this way is therefore not just a bookkeeping reduction in model complexity; it materially changes stock perception and should be treated as a substantive structural alternative in the MSE operating-model set.
 
+The negative-log-likelihood breakdown for the base single-stock model and the two simplified alternatives is shown in @tbl-h1-like-components. The reduced-index sensitivity lowers the index-related likelihood contributions with only a modest reduction in total fit, whereas the block-selectivity model achieves a much larger reduction in estimated parameters but at the cost of substantially higher age- and index-fit components.
+
+```{r tbl-h1-like-components}
+#| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the single-stock base model (`h1_1.14`), the reduced-index sensitivity (`h1_2.00`), and the reduced-index model with fishery selectivity blocks (`h1_2.01`). For index likelihoods, the aggregate and component rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
+model_ids <- c("h1_1.14", "h1_2.00", "h1_2.01")
+component_labels <- c(
+  catch_like = "Catch likelihood",
+  age_like_fsh = "Fishery age compositions",
+  age_like_fsh_1 = "  North Chile fishery age comps",
+  age_like_fsh_2 = "  S-C Chile fishery age comps",
+  age_like_fsh_3 = "  Far North fishery age comps",
+  age_like_fsh_4 = "  Offshore trawl fishery age comps",
+  length_like_fsh = "Fishery length compositions",
+  sel_like_fsh = "Fishery selectivity penalties",
+  ind_like = "Index likelihood",
+  ind_like_Chile_AcousN = "  Chile acoustic North index",
+  ind_like_Chile_CPUE = "  Chile CPUE index",
+  ind_like_Peru_CPUE = "  Peru CPUE index",
+  ind_like_Offshore_CPUE = "  Offshore CPUE index",
+  age_like_ind = "Index age compositions",
+  length_like_ind = "Index length compositions",
+  sel_like_ind = "Index selectivity penalties",
+  rec_like = "Recruitment term",
+  fpen = "Fishing mortality penalty",
+  post_priors_indq = "Index q priors",
+  post_priors = "Other priors",
+  residual = "Residual term",
+  total = "Total negative log likelihood",
+  num_parameters = "Estimated parameters (count)"
+)
+component_order <- names(component_labels)
+retained_index_components <- c(
+  "ind_like_Chile_AcousN",
+  "ind_like_Chile_CPUE",
+  "ind_like_Peru_CPUE",
+  "ind_like_Offshore_CPUE"
+)
+
+extract_scalar_lines <- function(repfile, prefix) {
+  rep_lines <- readLines(repfile)
+  hit <- grep(paste0("^\\s*", prefix, "#[0-9]+"), rep_lines, value = TRUE)
+  if (!length(hit)) {
+    return(numeric(0))
+  }
+  vals <- regexec(paste0("^\\s*", prefix, "#([0-9]+)\\s+([-0-9.eE]+)\\s*$"), hit)
+  parts <- regmatches(hit, vals)
+  out <- sapply(parts, function(x) as.numeric(x[3]))
+  names(out) <- sapply(parts, function(x) x[2])
+  out
+}
+
+build_like_comp_table <- function(model_ids) {
+  like_comp_tbl <- do.call(
+    rbind,
+    lapply(model_ids, function(model_id) {
+      mod_obj <- readJJM(
+        model_id,
+        path = "../assessment/config",
+        input = "../assessment/input",
+        output = "../assessment/results"
+      )[[1]]
+      mod <- mod_obj$output[[1]]
+      index_names_full <- as.character(mod_obj$data$Inames)
+      repfile <- file.path("../assessment/results", paste0(model_id, ".rep"))
+      fish_age_vals <- extract_scalar_lines(repfile, "Age_like_Fshry_")
+      index_vals <- extract_scalar_lines(repfile, "Survey_Index_")
+
+      fish_age_df <- data.frame(
+        model = model_id,
+        component = paste0("age_like_fsh_", names(fish_age_vals)),
+        value = as.numeric(fish_age_vals),
+        stringsAsFactors = FALSE
+      )
+
+      index_df <- data.frame(
+        model = model_id,
+        component = paste0(
+          "ind_like_",
+          trimws(index_names_full[as.integer(names(index_vals))])
+        ),
+        value = as.numeric(index_vals),
+        stringsAsFactors = FALSE
+      )
+      retained_index_total <- sum(index_df$value[index_df$component %in% retained_index_components])
+
+      data.frame(
+        model = model_id,
+        component = c(as.character(mod$Like_Comp_names), "num_parameters"),
+        value = c(as.numeric(mod$Like_Comp), as.numeric(mod$Num_parameters_Est)),
+        stringsAsFactors = FALSE
+      ) |>
+        transform(
+          value = ifelse(component == "ind_like", retained_index_total, value)
+        ) |>
+        rbind(fish_age_df, index_df)
+    })
+  )
+
+  like_comp_tbl$component <- factor(
+    like_comp_tbl$component,
+    levels = component_order,
+    labels = unname(component_labels)
+  )
+
+  like_comp_wide <- reshape(
+    like_comp_tbl,
+    idvar = "component",
+    timevar = "model",
+    direction = "wide"
+  )
+  like_comp_wide <- like_comp_wide[order(match(like_comp_wide$component, unname(component_labels))), ]
+  row.names(like_comp_wide) <- NULL
+  names(like_comp_wide) <- c("Component", model_ids)
+
+  param_row <- like_comp_wide$Component == "Estimated parameters (count)"
+  keep_row <- param_row | apply(like_comp_wide[, -1, drop = FALSE], 1, function(x) any(!is.na(x) & abs(x) >= 0.01))
+  like_comp_wide <- like_comp_wide[keep_row, ]
+
+  row_fill_colors <- function(x) {
+    if (all(is.na(x))) {
+      return(rep(NA_character_, length(x)))
+    }
+    valid <- !is.na(x)
+    xv <- x[valid]
+    if (length(unique(xv)) == 1) {
+      out <- rep(NA_character_, length(x))
+      out[valid] <- "#fee5d9"
+      return(out)
+    }
+    scaled <- (max(xv) - xv) / (max(xv) - min(xv))
+    ramp <- grDevices::colorRamp(c("#fff5f0", "#fcae91"))
+    rgb_vals <- ramp(scaled) / 255
+    out <- rep(NA_character_, length(x))
+    out[valid] <- grDevices::rgb(rgb_vals[, 1], rgb_vals[, 2], rgb_vals[, 3])
+    out
+  }
+
+  fill_mat <- t(apply(like_comp_wide[, -1, drop = FALSE], 1, row_fill_colors))
+  colnames(fill_mat) <- names(like_comp_wide)[-1]
+
+  gt_tbl <- gt::gt(like_comp_wide)
+
+  gt_tbl <- gt::sub_missing(
+    gt_tbl,
+    columns = model_ids,
+    missing_text = ""
+  )
+
+  gt_tbl <- gt::fmt_number(
+    gt_tbl,
+    columns = model_ids,
+    rows = Component != "Estimated parameters (count)",
+    decimals = 1
+  )
+
+  gt_tbl <- gt::fmt_number(
+    gt_tbl,
+    columns = model_ids,
+    rows = Component == "Estimated parameters (count)",
+    decimals = 0
+  )
+
+  for (i in seq_len(nrow(like_comp_wide))) {
+    for (j in model_ids) {
+      if (!is.na(fill_mat[i, j])) {
+        gt_tbl <- gt::tab_style(
+          gt_tbl,
+          style = gt::cell_fill(color = fill_mat[i, j]),
+          locations = gt::cells_body(rows = i, columns = j)
+        )
+      }
+    }
+  }
+
+  gt_tbl |>
+    gt::cols_align(align = "right", columns = model_ids) |>
+    gt::cols_align(align = "left", columns = "Component")
+}
+
+build_like_comp_table(model_ids)
+```
+
+Viewed in more detail, the reduced-index configuration suggests that dropping the discontinued or older index series generally relaxes pressure on the rest of the fit. When attention is restricted to the retained comparable indices, the aggregate index likelihood declines modestly from `136.5` in `h1_1.14` to `130.6` in `h1_2.00`, and the retained Chile CPUE, Peru CPUE, and Offshore CPUE contributions all improve modestly. Fishery catch, fishery length compositions, and most fishery age-composition terms also stay similar or improve slightly. The main exception is that the Acoustic North term remains large and only weakly improved, so the reduced-index simplification does not remove the tension associated with that series.
+
+By contrast, imposing the block selectivity structure in `h1_2.01` degrades the fit across a broad range of components rather than concentrating the penalty in a single place. The South-Central Chile and North Chile fishery age-composition terms increase strongly, the aggregate fishery length-composition likelihood worsens, and the retained index contributions rise for Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE. In that sense, the selectivity simplification is not merely trading one data source against another; it reduces flexibility in a way that propagates across several of the main observation components simultaneously.
+
+The visual fit to the retained and comparable abundance indices is shown in @fig-h1-index-fits. This comparison places the base model alongside the reduced-index and Far North harmonization variants. It shows that `h1_2.00`, `h1_2.02`, and `h2_2.02` retain broadly similar fits to the South-Central Chile CPUE, Peruvian CPUE, and Offshore CPUE series, while differing more materially in the Acoustic North series and, to a lesser extent, in the recent Chile CPUE trajectory.
+
+```{r fig-h1-index-fits}
+#| fig-cap: "Observed and fitted index trajectories for `h1_1.14`, `h1_2.00`, `h1_2.02`, and `h2_2.02`. Panels show the retained comparable index series: South-Central Chile CPUE, Acoustic North, Peruvian CPUE, and Offshore CPUE."
+#| fig-width: 8
+#| fig-height: 6.5
+read_r_report_block <- function(path, block_name) {
+  lines <- readLines(path)
+  start <- match(paste0("$", block_name), lines)
+  if (is.na(start)) {
+    return(NULL)
+  }
+  out <- character()
+  for (i in seq.int(start + 1, length(lines))) {
+    if (!nzchar(lines[[i]])) {
+      break
+    }
+    if (startsWith(lines[[i]], "$")) {
+      break
+    }
+    out <- c(out, lines[[i]])
+  }
+  if (!length(out)) {
+    return(NULL)
+  }
+  as.matrix(utils::read.table(text = out, fill = TRUE))
+}
+
+extract_index_fit <- function(mod, model_id, index_name) {
+  idx <- match(index_name, trimws(as.character(mod[[1]]$data$Inames)))
+  if (is.na(idx)) {
+    return(NULL)
+  }
+  x <- mod[[1]]$output[[1]][[paste0("Obs_Survey_", idx)]]
+  if (is.null(x) && identical(model_id, "h2_2.02") && identical(index_name, "Peru_CPUE")) {
+    x <- read_r_report_block("../assessment/results/h2_2.02_2_R.rep", "Obs_Survey_3")
+  }
+  if (is.null(x)) {
+    return(NULL)
+  }
+  data.frame(
+    year = x[, 1],
+    observed = x[, 2],
+    predicted = x[, 3],
+    model = model_id,
+    series = index_name,
+    stringsAsFactors = FALSE
+  )
+}
+
+h1_base <- readJJM("h1_1.14", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+h1_harm <- readJJM("h1_2.02", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+h2_harm <- readJJM("h2_2.02", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+index_series <- c("Chile_CPUE", "Chile_AcousN", "Peru_CPUE", "Offshore_CPUE")
+index_labels <- c(
+  Chile_CPUE = "S-C CPUE",
+  Chile_AcousN = "Acoustic North",
+  Peru_CPUE = "Peruvian CPUE",
+  Offshore_CPUE = "Offshore CPUE"
+)
+
+index_fit_df <- do.call(
+  rbind,
+  c(
+    lapply(index_series, function(idx_name) extract_index_fit(h1_base, "h1_1.14", idx_name)),
+    lapply(index_series, function(idx_name) extract_index_fit(h1_red, "h1_2.00", idx_name)),
+    lapply(index_series, function(idx_name) extract_index_fit(h1_harm, "h1_2.02", idx_name)),
+    lapply(index_series, function(idx_name) extract_index_fit(h2_harm, "h2_2.02", idx_name))
+  )
+)
+
+index_fit_df$series <- factor(index_fit_df$series, levels = index_series, labels = unname(index_labels[index_series]))
+
+obs_index_df <- do.call(
+  rbind,
+  lapply(index_series, function(idx_name) {
+    x <- extract_index_fit(h1_red, "Observed", idx_name)
+    x$model <- NULL
+    x$predicted <- NULL
+    x$series <- index_labels[[idx_name]]
+    x
+  })
+)
+
+zero_index_df <- data.frame(
+  year = NA_real_,
+  predicted = 0,
+  model = NA_character_,
+  series = factor(unname(index_labels[index_series]), levels = unname(index_labels[index_series]))
+)
+
+ggplot(index_fit_df, aes(year, predicted, color = model)) +
+  geom_blank(
+    data = zero_index_df,
+    aes(y = predicted),
+    inherit.aes = FALSE
+  ) +
+  geom_point(
+    data = obs_index_df,
+    aes(year, observed),
+    inherit.aes = FALSE,
+    color = "black",
+    size = 1.6,
+    alpha = 0.75
+  ) +
+  geom_line(linewidth = 0.85) +
+  facet_wrap(~series, scales = "free_y", ncol = 2) +
+  scale_color_manual(values = c("h1_1.14" = "#1b4576", "h1_2.00" = "#d07c00", "h1_2.02" = "#2a7f62", "h2_2.02" = "#9c2f2f")) +
+  labs(x = "Year", y = "Index value", color = "Model") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
 **Projection-period selectivity uncertainty.** The second dimension is the selectivity pattern applied during the projection period of the MSE simulation. In the current assessment, projections use fixed terminal selectivity. In MSE, the future selectivity pattern represents a real source of uncertainty, because the fishing gear and targeting behaviour that produced recent selectivities may not persist over a multi-decade evaluation horizon.
 
 ::: {.callout-note}
@@ -450,6 +788,30 @@ ggplot(rec_blk_cmp, aes(year, value / 1e6, color = model)) +
 ```
 
 
+## Harmonized Northern Treatment
+
+A fourth option is to harmonize how the Far North observations are treated across the single-stock and two-stock hypotheses. The objective would be to ensure that future comparisons of one-stock and two-stock MSE operating models are driven primarily by stock structure rather than by unrelated differences in selectivity regularization.
+
+As documented in Section 4, the current difference between `h1` and `h2` is not purely about stock allocation. It also reflects a very different degree of flexibility in Far North fleet selectivity: `h1_1.14` allows annual variation from 1981, while `h2_1.14` uses a much simpler two-regime structure centred on 2002. This confound makes it difficult to attribute differences in MSE outcomes between `h1` and `h2` to stock structure as opposed to selectivity specification.
+
+::: {.callout-note}
+## Reviewer comment (I. Mosqueira)
+
+The harmonization objective should be to align the **selectivity structure** of the Far North fleet across `h1` and `h2`, while retaining the **biological differences** that distinguish the two-stock hypothesis. In practice, this means that differences in natural mortality, growth, maturity, and weight-at-age should be preserved in `h2` as currently specified. What should be harmonized is the structural form and degree of flexibility allowed in Far North fleet selectivity, so that a comparison of h1 and h2 MSE outcomes reflects stock structure rather than selectivity regularization.
+
+One additional area that has been discussed but not yet implemented is explicit uncertainty in northern stock biology, particularly growth. The two-stock hypothesis implies different population dynamics for the northern component, but the current implementation draws on growth parameters estimated from combined data without formal uncertainty in the stock-specific parameters. Uncertainty in northern growth or natural mortality could be incorporated as candidate robustness scenarios in later MSE phases if data become available to support alternative parameterizations.
+:::
+
+Implementing the selectivity harmonization will likely require re-fitting `h1_1.14` with a simplified Far North selectivity structure that mirrors the `h2` treatment, or equivalently re-fitting `h2_1.14` with a more flexible Far North selectivity structure analogous to the `h1` treatment. The working group should discuss which direction of harmonization is most defensible given the available data and model diagnostics.
+
+To examine that issue more directly, I fitted two harmonized variants using the reduced-index data configuration. Model `h1_2.02` is `h1_2.00` with the Far North fishery selectivity simplified to the same 2002 split used in `h2_1.14`, while `h2_2.02` is `h2_1.14` rebuilt on the reduced-index `2.00.dat` data set and with the same Far North selectivity treatment. The resulting likelihood comparison is shown in @tbl-north-harmonized-like-components.
+
+```{r tbl-north-harmonized-like-components}
+#| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the reduced-index single-stock model (`h1_2.00`), the harmonized single-stock variant (`h1_2.02`), and the harmonized two-stock reduced-index variant (`h2_2.02`). The aggregate and component index rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
+harmonized_model_ids <- c("h1_2.00", "h1_2.02", "h2_2.02")
+build_like_comp_table(harmonized_model_ids)
+```
+
 ## Simplified Recruitment Alternatives
 
 A second option is to reduce recruitment complexity by using one recruitment relationship per stock hypothesis, or one per stock under the two-stock model, without additional regime splitting unless that feature is shown to be essential for management performance. The preferred approach is therefore to fit a single Beverton-Holt relationship per stock in the simplified operating model, and then treat regime differences as a robustness test rather than a primary structural alternative.
@@ -476,29 +838,10 @@ If the simplified selectivity alternative adopts block-based selectivity, then r
 
 The recommended approach is therefore to calculate reference points once, using the terminal selectivity block and the current biological schedules, and use those fixed values as management benchmarks throughout the MSE simulation. Sensitivity to the choice of reference period can be examined as part of robustness testing.
 
-## Harmonized Northern Treatment
+# Summary
 
-A fourth option is to harmonize how the Far North observations are treated across the single-stock and two-stock hypotheses. The objective would be to ensure that future comparisons of one-stock and two-stock MSE operating models are driven primarily by stock structure rather than by unrelated differences in selectivity regularization.
-
-As documented in Section 4, the current difference between `h1` and `h2` is not purely about stock allocation. It also reflects a very different degree of flexibility in Far North fleet selectivity: `h1_1.14` allows annual variation from 1981, while `h2_1.14` uses a much simpler two-regime structure centred on 2002. This confound makes it difficult to attribute differences in MSE outcomes between `h1` and `h2` to stock structure as opposed to selectivity specification.
-
-::: {.callout-note}
-## Reviewer comment (I. Mosqueira)
-
-The harmonization objective should be to align the **selectivity structure** of the Far North fleet across `h1` and `h2`, while retaining the **biological differences** that distinguish the two-stock hypothesis. In practice, this means that differences in natural mortality, growth, maturity, and weight-at-age should be preserved in `h2` as currently specified. What should be harmonized is the structural form and degree of flexibility allowed in Far North fleet selectivity, so that a comparison of h1 and h2 MSE outcomes reflects stock structure rather than selectivity regularization.
-
-One additional area that has been discussed but not yet implemented is explicit uncertainty in northern stock biology, particularly growth. The two-stock hypothesis implies different population dynamics for the northern component, but the current implementation draws on growth parameters estimated from combined data without formal uncertainty in the stock-specific parameters. Uncertainty in northern growth or natural mortality could be incorporated as candidate robustness scenarios in later MSE phases if data become available to support alternative parameterizations.
-:::
-
-Implementing the selectivity harmonization will likely require re-fitting `h1_1.14` with a simplified Far North selectivity structure that mirrors the `h2` treatment, or equivalently re-fitting `h2_1.14` with a more flexible Far North selectivity structure analogous to the `h1` treatment. The working group should discuss which direction of harmonization is most defensible given the available data and model diagnostics.
-
-# Conclusions
-
-The materials in this assessment directory show that `h1_1.14` and `h2_1.14` are not merely two alternative labels for the same model. They are two distinct but closely related assessment formulations built on a common JJM framework, a common SC13 data set, and a common logic for annual advice. Both models are technically rich and both are appropriate starting points for MSE precisely because they represent the current assessment basis used for advice.
-
-At the same time, both models contain features that make them difficult to carry directly into MSE. The most important of these are time-varying selectivity, dynamic reference points, differing fitting and projection assumptions, and confounding between stock-structure uncertainty and other structural differences. The main conclusion of this working paper is therefore that the SC13 base model should be retained as the benchmark for comparison, but not assumed to be the final operating model for MSE.
-
-Following the reviewer comments incorporated in this revision, a clearer set of priorities has emerged for the simplified operating models:
+The evaluations presented here are meant as discussion items leading into the benchmark workshop.
+One set of potential issue has emerged for further consideration by the group:
 
 1. **Selectivity block structure** should be the primary simplification, reducing annual deviations to a tractable number of regime periods per fleet.
 2. **Projection-period selectivity uncertainty** should be represented by a range of averaging-period options (1, 5, 10, 15, 20 years), evaluated as robustness operating models.
