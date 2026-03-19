@@ -1,5 +1,6 @@
 ---
 title: "Developments of the base SC13 model for benchmark and MSE considerations"
+shorttitle: "Working paper JM-WP-BM-01"
 format:
   html:
     self-contained: true
@@ -11,6 +12,16 @@ format:
     toc-location: left
     number-sections: true
     number-depth: 2
+  pdf:
+    number-sections: true
+    number-depth: 2
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[C]{\textit{Working paper JM-WP-BM-01}}
+        \fancyfoot[C]{\thepage}
+        \pagestyle{fancy}
 bibliography: sc13_base_model_mse_refs.bib
 csl: annex/apa.csl
 execute:
@@ -28,6 +39,15 @@ library(jjmR)
 {{< include _includes/sprfmo-banner.html >}}
 
 ```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">Working paper JM-WP-BM-01</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JM-WP-BM-01.pdf">PDF-rendered version</a></div>
+```
+
+```{=latex}
+\begin{center}\textit{Working paper JM-WP-BM-01}\end{center}
+```
+
+```{=html}
 <div class="paper-title">Extension of the base (SC13) models for benchmark and MSE considerations</div>
 ```
 
@@ -37,9 +57,13 @@ This working paper documents the base SC13 jack mackerel assessment model used f
 
 The immediate justification for beginning this work is to avoid carrying into MSE several complicated features that were identified during the [July 2025 MSE workshop](https://sprfmo.github.io/SCW15_report/). These include extensive time-varying selectivity, dynamic reference points that depend on terminal-year model conditions, and projection assumptions that differ from the assumptions used during model fitting. The SC13 base model therefore serves here as the reference assessment formulation from which reduced alternatives can be developed and tested.
 
+*This revision incorporates comments from Iago Mosqueira (IPSC/JRC) on selectivity uncertainty, index influence, recruitment regimes, reference point consistency, and northern stock harmonization. Reviewer observations appear in callout boxes throughout Section 6.*
+
 # Introduction
 
 The Joint Jack Mackerel Model has been the core age-structured assessment framework used by SPRFMO for jack mackerel over a series of annual updates and technical workshops. In general terms, the model belongs to the class of forward-projecting statistical catch-at-age models developed for fisheries assessment, with estimated population dynamics linked to catch, abundance indices, and composition data through a likelihood-based framework [@fournier1982catchage; @hilborn1992quantitative]. The broader modelling approach also depends on standard growth and generalized linear model concepts used throughout fisheries science [@vonbertalanffy1957growth; @nelder1972glm; @mccullagh1989glm].
+
+The formal technical reference for the accepted SC13 assessment remains Annex 11 of the SC13 report, the Jack Mackerel Technical Annex [@sprfmo2025annex11].
 
 Within the present repository, the SC13 assessment update is represented by model series `1.14`. The file `assessment/README.md` documents the sequence of changes leading to this configuration. In summary, the 2025 assessment update began with a base update to data and model structure (`1.00`) and then proceeded through a sequence of modifications affecting 2025 selectivity, weighting of 2025 age compositions, downweighting of early years of the northern Chile acoustic index, and historical weight-at-age for the Far North fleet. The final advice models were fitted under both stock hypotheses: `h1_1.14` for the single-stock hypothesis and `h2_1.14` for the two-stock hypothesis.
 
@@ -148,13 +172,22 @@ The commonality between the two models is therefore greater than their differenc
 
 The July 2025 MSE workshop concluded that the base assessment should first be documented and then simplified before being used as an MSE operating model. The repository materials support that conclusion.
 
-First, the SC13 base model uses extensive time-varying selectivity. This was increased further in the 2025 assessment to improve fits for the south-central Chile and offshore fleets. Time-varying selectivity may be necessary in annual assessments, but it can make MSE results difficult to interpret because changes in management performance may reflect selectivity specification as much as underlying stock dynamics [@linton2011selectivity].
+The SC13 base model uses extensive time-varying selectivity. This was increased further in the 2025 assessment to improve fits for the south-central Chile and offshore fleets. Time-varying selectivity may be necessary in annual assessments, but it can make MSE results difficult to interpret because changes in management performance may reflect selectivity specification as much as underlying stock dynamics [@linton2011selectivity].
 
-Second, the reference points are dynamic. In the JJM, `BMSY` and `FMSY` depend on terminal-year conditions, especially relative catch shares, selectivity-at-age, and weights-at-age. This makes stock status and advice partly conditional on the most recent fitted model state rather than solely on a stable management benchmark. That is a legitimate assessment choice, but it complicates MSE design because the benchmark itself changes with the assessment outcome.
+In the base model the reference points are dynamic. `BMSY` and `FMSY` typically depend on terminal-year conditions, especially relative catch shares, selectivity-at-age, and weights-at-age. 
+This makes stock status and advice partly conditional on the most recent fitted model state rather than solely on a stable management benchmark. 
+The appropriateness of this as an assessment choice was raised over several meetings and discussions 
+as it complicates the OM design because the benchmark itself changes with the assessment outcome.
 
-Third, the projection assumptions differ from the fitting assumptions. The projection scripts show that future calculations rely on fixed selectivity and, in some scenarios, a shortened low-productivity recruitment history. This means that advice is generated from a model in which the fitting phase and the projection phase are intentionally not identical. In MSE, that layering needs to be explicit and deliberate rather than inherited as an assessment convention [@punt2016bestpractices; @siple2021smallpelagics].
+Similarly, the projection assumptions differ from the fitting assumptions. The projection scripts 
+show that future calculations rely on fixed selectivity and, in some scenarios, a shortened low-productivity recruitment history. This means that advice is generated from a model in which the fitting phase and the projection phase are intentionally not identical. In MSE, that layering needs to be explicit and deliberate rather than inherited as an assessment convention [@punt2016bestpractices; @siple2021smallpelagics].
 
-Fourth, stock-structure uncertainty is mixed with other differences. The contrast between `h1_1.14` and `h2_1.14` is not just one stock versus two stocks. It also involves different northern selectivity structure, different mortality, different maturity, different population weight-at-age, and different recruitment regime treatment. For MSE, it will be helpful to separate uncertainty about stock structure from uncertainty about how model complexity has been allocated within each hypothesis.
+Additionally stock-structure uncertainty is mixed in with other differences. 
+The contrast between `h1_1.14` and `h2_1.14` is more than one stock versus two stocks as an issue. 
+The northern selectivity structure, different mortality, different maturity, different 
+population weight-at-age, and different recruitment regime treatment affect things between the 
+model configurations. For MSE, it will be helpful to separate uncertainty about stock structure 
+from uncertainty about how model complexity has been allocated within each hypothesis.
 
 # Proposed Simplified Alternatives
 
@@ -219,22 +252,214 @@ ggplot(rec_cmp, aes(year, value / 1e6, color = model)) +
 
 Relative to `h1_1.14`, the reduced-index model leaves the broad historical pattern intact but slightly lowers the terminal objective function, from about 1323.8 in `h1_1.14` to about 1234.7 in `h1_2.00`. Terminal-year spawning biomass uncertainty remains very similar between the two fits, although it is slightly higher in the reduced-index run: the 2025 SSB CV is about 0.125 for `h1_1.14` and about 0.129 for `h1_2.00`. As shown in @fig-reduced-indices-ssb and @fig-reduced-indices-rec, the series plots are useful as a first diagnostic of whether the omitted indices were materially changing stock perception or mainly adding noise and additional fitting burden. If the trajectories remain broadly similar, then reducing the index set may be a promising simplification for later MSE work.
 
+::: {.callout-note}
+## Reviewer comment (I. Mosqueira)
+
+The existing `cjm.oem` function in the MSE codebase already accommodates the legacy indices and accounts for the one-year lag in reporting the offshore CPUE. This means that the computational infrastructure for alternative index configurations is already in place, which substantially reduces the implementation burden of running multiple index configurations within the MSE framework.
+:::
+
+The influence of individual indices on stock perception warrants specific attention alongside the question of which indices to retain. The Chilean acoustic survey (`Chile_AcousN`) in particular can strongly influence estimates of current stock status and recent recruitment, depending on the time period and the weight given to that series. A leave-one-out analysis — treating the full index set and each successive alternative configuration as separate robustness operating models — would allow MSE to probe sensitivity to individual indices without committing to a single reduced set as the canonical operating model. The leave-one-out approach should therefore be identified as a robustness axis in the MSE operating model grid, complementing the baseline reduced-index run represented by `h1_2.00`.
+
 
 ## Simplified Selectivity Alternatives
 
-One option is to replace long annual selectivity histories with a limited set of blocks for each fleet, for example a historical block, a modern block, and a current block. This preserves the broad evidence that fishery selectivity has changed while avoiding dozens of annual deviations.
+Selectivity specification is the most important source of structural uncertainty in the SC13 base model, i
+and its treatment in the MSE operating model deserves the most careful consideration of any of the simplification choices discussed in this paper. Two related but distinct dimensions of selectivity need to be addressed.
+
+**Within-model selectivity structure.** The first dimension is the selectivity structure used during model fitting. One option is to replace long annual selectivity histories with a limited set of blocks for each fleet — for example a historical block, a modern block, and a current block. This preserves the broad evidence that fishery selectivity has changed over time while avoiding dozens of annual deviations that are difficult to interpret and project forward. Block-based selectivity is recommended as the primary simplified alternative for the MSE operating models. It provides an interpretable and tractable representation of selectivity change without the parameter proliferation of annual non-parametric estimation.
+
+
+### Selectivity Time-Block Reduction by Fleet
+
+Using the age-composition tables (Annex Tables 3-5) and the selectivity heatmaps (Annex Figures 37-38), it is possible to define time blocks where the age pattern, as a proxy for selectivity-at-age, is broadly stable for each fleet. The reduction below follows the main regime shifts visible in the data and is broadly consistent with how the current model already treats selectivity in some components.
+
+#### Fleet 1 — North Chile 
+
+The following suggested blocks (based on age comps in Table 3 of the Annex) for this fleet are:
+
+- **1980-1986**: Broad dome, peaking around ages 4-6.
+- **1987-1999**: Strong shift toward young ages, with ages 1-2 dominant.
+- **2000-2015**: Persistent very young selectivity, again centered on ages 1-2.
+- **2016-2025**: Transition toward older ages, with ages 4-8 increasing.
+
+The main structural breaks for this fleet are around 1987 and 2016, which is also consistent with the increase in mean age shown in Annex Figure 31.
+
+#### Fleet 2 — South-Central Chile
+
+The following suggested blocks (based on age comps in Table 4 of the Annex) for this fleet are:
+
+- **1980-1989**: Peak ages are around 3-5.
+- **1990-2004**: Gradual right-shift, with ages 5-8 becoming more important.
+- **2005-2013**: Broad and relatively flat selectivity across ages 4-8.
+- **2014-2025**: Clear dominance of older fish, especially ages 5-9.
+
+These blocks are consistent with the gradual aging trend noted elsewhere in the report, including the increase in mean age over the last decade.
+
+#### Fleet 3 — Far North
+
+The following suggested blocks (based on the length-composition pattern in Table 6 of the Annex, translated to implied age selectivity) for this fleet are:
+
+- **1980-1995**: Stable mid-length pattern corresponding roughly to ages 4-7.
+- **1996-2004**: Modest shift toward smaller fish.
+- **2005-2013**: Higher variability with mixed modes.
+- **2014-2025**: Shift toward larger and therefore older fish.
+
+This is notable because the current `h2` treatment already uses a simplified two-regime split around 2002, but the data suggest somewhat finer structure could be supported.
+
+#### Fleet 4 — Offshore trawl
+
+The following suggested blocks (based on age comps in Table 5 of the Annex) for this fleet are:
+
+- **2015-2017**: Mixed ages, including some older fish.
+- **2018-2020**: Shift toward younger fish, especially ages 2-4.
+- **2021-2025**: Strong young-fish dominance, including a pronounced age-2 spike.
+
+These changes are consistent with the recent selectivity changes noted in the SC13 sensitivity runs.
+
+#### Cross-Fleet Simplification
+
+If a more parsimonious common structure is preferred, a shared set of broad periods could be:
+
+- **Pre-1990**
+- **1990-2004**
+- **2005-2015**
+- **2016-present**
+
+This common structure could then be supplemented with:
+
+- fleet-specific deviations, for example through random effects or a low-rank representation; and
+- extra flexibility for Fleet 4 after 2018, where the short series suggests sharper recent changes.
+
+#### Key Insight
+
+Across fleets, the main broad pattern is a recent shift toward older fish after about 2015, with the offshore fleet as the main exception because it shows more recent spikes in younger selectivity.
+
+The clearest global breakpoints appear to be:
+
+- **1987-1990**: collapse period associated with younger fish;
+- **around 2000**: a stabilization period; and
+- **2015-2016**: an aging or structural shift.
+
+These broad breakpoints also align with changes in fishing pressure, the stock rebuilding phase, and the model note that recent selectivity favors older fish.
+
+#### Illustrative fit with selectivity blocks
+
+To illustrate the effect of imposing the proposed fleet-specific selectivity blocks, I fitted a reduced-index sensitivity with those block years hard-coded in the fishery selectivity specification. The resulting run is represented here by `h1_2.01`, which keeps the reduced-index data configuration of `h1_2.00` but replaces the long annual selectivity histories with the fleet-specific blocks proposed above. The side-by-side selectivity panels in @fig-selectivity-fishery-compare show directly how the fishery selectivity surface changes when the annual histories in `h1_2.00` are replaced by the simplified block structure in `h1_2.01`.
+
+```{r fig-selectivity-fishery-compare}
+#| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.00` and `h1_2.01`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
+#| fig-subcap: ["Model `h1_2.00`", "Model `h1_2.01`"]
+#| layout-ncol: 2
+#| fig-width: 5
+#| fig-height: 8
+h1_blk <- readJJM("h1_2.01", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+h1_red_sel <- plot_selectivities(get_selectivities(h1_red)) +
+  theme(legend.position = "none")
+h1_blk_sel <- plot_selectivities(get_selectivities(h1_blk)) +
+  theme(legend.position = "none")
+print(h1_red_sel)
+print(h1_blk_sel)
+```
+
+Relative to `h1_2.00`, the block-selectivity run fits the retained data less well and produces a higher recent stock trajectory. The terminal objective function increases from about 1234.7 in `h1_2.00` to about 1544.1 in `h1_2.01`, while the estimated 2025 spawning biomass increases from about 15.9 kt to about 19.9 kt. Terminal recruitment also rises, from about 16.8 million in `h1_2.00` to about 21.4 million in `h1_2.01`. As shown in @fig-selectivity-blocks-ssb and @fig-selectivity-blocks-rec, simplifying selectivity in this way is therefore not just a bookkeeping reduction in model complexity; it materially changes stock perception and should be treated as a substantive structural alternative in the MSE operating-model set.
+
+**Projection-period selectivity uncertainty.** The second dimension is the selectivity pattern applied during the projection period of the MSE simulation. In the current assessment, projections use fixed terminal selectivity. In MSE, the future selectivity pattern represents a real source of uncertainty, because the fishing gear and targeting behaviour that produced recent selectivities may not persist over a multi-decade evaluation horizon.
+
+::: {.callout-note}
+## Reviewer comment (I. Mosqueira)
+
+Rather than projecting with a single terminal selectivity, the projection period can be populated with a range of average-selectivity vectors — for example averages computed over the last 1, 5, 10, 15, or 20 years of the modelled period. These alternatives span from recent directed behaviour (short averages, capturing more targeted fishing patterns) to longer integration of historical fishery change (long averages). This range directly addresses the concern raised at the July 2025 workshop that projection assumptions differ from fitting assumptions. Preliminary runs with such averaging periods have already been explored and provide a practical basis for this robustness dimension.
+
+The block-based formulation should be regarded as the **primary** simplified alternative. The 1-, 5-, 10-, 15-, and 20-year rolling-average selectivity vectors should then be used as **robustness tests** to verify that conclusions about management procedure performance are not overly sensitive to the assumption about future selectivity patterns.
+:::
+
+This hierarchy — block structure as primary, averaging-period variation as robustness — is consistent with the phased approach described in @carruthers2024roadmap and with CCSBT practice in the Bali Procedure review cycle.
+```{r fig-selectivity-blocks-ssb, fig.cap="Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`).", fig.width=8, fig.height=4.8}
+ssb_blk_cmp <- rbind(
+  data.frame(
+    year = h1_red[[1]]$output[[1]]$SSB[, 1],
+    value = h1_red[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.00"
+  ),
+  data.frame(
+    year = h1_blk[[1]]$output[[1]]$SSB[, 1],
+    value = h1_blk[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01"
+  )
+)
+
+ggplot(ssb_blk_cmp, aes(year, value / 1000, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
+  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
+```{r fig-selectivity-blocks-rec, fig.cap="Comparison of recruitment trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`).", fig.width=8, fig.height=4.8}
+rec_blk_cmp <- rbind(
+  data.frame(
+    year = as.numeric(h1_red[[1]]$output[[1]]$R[, 1]),
+    value = h1_red[[1]]$output[[1]]$R[, 2],
+    model = "h1_2.00"
+  ),
+  data.frame(
+    year = as.numeric(h1_blk[[1]]$output[[1]]$R[, 1]),
+    value = h1_blk[[1]]$output[[1]]$R[, 2],
+    model = "h1_2.01"
+  )
+)
+
+ggplot(rec_blk_cmp, aes(year, value / 1e6, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
+  labs(x = "Year", y = "Recruitment (millions)", color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
 
 ## Simplified Recruitment Alternatives
 
-A second option is to reduce recruitment complexity by using one recruitment relationship per stock hypothesis, or one per stock under the two-stock model, without additional regime splitting unless that feature is shown to be essential for management performance.
+A second option is to reduce recruitment complexity by using one recruitment relationship per stock hypothesis, or one per stock under the two-stock model, without additional regime splitting unless that feature is shown to be essential for management performance. The preferred approach is therefore to fit a single Beverton-Holt relationship per stock in the simplified operating model, and then treat regime differences as a robustness test rather than a primary structural alternative.
+
+::: {.callout-note}
+## Reviewer comment (I. Mosqueira)
+
+Under `h2_1.14`, the northern component already includes a regime shift at 1999, and this structural feature should be preserved in that operating model to reflect the interpretation embedded in the current assessment. For the single-stock hypothesis, no formal regime splitting is assumed. Evaluating MSE performance with and without regime structure — by comparing h1 and h2 operating models and by running a version of h1 with a productivity regime break — would clarify how sensitive management procedures are to assumptions about long-run productivity.
+
+An important diagnostic concern is that some recent recruitments already exceed the upper envelope of the fitted stock-recruitment curve. This suggests that the fitted Beverton-Holt relationship may be conservative relative to actual recruitment productivity in recent years. Future work should consider whether alternative recruitment distributions, higher ceiling values for recruitment deviations, or a revisited steepness estimate are warranted. Projecting with a recruitment distribution that truncates the upper tail of realized recruitments would be systematically pessimistic about stock productivity, which would in turn bias MSE performance comparisons toward overly cautious management conclusions.
+:::
 
 ## Fixed-Reference-Point Alternatives
 
 A third option is to evaluate MSE performance relative to fixed biomass and harvest-rate benchmarks rather than dynamic reference points estimated from terminal-year conditions. This would make the interpretation of management performance much clearer while still allowing later comparison back to the SC13 assessment convention.
 
+The dynamic reference point system in the JJM — where `BMSY` and `FMSY` shift with terminal-year selectivity and weight-at-age — is appropriate in the annual assessment context but problematic for MSE. If reference points change every year as a function of the operating model state, it becomes difficult to distinguish genuine changes in stock productivity from artefacts of the simulation design.
+
+::: {.callout-note}
+## Reviewer comment (I. Mosqueira)
+
+If the simplified selectivity alternative adopts block-based selectivity, then reference points should be calculated using the selectivity pattern from the **final block period** for all future projections. This is internally consistent: the operating model should use the same selectivity for calculating `FMSY` and `BMSY` as it uses for projecting future mortality. Using the last block's selectivity as the reference configuration avoids the problem of reference points shifting mid-simulation as selectivity changes, and it is analogous to the fixed-reference-point convention already applied in several RFMO MSE programmes.
+:::
+
+The recommended approach is therefore to calculate reference points once, using the terminal selectivity block and the current biological schedules, and use those fixed values as management benchmarks throughout the MSE simulation. Sensitivity to the choice of reference period can be examined as part of robustness testing.
+
 ## Harmonized Northern Treatment
 
 A fourth option is to harmonize how the Far North observations are treated across the single-stock and two-stock hypotheses. The objective would be to ensure that future comparisons of one-stock and two-stock MSE operating models are driven primarily by stock structure rather than by unrelated differences in selectivity regularization.
+
+As documented in Section 4, the current difference between `h1` and `h2` is not purely about stock allocation. It also reflects a very different degree of flexibility in Far North fleet selectivity: `h1_1.14` allows annual variation from 1981, while `h2_1.14` uses a much simpler two-regime structure centred on 2002. This confound makes it difficult to attribute differences in MSE outcomes between `h1` and `h2` to stock structure as opposed to selectivity specification.
+
+::: {.callout-note}
+## Reviewer comment (I. Mosqueira)
+
+The harmonization objective should be to align the **selectivity structure** of the Far North fleet across `h1` and `h2`, while retaining the **biological differences** that distinguish the two-stock hypothesis. In practice, this means that differences in natural mortality, growth, maturity, and weight-at-age should be preserved in `h2` as currently specified. What should be harmonized is the structural form and degree of flexibility allowed in Far North fleet selectivity, so that a comparison of h1 and h2 MSE outcomes reflects stock structure rather than selectivity regularization.
+
+One additional area that has been discussed but not yet implemented is explicit uncertainty in northern stock biology, particularly growth. The two-stock hypothesis implies different population dynamics for the northern component, but the current implementation draws on growth parameters estimated from combined data without formal uncertainty in the stock-specific parameters. Uncertainty in northern growth or natural mortality could be incorporated as candidate robustness scenarios in later MSE phases if data become available to support alternative parameterizations.
+:::
+
+Implementing the selectivity harmonization will likely require re-fitting `h1_1.14` with a simplified Far North selectivity structure that mirrors the `h2` treatment, or equivalently re-fitting `h2_1.14` with a more flexible Far North selectivity structure analogous to the `h1` treatment. The working group should discuss which direction of harmonization is most defensible given the available data and model diagnostics.
 
 # Conclusions
 
@@ -242,7 +467,17 @@ The materials in this assessment directory show that `h1_1.14` and `h2_1.14` are
 
 At the same time, both models contain features that make them difficult to carry directly into MSE. The most important of these are time-varying selectivity, dynamic reference points, differing fitting and projection assumptions, and confounding between stock-structure uncertainty and other structural differences. The main conclusion of this working paper is therefore that the SC13 base model should be retained as the benchmark for comparison, but not assumed to be the final operating model for MSE.
 
-The next step is to construct and compare simplified alternatives that remain faithful to the broad SC13 assessment picture while avoiding the complicated issues identified during the July 2025 MSE workshop.
+Following the reviewer comments incorporated in this revision, a clearer set of priorities has emerged for the simplified operating models:
+
+1. **Selectivity block structure** should be the primary simplification, reducing annual deviations to a tractable number of regime periods per fleet.
+2. **Projection-period selectivity uncertainty** should be represented by a range of averaging-period options (1, 5, 10, 15, 20 years), evaluated as robustness operating models.
+3. **Index influence** — particularly from the Chilean acoustic survey — should be examined through a leave-one-out robustness axis, noting that `cjm.oem` already supports this infrastructure.
+4. **Recruitment regime differences** should be preserved in `h2` and examined as a robustness dimension in `h1`, with explicit attention to recent above-curve recruitments.
+5. **Reference points** should be fixed using the terminal selectivity block, calculated once before MSE simulation begins, to ensure internal consistency.
+6. **Far North selectivity** should be harmonized across `h1` and `h2` before operating model comparisons, while retaining the biological differences (M, maturity, weight-at-age) that motivate the two-stock hypothesis.
+7. **Northern stock biology uncertainty** (growth, M) should be noted as a candidate robustness scenario for later phases of the MSE programme.
+
+The next step is to construct and compare simplified alternatives that remain faithful to the broad SC13 assessment picture while avoiding the complicated issues identified during the July 2025 MSE workshop. The reviewer comments documented here provide a prioritized roadmap for that work.
 
 # Appendix: Compact Equation Summary {.unnumbered}
 
