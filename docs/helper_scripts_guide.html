@@ -3924,6 +3924,7 @@ vertical-align: -.125em;
   <li><a href="#assessmentrmake_h1_2_00_ctl.r" id="toc-assessmentrmake_h1_2_00_ctl.r" class="nav-link" data-scroll-target="#assessmentrmake_h1_2_00_ctl.r"><code>assessment/R/make_h1_2_00_ctl.R</code></a></li>
   <li><a href="#assessmentrrun_jjm_model.r" id="toc-assessmentrrun_jjm_model.r" class="nav-link" data-scroll-target="#assessmentrrun_jjm_model.r"><code>assessment/R/run_jjm_model.R</code></a></li>
   <li><a href="#assessmentrrun_adnuts_mcmc.r" id="toc-assessmentrrun_adnuts_mcmc.r" class="nav-link" data-scroll-target="#assessmentrrun_adnuts_mcmc.r"><code>assessment/R/run_adnuts_mcmc.R</code></a></li>
+  <li><a href="#assessmentrrun_default_mcmc.r" id="toc-assessmentrrun_default_mcmc.r" class="nav-link" data-scroll-target="#assessmentrrun_default_mcmc.r"><code>assessment/R/run_default_mcmc.R</code></a></li>
   </ul></li>
   <li><a href="#practical-recommendations" id="toc-practical-recommendations" class="nav-link" data-scroll-target="#practical-recommendations">Practical Recommendations</a></li>
   <li><a href="#current-recommendation" id="toc-current-recommendation" class="nav-link" data-scroll-target="#current-recommendation">Current Recommendation</a></li>
@@ -4057,6 +4058,7 @@ border-bottom: 4px solid #1b4576;
 <li><code>assessment/R/make_h1_2_00_ctl.R</code></li>
 <li><code>assessment/R/run_jjm_model.R</code></li>
 <li><code>assessment/R/run_adnuts_mcmc.R</code></li>
+<li><code>assessment/R/run_default_mcmc.R</code></li>
 </ol>
 <section id="typical-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="typical-workflow">Typical Workflow</h2>
@@ -4066,6 +4068,7 @@ border-bottom: 4px solid #1b4576;
 <li>Build the matching control file with <code>assessment/R/make_h1_2_00_ctl.R</code>.</li>
 <li>Fit the model with <code>assessment/R/run_jjm_model.R</code>.</li>
 <li>Run short <code>adnuts</code> MCMC benchmarks with <code>assessment/R/run_adnuts_mcmc.R</code>.</li>
+<li>Use <code>assessment/R/run_default_mcmc.R</code> when you want the standard 1000-iteration, 4-chain, 4-core MCMC setup for any model without retyping options.</li>
 </ol>
 <p>In practice, steps 1 and 2 are usually run once, step 3 is rerun whenever the model changes, and step 4 is rerun when you want to compare MCMC settings or diagnostics.</p>
 </section>
@@ -4289,6 +4292,29 @@ border-bottom: 4px solid #1b4576;
     base/
     h1_2.00_iter2000_chains6_unit_YYYYMMDD_HHMMSS/</code></pre>
 <p>The <code>base/</code> directory is the reusable staged model. Each timestamped run directory contains one MCMC run.</p>
+</section>
+</section>
+<section id="assessmentrrun_default_mcmc.r" class="level2">
+<h2 class="anchored" data-anchor-id="assessmentrrun_default_mcmc.r"><code>assessment/R/run_default_mcmc.R</code></h2>
+<section id="what-it-does-4" class="level3">
+<h3 class="anchored" data-anchor-id="what-it-does-4">What It Does</h3>
+<p>This is a thin convenience wrapper around <code>assessment/R/run_adnuts_mcmc.R</code> for any JJM model or control file target.</p>
+<p>It launches the generic wrapper with these defaults:</p>
+<ul>
+<li><code>--iter=1000</code></li>
+<li><code>--warmup=500</code></li>
+<li><code>--chains=4</code></li>
+<li><code>--cores=4</code></li>
+</ul>
+<p>The first positional argument is passed through as the target model or control file. Any additional command-line arguments are passed through after the defaults, so later options can still override them.</p>
+</section>
+<section id="default-usage-4" class="level3">
+<h3 class="anchored" data-anchor-id="default-usage-4">Default Usage</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> assessment/R/run_default_mcmc.R h2_2.02</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="override-example" class="level3">
+<h3 class="anchored" data-anchor-id="override-example">Override Example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> assessment/R/run_default_mcmc.R h2_2.02 <span class="at">--iter</span><span class="op">=</span>1500 <span class="at">--run-label</span><span class="op">=</span>h2_2_02_longer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="outputs-1" class="level3">
 <h3 class="anchored" data-anchor-id="outputs-1">Outputs</h3>

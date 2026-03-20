@@ -27,6 +27,7 @@ The scripts covered here are:
 2. `assessment/R/make_h1_2_00_ctl.R`
 3. `assessment/R/run_jjm_model.R`
 4. `assessment/R/run_adnuts_mcmc.R`
+5. `assessment/R/run_default_mcmc.R`
 
 ## Typical Workflow
 
@@ -36,6 +37,7 @@ For the current reduced-index sensitivity, the intended sequence is:
 2. Build the matching control file with `assessment/R/make_h1_2_00_ctl.R`.
 3. Fit the model with `assessment/R/run_jjm_model.R`.
 4. Run short `adnuts` MCMC benchmarks with `assessment/R/run_adnuts_mcmc.R`.
+5. Use `assessment/R/run_default_mcmc.R` when you want the standard 1000-iteration, 4-chain, 4-core MCMC setup for any model without retyping options.
 
 In practice, steps 1 and 2 are usually run once, step 3 is rerun whenever the model changes, and step 4 is rerun when you want to compare MCMC settings or diagnostics.
 
@@ -260,6 +262,33 @@ mcmc_runs/
 ```
 
 The `base/` directory is the reusable staged model. Each timestamped run directory contains one MCMC run.
+
+## `assessment/R/run_default_mcmc.R`
+
+### What It Does
+
+This is a thin convenience wrapper around `assessment/R/run_adnuts_mcmc.R` for any JJM model or control file target.
+
+It launches the generic wrapper with these defaults:
+
+- `--iter=1000`
+- `--warmup=500`
+- `--chains=4`
+- `--cores=4`
+
+The first positional argument is passed through as the target model or control file. Any additional command-line arguments are passed through after the defaults, so later options can still override them.
+
+### Default Usage
+
+```bash
+Rscript assessment/R/run_default_mcmc.R h2_2.02
+```
+
+### Override Example
+
+```bash
+Rscript assessment/R/run_default_mcmc.R h2_2.02 --iter=1500 --run-label=h2_2_02_longer
+```
 
 ### Outputs
 

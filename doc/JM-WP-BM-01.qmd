@@ -342,23 +342,43 @@ ggplot(ssb_cmp, aes(year, value / 1000, color = model)) +
 ```
 
 ```{r fig-reduced-indices-rec, fig.cap="Comparison of recruitment trajectories from the base single-stock model (`h1_1.14`) and the reduced-index sensitivity (`h1_2.00`).", fig.width=8, fig.height=4.8}
+add_two_model_offsets <- function(df, model_order, offset = 0.225) {
+  offs <- c(-offset, offset)
+  names(offs) <- model_order
+  df$x <- df$year + offs[df$model]
+  df
+}
+
 rec_cmp <- rbind(
   data.frame(
     year = as.numeric(h1_base[[1]]$output[[1]]$R[, 1]),
     value = h1_base[[1]]$output[[1]]$R[, 2],
+    lower = h1_base[[1]]$output[[1]]$R[, 4],
+    upper = h1_base[[1]]$output[[1]]$R[, 5],
     model = "h1_1.14"
   ),
   data.frame(
     year = as.numeric(h1_red[[1]]$output[[1]]$R[, 1]),
     value = h1_red[[1]]$output[[1]]$R[, 2],
+    lower = h1_red[[1]]$output[[1]]$R[, 4],
+    upper = h1_red[[1]]$output[[1]]$R[, 5],
     model = "h1_2.00"
   )
 )
 
-ggplot(rec_cmp, aes(year, value / 1e6, color = model)) +
-  geom_line(linewidth = 0.9) +
+rec_cmp <- add_two_model_offsets(rec_cmp, c("h1_1.14", "h1_2.00"))
+
+ggplot(rec_cmp) +
+  geom_col(aes(x = x, y = value / 1e6, fill = model), width = 0.45, color = NA, alpha = 0.85) +
+  geom_errorbar(
+    aes(x = x, ymin = lower / 1e6, ymax = upper / 1e6, color = model),
+    width = 0.08,
+    linewidth = 0.35
+  ) +
+  scale_fill_manual(values = c("h1_1.14" = "#1b4576", "h1_2.00" = "#d07c00")) +
   scale_color_manual(values = c("h1_1.14" = "#1b4576", "h1_2.00" = "#d07c00")) +
-  labs(x = "Year", y = "Recruitment (millions)", color = NULL) +
+  scale_x_continuous(breaks = pretty(rec_cmp$year, n = 8)) +
+  labs(x = "Year", y = "Recruitment (millions)", fill = NULL, color = NULL) +
   theme_minimal(base_size = 11) +
   theme(legend.position = "top")
 ```
@@ -828,19 +848,58 @@ rec_blk_cmp <- rbind(
   data.frame(
     year = as.numeric(h1_red[[1]]$output[[1]]$R[, 1]),
     value = h1_red[[1]]$output[[1]]$R[, 2],
+    lower = h1_red[[1]]$output[[1]]$R[, 4],
+    upper = h1_red[[1]]$output[[1]]$R[, 5],
     model = "h1_2.00"
   ),
   data.frame(
     year = as.numeric(h1_blk[[1]]$output[[1]]$R[, 1]),
     value = h1_blk[[1]]$output[[1]]$R[, 2],
+    lower = h1_blk[[1]]$output[[1]]$R[, 4],
+    upper = h1_blk[[1]]$output[[1]]$R[, 5],
     model = "h1_2.01"
   )
 )
 
-ggplot(rec_blk_cmp, aes(year, value / 1e6, color = model)) +
-  geom_line(linewidth = 0.9) +
+rec_blk_cmp <- add_two_model_offsets(rec_blk_cmp, c("h1_2.00", "h1_2.01"))
+
+ggplot(rec_blk_cmp) +
+  geom_col(aes(x = x, y = value / 1e6, fill = model), width = 0.45, color = NA, alpha = 0.85) +
+  geom_errorbar(
+    aes(x = x, ymin = lower / 1e6, ymax = upper / 1e6, color = model),
+    width = 0.08,
+    linewidth = 0.35
+  ) +
+  scale_fill_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
   scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
-  labs(x = "Year", y = "Recruitment (millions)", color = NULL) +
+  scale_x_continuous(breaks = pretty(rec_blk_cmp$year, n = 8)) +
+  labs(x = "Year", y = "Recruitment (millions)", fill = NULL, color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
+To isolate whether the deterioration in `h1_2.01` is being driven mainly by the reduced flexibility assigned to the South-Central Chile fishery, I fitted an intermediate variant, `h1_2.01.1`, that keeps the fleet-specific block structure for the other fisheries but restores the annual selectivity-variation treatment for the South-Central Chile fleet used in `h1_2.00`. This intermediate run converged cleanly (`nll = 1364.8`, `maxgrad = 1.1e-4`) and sits between `h1_2.00` and `h1_2.01` in overall fit. The SSB comparison in @fig-selectivity-sc-allowance-ssb shows that restoring that one source of selectivity flexibility pulls the stock trajectory partway back toward `h1_2.00`, although it does not fully recover the reduced-index baseline.
+
+```{r fig-selectivity-sc-allowance-ssb, fig.cap="Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and an intermediate selectivity variant (`h1_2.01.1`) in which the South-Central Chile fishery retains the annual selectivity variability allowance from `h1_2.00`.", fig.width=8, fig.height=4.8}
+h1_scflex <- readJJM("h1_2.01.1", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+
+ssb_scflex_cmp <- rbind(
+  data.frame(
+    year = h1_red[[1]]$output[[1]]$SSB[, 1],
+    value = h1_red[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.00"
+  ),
+  data.frame(
+    year = h1_scflex[[1]]$output[[1]]$SSB[, 1],
+    value = h1_scflex[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01.1"
+  )
+)
+
+ggplot(ssb_scflex_cmp, aes(year, value / 1000, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01.1" = "#7f3c8d")) +
+  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
   theme_minimal(base_size = 11) +
   theme(legend.position = "top")
 ```
@@ -899,6 +958,148 @@ Under `h2_1.14`, the northern component already includes a regime shift at 1999,
 
 An important diagnostic concern is that some recent recruitments already exceed the upper envelope of the fitted stock-recruitment curve. This suggests that the fitted Beverton-Holt relationship may be conservative relative to actual recruitment productivity in recent years. Future work should consider whether alternative recruitment distributions, higher ceiling values for recruitment deviations, or a revisited steepness estimate are warranted. Projecting with a recruitment distribution that truncates the upper tail of realized recruitments would be systematically pessimistic about stock productivity, which would in turn bias MSE performance comparisons toward overly cautious management conclusions.
 :::
+
+To illustrate this simplification directly, I fitted `h2_2.03` as a variant of `h2_2.02` in which the second stock uses a single stock-recruitment regime spanning the combined years that were previously split across the two stock-2 regimes. The simplified model converged cleanly, with a slightly worse objective function than `h2_2.02` (`1117.2` versus `1111.4`). The fitted stock-recruitment curves for stock 2 are compared in @fig-h2-sr-compare.
+
+```{r fig-h2-sr-compare}
+#| fig-cap: "Stock-2 Beverton-Holt stock-recruitment curves for `h2_2.02` and `h2_2.03`. The left panel shows the two stock-2 recruitment regimes retained in `h2_2.02`; the right panel shows the single stock-2 regime used in `h2_2.03`."
+#| fig-width: 8
+#| fig-height: 4.8
+h2_harm <- readJJM("h2_2.02", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+h2_rec_simple <- readJJM("h2_2.03", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+
+bh_rel_curve <- function(rel_ssb, r0, h) {
+  r0 * (0.8 * h * rel_ssb) / (0.2 * (1 - h) + (h - 0.2) * rel_ssb)
+}
+
+extract_sr_points <- function(repfile, regime_years, regime_labels, model_label) {
+  raw_df <- as.data.frame(read_r_report_block(repfile, "df1"), stringsAsFactors = FALSE)
+  names(raw_df) <- paste0("V", seq_len(ncol(raw_df)))
+
+  ssb_df <- raw_df[raw_df$V1 == "SSB0_Dynamic", c("V2", "V3")]
+  rec_df <- raw_df[raw_df$V1 == "Recruits", c("V2", "V3")]
+  names(ssb_df) <- c("year", "rel_ssb")
+  names(rec_df) <- c("year", "recruits")
+
+  pts <- merge(ssb_df, rec_df, by = "year", all = FALSE)
+  pts$year <- as.numeric(as.character(pts$year))
+  pts$rel_ssb <- as.numeric(as.character(pts$rel_ssb))
+  pts$recruits <- as.numeric(as.character(pts$recruits))
+  pts$regime <- NA_character_
+
+  for (i in seq_along(regime_years)) {
+    pts$regime[pts$year %in% regime_years[[i]]] <- regime_labels[[i]]
+  }
+
+  pts <- pts[!is.na(pts$regime), ]
+  pts$model <- model_label
+  pts
+}
+
+sr_curve_grid <- seq(0, 1, length.out = 250)
+sr_curve_df <- rbind(
+  data.frame(
+    rel_ssb = sr_curve_grid,
+    recruits = bh_rel_curve(sr_curve_grid, exp(h2_harm[[1]]$parameters$log_Rzero[2]), h2_harm[[1]]$parameters$steepness[2]),
+    regime = "Pre-1999 regime",
+    model = "h2_2.02"
+  ),
+  data.frame(
+    rel_ssb = sr_curve_grid,
+    recruits = bh_rel_curve(sr_curve_grid, exp(h2_harm[[1]]$parameters$log_Rzero[3]), h2_harm[[1]]$parameters$steepness[3]),
+    regime = "Post-1999 regime",
+    model = "h2_2.02"
+  ),
+  data.frame(
+    rel_ssb = sr_curve_grid,
+    recruits = bh_rel_curve(sr_curve_grid, exp(h2_rec_simple[[1]]$parameters$log_Rzero[2]), h2_rec_simple[[1]]$parameters$steepness[2]),
+    regime = "Single regime",
+    model = "h2_2.03"
+  )
+)
+
+sr_points_df <- rbind(
+  extract_sr_points(
+    "../assessment/results/h2_2.02_2_R.rep",
+    list(h2_harm[[1]]$output[[2]]$SR_Curve_years_1, h2_harm[[1]]$output[[2]]$SR_Curve_years_2),
+    c("Pre-1999 regime", "Post-1999 regime"),
+    "h2_2.02"
+  ),
+  extract_sr_points(
+    "../assessment/results/h2_2.03_2_R.rep",
+    list(h2_rec_simple[[1]]$output[[2]]$SR_Curve_years_1),
+    c("Single regime"),
+    "h2_2.03"
+  )
+)
+
+sr_curve_df$model <- factor(sr_curve_df$model, levels = c("h2_2.02", "h2_2.03"))
+sr_points_df$model <- factor(sr_points_df$model, levels = c("h2_2.02", "h2_2.03"))
+
+ggplot(sr_curve_df, aes(rel_ssb, recruits, color = regime)) +
+  geom_line(linewidth = 0.95) +
+  geom_point(
+    data = sr_points_df,
+    aes(rel_ssb, recruits, color = regime),
+    inherit.aes = FALSE,
+    size = 1.7,
+    alpha = 0.75
+  ) +
+  facet_wrap(~model, ncol = 2) +
+  scale_color_manual(values = c(
+    "Pre-1999 regime" = "#1b4576",
+    "Post-1999 regime" = "#d07c00",
+    "Single regime" = "#2a7f62"
+  )) +
+  labs(
+    x = "Relative spawning biomass (SSB/SSB0)",
+    y = "Recruitment",
+    color = NULL
+  ) +
+  coord_cartesian(xlim = c(0, 1)) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
+The corresponding stock-2 recruitment estimates are compared in @fig-h2-stock2-rec. The single-regime formulation changes the fitted recruitment trajectory modestly, with the largest differences occurring in the early years and around some of the higher-recruitment episodes.
+
+```{r fig-h2-stock2-rec}
+#| fig-cap: "Estimated stock-2 recruitment trajectories for `h2_2.02` and `h2_2.03`."
+#| fig-width: 8
+#| fig-height: 4.6
+stock2_rec_df <- rbind(
+  data.frame(
+    year = as.numeric(h2_harm[[1]]$output[[2]]$R[, 1]),
+    estimate = h2_harm[[1]]$output[[2]]$R[, 2],
+    lower = h2_harm[[1]]$output[[2]]$R[, 4],
+    upper = h2_harm[[1]]$output[[2]]$R[, 5],
+    model = "h2_2.02"
+  ),
+  data.frame(
+    year = as.numeric(h2_rec_simple[[1]]$output[[2]]$R[, 1]),
+    estimate = h2_rec_simple[[1]]$output[[2]]$R[, 2],
+    lower = h2_rec_simple[[1]]$output[[2]]$R[, 4],
+    upper = h2_rec_simple[[1]]$output[[2]]$R[, 5],
+    model = "h2_2.03"
+  )
+)
+
+stock2_rec_df <- add_two_model_offsets(stock2_rec_df, c("h2_2.02", "h2_2.03"))
+
+ggplot(stock2_rec_df) +
+  geom_col(aes(x = x, y = estimate, fill = model), width = 0.45, color = NA, alpha = 0.85) +
+  geom_errorbar(
+    aes(x = x, ymin = lower, ymax = upper, color = model),
+    width = 0.08,
+    linewidth = 0.35
+  ) +
+  scale_fill_manual(values = c("h2_2.02" = "#1b4576", "h2_2.03" = "#2a7f62")) +
+  scale_color_manual(values = c("h2_2.02" = "#1b4576", "h2_2.03" = "#2a7f62")) +
+  scale_x_continuous(breaks = pretty(stock2_rec_df$year, n = 8)) +
+  labs(x = "Year", y = "Recruitment", fill = NULL, color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
 
 ## Fixed-Reference-Point Alternatives
 
