@@ -885,7 +885,12 @@ print(build_index_fit_plot(list(
 
 ## Simplified Recruitment Alternatives
 
-A second option is to reduce recruitment complexity by using one recruitment relationship per stock hypothesis, or one per stock under the two-stock model, without additional regime splitting unless that feature is shown to be essential for management performance. The preferred approach is therefore to fit a single Beverton-Holt relationship per stock in the simplified operating model, and then treat regime differences as a robustness test rather than a primary structural alternative.
+Another option is to reduce recruitment complexity by using one recruitment 
+relationship per stock hypothesis, or one per stock under the two-stock model,
+without additional regime splitting unless that feature is shown to be essential 
+for management performance. The preferred approach is therefore to fit a single 
+Beverton-Holt relationship per stock in the simplified operating model, and then
+treat regime differences as a robustness test rather than a primary structural alternative.
 
 ::: {.callout-note}
 ## Reviewer comment (I. Mosqueira)
@@ -897,9 +902,17 @@ An important diagnostic concern is that some recent recruitments already exceed 
 
 ## Fixed-Reference-Point Alternatives
 
-A third option is to evaluate MSE performance relative to fixed biomass and harvest-rate benchmarks rather than dynamic reference points estimated from terminal-year conditions. This would make the interpretation of management performance much clearer while still allowing later comparison back to the SC13 assessment convention.
+An issue also arose regarding fixed biomass and harvest-rate reference points  
+rather than dynamic reference points estimated from terminal-year conditions. 
+This would make the interpretation of management performance much clearer 
+while still allowing later comparison back to the SC13 assessment convention.
 
-The dynamic reference point system in the JJM — where `BMSY` and `FMSY` shift with terminal-year selectivity and weight-at-age — is appropriate in the annual assessment context but problematic for MSE. If reference points change every year as a function of the operating model state, it becomes difficult to distinguish genuine changes in stock productivity from artefacts of the simulation design.
+The dynamic reference point system in the JJM — where `BMSY` and `FMSY` shift 
+with terminal-year selectivity and weight-at-age — is appropriate in the 
+annual assessment context but problematic for MSE. If reference points change 
+every year as a function of the operating model state, it becomes difficult 
+to distinguish genuine changes in stock productivity from artefacts of the 
+simulation design.
 
 ::: {.callout-note}
 ## Reviewer comment (I. Mosqueira)
@@ -922,7 +935,11 @@ One set of potential issue has emerged for further consideration by the group:
 6. **Far North selectivity** should be harmonized across `h1` and `h2` before operating model comparisons, while retaining the biological differences (M, maturity, weight-at-age) that motivate the two-stock hypothesis.
 7. **Northern stock biology uncertainty** (growth, M) should be noted as a candidate robustness scenario for later phases of the MSE programme.
 
-The next step is to construct and compare simplified alternatives that remain faithful to the broad SC13 assessment picture while avoiding the complicated issues identified during the July 2025 MSE workshop. The reviewer comments documented here provide a prioritized roadmap for that work.
+In this document we constructed and compared simplified alternatives. There were some 
+important differences in the results but broadly they  remain faithful to the 
+SC13 assessment picture. The next steps will be to evaluate the potential 
+improvements to the standardization of indices.
+
 
 # Appendix: Compact Equation Summary {.unnumbered}
 
