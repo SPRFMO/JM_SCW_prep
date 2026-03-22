@@ -1,0 +1,325 @@
+---
+title: "ADMB vs RTMB Parity Check — JJM h1_1.14"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    self-contained: true
+---
+
+## Purpose
+
+Confirm that the RTMB scaffold (`jjm_rtmb.R`) produces the same population
+dynamics, observation predictions, and likelihood components as the ADMB
+executable when seeded with the converged ADMB `.par` file for the `h1_1.14`
+model configuration.
+
+The comparison is *not* an optimization parity test — it is a parameter-fixed
+forward-pass check. Both engines receive identical parameter values; any
+residual differences indicate a coding discrepancy in the RTMB translation.
+
+### RTMB entry points used here
+
+| Function | Source | Role |
+|---|---|---|
+| `read_jjm(ctl)` | `read_jjm.R` | Parse `.dat` + `.ctl` into a structured list |
+| `read_jjm_par(par, d)` | `read_par.R` | Load ADMB `.par` into the RTMB parameter list |
+| `jjm_run(p, d)` | `jjm_rtmb.R` | Plain-R forward pass; returns all model quantities |
+
+---
+
+## Setup
+
+```{r setup}
+#| message: false
+#| warning: false
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(tidyr)
+  library(knitr)
+})
+
+# Paths relative to rtmb_jjm/ (where this .qmd lives)
+ctl_file <- "../assessment/config/h1_1.14.ctl"
+par_file <- "../assessment/results/h1_1.14.par"
+rep_base <- "../assessment/results/h1_1.14"
+
+source("read_jjm.R")
+source("read_par.R")
+source("jjm_rtmb.R")
+source("../assessment/R/read-admb.R")
+```
+
+---
+
+## Load ADMB baseline
+
+```{r load-admb}
+admb <- read_admb(rep_base)
+
+# Pull the named NLL components from .rep
+admb_nll_names <- c(
+  "catch_like", "age_like_fsh", "length_like_fsh", "sel_like_fsh",
+  "ind_like", "age_like_ind", "length_like_ind", "sel_like_ind",
+  "rec_like", "fpen", "post_priors_indq", "post_priors"
+)
+admb_nll <- sapply(admb_nll_names, function(nm) {
+  v <- admb[[nm]]
+  if (is.null(v)) NA_real_ else as.numeric(v)
+})
+
+cat("ADMB total NLL:", admb$fit$nlogl, "\n")
+cat("ADMB max gradient:", admb$fit$maxgrad, "\n")
+```
+
+---
+
+## Load RTMB and run forward pass
+
+```{r load-rtmb}
+d   <- read_jjm(ctl_file)
+p   <- read_jjm_par(par_file, d)
+rep <- jjm_run(p, d)
+
+cat("RTMB total NLL (implemented components):", rep$nll, "\n")
+```
+
+---
+
+## NLL component comparison
+
+The RTMB implementation currently covers all components **except** fishery
+length compositions, which account for 471 / 1324 (36%) of the ADMB total.
+
+```{r nll-table}
+# Map RTMB component names to ADMB names for alignment
+rtmb_mapped <- c(
+  catch_like      = rep$nll_components["catch_like"],
+  age_like_fsh    = rep$nll_components["age_like_fsh"],
+  length_like_fsh = NA_real_,                            # not yet implemented
+  sel_like_fsh    = rep$nll_components["sel_like_fsh"],
+  ind_like        = rep$nll_components["ind_like"],
+  age_like_ind    = rep$nll_components["age_like_ind"],
+  length_like_ind = NA_real_,                            # not in h1_1.14 data
+  sel_like_ind    = rep$nll_components["sel_like_ind"],
+  rec_like        = rep$nll_components["rec_like"] +
+                    rep$nll_components["rec_like_dev"],
+  fpen            = rep$nll_components["fpen"],
+  post_priors_indq = rep$nll_components["priors_indq"],
+  post_priors     = rep$nll_components["prior_M"] +
+                    rep$nll_components["prior_h"] +
+                    rep$nll_components["prior_sigmar"]
+)
+
+nll_df <- tibble(
+  component  = admb_nll_names,
+  ADMB       = admb_nll,
+  RTMB       = as.numeric(rtmb_mapped),
+  diff       = RTMB - ADMB,
+  implemented = !is.na(RTMB)
+)
+
+kable(nll_df, digits = 4,
+      caption = "NLL components: ADMB (converged .par) vs RTMB forward pass")
+```
+
+```{r nll-summary}
+implemented <- nll_df |> filter(implemented)
+cat("Sum of implemented RTMB components:", sum(implemented$RTMB, na.rm=TRUE), "\n")
+cat("Corresponding ADMB sum:            ", sum(implemented$ADMB, na.rm=TRUE), "\n")
+cat("Residual difference:               ",
+    sum(implemented$RTMB, na.rm=TRUE) - sum(implemented$ADMB, na.rm=TRUE), "\n")
+```
+
+---
+
+## Catch predictions
+
+```{r catch-pred}
+dat  <- d$dat
+yrs  <- seq(dat$styr, dat$endyr)
+nfsh <- dat$nfsh
+
+# ADMB pred_catch is in the .rep as "Predicted_catch" or similar;
+# use the RTMB values against observed as a sanity check
+obs_catch <- dat$catch_bio   # [nfsh × nyrs]
+
+catch_df <- lapply(seq_len(nfsh), function(k) {
+  tibble(
+    year   = yrs,
+    fleet  = paste0("F", k),
+    obs    = obs_catch[k, ],
+    rtmb   = rep$pred_catch[k, ]
+  )
+}) |> bind_rows()
+
+ggplot(catch_df |> filter(obs > 0), aes(x = year)) +
+  geom_point(aes(y = obs), shape = 1, size = 1.5) +
+  geom_line(aes(y = rtmb), colour = "steelblue") +
+  facet_wrap(~ fleet, scales = "free_y", ncol = 2) +
+  labs(title = "Catch: observed (points) vs RTMB predicted (line)",
+       y = "Catch (kt)", x = NULL) +
+  theme_bw()
+```
+
+---
+
+## Survey index predictions
+
+```{r index-pred}
+nind <- dat$nind
+
+ind_df <- lapply(seq_len(nind), function(k) {
+  yrs_k <- dat$yrs_ind[[k]]
+  obs_k <- dat$obs_ind[[k]]
+  pred_k <- rep$pred_ind[[k]]
+  tibble(
+    year  = yrs_k,
+    index = paste0("I", k),
+    obs   = obs_k,
+    rtmb  = pred_k
+  )
+}) |> bind_rows()
+
+ggplot(ind_df, aes(x = year)) +
+  geom_point(aes(y = obs), shape = 1, size = 1.5) +
+  geom_line(aes(y = rtmb), colour = "darkorange") +
+  facet_wrap(~ index, scales = "free_y", ncol = 2) +
+  labs(title = "Survey index: observed (points) vs RTMB predicted (line)",
+       y = "Index", x = NULL) +
+  theme_bw()
+```
+
+---
+
+## Spawning biomass
+
+```{r sp-biom}
+# ADMB Sp_Biom from .rep
+admb_spb_raw <- admb[["Sp_Biom"]]   # read_rep returns numeric matrix or vector
+
+sp_df <- tibble(year = yrs, rtmb = rep$Sp_Biom)
+
+if (!is.null(admb_spb_raw)) {
+  # Sp_Biom in .rep is a single-row or vector of nyrs values
+  admb_spb <- as.numeric(admb_spb_raw)
+  if (length(admb_spb) == length(yrs)) {
+    sp_df$admb <- admb_spb
+  }
+}
+
+if ("admb" %in% names(sp_df)) {
+  sp_df_long <- sp_df |>
+    pivot_longer(c(rtmb, admb), names_to = "source", values_to = "Sp_Biom")
+  ggplot(sp_df_long, aes(x = year, y = Sp_Biom, colour = source, linetype = source)) +
+    geom_line(linewidth = 0.9) +
+    scale_colour_manual(values = c(admb = "black", rtmb = "steelblue")) +
+    labs(title = "Spawning biomass: ADMB vs RTMB", y = "SSB (kt)", x = NULL) +
+    theme_bw()
+} else {
+  ggplot(sp_df, aes(x = year, y = rtmb)) +
+    geom_line(colour = "steelblue") +
+    labs(title = "Spawning biomass (RTMB)", y = "SSB (kt)", x = NULL) +
+    theme_bw()
+}
+```
+
+---
+
+## Numbers at age — spot check
+
+Compare RTMB `natage` to ADMB for a few key years. ADMB reports natage in the
+`.rep` as `"Estimated numbers of fish"`.
+
+```{r natage-check}
+admb_natage_raw <- admb[["Estimated_numbers_of_fish"]]
+
+spot_years <- c(1970, 1990, 2010, dat$endyr)
+spot_idx   <- spot_years - dat$styr + 1L
+
+rtmb_natage_spot <- rep$natage[spot_idx, ]
+rownames(rtmb_natage_spot) <- as.character(spot_years)
+colnames(rtmb_natage_spot) <- paste0("age", seq_len(dat$nages))
+
+kable(round(rtmb_natage_spot, 1),
+      caption = "RTMB numbers at age (spot years)")
+
+if (!is.null(admb_natage_raw)) {
+  # read_rep stores this as a matrix; rows = years, values are space-separated
+  # The .rep line format: "  Year: YYYY  n1 n2 ... n12"
+  # read_rep strips the non-numeric Year: label so it may misparse — skip if messy
+  cat("ADMB natage matrix dimensions:", dim(admb_natage_raw), "\n")
+}
+```
+
+---
+
+## Selectivity — fishery 1, first and last blocks
+
+```{r sel-fsh1}
+sel1 <- rep$sel_fsh[[1L]]   # [nyrs × nages]
+ages <- seq_len(dat$nages)
+
+sel_df <- bind_rows(
+  tibble(year = dat$styr, age = ages, sel = sel1[1L, ],  block = "first"),
+  tibble(year = dat$endyr, age = ages, sel = sel1[dat$nyrs, ], block = "last")
+)
+
+ggplot(sel_df, aes(x = age, y = sel, colour = block)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2) +
+  labs(title = "Fishery 1 selectivity — first vs last year",
+       y = "Selectivity", x = "Age") +
+  theme_bw()
+```
+
+---
+
+## Implementation status
+
+```{r status-table}
+status <- tribble(
+  ~Component,               ~Status,          ~Note,
+  "read_jjm (dat + ctl)",   "complete",        "All h1_1.14 fields parsed",
+  "read_jjm_par",           "complete",        "byrow fixes applied",
+  "Natural mortality (M)",  "complete",        "Constant scalar; M_rw and Mage_offset TODO",
+  "Selectivity type 1",     "complete",        "Age-specific, time-varying blocks",
+  "Selectivity type 2",     "not implemented", "Single logistic",
+  "Selectivity type 3",     "not implemented", "Double logistic",
+  "Baranov catch eq.",      "complete",        "",
+  "Bzero / initial N",      "complete",        "",
+  "Numbers at age",         "complete",        "",
+  "BH stock-recruit",       "complete",        "",
+  "Survey predictions (q)", "complete",        "RW-q implemented",
+  "Fishery age comps",      "complete",        "",
+  "Survey age comps",       "complete",        "",
+  "Fishery length comps",   "not implemented", "471/1324 NLL = 36% of total",
+  "Survey length comps",    "n/a",             "No length data for any index in h1_1.14",
+  "Catch likelihood",       "complete",        "",
+  "Index likelihood",       "complete",        "",
+  "Age comp likelihood",    "complete",        "Multinomial, fsh + ind",
+  "Length comp likelihood", "not implemented", "Requires Get_Age2length ALK",
+  "Rec likelihood",         "complete",        "",
+  "Sel penalties",          "complete",        "Curvature, smoothness, descent",
+  "Priors (q, M, h, sigR)", "complete",        "",
+  "F penalty",              "complete",        "",
+  "Rzero penalty",          "complete",        "",
+  "get_msy / ref points",   "not implemented", "Post-estimation only",
+  "Future projections",     "not implemented", "Post-estimation only"
+)
+
+kable(status, caption = "RTMB implementation status for h1_1.14")
+```
+
+---
+
+## Session info
+
+```{r session}
+sessionInfo()
+system("git -C .. rev-parse --short HEAD 2>/dev/null || echo 'no git'", intern = TRUE)
+```
