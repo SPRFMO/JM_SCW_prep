@@ -1,6 +1,6 @@
 ---
-title: "Developments of the base SC13 model for benchmark and MSE considerations"
-shorttitle: "Working paper JM-WP-BM-01"
+#title: "Developments of the base SC13 model for benchmark and MSE considerations"
+# shorttitle: "Working paper JM-WP-BM-01"
 format:
   html:
     self-contained: true
@@ -67,7 +67,7 @@ library(jjmR)
 \end{center}
 \noindent\rule{\linewidth}{1pt}
 \begin{center}\textit{Working paper JM-WP-BM-01}\end{center}
-\begin{center}\Large\bfseries Extension of the base (SC13) models for benchmark and MSE considerations\end{center}
+\begin{center}\Large\bfseries Developments of the base (SC13) models for benchmark and MSE considerations\end{center}
 ```
 :::
 
@@ -77,7 +77,6 @@ library(jjmR)
 
 *Working paper JM-WP-BM-01*
 
-## Extension of the base (SC13) models for benchmark and MSE considerations
 :::
 
 ```{=html}
@@ -92,15 +91,18 @@ library(jjmR)
 # Abstract {.unnumbered}
 
 This working paper documents the base SC13 jack mackerel assessment model used for advice under the single-stock and two-stock hypotheses, corresponding to model configurations `h1_1.14` and `h2_1.14`. The paper is intended as a bridge between the full technical annex and a future management strategy evaluation (MSE) framework. Its specific purpose is to describe the Joint Jack Mackerel Model (JJM) as implemented for SC13, identify the principal differences between the two advice models, and define a starting point for evaluating simplified alternatives.
-
-The immediate justification for beginning this work is to avoid carrying into MSE several complicated features that were identified during the [July 2025 MSE workshop](https://sprfmo.github.io/SCW15_report/). These include extensive time-varying selectivity, dynamic reference points that depend on terminal-year model conditions, and projection assumptions that differ from the assumptions used during model fitting. The SC13 base model therefore serves here as the reference assessment formulation from which reduced alternatives can be developed and tested.
-
-*This revision incorporates comments from Iago Mosqueira (IPSC/JRC) on selectivity uncertainty, index influence, recruitment regimes, reference point consistency, and northern stock harmonization. Notes appear in callout boxes throughout Section 6.*
+The immediate justification for beginning this work is twofold: 1) to cover topics in advance
+that can be discussed most efficiently at the forthcoming planned benchmark and 2) to
+help address a number of issues related to the MSE identified during the 
+[July 2025 MSE workshop](https://sprfmo.github.io/SCW15_report/). These include 
+extensive time-varying selectivity, dynamic reference points that depend on terminal-year 
+model conditions, and projection assumptions that differ from the assumptions used during 
+model fitting. The SC13 base model therefore serves here as the reference assessment 
+formulation from which reduced alternatives can be developed and tested.
 
 # Introduction
 
-The Joint Jack Mackerel Model has been the core age-structured assessment framework used by SPRFMO for jack mackerel over a series of annual updates and technical workshops. In general terms, the model belongs to the class of forward-projecting statistical catch-at-age models developed for fisheries assessment, with estimated population dynamics linked to catch, abundance indices, and composition data through a likelihood-based framework [@fournier1982catchage; @hilborn1992quantitative]. The broader modelling approach also depends on standard growth and generalized linear model concepts used throughout fisheries science [@vonbertalanffy1957growth; @nelder1972glm; @mccullagh1989glm].
-
+The Joint Jack Mackerel Model has been the core age-structured assessment framework used by SPRFMO for jack mackerel over a series of annual updates and technical workshops. In general terms, the model belongs to the class of forward-projecting statistical catch-at-age models developed for fisheries assessment, with estimated population dynamics linked to catch, abundance indices, and composition data through a likelihood-based framework [@fournier1982catchage; @hilborn1992quantitative]. 
 The formal technical reference for the accepted SC13 assessment remains Annex 11 of the SC13 report, the Jack Mackerel Technical Annex [@sprfmo2025annex11].
 
 Within the present repository, the SC13 assessment update is represented by model series `1.14`. The file `assessment/README.md` documents the sequence of changes leading to this configuration. In summary, the 2025 assessment update began with a base update to data and model structure (`1.00`) and then proceeded through a sequence of modifications affecting 2025 selectivity, weighting of 2025 age compositions, downweighting of early years of the northern Chile acoustic index, and historical weight-at-age for the Far North fleet. The final advice models were fitted under both stock hypotheses: `h1_1.14` for the single-stock hypothesis and `h2_1.14` for the two-stock hypothesis.
@@ -154,7 +156,11 @@ This is therefore not a sparse index-only assessment. It is a fully integrated m
 
 ## Population Dynamics and Observation Model
 
-The annex and control files together indicate a standard age-structured population dynamic framework with stock recruitment, natural mortality, growth, maturity, fleet selectivity, survey selectivity, and catchability. The growth component follows the usual fisheries implementation of the von Bertalanffy growth relationship [@vonbertalanffy1957growth; @beverton1957dynamics]. The Far North fleet is modelled through predicted length compositions derived from the age-structured population and the specified growth schedule.
+The annex and control files together indicate a standard age-structured population dynamic 
+framework with stock recruitment, natural mortality, growth, maturity, fleet selectivity, 
+survey selectivity, and catchability. The growth component follows the usual fisheries 
+implementation of the growth [@beverton1957dynamics]. 
+The Far North fleet is modelled through predicted length compositions derived from the age-structured population and the specified growth schedule.
 
 Selectivity is an especially important feature of the SC13 implementation. The annex describes selectivity as non-parametric, fishery-specific, and time-varying. The control files confirm this, showing fleet-specific selectivity structures, annual or block changes by fleet, and selectivity penalties applied to both fisheries and surveys. Time-varying selectivity is a familiar response to changes in fishery behavior and sampling structure, but it is also known to complicate interpretation in catch-at-age assessments [@linton2011selectivity].
 
@@ -164,7 +170,7 @@ A compact mathematical summary of the core model structure is provided in the ap
 
 ## Reference Points and Projections
 
-The SC13 annex states that `MSY`, `FMSY`, and `BMSY` are calculated internally within the JJM using equilibrium calculations based on terminal-year catch shares, selectivity-at-age, and weights-at-age. Accordingly, these reference points are dynamic rather than fixed. The annex also notes that recent advice has used a ten-year average of model-estimated `BMSY` as the reference biomass quantity for comparison.
+The SC13 annex states that $MSY$, $F_{MSY}$ and $B_{MSY}$ are calculated internally within the JJM using equilibrium calculations based on terminal-year catch shares, selectivity-at-age, and weights-at-age. Accordingly, these reference points are dynamic rather than fixed. The annex also notes that recent advice has used a ten-year average of model-estimated $B_{MSY}$ as the reference biomass quantity for comparison.
 
 The projection scripts in `assessment/R/run_projections.R` add a second layer of structure. Future projections are conducted using fixed terminal selectivity and, for the `.ls` alternatives, a shorter and more conservative recruitment history. This means the advice process combines a fitted assessment model with a somewhat different projection model. That approach is defensible in annual advice, but it is exactly the kind of multi-stage complexity that MSE seeks to simplify and evaluate explicitly [@punt2016bestpractices; @siple2021smallpelagics].
 
@@ -248,7 +254,7 @@ Time-varying selectivity may be necessary in annual assessments, but it can make
 results difficult to interpret because changes in management performance may reflect 
 selectivity specification as much as underlying stock dynamics [@linton2011selectivity].
 
-In the base model the reference points are dynamic. `BMSY` and `FMSY` typically 
+In the base model the reference points are dynamic. $B_{MSY}$ and $F_{MSY}$ typically 
 depend on terminal-year conditions, especially relative catch shares, 
 selectivity-at-age, and weights-at-age. 
 This makes stock status and advice partly conditional on the most recent fitted
@@ -1106,14 +1112,36 @@ As documented in Section 4, the current difference between `h1` and `h2` is not 
 ::: {.callout-note}
 ## Note (I. Mosqueira)
 
-The harmonization objective should be to align the **selectivity structure** of the Far North fleet across `h1` and `h2`, while retaining the **biological differences** that distinguish the two-stock hypothesis. In practice, this means that differences in natural mortality, growth, maturity, and weight-at-age should be preserved in `h2` as currently specified. What should be harmonized is the structural form and degree of flexibility allowed in Far North fleet selectivity, so that a comparison of h1 and h2 MSE outcomes reflects stock structure rather than selectivity regularization.
+The harmonization objective should be to align the **selectivity structure** of the Far North 
+fleet across `h1` and `h2`, while retaining the **biological differences** that distinguish 
+the two-stock hypothesis. In practice, this means that differences in natural mortality, 
+growth, maturity, and weight-at-age should be preserved in `h2` as currently specified. 
+What should be harmonized is the structural form and degree of flexibility allowed in 
+Far North fleet selectivity, so that a comparison of h1 and h2 MSE outcomes reflects 
+stock structure rather than selectivity regularization.
 
-One additional area that has been discussed but not yet implemented is explicit uncertainty in northern stock biology, particularly growth. The two-stock hypothesis implies different population dynamics for the northern component, but the current implementation draws on growth parameters estimated from combined data without formal uncertainty in the stock-specific parameters. Uncertainty in northern growth or natural mortality could be incorporated as candidate robustness scenarios in later MSE phases if data become available to support alternative parameterizations.
+One additional area that has been discussed but not yet implemented is explicit uncertainty 
+in northern stock biology, particularly growth. The two-stock hypothesis implies 
+different population dynamics for the northern component, but the current implementation 
+draws on growth parameters estimated from combined data without formal uncertainty in 
+the stock-specific parameters. Uncertainty in northern growth or natural mortality could 
+be incorporated as candidate robustness scenarios in later MSE phases if data become 
+available to support alternative parameterizations.
 :::
 
-Implementing the selectivity harmonization will likely require re-fitting `h1_1.14` with a simplified Far North selectivity structure that mirrors the `h2` treatment, or equivalently re-fitting `h2_1.14` with a more flexible Far North selectivity structure analogous to the `h1` treatment. The working group should discuss which direction of harmonization is most defensible given the available data and model diagnostics.
+Implementing the selectivity harmonization will likely require re-fitting `h1_1.14` with 
+a simplified Far North selectivity structure that mirrors the `h2` treatment, or equivalently 
+re-fitting `h2_1.14` with a more flexible Far North selectivity structure analogous to the 
+`h1` treatment. The working group should discuss which direction of harmonization is 
+most defensible given the available data and model diagnostics.
 
-To examine that issue more directly, I fitted two harmonized variants using the reduced-index data configuration. Model `h1_2.02` is `h1_2.00` with the Far North fishery selectivity simplified to the same 2002 split used in `h2_1.14`, while `h2_2.02` is `h2_1.14` rebuilt on the reduced-index `2.00.dat` data set and with the same Far North selectivity treatment. The resulting likelihood comparison is shown in @tbl-north-harmonized-like-components, and the corresponding retained-index fits are shown in @fig-harmonized-index-fits.
+To examine that issue more directly, I fitted two harmonized variants using the 
+reduced-index data configuration. Model `h1_2.02` is `h1_2.00` with the Far North fishery
+selectivity simplified to the same 2002 split used in `h2_1.14`, while `h2_2.02` is 
+`h2_1.14` rebuilt on the reduced-index `2.00.dat` data set and with the same Far North
+selectivity treatment. The resulting likelihood comparison is shown in 
+@tbl-north-harmonized-like-components, and the corresponding retained-index fits are
+shown in @fig-harmonized-index-fits.
 
 ```{r tbl-north-harmonized-like-components}
 #| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the reduced-index single-stock model (`h1_2.00`), the harmonized single-stock variant (`h1_2.02`), and the harmonized two-stock reduced-index variant (`h2_2.02`). The aggregate and component index rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
@@ -1349,7 +1377,7 @@ rather than dynamic reference points estimated from terminal-year conditions.
 This would make the interpretation of management performance much clearer 
 while still allowing later comparison back to the SC13 assessment convention.
 
-The dynamic reference point system in the JJM — where `BMSY` and `FMSY` shift 
+The dynamic reference point system in the JJM — where $B_{MSY}$ and $F_{MSY}$ shift 
 with terminal-year selectivity and weight-at-age — is appropriate in the 
 annual assessment context but problematic for MSE. If reference points change 
 every year as a function of the operating model state, it becomes difficult 
@@ -1359,7 +1387,13 @@ simulation design.
 ::: {.callout-note}
 ## Note (I. Mosqueira)
 
-If the simplified selectivity alternative adopts block-based selectivity, then reference points should be calculated using the selectivity pattern from the **final block period** for all future projections. This is internally consistent: the operating model should use the same selectivity for calculating `FMSY` and `BMSY` as it uses for projecting future mortality. Using the last block's selectivity as the reference configuration avoids the problem of reference points shifting mid-simulation as selectivity changes, and it is analogous to the fixed-reference-point convention already applied in several RFMO MSE programmes.
+If the simplified selectivity alternative adopts block-based selectivity, then reference points should probably 
+be calculated using the selectivity pattern from the **final block period** for all future projections. 
+This is internally consistent: the operating model should use the same selectivity 
+for calculating $F_{MSY}$ and $B_{MSY}$ as it uses for projecting future mortality. 
+Using the last block's selectivity as the reference configuration avoids the problem of 
+reference points shifting mid-simulation as selectivity changes, and it is analogous 
+to the fixed-reference-point convention already applied in several RFMO MSE programmes.
 :::
 
 The recommended approach is therefore to calculate reference points once, using the terminal selectivity block and the current biological schedules, and use those fixed values as management benchmarks throughout the MSE simulation. Sensitivity to the choice of reference period can be examined as part of robustness testing.
@@ -1568,6 +1602,6 @@ $$
 B_{\mathrm{MSY},y} = B^{\mathrm{eq}}_y(F_{\mathrm{MSY},y}).
 $$
 
-where the equilibrium yield and biomass functions are conditional on the terminal-year fishery mix and biological schedules. This is why `FMSY`, `MSY`, and `BMSY` vary through time in the SC13 assessment rather than remaining fixed constants.
+where the equilibrium yield and biomass functions are conditional on the terminal-year fishery mix and biological schedules. This is why $F_{MSY}$ $MSY$, and $F_{MSY}$ vary through time in the SC13 assessment rather than remaining fixed constants.
 
 # References {.unnumbered}

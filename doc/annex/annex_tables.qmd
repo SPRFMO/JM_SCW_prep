@@ -32,32 +32,45 @@ lengths <- seq(h1_mod[[1]]$info$data$length[1], h1_mod[[1]]$info$data$length[2])
 #| label: tbl-catch-annex
 #| tbl-cap: !expr paste0("Sources and values of catch (t) compiled for the four fleets used for the assessment (note that data for ", curryr-1, " are preliminary, and ", curryr, " are predictions).")
 
-catch_countries <- read_xlsx("../assessment/SC13-JM01-Annex-1-final.xlsx")
-fnames <- c("", str_extract(names(catch_countries)[-1], "[0-9]+"), "")
-fpos <- which(fnames != lag(fnames, default = first(fnames)))
+catch_xlsx <- "../assessment/SC13-JM01-Annex-1-final.xlsx"
+catch_sheets <- excel_sheets(catch_xlsx)
 
-# catch_countries %>%
-#   rename_at(
-#     vars(-year),
-#     ~gsub("([A-Z]+)_(\\d+)", "Fleet \\2_\\1",.)
-#   ) %>%
-#   mutate(Total = rowSums(select(., -year), na.rm = TRUE)) %>%
-#   rename(Year = year) %>%
-#   kable() %>%
-#   header_separate(sep = "_")
+catch_countries <- if ("Annual_by_Participant" %in% catch_sheets) {
+  read_xlsx(catch_xlsx, sheet = "Annual_by_Participant") %>%
+    transmute(
+      Year = .data[[intersect(c("Year", "year"), names(.))[1]]],
+      Participant = as.character(Participant),
+      Annual_Catch_tonnes = Annual_Catch_tonnes
+    ) %>%
+    pivot_wider(
+      names_from = Participant,
+      values_from = Annual_Catch_tonnes,
+      values_fill = 0
+    ) %>%
+    arrange(Year)
+} else {
+  read_xlsx(catch_xlsx) %>%
+    rename_with(~ "Year", any_of(c("year", "Year"))) %>%
+    rename_with(~ gsub("([A-Z]+)_(\\d+)", "Fleet \\2_\\1", .x), -Year)
+}
 
-catch_countries %>%
-  rename_at(
-    vars(-year),
-    ~gsub("([A-Z]+)_(\\d+)", "Fleet \\2_\\1",.)
-  ) %>%
-  mutate(Total = rowSums(select(., -year), na.rm = TRUE)) %>%
-  rename(Year = year) %>%
+catch_countries <- catch_countries %>%
+  mutate(Total = rowSums(select(., -Year), na.rm = TRUE))
+
+catch_ft <- catch_countries %>%
   flextable() %>%
-  separate_header(split = "[\\._]") %>%
   compose(j = "Year", value = as_paragraph(as.character(Year))) %>%
-  align(align = "center", part = "all") %>%
-  vline(j = fpos-1)
+  align(align = "center", part = "all")
+
+if (any(str_detect(names(catch_countries)[-1], "_"))) {
+  fnames <- c("", str_extract(names(catch_countries)[-1], "[0-9]+"), "")
+  fpos <- which(fnames != lag(fnames, default = first(fnames)))
+  catch_ft <- catch_ft %>%
+    separate_header(split = "[\\._]") %>%
+    vline(j = fpos - 1)
+}
+
+catch_ft
 
 ```
 

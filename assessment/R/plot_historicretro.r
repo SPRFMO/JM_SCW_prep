@@ -13,8 +13,20 @@ library(directlabels)  # for printing labels at end of geom lines
 library(scales)
 library(readxl)
 
-# Load publication template
-source(here::here("hist_retro", "theme_publication.r"))
+retro_dir <- c(
+  "assessment/hist_retro",
+  "../assessment/hist_retro",
+  "hist_retro"
+) %>%
+  keep(dir.exists) %>%
+  first()
+
+if (is.null(retro_dir)) {
+  stop("Could not locate assessment/hist_retro")
+}
+
+# Load publication template from the available historical retrospective directory.
+source(file.path(retro_dir, "theme_publication.r"))
 
 # lowcase function
 lowcase <- function(df) {
@@ -27,7 +39,10 @@ if(!"plotCount" %in% ls())
 
 # load the data
 d <-
-  read.csv(here::here("hist_retro", "SPRFMO historical retro.csv"), header=TRUE) %>%
+  read.csv(
+    file.path(retro_dir, "SPRFMO historical retro.csv"),
+    header = TRUE
+  ) %>%
   lowcase() %>%
   filter(!(assessmenttype %in% c("benchmark", "mod1.4"))) %>%
   mutate(assessmenttype = ifelse(assessmentyear == max(assessmentyear),"last","assess"),
