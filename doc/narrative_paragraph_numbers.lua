@@ -3,7 +3,7 @@ local in_appendix = false
 
 local function is_excluded_div(div)
   for _, class in ipairs(div.classes) do
-    if class == "content-visible" or class:match("^callout") then
+    if class == "content-visible" or class == "no-para-number" or class:match("^callout") then
       return true
     end
   end

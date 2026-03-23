@@ -20,11 +20,13 @@ format:
       text: |
         \usepackage{fancyhdr}
         \fancyhf{}
-        \fancyhead[C]{\textit{Working paper JM-WP-BM-01}}
+        \fancyhead[R]{\textit{Working paper JM-WP-BM-01}}
+        \fancyhead[L]{\textit{joint-jack mackerel model}}
         \fancyfoot[C]{\thepage}
         \fancypagestyle{plain}{
           \fancyhf{}
-          \fancyhead[C]{\textit{Working paper JM-WP-BM-01}}
+          \fancyhead[R]{\textit{Working paper JM-WP-BM-01}}
+          \fancyhead[L]{\textit{joint-jack mackerel model}}
           \fancyfoot[C]{\thepage}
         }
         \pagestyle{fancy}
@@ -47,6 +49,8 @@ execute:
 ```{r}
 library(ggplot2)
 library(jjmR)
+
+date_stamp <- format(Sys.Date(), "%d %B %Y")
 ```
 
 {{< include _includes/sprfmo-banner.html >}}
@@ -66,7 +70,6 @@ library(jjmR)
 \end{minipage}
 \end{center}
 \noindent\rule{\linewidth}{1pt}
-\begin{center}\textit{Working paper JM-WP-BM-01}\end{center}
 \begin{center}\Large\bfseries Developments of the base (SC13) models for benchmark and MSE considerations\end{center}
 ```
 :::
@@ -87,6 +90,20 @@ library(jjmR)
 ```{=html}
 <div class="paper-title">Extension of the base (SC13) models for benchmark and MSE considerations</div>
 ```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
 
 # Abstract {.unnumbered}
 
