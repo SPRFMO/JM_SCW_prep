@@ -303,9 +303,9 @@ A practical first working set of alternatives is summarized in @tbl-simplified-m
 ```{r tbl-simplified-model-summary}
 #| tbl-cap: "Summary of the simplified model variants discussed in Section 6."
 model_summary <- data.frame(
-  Model = c("h1_2.00", "h1_2.01", "h1_2.01.1", "h1_2.01.2", "h1_2.01.3", "h1_2.02", "h2_2.02"),
-  `Reference model` = c("h1_1.14", "h1_2.00", "h1_2.01", "h1_2.01.1", "h1_2.01", "h1_2.00", "h2_1.14"),
-  `Stock structure` = c("Single stock", "Single stock", "Single stock", "Single stock", "Single stock", "Single stock", "Two stock"),
+  Model = c("h1_2.00", "h1_2.01", "h1_2.01.1", "h1_2.01.2", "h1_2.01.3", "h1_2.02", "h2_2.02", "h2_2.03"),
+  `Reference model` = c("h1_1.14", "h1_2.00", "h1_2.01", "h1_2.01.1", "h1_2.01", "h1_2.00", "h2_1.14", "h2_2.02"),
+  `Stock structure` = c("Single stock", "Single stock", "Single stock", "Single stock", "Single stock", "Single stock", "Two stock", "Two stock"),
   `Data changes` = c(
     "Drops Chile_AcousCS, DEPM, and Peru_Acoustic; trims Chile_AcousN to the reduced-index configuration (`2.00.dat`).",
     "Same reduced-index data as h1_2.00.",
@@ -313,7 +313,8 @@ model_summary <- data.frame(
     "Same reduced-index data as h1_2.01.1.",
     "Same reduced-index data as h1_2.01.",
     "Same reduced-index data as h1_2.00.",
-    "Applies the same reduced-index data configuration as `2.00.dat` to the two-stock model."
+    "Applies the same reduced-index data configuration as `2.00.dat` to the two-stock model.",
+    "Same reduced-index data and harmonized northern treatment as h2_2.02."
   ),
   `Selectivity changes` = c(
     "No change from h1_1.14 beyond what is implied by the reduced-index fit.",
@@ -322,7 +323,8 @@ model_summary <- data.frame(
     "Keeps the `h1_2.01.1` structure except replaces annual S-C Chile variability with five S-C Chile blocks starting in 1985, 1998, 2008, and 2016.",
     "Keeps the `h1_2.01` selectivity structure but adds estimated random walks in index q for the retained indices and constrains q age scaling to ages 2-6.",
     "Keeps h1_2.00 except harmonizes Far North fishery selectivity to the single 2002 split used in h2_1.14.",
-    "Keeps the h2 Far North selectivity treatment and combines it with the reduced-index data configuration."
+    "Keeps the h2 Far North selectivity treatment and combines it with the reduced-index data configuration.",
+    "No selectivity change relative to h2_2.02; instead collapses stock-2 recruitment to a single fitted regime."
   ),
   `Main purpose` = c(
     "Reduced-index baseline sensitivity.",
@@ -331,7 +333,8 @@ model_summary <- data.frame(
     "Tests whether a five-block S-C Chile treatment can retain recent structure without reverting to full annual flexibility.",
     "Tests whether time-varying index catchability can recover fit within the block-selectivity formulation.",
     "Isolates Far North selectivity harmonization within the single-stock hypothesis.",
-    "Provides the two-stock reduced-index harmonized comparator for h1_2.02."
+    "Provides the two-stock reduced-index harmonized comparator for h1_2.02.",
+    "Tests whether the two-stock simplified framework can use one stock-2 stock-recruitment relationship instead of two regimes."
   ),
   check.names = FALSE
 )
@@ -339,8 +342,9 @@ model_summary <- data.frame(
 knitr::kable(model_summary, align = c("l", "l", "l", "l", "l", "l"))
 ```
 
-The `h2_2.00`  serves as the two-stock reduced-index analogue,  
-while `h2_2.02` frames the  harmonized Far North selectivity treatment.
+The `h2_2.00` serves as the two-stock reduced-index analogue, `h2_2.02` frames the
+harmonized Far North selectivity treatment, and `h2_2.03` extends that harmonized
+two-stock setup by simplifying the stock-2 recruitment structure to a single fitted regime.
 
 ## Reduced number of indices 
 
@@ -532,6 +536,71 @@ h1_blk_sel <- plot_selectivities(get_selectivities(h1_blk)) +
   theme(legend.position = "none")
 print(h1_red_sel)
 print(h1_blk_sel)
+```
+
+```{r fig-selectivity-blocks-rec}
+#| fig-cap: "Comparison of recruitment trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`)."
+#| fig-width: 8
+#| fig-height: 4.8
+rec_blk_cmp <- rbind(
+  data.frame(
+    year = as.numeric(h1_red[[1]]$output[[1]]$R[, 1]),
+    value = h1_red[[1]]$output[[1]]$R[, 2],
+    lower = h1_red[[1]]$output[[1]]$R[, 4],
+    upper = h1_red[[1]]$output[[1]]$R[, 5],
+    model = "h1_2.00"
+  ),
+  data.frame(
+    year = as.numeric(h1_blk[[1]]$output[[1]]$R[, 1]),
+    value = h1_blk[[1]]$output[[1]]$R[, 2],
+    lower = h1_blk[[1]]$output[[1]]$R[, 4],
+    upper = h1_blk[[1]]$output[[1]]$R[, 5],
+    model = "h1_2.01"
+  )
+)
+
+rec_blk_cmp <- add_two_model_offsets(rec_blk_cmp, c("h1_2.00", "h1_2.01"))
+
+ggplot(rec_blk_cmp) +
+  geom_col(aes(x = x, y = value / 1e6, fill = model), width = 0.45, color = NA, alpha = 0.85) +
+  geom_errorbar(
+    aes(x = x, ymin = lower / 1e6, ymax = upper / 1e6, color = model),
+    width = 0.08,
+    linewidth = 0.35
+  ) +
+  scale_fill_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
+  scale_x_continuous(breaks = pretty(rec_blk_cmp$year, n = 8)) +
+  labs(x = "Year", y = "Recruitment (millions)", fill = NULL, color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
+```{r fig-selectivity-sc-allowance-ssb}
+#| fig-cap: "Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and an intermediate selectivity variant (`h1_2.01.1`) in which the South-Central Chile fishery retains the annual selectivity variability allowance from `h1_2.00`."
+#| fig-width: 8
+#| fig-height: 4.8
+h1_scflex <- readJJM("h1_2.01.1", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+
+ssb_scflex_cmp <- rbind(
+  data.frame(
+    year = h1_red[[1]]$output[[1]]$SSB[, 1],
+    value = h1_red[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.00"
+  ),
+  data.frame(
+    year = h1_scflex[[1]]$output[[1]]$SSB[, 1],
+    value = h1_scflex[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01.1"
+  )
+)
+
+ggplot(ssb_scflex_cmp, aes(year, value / 1000, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01.1" = "#7f3c8d")) +
+  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
 ```
 
 Relative to `h1_2.00`, the block-selectivity run fits the retained data less well and produces a higher recent stock trajectory. The terminal objective function increases from about 1234.7 in `h1_2.00` to about 1544.1 in `h1_2.01`, while the estimated 2025 spawning biomass increases from about 15.9 kt to about 19.9 kt. Terminal recruitment also rises, from about 16.8 million in `h1_2.00` to about 21.4 million in `h1_2.01`. As shown in @fig-selectivity-blocks-ssb and @fig-selectivity-blocks-rec, simplifying selectivity in this way is therefore not just a bookkeeping reduction in model complexity; it materially changes stock perception and should be treated as a substantive structural alternative in the MSE operating-model set.
@@ -889,99 +958,9 @@ ggplot(ssb_blk_cmp, aes(year, value / 1000, color = model)) +
   theme(legend.position = "top")
 ```
 
-```{r fig-selectivity-blocks-rec}
-#| fig-cap: "Comparison of recruitment trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`)."
-#| fig-width: 8
-#| fig-height: 4.8
-rec_blk_cmp <- rbind(
-  data.frame(
-    year = as.numeric(h1_red[[1]]$output[[1]]$R[, 1]),
-    value = h1_red[[1]]$output[[1]]$R[, 2],
-    lower = h1_red[[1]]$output[[1]]$R[, 4],
-    upper = h1_red[[1]]$output[[1]]$R[, 5],
-    model = "h1_2.00"
-  ),
-  data.frame(
-    year = as.numeric(h1_blk[[1]]$output[[1]]$R[, 1]),
-    value = h1_blk[[1]]$output[[1]]$R[, 2],
-    lower = h1_blk[[1]]$output[[1]]$R[, 4],
-    upper = h1_blk[[1]]$output[[1]]$R[, 5],
-    model = "h1_2.01"
-  )
-)
-
-rec_blk_cmp <- add_two_model_offsets(rec_blk_cmp, c("h1_2.00", "h1_2.01"))
-
-ggplot(rec_blk_cmp) +
-  geom_col(aes(x = x, y = value / 1e6, fill = model), width = 0.45, color = NA, alpha = 0.85) +
-  geom_errorbar(
-    aes(x = x, ymin = lower / 1e6, ymax = upper / 1e6, color = model),
-    width = 0.08,
-    linewidth = 0.35
-  ) +
-  scale_fill_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
-  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
-  scale_x_continuous(breaks = pretty(rec_blk_cmp$year, n = 8)) +
-  labs(x = "Year", y = "Recruitment (millions)", fill = NULL, color = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "top")
-```
-
 To isolate whether the deterioration in `h1_2.01` is being driven mainly by the reduced flexibility assigned to the South-Central Chile fishery, I fitted an intermediate variant, `h1_2.01.1`, that keeps the fleet-specific block structure for the other fisheries but restores the annual selectivity-variation treatment for the South-Central Chile fleet used in `h1_2.00`. This intermediate run converged cleanly (`nll = 1364.8`, `maxgrad = 1.1e-4`) and sits between `h1_2.00` and `h1_2.01` in overall fit. The SSB comparison in @fig-selectivity-sc-allowance-ssb shows that restoring that one source of selectivity flexibility pulls the stock trajectory partway back toward `h1_2.00`, although it does not fully recover the reduced-index baseline.
 
-```{r fig-selectivity-sc-allowance-ssb}
-#| fig-cap: "Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and an intermediate selectivity variant (`h1_2.01.1`) in which the South-Central Chile fishery retains the annual selectivity variability allowance from `h1_2.00`."
-#| fig-width: 8
-#| fig-height: 4.8
-h1_scflex <- readJJM("h1_2.01.1", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
-
-ssb_scflex_cmp <- rbind(
-  data.frame(
-    year = h1_red[[1]]$output[[1]]$SSB[, 1],
-    value = h1_red[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.00"
-  ),
-  data.frame(
-    year = h1_scflex[[1]]$output[[1]]$SSB[, 1],
-    value = h1_scflex[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.01.1"
-  )
-)
-
-ggplot(ssb_scflex_cmp, aes(year, value / 1000, color = model)) +
-  geom_line(linewidth = 0.9) +
-  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01.1" = "#7f3c8d")) +
-  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "top")
-```
-
 The corresponding selectivity surfaces are shown in @fig-selectivity-sc-allowance-compare. This comparison makes the construction of `h1_2.01.1` explicit: the North Chile, Far North, and Offshore fleets retain the block-based patterns from `h1_2.01`, while the South-Central Chile fishery reverts to the more flexible annual treatment. The main visual difference between the two panels is therefore concentrated in that one fishery, which is the intended diagnostic for whether the broader changes in `h1_2.01` are being driven primarily by S-C Chile selectivity regularization.
-
-```{r fig-selectivity-sc-allowance-compare}
-#| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.01` and `h1_2.01.1`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
-#| fig-subcap: ["Model `h1_2.01`", "Model `h1_2.01.1`"]
-#| layout-ncol: 2
-#| fig-width: 5
-#| fig-height: 8
-h1_blk_scflex_sel <- plot_selectivities(get_selectivities(h1_scflex)) +
-  theme(legend.position = "none")
-
-print(h1_blk_sel)
-print(h1_blk_scflex_sel)
-```
-
-The more detailed fit comparison is shown in @tbl-selectivity-scflex-like-components. Restoring annual flexibility for the South-Central Chile fishery reduces the total negative log likelihood from `1544.1` in `h1_2.01` to `1364.8` in `h1_2.01.1`, while increasing the parameter count from `480` to `870`. The largest direct improvement is in the South-Central Chile fishery age-composition term, which falls from about `307.3` to `139.2`, close to the `h1_2.00` value of `124.0`. Aggregate retained-index fit also improves materially, from about `258.0` to `185.9`, although fishery length compositions remain much worse than in `h1_2.00`. Taken together, the figure and table suggest that a substantial part of the penalty in `h1_2.01` comes from over-constraining the S-C Chile selectivity history, but not all of it.
-
-```{r tbl-selectivity-scflex-like-components}
-#| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the reduced-index sensitivity (`h1_2.00`), the reduced-index model with fishery selectivity blocks (`h1_2.01`), and the intermediate selectivity variant (`h1_2.01.1`) in which the South-Central Chile fishery retains the annual selectivity variability allowance. The aggregate and component index rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
-selectivity_scflex_model_ids <- c("h1_2.00", "h1_2.01", "h1_2.01.1")
-build_like_comp_table(selectivity_scflex_model_ids)
-```
-
-As a further check, I fitted a second South-Central Chile alternative, `h1_2.01.2`, which starts from `h1_2.01.1` but replaces the annual S-C Chile selectivity history with five blocks separated at 1985, 1998, 2008, and 2016. The intention was to preserve the broad pre-1985 period, the late-1980s to 1990s narrowing of the dome, the late-1990s recruitment-regime shift, the 2008-2015 transitional period, and the distinct post-2016 shape without returning to a fully annual treatment. In practice, this five-block version converged cleanly (`nll = 1518.5`, `maxgrad = 9.6e-5`) but performed much more like the original block model than like `h1_2.01.1`.
-
-The resulting spawning biomass trajectories are shown in @fig-selectivity-sc5-ssb. Relative to `h1_2.01.1`, the five-block S-C Chile variant moves the stock trajectory sharply upward and is closer to `h1_2.01` than to the annual-S-C case. Its terminal spawning biomass reaches about `23.8` kt, compared with about `18.2` kt for `h1_2.01.1` and `19.9` kt for `h1_2.01`.
 
 ```{r fig-selectivity-sc5-ssb}
 #| fig-cap: "Comparison of spawning biomass trajectories for the original fishery-block model (`h1_2.01`), the annual S-C Chile variant (`h1_2.01.1`), and the five-block S-C Chile variant (`h1_2.01.2`)."
@@ -1015,7 +994,46 @@ ggplot(ssb_scflex5_cmp, aes(year, value / 1000, color = model)) +
   theme(legend.position = "top")
 ```
 
+```{r fig-selectivity-sc-allowance-compare}
+#| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.01` and `h1_2.01.1`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
+#| fig-subcap: ["Model `h1_2.01`", "Model `h1_2.01.1`"]
+#| layout-ncol: 2
+#| fig-width: 5
+#| fig-height: 8
+h1_blk_scflex_sel <- plot_selectivities(get_selectivities(h1_scflex)) +
+  theme(legend.position = "none")
+
+print(h1_blk_sel)
+print(h1_blk_scflex_sel)
+```
+
+The more detailed fit comparison is shown in @tbl-selectivity-scflex-like-components. Restoring annual flexibility for the South-Central Chile fishery reduces the total negative log likelihood from `1544.1` in `h1_2.01` to `1364.8` in `h1_2.01.1`, while increasing the parameter count from `480` to `870`. The largest direct improvement is in the South-Central Chile fishery age-composition term, which falls from about `307.3` to `139.2`, close to the `h1_2.00` value of `124.0`. Aggregate retained-index fit also improves materially, from about `258.0` to `185.9`, although fishery length compositions remain much worse than in `h1_2.00`. Taken together, the figure and table suggest that a substantial part of the penalty in `h1_2.01` comes from over-constraining the S-C Chile selectivity history, but not all of it.
+
+```{r tbl-selectivity-scflex-like-components}
+#| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the reduced-index sensitivity (`h1_2.00`), the reduced-index model with fishery selectivity blocks (`h1_2.01`), and the intermediate selectivity variant (`h1_2.01.1`) in which the South-Central Chile fishery retains the annual selectivity variability allowance. The aggregate and component index rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
+selectivity_scflex_model_ids <- c("h1_2.00", "h1_2.01", "h1_2.01.1")
+build_like_comp_table(selectivity_scflex_model_ids)
+```
+
+As a further check, I fitted a second South-Central Chile alternative, `h1_2.01.2`, which starts from `h1_2.01.1` but replaces the annual S-C Chile selectivity history with five blocks separated at 1985, 1998, 2008, and 2016. The intention was to preserve the broad pre-1985 period, the late-1980s to 1990s narrowing of the dome, the late-1990s recruitment-regime shift, the 2008-2015 transitional period, and the distinct post-2016 shape without returning to a fully annual treatment. In practice, this five-block version converged cleanly (`nll = 1518.5`, `maxgrad = 9.6e-5`) but performed much more like the original block model than like `h1_2.01.1`.
+
+The resulting spawning biomass trajectories are shown in @fig-selectivity-sc5-ssb. Relative to `h1_2.01.1`, the five-block S-C Chile variant moves the stock trajectory sharply upward and is closer to `h1_2.01` than to the annual-S-C case. Its terminal spawning biomass reaches about `23.8` kt, compared with about `18.2` kt for `h1_2.01.1` and `19.9` kt for `h1_2.01`.
+
 The direct selectivity comparison is shown in @fig-selectivity-sc5-compare. As intended, the difference between `h1_2.01.1` and `h1_2.01.2` is confined to the South-Central Chile fishery, where the annual pattern is replaced by the five broader periods. However, the likelihood comparison in @tbl-selectivity-sc5-like-components shows that this coarser representation gives back much of the fit recovered by `h1_2.01.1`: the total negative log likelihood rises from `1364.8` to `1518.5`, the South-Central Chile fishery age-composition term rises from `139.2` to `285.4`, and the retained-index total worsens from `185.9` to `239.6`. Parameter count falls from `870` to `490`, only slightly above the original `h1_2.01` value of `480`. This indicates that, for the current data, the proposed five-block S-C Chile structure is still too restrictive to reproduce the main benefits of the annual S-C Chile treatment. A simpler follow-up worth testing later would be the suggested four-block alternative with breaks at 1985, 1998, and 2014.
+
+```{r fig-selectivity-sc5-index-fits}
+#| fig-cap: "Observed and fitted index trajectories for `h1_2.01`, `h1_2.01.1`, `h1_2.01.2`, and `h1_2.01.3`. Panels show the retained comparable index series: South-Central Chile CPUE, Acoustic North, Peruvian CPUE, and Offshore CPUE."
+#| fig-width: 8
+#| fig-height: 6.5
+h1_scflexq <- readJJM("h1_2.01.3", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+
+print(build_index_fit_plot(list(
+  "h1_2.01" = h1_blk,
+  "h1_2.01.1" = h1_scflex,
+  "h1_2.01.2" = h1_scflex5,
+  "h1_2.01.3" = h1_scflexq
+)))
+```
 
 ```{r fig-selectivity-sc5-compare}
 #| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.01.1` and `h1_2.01.2`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
@@ -1038,20 +1056,6 @@ The more detailed fit comparison, now including the q-random-walk variant, is sh
 #| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the original fishery-block model (`h1_2.01`), the annual S-C Chile variant (`h1_2.01.1`), the five-block S-C Chile variant (`h1_2.01.2`), and the q-random-walk variant (`h1_2.01.3`). The aggregate and component index rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
 selectivity_sc5_model_ids <- c("h1_2.01", "h1_2.01.1", "h1_2.01.2", "h1_2.01.3")
 build_like_comp_table(selectivity_sc5_model_ids)
-```
-
-```{r fig-selectivity-sc5-index-fits}
-#| fig-cap: "Observed and fitted index trajectories for `h1_2.01`, `h1_2.01.1`, `h1_2.01.2`, and `h1_2.01.3`. Panels show the retained comparable index series: South-Central Chile CPUE, Acoustic North, Peruvian CPUE, and Offshore CPUE."
-#| fig-width: 8
-#| fig-height: 6.5
-h1_scflexq <- readJJM("h1_2.01.3", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
-
-print(build_index_fit_plot(list(
-  "h1_2.01" = h1_blk,
-  "h1_2.01.1" = h1_scflex,
-  "h1_2.01.2" = h1_scflex5,
-  "h1_2.01.3" = h1_scflexq
-)))
 ```
 
 The fitted catchability paths for `h1_2.01.3` are shown in @fig-selectivity-sc5-qtrend. To place the four indices on a comparable scale, each q series is divided by its own mean over the common shortest fitted window, 2009-2024, which is the full random-walk span for Offshore CPUE. On that normalized scale, the figure emphasizes the relative temporal pattern rather than the absolute q level and shows that the strongest drift is concentrated in the retained index series where the fit gains were largest.
