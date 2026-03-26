@@ -538,6 +538,31 @@ print(h1_red_sel)
 print(h1_blk_sel)
 ```
 
+```{r fig-selectivity-blocks-ssb}
+#| fig-cap: "Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`)."
+#| fig-width: 8
+#| fig-height: 4.8
+ssb_blk_cmp <- rbind(
+  data.frame(
+    year = h1_red[[1]]$output[[1]]$SSB[, 1],
+    value = h1_red[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.00"
+  ),
+  data.frame(
+    year = h1_blk[[1]]$output[[1]]$SSB[, 1],
+    value = h1_blk[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01"
+  )
+)
+
+ggplot(ssb_blk_cmp, aes(year, value / 1000, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
+  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
 ```{r fig-selectivity-blocks-rec}
 #| fig-cap: "Comparison of recruitment trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`)."
 #| fig-width: 8
@@ -933,66 +958,10 @@ The block-based formulation should be regarded as the **primary** simplified alt
 :::
 
 This hierarchy — block structure as primary, averaging-period variation as robustness — is consistent with the staged MSE roadmap described by @carruthers2024roadmap and with the more specific jack mackerel staging discussed in @sprfmo2025mseworkshop, which separates operating-model specification work from robustness testing and management-procedure refinement. It is also consistent with CCSBT practice in the Bali Procedure review cycle.
-```{r fig-selectivity-blocks-ssb}
-#| fig-cap: "Comparison of spawning biomass trajectories from the reduced-index sensitivity (`h1_2.00`) and the reduced-index model with fleet-specific selectivity blocks (`h1_2.01`)."
-#| fig-width: 8
-#| fig-height: 4.8
-ssb_blk_cmp <- rbind(
-  data.frame(
-    year = h1_red[[1]]$output[[1]]$SSB[, 1],
-    value = h1_red[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.00"
-  ),
-  data.frame(
-    year = h1_blk[[1]]$output[[1]]$SSB[, 1],
-    value = h1_blk[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.01"
-  )
-)
-
-ggplot(ssb_blk_cmp, aes(year, value / 1000, color = model)) +
-  geom_line(linewidth = 0.9) +
-  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.01" = "#2a7f62")) +
-  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "top")
-```
 
 To isolate whether the deterioration in `h1_2.01` is being driven mainly by the reduced flexibility assigned to the South-Central Chile fishery, I fitted an intermediate variant, `h1_2.01.1`, that keeps the fleet-specific block structure for the other fisheries but restores the annual selectivity-variation treatment for the South-Central Chile fleet used in `h1_2.00`. This intermediate run converged cleanly (`nll = 1364.8`, `maxgrad = 1.1e-4`) and sits between `h1_2.00` and `h1_2.01` in overall fit. The SSB comparison in @fig-selectivity-sc-allowance-ssb shows that restoring that one source of selectivity flexibility pulls the stock trajectory partway back toward `h1_2.00`, although it does not fully recover the reduced-index baseline.
 
 The corresponding selectivity surfaces are shown in @fig-selectivity-sc-allowance-compare. This comparison makes the construction of `h1_2.01.1` explicit: the North Chile, Far North, and Offshore fleets retain the block-based patterns from `h1_2.01`, while the South-Central Chile fishery reverts to the more flexible annual treatment. The main visual difference between the two panels is therefore concentrated in that one fishery, which is the intended diagnostic for whether the broader changes in `h1_2.01` are being driven primarily by S-C Chile selectivity regularization.
-
-```{r fig-selectivity-sc5-ssb}
-#| fig-cap: "Comparison of spawning biomass trajectories for the original fishery-block model (`h1_2.01`), the annual S-C Chile variant (`h1_2.01.1`), and the five-block S-C Chile variant (`h1_2.01.2`)."
-#| fig-width: 8
-#| fig-height: 4.8
-h1_scflex5 <- readJJM("h1_2.01.2", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
-
-ssb_scflex5_cmp <- rbind(
-  data.frame(
-    year = h1_blk[[1]]$output[[1]]$SSB[, 1],
-    value = h1_blk[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.01"
-  ),
-  data.frame(
-    year = h1_scflex[[1]]$output[[1]]$SSB[, 1],
-    value = h1_scflex[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.01.1"
-  ),
-  data.frame(
-    year = h1_scflex5[[1]]$output[[1]]$SSB[, 1],
-    value = h1_scflex5[[1]]$output[[1]]$SSB[, 2],
-    model = "h1_2.01.2"
-  )
-)
-
-ggplot(ssb_scflex5_cmp, aes(year, value / 1000, color = model)) +
-  geom_line(linewidth = 0.9) +
-  scale_color_manual(values = c("h1_2.01" = "#2a7f62", "h1_2.01.1" = "#7f3c8d", "h1_2.01.2" = "#9c2f2f")) +
-  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(legend.position = "top")
-```
 
 ```{r fig-selectivity-sc-allowance-compare}
 #| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.01` and `h1_2.01.1`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
@@ -1015,6 +984,10 @@ selectivity_scflex_model_ids <- c("h1_2.00", "h1_2.01", "h1_2.01.1")
 build_like_comp_table(selectivity_scflex_model_ids)
 ```
 
+```{r}
+h1_scflex5 <- readJJM("h1_2.01.2", path = "../assessment/config", input = "../assessment/input", output = "../assessment/results")
+```
+
 As a further check, I fitted a second South-Central Chile alternative, `h1_2.01.2`, which starts from `h1_2.01.1` but replaces the annual S-C Chile selectivity history with five blocks separated at 1985, 1998, 2008, and 2016. The intention was to preserve the broad pre-1985 period, the late-1980s to 1990s narrowing of the dome, the late-1990s recruitment-regime shift, the 2008-2015 transitional period, and the distinct post-2016 shape without returning to a fully annual treatment. In practice, this five-block version converged cleanly (`nll = 1518.5`, `maxgrad = 9.6e-5`) but performed much more like the original block model than like `h1_2.01.1`.
 
 The resulting spawning biomass trajectories are shown in @fig-selectivity-sc5-ssb. Relative to `h1_2.01.1`, the five-block S-C Chile variant moves the stock trajectory sharply upward and is closer to `h1_2.01` than to the annual-S-C case. Its terminal spawning biomass reaches about `23.8` kt, compared with about `18.2` kt for `h1_2.01.1` and `19.9` kt for `h1_2.01`.
@@ -1033,21 +1006,6 @@ print(build_index_fit_plot(list(
   "h1_2.01.2" = h1_scflex5,
   "h1_2.01.3" = h1_scflexq
 )))
-```
-
-```{r fig-selectivity-sc5-compare}
-#| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.01.1` and `h1_2.01.2`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
-#| fig-subcap: ["Model `h1_2.01.1`", "Model `h1_2.01.2`"]
-#| layout-ncol: 2
-#| fig-width: 5
-#| fig-height: 8
-h1_scflex_sel <- plot_selectivities(get_selectivities(h1_scflex)) +
-  theme(legend.position = "none")
-h1_scflex5_sel <- plot_selectivities(get_selectivities(h1_scflex5)) +
-  theme(legend.position = "none")
-
-print(h1_scflex_sel)
-print(h1_scflex5_sel)
 ```
 
 The more detailed fit comparison, now including the q-random-walk variant, is shown in @tbl-selectivity-sc5-like-components. Relative to `h1_2.01`, the annual-S-C variant `h1_2.01.1` recovers a large part of the lost fit, while the five-block version `h1_2.01.2` gives much of that improvement back. The q-random-walk version `h1_2.01.3` lowers the retained comparable index contribution further to about `163.9`, compared with about `258.0` for `h1_2.01`, `185.9` for `h1_2.01.1`, and `239.6` for `h1_2.01.2`, although it does so by shifting additional flexibility into time-varying catchability rather than selectivity. The same contrast appears in terminal-year spawning biomass uncertainty: the 2026 SSB interval is about `15.1-26.1` kt for `h1_2.01`, narrows slightly to `14.0-23.6` kt for `h1_2.01.1`, widens substantially to `16.7-33.7` kt for `h1_2.01.2`, and shifts downward but remains broad at `11.5-23.0` kt for `h1_2.01.3`. The resulting retained comparable index fits are shown in @fig-selectivity-sc5-index-fits.
@@ -1119,6 +1077,51 @@ ggplot(q_trend_df, aes(year, q_rel, color = index)) +
     )
   ) +
   labs(x = "Year", y = "Relative catchability", color = "Index") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
+```{r fig-selectivity-sc5-compare}
+#| fig-cap: "Estimates of selectivity by fishery over time for Models `h1_2.01.1` and `h1_2.01.2`, shown in the same style as Figure 37 of the SC13 Jack Mackerel Technical Annex [@sprfmo2025annex11]."
+#| fig-subcap: ["Model `h1_2.01.1`", "Model `h1_2.01.2`"]
+#| layout-ncol: 2
+#| fig-width: 5
+#| fig-height: 8
+h1_scflex_sel <- plot_selectivities(get_selectivities(h1_scflex)) +
+  theme(legend.position = "none")
+h1_scflex5_sel <- plot_selectivities(get_selectivities(h1_scflex5)) +
+  theme(legend.position = "none")
+
+print(h1_scflex_sel)
+print(h1_scflex5_sel)
+```
+
+```{r fig-selectivity-sc5-ssb}
+#| fig-cap: "Comparison of spawning biomass trajectories for the original fishery-block model (`h1_2.01`), the annual S-C Chile variant (`h1_2.01.1`), and the five-block S-C Chile variant (`h1_2.01.2`)."
+#| fig-width: 8
+#| fig-height: 4.8
+ssb_scflex5_cmp <- rbind(
+  data.frame(
+    year = h1_blk[[1]]$output[[1]]$SSB[, 1],
+    value = h1_blk[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01"
+  ),
+  data.frame(
+    year = h1_scflex[[1]]$output[[1]]$SSB[, 1],
+    value = h1_scflex[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01.1"
+  ),
+  data.frame(
+    year = h1_scflex5[[1]]$output[[1]]$SSB[, 1],
+    value = h1_scflex5[[1]]$output[[1]]$SSB[, 2],
+    model = "h1_2.01.2"
+  )
+)
+
+ggplot(ssb_scflex5_cmp, aes(year, value / 1000, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.01" = "#2a7f62", "h1_2.01.1" = "#7f3c8d", "h1_2.01.2" = "#9c2f2f")) +
+  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
   theme_minimal(base_size = 11) +
   theme(legend.position = "top")
 ```
