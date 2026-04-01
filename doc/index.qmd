@@ -14,18 +14,28 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 The current published documents are:
 
-1. [JM-WP-BM-01](JM-WP-BM-01.qmd)
-2. [SC13 Assessment Update](SC13.qmd)
-3. [Helper Scripts Guide](helper_scripts_guide.qmd)
-4. [User Guide](userguide/)
-5. [Tutorial Guide](tutorial/)
-6. [Archive](archive/)
+1. [JM-WP-BM-01](JM-WP-BM-01.html) ([PDF](JM-WP-BM-01.pdf), [DOCX](JM-WP-BM-01.docx), [Presentation](JM-WP-BM-01.pptx))
+2. [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026v2.html) ([PDF](JMWG-Meeting%20report-01-2026v2.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
+3. [CPUE Meta-Analysis (2022-2025)](SPRFMO_CPUE_JackMackerel_MetaAnalysis.html) ([PDF](SPRFMO_CPUE_JackMackerel_MetaAnalysis.pdf))
+4. [SC13 Assessment Update](SC13.html)
+5. [Helper Scripts Guide](helper_scripts_guide.html)
+6. [User Guide](userguide/)
+7. [Tutorial Guide](tutorial/)
+8. [Archive](archive/)
 
 # Document Guide
 
 ## JM-WP-BM-01
 
-This is the main benchmark working-paper draft currently tracked as `JM-WP-BM-01.qmd`.
+This is the main benchmark working-paper draft currently tracked as `JM-WP-BM-01.qmd`, with published HTML, PDF, DOCX, and presentation files.
+
+## JMWG Meeting report 01-2026
+
+These meeting notes are currently published from `JMWG-Meeting report-01-2026.qmd` as the `v2` English HTML, PDF, and DOCX outputs.
+
+## CPUE Meta-Analysis (2022-2025)
+
+This document compiles CPUE-related SPRFMO meeting papers from SC10 through SC13 into a single review document.
 
 ## SC13 Assessment Update
 

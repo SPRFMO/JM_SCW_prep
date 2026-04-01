@@ -1,0 +1,274 @@
+---
+title: "JMWG MSE Task Team Meeting 01/2026"
+format:
+  html:
+    output-file: "JMWG-Meeting report-01-2026v2.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+  pdf:
+    output-file: "JMWG-Meeting report-01-2026v2.pdf"
+    number-sections: true
+    number-depth: 2
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{Meeting report 01-2026}}
+        \fancyhead[L]{\textit{joint-jack mackerel model}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{Meeting report 01-2026}}
+          \fancyhead[L]{\textit{joint-jack mackerel model}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "JMWG-Meeting report-01-2026v2.docx"
+    toc: true
+    number-sections: true
+    number-depth: 2
+    title-block: false
+execute:
+  echo: false
+  warning: false
+  message: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries Meeting report 01-2026\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*Meeting report 01-2026*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">Meeting report 01-2026</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Meeting%20report-01-2026v2.pdf">PDF-rendered version</a> | <a href="JMWG-Meeting%20report-01-2026v2.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">JMWG Meeting report 01-2026</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+The JMWG MSE Task Team kickoff was held on Friday, 27 March 2026. The meeting focused 
+on organizing the pre-benchmark work programme for the May benchmark in Lima and the 
+June MSE workshop in Wageningen, with particular emphasis on the 
+the BM03 abundance-index topic. 
+We reviewed candidate assessment simplifications, and the transition from 
+benchmark work into operating-model conditioning.
+Participants agreed that BM03 should be broadened from a single umbrella paper noting that 
+the review should likely be split across several more focused contributions. 
+This should include Chilean acoustic work, Chilean and Peruvian CPUE developments, 
+and a metadata-style synthesis paper that documents data sources, timing, methods, 
+and caveats across indices. Chile volunteered to lead the BM03 effort, and Peru agreed to coordinate on acoustic expertise and updated CPUE work.
+
+The meeting also reviewed draft benchmark papers on the 2025 assessment model 
+and next-generation alternatives. Initial model simplifications suggested that dropping 
+some legacy indices had limited effect on spawning biomass, while selectivity structure, 
+especially for South Central Chile, remained highly influential. Participants also noted 
+that time-varying catchability is likely capturing changes in availability and 
+distribution rather than simple fishing-power changes, making it an important 
+structural uncertainty to carry forward into MSE design.
+
+# Meeting Details
+
+- Meeting: JMWG MSE Task Team Meeting 01/2026
+- Date: 27 March 2026
+- Organisation: South Pacific Regional Fisheries Management Organisation
+- Working group: Jack Mackerel Working Group
+- Main participants named in the transcript: Jim Ianelli, Alexander Glubokov, Criscely Lujan, Mirian Geronimo, Luciano Espinoza, Aquiles Sepulveda, Hyejin Song, Niels Hintzen, Benoit Berges, Karolina Molla-Gazi, Ignacio Paya, Mauro Urbina, Jose Zenteno, Shana Miller, Sebastian Vasquez, with additional members and Secretariat participation referenced during the call
+
+# Key Dates and Action Times
+
+| Time or deadline | Item | Importance |
+|---|---|---|
+| 9-10 April 2026 | Next preparatory task-team meeting | Review BM01 material and early BM03 paper plans before the benchmark |
+| 24 April 2026 | BM03 submission deadline discussed in the meeting | Immediate preparation deadline for index-related benchmark papers |
+| May 2026 | Lima benchmark meeting | Review data, indices, and benchmark model material |
+| June 2026 | MSE workshop in Wageningen | Main workshop for management procedures and operating-model work |
+| Mid-August 2026 | Expected submission deadline for review material | Follow-up deadline to support later Scientific Committee review |
+| After the benchmark | Potential virtual SC or intersessional review step | Needed if a new benchmark model requires formal review before later use |
+
+# Agenda
+
+1. Roll call, introductions, and access to meeting materials.
+2. Review of the overall benchmark and MSE timeline.
+3. Discussion of benchmark papers BM01, BM02, and BM03.
+4. Discussion of abundance indices, acoustic work, and benchmark submissions.
+5. Review of biological-data scope and data-sharing issues.
+6. Review of assessment simplifications and implications for MSE conditioning.
+7. Benchmark logistics, review process, and next steps.
+
+# Discussion Summary
+
+## Workplan and Schedule
+
+Jim Ianelli opened the meeting as a kickoff session intended to organize the next two months of work. He emphasized that the May event is primarily a benchmark, but one that must resolve enough assessment structure to support the June MSE workshop. Participants discussed the compressed schedule and the need to keep regular meetings on the calendar so that BM papers and diagnostics advance before Lima.
+
+The broad schedule discussed in the meeting was:
+
+1. Hold preparatory meetings in early April.
+2. Submit BM03 and related benchmark material by 24 April 2026.
+3. Use the May Lima benchmark to review indices, data inputs, and candidate model changes.
+4. Shift into MSE-focused work for the June Wageningen workshop.
+5. Prepare later review material for an August submission and review phase.
+
+## Benchmark Papers and BM03 Scope
+
+Jim described a benchmark-paper structure in which BM01 documents the 2025 assessment model and candidate simplifications, BM02 explores next-generation base-model options, and BM03 covers indices of abundance. The discussion quickly converged on the view that BM03 is too broad as a single document and should be split into multiple papers.
+
+Likely BM03-related products identified during the meeting included:
+
+1. A Chilean acoustic-survey paper, including results from the survey that had started roughly five days before the meeting.
+2. Additional Chilean acoustic or vessel-opportunity material if available.
+3. Chilean CPUE papers, including spatial-temporal analyses already developed in recent years.
+4. A Peruvian CPUE/index paper using updated 2015-2025 information.
+5. A metadata or review paper summarizing the characteristics, timing, methods, and caveats of each main index.
+
+Ignacio Paya volunteered to coordinate BM03 and to work with contributors on the overall structure and leads.
+
+## Acoustic and Index Work
+
+Chile reported that the current acoustic survey was underway and that preliminary biomass estimates might be available in time for the May benchmark. Chile also suggested involving additional acoustic specialists, including Mariano Gutierrez and Nicolas, in a more technical discussion of acoustic methods and interpretation.
+
+Peru agreed to contact Mariano and supported splitting BM03 into several products. Peru also described ongoing work to produce a more robust updated CPUE series covering 2015-2025. The discussion treated Chilean and Peruvian index work as central benchmark inputs.
+
+Participants also returned repeatedly to the idea of a metadata table. This was seen as a practical way to summarize when fleets operate, what data exist, how methods differ, and what limits apply to interpretation of each series. That synthesis was viewed as useful both for the benchmark and for later MSE conditioning.
+
+## Data Scope, Biological Updates, and Data Sharing
+
+Karolina asked whether BM03 is intended to review only indices or the broader stock-assessment data package. Jim noted that the current focus is on indices, though biological updates could also be relevant where new work exists. Chile reported no major biological updates ready for the benchmark. Peru reported new work on age-related data, including efforts to better represent smaller fish and a wider length range in age-structured inputs.
+
+The meeting also highlighted the difference between coarse Secretariat-aggregated 
+spatial data and the raw haul-level information needed for robust combined CPUE modeling. 
+Niels stressed that a fully integrated offshore and regional CPUE would likely 
+require haul-by-haul data sharing across members. Participants treated that as an important
+medium-term goal, but something unlikely to be fully resolved before the May benchmark.
+
+## Index Interpretation and Combined-Data Questions
+
+Several speakers discussed whether the benchmark should aim to create a single standardized index across fleets or focus first on reviewing and documenting individual indices. Jim favored keeping all options open while prioritizing benchmark-ready documentation and index submissions. Niels argued that a combined cross-fleet CPUE remains the most robust long-term response to changing spatial distribution, but also noted the practical and political challenges of accessing compatible raw data.
+
+Ignacio described Chile's recent work as using largely overlapping data streams across institutions for recent years, with differences arising more from methods and implementation than from wholly separate datasets. He also pointed to the importance of seasonal timing and within-year availability of data, noting that Chile can provide more current-year information than some other fleets. The meeting agreed that these differences should be documented explicitly in metadata and review papers rather than left implicit.
+
+## BM01 Simplifications and MSE Conditioning
+
+Jim then reviewed the benchmark material on the current assessment model and candidate simplifications. The discussion highlighted several draft findings:
+
+1. Removing some legacy or trimmed indices changed recruitment estimates more than spawning biomass.
+2. Blocked selectivity experiments had larger-than-expected effects on rebuilding trajectories.
+3. Much of that sensitivity appeared to originate from the South Central Chile fishery.
+4. Time-varying catchability may be acting as a practical way to represent changes in availability and distribution.
+5. Structural uncertainty should be carried into MSE conditioning rather than treated as only a parametric issue.
+
+The group discussed whether harmonized treatment of northern components and recruitment-regime simplifications could help create more comparable operating-model inputs. 
+**Peru agreed to consider harmonization ideas internally and report back**.
+
+## Reference Points, Projections, and Process
+
+The final technical discussion covered how reference points and selectivity assumptions should be handled in projections and MSE simulations. The group indicated that using one fixed reference-point value per simulation draw is the usual approach, while the exact treatment of projection selectivity still needs to be settled after the benchmark.
+
+Participants also discussed whether an intersessional review would be sufficient after the benchmark or whether a special Scientific Committee meeting might still be needed if a benchmarked model is to be adopted formally before later MSE work. No final process decision was made, but the need for a reviewable and well-documented benchmark outcome was clear.
+
+## Benchmark Logistics
+
+The meeting closed with practical discussion of the Lima benchmark. Ricardo indicated that the venue was expected to be confirmed in Lima, that Miraflores was a practical accommodation area, and that the meeting would likely run for five days from Monday to Friday. Participants also discussed reviewer participation and the need for the Secretariat to circulate official invitation and registration information soon.
+
+# Decisions and Agreements
+
+1. BM03 should be split into several focused papers rather than handled as one large document.
+2. Chile, through Ignacio Paya, volunteered to lead BM03 coordination.
+3. Chile and Peru will advance acoustic and CPUE/index contributions for the May benchmark.
+4. A metadata summary table should be prepared to document index timing, methods, and caveats across members.
+5. BM01 simplification work should continue as support for benchmark review and later MSE conditioning.
+6. Combined cross-fleet CPUE work remains a worthwhile medium-term objective, but not a realistic full deliverable for the immediate benchmark.
+7. The exact post-benchmark review pathway still needs clarification.
+
+# Action Items
+
+| Action | Lead | Timing | Status |
+|---|---|---|---|
+| Confirm the exact August submission and review deadline | Jim Ianelli | Before later scheduling is finalized | Open |
+| Lead BM03 coordination and contact contributors on scope and paper leads | Ignacio Paya | Before the next preparatory meeting | Open |
+| Contact Mariano Gutierrez regarding acoustic participation | Criscely Lujan / Peru | Before the benchmark | Open |
+| Compile an expanded list of working papers and record member contributions from the meeting | Jim Ianelli | Before the next meeting | Open |
+| Document age-schedule or age-data updates raised during the meeting | Jim Ianelli | Before circulation of meeting notes | Open |
+| Confirm lead authors for each BM03-related paper | Meeting participants | Before the next preparatory meeting | Open |
+| Continue updated Peru CPUE work using 2015-2025 data | Peru | For benchmark submission by 24 April 2026 if possible | Open |
+| Advance Chilean acoustic and CPUE benchmark contributions | Chilean participants | For the May 2026 benchmark | Open |
+| Compile recent historical index papers referenced in discussion and circulate them to the group | Jim Ianelli with contributors | Before the next meeting | Open |
+| Start a metadata table summarizing data collection, methods, timing, and coverage across indices | Jim Ianelli and BM03 contributors | Before the next meeting | Open |
+| Present index methods and results at upcoming meetings ahead of the benchmark | Index-paper contributors | April 2026 meetings | Open |
+| Check whether Chilean data already provided to SPRFMO are available at haul-level resolution | Ignacio Paya | Before the benchmark | Open |
+| Check whether improvements have been made to artisanal trip-level or finer-scale data collection | Ignacio Paya | Before the benchmark | Open |
+| Consider internally whether harmonized northern treatment is appropriate for benchmark and MSE work | Peru | Report back at a future meeting | Open |
+| Circulate official Lima benchmark notice and registration/logistics details | Secretariat | As soon as available | Open |
+| Provide support to participants needing help running or testing models | Jim Ianelli | Ongoing | Open |
+
+# Key Questions for Future Meetings
+
+1. Does the August timing refer to document submission, review start, or both?
+2. Which indices and surveys are realistic benchmark deliverables for May 2026?
+3. Should the benchmark aim only to review member indices, or also to standardize or combine them?
+4. What biological updates, if any, should accompany BM03 submissions?
+5. Can haul-level data be shared sufficiently to support stronger combined-index analyses?
+6. How should within-year data and differences in seasonal timing across fleets be handled?
+7. What rule should guide selection among alternative model configurations with different structural assumptions?
+8. How should reference points and terminal selectivity periods be fixed for projections and MSE simulations?
+9. Will a virtual SC review or other formal intersessional review be required after the benchmark?
+
+# References
+
+This report is based on the supplied transcript and meeting summary for the JMWG MSE Task Team Meeting 01/2026 dated Friday, 27 March 2026. It is intended as an updated meeting-report draft using the same heading structure as the existing 01-2026 report source.
