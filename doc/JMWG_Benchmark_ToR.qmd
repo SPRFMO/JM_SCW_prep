@@ -1,7 +1,4 @@
 ---
-title: "SCW16 JACK MACKEREL BENCHMARK WORKSHOP 2026"
-subtitle: "Terms of Reference"
-date: "May 18-22, 2026"
 format:
   html:
     output-file: "JMWG_Benchmark_ToR.html"
@@ -24,7 +21,7 @@ format:
         \usepackage{fancyhdr}
         \fancyhf{}
         \fancyhead[R]{\textit{SCW16/ToR}}
-        \fancyhead[L]{\textit{joint-jack mackerel model}}
+        \fancyhead[L]{\textit{Jack mackerel benchmark}}
         \fancyfoot[C]{\thepage}
         \fancypagestyle{plain}{
           \fancyhf{}
