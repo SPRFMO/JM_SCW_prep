@@ -2,14 +2,14 @@ project:
   type: website
   output-dir: ../docs
   resources:
-    - JM-WP-BM-01.pptx
     - archive/*.html
     - archive/*.docx
     - archive/*.rmd
   render:
     - index.qmd
     - archive/index.qmd
-    - JM-WP-BM-01.qmd
+    - JMWG_Benchmark_ToR.qmd
+    - SCW16-Paper-01.qmd
     - "JMWG-Meeting report-01-2026.qmd"
     - SPRFMO_CPUE_JackMackerel_MetaAnalysis.qmd
     - SC13.qmd
@@ -22,8 +22,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: JM-WP-BM-01.qmd
-        text: JM-WP-BM-01
+      - href: JMWG_Benchmark_ToR.qmd
+        text: SCW16/ToR
+      - href: SCW16-Paper-01.qmd
+        text: SCW16/Paper-01
       - href: "JMWG-Meeting report-01-2026.qmd"
         text: Meeting report 01-2026
       - href: SPRFMO_CPUE_JackMackerel_MetaAnalysis.qmd

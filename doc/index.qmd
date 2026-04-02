@@ -14,20 +14,25 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 The current published documents are:
 
-1. [JM-WP-BM-01](JM-WP-BM-01.html) ([PDF](JM-WP-BM-01.pdf), [DOCX](JM-WP-BM-01.docx), [Presentation](JM-WP-BM-01.pptx))
-2. [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026v2.html) ([PDF](JMWG-Meeting%20report-01-2026v2.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
-3. [CPUE Meta-Analysis (2022-2025)](SPRFMO_CPUE_JackMackerel_MetaAnalysis.html) ([PDF](SPRFMO_CPUE_JackMackerel_MetaAnalysis.pdf))
-4. [SC13 Assessment Update](SC13.html)
-5. [Helper Scripts Guide](helper_scripts_guide.html)
-6. [User Guide](userguide/)
-7. [Tutorial Guide](tutorial/)
-8. [Archive](archive/)
+1. [SCW16/ToR](JMWG_Benchmark_ToR.html) ([PDF](JMWG_Benchmark_ToR.pdf), [DOCX](JMWG_Benchmark_ToR.docx))
+2. [SCW16/Paper-01](SCW16-Paper-01.html) ([PDF](SCW16-Paper-01.pdf), [DOCX](SCW16-Paper-01.docx))
+3. [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026v2.html) ([PDF](JMWG-Meeting%20report-01-2026v2.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
+4. [CPUE Meta-Analysis (2022-2025)](SPRFMO_CPUE_JackMackerel_MetaAnalysis.html) ([PDF](SPRFMO_CPUE_JackMackerel_MetaAnalysis.pdf))
+5. [SC13 Assessment Update](SC13.html)
+6. [Helper Scripts Guide](helper_scripts_guide.html)
+7. [User Guide](userguide/)
+8. [Tutorial Guide](tutorial/)
+9. [Archive](archive/)
 
 # Document Guide
 
-## JM-WP-BM-01
+## SCW16/ToR
 
-This is the main benchmark working-paper draft currently tracked as `JM-WP-BM-01.qmd`, with published HTML, PDF, DOCX, and presentation files.
+These are the benchmark workshop terms of reference, tracked as `JMWG_Benchmark_ToR.qmd`, with published HTML, PDF, and DOCX outputs.
+
+## SCW16/Paper-01
+
+This is the main benchmark working paper, tracked as `SCW16-Paper-01.qmd`, with published HTML, PDF, and DOCX outputs.
 
 ## JMWG Meeting report 01-2026
 

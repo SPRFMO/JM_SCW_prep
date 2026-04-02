@@ -1,0 +1,179 @@
+---
+title: "SCW16 JACK MACKEREL BENCHMARK WORKSHOP 2026"
+subtitle: "Terms of Reference"
+date: "May 18-22, 2026"
+format:
+  html:
+    output-file: "JMWG_Benchmark_ToR.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+  pdf:
+    output-file: "JMWG_Benchmark_ToR.pdf"
+    number-sections: true
+    number-depth: 2
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{SCW16/ToR}}
+        \fancyhead[L]{\textit{joint-jack mackerel model}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{SCW16/ToR}}
+          \fancyhead[L]{\textit{joint-jack mackerel model}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "JMWG_Benchmark_ToR.docx"
+    toc: true
+    number-sections: true
+    number-depth: 2
+    title-block: false
+execute:
+  echo: false
+  warning: false
+  message: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries SCW16 JACK MACKEREL BENCHMARK WORKSHOP 2026\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*SCW16/ToR*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">SCW16/ToR</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG_Benchmark_ToR.pdf">PDF-rendered version</a> | <a href="JMWG_Benchmark_ToR.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">SCW16 JACK MACKEREL BENCHMARK WORKSHOP 2026</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Terms of Reference {.unnumbered}
+
+These terms of reference describe the scope, objectives, priority topics, expected outputs, and practical arrangements for the SCW16 Jack Mackerel Benchmark Workshop to be held in Lima, Peru, from 18-22 May 2026.
+A hybrid format will accommodate both in-person and virtual participation.
+Jim Ianelli, chairperson of the Jack Mackerel Working Group, will chair the workshop
+This workshop is supported by voluntary contributions from SPRFMO Members and the hosting Government of Peru.
+
+# Background
+
+The SC13 Scientific Committee (September 2025) endorsed support for a jack mackerel assessment benchmark workshop. The SC identified high-priority topics to be addressed, including advances in acoustic sampling and age composition, alternative standardization approaches for CPUE indices, spatio-temporal modeling of fleet data, comprehensive evaluation of abundance estimates, consideration of bycatch impacts, and assessment of management procedure scenarios. This benchmark will synthesize current knowledge, integrate new data sources and methodological approaches, and provide a science-based foundation for future management decisions.
+
+To conduct a peer-reviewed benchmark assessment of jack mackerel stock status that addresses the high-priority topics identified by SC13. The workshop will develop and document a base assessment model, evaluate alternative analytical approaches, validate abundance indices, clarify key model assumptions, and generate biological reference points and management procedure scenarios for use in management strategy evaluation.
+The original list from the SC13 report is extensive. However, some items have already been given lower priority or are faced with circumstances to prevent
+further developments (e.g., age determination workshop).
+
+# Priority Topics
+
+## Data and Abundance Indices
+
+- Acoustic biomass in the north area with emphasis on age composition and biological sampling
+- CPUE index standardization approaches using sdmTMB, INLA, or comparable methods
+- Spatio-temporal models combining fleets and regions (e.g., tinyVAST) to integrate datasets from different sources
+- Comprehensive analysis of CPUE indices and acoustic biomass estimates, including review of S-Chile, N-Chile, and Peruvian data
+- Evaluation of sampling levels and expansion protocols across fleets and regions
+- Assessment of Peruvian data sources and vessels of opportunity
+
+## Assessment Model Development
+
+- Selectivity aspects and assumptions
+- Bycatch considerations in jack mackerel fisheries
+- Model implementation in updated software (e.g., RTMB) or alternative platforms as appropriate
+
+## Productivity estimates
+
+- Long- and short-term productivity period scenarios
+- Steepness value assumptions and sensitivity
+- Fishing mortality (F) scenarios including relative F levels and Fmsy reference points
+
+# Expected Outputs
+
+The workshop will produce four peer-reviewed working papers for presentation to SC14:
+
+1. **SCW16-01: Base Assessment Model** – Documentation of the baseline model, data inputs, structure, parameter estimates, diagnostics, and key findings
+
+2. **SCW16-02: Alternative Implementation** – Model implementation in RTMB or alternative platform with technical documentation and validation
+
+3. **SCW16-03: Indices of Abundance Review** – Comprehensive analysis of survey and fishery-based indices, standardization approaches, diagnostics, and recommendations
+
+4. **SCW16-04: Projections and Scenarios** – Analysis of recruitment dynamics, productivity regimes, reference points, and F-scenarios for management procedures
+
+
+# Participation
+
+The workshop welcomes scientists and technical experts from SPRFMO member states and cooperating entities with expertise in: population modeling, acoustic and trawl survey methodology, CPUE standardization, spatio-temporal modeling, fishery data analysis, selectivity estimation, and regional fisheries knowledge.
+
+# Pre-Workshop Requirements
+
+- Working paper drafts due 1 May 2026
+- Complete data documentation, model code, and supporting analyses
+- Data availability for acoustic surveys, fishery observations, and abundance indices confirmed
+- Participants review circulated materials prior to attending
+
+# Timeline
+
+| Date | Activity |
+|------|----------|
+| 1 May | Working paper submission deadline |
+| 5 May | Pre-workshop materials distributed |
+| 18–22 May | Benchmark Workshop in Lima |
+| 1 June | Final working papers due |
+
+# Registration and Financial Assistance
+
+Registration is open on the SPRFMO website. Financial support may be available for developing State scientists. Please contact the Secretariat for details.
+
