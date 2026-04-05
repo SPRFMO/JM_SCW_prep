@@ -1,0 +1,395 @@
+---
+title: "Task Group (TG) — 2026 Meeting Schedule & Agendas"
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+**Task Group (TG) — 2026 Meeting Schedule & Agendas**
+
+*Chair: J. Ianelli \| All meetings: Online (Zoom/Teams) \| 14:00–15:30 CET*
+
+*08:00–9:30 Lima (PET) 09:00-10:30 Santiago (CLT)*
+
+------------------------------------------------------------------------
+
+**AT-A-GLANCE SCHEDULE**
+
+```{r}
+#| label: tbl-at-a-glance
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gt)
+
+at_a_glance <- data.frame(
+  meeting = c("TG-01", "TG-02", "TG-03", "TG-04", "TG-05", "TG-06", "TG-07", "TG-08", "TG-09", "TG-10"),
+  date = c(
+    "Thu 26 March 2026",
+    "Thu 9 April 2026",
+    "Thu 30 April 2026",
+    "Thu 28 May 2026",
+    "Thu 11 June 2026",
+    "Thu 9 July 2026",
+    "Thu 13 August 2026",
+    "Fri 28 August 2026",
+    "Thu 8 October 2026",
+    "Thu 12 November 2026"
+  ),
+  topic = c(
+    "Post-Commission Kickoff",
+    "WP1 Launch & Benchmark Preparation",
+    "Final Pre-Benchmark Preparation",
+    "Post-Lima / Pre-Intersessional Debrief",
+    "Pre-Wageningen Final Preparation",
+    "Post-Wageningen: CMP Shortlist Review",
+    "Pre-SC14 Draft Review",
+    "Final SC14 Paper Sign-off",
+    "Post-SC14 Debrief & Commission Prep",
+    "WP4 Report Review & Year-End Close"
+  ),
+  milestone = c(
+    "—",
+    "→ Leads to: Benchmark Workshop, Lima (May)",
+    "→ Leads to: Benchmark Workshop, Lima (~12–16 May)",
+    "→ Leads to: MSE-02 draft performance metrics",
+    "→ Leads to: MSE Workshop, Wageningen, 15–19 June 2026",
+    "→ SC14 paper drafting begins",
+    "→ Leads to: SC14 (September 2026)",
+    "→ SC14 submission deadline",
+    "→ Leads to: Commission decision (Nov/Dec 2026)",
+    "→ SC15 / archive"
+  ),
+  stringsAsFactors = FALSE
+)
+
+at_a_glance |>
+  gt() |>
+  cols_label(
+    meeting = "Meeting",
+    date = "Date",
+    topic = "Topic",
+    milestone = "Key Milestone"
+  ) |>
+  cols_align(align = "left", columns = everything()) |>
+  cols_width(
+    meeting ~ px(100),
+    date ~ px(230),
+    topic ~ px(390),
+    milestone ~ px(540)
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#203b6d"),
+      cell_text(color = "white", weight = "bold")
+    ),
+    locations = cells_column_labels(everything())
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#c9d6e8"),
+      cell_text(color = "#203b6d", weight = "bold")
+    ),
+    locations = cells_body(columns = meeting)
+  ) |>
+  tab_style(
+    style = cell_text(color = "#1a7c73"),
+    locations = cells_body(columns = milestone)
+  ) |>
+  tab_style(
+    style = list(cell_borders(sides = "all", color = "#a7c2df", weight = px(1))),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(6),
+    column_labels.padding = px(6),
+    table.border.top.color = "#a7c2df",
+    table.border.bottom.color = "#a7c2df"
+  )
+```
+
+*Regular = 2nd Thursday of month. Extra = milestone-driven additional call.*
+
+**2026 PROGRAMME MILESTONES (FOR REFERENCE)**
+
+```{r}
+#| label: tbl-programme-milestones
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gt)
+
+milestones <- data.frame(
+  month = c("May 2026", "Late May 2026", "Jun 15–19", "Sep 2026", "Nov 2026"),
+  event = c(
+    "Benchmark Workshop — Lima (Peru)",
+    "SC Intersessional meeting",
+    "MSE Workshop — Wageningen (WMR/NL)",
+    "SC14 — Scientific Committee",
+    "WP4 final deliverable"
+  ),
+  deliverable = c(
+    "Candidate assessment models",
+    "Approved OM for MSE",
+    "CMP shortlist",
+    "CMP recommendation",
+    "Technical report + source code"
+  ),
+  output_for = c(
+    "SC Intersessional",
+    "Wageningen workshop",
+    "SC14 document",
+    "Commission decision",
+    "SC15 / archive"
+  ),
+  stringsAsFactors = FALSE
+)
+
+milestones |>
+  gt() |>
+  cols_label(
+    month = "Month",
+    event = "Event",
+    deliverable = "Deliverable",
+    output_for = "Output for"
+  ) |>
+  cols_align(align = "left", columns = everything()) |>
+  cols_width(
+    month ~ px(180),
+    event ~ px(390),
+    deliverable ~ px(380),
+    output_for ~ px(270)
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#203b6d"),
+      cell_text(color = "white", weight = "bold")
+    ),
+    locations = cells_column_labels(everything())
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#f0e9d6"),
+      cell_text(color = "#d48a07", weight = "bold")
+    ),
+    locations = cells_body(columns = month)
+  ) |>
+  tab_style(
+    style = cell_text(color = "#1a7c73"),
+    locations = cells_body(columns = output_for)
+  ) |>
+  tab_style(
+    style = list(cell_borders(sides = "all", color = "#a7c2df", weight = px(1))),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(6),
+    column_labels.padding = px(6),
+    table.border.top.color = "#a7c2df",
+    table.border.bottom.color = "#a7c2df"
+  )
+```
+
+**  **
+
+**SPRFMO Jack Mackerel MSE — Technical Group (TG) Session Agenda Plan 2026**
+
+Five 2-hour TG sessions (March–June 2026) leading to the Lima Benchmark (early May) and the Wageningen MSE Workshop (16 June). Each session covers topics for discussion and decisions; where consensus cannot be reached, the decision is deferred one session. Based on Carruthers et al. (2024) MSE roadmap phases.
+
+**Colour legend:** White = discussion topics <span style="color:#9a7b00;">Yellow = items requiring decision</span> <span style="color:#666666;">Grey = pre-meeting preparation</span> <span style="color:#1f5fae;">Blue = linked working papers</span>
+
+```{r}
+#| label: tbl-tg-session-plan
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gt)
+
+bullet_list <- function(items, strong = FALSE) {
+  prefix <- if (strong) "<li><strong>" else "<li>"
+  suffix <- if (strong) "</strong></li>" else "</li>"
+  paste0(
+    "<ul style='margin:0; padding-left:1.1em;'>",
+    paste0(prefix, items, suffix, collapse = ""),
+    "</ul>"
+  )
+}
+
+agenda <- data.frame(
+  session = c(
+    "TG-01  \u2014  26 Mar 2026 15:00 CET",
+    "TG-02  \u2014  9 Apr 2026 15:00 CEST",
+    "TG-03  \u2014  30 Apr 2026 15:00 CEST",
+    "TG-04  \u2014  28 May 2026 15:00 CEST",
+    "TG-05  \u2014  11 Jun 2026 15:00 CEST"
+  ),
+  tc = c("1", "2", "3", "4", "5"),
+  date = c(
+    "26 Mar<br>2026<br>15:00<br>CET",
+    "9 Apr<br>2026<br>15:00<br>CEST",
+    "30 Apr<br>2026<br>15:00<br>CEST",
+    "28 May<br>2026<br>15:00<br>CEST",
+    "11 Jun<br>2026<br>15:00<br>CEST"
+  ),
+  main = c(
+    bullet_list(c(
+      "Review & endorse working paper plan (10 WPs: Benchmark, Wageningen, SC14)",
+      "Sequence and allocation of technical topics across TG-02 to TG-05",
+      "Identify which decisions need two sessions (prepare \u2192 conclude)"
+    )),
+    bullet_list(c(
+      "Selectivity: block-based alternatives (BM-01 \u00a76.1) vs time-varying; fleet implications",
+      "Reference points: fixed RPs vs dynamic BMSY/FMSY \u2014 pros, cons, RFMO precedent",
+      "S-R alternatives: simplified options (single BH, regime variants) from BM-01 \u00a76.2 \u2014 initial reaction",
+      "Indices (BM-03): inventory of all 7, CPUE standardisation, index\u2013biomass proportionality",
+      "Uncertainty dimensions most consequential for long-term projections"
+    )),
+    bullet_list(c(
+      "CONCLUDE selectivity: agree block structure(s) for OM conditioning",
+      "CONCLUDE reference points: agree fixed benchmark RPs; document rationale",
+      "Far North treatment (BM-01 \u00a76.4): options for h1/h2 consistency",
+      "OM grid design (BM-04): reference set vs robustness set; which uncertainty axes in each tier",
+      "Benchmark handoff: define minimum outputs needed for TG-04 to proceed"
+    )),
+    bullet_list(c(
+      "Lima Benchmark debrief: model simplification, indices, OM design \u2014 what was agreed and what remains open",
+      "CRITICAL FORK: Recondition on Benchmark OM outputs OR proceed with SC13-based OM",
+      "Stock-hypothesis: using base case + robustness tests to derive advice; attempt consensus",
+      "Performance metrics (MSE-02): conservation (P(B<BLIM), P(B<BMSY)), yield (avg catch, AAV), stability metrics",
+      "MP families: candidate model-free (DLMtool) and model-based (multi-index, surplus production)"
+    )),
+    bullet_list(c(
+      "CONCLUDE stock-hypothesis: close from TG-04 (or confirm fallback)",
+      "CONCLUDE performance metrics: finalise metric list, time horizons, risk tolerance for Wageningen",
+      "MP specifications (MSE-01): technical freeze \u2014 data streams, tuning targets, HCR, Buffer/K60",
+      "Robustness scenario matrix: finalise all scenarios entering Wageningen (MSE-03)",
+      "Cross-platform validation: FLR vs RTMB/OpenMSE \u2014 metrics, responsibilities (WMR/CHL/PER), timeline",
+      "Wageningen logistics: trade-off format (Slick, worm plots, Kobe-style); decision-making protocol"
+    ))
+  ),
+  decision = c(
+    bullet_list(c(
+      "Endorse WP plan; confirm all lead authors (BM-03 needs volunteer)",
+      "Agree topic schedule TG-02 through TG-05 \u2014 frames all subsequent work"
+    ), strong = TRUE),
+    bullet_list(c(
+      "Discuss selectivity block options \u2014 narrow to \u22642 candidates (conclude TG-03)",
+      "Discuss reference point approach \u2014 identify preferred direction (conclude TG-03)",
+      "Confirm BM-03 lead and scope; agree index standardisation methodology"
+    ), strong = TRUE),
+    bullet_list(c(
+      "Agree selectivity block structure for OM (carried from TG-02)",
+      "Agree fixed reference point approach (carried from TG-02)",
+      "Agree harmonised Far North treatment for both stock hypotheses",
+      "Agree OM grid structure: axes, tiers (reference set vs robustness set)",
+      "Agree criteria for OM reconditioning decision at TG-04"
+    ), strong = TRUE),
+    bullet_list(c(
+      "CRITICAL: Recondition OM on Benchmark outputs OR proceed with SC13-based OM \u2014 gates Wageningen scope",
+      "Agree S-R priors (steepness, \u03c3R) and recruitment regime treatment across all OMs",
+      "Discuss stock-hypothesis treatment for advice \u2014 to conclude at TG-05",
+      "Endorse draft performance metrics and time horizons (5/10/20+ yr) \u2014 to finalise at TG-05"
+    ), strong = TRUE),
+    bullet_list(c(
+      "Conclude stock-hypothesis (from TG-04)",
+      "Finalise performance metrics list, time horizons and risk tolerance",
+      "Freeze MP specifications: no new MPs added after this TG",
+      "Agree complete robustness scenario matrix (reference set + robustness set)",
+      "Agree cross-platform validation protocol and assign responsibilities",
+      "Agree Wageningen communication and decision-making format"
+    ), strong = TRUE)
+  ),
+  prep = c(
+    "<em>Chair circulates: BM-01 draft, BM-02 draft, WP plan, Carruthers roadmap summary, proposed topic allocation. All \u22655 working days before.</em>",
+    "<em>BM-01 \u00a76.1\u20136.3 fitted diagnostics; BM-03 outline; updated topic schedule from TG-01</em>",
+    "<em>BM-01 \u00a76.4 draft; BM-03 first full draft; BM-04 outline with OM grid sketch; Chair circulates 'Benchmark handoff checklist'</em>",
+    "<em>Lima Benchmark summary circulated after meeting; BM MSE-02 draft performance metrics</em>",
+    "<em>Full drafts MSE-01 and MSE-03; Slick/trade-off prototype if available; updated OM status note from WMR</em>"
+  ),
+  wps = c(
+    "BM-01<br>BM-02<br>Plan doc",
+    "BM-01<br>BM-03",
+    "BM-01<br>BM-03<br>BM-04",
+    "BM-04<br>MSE-02<br>BM-01 outcomes",
+    "MSE-01<br>MSE-02<br>MSE-03"
+  ),
+  stringsAsFactors = FALSE
+)
+
+agenda |>
+  gt(groupname_col = "session") |>
+  cols_label(
+    tc = "TC",
+    date = "Date",
+    main = "Main Topics for Discussion",
+    decision = "Topics Requiring Decision",
+    prep = "Pre-meeting Prep",
+    wps = "WPs"
+  ) |>
+  fmt_markdown(columns = c(date, main, decision, prep, wps)) |>
+  cols_align(align = "center", columns = c(tc, date, wps)) |>
+  cols_align(align = "left", columns = c(main, decision, prep)) |>
+  cols_width(
+    tc ~ px(42),
+    date ~ px(95),
+    main ~ px(380),
+    decision ~ px(320),
+    prep ~ px(290),
+    wps ~ px(90)
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#203b6d"),
+      cell_text(color = "white", weight = "bold")
+    ),
+    locations = cells_column_labels(everything())
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#203b6d"),
+      cell_text(color = "white", weight = "bold", align = "center")
+    ),
+    locations = cells_row_groups()
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#fff4bf"),
+    locations = cells_body(columns = decision)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#efefef"),
+    locations = cells_body(columns = prep)
+  ) |>
+  tab_style(
+    style = cell_text(color = "#1f5fae", weight = "bold"),
+    locations = cells_body(columns = wps)
+  ) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(columns = tc)
+  ) |>
+  tab_style(
+    style = list(cell_borders(sides = "all", color = "#bfbfbf", weight = px(1))),
+    locations = cells_body(columns = everything())
+  ) |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(12),
+    data_row.padding = px(3),
+    row_group.padding = px(2),
+    column_labels.padding = px(4),
+    table.border.top.color = "#bfbfbf",
+    table.border.bottom.color = "#bfbfbf"
+  )
+```
+
+**Notes:** *(1) If Lima Benchmark endorses reconditioning the OM, TG-04 agenda must adjust to incorporate benchmark outcomes before Wageningen. (2) The stock-hypothesis weighting decision (TG-04) is a potential sticking point — plan extra time or a dedicated sub-group call if no consensus at TG-03. (3) All working paper drafts should be circulated at least 5 working days before each TG.*

@@ -1,5 +1,8 @@
 ---
 title: "JJM Assessment Documents"
+format:
+  html:
+    number-sections: false
 ---
 
 {{< include _includes/sprfmo-banner.html >}}
@@ -12,17 +15,28 @@ title: "JJM Assessment Documents"
 
 This site collects the main Quarto documents in the `doc/` directory and renders them for direct browsing through GitHub Pages.
 
-The current published documents are:
+## SCW16 preparations
 
-1. [SCW16/ToR](JMWG_Benchmark_ToR.html) ([PDF](JMWG_Benchmark_ToR.pdf), [DOCX](JMWG_Benchmark_ToR.docx))
-2. [SCW16/Paper-01](SCW16-Paper-01.html) ([PDF](SCW16-Paper-01.pdf), [DOCX](SCW16-Paper-01.docx))
-3. [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026v2.html) ([PDF](JMWG-Meeting%20report-01-2026v2.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
-4. [CPUE Meta-Analysis (2022-2025)](SPRFMO_CPUE_JackMackerel_MetaAnalysis.html) ([PDF](SPRFMO_CPUE_JackMackerel_MetaAnalysis.pdf))
-5. [SC13 Assessment Update](SC13.html)
-6. [Helper Scripts Guide](helper_scripts_guide.html)
-7. [User Guide](userguide/)
-8. [Tutorial Guide](tutorial/)
-9. [Archive](archive/)
+  - [JMWG 2026 Plan](JMWG-2026-plan.html) ([DOCX](JMWG-2026-plan.docx), [QMD](JMWG-2026-plan.qmd))
+
+  - [SCW16/ToR](JMWG_Benchmark_ToR.html) ([PDF](JMWG_Benchmark_ToR.pdf), [DOCX](JMWG_Benchmark_ToR.docx))
+
+### Draft SCW16 papers
+
+  - [SCW16/Paper-01](SCW16-Paper-01.html) ([PDF](SCW16-Paper-01.pdf), [DOCX](SCW16-Paper-01.docx))
+
+  - [SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)](SCW16-Paper-03-CPUE_MetaAnalysis.html) ([QMD](SCW16-Paper-03-CPUE_MetaAnalysis.qmd))
+
+### Prep meeting report
+
+[JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
+
+## Other background reports
+- [SC13 Assessment Update](SC13.html)
+- [Helper Scripts Guide](helper_scripts_guide.html)
+- [User Guide](userguide/)
+- [Tutorial Guide](tutorial/)
+- [Archive](archive/)
 
 # Document Guide
 
@@ -36,9 +50,9 @@ This is the main benchmark working paper, tracked as `SCW16-Paper-01.qmd`, with 
 
 ## JMWG Meeting report 01-2026
 
-These meeting notes are currently published from `JMWG-Meeting report-01-2026.qmd` as the `v2` English HTML, PDF, and DOCX outputs.
+These meeting notes are currently published from `JMWG-Meeting report-01-2026.qmd` as HTML, PDF, and DOCX outputs.
 
-## CPUE Meta-Analysis (2022-2025)
+## SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)
 
 This document compiles CPUE-related SPRFMO meeting papers from SC10 through SC13 into a single review document.
 

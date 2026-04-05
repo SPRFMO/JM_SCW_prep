@@ -1,8 +1,8 @@
 ---
-title: "JMWG MSE Task Team Meeting 01/2026"
+title: "JMWG Meeting 01/2026"
 format:
   html:
-    output-file: "JMWG-Meeting report-01-2026v2.html"
+    output-file: "JMWG-Meeting report-01-2026.html"
     self-contained: true
     lightbox: true
     html-math-method: katex
@@ -13,7 +13,7 @@ format:
     number-sections: true
     number-depth: 2
   pdf:
-    output-file: "JMWG-Meeting report-01-2026v2.pdf"
+    output-file: "JMWG-Meeting report-01-2026.pdf"
     number-sections: true
     number-depth: 2
     title-block: false
@@ -79,7 +79,7 @@ date_stamp <- format(Sys.Date(), "%d %B %Y")
 
 ```{=html}
 <div style="font-style: italic; margin-top: 0.5rem;">Meeting report 01-2026</div>
-<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Meeting%20report-01-2026v2.pdf">PDF-rendered version</a> | <a href="JMWG-Meeting%20report-01-2026v2.docx">MS Word version</a></div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Meeting%20report-01-2026.pdf">PDF-rendered version</a> | <a href="JMWG-Meeting%20report-01-2026v2.docx">MS Word version</a></div>
 ```
 
 ```{=html}
