@@ -216,7 +216,7 @@ Five 2-hour TG sessions (March–June 2026) leading to the Lima Benchmark (early
 library(gt)
 
 bullet_list <- function(items, strong = FALSE) {
-  prefix <- if (strong) "<li><strong>" else "<li>"
+  prefix <- if (strong) "<li style='margin:0 0 0.2em 0;'><strong>" else "<li style='margin:0 0 0.2em 0;'>"
   suffix <- if (strong) "</strong></li>" else "</li>"
   paste0(
     "<ul style='margin:0; padding-left:1.1em;'>",
@@ -248,17 +248,17 @@ agenda <- data.frame(
       "Identify which decisions need two sessions (prepare \u2192 conclude)"
     )),
     bullet_list(c(
-      "Selectivity: block-based alternatives (BM-01 \u00a76.1) vs time-varying; fleet implications",
+      "Selectivity: block-based alternatives (SCW16-01 \u00a76.1) vs time-varying; fleet implications",
       "Reference points: fixed RPs vs dynamic BMSY/FMSY \u2014 pros, cons, RFMO precedent",
-      "S-R alternatives: simplified options (single BH, regime variants) from BM-01 \u00a76.2 \u2014 initial reaction",
-      "Indices (BM-03): inventory of all 7, CPUE standardisation, index\u2013biomass proportionality",
+      "S-R alternatives: simplified options (single BH, regime variants) from SCW16-01 \u00a76.2 \u2014 initial reaction",
+      "Indices (SCW16-03): inventory of all 7, CPUE standardisation, index\u2013biomass proportionality",
       "Uncertainty dimensions most consequential for long-term projections"
     )),
     bullet_list(c(
       "CONCLUDE selectivity: agree block structure(s) for OM conditioning",
       "CONCLUDE reference points: agree fixed benchmark RPs; document rationale",
-      "Far North treatment (BM-01 \u00a76.4): options for h1/h2 consistency",
-      "OM grid design (BM-04): reference set vs robustness set; which uncertainty axes in each tier",
+      "Far North treatment (SCW16-01 \u00a76.4): options for h1/h2 consistency",
+      "OM grid design (SCW16-04): reference set vs robustness set; which uncertainty axes in each tier",
       "Benchmark handoff: define minimum outputs needed for TG-04 to proceed"
     )),
     bullet_list(c(
@@ -279,13 +279,13 @@ agenda <- data.frame(
   ),
   decision = c(
     bullet_list(c(
-      "Endorse WP plan; confirm all lead authors (BM-03 needs volunteer)",
+      "Endorse WP plan; confirm all lead authors (SCW16-03 needs volunteer)",
       "Agree topic schedule TG-02 through TG-05 \u2014 frames all subsequent work"
     ), strong = TRUE),
     bullet_list(c(
       "Discuss selectivity block options \u2014 narrow to \u22642 candidates (conclude TG-03)",
       "Discuss reference point approach \u2014 identify preferred direction (conclude TG-03)",
-      "Confirm BM-03 lead and scope; agree index standardisation methodology"
+      "Confirm SCW16-03 lead and scope; agree index standardisation methodology"
     ), strong = TRUE),
     bullet_list(c(
       "Agree selectivity block structure for OM (carried from TG-02)",
@@ -310,17 +310,17 @@ agenda <- data.frame(
     ), strong = TRUE)
   ),
   prep = c(
-    "<em>Chair circulates: BM-01 draft, BM-02 draft, WP plan, Carruthers roadmap summary, proposed topic allocation. All \u22655 working days before.</em>",
-    "<em>BM-01 \u00a76.1\u20136.3 fitted diagnostics; BM-03 outline; updated topic schedule from TG-01</em>",
-    "<em>BM-01 \u00a76.4 draft; BM-03 first full draft; BM-04 outline with OM grid sketch; Chair circulates 'Benchmark handoff checklist'</em>",
+    "<em>Chair circulates: SCW16-01 draft, SCW16-02 draft, WP plan, Carruthers roadmap summary, proposed topic allocation. All \u22655 working days before.</em>",
+    "<em>SCW16-01 \u00a76.1\u20136.3 fitted diagnostics; SCW16-03 outline; updated topic schedule from TG-01</em>",
+    "<em>SCW16-01 \u00a76.4 draft; SCW16-03 first full draft; SCW16-04 outline with OM grid sketch; Chair circulates 'Benchmark handoff checklist'</em>",
     "<em>Lima Benchmark summary circulated after meeting; BM MSE-02 draft performance metrics</em>",
     "<em>Full drafts MSE-01 and MSE-03; Slick/trade-off prototype if available; updated OM status note from WMR</em>"
   ),
   wps = c(
-    "BM-01<br>BM-02<br>Plan doc",
-    "BM-01<br>BM-03",
-    "BM-01<br>BM-03<br>BM-04",
-    "BM-04<br>MSE-02<br>BM-01 outcomes",
+    "SCW16-01<br>SCW16-02<br>Plan doc",
+    "SCW16-01<br>SCW16-03",
+    "SCW16-01<br>SCW16-03<br>SCW16-04",
+    "SCW16-04<br>MSE-02<br>SCW16-01 outcomes",
     "MSE-01<br>MSE-02<br>MSE-03"
   ),
   stringsAsFactors = FALSE
@@ -336,7 +336,10 @@ agenda |>
     prep = "Pre-meeting Prep",
     wps = "WPs"
   ) |>
-  fmt_markdown(columns = c(date, main, decision, prep, wps)) |>
+  fmt(
+    columns = c(date, main, decision, prep, wps),
+    fns = function(x) lapply(x, html)
+  ) |>
   cols_align(align = "center", columns = c(tc, date, wps)) |>
   cols_align(align = "left", columns = c(main, decision, prep)) |>
   cols_width(
@@ -372,6 +375,14 @@ agenda |>
   tab_style(
     style = cell_text(color = "#1f5fae", weight = "bold"),
     locations = cells_body(columns = wps)
+  ) |>
+  tab_style(
+    style = cell_text(align = "left"),
+    locations = cells_body(columns = c(main, decision, prep))
+  ) |>
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body(columns = c(tc, date, wps))
   ) |>
   tab_style(
     style = cell_text(weight = "bold"),
