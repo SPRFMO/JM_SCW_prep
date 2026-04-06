@@ -82,6 +82,34 @@ execute:
 
 ---
 
+## Background for 2026 Benchmark Priorities
+
+Refining and analysing abundance indices is a high-priority focus for the upcoming jack mackerel benchmark workshop, which the Scientific Committee recommended be held in Lima, Peru, in 2026. To support robust stock assessment outcomes, the SC identified specific areas where index standardisation, interpretation, and model use should be improved.
+
+**Addressing conflicting trends and sensitivities**
+
+- Recent updates showed conflicting index signals. The updated offshore fleet CPUE index declined to a very low level in 2024, while Peruvian CPUE and Chilean acoustic indicators were comparatively more optimistic.
+- Sensitivity analyses (including leave-one-out and leave-one-in runs) indicated strong dependence of assessment results on the index set included.
+- Benchmark work will include a comprehensive comparison of CPUE indices and acoustic biomass series, including review of sampling levels and expansion protocols for the South-Central and Northern Chile surveys.
+
+**Correcting for fish behaviour and spatial shifts**
+
+- The south-central Chile purse-seine CPUE may overestimate abundance under recent nearshore concentration of fish.
+- A corrected CPUE approach based on the linear relationship between CPUE and acoustic distribution area has been proposed.
+- This correction substantially lowers recent index levels (approximately two-thirds in recent years), supporting precautionary interpretation of uncorrected CPUE.
+
+**Advanced spatio-temporal modelling**
+
+- A key benchmark topic is evaluating advanced standardisation approaches (e.g., `sdmTMB`, `INLA`) that can model spatio-temporal autocorrelation and incorporate habitat/environmental covariates such as SST and chlorophyll-a.
+- The workshop may also evaluate integrated frameworks (e.g., `tinyVAST`) that can combine heterogeneous fleet and survey data sources in a coherent spatio-temporal structure.
+
+**Other high-sensitivity model settings**
+
+- In addition to abundance indices, the benchmark will address highly sensitive structural assumptions, including long- and short-term productivity periods, stock-recruitment steepness, and selectivity configurations.
+- Current estimates of MSY and related reference points have been shown to be sensitive to these settings, reinforcing the need for explicit benchmark guidance.
+
+---
+
 ## 1. Overview Table: All Relevant CPUE Papers (SC10–SC13)
 
 \footnotesize
