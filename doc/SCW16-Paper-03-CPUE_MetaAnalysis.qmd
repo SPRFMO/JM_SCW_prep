@@ -78,10 +78,6 @@ execute:
 **Compiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings**
 *Prepared: March 2026 | All PDFs accessed directly via sprfmo.int*
 
-> **Note on Peru document numbering:** Peru submits two annual reports per SC meeting — one for the SPRFMO Area and one for the Area of National Jurisdiction (ANJ). Document numbers shift each year depending on the full ordered list of country reports. The correct SPRFMO Area document numbers are: SC10-Doc26, SC11-Doc27, SC12-Doc26, and SC13-Doc28. Note that SC13-Doc25 is Liberia, not Peru.
-
----
-
 ## Background for 2026 Benchmark Priorities
 
 Refining and analysing abundance indices is a high-priority focus for the upcoming jack mackerel benchmark workshop, which the Scientific Committee recommended be held in Lima, Peru, in 2026. To support robust stock assessment outcomes, the SC identified specific areas where index standardisation, interpretation, and model use should be improved.
@@ -108,7 +104,10 @@ Refining and analysing abundance indices is a high-priority focus for the upcomi
 - In addition to abundance indices, the benchmark will address highly sensitive structural assumptions, including long- and short-term productivity periods, stock-recruitment steepness, and selectivity configurations.
 - Current estimates of MSY and related reference points have been shown to be sensitive to these settings, reinforcing the need for explicit benchmark guidance.
 
+> **Note on Peru document numbering:** Peru submits two annual reports per SC meeting — one for the SPRFMO Area and one for the Area of National Jurisdiction (ANJ). Document numbers shift each year depending on the full ordered list of country reports. The correct SPRFMO Area document numbers are: SC10-Doc26, SC11-Doc27, SC12-Doc26, and SC13-Doc28. Note that SC13-Doc25 is Liberia, not Peru.
+
 ---
+
 
 ## 1. Overview Table: All Relevant CPUE Papers (SC10–SC13)
 
