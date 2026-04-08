@@ -1135,6 +1135,8 @@ A fourth option is to harmonize how the Far North observations are treated acros
 
 As documented in Section 4, the current difference between `h1` and `h2` is not purely about stock allocation. It also reflects a very different degree of flexibility in Far North fleet selectivity: `h1_1.14` allows annual variation from 1981, while `h2_1.14` uses a much simpler two-regime structure centred on 2002. This confound makes it difficult to attribute differences in MSE outcomes between `h1` and `h2` to stock structure as opposed to selectivity specification.
 
+Additional input from Peru suggests that the 2002 change should be viewed as the start of a transition in Far North selectivity rather than as a single instantaneous break. A plausible mechanism is the regulatory shift toward direct human consumption (DHC), associated with changes in fleet composition, freezing capacity, mesh size, fishing areas, and school-selection practice. Under that interpretation, 2002-2013 is a transition period with more variable size modes, while 2014-2025 shows a clearer shift toward larger sizes, with a stronger increase from about 2018 onward.
+
 ::: {.callout-note}
 ## Note (I. Mosqueira)
 
@@ -1155,19 +1157,16 @@ be incorporated as candidate robustness scenarios in later MSE phases if data be
 available to support alternative parameterizations.
 :::
 
-Implementing the selectivity harmonization will likely require re-fitting `h1_1.14` with 
-a simplified Far North selectivity structure that mirrors the `h2` treatment, or equivalently 
-re-fitting `h2_1.14` with a more flexible Far North selectivity structure analogous to the 
-`h1` treatment. The working group should discuss which direction of harmonization is 
-most defensible given the available data and model diagnostics.
+Taken together, this supports allowing Far North selectivity to vary over time as a more realistic representation than a strict two-regime split centred on 2002 (as in `h2_1.14`). For MSE implementation, a block-based treatment is a practical compromise between realism and tractability. A candidate structure is pre-2002, 2002-2013, and 2014-2025, with an optional additional split near 2018 if diagnostics support it.
 
 To examine that issue more directly, I fitted two harmonized variants using the 
 reduced-index data configuration. Model `h1_2.02` is `h1_2.00` with the Far North fishery
 selectivity simplified to the same 2002 split used in `h2_1.14`, while `h2_2.02` is 
 `h2_1.14` rebuilt on the reduced-index `2.00.dat` data set and with the same Far North
-selectivity treatment. The resulting likelihood comparison is shown in 
-@tbl-north-harmonized-like-components, and the corresponding retained-index fits are
-shown in @fig-harmonized-index-fits.
+selectivity treatment. The resulting comparison is assessed using likelihood components
+(@tbl-north-harmonized-like-components), retained-index fits (@fig-harmonized-index-fits),
+and system-level spawning biomass and recruitment trajectories
+(@fig-harmonized-ssb; @fig-harmonized-rec).
 
 ```{r tbl-north-harmonized-like-components}
 #| tbl-cap: "Negative-log-likelihood components and estimated parameter counts for the reduced-index single-stock model (`h1_2.00`), the harmonized single-stock variant (`h1_2.02`), and the harmonized two-stock reduced-index variant (`h2_2.02`). The aggregate and component index rows include only the retained comparable series: Acoustic North, Chile CPUE, Peru CPUE, and Offshore CPUE."
@@ -1186,6 +1185,80 @@ print(build_index_fit_plot(list(
   "h1_2.02" = h1_harm,
   "h2_2.02" = h2_harm
 )))
+```
+
+To complement the likelihood and retained-index diagnostics, @fig-harmonized-ssb and
+@fig-harmonized-rec compare the fitted system-level spawning biomass and recruitment
+trajectories across the same three models. For `h2_2.02`, the plotted values are the sum
+across the two modeled stocks so that the trajectories are directly comparable with
+the single-stock runs.
+
+```{r fig-harmonized-ssb}
+#| fig-cap: "System-level spawning biomass trajectories for `h1_2.00`, `h1_2.02`, and `h2_2.02`. For `h2_2.02`, values are the sum of stock-1 and stock-2 spawning biomass."
+#| fig-width: 8
+#| fig-height: 4.8
+extract_total_trajectory <- function(mod, var = c("SSB", "R")) {
+  var <- match.arg(var)
+  out_list <- lapply(mod[[1]]$output, function(comp) {
+    x <- comp[[var]]
+    if (is.null(x)) {
+      return(NULL)
+    }
+    data.frame(
+      year = as.numeric(x[, 1]),
+      value = as.numeric(x[, 2]),
+      stringsAsFactors = FALSE
+    )
+  })
+  out_list <- Filter(Negate(is.null), out_list)
+  if (!length(out_list)) {
+    return(NULL)
+  }
+  if (length(out_list) == 1) {
+    return(out_list[[1]])
+  }
+
+  out <- out_list[[1]]
+  for (i in 2:length(out_list)) {
+    names(out_list[[i]]) <- c("year", paste0("value_", i))
+    out <- merge(out, out_list[[i]], by = "year", all = TRUE)
+  }
+  value_cols <- grep("^value", names(out), value = TRUE)
+  out$value <- rowSums(out[, value_cols, drop = FALSE], na.rm = TRUE)
+  out <- out[order(out$year), c("year", "value")]
+  out
+}
+
+harm_ssb_df <- rbind(
+  transform(extract_total_trajectory(h1_red, "SSB"), model = "h1_2.00"),
+  transform(extract_total_trajectory(h1_harm, "SSB"), model = "h1_2.02"),
+  transform(extract_total_trajectory(h2_harm, "SSB"), model = "h2_2.02")
+)
+
+ggplot(harm_ssb_df, aes(year, value / 1000, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.02" = "#2a7f62", "h2_2.02" = "#9c2f2f")) +
+  labs(x = "Year", y = "Spawning biomass (kt)", color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
+```
+
+```{r fig-harmonized-rec}
+#| fig-cap: "System-level recruitment trajectories for `h1_2.00`, `h1_2.02`, and `h2_2.02`. For `h2_2.02`, values are the sum of stock-1 and stock-2 recruitment."
+#| fig-width: 8
+#| fig-height: 4.8
+harm_rec_df <- rbind(
+  transform(extract_total_trajectory(h1_red, "R"), model = "h1_2.00"),
+  transform(extract_total_trajectory(h1_harm, "R"), model = "h1_2.02"),
+  transform(extract_total_trajectory(h2_harm, "R"), model = "h2_2.02")
+)
+
+ggplot(harm_rec_df, aes(year, value / 1e6, color = model)) +
+  geom_line(linewidth = 0.9) +
+  scale_color_manual(values = c("h1_2.00" = "#d07c00", "h1_2.02" = "#2a7f62", "h2_2.02" = "#9c2f2f")) +
+  labs(x = "Year", y = "Recruitment (millions)", color = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "top")
 ```
 
 ## Simplified Recruitment Alternatives
@@ -1555,7 +1628,7 @@ The evaluations presented here are intended as discussion items leading into the
 2. **A broad fishery-block simplification is too restrictive if applied everywhere at once.** Model `h1_2.01` worsens the fit across multiple observation types simultaneously, including retained indices, fishery length compositions, and especially the South-Central Chile and North Chile age compositions. That is a stronger degradation than would be desirable for a primary operating-model simplification.
 3. **The South-Central Chile fishery is the main driver of that deterioration.** Restoring annual selectivity flexibility only for that fleet in `h1_2.01.1` recovers much of the lost fit and pulls the spawning biomass trajectory back toward `h1_2.00`. By contrast, the five-block alternative `h1_2.01.2` remains too restrictive: it gives back much of the gain in fit, behaves more like `h1_2.01` than `h1_2.01.1`, and leaves broader terminal spawning-biomass uncertainty.
 4. **Allowing time-varying index catchability can recover retained-index fit, but it changes where the flexibility sits.** Model `h1_2.01.3` gives the best retained comparable index fit among the `h1_2.01`-based variants and shows that part of the tension can be absorbed by drifting q. However, it does so by moving flexibility from selectivity into time-varying catchability, with a lower terminal spawning-biomass distribution than the other S-C Chile variants. That makes `h1_2.01.3` more persuasive as a robustness case than as a primary operating-model simplification.
-5. **Far North selectivity harmonization is worthwhile before comparing `h1` and `h2`.** The harmonized single-stock model `h1_2.02` stays broadly close to `h1_2.00`, while `h2_2.02` provides a cleaner two-stock comparator because it uses the same reduced-index data treatment and a similar simplified Far North selectivity structure. That makes the `h1_2.02` versus `h2_2.02` comparison easier to interpret as a stock-structure contrast rather than a selectivity-regularization contrast.
+5. **Far North selectivity harmonization is worthwhile before comparing `h1` and `h2`, and should be judged on dynamics as well as fit.** The harmonized single-stock model `h1_2.02` stays broadly close to `h1_2.00`, while `h2_2.02` provides a cleaner two-stock comparator because it uses the same reduced-index data treatment and aligned Far North selectivity structure. The `h1_2.02` versus `h2_2.02` contrast should therefore be interpreted using likelihoods together with spawning biomass and recruitment trajectories, not likelihoods alone.
 6. **Simplifying the stock-2 recruitment structure in `h2` appears feasible, but it changes both fit and interpretation.** Model `h2_2.03` converges cleanly and only modestly worsens the objective function relative to `h2_2.02`, so a single stock-2 relationship looks workable. At the same time, the stock-recruitment comparison now makes clearer that `h2_1.14` and `h2_2.02` estimated stock-2 relationships using restricted hatch-year windows and omitted hatch years `1997-2000`, whereas `h2_2.03` removes that gap by fitting one relationship across the combined period. The choice is therefore not only about the number of regimes; it also changes which years are allowed to inform the fitted stock-2 stock-recruitment relationship.
 7. **The strongest current operating-model candidates are now better defined.** `h1_2.00` remains a sensible reduced-data baseline, `h1_2.01.1` is the strongest single-stock selectivity simplification tested so far, and `h1_2.02` versus `h2_2.02` provide the most interpretable harmonized single-stock versus two-stock comparison. `h1_2.01.3` is valuable, but primarily as a robustness test for index-standardization and q-variability assumptions.
 8. **The mean-selected-age versus $F_{MSY}$ diagnostic adds a clear selectivity signal.** The phase-space comparison across `h1_2.00`, `h1_2.01`, `h1_2.01.1`, and `h1_2.01.2` shows that shifts in fishery selectivity can move recent-year dynamic $F_{MSY}$ estimates directly, so apparent reference-point changes should not be interpreted as productivity changes alone.

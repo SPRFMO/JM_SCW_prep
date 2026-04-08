@@ -1,968 +1,270 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="dcterms.date" content="2026-04-01">
-
-<title>Visitor Information, SPRFMO Jack Mackerel MSE Workshop – SPRFMO Jack Mackerel Working Group</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visitor Information – SPRFMO JM MSE Workshop</title>
 <style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-</style>
-
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+  :root {
+    --navy:      #003366;
+    --blue:      #0070C0;
+    --lightblue: #D6E4F0;
+    --grey:      #595959;
+    --lgrey:     #F2F7FC;
+    --mgrey:     #D6E4F0;
+    --amber:     #FFF8E7;
+    --amber-bdr: #E6A817;
   }
-}</script>
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  body {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 14px;
+    color: #111;
+    background: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px 28px 60px;
+    line-height: 1.65;
+  }
+
+  /* Title block */
+  .doc-header { text-align: center; padding-bottom: 18px; border-bottom: 4px solid var(--navy); margin-bottom: 22px; }
+  .doc-header h1 { font-size: 2.1em; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .doc-header h2 { font-size: 1.35em; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+  .doc-header .sub { color: var(--grey); font-size: 1em; }
+
+  /* Info boxes */
+  .info-box {
+    background: var(--lgrey);
+    border-left: 5px solid var(--navy);
+    padding: 10px 16px;
+    margin: 14px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.94em;
+  }
+  .info-box.blue  { border-left-color: var(--blue); }
+  .info-box.amber { background: var(--amber); border-left-color: var(--amber-bdr); }
+
+  /* Section headings */
+  h2.sec {
+    font-size: 1.2em; font-weight: 700; color: var(--navy);
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 4px; margin: 30px 0 12px;
+  }
+  h3.sub { font-size: 1.02em; font-weight: 700; color: var(--blue); margin: 18px 0 7px; }
+  h4.step { font-size: 0.96em; font-weight: 700; color: #111; margin: 13px 0 5px; }
+
+  /* Tables */
+  table.info { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.93em; }
+  table.info td { padding: 6px 10px; border: 1px solid #ccc; vertical-align: top; }
+  table.info td.lbl {
+    background: var(--mgrey); font-weight: 700;
+    width: 190px; white-space: nowrap;
+  }
+  table.info tr:nth-child(even) td:not(.lbl) { background: var(--lgrey); }
+  table.info td.amber-cell { background: var(--amber) !important; }
+
+  /* Block-code box */
+  .code-box { border: 2px solid var(--navy); border-radius: 4px; margin: 16px 0; overflow: hidden; }
+  .code-box .hdr { background: var(--navy); color: #fff; font-weight: 700; padding: 8px 14px; font-size: 0.96em; }
+  .code-box .bdy { background: var(--lgrey); padding: 12px 14px; font-size: 0.93em; line-height: 1.7; }
+  .code-box .bdy ol { margin: 8px 0 4px 22px; }
+  .code-hl { font-weight: 700; color: var(--navy); font-size: 1.04em; }
+
+  /* Lists & paragraphs */
+  ul, ol { margin: 5px 0 5px 22px; }
+  li { margin-bottom: 4px; }
+  p  { margin: 7px 0; }
+
+  /* Links */
+  a { color: var(--blue); }
+  a:hover { color: var(--navy); }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 10px; border-top: 2px solid #ccc; text-align: center; font-style: italic; color: var(--grey); font-size: 0.87em; }
+</style>
 </head>
+<body>
 
-<body class="nav-fixed quarto-light">
-
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">SPRFMO Jack Mackerel Working Group</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./JMWG_Benchmark_ToR.html"> 
-<span class="menu-text">SCW16/ToR</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./SCW16-Paper-01.html"> 
-<span class="menu-text">SCW16/Paper-01</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./JMWG-Meeting report-01-2026.html"> 
-<span class="menu-text">Meeting report 01-2026</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./SCW16-Paper-03-CPUE_MetaAnalysis.html"> 
-<span class="menu-text">SCW16/Paper-03</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./SC13.html"> 
-<span class="menu-text">SC13</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./helper_scripts_guide.html"> 
-<span class="menu-text">Script Guide</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#key-addresses" id="toc-key-addresses" class="nav-link active" data-scroll-target="#key-addresses">1. Key Addresses</a></li>
-  <li><a href="#getting-to-wageningen-from-schiphol-airport" id="toc-getting-to-wageningen-from-schiphol-airport" class="nav-link" data-scroll-target="#getting-to-wageningen-from-schiphol-airport">2. Getting to Wageningen from Schiphol Airport</a></li>
-  <li><a href="#daily-travel-hotel-wander-to-wageningen-campus-omnia" id="toc-daily-travel-hotel-wander-to-wageningen-campus-omnia" class="nav-link" data-scroll-target="#daily-travel-hotel-wander-to-wageningen-campus-omnia">3. Daily Travel: Hotel Wander to Wageningen Campus Omnia</a></li>
-  <li><a href="#accommodation" id="toc-accommodation" class="nav-link" data-scroll-target="#accommodation">4. Accommodation</a></li>
-  <li><a href="#workshop-logistics" id="toc-workshop-logistics" class="nav-link" data-scroll-target="#workshop-logistics">5. Workshop Logistics</a></li>
-  <li><a href="#useful-links-and-information" id="toc-useful-links-and-information" class="nav-link" data-scroll-target="#useful-links-and-information">6. Useful Links and Information</a></li>
-  <li><a href="#about-the-workshop" id="toc-about-the-workshop" class="nav-link" data-scroll-target="#about-the-workshop">7. About the Workshop</a></li>
-  </ul>
-</nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Visitor Information, SPRFMO Jack Mackerel MSE Workshop</h1>
+<div class="doc-header">
+  <h1>Visitor Information</h1>
+  <h2>SPRFMO Jack Mackerel MSE Workshop</h2>
+  <div class="sub">15 – 19 June 2026 &nbsp;|&nbsp; Wageningen, The Netherlands</div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 1, 2026</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<style>
-.quarto-title-block {
-  display: none;
-}
-
-.sprfmo-front {
-  margin: 0 0 0.5rem 0;
-}
-
-.sprfmo-banner {
-  display: flex;
-  align-items: stretch;
-  gap: 1.75rem;
-  margin: 0 0 1rem 0;
-}
-
-.sprfmo-mark {
-  flex: 0 0 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: 1.5rem;
-  border-right: 4px solid #1b4576;
-}
-
-.sprfmo-mark img {
-  display: block;
-  width: 150px;
-  max-width: 100%;
-  height: auto;
-}
-
-.sprfmo-copy {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.sprfmo-wordmark {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.5rem, 5.8vw, 4.6rem);
-  line-height: 0.92;
-  letter-spacing: 0.02em;
-  color: #0f4c8a;
-}
-
-.sprfmo-subtitle {
-  margin: 0.15rem 0 1rem 0;
-  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
-  color: #0f4c8a;
-}
-
-.sprfmo-rule {
-  height: 4px;
-  margin: 0 0 0.8rem 0;
-  background: #ea9b1f;
-}
-
-.sprfmo-group {
-  margin: 0;
-  font-size: clamp(0.95rem, 2vw, 1.35rem);
-  line-height: 1.12;
-  font-weight: 700;
-  color: #233f73;
-}
-
-.paper-title {
-  margin: 0.25rem 0 1.75rem 0;
-  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
-  line-height: 1.15;
-  font-weight: 700;
-  color: #1a1a1a;
-}
-
-@media (max-width: 800px) {
-  .sprfmo-banner {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .sprfmo-mark {
-    flex-basis: auto;
-    padding-right: 0;
-    padding-bottom: 1rem;
-    border-right: 0;
-    border-bottom: 4px solid #1b4576;
-  }
-}
-</style>
-
-<div class="sprfmo-front">
-  <div class="sprfmo-banner">
-    <div class="sprfmo-mark" aria-hidden="true">
-      <img src="annex/logo.png" alt="SPRFMO logo">
-    </div>
-    <div class="sprfmo-copy">
-      <h1 class="sprfmo-wordmark">SPRFMO</h1>
-      <div class="sprfmo-subtitle">South Pacific Regional Fisheries Management Organisation</div>
-      <div class="sprfmo-rule"></div>
-      <div class="sprfmo-group">Jack Mackerel Working Group</div>
-    </div>
-  </div>
+<div class="info-box">
+  📅 &nbsp;<strong>Dates:</strong> 15–19 June 2026 &emsp;
+  🕐 &nbsp;<strong>Daily programme:</strong> 09:00 – 17:00 &emsp;
+  🍽️ &nbsp;<strong>Lunch provided daily</strong>
 </div>
-<div class="paper-title">
-  <div>Visitor Information </div>
-   SPRFMO Jack Mackerel MSE Workshop</div>
-<p><strong>SPRFMO Jack Mackerel MSE Workshop</strong><br>
-15-19 June 2026 | Wageningen, The Netherlands</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Dates:</strong> 15-19 June 2026<br>
-<strong>Daily programme:</strong> 09:00-17:00<br>
-<strong>Lunch:</strong> Provided daily</p>
-</div>
-</div>
-<section id="key-addresses" class="level2">
-<h2 class="anchored" data-anchor-id="key-addresses">1. Key Addresses</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Meeting Venue</td>
-<td>Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen<br>Tel: +31 317 484 500</td>
-</tr>
-<tr class="even">
-<td>Recommended Hotel</td>
-<td>Hotel Wander (formerly WICC)<br>Lawickse Allee 9, 6701 AN Wageningen<br>Tel: +31 317 490 133 | <a href="https://hotelwander.nl">hotelwander.nl</a></td>
-</tr>
-<tr class="odd">
-<td>City Centre</td>
-<td>Markt area, 6701 CZ Wageningen<br><em>(restaurants, shops, public transport hub)</em></td>
-</tr>
-<tr class="even">
-<td>Nearest Train Station</td>
-<td>Ede-Wageningen (Ede-Wgn) - around 20 minutes by bus to Wageningen city centre</td>
-</tr>
-<tr class="odd">
-<td>Nearest Airport</td>
-<td>Amsterdam Airport Schiphol (AMS)<br>Evert van de Beekstraat 202, 1118 CP Schiphol</td>
-</tr>
-</tbody>
+
+<!-- 1. KEY ADDRESSES -->
+<h2 class="sec">1.&nbsp;&nbsp;Key Addresses</h2>
+<table class="info">
+  <tr><td class="lbl">Meeting Venue</td><td>Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen<br>Tel: +31 317 484 500</td></tr>
+  <tr><td class="lbl">Recommended Hotel</td><td>Hotel Wander (formerly WICC)<br>Lawickse Allee 9, 6701 AN Wageningen<br>Tel: +31 317 490 133 &nbsp;|&nbsp; <a href="https://hotelwander.nl" target="_blank">hotelwander.nl</a></td></tr>
+  <tr><td class="lbl">City Centre</td><td>Markt area, 6701 CZ Wageningen<br><em>(restaurants, shops, public transport hub)</em></td></tr>
+  <tr><td class="lbl">Nearest Train Station</td><td>Ede-Wageningen (Ede-Wgn) – ~20 min by bus to Wageningen city centre</td></tr>
+  <tr><td class="lbl">Nearest Airport</td><td>Amsterdam Airport Schiphol (AMS)<br>Evert van de Beekstraat 202, 1118 CP Schiphol</td></tr>
 </table>
-</section>
-<section id="getting-to-wageningen-from-schiphol-airport" class="level2">
-<h2 class="anchored" data-anchor-id="getting-to-wageningen-from-schiphol-airport">2. Getting to Wageningen from Schiphol Airport</h2>
+
+<!-- 2. GETTING THERE -->
+<h2 class="sec">2.&nbsp;&nbsp;Getting to Wageningen from Schiphol Airport</h2>
 <p>We strongly recommend travelling by public transport. The journey from Schiphol Airport to Wageningen by train and bus takes approximately <strong>1 hour 30 minutes</strong> and runs frequently throughout the day.</p>
-<section id="by-public-transport-recommended" class="level3">
-<h3 class="anchored" data-anchor-id="by-public-transport-recommended">2.1 By Public Transport (recommended)</h3>
-<section id="step-1---train-schiphol-airport-to-ede-wageningen" class="level4">
-<h4 class="anchored" data-anchor-id="step-1---train-schiphol-airport-to-ede-wageningen">Step 1 - Train: Schiphol Airport to Ede-Wageningen</h4>
+
+<h3 class="sub">2.1&nbsp; By Public Transport (recommended)</h3>
+
+<h4 class="step">Step 1 – Train: Schiphol Airport → Ede-Wageningen</h4>
 <ul>
-<li>Follow signs to the “Railway Station” inside the airport terminal.</li>
-<li>Buy a ticket at the yellow NS vending machines or service desk. You can also pay contactless with a debit/credit card or smartphone by tapping in and out at the yellow OV-chip poles.</li>
-<li>Take the <strong>Intercity (IC) train in the direction of Nijmegen</strong>. Trains run every 30 minutes. Your stop is <strong>Ede-Wageningen</strong> (the 5th station).</li>
-<li>If there is no direct service, take the IC to Utrecht Centraal, change platforms, and board a train towards Arnhem/Nijmegen to Ede-Wageningen.</li>
-<li>Journey time: approximately <strong>60-75 minutes</strong>. Plan your trip at <a href="https://www.ns.nl/en">ns.nl</a> or <a href="https://9292.nl/en">9292.nl</a>.</li>
+  <li>Follow signs to the 'Railway Station' inside the airport terminal.</li>
+  <li>Buy a ticket at the yellow NS vending machines or service desk. You can also pay contactless with a debit/credit card or smartphone by tapping in and out at the yellow OV-chip poles.</li>
+  <li>Take the <strong>Intercity (IC) train in the direction of Nijmegen</strong>. Trains run every 30 minutes. Your stop is <strong>Ede-Wageningen</strong> – the 5th station.</li>
+  <li>If there is no direct service, take the IC to Utrecht Centraal, change platforms, and board a train towards Arnhem/Nijmegen to Ede-Wageningen.</li>
+  <li>Journey time: approximately <strong>60–75 minutes</strong>. Plan your trip at <a href="https://www.ns.nl/en" target="_blank">ns.nl</a> or <a href="https://9292.nl/en" target="_blank">9292.nl</a>.</li>
 </ul>
-</section>
-<section id="step-2a---bus-to-hotel-wander-city-centre" class="level4">
-<h4 class="anchored" data-anchor-id="step-2a---bus-to-hotel-wander-city-centre">Step 2a - Bus to Hotel Wander (city centre)</h4>
+
+<h4 class="step">Step 2a – Bus to Hotel Wander (city centre)</h4>
 <ul>
-<li>From Ede-Wageningen station, exit and take the stairs down; buses depart from the bus bays outside the main entrance.</li>
-<li>Take <strong>Bus 86</strong> towards Wageningen. Alight at <strong>Wageningen, Busstation</strong>. Hotel Wander is a 5-minute walk from the bus station (Lawickse Allee 9).</li>
-<li>Journey time: approximately 20-25 minutes. Buses run every 15-30 minutes.</li>
+  <li>From Ede-Wageningen station, exit and take the stairs down; buses depart from the bus bays outside the main entrance.</li>
+  <li>Take <strong>Bus 86</strong> towards Wageningen. Alight at <strong>Wageningen, Busstation</strong>. Hotel Wander is a 5-minute walk from the bus station (Lawickse Allee 9).</li>
+  <li>Journey time: approximately 20–25 minutes. Buses run every 15–30 minutes.</li>
 </ul>
-</section>
-<section id="step-2b---bus-to-wageningen-campus-omnia-meeting-venue" class="level4">
-<h4 class="anchored" data-anchor-id="step-2b---bus-to-wageningen-campus-omnia-meeting-venue">Step 2b - Bus to Wageningen Campus Omnia (meeting venue)</h4>
+
+<h4 class="step">Step 2b – Bus to Wageningen Campus Omnia (meeting venue)</h4>
 <ul>
-<li>Take <strong>Bus 303 (direction: Campus/Forum)</strong> from Ede-Wageningen station. Alight at <strong>Campus/Forum</strong>. Omnia is a short walk from the stop.</li>
-<li>Journey time from Ede-Wageningen: approximately 25 minutes.</li>
-<li>Tip: Use the <a href="https://9292.nl/en">9292 Journey Planner</a> or <a href="https://www.ns.nl/en/travel-information/ns-app">NS app</a> for live departure times and route options.</li>
+  <li>Take <strong>Bus 303 (direction: Campus/Forum)</strong> from Ede-Wageningen station. Alight at <strong>Campus/Forum</strong>. Omnia is a short walk from the stop.</li>
+  <li>Journey time from Ede-Wageningen: approximately 25 minutes.</li>
+  <li>Tip: Use the <a href="https://9292.nl/en" target="_blank">9292 Journey Planner</a> or <a href="https://www.ns.nl/en/travel-information/ns-app" target="_blank">NS app</a> for live departure times and route options.</li>
 </ul>
-</section>
-</section>
-<section id="by-taxi-alternative" class="level3">
-<h3 class="anchored" data-anchor-id="by-taxi-alternative">2.2 By Taxi (alternative)</h3>
-<p>A direct taxi from Schiphol Airport to Wageningen is possible but expensive (approximately EUR 120-150 for a single ride). If you prefer this option, book in advance through a licensed taxi service.</p>
+
+<h3 class="sub">2.2&nbsp; By Taxi (alternative)</h3>
+<p>A direct taxi from Schiphol Airport to Wageningen is possible but expensive (approximately €120–150 for a single ride). If you prefer this option, book in advance through a licensed taxi service.</p>
 <ul>
-<li>For smaller groups, a taxi from Ede-Wageningen station to Hotel Wander or the campus costs approximately EUR 30-37.</li>
-<li>Recommended taxi company near Ede-Wageningen station: <strong>Panda Taxi</strong> - tel. +31 (0)6 8761 7837 - <a href="https://www.pandataxi.nl">pandataxi.nl</a> (pre-booking required).</li>
+  <li>For smaller groups, a taxi from Ede-Wageningen station to Hotel Wander or the campus costs approximately €30–37.</li>
+  <li>Recommended taxi company near Ede-Wageningen station: <strong>Panda Taxi</strong> – tel. +31 (0)6 8761 7837 – <a href="https://www.pandataxi.nl" target="_blank">pandataxi.nl</a> (pre-booking required).</li>
 </ul>
-</section>
-</section>
-<section id="daily-travel-hotel-wander-to-wageningen-campus-omnia" class="level2">
-<h2 class="anchored" data-anchor-id="daily-travel-hotel-wander-to-wageningen-campus-omnia">3. Daily Travel: Hotel Wander to Wageningen Campus Omnia</h2>
+
+<!-- 3. DAILY TRAVEL -->
+<h2 class="sec">3.&nbsp;&nbsp;Daily Travel: Hotel Wander → Wageningen Campus Omnia</h2>
 <p>The distance between Hotel Wander and Omnia is approximately 2.5 km. Three options are available:</p>
-<section id="on-foot" class="level4">
-<h4 class="anchored" data-anchor-id="on-foot">On foot</h4>
+
+<h4 class="step">🚶 On foot</h4>
 <ul>
-<li>Walking time: approximately 28-32 minutes.</li>
-<li>Follow Lawickse Allee north, continue along Binnenhaven, and follow the signs to Wageningen Campus.</li>
+  <li>Walking time: approximately 28–32 minutes.</li>
+  <li>Follow Lawickse Allee north, continue along Binnenhaven, and follow the signs to Wageningen Campus. Pleasant route along the canal.</li>
 </ul>
-</section>
-<section id="by-bicycle" class="level4">
-<h4 class="anchored" data-anchor-id="by-bicycle">By bicycle</h4>
+
+<h4 class="step">🚲 By bicycle</h4>
 <ul>
-<li>Cycling time: approximately 10-12 minutes.</li>
-<li>Hotel Wander offers bicycle rental for guests. The route follows the canal path and is flat throughout.</li>
-<li>Wageningen is a university city with excellent cycling infrastructure.</li>
+  <li>Cycling time: approximately 10–12 minutes.</li>
+  <li>Hotel Wander offers bicycle rental for guests. The route follows the canal path and is flat throughout.</li>
+  <li>Wageningen is a university city with excellent cycling infrastructure – this is the most popular local transport option.</li>
 </ul>
-</section>
-<section id="by-bus" class="level4">
-<h4 class="anchored" data-anchor-id="by-bus">By bus</h4>
+
+<h4 class="step">🚌 By bus</h4>
 <ul>
-<li>Take <strong>Bus 303 (direction: Campus/Forum)</strong> from Wageningen Busstation. Alight at <strong>Campus/Forum</strong>. Travel time: approximately 10 minutes.</li>
-<li>Plan your bus journey at <a href="https://9292.nl/en">9292.nl/en</a>.</li>
+  <li>Take <strong>Bus 303 (direction: Campus/Forum)</strong> from Wageningen Busstation. Alight at <strong>Campus/Forum</strong>. Travel time: approximately 10 minutes.</li>
+  <li>Plan your bus journey at <a href="https://9292.nl/en" target="_blank">9292.nl/en</a>.</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+
+<div class="info-box blue">
+  🗺️ &nbsp;<strong>Google Maps:</strong> &nbsp;
+  <a href="https://www.google.com/maps/dir/Lawickse+Allee+9,+6701+AN+Wageningen/Hoge+Steeg+2,+6708+PH+Wageningen" target="_blank">
+    Hotel Wander → Omnia (walking / cycling / bus)
+  </a>
 </div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><a href="https://www.google.com/maps/dir/Lawickse+Allee+9,+6701+AN+Wageningen/Hoge+Steeg+2,+6708+PH+Wageningen">Google Maps route: Hotel Wander to Omnia (walking / cycling / bus)</a></p>
-</div>
-</div>
-</section>
-</section>
-<section id="accommodation" class="level2">
-<h2 class="anchored" data-anchor-id="accommodation">4. Accommodation</h2>
-<section id="recommended-hotel-hotel-wander" class="level3">
-<h3 class="anchored" data-anchor-id="recommended-hotel-hotel-wander">4.1 Recommended Hotel: Hotel Wander</h3>
+
+<!-- 4. ACCOMMODATION -->
+<h2 class="sec">4.&nbsp;&nbsp;Accommodation</h2>
+
+<h3 class="sub">4.1&nbsp; Recommended Hotel: Hotel Wander</h3>
 <p>Hotel Wander (formerly WICC) is a 4-star hotel centrally located in Wageningen, with 208 rooms, a restaurant, fitness centre, and bicycle rental. It is the closest full-service hotel to the city centre and conveniently served by public transport to the campus.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Address</td>
-<td>Lawickse Allee 9, 6701 AN Wageningen</td>
-</tr>
-<tr class="even">
-<td>Phone</td>
-<td>+31 317 490 133</td>
-</tr>
-<tr class="odd">
-<td>Website</td>
-<td><a href="https://hotelwander.nl/?clock-pms-wbe=#">hotelwander.nl</a></td>
-</tr>
-<tr class="even">
-<td>Check-in / Check-out</td>
-<td>Check-in from 15:00 | Check-out by 11:00</td>
-</tr>
-</tbody>
+
+<table class="info">
+  <tr><td class="lbl">Address</td><td>Lawickse Allee 9, 6701 AN Wageningen</td></tr>
+  <tr><td class="lbl">Phone</td><td>+31 317 490 133</td></tr>
+  <tr><td class="lbl">Website</td><td><a href="https://hotelwander.nl/?clock-pms-wbe=#" target="_blank">hotelwander.nl</a></td></tr>
+  <tr><td class="lbl">Check-in / Check-out</td><td>Check-in from 15:00 &nbsp;|&nbsp; Check-out by 11:00</td></tr>
 </table>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+
+<div class="code-box">
+  <div class="hdr">🏨&nbsp; Hotel Block Codes for Workshop Participants</div>
+  <div class="bdy">
+    <p>Guests can book a discounted room by using the block code below. The following room type is available at a special rate:</p>
+    <p style="margin-top:10px;">
+      &bull; &nbsp;<strong>Olive Leaf Compact Double for single use</strong> &nbsp;—&nbsp;
+      Code: <span class="code-hl">289886</span> &nbsp;—&nbsp;
+      €120.00 per room, per night (including breakfast)
+    </p>
+    <p style="margin-top:10px;"><strong>To make a reservation using the block code:</strong></p>
+    <ol>
+      <li><a href="https://hotelwander.nl/?clock-pms-wbe=#" target="_blank">Go to the hotel website</a></li>
+      <li>Select your arrival and departure dates.</li>
+      <li>Click on <em>'Heb je een code?'</em> (Do you have a code?) and enter the block code in the designated field.</li>
+    </ol>
+    <p style="margin-top:10px;">📆 &nbsp;Block codes are valid for arrivals on <strong>14 June</strong> and departures on <strong>20 June 2026</strong>, subject to availability.</p>
+  </div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Hotel Block Code for Workshop Participants
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Guests can book a discounted room by using the block code below:</p>
-<ul>
-<li><strong>Olive Leaf Compact Double for single use</strong></li>
-<li><strong>Code:</strong> <code>289886</code></li>
-<li><strong>Rate:</strong> EUR 120.00 per room, per night (including breakfast)</li>
-</ul>
-<p>To make a reservation using the block code:</p>
-<ol type="1">
-<li>Go to the <a href="https://hotelwander.nl/?clock-pms-wbe=#">hotel website</a>.</li>
-<li>Select your arrival and departure dates.</li>
-<li>Click on <em>Heb je een code?</em> (Do you have a code?) and enter the block code in the designated field.</li>
-</ol>
-<p>Block codes are valid for arrivals on <strong>14 June</strong> and departures on <strong>20 June 2026</strong>, subject to availability.</p>
-</div>
-</div>
-</section>
-<section id="alternative-accommodation" class="level3">
-<h3 class="anchored" data-anchor-id="alternative-accommodation">4.2 Alternative Accommodation</h3>
+
+<h3 class="sub">4.2&nbsp; Alternative Accommodation</h3>
 <p>Further options are available via the following platforms:</p>
 <ul>
-<li><a href="https://www.booking.com/searchresults.html?city=Wageningen">Booking.com - hotels in Wageningen</a></li>
-<li><a href="https://www.airbnb.com/s/Wageningen--Netherlands/homes">Airbnb - stays in Wageningen</a></li>
-<li>Other hotels within walking distance of the city centre include Hotel de Wereld (5 Mei Plein 1) and Fletcher Hotel-Restaurant de Wageningsche Berg.</li>
+  <li><a href="https://www.booking.com/searchresults.html?city=Wageningen" target="_blank">Booking.com – hotels in Wageningen</a></li>
+  <li><a href="https://www.airbnb.com/s/Wageningen--Netherlands/homes" target="_blank">Airbnb – stays in Wageningen</a></li>
+  <li>Other hotels within walking distance of the city centre include Hotel de Wereld (5 Mei Plein 1) and Fletcher Hotel-Restaurant de Wageningsche Berg.</li>
 </ul>
-</section>
-</section>
-<section id="workshop-logistics" class="level2">
-<h2 class="anchored" data-anchor-id="workshop-logistics">5. Workshop Logistics</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Venue</td>
-<td>Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen</td>
-</tr>
-<tr class="even">
-<td>Daily programme</td>
-<td>09:00-17:00 each day (Monday 16 - Friday 20 June)</td>
-</tr>
-<tr class="odd">
-<td>Lunch</td>
-<td>Provided on-site each day</td>
-</tr>
-<tr class="even">
-<td>Dietary requirements</td>
-<td>Please contact <a href="mailto:nhintzen@pelagicfish.eu">nhintzen@pelagicfish.eu</a> in advance</td>
-</tr>
-<tr class="odd">
-<td>Registration</td>
-<td>Via the SPRFMO Secretariat</td>
-</tr>
-</tbody>
+
+<!-- 5. WORKSHOP LOGISTICS -->
+<h2 class="sec">5.&nbsp;&nbsp;Workshop Logistics</h2>
+
+<table class="info">
+  <tr><td class="lbl">Venue</td><td>Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen</td></tr>
+  <tr><td class="lbl">Daily programme</td><td>09:00 – 17:00 each day (Monday 16 – Friday 20 June)</td></tr>
+  <tr><td class="lbl">Lunch</td><td>Provided on-site each day</td></tr>
+  <tr><td class="lbl amber-cell">Dietary requirements</td><td class="amber-cell">Please contact <a href="mailto:nhintzen@pelagicfish.eu">nhintzen@pelagicfish.eu</a> in advance</td></tr>
+  <tr><td class="lbl">Registration</td><td>Via the SPRFMO Secretariat</td></tr>
 </table>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+
+<div class="info-box amber">
+  ✉️ &nbsp;For dietary requirements or practical questions, please contact:
+  &nbsp;<a href="mailto:nhintzen@pelagicfish.eu">nhintzen@pelagicfish.eu</a>
 </div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For dietary requirements or practical questions, please contact <a href="mailto:nhintzen@pelagicfish.eu">nhintzen@pelagicfish.eu</a>.</p>
-</div>
-</div>
-</section>
-<section id="useful-links-and-information" class="level2">
-<h2 class="anchored" data-anchor-id="useful-links-and-information">6. Useful Links and Information</h2>
-<section id="transport-planning" class="level3">
-<h3 class="anchored" data-anchor-id="transport-planning">Transport planning</h3>
+
+<!-- 6. USEFUL LINKS -->
+<h2 class="sec">6.&nbsp;&nbsp;Useful Links &amp; Information</h2>
+
+<h3 class="sub">Transport planning</h3>
 <ul>
-<li><a href="https://www.ns.nl/en">NS Dutch Railways (train schedules and tickets)</a></li>
-<li><a href="https://9292.nl/en">9292 Journey Planner (trains + buses)</a></li>
-<li><a href="https://www.ov-chipkaart.nl/en/">OV-chipkaart (public transport card)</a> - reloadable travel card accepted on all Dutch public transport</li>
-<li><em>Tip: EU/UK debit and credit cards can also be tapped directly on all Dutch public transport gates (no separate card needed).</em></li>
+  <li><a href="https://www.ns.nl/en" target="_blank">NS Dutch Railways (train schedules &amp; tickets)</a></li>
+  <li><a href="https://9292.nl/en" target="_blank">9292 Journey Planner (trains + buses)</a></li>
+  <li><a href="https://www.ov-chipkaart.nl/en/" target="_blank">OV-chipkaart (public transport card)</a> – reloadable travel card accepted on all Dutch public transport</li>
+  <li><em>Tip: EU/UK debit and credit cards can also be tapped directly on all Dutch public transport gates (no separate card needed).</em></li>
 </ul>
-</section>
-<section id="wageningen-and-the-venue" class="level3">
-<h3 class="anchored" data-anchor-id="wageningen-and-the-venue">Wageningen and the venue</h3>
+
+<h3 class="sub">Wageningen &amp; the venue</h3>
 <ul>
-<li><a href="https://www.wur.nl/nl/samenwerken-voor-impact/kom-naar-wageningen-campus/omnia">Wageningen Campus Omnia</a></li>
-<li><a href="https://www.wur.nl/en/wageningen-university/campusmap.htm">Wageningen University campus map</a></li>
-<li><a href="https://hotelwander.nl/">Hotel Wander</a></li>
+  <li><a href="https://www.wur.nl/nl/samenwerken-voor-impact/kom-naar-wageningen-campus/omnia" target="_blank">Wageningen Campus Omnia</a></li>
+  <li><a href="https://www.wur.nl/en/wageningen-university/campusmap.htm" target="_blank">Wageningen University campus map</a></li>
+  <li><a href="https://hotelwander.nl/" target="_blank">Hotel Wander</a></li>
 </ul>
-</section>
-<section id="practical-information" class="level3">
-<h3 class="anchored" data-anchor-id="practical-information">Practical information</h3>
+
+<h3 class="sub">Practical information</h3>
 <ul>
-<li>Currency: Euro (EUR). Card payments are widely accepted; some establishments are cashless.</li>
-<li>Language: Dutch, but English is widely spoken throughout Wageningen.</li>
-<li>Emergency number: <strong>112</strong> (police, fire, ambulance).</li>
-<li>The nearest pharmacy (apotheek) and supermarkets are within 5 minutes’ walk of Hotel Wander.</li>
+  <li>Currency: Euro (€). Card payments (PIN) are widely accepted; some establishments are cashless.</li>
+  <li>Language: Dutch, but English is spoken universally throughout Wageningen.</li>
+  <li>Emergency number: <strong>112</strong> (police, fire, ambulance).</li>
+  <li>The nearest pharmacy (apotheek) and supermarkets are within 5 minutes' walk of Hotel Wander.</li>
 </ul>
-</section>
-</section>
-<section id="about-the-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-workshop">7. About the Workshop</h2>
-<p>This workshop is organised as part of the SPRFMO Jack Mackerel Management Strategy Evaluation (MSE) process. The meeting is hosted at Wageningen Campus Omnia, on the campus of Wageningen University and Research, and is coordinated through the SPRFMO Secretariat. Registration and further correspondence should be directed to the SPRFMO Secretariat.</p>
-<hr>
-<p><em>Document prepared for SPRFMO JM MSE Workshop participants - June 2026</em></p>
 
+<!-- 7. ABOUT -->
+<h2 class="sec">7.&nbsp;&nbsp;About the Workshop</h2>
+<p>This workshop is organised as part of the SPRFMO Jack Mackerel Management Strategy Evaluation (MSE) process. The meeting is hosted at Wageningen Campus Omnia, on the campus of Wageningen University &amp; Research, and is coordinated through the SPRFMO Secretariat. Registration and further correspondence should be directed to the SPRFMO Secretariat.</p>
 
-</section>
+<div class="footer">
+  Document prepared for SPRFMO JM MSE Workshop participants – June 2026
+</div>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
-      } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
-      }
-    }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
-          }
-        } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
-            if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
-      } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
-        });
-      }
-    }
-  });
-  </script>
-</div> <!-- /content -->
-
-
-
-
-</body></html>
+</body>
+</html>
