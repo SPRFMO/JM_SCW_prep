@@ -75,6 +75,8 @@ execute:
 <div class="paper-title">Meta-Analysis of CPUE Papers on Jack Mackerel (2022–2025)</div>
 ```
 
+*Updated at `r format(Sys.time(), "%Y-%m-%d %H:%M UTC", tz = "UTC")`*
+
 **Compiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings**
 *Prepared: March 2026 | All PDFs accessed directly via sprfmo.int*
 
@@ -104,7 +106,7 @@ Refining and analysing abundance indices is a high-priority focus for the upcomi
 - In addition to abundance indices, the benchmark will address highly sensitive structural assumptions, including long- and short-term productivity periods, stock-recruitment steepness, and selectivity configurations.
 - Current estimates of MSY and related reference points have been shown to be sensitive to these settings, reinforcing the need for explicit benchmark guidance.
 
-> **Note on Peru document numbering:** Peru submits two annual reports per SC meeting — one for the SPRFMO Area and one for the Area of National Jurisdiction (ANJ). Document numbers shift each year depending on the full ordered list of country reports. The correct SPRFMO Area document numbers are: SC10-Doc26, SC11-Doc27, SC12-Doc26, and SC13-Doc28. Note that SC13-Doc25 is Liberia, not Peru.
+> **Note on Peru document numbering:** Peru submits two annual reports per SC meeting — one for the SPRFMO Area and one for the Area of National Jurisdiction (ANJ). Document numbers shift each year depending on the full ordered list of country reports. The correct SPRFMO Area document numbers are: SC10-Doc26, SC11-Doc27, SC12-Doc28, and SC13-Doc28. Note that SC13-Doc25 is Liberia, not Peru.
 
 ---
 
@@ -127,7 +129,7 @@ Refining and analysing abundance indices is a high-priority focus for the upcomi
 | 10 | SC12-JM04 | Jack mackerel CPUE index and acoustic biomass — south-central Chile | Payá / IFOP (CL) | SC12, Lima | Sept 2024 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/12th-SC-2024/Jack-Mackerel/SC12-JM04-CHL-Jack-Mackerel-CPUE-index-and-acoustic-biomass-in-the-south-central-Chile.pdf) |
 | 11 | SC12-JM06 | Bayesian spatio-temporal CPUE standardization (2nd) | Vásquez, Sepúlveda / INPESCA (CL) | SC12, Lima | Aug 2024 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/12th-SC-2024/Jack-Mackerel/SC12-JM06-CHL-Update-on-CPUE-standardization-for-the-Chilean-JM-fishery-in-central-southern-Chile-using-spatio-temporal-Bayesian-models.pdf) |
 | 12 | SC12-JM07 | Effort creep factor in CPUE standardization | Zenteno, Payá / IFOP (CL) | SC12, Lima | Aug 2024 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/12th-SC-2024/Jack-Mackerel/SC12-JM07-CHL-Incorporating-a-creep-factor-into-the-Chile-Jack-Mackerel-CPUE-index-standardization.pdf) |
-| 13 | SC12-Doc26 | Peru Annual Report — SPRFMO Area (JM section) | IMARPE / PRODUCE (PE) | SC12, Lima | Aug 2024 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/12th-sc-2024) |
+| 13 | SC12-Doc28 | Peru Annual Report — SPRFMO Area (JM section) | IMARPE / PRODUCE (PE) | SC12, Lima | Aug 2024 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/12th-sc-2024) |
 | 14 | SC13-JM02 | Bayesian spatio-temporal CPUE standardization (3rd) | Vásquez, Sepúlveda / INPESCA (CL) | SC13, Wellington | Sept 2025 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/13th-SC-2025/Jack-Mackerel/SC13-JM02-Update-on-CPUE-standardization-for-CJM-fishery-in-central-southern-Chile.pdf) |
 | 15 | SC13-JM04 | CJM CPUE index — trip-based GLM, standard update | Payá / IFOP (CL) | SC13, Wellington | Sept 2025 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/13th-sc-2025) |
 | 16 | SC13-Doc28 | Peru Annual Report — SPRFMO Area (JM section) | IMARPE / PRODUCE (PE) | SC13, Wellington | Aug 2025 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/13th-sc-2025) |
@@ -150,23 +152,23 @@ library(kableExtra)
 df2a <- data.frame(
   `Doc ID`           = c("SC10-JM02","SC10-JM05","SC10-Doc26","SC11-JM06","SC11-JM07",
                           "SC11-JM10","SC11-JM11","SC11-JM12","SC11-Doc27","SC12-JM04",
-                          "SC12-JM06","SC12-JM07","SC12-Doc26","SC13-JM02","SC13-JM04","SC13-Doc28"),
+                          "SC12-JM06","SC12-JM07","SC12-Doc28","SC13-JM02","SC13-JM04","SC13-Doc28"),
   Fleet              = c("EU, China, Korea, Vanuatu, Russia",
                           "Industrial purse seiners",
-                          "Artisanal + small-scale",
+                          "Industrial + artisanal + small-scale",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
-                          "Artisanal + small-scale",
+                          "Industrial + artisanal + small-scale",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
-                          "Artisanal + small-scale",
+                          "Industrial + artisanal + small-scale",
                           "Industrial purse seiners",
                           "Industrial purse seiners",
-                          "Artisanal + small-scale"),
+                          "Industrial + artisanal + small-scale"),
   Area               = c("SE Pacific high seas",
                           "South-central Chile","Peruvian EEZ (far-north)",
                           "South-central Chile","South-central Chile",
@@ -212,42 +214,42 @@ kable(df2a, booktabs = TRUE, longtable = TRUE,
 df2b <- data.frame(
   `Doc ID`          = c("SC10-JM02","SC10-JM05","SC10-Doc26","SC11-JM06","SC11-JM07",
                          "SC11-JM10","SC11-JM11","SC11-JM12","SC11-Doc27","SC12-JM04",
-                         "SC12-JM06","SC12-JM07","SC12-Doc26","SC13-JM02","SC13-JM04","SC13-Doc28"),
+                         "SC12-JM06","SC12-JM07","SC12-Doc28","SC13-JM02","SC13-JM04","SC13-Doc28"),
   `Model type`      = c("GAM (neg. binomial, log-link)",
                          "GLM (log-normal) + acoustic ramp correction",
-                         "GAM (Box-Cox)",
+                         "GAM",
                          "Expert-based efficiency factor time series",
                          "BHSTM via INLA + SPDE (lognormal)",
                          "Compound Tweedie (Poisson-Gamma)",
                          "GLM (log-normal, standard update)",
                          "SPDE-based spatio-temporal GLMM/GLM (sdmTMB)",
-                         "GAM (Box-Cox, standard update)",
+                         "GAM",
                          "GLM (gamma CPUE + gaussian catch) + acoustic correction models",
                          "BHSTM via INLA + SPDE (update SC11-JM07)",
                          "GLM with creep-corrected CPUE as response",
-                         "GAM (Box-Cox, standard update)",
+                         "GAM",
                          "BHSTM via INLA + SPDE (update SC12-JM06)",
                          "GLM (log-normal, standard update)",
-                         "GAM (Box-Cox, standard update)"),
+                         "GAM"),
   `Key covariates`  = c("Year, CP, month, lat x lon smooth, El Nino",
                          "Year, quarter, zone, hold capacity",
-                         "Month, hold cap., latitude, dist. to coast",
+                         "Year, month, hold cap.",
                          "Technological milestones (sonar, gear, fleet reduction)",
                          "Year, quarter, hold cap., days at sea, SST, Chl-a, spatio-temp. RF",
                          "Year, quarter, zone, hold capacity",
                          "Year, quarter, zone, hold capacity",
                          "Year, month, hold cap. smooth, SPDE spatial and spatio-temp. RF",
-                         "Month, hold cap., latitude, dist. to coast",
+                         "Year, month, hold cap.",
                          "Year, quarter, zone, hold cap.; acoustic biomass, density, area",
                          "Year, quarter, hold cap., days at sea, SST, Chl-a, spatio-temp. RF",
                          "Year, quarter, zone, hold cap.; creep pre-/post-2005",
-                         "Month, hold cap., latitude, dist. to coast",
+                         "Year, month, hold cap.",
                          "Year, quarter, hold cap., days at sea, SST, Chl-a, spatio-temp. RF",
                          "Year, quarter, zone, hold capacity",
-                         "Month, hold cap., latitude, dist. to coast"),
+                         "Year, month, hold cap."),
   `Key conclusion`  = c("CPUE 2021 near historic high; El Nino significant",
                          "Coastal concentration causes overestimation 2020-2022",
-                         "Increasing CPUE since 2016; 2015 excluded (El Nino)",
+                         "Increasing CPUE since 2016",
                          "Fixed 1%/yr lacks foundation; informed EC differs substantially",
                          "First INLA approach; SST and Chl-a significant; comparable to GLM",
                          "Set- vs trip-based indices differ 1994-2006; 10.2% deviance explained",
@@ -341,7 +343,7 @@ kable(df2b, booktabs = TRUE, longtable = TRUE,
 
 ---
 
-### Paper 3 — Peru Annual Reports (SC10-Doc26 / SC11-Doc27 / SC12-Doc26 / SC13-Doc28)
+### Paper 3 — Peru Annual Reports (SC10-Doc26 / SC11-Doc27 / SC12-Doc28 / SC13-Doc28)
 **Peru Annual Reports — SPRFMO Area (jack mackerel sections)** | [SC10](https://www.sprfmo.int/meetings/scientific-committee/10th-sc-2022) | [SC11](https://www.sprfmo.int/meetings/scientific-committee/11th-sc-2023) | [SC12](https://www.sprfmo.int/meetings/scientific-committee/12th-sc-2024) | [SC13](https://www.sprfmo.int/meetings/scientific-committee/13th-sc-2025)
 
 *Author:* IMARPE / PRODUCE (Peru)
@@ -351,20 +353,21 @@ kable(df2b, booktabs = TRUE, longtable = TRUE,
 
 **Data**
 
-- Fleet: artisanal and small-scale purse seine fleet (primary since SC6/2018); industrial fleet used before 2018 but dropped as focus shifted to anchoveta
-- Time series: 2000–present; 2015 excluded (El Nino — fish concentrated inshore outside fleet's operational zone)
-- Observation level: trip-level; monthly aggregation
+- Fleet: industrial, artisanal, and small-scale purse seine fleets. The industrial purse seine fleet catches either anchovy or jack mackerel, depending on the season. The artisanal and small-scale fleet catches a variety of fish species based on availability and demand. The catches of both fleets have increased since 2018.
+- Time series: 2002–present. Between 2015 and 2017, the industrial fleet did not fish for jack mackerel because the resource was concentrated near the coast, outside its operating range, due to El Nino events. During this period, jack mackerel fishing was mainly carried out by artisanal and small-scale vessels.
+- Observation level: trip-level
 - Area: Peruvian EEZ, far-north stock zone (~3°S–18°S)
 
 **Statistical model**
 
-- **GAM** with Box-Cox transformation; response = catch per trip (monthly scale)
-- Covariates: time (Gregorian month), hold capacity, latitude, distance to coast
-- Standardised CPUE extracted at median covariate values, with month fixed at March
-- All trips included (mixed-species fleet; not filtered for JM-only trips)
+- **GAM** model (Gamma distribution, log-link); response = catch per trip. Formula: `catch ~ year + month + hold_capacity`, with year and month treated as factors.
+- Covariates: year, month, and hold capacity
+- Standardised CPUE estimated at mean hold capacity, with year and month as factors, then averaged by year.
+- All trips targeting jack mackerel
+> Although these are multispecies fleets, the information is pre-filtered by trip type, taking into account fishing seasons, catch composition, and fishing gear characteristics.
 - Catchability change modelled at year 2000 (vessel-level quotas introduced)
 - Efficiency correction: **1%/yr** since SC10 (2022); not independently investigated
-- CV in JJM: 0.2 for 2002–2017; updated in later assessments
+- CV in JJM: 0.2 for 2002–2017, 0.3 for 2018–2025
 
 **Annual updates and key findings**
 
@@ -372,13 +375,13 @@ kable(df2b, booktabs = TRUE, longtable = TRUE,
 
 *SC11 (2023) — SC11-Doc27:* Data to mid-2023. Upward trend confirmed; slight decrease in 2023 projection. CPUE trend primary driver of biomass increase SC10→SC11. Intersessional JJM update recommended 2023 TAC <= 144,000 t.
 
-*SC12 (2024) — SC12-Doc26:* Data to mid-2024. JJM model underestimates Peruvian CPUE 2023–2024 — key diagnostic concern. El Nino 2023–2024 delayed jack mackerel availability. Intersessional update recommended 2024 TAC <= 70,568 t.
+*SC12 (2024) — SC12-Doc28:* Data to mid-2024. JJM model underestimates Peruvian CPUE 2023–2024 — key diagnostic concern. El Nino 2023–2024 delayed jack mackerel availability. Intersessional update recommended 2024 TAC <= 70,568 t.
 
 *SC13 (2025) — SC13-Doc28:* Data to mid-2025. CPUE continues to drive upward biomass perception. IMARPE recommended 2025 TAC scenarios: 148,000 t / 212,000 t / 218,000 t. PRODUCE set 2025 industrial TAC at 80,948 t.
 
 **Overall pattern**
 
-- Peruvian CPUE increased from a trough around 2010–2014 to consistently higher values from 2016 onwards.
+- Peruvian CPUE increased from a trough around 2010–2014 to consistently higher values from 2017 onwards.
 - This is one of the strongest stock recovery signals in the JJM assessment across all four meetings.
 - The JJM model's tendency to underestimate recent Peruvian CPUE (noted at SC12) is unresolved and under investigation.
 
@@ -646,11 +649,10 @@ kable(df2b, booktabs = TRUE, longtable = TRUE,
 ### 4.1 Peruvian CPUE: A Structural Overview
 
 - **No standalone papers.** Unlike Chile, Peru does not submit dedicated CPUE methodology papers. The index is documented in annual reports and JM Technical Annexes.
-- **GAM with Box-Cox transformation.** Stable methodology since SC4, using monthly trip-level data with covariates for time, hold capacity, latitude, and distance to coast. Standardised CPUE extracted at median covariate values with month fixed at March.
-- **Fleet transition (pre- vs post-2018).** Industrial purse seine CPUE used before SC6 (2018), then replaced by artisanal/small-scale fleet CPUE, which consistently targets jack mackerel year-round.
-- **2015 data gap.** Excluded due to strong El Nino concentrating fish inshore, outside the artisanal fleet's operational zone.
+- **GAM model (Gamma distribution, log-link).** Stable methodology since SC4, using monthly trip-level data with covariates year, month, and hold capacity. Standardised CPUE estimated at mean hold capacity, with year and month as factors, then averaged by year.
+- **Fleet transition (pre- vs post-2018).** Since 2018, the artisanal and small-scale fleet has increased significantly in fishing capacity. The industrial fleet continues to fish for jack mackerel and switches to anchovy depending on the season.
 - **Efficiency correction.** 1%/yr applied since SC10 (2022); unlike Chile, no methodological investigation of this correction has been submitted to the SC.
-- **Key pattern.** Consistent upward trend since 2016; one of the strongest stock recovery signals in the JJM assessment. JJM's tendency to underestimate recent Peruvian CPUE (noted at SC12) remains unresolved.
+- **Key pattern.** Consistent upward trend since 2017; one of the strongest stock recovery signals in the JJM assessment. JJM's tendency to underestimate recent Peruvian CPUE (noted at SC12) remains unresolved.
 
 ### 4.2 Efficiency Creep
 
@@ -699,7 +701,7 @@ kable(df2b, booktabs = TRUE, longtable = TRUE,
 | Paya (2024) | SC12-JM04 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/12th-SC-2024/Jack-Mackerel/SC12-JM04-CHL-Jack-Mackerel-CPUE-index-and-acoustic-biomass-in-the-south-central-Chile.pdf) |
 | Vasquez and Sepulveda (2024) | SC12-JM06 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/12th-SC-2024/Jack-Mackerel/SC12-JM06-CHL-Update-on-CPUE-standardization-for-the-Chilean-JM-fishery-in-central-southern-Chile-using-spatio-temporal-Bayesian-models.pdf) |
 | Zenteno and Paya (2024) | SC12-JM07 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/12th-SC-2024/Jack-Mackerel/SC12-JM07-CHL-Incorporating-a-creep-factor-into-the-Chile-Jack-Mackerel-CPUE-index-standardization.pdf) |
-| IMARPE/PRODUCE (2024) | SC12-Doc26 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/12th-sc-2024) |
+| IMARPE/PRODUCE (2024) | SC12-Doc28 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/12th-sc-2024) |
 | Vasquez and Sepulveda (2025) | SC13-JM02 | [PDF](https://www.sprfmo.int/assets/Meetings/02-SC/13th-SC-2025/Jack-Mackerel/SC13-JM02-Update-on-CPUE-standardization-for-CJM-fishery-in-central-southern-Chile.pdf) |
 | Paya (2025) | SC13-JM04 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/13th-sc-2025) |
 | IMARPE/PRODUCE (2025) | SC13-Doc28 | [Meeting page](https://www.sprfmo.int/meetings/scientific-committee/13th-sc-2025) |
