@@ -15,6 +15,10 @@ format:
 
 This site collects the main Quarto documents in the `doc/` directory and renders them for direct browsing through GitHub Pages.
 
+## Notices
+
+- **Visitor Information posted:** [SPRFMO Jack Mackerel MSE Workshop Visitor Information](SPRFMO-MSE-Workshop-Visitor-Information.html) ([QMD](SPRFMO-MSE-Workshop-Visitor-Information.qmd))
+
 ## SCW16 preparations
 
   - [JMWG 2026 Plan](JMWG-2026-plan.html) ([DOCX](JMWG-2026-plan.docx), [QMD](JMWG-2026-plan.qmd))
