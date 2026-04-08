@@ -1,0 +1,174 @@
+---
+title: "Visitor Information, SPRFMO Jack Mackerel MSE Workshop"
+date: "April 2026"
+format:
+  html:
+    number-sections: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div class="paper-title">
+  <div>Visitor Information </div>
+   SPRFMO Jack Mackerel MSE Workshop</div>
+```
+
+**SPRFMO Jack Mackerel MSE Workshop**  
+15-19 June 2026 | Wageningen, The Netherlands
+
+::: {.callout-note}
+**Dates:** 15-19 June 2026  
+**Daily programme:** 09:00-17:00  
+**Lunch:** Provided daily
+:::
+
+## 1. Key Addresses
+
+| Item | Details |
+|---|---|
+| Meeting Venue | Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen<br>Tel: +31 317 484 500 |
+| Recommended Hotel | Hotel Wander (formerly WICC)<br>Lawickse Allee 9, 6701 AN Wageningen<br>Tel: +31 317 490 133 \| [hotelwander.nl](https://hotelwander.nl) |
+| City Centre | Markt area, 6701 CZ Wageningen<br>*(restaurants, shops, public transport hub)* |
+| Nearest Train Station | Ede-Wageningen (Ede-Wgn) - around 20 minutes by bus to Wageningen city centre |
+| Nearest Airport | Amsterdam Airport Schiphol (AMS)<br>Evert van de Beekstraat 202, 1118 CP Schiphol |
+
+## 2. Getting to Wageningen from Schiphol Airport
+
+We strongly recommend travelling by public transport. The journey from Schiphol Airport to Wageningen by train and bus takes approximately **1 hour 30 minutes** and runs frequently throughout the day.
+
+### 2.1 By Public Transport (recommended)
+
+#### Step 1 - Train: Schiphol Airport to Ede-Wageningen
+
+- Follow signs to the "Railway Station" inside the airport terminal.
+- Buy a ticket at the yellow NS vending machines or service desk. You can also pay contactless with a debit/credit card or smartphone by tapping in and out at the yellow OV-chip poles.
+- Take the **Intercity (IC) train in the direction of Nijmegen**. Trains run every 30 minutes. Your stop is **Ede-Wageningen** (the 5th station).
+- If there is no direct service, take the IC to Utrecht Centraal, change platforms, and board a train towards Arnhem/Nijmegen to Ede-Wageningen.
+- Journey time: approximately **60-75 minutes**. Plan your trip at [ns.nl](https://www.ns.nl/en) or [9292.nl](https://9292.nl/en).
+
+#### Step 2a - Bus to Hotel Wander (city centre)
+
+- From Ede-Wageningen station, exit and take the stairs down; buses depart from the bus bays outside the main entrance.
+- Take **Bus 86** towards Wageningen. Alight at **Wageningen, Busstation**. Hotel Wander is a 5-minute walk from the bus station (Lawickse Allee 9).
+- Journey time: approximately 20-25 minutes. Buses run every 15-30 minutes.
+
+#### Step 2b - Bus to Wageningen Campus Omnia (meeting venue)
+
+- Take **Bus 303 (direction: Campus/Forum)** from Ede-Wageningen station. Alight at **Campus/Forum**. Omnia is a short walk from the stop.
+- Journey time from Ede-Wageningen: approximately 25 minutes.
+- Tip: Use the [9292 Journey Planner](https://9292.nl/en) or [NS app](https://www.ns.nl/en/travel-information/ns-app) for live departure times and route options.
+
+### 2.2 By Taxi (alternative)
+
+A direct taxi from Schiphol Airport to Wageningen is possible but expensive (approximately EUR 120-150 for a single ride). If you prefer this option, book in advance through a licensed taxi service.
+
+- For smaller groups, a taxi from Ede-Wageningen station to Hotel Wander or the campus costs approximately EUR 30-37.
+- Recommended taxi company near Ede-Wageningen station: **Panda Taxi** - tel. +31 (0)6 8761 7837 - [pandataxi.nl](https://www.pandataxi.nl) (pre-booking required).
+
+## 3. Daily Travel: Hotel Wander to Wageningen Campus Omnia
+
+The distance between Hotel Wander and Omnia is approximately 2.5 km. Three options are available:
+
+#### On foot
+
+- Walking time: approximately 28-32 minutes.
+- Follow Lawickse Allee north, continue along Binnenhaven, and follow the signs to Wageningen Campus.
+
+#### By bicycle
+
+- Cycling time: approximately 10-12 minutes.
+- Hotel Wander offers bicycle rental for guests. The route follows the canal path and is flat throughout.
+- Wageningen is a university city with excellent cycling infrastructure.
+
+#### By bus
+
+- Take **Bus 303 (direction: Campus/Forum)** from Wageningen Busstation. Alight at **Campus/Forum**. Travel time: approximately 10 minutes.
+- Plan your bus journey at [9292.nl/en](https://9292.nl/en).
+
+::: {.callout-tip}
+[Google Maps route: Hotel Wander to Omnia (walking / cycling / bus)](https://www.google.com/maps/dir/Lawickse+Allee+9,+6701+AN+Wageningen/Hoge+Steeg+2,+6708+PH+Wageningen)
+:::
+
+## 4. Accommodation
+
+### 4.1 Recommended Hotel: Hotel Wander
+
+Hotel Wander (formerly WICC) is a 4-star hotel centrally located in Wageningen, with 208 rooms, a restaurant, fitness centre, and bicycle rental. It is the closest full-service hotel to the city centre and conveniently served by public transport to the campus.
+
+| Item | Details |
+|---|---|
+| Address | Lawickse Allee 9, 6701 AN Wageningen |
+| Phone | +31 317 490 133 |
+| Website | [hotelwander.nl](https://hotelwander.nl/?clock-pms-wbe=#) |
+| Check-in / Check-out | Check-in from 15:00 \| Check-out by 11:00 |
+
+::: {.callout-important}
+## Hotel Block Code for Workshop Participants
+
+Guests can book a discounted room by using the block code below:
+
+- **Olive Leaf Compact Double for single use**
+- **Code:** `289886`
+- **Rate:** EUR 120.00 per room, per night (including breakfast)
+
+To make a reservation using the block code:
+
+1. Go to the [hotel website](https://hotelwander.nl/?clock-pms-wbe=#).
+2. Select your arrival and departure dates.
+3. Click on *Heb je een code?* (Do you have a code?) and enter the block code in the designated field.
+
+Block codes are valid for arrivals on **14 June** and departures on **20 June 2026**, subject to availability.
+:::
+
+### 4.2 Alternative Accommodation
+
+Further options are available via the following platforms:
+
+- [Booking.com - hotels in Wageningen](https://www.booking.com/searchresults.html?city=Wageningen)
+- [Airbnb - stays in Wageningen](https://www.airbnb.com/s/Wageningen--Netherlands/homes)
+- Other hotels within walking distance of the city centre include Hotel de Wereld (5 Mei Plein 1) and Fletcher Hotel-Restaurant de Wageningsche Berg.
+
+## 5. Workshop Logistics
+
+| Item | Details |
+|---|---|
+| Venue | Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen |
+| Daily programme | 09:00-17:00 each day (Monday 16 - Friday 20 June) |
+| Lunch | Provided on-site each day |
+| Dietary requirements | Please contact [nhintzen@pelagicfish.eu](mailto:nhintzen@pelagicfish.eu) in advance |
+| Registration | Via the SPRFMO Secretariat |
+
+::: {.callout-warning}
+For dietary requirements or practical questions, please contact [nhintzen@pelagicfish.eu](mailto:nhintzen@pelagicfish.eu).
+:::
+
+## 6. Useful Links and Information
+
+### Transport planning
+
+- [NS Dutch Railways (train schedules and tickets)](https://www.ns.nl/en)
+- [9292 Journey Planner (trains + buses)](https://9292.nl/en)
+- [OV-chipkaart (public transport card)](https://www.ov-chipkaart.nl/en/) - reloadable travel card accepted on all Dutch public transport
+- *Tip: EU/UK debit and credit cards can also be tapped directly on all Dutch public transport gates (no separate card needed).*
+
+### Wageningen and the venue
+
+- [Wageningen Campus Omnia](https://www.wur.nl/nl/samenwerken-voor-impact/kom-naar-wageningen-campus/omnia)
+- [Wageningen University campus map](https://www.wur.nl/en/wageningen-university/campusmap.htm)
+- [Hotel Wander](https://hotelwander.nl/)
+
+### Practical information
+
+- Currency: Euro (EUR). Card payments are widely accepted; some establishments are cashless.
+- Language: Dutch, but English is widely spoken throughout Wageningen.
+- Emergency number: **112** (police, fire, ambulance).
+- The nearest pharmacy (apotheek) and supermarkets are within 5 minutes' walk of Hotel Wander.
+
+## 7. About the Workshop
+
+This workshop is organised as part of the SPRFMO Jack Mackerel Management Strategy Evaluation (MSE) process. The meeting is hosted at Wageningen Campus Omnia, on the campus of Wageningen University and Research, and is coordinated through the SPRFMO Secretariat. Registration and further correspondence should be directed to the SPRFMO Secretariat.
+
+---
+
+*Document prepared for SPRFMO JM MSE Workshop participants - June 2026*

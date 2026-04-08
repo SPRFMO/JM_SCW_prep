@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visitor Information – SPRFMO JM MSE Workshop</title>
+<style>
+  :root {
+    --navy:      #003366;
+    --blue:      #0070C0;
+    --lightblue: #D6E4F0;
+    --grey:      #595959;
+    --lgrey:     #F2F7FC;
+    --mgrey:     #D6E4F0;
+    --amber:     #FFF8E7;
+    --amber-bdr: #E6A817;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 14px;
+    color: #111;
+    background: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px 28px 60px;
+    line-height: 1.65;
+  }
+
+  /* Title block */
+  .doc-header { text-align: center; padding-bottom: 18px; border-bottom: 4px solid var(--navy); margin-bottom: 22px; }
+  .doc-header h1 { font-size: 2.1em; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .doc-header h2 { font-size: 1.35em; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+  .doc-header .sub { color: var(--grey); font-size: 1em; }
+
+  /* Info boxes */
+  .info-box {
+    background: var(--lgrey);
+    border-left: 5px solid var(--navy);
+    padding: 10px 16px;
+    margin: 14px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.94em;
+  }
+  .info-box.blue  { border-left-color: var(--blue); }
+  .info-box.amber { background: var(--amber); border-left-color: var(--amber-bdr); }
+
+  /* Section headings */
+  h2.sec {
+    font-size: 1.2em; font-weight: 700; color: var(--navy);
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 4px; margin: 30px 0 12px;
+  }
+  h3.sub { font-size: 1.02em; font-weight: 700; color: var(--blue); margin: 18px 0 7px; }
+  h4.step { font-size: 0.96em; font-weight: 700; color: #111; margin: 13px 0 5px; }
+
+  /* Tables */
+  table.info { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.93em; }
+  table.info td { padding: 6px 10px; border: 1px solid #ccc; vertical-align: top; }
+  table.info td.lbl {
+    background: var(--mgrey); font-weight: 700;
+    width: 190px; white-space: nowrap;
+  }
+  table.info tr:nth-child(even) td:not(.lbl) { background: var(--lgrey); }
+  table.info td.amber-cell { background: var(--amber) !important; }
+
+  /* Block-code box */
+  .code-box { border: 2px solid var(--navy); border-radius: 4px; margin: 16px 0; overflow: hidden; }
+  .code-box .hdr { background: var(--navy); color: #fff; font-weight: 700; padding: 8px 14px; font-size: 0.96em; }
+  .code-box .bdy { background: var(--lgrey); padding: 12px 14px; font-size: 0.93em; line-height: 1.7; }
+  .code-box .bdy ol { margin: 8px 0 4px 22px; }
+  .code-hl { font-weight: 700; color: var(--navy); font-size: 1.04em; }
+
+  /* Lists & paragraphs */
+  ul, ol { margin: 5px 0 5px 22px; }
+  li { margin-bottom: 4px; }
+  p  { margin: 7px 0; }
+
+  /* Links */
+  a { color: var(--blue); }
+  a:hover { color: var(--navy); }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding-top: 10px; border-top: 2px solid #ccc; text-align: center; font-style: italic; color: var(--grey); font-size: 0.87em; }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <h1>Visitor Information</h1>
+  <h2>SPRFMO Jack Mackerel MSE Workshop</h2>
+  <div class="sub">15 – 19 June 2026 &nbsp;|&nbsp; Wageningen, The Netherlands</div>
+</div>
+
+<div class="info-box">
+  📅 &nbsp;<strong>Dates:</strong> 15–19 June 2026 &emsp;
+  🕐 &nbsp;<strong>Daily programme:</strong> 09:00 – 17:00 &emsp;
+  🍽️ &nbsp;<strong>Lunch provided daily</strong>
+</div>
+
+<!-- 1. KEY ADDRESSES -->
+<h2 class="sec">1.&nbsp;&nbsp;Key Addresses</h2>
+<table class="info">
+  <tr><td class="lbl">Meeting Venue</td><td>Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen<br>Tel: +31 317 484 500</td></tr>
+  <tr><td class="lbl">Recommended Hotel</td><td>Hotel Wander (formerly WICC)<br>Lawickse Allee 9, 6701 AN Wageningen<br>Tel: +31 317 490 133 &nbsp;|&nbsp; <a href="https://hotelwander.nl" target="_blank">hotelwander.nl</a></td></tr>
+  <tr><td class="lbl">City Centre</td><td>Markt area, 6701 CZ Wageningen<br><em>(restaurants, shops, public transport hub)</em></td></tr>
+  <tr><td class="lbl">Nearest Train Station</td><td>Ede-Wageningen (Ede-Wgn) – ~20 min by bus to Wageningen city centre</td></tr>
+  <tr><td class="lbl">Nearest Airport</td><td>Amsterdam Airport Schiphol (AMS)<br>Evert van de Beekstraat 202, 1118 CP Schiphol</td></tr>
+</table>
+
+<!-- 2. GETTING THERE -->
+<h2 class="sec">2.&nbsp;&nbsp;Getting to Wageningen from Schiphol Airport</h2>
+<p>We strongly recommend travelling by public transport. The journey from Schiphol Airport to Wageningen by train and bus takes approximately <strong>1 hour 30 minutes</strong> and runs frequently throughout the day.</p>
+
+<h3 class="sub">2.1&nbsp; By Public Transport (recommended)</h3>
+
+<h4 class="step">Step 1 – Train: Schiphol Airport → Ede-Wageningen</h4>
+<ul>
+  <li>Follow signs to the 'Railway Station' inside the airport terminal.</li>
+  <li>Buy a ticket at the yellow NS vending machines or service desk. You can also pay contactless with a debit/credit card or smartphone by tapping in and out at the yellow OV-chip poles.</li>
+  <li>Take the <strong>Intercity (IC) train in the direction of Nijmegen</strong>. Trains run every 30 minutes. Your stop is <strong>Ede-Wageningen</strong> – the 5th station.</li>
+  <li>If there is no direct service, take the IC to Utrecht Centraal, change platforms, and board a train towards Arnhem/Nijmegen to Ede-Wageningen.</li>
+  <li>Journey time: approximately <strong>60–75 minutes</strong>. Plan your trip at <a href="https://www.ns.nl/en" target="_blank">ns.nl</a> or <a href="https://9292.nl/en" target="_blank">9292.nl</a>.</li>
+</ul>
+
+<h4 class="step">Step 2a – Bus to Hotel Wander (city centre)</h4>
+<ul>
+  <li>From Ede-Wageningen station, exit and take the stairs down; buses depart from the bus bays outside the main entrance.</li>
+  <li>Take <strong>Bus 86</strong> towards Wageningen. Alight at <strong>Wageningen, Busstation</strong>. Hotel Wander is a 5-minute walk from the bus station (Lawickse Allee 9).</li>
+  <li>Journey time: approximately 20–25 minutes. Buses run every 15–30 minutes.</li>
+</ul>
+
+<h4 class="step">Step 2b – Bus to Wageningen Campus Omnia (meeting venue)</h4>
+<ul>
+  <li>Take <strong>Bus 303 (direction: Campus/Forum)</strong> from Ede-Wageningen station. Alight at <strong>Campus/Forum</strong>. Omnia is a short walk from the stop.</li>
+  <li>Journey time from Ede-Wageningen: approximately 25 minutes.</li>
+  <li>Tip: Use the <a href="https://9292.nl/en" target="_blank">9292 Journey Planner</a> or <a href="https://www.ns.nl/en/travel-information/ns-app" target="_blank">NS app</a> for live departure times and route options.</li>
+</ul>
+
+<h3 class="sub">2.2&nbsp; By Taxi (alternative)</h3>
+<p>A direct taxi from Schiphol Airport to Wageningen is possible but expensive (approximately €120–150 for a single ride). If you prefer this option, book in advance through a licensed taxi service.</p>
+<ul>
+  <li>For smaller groups, a taxi from Ede-Wageningen station to Hotel Wander or the campus costs approximately €30–37.</li>
+  <li>Recommended taxi company near Ede-Wageningen station: <strong>Panda Taxi</strong> – tel. +31 (0)6 8761 7837 – <a href="https://www.pandataxi.nl" target="_blank">pandataxi.nl</a> (pre-booking required).</li>
+</ul>
+
+<!-- 3. DAILY TRAVEL -->
+<h2 class="sec">3.&nbsp;&nbsp;Daily Travel: Hotel Wander → Wageningen Campus Omnia</h2>
+<p>The distance between Hotel Wander and Omnia is approximately 2.5 km. Three options are available:</p>
+
+<h4 class="step">🚶 On foot</h4>
+<ul>
+  <li>Walking time: approximately 28–32 minutes.</li>
+  <li>Follow Lawickse Allee north, continue along Binnenhaven, and follow the signs to Wageningen Campus. Pleasant route along the canal.</li>
+</ul>
+
+<h4 class="step">🚲 By bicycle</h4>
+<ul>
+  <li>Cycling time: approximately 10–12 minutes.</li>
+  <li>Hotel Wander offers bicycle rental for guests. The route follows the canal path and is flat throughout.</li>
+  <li>Wageningen is a university city with excellent cycling infrastructure – this is the most popular local transport option.</li>
+</ul>
+
+<h4 class="step">🚌 By bus</h4>
+<ul>
+  <li>Take <strong>Bus 303 (direction: Campus/Forum)</strong> from Wageningen Busstation. Alight at <strong>Campus/Forum</strong>. Travel time: approximately 10 minutes.</li>
+  <li>Plan your bus journey at <a href="https://9292.nl/en" target="_blank">9292.nl/en</a>.</li>
+</ul>
+
+<div class="info-box blue">
+  🗺️ &nbsp;<strong>Google Maps:</strong> &nbsp;
+  <a href="https://www.google.com/maps/dir/Lawickse+Allee+9,+6701+AN+Wageningen/Hoge+Steeg+2,+6708+PH+Wageningen" target="_blank">
+    Hotel Wander → Omnia (walking / cycling / bus)
+  </a>
+</div>
+
+<!-- 4. ACCOMMODATION -->
+<h2 class="sec">4.&nbsp;&nbsp;Accommodation</h2>
+
+<h3 class="sub">4.1&nbsp; Recommended Hotel: Hotel Wander</h3>
+<p>Hotel Wander (formerly WICC) is a 4-star hotel centrally located in Wageningen, with 208 rooms, a restaurant, fitness centre, and bicycle rental. It is the closest full-service hotel to the city centre and conveniently served by public transport to the campus.</p>
+
+<table class="info">
+  <tr><td class="lbl">Address</td><td>Lawickse Allee 9, 6701 AN Wageningen</td></tr>
+  <tr><td class="lbl">Phone</td><td>+31 317 490 133</td></tr>
+  <tr><td class="lbl">Website</td><td><a href="https://hotelwander.nl/?clock-pms-wbe=#" target="_blank">hotelwander.nl</a></td></tr>
+  <tr><td class="lbl">Check-in / Check-out</td><td>Check-in from 15:00 &nbsp;|&nbsp; Check-out by 11:00</td></tr>
+</table>
+
+<div class="code-box">
+  <div class="hdr">🏨&nbsp; Hotel Block Codes for Workshop Participants</div>
+  <div class="bdy">
+    <p>Guests can book a discounted room by using the block code below. The following room type is available at a special rate:</p>
+    <p style="margin-top:10px;">
+      &bull; &nbsp;<strong>Olive Leaf Compact Double for single use</strong> &nbsp;—&nbsp;
+      Code: <span class="code-hl">289886</span> &nbsp;—&nbsp;
+      €120.00 per room, per night (including breakfast)
+    </p>
+    <p style="margin-top:10px;"><strong>To make a reservation using the block code:</strong></p>
+    <ol>
+      <li><a href="https://hotelwander.nl/?clock-pms-wbe=#" target="_blank">Go to the hotel website</a></li>
+      <li>Select your arrival and departure dates.</li>
+      <li>Click on <em>'Heb je een code?'</em> (Do you have a code?) and enter the block code in the designated field.</li>
+    </ol>
+    <p style="margin-top:10px;">📆 &nbsp;Block codes are valid for arrivals on <strong>14 June</strong> and departures on <strong>20 June 2026</strong>, subject to availability.</p>
+  </div>
+</div>
+
+<h3 class="sub">4.2&nbsp; Alternative Accommodation</h3>
+<p>Further options are available via the following platforms:</p>
+<ul>
+  <li><a href="https://www.booking.com/searchresults.html?city=Wageningen" target="_blank">Booking.com – hotels in Wageningen</a></li>
+  <li><a href="https://www.airbnb.com/s/Wageningen--Netherlands/homes" target="_blank">Airbnb – stays in Wageningen</a></li>
+  <li>Other hotels within walking distance of the city centre include Hotel de Wereld (5 Mei Plein 1) and Fletcher Hotel-Restaurant de Wageningsche Berg.</li>
+</ul>
+
+<!-- 5. WORKSHOP LOGISTICS -->
+<h2 class="sec">5.&nbsp;&nbsp;Workshop Logistics</h2>
+
+<table class="info">
+  <tr><td class="lbl">Venue</td><td>Wageningen Campus Omnia<br>Hoge Steeg 2, 6708 PH Wageningen</td></tr>
+  <tr><td class="lbl">Daily programme</td><td>09:00 – 17:00 each day (Monday 16 – Friday 20 June)</td></tr>
+  <tr><td class="lbl">Lunch</td><td>Provided on-site each day</td></tr>
+  <tr><td class="lbl amber-cell">Dietary requirements</td><td class="amber-cell">Please contact <a href="mailto:nhintzen@pelagicfish.eu">nhintzen@pelagicfish.eu</a> in advance</td></tr>
+  <tr><td class="lbl">Registration</td><td>Via the SPRFMO Secretariat</td></tr>
+</table>
+
+<div class="info-box amber">
+  ✉️ &nbsp;For dietary requirements or practical questions, please contact:
+  &nbsp;<a href="mailto:nhintzen@pelagicfish.eu">nhintzen@pelagicfish.eu</a>
+</div>
+
+<!-- 6. USEFUL LINKS -->
+<h2 class="sec">6.&nbsp;&nbsp;Useful Links &amp; Information</h2>
+
+<h3 class="sub">Transport planning</h3>
+<ul>
+  <li><a href="https://www.ns.nl/en" target="_blank">NS Dutch Railways (train schedules &amp; tickets)</a></li>
+  <li><a href="https://9292.nl/en" target="_blank">9292 Journey Planner (trains + buses)</a></li>
+  <li><a href="https://www.ov-chipkaart.nl/en/" target="_blank">OV-chipkaart (public transport card)</a> – reloadable travel card accepted on all Dutch public transport</li>
+  <li><em>Tip: EU/UK debit and credit cards can also be tapped directly on all Dutch public transport gates (no separate card needed).</em></li>
+</ul>
+
+<h3 class="sub">Wageningen &amp; the venue</h3>
+<ul>
+  <li><a href="https://www.wur.nl/nl/samenwerken-voor-impact/kom-naar-wageningen-campus/omnia" target="_blank">Wageningen Campus Omnia</a></li>
+  <li><a href="https://www.wur.nl/en/wageningen-university/campusmap.htm" target="_blank">Wageningen University campus map</a></li>
+  <li><a href="https://hotelwander.nl/" target="_blank">Hotel Wander</a></li>
+</ul>
+
+<h3 class="sub">Practical information</h3>
+<ul>
+  <li>Currency: Euro (€). Card payments (PIN) are widely accepted; some establishments are cashless.</li>
+  <li>Language: Dutch, but English is spoken universally throughout Wageningen.</li>
+  <li>Emergency number: <strong>112</strong> (police, fire, ambulance).</li>
+  <li>The nearest pharmacy (apotheek) and supermarkets are within 5 minutes' walk of Hotel Wander.</li>
+</ul>
+
+<!-- 7. ABOUT -->
+<h2 class="sec">7.&nbsp;&nbsp;About the Workshop</h2>
+<p>This workshop is organised as part of the SPRFMO Jack Mackerel Management Strategy Evaluation (MSE) process. The meeting is hosted at Wageningen Campus Omnia, on the campus of Wageningen University &amp; Research, and is coordinated through the SPRFMO Secretariat. Registration and further correspondence should be directed to the SPRFMO Secretariat.</p>
+
+<div class="footer">
+  Document prepared for SPRFMO JM MSE Workshop participants – June 2026
+</div>
+
+</body>
+</html>
