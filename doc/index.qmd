@@ -17,6 +17,7 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 ## Notices
 
+- **Benchmark workshop information posted:** [Benchmark Workshop Information](Benchmark-workshop-information.html) ([QMD](Benchmark-workshop-information.qmd))
 - **Visitor Information posted:** [SPRFMO Jack Mackerel MSE Workshop Visitor Information](SPRFMO-MSE-Workshop-Visitor-Information.html) ([QMD](SPRFMO-MSE-Workshop-Visitor-Information.qmd))
 
 ## SCW16 preparations

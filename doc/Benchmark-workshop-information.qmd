@@ -1,0 +1,100 @@
+---
+title: "Benchmark Workshop Information"
+date: "April 2026"
+format:
+  html:
+    number-sections: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div class="paper-title">Benchmark Workshop Information</div>
+```
+
+**BENCHMARK WORKSHOP VENUE**
+
+::: {.callout-note}
+**Site event location:** Jorge Sanchez Romero Auditorium, Instituto del Mar del Peru (IMARPE)  
+**Address:** Corner of Gamarra and General Valle Streets, Callao, Callao Province, Callao, Peru 07021  
+**Map:** [Google Maps location](https://maps.app.goo.gl/sXNCkP8QhA7ex53s7)  
+**Telephone:** +51 1 904 0137  
+**Dates:** May 18-22, 2026  
+**Hours:** 9:00 AM to 5:00 PM
+:::
+
+## Hotels
+
+We recommend booking in Miraflores city center, close to Kennedy Park: [Map](https://maps.app.goo.gl/L9m1R9ZeZtRPhUDk8).
+
+### Jose Antonio Deluxe Hotel
+
+- Web: <https://www.hotelesjoseantonio.com/hotels/jose-antonio-deluxe.html>
+- Address: Bellavista Street 133, Miraflores, Lima 15074, Peru
+- Location: <https://maps.app.goo.gl/SHT5HvNNQ2yRHroD6>
+- Telephone: +51 1 6415050
+
+### Jose Antonio Lima Hotel
+
+- Web: <https://www.hotelesjoseantonio.com/hotels/jose-antonio-lima.html>
+- Address: Av. 28 de Julio 398, Miraflores, Lima 15074, Peru
+- Location: <https://maps.app.goo.gl/yMKzr2zHnyYLRweM8>
+- Telephone: +51 1 6415050
+
+### Jose Antonio Executive Hotel
+
+- Web: <https://www.hotelesjoseantonio.com/hotels/jose-antonio-executive.html>
+- Address: Colon Street 328, Miraflores, Lima 15074, Peru
+- Location: <https://maps.app.goo.gl/mBricci39Nu3aYcR7>
+- Telephone: +51 1 6415050
+
+### Hilton Garden Inn Lima Miraflores Hotel
+
+- Web: <https://www.hilton.com/en/hotels/limlmgi-garden-inn-lima-miraflores/>
+- Address: Malecon Balta 770, Miraflores, Lima 15074, Peru
+- Location: <https://maps.app.goo.gl/Rtpv4YprcYkpaaXcA>
+- Telephone: +51 1 5104000
+
+### Del Pilar Miraflores Hotel
+
+- Web: <https://www.delpilarhotels.com/>
+- Email: <delpilar@delpilarhotels.com>
+- Address: Esq Pardo con C Martir Jose Olaya 141, Miraflores, Lima 15074, Peru
+- Location: <https://maps.app.goo.gl/HbnypCqdV4Ph7NT98>
+- Telephone: +51 1 712 0712
+
+### ESTELAR Bellavista Apartments
+
+- Web: <https://www.estelarapartamentosbellavista.com/en/>
+- Email: <reservas.peru@hotelesestelar.com>
+- Address: Bellavista Street 216, Miraflores
+- Location: <https://maps.app.goo.gl/CLCzocdzdMLMJ8Ti6>
+- Telephone: +51 1 630 7700
+
+### Holiday Inn Lima Miraflores Hotel
+
+- Web: <https://www.holidayinn.com/hotels/us/en/find-hotels/select-roomrate?qDest=Lima%2C%20Peru&qSlH=LIMMI>
+- Address: Alfonso Ugarte Street 117, Miraflores, Lima 18, Peru
+- Location: <https://maps.app.goo.gl/Vk41QYr1iXzy8TA78>
+- Telephone: +51 1 6149696
+
+### Crowne Plaza Lima Hotel
+
+- Web: <https://www.holidayinn.com/hotels/us/en/find-hotels/select-roomrate?qDest=Lima%2C%20Peru&qSlH=LMAMI>
+- Address: Av. Benavides 300, Miraflores, Lima 18, Peru
+- Location: <https://maps.app.goo.gl/wcScoScDurSz2ajN9>
+
+## Transfer To IMARPE - Callao
+
+### Miraflores To IMARPE (Callao)
+
+The meeting point for daily bus transportation to IMARPE, Callao, is in front of the Jose Antonio Deluxe Hotel (Bellavista Street 133, Miraflores, Lima 15074, Peru) at **8:15 AM**.
+
+### IMARPE (Callao) To Miraflores
+
+The meeting point for the daily bus transfer back to Miraflores is in front of IMARPE, Callao, at **5:15 PM**.
+
+## Lunch
+
+Lunch is at **1:00 PM** at Divino Mar restaurant (Club Regatas), Av. Bolognesi N 1000, La Punta, Callao.  
+Location: <https://maps.app.goo.gl/fJ95Vi84hQUiPfm97>

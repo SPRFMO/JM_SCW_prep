@@ -7,6 +7,7 @@ project:
     - archive/*.rmd
   render:
     - index.qmd
+    - Benchmark-workshop-information.qmd
     - SPRFMO-MSE-Workshop-Visitor-Information.qmd
     - archive/index.qmd
     - JMWG_Benchmark_ToR.qmd
