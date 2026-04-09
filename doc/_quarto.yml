@@ -10,6 +10,7 @@ project:
     - SPRFMO-MSE-Workshop-Visitor-Information.qmd
     - archive/index.qmd
     - JMWG_Benchmark_ToR.qmd
+    - SCW16-Paper-00.qmd
     - SCW16-Paper-01.qmd
     - JMWG-2026-plan.qmd
     - "JMWG-Meeting report-01-2026.qmd"
@@ -26,6 +27,8 @@ website:
         text: Home
       - href: JMWG_Benchmark_ToR.qmd
         text: SCW16/ToR
+      - href: SCW16-Paper-00.qmd
+        text: SCW16/Paper-00
       - href: SCW16-Paper-01.qmd
         text: SCW16/Paper-01
       - href: "JMWG-Meeting report-01-2026.qmd"

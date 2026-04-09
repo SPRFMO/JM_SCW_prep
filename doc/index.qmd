@@ -27,6 +27,8 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 ### Draft SCW16 papers
 
+  - [SCW16/Paper-00: Preliminary agenda](SCW16-Paper-00.html) ([PDF](SCW16-Paper-00.pdf), [DOCX](SCW16-Paper-00.docx), [QMD](SCW16-Paper-00.qmd))
+
   - [SCW16/Paper-01](SCW16-Paper-01.html) ([PDF](SCW16-Paper-01.pdf), [DOCX](SCW16-Paper-01.docx))
 
   - [SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)](SCW16-Paper-03-CPUE_MetaAnalysis.html) ([QMD](SCW16-Paper-03-CPUE_MetaAnalysis.qmd))
@@ -51,6 +53,10 @@ These are the benchmark workshop terms of reference, tracked as `JMWG_Benchmark_
 ## SCW16/Paper-01
 
 This is the main benchmark working paper, tracked as `SCW16-Paper-01.qmd`, with published HTML, PDF, and DOCX outputs.
+
+## SCW16/Paper-00
+
+This is the preliminary agenda note for the IMARPE-IFOP online acoustic session, tracked as `SCW16-Paper-00.qmd`, with HTML, PDF, and DOCX outputs.
 
 ## JMWG Meeting report 01-2026
 

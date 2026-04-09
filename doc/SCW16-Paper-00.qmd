@@ -1,0 +1,59 @@
+---
+title: "SCW16/Paper-00, Preliminary agenda"
+format:
+  html:
+    output-file: "SCW16-Paper-00.html"
+    self-contained: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+  pdf:
+    output-file: "SCW16-Paper-00.pdf"
+    number-sections: false
+  docx:
+    output-file: "SCW16-Paper-00.docx"
+    toc: true
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">SCW16/Paper-00</div>
+<div class="paper-title">Preliminary agenda</div>
+```
+
+
+Participants from IMARPE (Peru) and IFOP (Chile) met online and prepared this preliminary 
+draft schedule for acoustic survey evaluations during the benchmark workshop.
+
+Participants in this drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez,
+Ignacio Payá, Victor Catasti, and José Zenteno
+
+## Preliminary Acoustic Session Agenda (day tbd)
+
+- **Start time:** 09:00
+
+| Time | Topic | Presenter |
+|---|---|---|
+| 09:00-09:25 | Historical review of hydroacoustic survey programs in north-central Chile | V. Catasti (IFOP) |
+| 09:25-09:50 | Spatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using `sdmTMB` | I. Payá and V. Catasti (IFOP) |
+| 09:50-10:15 | Preliminary results of the 2026 north-central Chile hydroacoustic survey | V. Catasti (IFOP) |
+| 10:15-10:30 | Coffee break |  |
+
+
+| Time | Topic | Presenter |
+|---|---|---|
+| 10:30-11:00 | Examination and/or validation of jack mackerel echotraces | All participants |
+| 11:00-11:25 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA, TBC) |
+| 11:25-11:50 | Review of jack mackerel acoustic assessments conducted in Peru | Daniel Grados (IMARPE) |
+| 11:50-13:20 | Lunch break (1 hour 30 minutes) |  |
+
+| Time | Topic | Presenter |
+|---|---|---|
+| 13:20-13:45 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Mariano Gutiérrez (National University Federico Villarreal) |
+| 13:45-14:15 | General discussion and technical recommendations | All participants |

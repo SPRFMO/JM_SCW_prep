@@ -550,7 +550,7 @@
     "href": "index.html#scw16-preparations",
     "title": "JJM Assessment Documents",
     "section": "SCW16 preparations",
-    "text": "SCW16 preparations\n\nJMWG 2026 Plan (DOCX, QMD)\nSCW16/ToR (PDF, DOCX)\n\n\nDraft SCW16 papers\n\nSCW16/Paper-01 (PDF, DOCX)\nSCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025) (QMD)\n\n\n\nPrep meeting report\nJMWG Meeting report 01-2026 (PDF, DOCX)"
+    "text": "SCW16 preparations\n\nJMWG 2026 Plan (DOCX, QMD)\nSCW16/ToR (PDF, DOCX)\n\n\nDraft SCW16 papers\n\nSCW16/Paper-00: Preliminary agenda (PDF, DOCX, QMD)\nSCW16/Paper-01 (PDF, DOCX)\nSCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025) (QMD)\n\n\n\nPrep meeting report\nJMWG Meeting report 01-2026 (PDF, DOCX)"
   },
   {
     "objectID": "index.html#other-background-reports",
@@ -810,5 +810,61 @@
     "title": "Helper Scripts Guide",
     "section": "assessment/R/run_default_mcmc.R",
     "text": "assessment/R/run_default_mcmc.R\n\nWhat It Does\nThis is a thin convenience wrapper around assessment/R/run_adnuts_mcmc.R for any JJM model or control file target.\nIt launches the generic wrapper with these defaults:\n\n--iter=1000\n--warmup=500\n--chains=4\n--cores=4\n\nThe first positional argument is passed through as the target model or control file. Any additional command-line arguments are passed through after the defaults, so later options can still override them.\n\n\nDefault Usage\nRscript assessment/R/run_default_mcmc.R h2_2.02\n\n\nOverride Example\nRscript assessment/R/run_default_mcmc.R h2_2.02 --iter=1500 --run-label=h2_2_02_longer\n\n\nOutputs\nEach run directory contains:\n\nfit.rds: full adnuts fit object\nsettings.rds: settings used for the run\nsummary.csv: one-row summary with timing and headline diagnostics\nmonitor.csv: parameter-level Rhat and effective sample size, when monitoring is enabled\nsampler_diagnostics.csv: chain-level divergences and max-treedepth hits\n\nThe file mcmc_runs/adnuts_run_log.csv appends one row per run so repeated short tests can be compared directly.\n\n\nIntended Comparison Metrics\nThis wrapper is designed to support comparisons such as:\n\nwall time\naverage chain time\nmaximum Rhat\nminimum bulk effective sample size\ntotal divergences\ntotal max-treedepth hits\n\n\n\nImportant Notes\n\nThe script assumes the model has already been fitted and that matching .par and .cor files exist in assessment/results/.\nThe script stages those fitted artifacts under the executable name expected by adnuts, for example jjm.par and jjm.cor.\nIn this environment, parallel::detectCores() returns NA, which breaks adnuts internally. The wrapper patches that locally during the sample_nuts() call.\nThe current wrapper is built for NUTS only. It does not yet expose a random-walk Metropolis path.\nThe exact ADMB preparation requirements can vary by model and executable behavior, so --prepare-mode=full is the safest default."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html",
+    "href": "SCW16-Paper-00.html",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nParticipants from IMARPE (Peru) and IFOP (Chile) met online and prepared this preliminary draft schedule for acoustic survey evaluations during the benchmark workshop.\nParticipants in this drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez, Ignacio Payá, Victor Catasti, and José Zenteno"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#meeting",
+    "href": "SCW16-Paper-00.html#meeting",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "1 Meeting",
+    "text": "1 Meeting\nIMARPE-IFOP online meeting\n\nDate: March 30\nAim: Coordinate a preliminary acoustic agenda\nResults: Preliminary agenda\n\n\n1.1 Participants\n\nIMARPE: Criscely Lujan and Daniel Ramos\nNational University Federico Villarreal: Mariano Gutiérrez\nIFOP: Ignacio Payá, Victor Catasti, and José Zenteno"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#proposed-session-flow",
+    "href": "SCW16-Paper-00.html#proposed-session-flow",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "2 Proposed Session Flow",
+    "text": "2 Proposed Session Flow\n\n\n\n\n\n\n\n\nBlock\nIndicative time (min)\nTopic\n\n\n\n\n1\n10\nOpening, welcome, and adoption of agenda\n\n\n2\n10\nSession objectives and expected outputs for SCW16\n\n\n3\n20\nIMARPE acoustic update (survey highlights, key issues)\n\n\n4\n20\nIFOP acoustic update (survey highlights, key issues)\n\n\n5\n20\nJoint technical discussion: comparability, assumptions, and diagnostics\n\n\n6\n15\nData requests, responsibilities, and timeline to SCW16 submissions\n\n\n7\n10\nAgreement on action items and reporting format\n\n\n8\n5\nClosing remarks"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#expected-outputs",
+    "href": "SCW16-Paper-00.html#expected-outputs",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "3 Expected Outputs",
+    "text": "3 Expected Outputs\n\nAgreed session scope for acoustic topics relevant to SCW16.\nShared list of technical assumptions to document in working papers.\nConfirmed action tracker with leads and deadlines."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#action-tracker-template",
+    "href": "SCW16-Paper-00.html#action-tracker-template",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "4 Action Tracker Template",
+    "text": "4 Action Tracker Template\n\n\n\n\n\n\n\n\n\n\nAction\nLead\nSupporting members\nDeadline\nStatus\n\n\n\n\nDefine final acoustic comparison table structure\nTBC\nTBC\nTBC\nOpen\n\n\nConfirm data cut-off and exchange format\nTBC\nTBC\nTBC\nOpen\n\n\nDraft summary text for SCW16/Paper-00 follow-up\nTBC\nTBC\nTBC\nOpen"
+  },
+  {
+    "objectID": "index.html#scw16paper-00",
+    "href": "index.html#scw16paper-00",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16/Paper-00",
+    "text": "SCW16/Paper-00\nThis is the preliminary agenda note for the IMARPE-IFOP online acoustic session, tracked as SCW16-Paper-00.qmd, with HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda",
+    "href": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Preliminary Acoustic Session Agenda",
+    "text": "Preliminary Acoustic Session Agenda\n\nStart time: 09:00\n\n\nSession 1\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\nSession 2\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\nSession 3\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda-day-tbd",
+    "href": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda-day-tbd",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Preliminary Acoustic Session Agenda (day tbd)",
+    "text": "Preliminary Acoustic Session Agenda (day tbd)\n\nStart time: 09:00\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
   }
 ]
