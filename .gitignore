@@ -84,4 +84,6 @@ docs/Model_Notes.md
 *.html
 ~$*
 *.docx
+!docs/JMWG-Meeting report-02-2026.html
+!docs/JMWG-Meeting report-02-2026.docx
 openMSE_assess_proj/Proj_1.rda
