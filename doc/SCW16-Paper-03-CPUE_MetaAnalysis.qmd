@@ -80,6 +80,10 @@ execute:
 **Compiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings**
 *Prepared: March 2026 | All PDFs accessed directly via sprfmo.int*
 
+This paper is the historical synthesis component of the SCW16 CPUE work. The forward-looking
+coordination note for the benchmark session, proposed supporting papers, and workshop decision
+points is documented separately in `SCW16/Paper-02`.
+
 ## Background for 2026 Benchmark Priorities
 
 Refining and analysing abundance indices is a high-priority focus for the upcoming jack mackerel benchmark workshop, which the Scientific Committee recommended be held in Lima, Peru, in 2026. To support robust stock assessment outcomes, the SC identified specific areas where index standardisation, interpretation, and model use should be improved.

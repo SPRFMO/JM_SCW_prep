@@ -851,7 +851,11 @@
     "href": "SCW16-Paper-03-CPUE_MetaAnalysis.html",
     "title": "Meta-Analysis of CPUE Papers on Jack Mackerel (2022–2025)",
     "section": "",
+<<<<<<< HEAD
     "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nUpdated at 2026-04-15 00:25 UTC\nCompiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings Prepared: March 2026 | All PDFs accessed directly via sprfmo.int"
+=======
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nUpdated at 2026-04-16 06:07 UTC\nCompiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings Prepared: March 2026 | All PDFs accessed directly via sprfmo.int\nThis paper is the historical synthesis component of the SCW16 CPUE work. The forward-looking coordination note for the benchmark session, proposed supporting papers, and workshop decision points is documented separately in SCW16/Paper-02."
+>>>>>>> 207bb4b (Sync CPUE agenda updates from jjm)
   },
   {
     "objectID": "SCW16-Paper-03-CPUE_MetaAnalysis.html#background-for-2026-benchmark-priorities",
@@ -943,5 +947,155 @@
     "title": "Helper Scripts Guide",
     "section": "assessment/R/run_default_mcmc.R",
     "text": "assessment/R/run_default_mcmc.R\n\nWhat It Does\nThis is a thin convenience wrapper around assessment/R/run_adnuts_mcmc.R for any JJM model or control file target.\nIt launches the generic wrapper with these defaults:\n\n--iter=1000\n--warmup=500\n--chains=4\n--cores=4\n\nThe first positional argument is passed through as the target model or control file. Any additional command-line arguments are passed through after the defaults, so later options can still override them.\n\n\nDefault Usage\nRscript assessment/R/run_default_mcmc.R h2_2.02\n\n\nOverride Example\nRscript assessment/R/run_default_mcmc.R h2_2.02 --iter=1500 --run-label=h2_2_02_longer\n\n\nOutputs\nEach run directory contains:\n\nfit.rds: full adnuts fit object\nsettings.rds: settings used for the run\nsummary.csv: one-row summary with timing and headline diagnostics\nmonitor.csv: parameter-level Rhat and effective sample size, when monitoring is enabled\nsampler_diagnostics.csv: chain-level divergences and max-treedepth hits\n\nThe file mcmc_runs/adnuts_run_log.csv appends one row per run so repeated short tests can be compared directly.\n\n\nIntended Comparison Metrics\nThis wrapper is designed to support comparisons such as:\n\nwall time\naverage chain time\nmaximum Rhat\nminimum bulk effective sample size\ntotal divergences\ntotal max-treedepth hits\n\n\n\nImportant Notes\n\nThe script assumes the model has already been fitted and that matching .par and .cor files exist in assessment/results/.\nThe script stages those fitted artifacts under the executable name expected by adnuts, for example jjm.par and jjm.cor.\nIn this environment, parallel::detectCores() returns NA, which breaks adnuts internally. The wrapper patches that locally during the sample_nuts() call.\nThe current wrapper is built for NUTS only. It does not yet expose a random-walk Metropolis path.\nThe exact ADMB preparation requirements can vary by model and executable behavior, so --prepare-mode=full is the safest default."
+<<<<<<< HEAD
+=======
+  },
+  {
+    "objectID": "SCW16-Paper-00.html",
+    "href": "SCW16-Paper-00.html",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nThis paper compiles the current draft benchmark agenda for the abundance-index sessions. It combines the acoustic-session schedule prepared by IMARPE and IFOP and the CPUE-session agenda developed at the CPUE coordination meeting held on 14 April 2026.\nParticipants in the acoustic drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez, Ignacio Payá, Victor Catasti, and José Zenteno.\nParticipants in the CPUE coordination meeting included Criscely Lujan, Miriam Geronimo, Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#meeting",
+    "href": "SCW16-Paper-00.html#meeting",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "1 Meeting",
+    "text": "1 Meeting\nIMARPE-IFOP online meeting\n\nDate: March 30\nAim: Coordinate a preliminary acoustic agenda\nResults: Preliminary agenda\n\n\n1.1 Participants\n\nIMARPE: Criscely Lujan and Daniel Ramos\nNational University Federico Villarreal: Mariano Gutiérrez\nIFOP: Ignacio Payá, Victor Catasti, and José Zenteno"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#proposed-session-flow",
+    "href": "SCW16-Paper-00.html#proposed-session-flow",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "2 Proposed Session Flow",
+    "text": "2 Proposed Session Flow\n\n\n\n\n\n\n\n\nBlock\nIndicative time (min)\nTopic\n\n\n\n\n1\n10\nOpening, welcome, and adoption of agenda\n\n\n2\n10\nSession objectives and expected outputs for SCW16\n\n\n3\n20\nIMARPE acoustic update (survey highlights, key issues)\n\n\n4\n20\nIFOP acoustic update (survey highlights, key issues)\n\n\n5\n20\nJoint technical discussion: comparability, assumptions, and diagnostics\n\n\n6\n15\nData requests, responsibilities, and timeline to SCW16 submissions\n\n\n7\n10\nAgreement on action items and reporting format\n\n\n8\n5\nClosing remarks"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#expected-outputs",
+    "href": "SCW16-Paper-00.html#expected-outputs",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "3 Expected Outputs",
+    "text": "3 Expected Outputs\n\nAgreed session scope for acoustic topics relevant to SCW16.\nShared list of technical assumptions to document in working papers.\nConfirmed action tracker with leads and deadlines."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#action-tracker-template",
+    "href": "SCW16-Paper-00.html#action-tracker-template",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "4 Action Tracker Template",
+    "text": "4 Action Tracker Template\n\n\n\n\n\n\n\n\n\n\nAction\nLead\nSupporting members\nDeadline\nStatus\n\n\n\n\nDefine final acoustic comparison table structure\nTBC\nTBC\nTBC\nOpen\n\n\nConfirm data cut-off and exchange format\nTBC\nTBC\nTBC\nOpen\n\n\nDraft summary text for SCW16/Paper-00 follow-up\nTBC\nTBC\nTBC\nOpen"
+  },
+  {
+    "objectID": "index.html#scw16paper-00",
+    "href": "index.html#scw16paper-00",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16/Paper-00",
+    "text": "SCW16/Paper-00\nThis is the preliminary agenda note for the IMARPE-IFOP online acoustic session, tracked as SCW16-Paper-00.qmd, with HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda",
+    "href": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "2 Preliminary Acoustic Session Agenda",
+    "text": "2 Preliminary Acoustic Session Agenda\n\nStart time: 09:00\n\n\n2.1 Session 1\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\n2.2 Session 2\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\n2.3 Session 3\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda-day-tbd",
+    "href": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda-day-tbd",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Preliminary Acoustic Session Agenda (day tbd)",
+    "text": "Preliminary Acoustic Session Agenda (day tbd)\n\nStart time: 09:00\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html",
+    "href": "Benchmark-workshop-information.html",
+    "title": "Benchmark Workshop Information",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nBENCHMARK WORKSHOP VENUE"
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html#hotels",
+    "href": "Benchmark-workshop-information.html#hotels",
+    "title": "Benchmark Workshop Information",
+    "section": "Hotels",
+    "text": "Hotels\nWe recommend booking in Miraflores city center, close to Kennedy Park: Map.\n\nJose Antonio Deluxe Hotel\n\nWeb: https://www.hotelesjoseantonio.com/hotels/jose-antonio-deluxe.html\nAddress: Bellavista Street 133, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/SHT5HvNNQ2yRHroD6\nTelephone: +51 1 6415050\n\n\n\nJose Antonio Lima Hotel\n\nWeb: https://www.hotelesjoseantonio.com/hotels/jose-antonio-lima.html\nAddress: Av. 28 de Julio 398, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/yMKzr2zHnyYLRweM8\nTelephone: +51 1 6415050\n\n\n\nJose Antonio Executive Hotel\n\nWeb: https://www.hotelesjoseantonio.com/hotels/jose-antonio-executive.html\nAddress: Colon Street 328, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/mBricci39Nu3aYcR7\nTelephone: +51 1 6415050\n\n\n\nHilton Garden Inn Lima Miraflores Hotel\n\nWeb: https://www.hilton.com/en/hotels/limlmgi-garden-inn-lima-miraflores/\nAddress: Malecon Balta 770, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/Rtpv4YprcYkpaaXcA\nTelephone: +51 1 5104000\n\n\n\nDel Pilar Miraflores Hotel\n\nWeb: https://www.delpilarhotels.com/\nEmail: delpilar@delpilarhotels.com\nAddress: Esq Pardo con C Martir Jose Olaya 141, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/HbnypCqdV4Ph7NT98\nTelephone: +51 1 712 0712\n\n\n\nESTELAR Bellavista Apartments\n\nWeb: https://www.estelarapartamentosbellavista.com/en/\nEmail: reservas.peru@hotelesestelar.com\nAddress: Bellavista Street 216, Miraflores\nLocation: https://maps.app.goo.gl/CLCzocdzdMLMJ8Ti6\nTelephone: +51 1 630 7700\n\n\n\nHoliday Inn Lima Miraflores Hotel\n\nWeb: https://www.holidayinn.com/hotels/us/en/find-hotels/select-roomrate?qDest=Lima%2C%20Peru&qSlH=LIMMI\nAddress: Alfonso Ugarte Street 117, Miraflores, Lima 18, Peru\nLocation: https://maps.app.goo.gl/Vk41QYr1iXzy8TA78\nTelephone: +51 1 6149696\n\n\n\nCrowne Plaza Lima Hotel\n\nWeb: https://www.holidayinn.com/hotels/us/en/find-hotels/select-roomrate?qDest=Lima%2C%20Peru&qSlH=LMAMI\nAddress: Av. Benavides 300, Miraflores, Lima 18, Peru\nLocation: https://maps.app.goo.gl/wcScoScDurSz2ajN9"
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html#transfer-to-imarpe---callao",
+    "href": "Benchmark-workshop-information.html#transfer-to-imarpe---callao",
+    "title": "Benchmark Workshop Information",
+    "section": "Transfer To IMARPE - Callao",
+    "text": "Transfer To IMARPE - Callao\n\nMiraflores To IMARPE (Callao)\nThe meeting point for daily bus transportation to IMARPE, Callao, is in front of the Jose Antonio Deluxe Hotel (Bellavista Street 133, Miraflores, Lima 15074, Peru) at 8:15 AM.\n\n\nIMARPE (Callao) To Miraflores\nThe meeting point for the daily bus transfer back to Miraflores is in front of IMARPE, Callao, at 5:15 PM."
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html#lunch",
+    "href": "Benchmark-workshop-information.html#lunch",
+    "title": "Benchmark Workshop Information",
+    "section": "Lunch",
+    "text": "Lunch\nLunch is at 1:00 PM at Divino Mar restaurant (Club Regatas), Av. Bolognesi N 1000, La Punta, Callao.\nLocation: https://maps.app.goo.gl/fJ95Vi84hQUiPfm97"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#day-1.-preliminary-acoustic-session-agenda",
+    "href": "SCW16-Paper-00.html#day-1.-preliminary-acoustic-session-agenda",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Day 1. Preliminary Acoustic Session Agenda",
+    "text": "Day 1. Preliminary Acoustic Session Agenda\n\nStart time: 09:00\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#day-2.-preliminary-cpue-session-agenda",
+    "href": "SCW16-Paper-00.html#day-2.-preliminary-cpue-session-agenda",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Day 2. Preliminary CPUE Session Agenda",
+    "text": "Day 2. Preliminary CPUE Session Agenda\nThe Day 2 CPUE session is currently organized as a thematic sequence. Exact time allocations and presenters remain to be confirmed.\n\n\n\n\n\n\n\n\nOrder\nTopic\nNotes\n\n\n\n\n1\nMetadata by fleet and country\nReview fleet definitions, spatial coverage, observation level, and index construction by country and fishery.\n\n\n2\nMethods by fleet and country\nCompare GLM, spatio-temporal models, GLMMs with spatio-temporal random effects, and latitude-longitude smoothing approaches.\n\n\n3\nComparative analysis and parsimony across candidate indices\nEvaluate traditional GLM, spatio-temporal, and environmentally informed approaches and identify the most suitable benchmark candidates.\n\n\n4\nEffort-creep review and decision for stock assessment use\nRevisit current effort-creep assumptions and consider whether revised treatment is needed for benchmark runs.\n\n\n5\nCatchability-availability blocks by abundance index\nReview evidence for temporal or spatial changes in availability, including possible El Niño effects and implications for q blocks.\n\n\n6\nCPUE weighting factors for stock assessment\nDiscuss weighting choices and how they affect assessment fits and benchmark comparisons.\n\n\n7\nSeparate versus combined index products for HCR use\nConsider whether the benchmark should retain separate series or define a combined CPUE product for OM conditioning and MP inputs."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#comparison-of-modelling-approaches",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#comparison-of-modelling-approaches",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "1. Comparison of modelling approaches",
+    "text": "1. Comparison of modelling approaches\nThe group emphasized that traditional GLM products and newer spatio-temporal approaches should be compared directly rather than treated as unrelated alternatives. The benchmark should evaluate whether extra complexity produces a materially better and more defensible index, or whether a simpler method remains preferable."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#need-to-avoid-duplicated-chilean-products-where-possible",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#need-to-avoid-duplicated-chilean-products-where-possible",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "2. Need to avoid duplicated Chilean products where possible",
+    "text": "2. Need to avoid duplicated Chilean products where possible\nParticipants noted substantial overlap between the Chilean GLM and spatio-temporal work streams. One of the practical benchmark goals should therefore be to decide whether a single Chilean CPUE time series can be recommended for the main assessment, even if multiple alternative series are retained for sensitivity analyses."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#effort-creep-versus-catchability-or-availability-change",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#effort-creep-versus-catchability-or-availability-change",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "3. Effort creep versus catchability or availability change",
+    "text": "3. Effort creep versus catchability or availability change\nThe meeting highlighted the difficulty of applying a single flat effort-creep rate across periods with changing fleet behavior, area usage, and technology. At the same time, several participants noted that introducing effort creep in recent model runs had little effect because existing catchability blocks may already be absorbing part of the same signal. This remains a key benchmark question rather than a settled issue."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#observation-level-and-comparability-across-countries",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#observation-level-and-comparability-across-countries",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "4. Observation level and comparability across countries",
+    "text": "4. Observation level and comparability across countries\nPeruvian CPUE work continues to rely mainly on trip-level information, while some Chilean products operate at set level or use more explicit spatial structure. The benchmark should note these differences clearly because they affect both comparability and the feasible level of harmonisation across countries and fleets."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#availability-shifts-and-recent-index-contradictions",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#availability-shifts-and-recent-index-contradictions",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "5. Availability shifts and recent index contradictions",
+    "text": "5. Availability shifts and recent index contradictions\nThe coordination discussion treated the recent sharp decline in offshore CPUE as a probable availability or catchability signal rather than decisive evidence of an abrupt stock collapse. This reinforces the need to review index-biomass relationships explicitly rather than assuming that all indices are directly proportional to total stock biomass at all times."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#combined-index-products-for-mse",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#combined-index-products-for-mse",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "6. Combined index products for MSE",
+    "text": "6. Combined index products for MSE\nThe group did not assume that a single combined CPUE index should be produced for the benchmark. Instead, the benchmark should review whether separate country or fleet series are more informative, or whether some form of combined product would be more useful for operating-model conditioning and for candidate management procedures."
+>>>>>>> 207bb4b (Sync CPUE agenda updates from jjm)
   }
 ]
