@@ -28,13 +28,17 @@ execute:
 ```
 
 
-Participants from IMARPE (Peru) and IFOP (Chile) met online and prepared this preliminary 
-draft schedule for acoustic survey evaluations during the benchmark workshop.
+This paper compiles the current draft benchmark agenda for the abundance-index sessions.
+It combines the acoustic-session schedule prepared by IMARPE and IFOP and the CPUE-session
+agenda developed at the CPUE coordination meeting held on 14 April 2026.
 
-Participants in this drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez,
-Ignacio Payá, Victor Catasti, and José Zenteno
+Participants in the acoustic drafting committee included Criscely Lujan, Daniel Ramos,
+Mariano Gutiérrez, Ignacio Payá, Victor Catasti, and José Zenteno.
 
-## Preliminary Acoustic Session Agenda (day tbd)
+Participants in the CPUE coordination meeting included Criscely Lujan, Miriam Geronimo,
+Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen.
+
+## Day 1. Preliminary Acoustic Session Agenda
 
 - **Start time:** 09:00
 
@@ -57,3 +61,18 @@ Ignacio Payá, Victor Catasti, and José Zenteno
 |---|---|---|
 | 13:20-13:45 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Mariano Gutiérrez (National University Federico Villarreal) |
 | 13:45-14:15 | General discussion and technical recommendations | All participants |
+
+## Day 2. Preliminary CPUE Session Agenda
+
+The Day 2 CPUE session is currently organized as a thematic sequence. Exact time
+allocations and presenters remain to be confirmed.
+
+| Order | Topic | Notes |
+|---|---|---|
+| 1 | Metadata by fleet and country | Review fleet definitions, spatial coverage, observation level, and index construction by country and fishery. |
+| 2 | Methods by fleet and country | Compare GLM, spatio-temporal models, GLMMs with spatio-temporal random effects, and latitude-longitude smoothing approaches. |
+| 3 | Comparative analysis and parsimony across candidate indices | Evaluate traditional GLM, spatio-temporal, and environmentally informed approaches and identify the most suitable benchmark candidates. |
+| 4 | Effort-creep review and decision for stock assessment use | Revisit current effort-creep assumptions and consider whether revised treatment is needed for benchmark runs. |
+| 5 | Catchability-availability blocks by abundance index | Review evidence for temporal or spatial changes in availability, including possible El Niño effects and implications for `q` blocks. |
+| 6 | CPUE weighting factors for stock assessment | Discuss weighting choices and how they affect assessment fits and benchmark comparisons. |
+| 7 | Separate versus combined index products for HCR use | Consider whether the benchmark should retain separate series or define a combined CPUE product for OM conditioning and MP inputs. |

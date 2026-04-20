@@ -308,67 +308,326 @@
     "text": "9.3 Other models to run"
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html",
-    "href": "JMWG-Meeting report-01-2026.html",
-    "title": "JMWG Meeting 01/2026",
+    "objectID": "JMWG-Meeting report-02-2026.html",
+    "href": "JMWG-Meeting report-02-2026.html",
+    "title": "JMWG Meeting 02/2026",
     "section": "",
     "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#workplan-and-schedule",
-    "href": "JMWG-Meeting report-01-2026.html#workplan-and-schedule",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.1 Workplan and Schedule",
-    "text": "4.1 Workplan and Schedule\nJim Ianelli opened the meeting as a kickoff session intended to organize the next two months of work. He emphasized that the May event is primarily a benchmark, but one that must resolve enough assessment structure to support the June MSE workshop. Participants discussed the compressed schedule and the need to keep regular meetings on the calendar so that BM papers and diagnostics advance before Lima.\nThe broad schedule discussed in the meeting was:\n\nHold preparatory meetings in early April.\nSubmit BM03 and related benchmark material by 24 April 2026.\nUse the May Lima benchmark to review indices, data inputs, and candidate model changes.\nShift into MSE-focused work for the June Wageningen workshop.\nPrepare later review material for an August submission and review phase."
+    "objectID": "JMWG-Meeting report-02-2026.html#workshop-logistics-and-participation-format",
+    "href": "JMWG-Meeting report-02-2026.html#workshop-logistics-and-participation-format",
+    "title": "JMWG Meeting 02/2026",
+    "section": "1. Workshop logistics and participation format",
+    "text": "1. Workshop logistics and participation format\n\nThe Secretariat benchmark logistics email and coordinating page were circulated and acknowledged.\nThe benchmark workshop will remain primarily in-person and run across a full week in Lima.\nLimited remote participation was supported for selected sessions rather than continuous full-day streaming.\nAna confirmed that Microsoft Teams connectivity in the IMARPE auditorium should support virtual participation for those parts of the meeting.\nThe practical approach agreed was to schedule open sessions and periodic summaries at useful times for remote attendees."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#benchmark-papers-and-bm03-scope",
-    "href": "JMWG-Meeting report-01-2026.html#benchmark-papers-and-bm03-scope",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.2 Benchmark Papers and BM03 Scope",
-    "text": "4.2 Benchmark Papers and BM03 Scope\nJim described a benchmark-paper structure in which BM01 documents the 2025 assessment model and candidate simplifications, BM02 explores next-generation base-model options, and BM03 covers indices of abundance. The discussion quickly converged on the view that BM03 is too broad as a single document and should be split into multiple papers.\nLikely BM03-related products identified during the meeting included:\n\nA Chilean acoustic-survey paper, including results from the survey that had started roughly five days before the meeting.\nAdditional Chilean acoustic or vessel-opportunity material if available.\nChilean CPUE papers, including spatial-temporal analyses already developed in recent years.\nA Peruvian CPUE/index paper using updated 2015-2025 information.\nA metadata or review paper summarizing the characteristics, timing, methods, and caveats of each main index.\n\nIgnacio Paya volunteered to coordinate BM03 and to work with contributors on the overall structure and leads."
+    "objectID": "JMWG-Meeting report-02-2026.html#acoustic-agenda-scope-and-timing",
+    "href": "JMWG-Meeting report-02-2026.html#acoustic-agenda-scope-and-timing",
+    "title": "JMWG Meeting 02/2026",
+    "section": "2. Acoustic agenda scope and timing",
+    "text": "2. Acoustic agenda scope and timing\n\nStrong support was expressed for placing acoustic discussions early in the benchmark week so acoustic scientists can contribute before assessment and MSE topics narrow.\nThe acoustic agenda is intended as a technical working session for acoustic experts rather than a general training session.\nDiscussion emphasized moving beyond single biomass points toward finer acoustic products by location, length, or age so cohorts can be tracked more directly.\nParticipants also highlighted the need to review the full processing chain, from acoustic signal interpretation to biological sampling and the final index used in assessment.\nBroader acoustic participation was encouraged, including IMARPE, IFOP, Nicolas on opportunity-vessel acoustic data, and possible external expertise from Alaska.\nChile described ongoing work to convert acoustic information to biomass and to develop a standardized spatiotemporal acoustic index using SDM, TMB, or INLA, and the group agreed to add time for preliminary Chilean results."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#acoustic-and-index-work",
-    "href": "JMWG-Meeting report-01-2026.html#acoustic-and-index-work",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.3 Acoustic and Index Work",
-    "text": "4.3 Acoustic and Index Work\nChile reported that the current acoustic survey was underway and that preliminary biomass estimates might be available in time for the May benchmark. Chile also suggested involving additional acoustic specialists, including Mariano Gutierrez and Nicolas, in a more technical discussion of acoustic methods and interpretation.\nPeru agreed to contact Mariano and supported splitting BM03 into several products. Peru also described ongoing work to produce a more robust updated CPUE series covering 2015-2025. The discussion treated Chilean and Peruvian index work as central benchmark inputs.\nParticipants also returned repeatedly to the idea of a metadata table. This was seen as a practical way to summarize when fleets operate, what data exist, how methods differ, and what limits apply to interpretation of each series. That synthesis was viewed as useful both for the benchmark and for later MSE conditioning."
+    "objectID": "JMWG-Meeting report-02-2026.html#cpue-agenda-and-meta-analysis-follow-up",
+    "href": "JMWG-Meeting report-02-2026.html#cpue-agenda-and-meta-analysis-follow-up",
+    "title": "JMWG Meeting 02/2026",
+    "section": "3. CPUE agenda and meta-analysis follow-up",
+    "text": "3. CPUE agenda and meta-analysis follow-up\n\nA dedicated CPUE session structure is still needed, analogous to the acoustic agenda.\nThe group suggested holding CPUE index discussions on the second day of the benchmark week.\nIgnacio volunteered to coordinate CPUE agenda development, with Niels supporting and Sebastián and José assisting on scripting and technical issues.\nExisting CPUE historical-review work will anchor the discussion, but concrete plans for updated CPUE papers should be prepared before the next intersessional meeting.\nMajor CPUE issues flagged included fleet and gear differences, seasonal and regional coverage, catchability-block structure, and how alternative index treatments would affect the assessment and the MSE."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#data-scope-biological-updates-and-data-sharing",
-    "href": "JMWG-Meeting report-01-2026.html#data-scope-biological-updates-and-data-sharing",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.4 Data Scope, Biological Updates, and Data Sharing",
-    "text": "4.4 Data Scope, Biological Updates, and Data Sharing\nKarolina asked whether BM03 is intended to review only indices or the broader stock-assessment data package. Jim noted that the current focus is on indices, though biological updates could also be relevant where new work exists. Chile reported no major biological updates ready for the benchmark. Peru reported new work on age-related data, including efforts to better represent smaller fish and a wider length range in age-structured inputs.\nThe meeting also highlighted the difference between coarse Secretariat-aggregated spatial data and the raw haul-level information needed for robust combined CPUE modeling. Niels stressed that a fully integrated offshore and regional CPUE would likely require haul-by-haul data sharing across members. Participants treated that as an important medium-term goal, but something unlikely to be fully resolved before the May benchmark."
+    "objectID": "JMWG-Meeting report-02-2026.html#combined-index-concept-and-data-constraints",
+    "href": "JMWG-Meeting report-02-2026.html#combined-index-concept-and-data-constraints",
+    "title": "JMWG Meeting 02/2026",
+    "section": "4. Combined-index concept and data constraints",
+    "text": "4. Combined-index concept and data constraints\n\nCombining indices across fleets and countries remains an open question rather than an assumed benchmark product.\nPeru emphasized that data-sharing and data-resolution constraints limit what can be combined immediately, particularly for haul-level or otherwise sensitive information.\nParticipants noted that a single combined index may obscure fleet-, region-, and season-specific dynamics because gears and spatial coverage differ materially.\nThe general view was that the benchmark should evaluate prepared products that are already largely developed rather than attempt full raw-data harmonization during the meeting itself."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#index-interpretation-and-combined-data-questions",
-    "href": "JMWG-Meeting report-01-2026.html#index-interpretation-and-combined-data-questions",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.5 Index Interpretation and Combined-Data Questions",
-    "text": "4.5 Index Interpretation and Combined-Data Questions\nSeveral speakers discussed whether the benchmark should aim to create a single standardized index across fleets or focus first on reviewing and documenting individual indices. Jim favored keeping all options open while prioritizing benchmark-ready documentation and index submissions. Niels argued that a combined cross-fleet CPUE remains the most robust long-term response to changing spatial distribution, but also noted the practical and political challenges of accessing compatible raw data.\nIgnacio described Chile’s recent work as using largely overlapping data streams across institutions for recent years, with differences arising more from methods and implementation than from wholly separate datasets. He also pointed to the importance of seasonal timing and within-year availability of data, noting that Chile can provide more current-year information than some other fleets. The meeting agreed that these differences should be documented explicitly in metadata and review papers rather than left implicit."
+    "objectID": "JMWG-Meeting report-02-2026.html#assessment-configuration-updates-discussed",
+    "href": "JMWG-Meeting report-02-2026.html#assessment-configuration-updates-discussed",
+    "title": "JMWG Meeting 02/2026",
+    "section": "5. Assessment configuration updates discussed",
+    "text": "5. Assessment configuration updates discussed\n\nJim reviewed updates on simplified assessment alternatives and the implications of those changes for stock trajectories.\nTests reducing the number of indices had very little effect on assessment history, whereas selectivity changes, especially blocked selectivity treatments, had much larger effects.\nRestoring variable selectivity for South Central clarified why some blocked-selectivity runs diverged.\nA completed run allowing time trends in catchability across the four indices was presented as nearly equivalent to combining indices into one.\nPER noted that a 2002 fleet change in the far north and changes to productivity-regime structure can materially affect recent historical patterns and should be treated carefully and consistently across hypotheses.\nFuture-selectivity scenarios similar to those discussed in Seattle were considered straightforward to implement and should be retained as candidate scenarios."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#bm01-simplifications-and-mse-conditioning",
-    "href": "JMWG-Meeting report-01-2026.html#bm01-simplifications-and-mse-conditioning",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.6 BM01 Simplifications and MSE Conditioning",
-    "text": "4.6 BM01 Simplifications and MSE Conditioning\nJim then reviewed the benchmark material on the current assessment model and candidate simplifications. The discussion highlighted several draft findings:\n\nRemoving some legacy or trimmed indices changed recruitment estimates more than spawning biomass.\nBlocked selectivity experiments had larger-than-expected effects on rebuilding trajectories.\nMuch of that sensitivity appeared to originate from the South Central Chile fishery.\nTime-varying catchability may be acting as a practical way to represent changes in availability and distribution.\nStructural uncertainty should be carried into MSE conditioning rather than treated as only a parametric issue.\n\nThe group discussed whether harmonized treatment of northern components and recruitment-regime simplifications could help create more comparable operating-model inputs. Peru agreed to consider harmonization ideas internally and report back."
+    "objectID": "JMWG-Meeting report-02-2026.html#biological-data-context-request",
+    "href": "JMWG-Meeting report-02-2026.html#biological-data-context-request",
+    "title": "JMWG Meeting 02/2026",
+    "section": "6. Biological data context request",
+    "text": "6. Biological data context request\n\nA request was raised for a concise overview of biological inputs and age- and length-composition sample sizes used in the assessment.\nParticipants noted that the assessment document currently lacks a compact synthesis of those biological inputs.\nKarolina pointed to the technical annex as the main compiled source for stock-assessment inputs, including age-composition matrices.\nA follow-up review of biological aspects from the 2022 benchmark was suggested so unresolved biological uncertainties can be identified clearly before the next meeting."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#reference-points-projections-and-process",
-    "href": "JMWG-Meeting report-01-2026.html#reference-points-projections-and-process",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.7 Reference Points, Projections, and Process",
-    "text": "4.7 Reference Points, Projections, and Process\nThe final technical discussion covered how reference points and selectivity assumptions should be handled in projections and MSE simulations. The group indicated that using one fixed reference-point value per simulation draw is the usual approach, while the exact treatment of projection selectivity still needs to be settled after the benchmark.\nParticipants also discussed whether an intersessional review would be sufficient after the benchmark or whether a special Scientific Committee meeting might still be needed if a benchmarked model is to be adopted formally before later MSE work. No final process decision was made, but the need for a reviewable and well-documented benchmark outcome was clear."
+    "objectID": "JMWG-Meeting report-02-2026.html#benchmark-deliverables-vs-longer-term-workplan",
+    "href": "JMWG-Meeting report-02-2026.html#benchmark-deliverables-vs-longer-term-workplan",
+    "title": "JMWG Meeting 02/2026",
+    "section": "7. Benchmark deliverables vs longer-term workplan",
+    "text": "7. Benchmark deliverables vs longer-term workplan\n\nA repeated concern was that benchmark deliverables must be more explicit and tangible before the meeting begins.\nNiels stressed the need to bring near-final candidate indices and preparatory analyses to the benchmark so the meeting can evaluate concrete proposals rather than start from scratch.\nParticipants broadly agreed that the benchmark should be used to test and compare prepared alternatives in the assessment and MSE context, while follow-up methodological development should sit in the WP1 workplan.\nThis distinction between benchmark outputs and longer-term workplan items was reinforced as necessary for a decision-oriented process."
   },
   {
-    "objectID": "JMWG-Meeting report-01-2026.html#benchmark-logistics",
-    "href": "JMWG-Meeting report-01-2026.html#benchmark-logistics",
-    "title": "JMWG Meeting 01/2026",
-    "section": "4.8 Benchmark Logistics",
-    "text": "4.8 Benchmark Logistics\nThe meeting closed with practical discussion of the Lima benchmark. Ricardo indicated that the venue was expected to be confirmed in Lima, that Miraflores was a practical accommodation area, and that the meeting would likely run for five days from Monday to Friday. Participants also discussed reviewer participation and the need for the Secretariat to circulate official invitation and registration information soon."
+    "objectID": "JMWG-Meeting report-02-2026.html#jjmse-repository-update-iago",
+    "href": "JMWG-Meeting report-02-2026.html#jjmse-repository-update-iago",
+    "title": "JMWG Meeting 02/2026",
+    "section": "8. JJMSE repository update (Iago)",
+    "text": "8. JJMSE repository update (Iago)\n\nIago reported that the repository had been cleaned and downsized to address maintainability and storage issues.\nA historical archived release of the previous version has been retained for reference.\nMain-branch protections are now in place, so contributors should work on branches or send changes to Iago for merging rather than pushing directly to main.\nLarge outputs will no longer be stored routinely in the repository; instead, zipped outputs and runs will be made available through a managed download workflow documented in the README.\nA fuller walkthrough of the revised workflow, checks, and merge process is planned for the next meeting."
+  },
+  {
+    "objectID": "JMWG-Meeting report-02-2026.html#sam-diagnostic-work-update-niels",
+    "href": "JMWG-Meeting report-02-2026.html#sam-diagnostic-work-update-niels",
+    "title": "JMWG Meeting 02/2026",
+    "section": "9. SAM diagnostic work update (Niels)",
+    "text": "9. SAM diagnostic work update (Niels)\n\nNiels presented SAM as a diagnostic complement to JJM rather than a replacement assessment framework.\nSAM outputs were used to examine data-source weighting, process and observation error partitioning, retrospective behavior, and candidate selectivity-block breakpoints.\nRetrospectives showed wide confidence bands and disagreement among datasets, particularly between offshore CPUE and Chilean acoustics, suggesting unresolved availability or movement issues.\nNiels indicated that a catchability break is being added for the Chile Acoustic North series so early and late periods can be treated separately while retaining a common observation-variance structure.\nHe also plans to add configured GGM outputs beside SAM outputs in the shared HTML materials for ballpark comparison."
+  },
+  {
+    "objectID": "JMWG-Meeting report-02-2026.html#traveladmin-note",
+    "href": "JMWG-Meeting report-02-2026.html#traveladmin-note",
+    "title": "JMWG Meeting 02/2026",
+    "section": "10. Travel/admin note",
+    "text": "10. Travel/admin note\n\nVisitor information for the Lima/Miraflores benchmark meeting was posted.\nA preferred hotel rate and room block were reported as available until approximately 20 April 2026, after which alternative booking arrangements may be needed."
+  },
+  {
+    "objectID": "JMWG-2026-plan.html",
+    "href": "JMWG-2026-plan.html",
+    "title": "Task Group (TG) — 2026 Meeting Schedule & Agendas",
+    "section": "",
+    "text": "SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\nTask Group (TG) — 2026 Meeting Schedule & Agendas\nChair: J. Ianelli | All meetings: Online (Zoom/Teams) | 14:00–15:30 CET\n08:00–9:30 Lima (PET) 09:00-10:30 Santiago (CLT)\n\nAT-A-GLANCE SCHEDULE\n\n\n\n\nTable 1\n\n\n\n\n\n\n\n\n\nMeeting\nDate\nTopic\nKey Milestone\n\n\n\n\nTG-01\nThu 26 March 2026\nPost-Commission Kickoff\n—\n\n\nTG-02\nThu 9 April 2026\nWP1 Launch & Benchmark Preparation\n→ Leads to: Benchmark Workshop, Lima (May)\n\n\nTG-03\nThu 30 April 2026\nFinal Pre-Benchmark Preparation\n→ Leads to: Benchmark Workshop, Lima (~12–16 May)\n\n\nTG-04\nThu 28 May 2026\nPost-Lima / Pre-Intersessional Debrief\n→ Leads to: MSE-02 draft performance metrics\n\n\nTG-05\nThu 11 June 2026\nPre-Wageningen Final Preparation\n→ Leads to: MSE Workshop, Wageningen, 15–19 June 2026\n\n\nTG-06\nThu 9 July 2026\nPost-Wageningen: CMP Shortlist Review\n→ SC14 paper drafting begins\n\n\nTG-07\nThu 13 August 2026\nPre-SC14 Draft Review\n→ Leads to: SC14 (September 2026)\n\n\nTG-08\nFri 28 August 2026\nFinal SC14 Paper Sign-off\n→ SC14 submission deadline\n\n\nTG-09\nThu 8 October 2026\nPost-SC14 Debrief & Commission Prep\n→ Leads to: Commission decision (Nov/Dec 2026)\n\n\nTG-10\nThu 12 November 2026\nWP4 Report Review & Year-End Close\n→ SC15 / archive\n\n\n\n\n\n\n\n\n\n\nRegular = 2nd Thursday of month. Extra = milestone-driven additional call.\n2026 PROGRAMME MILESTONES (FOR REFERENCE)\n\n\n\n\nTable 2\n\n\n\n\n\n\n\n\n\nMonth\nEvent\nDeliverable\nOutput for\n\n\n\n\nMay 2026\nBenchmark Workshop — Lima (Peru)\nCandidate assessment models\nSC Intersessional\n\n\nLate May 2026\nSC Intersessional meeting\nApproved OM for MSE\nWageningen workshop\n\n\nJun 15–19\nMSE Workshop — Wageningen (WMR/NL)\nCMP shortlist\nSC14 document\n\n\nSep 2026\nSC14 — Scientific Committee\nCMP recommendation\nCommission decision\n\n\nNov 2026\nWP4 final deliverable\nTechnical report + source code\nSC15 / archive\n\n\n\n\n\n\n\n\n\n\n\nSPRFMO Jack Mackerel MSE — Technical Group (TG) Session Agenda Plan 2026\nFive 2-hour TG sessions (March–June 2026) leading to the Lima Benchmark (early May) and the Wageningen MSE Workshop (16 June). Each session covers topics for discussion and decisions; where consensus cannot be reached, the decision is deferred one session. Based on Carruthers et al. (2024) MSE roadmap phases.\nColour legend: White = discussion topics Yellow = items requiring decision Grey = pre-meeting preparation Blue = linked working papers\n\n\n\n\nTable 3\n\n\n\n\n\n\n\n\n\nTC\nDate\nMain Topics for Discussion\nTopics Requiring Decision\nPre-meeting Prep\nWPs\n\n\n\n\nTG-01 — 26 Mar 2026 15:00 CET\n\n\n1\n26 Mar\n2026\n15:00\nCET\n\nReview & endorse working paper plan (10 WPs: Benchmark, Wageningen, SC14)\nSequence and allocation of technical topics across TG-02 to TG-05\nIdentify which decisions need two sessions (prepare → conclude)\n\n\nEndorse WP plan; confirm all lead authors (SCW16-03 needs volunteer)\nAgree topic schedule TG-02 through TG-05 — frames all subsequent work\n\nChair circulates: SCW16-01 draft, SCW16-02 draft, WP plan, Carruthers roadmap summary, proposed topic allocation. All ≥5 working days before.\nSCW16-01\nSCW16-02\nPlan doc\n\n\nTG-02 — 9 Apr 2026 15:00 CEST\n\n\n2\n9 Apr\n2026\n15:00\nCEST\n\nSelectivity: block-based alternatives (SCW16-01 §6.1) vs time-varying; fleet implications\nReference points: fixed RPs vs dynamic BMSY/FMSY — pros, cons, RFMO precedent\nS-R alternatives: simplified options (single BH, regime variants) from SCW16-01 §6.2 — initial reaction\nIndices (SCW16-03): inventory of all 7, CPUE standardisation, index–biomass proportionality\nUncertainty dimensions most consequential for long-term projections\n\n\nDiscuss selectivity block options — narrow to ≤2 candidates (conclude TG-03)\nDiscuss reference point approach — identify preferred direction (conclude TG-03)\nConfirm SCW16-03 lead and scope; agree index standardisation methodology\n\nSCW16-01 §6.1–6.3 fitted diagnostics; SCW16-03 outline; updated topic schedule from TG-01\nSCW16-01\nSCW16-03\n\n\nTG-03 — 30 Apr 2026 15:00 CEST\n\n\n3\n30 Apr\n2026\n15:00\nCEST\n\nCONCLUDE selectivity: agree block structure(s) for OM conditioning\nCONCLUDE reference points: agree fixed benchmark RPs; document rationale\nFar North treatment (SCW16-01 §6.4): options for h1/h2 consistency\nOM grid design (SCW16-04): reference set vs robustness set; which uncertainty axes in each tier\nBenchmark handoff: define minimum outputs needed for TG-04 to proceed\n\n\nAgree selectivity block structure for OM (carried from TG-02)\nAgree fixed reference point approach (carried from TG-02)\nAgree harmonised Far North treatment for both stock hypotheses\nAgree OM grid structure: axes, tiers (reference set vs robustness set)\nAgree criteria for OM reconditioning decision at TG-04\n\nSCW16-01 §6.4 draft; SCW16-03 first full draft; SCW16-04 outline with OM grid sketch; Chair circulates 'Benchmark handoff checklist'\nSCW16-01\nSCW16-03\nSCW16-04\n\n\nTG-04 — 28 May 2026 15:00 CEST\n\n\n4\n28 May\n2026\n15:00\nCEST\n\nLima Benchmark debrief: model simplification, indices, OM design — what was agreed and what remains open\nCRITICAL FORK: Recondition on Benchmark OM outputs OR proceed with SC13-based OM\nStock-hypothesis: using base case + robustness tests to derive advice; attempt consensus\nPerformance metrics (MSE-02): conservation (P(B\nMP families: candidate model-free (DLMtool) and model-based (multi-index, surplus production)\n\n\nCRITICAL: Recondition OM on Benchmark outputs OR proceed with SC13-based OM — gates Wageningen scope\nAgree S-R priors (steepness, σR) and recruitment regime treatment across all OMs\nDiscuss stock-hypothesis treatment for advice — to conclude at TG-05\nEndorse draft performance metrics and time horizons (5/10/20+ yr) — to finalise at TG-05\n\nLima Benchmark summary circulated after meeting; BM MSE-02 draft performance metrics\nSCW16-04\nMSE-02\nSCW16-01 outcomes\n\n\nTG-05 — 11 Jun 2026 15:00 CEST\n\n\n5\n11 Jun\n2026\n15:00\nCEST\n\nCONCLUDE stock-hypothesis: close from TG-04 (or confirm fallback)\nCONCLUDE performance metrics: finalise metric list, time horizons, risk tolerance for Wageningen\nMP specifications (MSE-01): technical freeze — data streams, tuning targets, HCR, Buffer/K60\nRobustness scenario matrix: finalise all scenarios entering Wageningen (MSE-03)\nCross-platform validation: FLR vs RTMB/OpenMSE — metrics, responsibilities (WMR/CHL/PER), timeline\nWageningen logistics: trade-off format (Slick, worm plots, Kobe-style); decision-making protocol\n\n\nConclude stock-hypothesis (from TG-04)\nFinalise performance metrics list, time horizons and risk tolerance\nFreeze MP specifications: no new MPs added after this TG\nAgree complete robustness scenario matrix (reference set + robustness set)\nAgree cross-platform validation protocol and assign responsibilities\nAgree Wageningen communication and decision-making format\n\nFull drafts MSE-01 and MSE-03; Slick/trade-off prototype if available; updated OM status note from WMR\nMSE-01\nMSE-02\nMSE-03\n\n\n\n\n\n\n\n\n\n\nNotes: (1) If Lima Benchmark endorses reconditioning the OM, TG-04 agenda must adjust to incorporate benchmark outcomes before Wageningen. (2) The stock-hypothesis weighting decision (TG-04) is a potential sticking point — plan extra time or a dedicated sub-group call if no consensus at TG-03. (3) All working paper drafts should be circulated at least 5 working days before each TG."
+  },
+  {
+    "objectID": "SCW16-Paper-00.html",
+    "href": "SCW16-Paper-00.html",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nParticipants from IMARPE (Peru) and IFOP (Chile) met online and prepared this preliminary draft schedule for acoustic survey evaluations during the benchmark workshop.\nParticipants in this drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez, Ignacio Payá, Victor Catasti, and José Zenteno"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda-day-tbd",
+    "href": "SCW16-Paper-00.html#preliminary-acoustic-session-agenda-day-tbd",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Preliminary Acoustic Session Agenda (day tbd)",
+    "text": "Preliminary Acoustic Session Agenda (day tbd)\n\nStart time: 09:00\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
+  },
+  {
+    "objectID": "archive/index.html",
+    "href": "archive/index.html",
+    "title": "Archive",
+    "section": "",
+    "text": "SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\nArchived R Markdown Reports\n\n1 Overview\nThis archive contains legacy assessment and validation reports that remain in RMarkdown format and are published from doc/archive/.\nThe archived reports are:\n\nSC08\nSC09\nSC09 Validacion\nSC10\nSC10 Validacion\nSC11\nSC12\nSC13 R Markdown version\nSCW14\nSCW14 Word report\n\n\n\n2 Notes\nThese files were moved from assessment/R/ into doc/archive/ for organization, but they still execute against the model inputs, data, and results kept under assessment/.\nWhere a full rebuild is no longer reproducible from the current repository snapshot, the archive publishes either the last available compiled artifact or an archive note page that links to the moved source file and describes the missing historical inputs."
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html",
+    "href": "Benchmark-workshop-information.html",
+    "title": "Benchmark Workshop Information",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nBENCHMARK WORKSHOP VENUE"
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html#hotels",
+    "href": "Benchmark-workshop-information.html#hotels",
+    "title": "Benchmark Workshop Information",
+    "section": "Hotels",
+    "text": "Hotels\nWe recommend booking in Miraflores city center, close to Kennedy Park: Map.\n\nJose Antonio Deluxe Hotel\n\nWeb: https://www.hotelesjoseantonio.com/hotels/jose-antonio-deluxe.html\nAddress: Bellavista Street 133, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/SHT5HvNNQ2yRHroD6\nTelephone: +51 1 6415050\n\n\n\nJose Antonio Lima Hotel\n\nWeb: https://www.hotelesjoseantonio.com/hotels/jose-antonio-lima.html\nAddress: Av. 28 de Julio 398, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/yMKzr2zHnyYLRweM8\nTelephone: +51 1 6415050\n\n\n\nJose Antonio Executive Hotel\n\nWeb: https://www.hotelesjoseantonio.com/hotels/jose-antonio-executive.html\nAddress: Colon Street 328, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/mBricci39Nu3aYcR7\nTelephone: +51 1 6415050\n\n\n\nHilton Garden Inn Lima Miraflores Hotel\n\nWeb: https://www.hilton.com/en/hotels/limlmgi-garden-inn-lima-miraflores/\nAddress: Malecon Balta 770, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/Rtpv4YprcYkpaaXcA\nTelephone: +51 1 5104000\n\n\n\nDel Pilar Miraflores Hotel\n\nWeb: https://www.delpilarhotels.com/\nEmail: delpilar@delpilarhotels.com\nAddress: Esq Pardo con C Martir Jose Olaya 141, Miraflores, Lima 15074, Peru\nLocation: https://maps.app.goo.gl/HbnypCqdV4Ph7NT98\nTelephone: +51 1 712 0712\n\n\n\nESTELAR Bellavista Apartments\n\nWeb: https://www.estelarapartamentosbellavista.com/en/\nEmail: reservas.peru@hotelesestelar.com\nAddress: Bellavista Street 216, Miraflores\nLocation: https://maps.app.goo.gl/CLCzocdzdMLMJ8Ti6\nTelephone: +51 1 630 7700\n\n\n\nHoliday Inn Lima Miraflores Hotel\n\nWeb: https://www.holidayinn.com/hotels/us/en/find-hotels/select-roomrate?qDest=Lima%2C%20Peru&qSlH=LIMMI\nAddress: Alfonso Ugarte Street 117, Miraflores, Lima 18, Peru\nLocation: https://maps.app.goo.gl/Vk41QYr1iXzy8TA78\nTelephone: +51 1 6149696\n\n\n\nCrowne Plaza Lima Hotel\n\nWeb: https://www.holidayinn.com/hotels/us/en/find-hotels/select-roomrate?qDest=Lima%2C%20Peru&qSlH=LMAMI\nAddress: Av. Benavides 300, Miraflores, Lima 18, Peru\nLocation: https://maps.app.goo.gl/wcScoScDurSz2ajN9"
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html#transfer-to-imarpe---callao",
+    "href": "Benchmark-workshop-information.html#transfer-to-imarpe---callao",
+    "title": "Benchmark Workshop Information",
+    "section": "Transfer To IMARPE - Callao",
+    "text": "Transfer To IMARPE - Callao\n\nMiraflores To IMARPE (Callao)\nThe meeting point for daily bus transportation to IMARPE, Callao, is in front of the Jose Antonio Deluxe Hotel (Bellavista Street 133, Miraflores, Lima 15074, Peru) at 8:15 AM.\n\n\nIMARPE (Callao) To Miraflores\nThe meeting point for the daily bus transfer back to Miraflores is in front of IMARPE, Callao, at 5:15 PM."
+  },
+  {
+    "objectID": "Benchmark-workshop-information.html#lunch",
+    "href": "Benchmark-workshop-information.html#lunch",
+    "title": "Benchmark Workshop Information",
+    "section": "Lunch",
+    "text": "Lunch\nLunch is at 1:00 PM at Divino Mar restaurant (Club Regatas), Av. Bolognesi N 1000, La Punta, Callao.\nLocation: https://maps.app.goo.gl/fJ95Vi84hQUiPfm97"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "JJM Assessment Documents",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
+  },
+  {
+    "objectID": "index.html#notices",
+    "href": "index.html#notices",
+    "title": "JJM Assessment Documents",
+    "section": "Notices",
+    "text": "Notices\n\nBenchmark workshop information posted: Benchmark Workshop Information (QMD)\nVisitor Information posted: SPRFMO Jack Mackerel MSE Workshop Visitor Information (QMD)"
+  },
+  {
+    "objectID": "index.html#scw16-preparations",
+    "href": "index.html#scw16-preparations",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16 preparations",
+    "text": "SCW16 preparations\n\nJMWG 2026 Plan (DOCX, QMD)\nSCW16/ToR (PDF, DOCX)\n\n\nDraft SCW16 papers\n\nSCW16/Paper-00: Preliminary agenda (PDF, DOCX, QMD)\nSCW16/Paper-01 (PDF, DOCX)\nSCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025) (QMD)\n\n\n\nPrep meeting reports\n\nJMWG Meeting report 01-2026 (PDF, DOCX)\nJMWG Meeting report 02-2026 (PDF, DOCX)"
+  },
+  {
+    "objectID": "index.html#other-background-reports",
+    "href": "index.html#other-background-reports",
+    "title": "JJM Assessment Documents",
+    "section": "Other background reports",
+    "text": "Other background reports\n\nSC13 Assessment Update\nHelper Scripts Guide\nUser Guide\nTutorial Guide\nArchive"
+  },
+  {
+    "objectID": "index.html#scw16tor",
+    "href": "index.html#scw16tor",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16/ToR",
+    "text": "SCW16/ToR\nThese are the benchmark workshop terms of reference, tracked as JMWG_Benchmark_ToR.qmd, with published HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "index.html#scw16paper-01",
+    "href": "index.html#scw16paper-01",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16/Paper-01",
+    "text": "SCW16/Paper-01\nThis is the main benchmark working paper, tracked as SCW16-Paper-01.qmd, with published HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "index.html#scw16paper-00",
+    "href": "index.html#scw16paper-00",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16/Paper-00",
+    "text": "SCW16/Paper-00\nThis is the preliminary agenda note for the IMARPE-IFOP online acoustic session, tracked as SCW16-Paper-00.qmd, with HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "index.html#jmwg-meeting-report-01-2026",
+    "href": "index.html#jmwg-meeting-report-01-2026",
+    "title": "JJM Assessment Documents",
+    "section": "JMWG Meeting report 01-2026",
+    "text": "JMWG Meeting report 01-2026\nThese meeting notes are currently published from JMWG-Meeting report-01-2026.qmd as HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "index.html#jmwg-meeting-report-02-2026",
+    "href": "index.html#jmwg-meeting-report-02-2026",
+    "title": "JJM Assessment Documents",
+    "section": "JMWG Meeting report 02-2026",
+    "text": "JMWG Meeting report 02-2026\nThese meeting notes are currently published from JMWG-Meeting report-02-2026.qmd as HTML, PDF, and DOCX outputs."
+  },
+  {
+    "objectID": "index.html#scw16paper-03-meta-analysis-of-cpue-papers-on-jack-mackerel-2022-2025",
+    "href": "index.html#scw16paper-03-meta-analysis-of-cpue-papers-on-jack-mackerel-2022-2025",
+    "title": "JJM Assessment Documents",
+    "section": "SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)",
+    "text": "SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)\nThis document compiles CPUE-related SPRFMO meeting papers from SC10 through SC13 into a single review document."
+  },
+  {
+    "objectID": "index.html#sc13-assessment-update",
+    "href": "index.html#sc13-assessment-update",
+    "title": "JJM Assessment Documents",
+    "section": "SC13 Assessment Update",
+    "text": "SC13 Assessment Update\nThis is the converted Quarto version of the incremental SC13 assessment update document originally maintained as assessment/R/SC13.rmd."
+  },
+  {
+    "objectID": "index.html#helper-scripts-guide",
+    "href": "index.html#helper-scripts-guide",
+    "title": "JJM Assessment Documents",
+    "section": "Helper Scripts Guide",
+    "text": "Helper Scripts Guide\nThis guide documents the reusable helper scripts added for:\n\ncreating the reduced 2.00 data file\ncreating the matching h1_2.00 control file\nrunning standard JJM fits\nrunning short adnuts MCMC benchmarks"
+  },
+  {
+    "objectID": "index.html#user-guide",
+    "href": "index.html#user-guide",
+    "title": "JJM Assessment Documents",
+    "section": "User Guide",
+    "text": "User Guide\nThis is the Quarto version of the JJM user guide converted from doc/userguide/main.tex."
+  },
+  {
+    "objectID": "index.html#tutorial-guide",
+    "href": "index.html#tutorial-guide",
+    "title": "JJM Assessment Documents",
+    "section": "Tutorial Guide",
+    "text": "Tutorial Guide\nThis is the workshop tutorial book published from doc/tutorial/."
+  },
+  {
+    "objectID": "index.html#archive",
+    "href": "index.html#archive",
+    "title": "JJM Assessment Documents",
+    "section": "Archive",
+    "text": "Archive\nThis section collects the legacy annual and validation RMarkdown assessment reports moved from assessment/R/ and published under archive/."
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nSPRFMO Jack Mackerel MSE Workshop\n15-19 June 2026 | Wageningen, The Netherlands"
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#key-addresses",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#key-addresses",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "1. Key Addresses",
+    "text": "1. Key Addresses\n\n\n\nItem\nDetails\n\n\n\n\nMeeting Venue\nWageningen Campus OmniaHoge Steeg 2, 6708 PH WageningenTel: +31 317 484 500\n\n\nRecommended Hotel\nHotel Wander (formerly WICC)Lawickse Allee 9, 6701 AN WageningenTel: +31 317 490 133 | hotelwander.nl\n\n\nCity Centre\nMarkt area, 6701 CZ Wageningen(restaurants, shops, public transport hub)\n\n\nNearest Train Station\nEde-Wageningen (Ede-Wgn) - around 20 minutes by bus to Wageningen city centre\n\n\nNearest Airport\nAmsterdam Airport Schiphol (AMS)Evert van de Beekstraat 202, 1118 CP Schiphol"
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#getting-to-wageningen-from-schiphol-airport",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#getting-to-wageningen-from-schiphol-airport",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "2. Getting to Wageningen from Schiphol Airport",
+    "text": "2. Getting to Wageningen from Schiphol Airport\nWe strongly recommend travelling by public transport. The journey from Schiphol Airport to Wageningen by train and bus takes approximately 1 hour 30 minutes and runs frequently throughout the day.\n\n2.1 By Public Transport (recommended)\n\nStep 1 - Train: Schiphol Airport to Ede-Wageningen\n\nFollow signs to the “Railway Station” inside the airport terminal.\nBuy a ticket at the yellow NS vending machines or service desk. You can also pay contactless with a debit/credit card or smartphone by tapping in and out at the yellow OV-chip poles.\nTake the Intercity (IC) train in the direction of Nijmegen. Trains run every 30 minutes. Your stop is Ede-Wageningen (the 5th station).\nIf there is no direct service, take the IC to Utrecht Centraal, change platforms, and board a train towards Arnhem/Nijmegen to Ede-Wageningen.\nJourney time: approximately 60-75 minutes. Plan your trip at ns.nl or 9292.nl.\n\n\n\nStep 2a - Bus to Hotel Wander (city centre)\n\nFrom Ede-Wageningen station, exit and take the stairs down; buses depart from the bus bays outside the main entrance.\nTake Bus 86 towards Wageningen. Alight at Wageningen, Busstation. Hotel Wander is a 5-minute walk from the bus station (Lawickse Allee 9).\nJourney time: approximately 20-25 minutes. Buses run every 15-30 minutes.\n\n\n\nStep 2b - Bus to Wageningen Campus Omnia (meeting venue)\n\nTake Bus 303 (direction: Campus/Forum) from Ede-Wageningen station. Alight at Campus/Forum. Omnia is a short walk from the stop.\nJourney time from Ede-Wageningen: approximately 25 minutes.\nTip: Use the 9292 Journey Planner or NS app for live departure times and route options.\n\n\n\n\n2.2 By Taxi (alternative)\nA direct taxi from Schiphol Airport to Wageningen is possible but expensive (approximately EUR 120-150 for a single ride). If you prefer this option, book in advance through a licensed taxi service.\n\nFor smaller groups, a taxi from Ede-Wageningen station to Hotel Wander or the campus costs approximately EUR 30-37.\nRecommended taxi company near Ede-Wageningen station: Panda Taxi - tel. +31 (0)6 8761 7837 - pandataxi.nl (pre-booking required)."
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#daily-travel-hotel-wander-to-wageningen-campus-omnia",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#daily-travel-hotel-wander-to-wageningen-campus-omnia",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "3. Daily Travel: Hotel Wander to Wageningen Campus Omnia",
+    "text": "3. Daily Travel: Hotel Wander to Wageningen Campus Omnia\nThe distance between Hotel Wander and Omnia is approximately 2.5 km. Three options are available:\n\nOn foot\n\nWalking time: approximately 28-32 minutes.\nFollow Lawickse Allee north, continue along Binnenhaven, and follow the signs to Wageningen Campus.\n\n\n\nBy bicycle\n\nCycling time: approximately 10-12 minutes.\nHotel Wander offers bicycle rental for guests. The route follows the canal path and is flat throughout.\nWageningen is a university city with excellent cycling infrastructure.\n\n\n\nBy bus\n\nTake Bus 303 (direction: Campus/Forum) from Wageningen Busstation. Alight at Campus/Forum. Travel time: approximately 10 minutes.\nPlan your bus journey at 9292.nl/en.\n\n\n\n\n\n\n\nTip\n\n\n\nGoogle Maps route: Hotel Wander to Omnia (walking / cycling / bus)"
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#accommodation",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#accommodation",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "4. Accommodation",
+    "text": "4. Accommodation\n\n4.1 Recommended Hotel: Hotel Wander\nHotel Wander (formerly WICC) is a 4-star hotel centrally located in Wageningen, with 208 rooms, a restaurant, fitness centre, and bicycle rental. It is the closest full-service hotel to the city centre and conveniently served by public transport to the campus.\n\n\n\nItem\nDetails\n\n\n\n\nAddress\nLawickse Allee 9, 6701 AN Wageningen\n\n\nPhone\n+31 317 490 133\n\n\nWebsite\nhotelwander.nl\n\n\nCheck-in / Check-out\nCheck-in from 15:00 | Check-out by 11:00\n\n\n\n\n\n\n\n\n\nImportantHotel Block Code for Workshop Participants\n\n\n\nGuests can book a discounted room by using the block code below:\n\nOlive Leaf Compact Double for single use\nCode: 289886\nRate: EUR 120.00 per room, per night (including breakfast)\n\nTo make a reservation using the block code:\n\nGo to the hotel website.\nSelect your arrival and departure dates.\nClick on Heb je een code? (Do you have a code?) and enter the block code in the designated field.\n\nBlock codes are valid for arrivals on 14 June and departures on 20 June 2026, subject to availability.\n\n\n\n\n4.2 Alternative Accommodation\nFurther options are available via the following platforms:\n\nBooking.com - hotels in Wageningen\nAirbnb - stays in Wageningen\nOther hotels within walking distance of the city centre include Hotel de Wereld (5 Mei Plein 1) and Fletcher Hotel-Restaurant de Wageningsche Berg."
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#workshop-logistics",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#workshop-logistics",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "5. Workshop Logistics",
+    "text": "5. Workshop Logistics\n\n\n\nItem\nDetails\n\n\n\n\nVenue\nWageningen Campus OmniaHoge Steeg 2, 6708 PH Wageningen\n\n\nDaily programme\n09:00-17:00 each day (Monday 16 - Friday 20 June)\n\n\nLunch\nProvided on-site each day\n\n\nDietary requirements\nPlease contact nhintzen@pelagicfish.eu in advance\n\n\nRegistration\nVia the SPRFMO Secretariat\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nFor dietary requirements or practical questions, please contact nhintzen@pelagicfish.eu."
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#useful-links-and-information",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#useful-links-and-information",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "6. Useful Links and Information",
+    "text": "6. Useful Links and Information\n\nTransport planning\n\nNS Dutch Railways (train schedules and tickets)\n9292 Journey Planner (trains + buses)\nOV-chipkaart (public transport card) - reloadable travel card accepted on all Dutch public transport\nTip: EU/UK debit and credit cards can also be tapped directly on all Dutch public transport gates (no separate card needed).\n\n\n\nWageningen and the venue\n\nWageningen Campus Omnia\nWageningen University campus map\nHotel Wander\n\n\n\nPractical information\n\nCurrency: Euro (EUR). Card payments are widely accepted; some establishments are cashless.\nLanguage: Dutch, but English is widely spoken throughout Wageningen.\nEmergency number: 112 (police, fire, ambulance).\nThe nearest pharmacy (apotheek) and supermarkets are within 5 minutes’ walk of Hotel Wander."
+  },
+  {
+    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#about-the-workshop",
+    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#about-the-workshop",
+    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
+    "section": "7. About the Workshop",
+    "text": "7. About the Workshop\nThis workshop is organised as part of the SPRFMO Jack Mackerel Management Strategy Evaluation (MSE) process. The meeting is hosted at Wageningen Campus Omnia, on the campus of Wageningen University and Research, and is coordinated through the SPRFMO Secretariat. Registration and further correspondence should be directed to the SPRFMO Secretariat.\n\nDocument prepared for SPRFMO JM MSE Workshop participants - June 2026"
+  },
+  {
+    "objectID": "JMWG_Benchmark_ToR.html",
+    "href": "JMWG_Benchmark_ToR.html",
+    "title": "SPRFMO",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
+  },
+  {
+    "objectID": "JMWG_Benchmark_ToR.html#data-and-abundance-indices",
+    "href": "JMWG_Benchmark_ToR.html#data-and-abundance-indices",
+    "title": "SPRFMO",
+    "section": "2.1 Data and Abundance Indices",
+    "text": "2.1 Data and Abundance Indices\n\nAcoustic biomass in the north area with emphasis on age composition and biological sampling\nCPUE index standardization approaches using sdmTMB, INLA, or comparable methods\nSpatio-temporal models combining fleets and regions (e.g., tinyVAST) to integrate datasets from different sources\nComprehensive analysis of CPUE indices and acoustic biomass estimates, including review of S-Chile, N-Chile, and Peruvian data\nEvaluation of sampling levels and expansion protocols across fleets and regions\nAssessment of Peruvian data sources and vessels of opportunity"
+  },
+  {
+    "objectID": "JMWG_Benchmark_ToR.html#assessment-model-development",
+    "href": "JMWG_Benchmark_ToR.html#assessment-model-development",
+    "title": "SPRFMO",
+    "section": "2.2 Assessment Model Development",
+    "text": "2.2 Assessment Model Development\n\nSelectivity aspects and assumptions\nBycatch considerations in jack mackerel fisheries\nModel implementation in updated software (e.g., RTMB) or alternative platforms as appropriate"
+  },
+  {
+    "objectID": "JMWG_Benchmark_ToR.html#productivity-estimates",
+    "href": "JMWG_Benchmark_ToR.html#productivity-estimates",
+    "title": "SPRFMO",
+    "section": "2.3 Productivity estimates",
+    "text": "2.3 Productivity estimates\n\nLong- and short-term productivity period scenarios\nSteepness value assumptions and sensitivity\nFishing mortality (F) scenarios including relative F levels and Fmsy reference points"
   },
   {
     "objectID": "SCW16-Paper-01.html",
@@ -525,200 +784,78 @@
     "text": "7.9 Dynamic Reference Points\nThe annex states that the JJM calculates equilibrium reference points internally using terminal-year catch shares, selectivity-at-age, and weights-at-age. In compact form,\n\nF_{\\mathrm{MSY},y} = \\operatorname*{arg\\,max}_{F} C^{\\mathrm{eq}}_y(F).\n\n\nMSY_y = C^{\\mathrm{eq}}_y(F_{\\mathrm{MSY},y}).\n\n\nB_{\\mathrm{MSY},y} = B^{\\mathrm{eq}}_y(F_{\\mathrm{MSY},y}).\n\nwhere the equilibrium yield and biomass functions are conditional on the terminal-year fishery mix and biological schedules. This is why F_{MSY} MSY, and F_{MSY} vary through time in the SC13 assessment rather than remaining fixed constants."
   },
   {
-    "objectID": "archive/index.html",
-    "href": "archive/index.html",
-    "title": "Archive",
-    "section": "",
-    "text": "SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\nArchived R Markdown Reports\n\n1 Overview\nThis archive contains legacy assessment and validation reports that remain in RMarkdown format and are published from doc/archive/.\nThe archived reports are:\n\nSC08\nSC09\nSC09 Validacion\nSC10\nSC10 Validacion\nSC11\nSC12\nSC13 R Markdown version\nSCW14\nSCW14 Word report\n\n\n\n2 Notes\nThese files were moved from assessment/R/ into doc/archive/ for organization, but they still execute against the model inputs, data, and results kept under assessment/.\nWhere a full rebuild is no longer reproducible from the current repository snapshot, the archive publishes either the last available compiled artifact or an archive note page that links to the moved source file and describes the missing historical inputs."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "JJM Assessment Documents",
+    "objectID": "JMWG-Meeting report-01-2026.html",
+    "href": "JMWG-Meeting report-01-2026.html",
+    "title": "JMWG Meeting 01/2026",
     "section": "",
     "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
   },
   {
-    "objectID": "index.html#notices",
-    "href": "index.html#notices",
-    "title": "JJM Assessment Documents",
-    "section": "Notices",
-    "text": "Notices\n\nBenchmark workshop information posted: Benchmark Workshop Information (QMD)\nVisitor Information posted: SPRFMO Jack Mackerel MSE Workshop Visitor Information (QMD)"
+    "objectID": "JMWG-Meeting report-01-2026.html#workplan-and-schedule",
+    "href": "JMWG-Meeting report-01-2026.html#workplan-and-schedule",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.1 Workplan and Schedule",
+    "text": "4.1 Workplan and Schedule\nJim Ianelli opened the meeting as a kickoff session intended to organize the next two months of work. He emphasized that the May event is primarily a benchmark, but one that must resolve enough assessment structure to support the June MSE workshop. Participants discussed the compressed schedule and the need to keep regular meetings on the calendar so that BM papers and diagnostics advance before Lima.\nThe broad schedule discussed in the meeting was:\n\nHold preparatory meetings in early April.\nSubmit BM03 and related benchmark material by 24 April 2026.\nUse the May Lima benchmark to review indices, data inputs, and candidate model changes.\nShift into MSE-focused work for the June Wageningen workshop.\nPrepare later review material for an August submission and review phase."
   },
   {
-    "objectID": "index.html#scw16-preparations",
-    "href": "index.html#scw16-preparations",
-    "title": "JJM Assessment Documents",
-    "section": "SCW16 preparations",
-    "text": "SCW16 preparations\n\nJMWG 2026 Plan (DOCX, QMD)\nSCW16/ToR (PDF, DOCX)\n\n\nDraft SCW16 papers\n\nSCW16/Paper-00: Preliminary agenda (PDF, DOCX, QMD)\nSCW16/Paper-01 (PDF, DOCX)\nSCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025) (QMD)\n\n\n\nPrep meeting report\nJMWG Meeting report 01-2026 (PDF, DOCX)"
+    "objectID": "JMWG-Meeting report-01-2026.html#benchmark-papers-and-bm03-scope",
+    "href": "JMWG-Meeting report-01-2026.html#benchmark-papers-and-bm03-scope",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.2 Benchmark Papers and BM03 Scope",
+    "text": "4.2 Benchmark Papers and BM03 Scope\nJim described a benchmark-paper structure in which BM01 documents the 2025 assessment model and candidate simplifications, BM02 explores next-generation base-model options, and BM03 covers indices of abundance. The discussion quickly converged on the view that BM03 is too broad as a single document and should be split into multiple papers.\nLikely BM03-related products identified during the meeting included:\n\nA Chilean acoustic-survey paper, including results from the survey that had started roughly five days before the meeting.\nAdditional Chilean acoustic or vessel-opportunity material if available.\nChilean CPUE papers, including spatial-temporal analyses already developed in recent years.\nA Peruvian CPUE/index paper using updated 2015-2025 information.\nA metadata or review paper summarizing the characteristics, timing, methods, and caveats of each main index.\n\nIgnacio Paya volunteered to coordinate BM03 and to work with contributors on the overall structure and leads."
   },
   {
-    "objectID": "index.html#other-background-reports",
-    "href": "index.html#other-background-reports",
-    "title": "JJM Assessment Documents",
-    "section": "Other background reports",
-    "text": "Other background reports\n\nSC13 Assessment Update\nHelper Scripts Guide\nUser Guide\nTutorial Guide\nArchive"
+    "objectID": "JMWG-Meeting report-01-2026.html#acoustic-and-index-work",
+    "href": "JMWG-Meeting report-01-2026.html#acoustic-and-index-work",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.3 Acoustic and Index Work",
+    "text": "4.3 Acoustic and Index Work\nChile reported that the current acoustic survey was underway and that preliminary biomass estimates might be available in time for the May benchmark. Chile also suggested involving additional acoustic specialists, including Mariano Gutierrez and Nicolas, in a more technical discussion of acoustic methods and interpretation.\nPeru agreed to contact Mariano and supported splitting BM03 into several products. Peru also described ongoing work to produce a more robust updated CPUE series covering 2015-2025. The discussion treated Chilean and Peruvian index work as central benchmark inputs.\nParticipants also returned repeatedly to the idea of a metadata table. This was seen as a practical way to summarize when fleets operate, what data exist, how methods differ, and what limits apply to interpretation of each series. That synthesis was viewed as useful both for the benchmark and for later MSE conditioning."
   },
   {
-    "objectID": "index.html#scw16tor",
-    "href": "index.html#scw16tor",
-    "title": "JJM Assessment Documents",
-    "section": "SCW16/ToR",
-    "text": "SCW16/ToR\nThese are the benchmark workshop terms of reference, tracked as JMWG_Benchmark_ToR.qmd, with published HTML, PDF, and DOCX outputs."
+    "objectID": "JMWG-Meeting report-01-2026.html#data-scope-biological-updates-and-data-sharing",
+    "href": "JMWG-Meeting report-01-2026.html#data-scope-biological-updates-and-data-sharing",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.4 Data Scope, Biological Updates, and Data Sharing",
+    "text": "4.4 Data Scope, Biological Updates, and Data Sharing\nKarolina asked whether BM03 is intended to review only indices or the broader stock-assessment data package. Jim noted that the current focus is on indices, though biological updates could also be relevant where new work exists. Chile reported no major biological updates ready for the benchmark. Peru reported new work on age-related data, including efforts to better represent smaller fish and a wider length range in age-structured inputs.\nThe meeting also highlighted the difference between coarse Secretariat-aggregated spatial data and the raw haul-level information needed for robust combined CPUE modeling. Niels stressed that a fully integrated offshore and regional CPUE would likely require haul-by-haul data sharing across members. Participants treated that as an important medium-term goal, but something unlikely to be fully resolved before the May benchmark."
   },
   {
-    "objectID": "index.html#scw16paper-01",
-    "href": "index.html#scw16paper-01",
-    "title": "JJM Assessment Documents",
-    "section": "SCW16/Paper-01",
-    "text": "SCW16/Paper-01\nThis is the main benchmark working paper, tracked as SCW16-Paper-01.qmd, with published HTML, PDF, and DOCX outputs."
+    "objectID": "JMWG-Meeting report-01-2026.html#index-interpretation-and-combined-data-questions",
+    "href": "JMWG-Meeting report-01-2026.html#index-interpretation-and-combined-data-questions",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.5 Index Interpretation and Combined-Data Questions",
+    "text": "4.5 Index Interpretation and Combined-Data Questions\nSeveral speakers discussed whether the benchmark should aim to create a single standardized index across fleets or focus first on reviewing and documenting individual indices. Jim favored keeping all options open while prioritizing benchmark-ready documentation and index submissions. Niels argued that a combined cross-fleet CPUE remains the most robust long-term response to changing spatial distribution, but also noted the practical and political challenges of accessing compatible raw data.\nIgnacio described Chile’s recent work as using largely overlapping data streams across institutions for recent years, with differences arising more from methods and implementation than from wholly separate datasets. He also pointed to the importance of seasonal timing and within-year availability of data, noting that Chile can provide more current-year information than some other fleets. The meeting agreed that these differences should be documented explicitly in metadata and review papers rather than left implicit."
   },
   {
-    "objectID": "index.html#jmwg-meeting-report-01-2026",
-    "href": "index.html#jmwg-meeting-report-01-2026",
-    "title": "JJM Assessment Documents",
-    "section": "JMWG Meeting report 01-2026",
-    "text": "JMWG Meeting report 01-2026\nThese meeting notes are currently published from JMWG-Meeting report-01-2026.qmd as HTML, PDF, and DOCX outputs."
+    "objectID": "JMWG-Meeting report-01-2026.html#bm01-simplifications-and-mse-conditioning",
+    "href": "JMWG-Meeting report-01-2026.html#bm01-simplifications-and-mse-conditioning",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.6 BM01 Simplifications and MSE Conditioning",
+    "text": "4.6 BM01 Simplifications and MSE Conditioning\nJim then reviewed the benchmark material on the current assessment model and candidate simplifications. The discussion highlighted several draft findings:\n\nRemoving some legacy or trimmed indices changed recruitment estimates more than spawning biomass.\nBlocked selectivity experiments had larger-than-expected effects on rebuilding trajectories.\nMuch of that sensitivity appeared to originate from the South Central Chile fishery.\nTime-varying catchability may be acting as a practical way to represent changes in availability and distribution.\nStructural uncertainty should be carried into MSE conditioning rather than treated as only a parametric issue.\n\nThe group discussed whether harmonized treatment of northern components and recruitment-regime simplifications could help create more comparable operating-model inputs. Peru agreed to consider harmonization ideas internally and report back."
   },
   {
-    "objectID": "index.html#scw16paper-03-meta-analysis-of-cpue-papers-on-jack-mackerel-2022-2025",
-    "href": "index.html#scw16paper-03-meta-analysis-of-cpue-papers-on-jack-mackerel-2022-2025",
-    "title": "JJM Assessment Documents",
-    "section": "SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)",
-    "text": "SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)\nThis document compiles CPUE-related SPRFMO meeting papers from SC10 through SC13 into a single review document."
+    "objectID": "JMWG-Meeting report-01-2026.html#reference-points-projections-and-process",
+    "href": "JMWG-Meeting report-01-2026.html#reference-points-projections-and-process",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.7 Reference Points, Projections, and Process",
+    "text": "4.7 Reference Points, Projections, and Process\nThe final technical discussion covered how reference points and selectivity assumptions should be handled in projections and MSE simulations. The group indicated that using one fixed reference-point value per simulation draw is the usual approach, while the exact treatment of projection selectivity still needs to be settled after the benchmark.\nParticipants also discussed whether an intersessional review would be sufficient after the benchmark or whether a special Scientific Committee meeting might still be needed if a benchmarked model is to be adopted formally before later MSE work. No final process decision was made, but the need for a reviewable and well-documented benchmark outcome was clear."
   },
   {
-    "objectID": "index.html#sc13-assessment-update",
-    "href": "index.html#sc13-assessment-update",
-    "title": "JJM Assessment Documents",
-    "section": "SC13 Assessment Update",
-    "text": "SC13 Assessment Update\nThis is the converted Quarto version of the incremental SC13 assessment update document originally maintained as assessment/R/SC13.rmd."
-  },
-  {
-    "objectID": "index.html#helper-scripts-guide",
-    "href": "index.html#helper-scripts-guide",
-    "title": "JJM Assessment Documents",
-    "section": "Helper Scripts Guide",
-    "text": "Helper Scripts Guide\nThis guide documents the reusable helper scripts added for:\n\ncreating the reduced 2.00 data file\ncreating the matching h1_2.00 control file\nrunning standard JJM fits\nrunning short adnuts MCMC benchmarks"
-  },
-  {
-    "objectID": "index.html#user-guide",
-    "href": "index.html#user-guide",
-    "title": "JJM Assessment Documents",
-    "section": "User Guide",
-    "text": "User Guide\nThis is the Quarto version of the JJM user guide converted from doc/userguide/main.tex."
-  },
-  {
-    "objectID": "index.html#tutorial-guide",
-    "href": "index.html#tutorial-guide",
-    "title": "JJM Assessment Documents",
-    "section": "Tutorial Guide",
-    "text": "Tutorial Guide\nThis is the workshop tutorial book published from doc/tutorial/."
-  },
-  {
-    "objectID": "index.html#archive",
-    "href": "index.html#archive",
-    "title": "JJM Assessment Documents",
-    "section": "Archive",
-    "text": "Archive\nThis section collects the legacy annual and validation RMarkdown assessment reports moved from assessment/R/ and published under archive/."
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "",
-    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nSPRFMO Jack Mackerel MSE Workshop\n15-19 June 2026 | Wageningen, The Netherlands"
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#key-addresses",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#key-addresses",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "1. Key Addresses",
-    "text": "1. Key Addresses\n\n\n\nItem\nDetails\n\n\n\n\nMeeting Venue\nWageningen Campus OmniaHoge Steeg 2, 6708 PH WageningenTel: +31 317 484 500\n\n\nRecommended Hotel\nHotel Wander (formerly WICC)Lawickse Allee 9, 6701 AN WageningenTel: +31 317 490 133 | hotelwander.nl\n\n\nCity Centre\nMarkt area, 6701 CZ Wageningen(restaurants, shops, public transport hub)\n\n\nNearest Train Station\nEde-Wageningen (Ede-Wgn) - around 20 minutes by bus to Wageningen city centre\n\n\nNearest Airport\nAmsterdam Airport Schiphol (AMS)Evert van de Beekstraat 202, 1118 CP Schiphol"
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#getting-to-wageningen-from-schiphol-airport",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#getting-to-wageningen-from-schiphol-airport",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "2. Getting to Wageningen from Schiphol Airport",
-    "text": "2. Getting to Wageningen from Schiphol Airport\nWe strongly recommend travelling by public transport. The journey from Schiphol Airport to Wageningen by train and bus takes approximately 1 hour 30 minutes and runs frequently throughout the day.\n\n2.1 By Public Transport (recommended)\n\nStep 1 - Train: Schiphol Airport to Ede-Wageningen\n\nFollow signs to the “Railway Station” inside the airport terminal.\nBuy a ticket at the yellow NS vending machines or service desk. You can also pay contactless with a debit/credit card or smartphone by tapping in and out at the yellow OV-chip poles.\nTake the Intercity (IC) train in the direction of Nijmegen. Trains run every 30 minutes. Your stop is Ede-Wageningen (the 5th station).\nIf there is no direct service, take the IC to Utrecht Centraal, change platforms, and board a train towards Arnhem/Nijmegen to Ede-Wageningen.\nJourney time: approximately 60-75 minutes. Plan your trip at ns.nl or 9292.nl.\n\n\n\nStep 2a - Bus to Hotel Wander (city centre)\n\nFrom Ede-Wageningen station, exit and take the stairs down; buses depart from the bus bays outside the main entrance.\nTake Bus 86 towards Wageningen. Alight at Wageningen, Busstation. Hotel Wander is a 5-minute walk from the bus station (Lawickse Allee 9).\nJourney time: approximately 20-25 minutes. Buses run every 15-30 minutes.\n\n\n\nStep 2b - Bus to Wageningen Campus Omnia (meeting venue)\n\nTake Bus 303 (direction: Campus/Forum) from Ede-Wageningen station. Alight at Campus/Forum. Omnia is a short walk from the stop.\nJourney time from Ede-Wageningen: approximately 25 minutes.\nTip: Use the 9292 Journey Planner or NS app for live departure times and route options.\n\n\n\n\n2.2 By Taxi (alternative)\nA direct taxi from Schiphol Airport to Wageningen is possible but expensive (approximately EUR 120-150 for a single ride). If you prefer this option, book in advance through a licensed taxi service.\n\nFor smaller groups, a taxi from Ede-Wageningen station to Hotel Wander or the campus costs approximately EUR 30-37.\nRecommended taxi company near Ede-Wageningen station: Panda Taxi - tel. +31 (0)6 8761 7837 - pandataxi.nl (pre-booking required)."
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#daily-travel-hotel-wander-to-wageningen-campus-omnia",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#daily-travel-hotel-wander-to-wageningen-campus-omnia",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "3. Daily Travel: Hotel Wander to Wageningen Campus Omnia",
-    "text": "3. Daily Travel: Hotel Wander to Wageningen Campus Omnia\nThe distance between Hotel Wander and Omnia is approximately 2.5 km. Three options are available:\n\nOn foot\n\nWalking time: approximately 28-32 minutes.\nFollow Lawickse Allee north, continue along Binnenhaven, and follow the signs to Wageningen Campus.\n\n\n\nBy bicycle\n\nCycling time: approximately 10-12 minutes.\nHotel Wander offers bicycle rental for guests. The route follows the canal path and is flat throughout.\nWageningen is a university city with excellent cycling infrastructure.\n\n\n\nBy bus\n\nTake Bus 303 (direction: Campus/Forum) from Wageningen Busstation. Alight at Campus/Forum. Travel time: approximately 10 minutes.\nPlan your bus journey at 9292.nl/en.\n\n\n\n\n\n\n\nTip\n\n\n\nGoogle Maps route: Hotel Wander to Omnia (walking / cycling / bus)"
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#accommodation",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#accommodation",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "4. Accommodation",
-    "text": "4. Accommodation\n\n4.1 Recommended Hotel: Hotel Wander\nHotel Wander (formerly WICC) is a 4-star hotel centrally located in Wageningen, with 208 rooms, a restaurant, fitness centre, and bicycle rental. It is the closest full-service hotel to the city centre and conveniently served by public transport to the campus.\n\n\n\nItem\nDetails\n\n\n\n\nAddress\nLawickse Allee 9, 6701 AN Wageningen\n\n\nPhone\n+31 317 490 133\n\n\nWebsite\nhotelwander.nl\n\n\nCheck-in / Check-out\nCheck-in from 15:00 | Check-out by 11:00\n\n\n\n\n\n\n\n\n\nImportantHotel Block Code for Workshop Participants\n\n\n\nGuests can book a discounted room by using the block code below:\n\nOlive Leaf Compact Double for single use\nCode: 289886\nRate: EUR 120.00 per room, per night (including breakfast)\n\nTo make a reservation using the block code:\n\nGo to the hotel website.\nSelect your arrival and departure dates.\nClick on Heb je een code? (Do you have a code?) and enter the block code in the designated field.\n\nBlock codes are valid for arrivals on 14 June and departures on 20 June 2026, subject to availability.\n\n\n\n\n4.2 Alternative Accommodation\nFurther options are available via the following platforms:\n\nBooking.com - hotels in Wageningen\nAirbnb - stays in Wageningen\nOther hotels within walking distance of the city centre include Hotel de Wereld (5 Mei Plein 1) and Fletcher Hotel-Restaurant de Wageningsche Berg."
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#workshop-logistics",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#workshop-logistics",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "5. Workshop Logistics",
-    "text": "5. Workshop Logistics\n\n\n\nItem\nDetails\n\n\n\n\nVenue\nWageningen Campus OmniaHoge Steeg 2, 6708 PH Wageningen\n\n\nDaily programme\n09:00-17:00 each day (Monday 16 - Friday 20 June)\n\n\nLunch\nProvided on-site each day\n\n\nDietary requirements\nPlease contact nhintzen@pelagicfish.eu in advance\n\n\nRegistration\nVia the SPRFMO Secretariat\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nFor dietary requirements or practical questions, please contact nhintzen@pelagicfish.eu."
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#useful-links-and-information",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#useful-links-and-information",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "6. Useful Links and Information",
-    "text": "6. Useful Links and Information\n\nTransport planning\n\nNS Dutch Railways (train schedules and tickets)\n9292 Journey Planner (trains + buses)\nOV-chipkaart (public transport card) - reloadable travel card accepted on all Dutch public transport\nTip: EU/UK debit and credit cards can also be tapped directly on all Dutch public transport gates (no separate card needed).\n\n\n\nWageningen and the venue\n\nWageningen Campus Omnia\nWageningen University campus map\nHotel Wander\n\n\n\nPractical information\n\nCurrency: Euro (EUR). Card payments are widely accepted; some establishments are cashless.\nLanguage: Dutch, but English is widely spoken throughout Wageningen.\nEmergency number: 112 (police, fire, ambulance).\nThe nearest pharmacy (apotheek) and supermarkets are within 5 minutes’ walk of Hotel Wander."
-  },
-  {
-    "objectID": "SPRFMO-MSE-Workshop-Visitor-Information.html#about-the-workshop",
-    "href": "SPRFMO-MSE-Workshop-Visitor-Information.html#about-the-workshop",
-    "title": "Visitor Information, SPRFMO Jack Mackerel MSE Workshop",
-    "section": "7. About the Workshop",
-    "text": "7. About the Workshop\nThis workshop is organised as part of the SPRFMO Jack Mackerel Management Strategy Evaluation (MSE) process. The meeting is hosted at Wageningen Campus Omnia, on the campus of Wageningen University and Research, and is coordinated through the SPRFMO Secretariat. Registration and further correspondence should be directed to the SPRFMO Secretariat.\n\nDocument prepared for SPRFMO JM MSE Workshop participants - June 2026"
-  },
-  {
-    "objectID": "JMWG_Benchmark_ToR.html",
-    "href": "JMWG_Benchmark_ToR.html",
-    "title": "SPRFMO",
-    "section": "",
-    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
-  },
-  {
-    "objectID": "JMWG_Benchmark_ToR.html#data-and-abundance-indices",
-    "href": "JMWG_Benchmark_ToR.html#data-and-abundance-indices",
-    "title": "SPRFMO",
-    "section": "2.1 Data and Abundance Indices",
-    "text": "2.1 Data and Abundance Indices\n\nAcoustic biomass in the north area with emphasis on age composition and biological sampling\nCPUE index standardization approaches using sdmTMB, INLA, or comparable methods\nSpatio-temporal models combining fleets and regions (e.g., tinyVAST) to integrate datasets from different sources\nComprehensive analysis of CPUE indices and acoustic biomass estimates, including review of S-Chile, N-Chile, and Peruvian data\nEvaluation of sampling levels and expansion protocols across fleets and regions\nAssessment of Peruvian data sources and vessels of opportunity"
-  },
-  {
-    "objectID": "JMWG_Benchmark_ToR.html#assessment-model-development",
-    "href": "JMWG_Benchmark_ToR.html#assessment-model-development",
-    "title": "SPRFMO",
-    "section": "2.2 Assessment Model Development",
-    "text": "2.2 Assessment Model Development\n\nSelectivity aspects and assumptions\nBycatch considerations in jack mackerel fisheries\nModel implementation in updated software (e.g., RTMB) or alternative platforms as appropriate"
-  },
-  {
-    "objectID": "JMWG_Benchmark_ToR.html#productivity-estimates",
-    "href": "JMWG_Benchmark_ToR.html#productivity-estimates",
-    "title": "SPRFMO",
-    "section": "2.3 Productivity estimates",
-    "text": "2.3 Productivity estimates\n\nLong- and short-term productivity period scenarios\nSteepness value assumptions and sensitivity\nFishing mortality (F) scenarios including relative F levels and Fmsy reference points"
-  },
-  {
-    "objectID": "JMWG-2026-plan.html",
-    "href": "JMWG-2026-plan.html",
-    "title": "Task Group (TG) — 2026 Meeting Schedule & Agendas",
-    "section": "",
-    "text": "SPRFMO\n      South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\n    \n  \n\nTask Group (TG) — 2026 Meeting Schedule & Agendas\nChair: J. Ianelli | All meetings: Online (Zoom/Teams) | 14:00–15:30 CET\n08:00–9:30 Lima (PET) 09:00-10:30 Santiago (CLT)\n\nAT-A-GLANCE SCHEDULE\n\n\n\n\nTable 1\n\n\n\n\n\n\n\n\n\nMeeting\nDate\nTopic\nKey Milestone\n\n\n\n\nTG-01\nThu 26 March 2026\nPost-Commission Kickoff\n—\n\n\nTG-02\nThu 9 April 2026\nWP1 Launch & Benchmark Preparation\n→ Leads to: Benchmark Workshop, Lima (May)\n\n\nTG-03\nThu 30 April 2026\nFinal Pre-Benchmark Preparation\n→ Leads to: Benchmark Workshop, Lima (~12–16 May)\n\n\nTG-04\nThu 28 May 2026\nPost-Lima / Pre-Intersessional Debrief\n→ Leads to: MSE-02 draft performance metrics\n\n\nTG-05\nThu 11 June 2026\nPre-Wageningen Final Preparation\n→ Leads to: MSE Workshop, Wageningen, 15–19 June 2026\n\n\nTG-06\nThu 9 July 2026\nPost-Wageningen: CMP Shortlist Review\n→ SC14 paper drafting begins\n\n\nTG-07\nThu 13 August 2026\nPre-SC14 Draft Review\n→ Leads to: SC14 (September 2026)\n\n\nTG-08\nFri 28 August 2026\nFinal SC14 Paper Sign-off\n→ SC14 submission deadline\n\n\nTG-09\nThu 8 October 2026\nPost-SC14 Debrief & Commission Prep\n→ Leads to: Commission decision (Nov/Dec 2026)\n\n\nTG-10\nThu 12 November 2026\nWP4 Report Review & Year-End Close\n→ SC15 / archive\n\n\n\n\n\n\n\n\n\n\nRegular = 2nd Thursday of month. Extra = milestone-driven additional call.\n2026 PROGRAMME MILESTONES (FOR REFERENCE)\n\n\n\n\nTable 2\n\n\n\n\n\n\n\n\n\nMonth\nEvent\nDeliverable\nOutput for\n\n\n\n\nMay 2026\nBenchmark Workshop — Lima (Peru)\nCandidate assessment models\nSC Intersessional\n\n\nLate May 2026\nSC Intersessional meeting\nApproved OM for MSE\nWageningen workshop\n\n\nJun 15–19\nMSE Workshop — Wageningen (WMR/NL)\nCMP shortlist\nSC14 document\n\n\nSep 2026\nSC14 — Scientific Committee\nCMP recommendation\nCommission decision\n\n\nNov 2026\nWP4 final deliverable\nTechnical report + source code\nSC15 / archive\n\n\n\n\n\n\n\n\n\n\n\nSPRFMO Jack Mackerel MSE — Technical Group (TG) Session Agenda Plan 2026\nFive 2-hour TG sessions (March–June 2026) leading to the Lima Benchmark (early May) and the Wageningen MSE Workshop (16 June). Each session covers topics for discussion and decisions; where consensus cannot be reached, the decision is deferred one session. Based on Carruthers et al. (2024) MSE roadmap phases.\nColour legend: White = discussion topics Yellow = items requiring decision Grey = pre-meeting preparation Blue = linked working papers\n\n\n\n\nTable 3\n\n\n\n\n\n\n\n\n\nTC\nDate\nMain Topics for Discussion\nTopics Requiring Decision\nPre-meeting Prep\nWPs\n\n\n\n\nTG-01 — 26 Mar 2026 15:00 CET\n\n\n1\n26 Mar\n2026\n15:00\nCET\n\nReview & endorse working paper plan (10 WPs: Benchmark, Wageningen, SC14)\nSequence and allocation of technical topics across TG-02 to TG-05\nIdentify which decisions need two sessions (prepare → conclude)\n\n\nEndorse WP plan; confirm all lead authors (SCW16-03 needs volunteer)\nAgree topic schedule TG-02 through TG-05 — frames all subsequent work\n\nChair circulates: SCW16-01 draft, SCW16-02 draft, WP plan, Carruthers roadmap summary, proposed topic allocation. All ≥5 working days before.\nSCW16-01\nSCW16-02\nPlan doc\n\n\nTG-02 — 9 Apr 2026 15:00 CEST\n\n\n2\n9 Apr\n2026\n15:00\nCEST\n\nSelectivity: block-based alternatives (SCW16-01 §6.1) vs time-varying; fleet implications\nReference points: fixed RPs vs dynamic BMSY/FMSY — pros, cons, RFMO precedent\nS-R alternatives: simplified options (single BH, regime variants) from SCW16-01 §6.2 — initial reaction\nIndices (SCW16-03): inventory of all 7, CPUE standardisation, index–biomass proportionality\nUncertainty dimensions most consequential for long-term projections\n\n\nDiscuss selectivity block options — narrow to ≤2 candidates (conclude TG-03)\nDiscuss reference point approach — identify preferred direction (conclude TG-03)\nConfirm SCW16-03 lead and scope; agree index standardisation methodology\n\nSCW16-01 §6.1–6.3 fitted diagnostics; SCW16-03 outline; updated topic schedule from TG-01\nSCW16-01\nSCW16-03\n\n\nTG-03 — 30 Apr 2026 15:00 CEST\n\n\n3\n30 Apr\n2026\n15:00\nCEST\n\nCONCLUDE selectivity: agree block structure(s) for OM conditioning\nCONCLUDE reference points: agree fixed benchmark RPs; document rationale\nFar North treatment (SCW16-01 §6.4): options for h1/h2 consistency\nOM grid design (SCW16-04): reference set vs robustness set; which uncertainty axes in each tier\nBenchmark handoff: define minimum outputs needed for TG-04 to proceed\n\n\nAgree selectivity block structure for OM (carried from TG-02)\nAgree fixed reference point approach (carried from TG-02)\nAgree harmonised Far North treatment for both stock hypotheses\nAgree OM grid structure: axes, tiers (reference set vs robustness set)\nAgree criteria for OM reconditioning decision at TG-04\n\nSCW16-01 §6.4 draft; SCW16-03 first full draft; SCW16-04 outline with OM grid sketch; Chair circulates 'Benchmark handoff checklist'\nSCW16-01\nSCW16-03\nSCW16-04\n\n\nTG-04 — 28 May 2026 15:00 CEST\n\n\n4\n28 May\n2026\n15:00\nCEST\n\nLima Benchmark debrief: model simplification, indices, OM design — what was agreed and what remains open\nCRITICAL FORK: Recondition on Benchmark OM outputs OR proceed with SC13-based OM\nStock-hypothesis: using base case + robustness tests to derive advice; attempt consensus\nPerformance metrics (MSE-02): conservation (P(B\nMP families: candidate model-free (DLMtool) and model-based (multi-index, surplus production)\n\n\nCRITICAL: Recondition OM on Benchmark outputs OR proceed with SC13-based OM — gates Wageningen scope\nAgree S-R priors (steepness, σR) and recruitment regime treatment across all OMs\nDiscuss stock-hypothesis treatment for advice — to conclude at TG-05\nEndorse draft performance metrics and time horizons (5/10/20+ yr) — to finalise at TG-05\n\nLima Benchmark summary circulated after meeting; BM MSE-02 draft performance metrics\nSCW16-04\nMSE-02\nSCW16-01 outcomes\n\n\nTG-05 — 11 Jun 2026 15:00 CEST\n\n\n5\n11 Jun\n2026\n15:00\nCEST\n\nCONCLUDE stock-hypothesis: close from TG-04 (or confirm fallback)\nCONCLUDE performance metrics: finalise metric list, time horizons, risk tolerance for Wageningen\nMP specifications (MSE-01): technical freeze — data streams, tuning targets, HCR, Buffer/K60\nRobustness scenario matrix: finalise all scenarios entering Wageningen (MSE-03)\nCross-platform validation: FLR vs RTMB/OpenMSE — metrics, responsibilities (WMR/CHL/PER), timeline\nWageningen logistics: trade-off format (Slick, worm plots, Kobe-style); decision-making protocol\n\n\nConclude stock-hypothesis (from TG-04)\nFinalise performance metrics list, time horizons and risk tolerance\nFreeze MP specifications: no new MPs added after this TG\nAgree complete robustness scenario matrix (reference set + robustness set)\nAgree cross-platform validation protocol and assign responsibilities\nAgree Wageningen communication and decision-making format\n\nFull drafts MSE-01 and MSE-03; Slick/trade-off prototype if available; updated OM status note from WMR\nMSE-01\nMSE-02\nMSE-03\n\n\n\n\n\n\n\n\n\n\nNotes: (1) If Lima Benchmark endorses reconditioning the OM, TG-04 agenda must adjust to incorporate benchmark outcomes before Wageningen. (2) The stock-hypothesis weighting decision (TG-04) is a potential sticking point — plan extra time or a dedicated sub-group call if no consensus at TG-03. (3) All working paper drafts should be circulated at least 5 working days before each TG."
+    "objectID": "JMWG-Meeting report-01-2026.html#benchmark-logistics",
+    "href": "JMWG-Meeting report-01-2026.html#benchmark-logistics",
+    "title": "JMWG Meeting 01/2026",
+    "section": "4.8 Benchmark Logistics",
+    "text": "4.8 Benchmark Logistics\nThe meeting closed with practical discussion of the Lima benchmark. Ricardo indicated that the venue was expected to be confirmed in Lima, that Miraflores was a practical accommodation area, and that the meeting would likely run for five days from Monday to Friday. Participants also discussed reviewer participation and the need for the Secretariat to circulate official invitation and registration information soon."
   },
   {
     "objectID": "SCW16-Paper-03-CPUE_MetaAnalysis.html",
     "href": "SCW16-Paper-03-CPUE_MetaAnalysis.html",
     "title": "Meta-Analysis of CPUE Papers on Jack Mackerel (2022–2025)",
     "section": "",
-    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nUpdated at 2026-04-08 21:09 UTC\nCompiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings Prepared: March 2026 | All PDFs accessed directly via sprfmo.int"
+<<<<<<< HEAD
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nUpdated at 2026-04-15 00:25 UTC\nCompiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings Prepared: March 2026 | All PDFs accessed directly via sprfmo.int"
+=======
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nUpdated at 2026-04-16 06:07 UTC\nCompiled from documents of the 10th through 13th SPRFMO Scientific Committee meetings Prepared: March 2026 | All PDFs accessed directly via sprfmo.int\nThis paper is the historical synthesis component of the SCW16 CPUE work. The forward-looking coordination note for the benchmark session, proposed supporting papers, and workshop decision points is documented separately in SCW16/Paper-02."
+>>>>>>> 207bb4b (Sync CPUE agenda updates from jjm)
   },
   {
     "objectID": "SCW16-Paper-03-CPUE_MetaAnalysis.html#background-for-2026-benchmark-priorities",
@@ -810,13 +947,15 @@
     "title": "Helper Scripts Guide",
     "section": "assessment/R/run_default_mcmc.R",
     "text": "assessment/R/run_default_mcmc.R\n\nWhat It Does\nThis is a thin convenience wrapper around assessment/R/run_adnuts_mcmc.R for any JJM model or control file target.\nIt launches the generic wrapper with these defaults:\n\n--iter=1000\n--warmup=500\n--chains=4\n--cores=4\n\nThe first positional argument is passed through as the target model or control file. Any additional command-line arguments are passed through after the defaults, so later options can still override them.\n\n\nDefault Usage\nRscript assessment/R/run_default_mcmc.R h2_2.02\n\n\nOverride Example\nRscript assessment/R/run_default_mcmc.R h2_2.02 --iter=1500 --run-label=h2_2_02_longer\n\n\nOutputs\nEach run directory contains:\n\nfit.rds: full adnuts fit object\nsettings.rds: settings used for the run\nsummary.csv: one-row summary with timing and headline diagnostics\nmonitor.csv: parameter-level Rhat and effective sample size, when monitoring is enabled\nsampler_diagnostics.csv: chain-level divergences and max-treedepth hits\n\nThe file mcmc_runs/adnuts_run_log.csv appends one row per run so repeated short tests can be compared directly.\n\n\nIntended Comparison Metrics\nThis wrapper is designed to support comparisons such as:\n\nwall time\naverage chain time\nmaximum Rhat\nminimum bulk effective sample size\ntotal divergences\ntotal max-treedepth hits\n\n\n\nImportant Notes\n\nThe script assumes the model has already been fitted and that matching .par and .cor files exist in assessment/results/.\nThe script stages those fitted artifacts under the executable name expected by adnuts, for example jjm.par and jjm.cor.\nIn this environment, parallel::detectCores() returns NA, which breaks adnuts internally. The wrapper patches that locally during the sample_nuts() call.\nThe current wrapper is built for NUTS only. It does not yet expose a random-walk Metropolis path.\nThe exact ADMB preparation requirements can vary by model and executable behavior, so --prepare-mode=full is the safest default."
+<<<<<<< HEAD
+=======
   },
   {
     "objectID": "SCW16-Paper-00.html",
     "href": "SCW16-Paper-00.html",
     "title": "SCW16/Paper-00, Preliminary agenda",
     "section": "",
-    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nParticipants from IMARPE (Peru) and IFOP (Chile) met online and prepared this preliminary draft schedule for acoustic survey evaluations during the benchmark workshop.\nParticipants in this drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez, Ignacio Payá, Victor Catasti, and José Zenteno"
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group\nThis paper compiles the current draft benchmark agenda for the abundance-index sessions. It combines the acoustic-session schedule prepared by IMARPE and IFOP and the CPUE-session agenda developed at the CPUE coordination meeting held on 14 April 2026.\nParticipants in the acoustic drafting committee included Criscely Lujan, Daniel Ramos, Mariano Gutiérrez, Ignacio Payá, Victor Catasti, and José Zenteno.\nParticipants in the CPUE coordination meeting included Criscely Lujan, Miriam Geronimo, Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen."
   },
   {
     "objectID": "SCW16-Paper-00.html#meeting",
@@ -894,5 +1033,69 @@
     "title": "Benchmark Workshop Information",
     "section": "Lunch",
     "text": "Lunch\nLunch is at 1:00 PM at Divino Mar restaurant (Club Regatas), Av. Bolognesi N 1000, La Punta, Callao.\nLocation: https://maps.app.goo.gl/fJ95Vi84hQUiPfm97"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#day-1.-preliminary-acoustic-session-agenda",
+    "href": "SCW16-Paper-00.html#day-1.-preliminary-acoustic-session-agenda",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Day 1. Preliminary Acoustic Session Agenda",
+    "text": "Day 1. Preliminary Acoustic Session Agenda\n\nStart time: 09:00\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n09:00-09:25\nHistorical review of hydroacoustic survey programs in north-central Chile\nV. Catasti (IFOP)\n\n\n09:25-09:50\nSpatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using sdmTMB\nI. Payá and V. Catasti (IFOP)\n\n\n09:50-10:15\nPreliminary results of the 2026 north-central Chile hydroacoustic survey\nV. Catasti (IFOP)\n\n\n10:15-10:30\nCoffee break\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n10:30-11:00\nExamination and/or validation of jack mackerel echotraces\nAll participants\n\n\n11:00-11:25\nOpportunistic acoustic data collection using the south-central Chilean commercial fleet\nN. Alegría (INPESCA, TBC)\n\n\n11:25-11:50\nReview of jack mackerel acoustic assessments conducted in Peru\nDaniel Grados (IMARPE)\n\n\n11:50-13:20\nLunch break (1 hour 30 minutes)\n\n\n\n\n\n\n\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n13:20-13:45\nApplication of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile\nMariano Gutiérrez (National University Federico Villarreal)\n\n\n13:45-14:15\nGeneral discussion and technical recommendations\nAll participants"
+  },
+  {
+    "objectID": "SCW16-Paper-00.html#day-2.-preliminary-cpue-session-agenda",
+    "href": "SCW16-Paper-00.html#day-2.-preliminary-cpue-session-agenda",
+    "title": "SCW16/Paper-00, Preliminary agenda",
+    "section": "Day 2. Preliminary CPUE Session Agenda",
+    "text": "Day 2. Preliminary CPUE Session Agenda\nThe Day 2 CPUE session is currently organized as a thematic sequence. Exact time allocations and presenters remain to be confirmed.\n\n\n\n\n\n\n\n\nOrder\nTopic\nNotes\n\n\n\n\n1\nMetadata by fleet and country\nReview fleet definitions, spatial coverage, observation level, and index construction by country and fishery.\n\n\n2\nMethods by fleet and country\nCompare GLM, spatio-temporal models, GLMMs with spatio-temporal random effects, and latitude-longitude smoothing approaches.\n\n\n3\nComparative analysis and parsimony across candidate indices\nEvaluate traditional GLM, spatio-temporal, and environmentally informed approaches and identify the most suitable benchmark candidates.\n\n\n4\nEffort-creep review and decision for stock assessment use\nRevisit current effort-creep assumptions and consider whether revised treatment is needed for benchmark runs.\n\n\n5\nCatchability-availability blocks by abundance index\nReview evidence for temporal or spatial changes in availability, including possible El Niño effects and implications for q blocks.\n\n\n6\nCPUE weighting factors for stock assessment\nDiscuss weighting choices and how they affect assessment fits and benchmark comparisons.\n\n\n7\nSeparate versus combined index products for HCR use\nConsider whether the benchmark should retain separate series or define a combined CPUE product for OM conditioning and MP inputs."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "",
+    "text": "South Pacific Regional Fisheries Management Organisation\n      \n      Jack Mackerel Working Group"
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#comparison-of-modelling-approaches",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#comparison-of-modelling-approaches",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "1. Comparison of modelling approaches",
+    "text": "1. Comparison of modelling approaches\nThe group emphasized that traditional GLM products and newer spatio-temporal approaches should be compared directly rather than treated as unrelated alternatives. The benchmark should evaluate whether extra complexity produces a materially better and more defensible index, or whether a simpler method remains preferable."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#need-to-avoid-duplicated-chilean-products-where-possible",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#need-to-avoid-duplicated-chilean-products-where-possible",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "2. Need to avoid duplicated Chilean products where possible",
+    "text": "2. Need to avoid duplicated Chilean products where possible\nParticipants noted substantial overlap between the Chilean GLM and spatio-temporal work streams. One of the practical benchmark goals should therefore be to decide whether a single Chilean CPUE time series can be recommended for the main assessment, even if multiple alternative series are retained for sensitivity analyses."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#effort-creep-versus-catchability-or-availability-change",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#effort-creep-versus-catchability-or-availability-change",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "3. Effort creep versus catchability or availability change",
+    "text": "3. Effort creep versus catchability or availability change\nThe meeting highlighted the difficulty of applying a single flat effort-creep rate across periods with changing fleet behavior, area usage, and technology. At the same time, several participants noted that introducing effort creep in recent model runs had little effect because existing catchability blocks may already be absorbing part of the same signal. This remains a key benchmark question rather than a settled issue."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#observation-level-and-comparability-across-countries",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#observation-level-and-comparability-across-countries",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "4. Observation level and comparability across countries",
+    "text": "4. Observation level and comparability across countries\nPeruvian CPUE work continues to rely mainly on trip-level information, while some Chilean products operate at set level or use more explicit spatial structure. The benchmark should note these differences clearly because they affect both comparability and the feasible level of harmonisation across countries and fleets."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#availability-shifts-and-recent-index-contradictions",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#availability-shifts-and-recent-index-contradictions",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "5. Availability shifts and recent index contradictions",
+    "text": "5. Availability shifts and recent index contradictions\nThe coordination discussion treated the recent sharp decline in offshore CPUE as a probable availability or catchability signal rather than decisive evidence of an abrupt stock collapse. This reinforces the need to review index-biomass relationships explicitly rather than assuming that all indices are directly proportional to total stock biomass at all times."
+  },
+  {
+    "objectID": "SCW16-Paper-02-CPUE_Coordination.html#combined-index-products-for-mse",
+    "href": "SCW16-Paper-02-CPUE_Coordination.html#combined-index-products-for-mse",
+    "title": "CPUE coordination priorities and working-paper plan",
+    "section": "6. Combined index products for MSE",
+    "text": "6. Combined index products for MSE\nThe group did not assume that a single combined CPUE index should be produced for the benchmark. Instead, the benchmark should review whether separate country or fleet series are more informative, or whether some form of combined product would be more useful for operating-model conditioning and for candidate management procedures."
+>>>>>>> 207bb4b (Sync CPUE agenda updates from jjm)
   }
 ]

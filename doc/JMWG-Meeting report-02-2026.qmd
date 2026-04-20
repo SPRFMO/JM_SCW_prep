@@ -1,0 +1,226 @@
+---
+title: "JMWG Meeting 02/2026"
+format:
+  html:
+    output-file: "JMWG-Meeting report-02-2026.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+    number-depth: 2
+  pdf:
+    output-file: "JMWG-Meeting report-02-2026.pdf"
+    number-sections: false
+    number-depth: 2
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{Meeting report 02-2026}}
+        \fancyhead[L]{\textit{joint-jack mackerel model}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{Meeting report 02-2026}}
+          \fancyhead[L]{\textit{joint-jack mackerel model}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "JMWG-Meeting report-02-2026.docx"
+    toc: true
+    number-sections: false
+    number-depth: 2
+    title-block: false
+execute:
+  warning: false
+  message: false
+  echo: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries Meeting report 02-2026\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*Meeting report 02-2026*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">Meeting report 02-2026</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Meeting%20report-02-2026.pdf">PDF-rendered version</a> | <a href="JMWG-Meeting%20report-02-2026.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">JMWG Meeting report 02-2026</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+This report summarizes the **JMWG MSE WP1 launch and benchmark-preparation meeting held on 9 April 2026**, based on the automated transcript and discussion around the JM benchmark-preparation materials: [JM_SCW_prep](https://sprfmo.github.io/JM_SCW_prep/).
+
+The meeting focused on preparations for the pre-benchmark process and the upcoming week-long benchmark workshop in Lima, including workshop logistics, the draft agenda, expectations for limited remote participation, and the sequencing of acoustic and CPUE sessions. Participants agreed that acoustic sessions should be prioritized early in the benchmark week, that CPUE index discussions should be scheduled on the second day, and that concrete CPUE paper plans should be prepared before the next intersessional virtual meeting.
+
+The technical discussion then centered on acoustic methodology, the desired resolution of backscatter outputs, the use of age- or length-resolved indices to track cohorts, and Chilean work to convert acoustic information to biomass and build a standardized spatiotemporal acoustic index using SDM/TMB/INLA approaches. The group also reviewed simplified assessment alternatives, selectivity formulations, time-varying catchability, PER comments on the 2002 fleet change and regime structure, and new SAM-based diagnostics. Follow-up work includes incorporating PER comments into the main assessment document, preparing CPUE index plans, posting SAM outputs to the shared HTML materials, and implementing a catchability break for the Chile Acoustic North series.
+
+Participants named in the discussion included Jim Ianelli (chair), Ignacio Payá, Aquiles Sepúlveda, José Zenteno, Luciano Espinoza, Sebastián Vásquez, Ana Alegre, Criscely Luján, Miriam Geronimo, Karolina Molla Gazi, Benoit Bergès, Niels Hintzen, Iago Mosqueira, Hyejin Song, Trent Timmiss, and additional delegates from Chile, Peru, Korea, the EU, Australia, and collaborating research institutions.
+
+# Key Discussion Summary
+
+## 1. Workshop logistics and participation format
+
+- The Secretariat benchmark logistics email and coordinating page were circulated and acknowledged.
+- The benchmark workshop will remain primarily in-person and run across a full week in Lima.
+- Limited remote participation was supported for selected sessions rather than continuous full-day streaming.
+- Ana confirmed that Microsoft Teams connectivity in the IMARPE auditorium should support virtual participation for those parts of the meeting.
+- The practical approach agreed was to schedule open sessions and periodic summaries at useful times for remote attendees.
+
+## 2. Acoustic agenda scope and timing
+
+- Strong support was expressed for placing acoustic discussions early in the benchmark week so acoustic scientists can contribute before assessment and MSE topics narrow.
+- The acoustic agenda is intended as a technical working session for acoustic experts rather than a general training session.
+- Discussion emphasized moving beyond single biomass points toward finer acoustic products by location, length, or age so cohorts can be tracked more directly.
+- Participants also highlighted the need to review the full processing chain, from acoustic signal interpretation to biological sampling and the final index used in assessment.
+- Broader acoustic participation was encouraged, including IMARPE, IFOP, Nicolas on opportunity-vessel acoustic data, and possible external expertise from Alaska.
+- Chile described ongoing work to convert acoustic information to biomass and to develop a standardized spatiotemporal acoustic index using SDM, TMB, or INLA, and the group agreed to add time for preliminary Chilean results.
+
+## 3. CPUE agenda and meta-analysis follow-up
+
+- A dedicated CPUE session structure is still needed, analogous to the acoustic agenda.
+- The group suggested holding CPUE index discussions on the second day of the benchmark week.
+- Ignacio volunteered to coordinate CPUE agenda development, with Niels supporting and Sebastián and José assisting on scripting and technical issues.
+- Existing CPUE historical-review work will anchor the discussion, but concrete plans for updated CPUE papers should be prepared before the next intersessional meeting.
+- Major CPUE issues flagged included fleet and gear differences, seasonal and regional coverage, catchability-block structure, and how alternative index treatments would affect the assessment and the MSE.
+
+## 4. Combined-index concept and data constraints
+
+- Combining indices across fleets and countries remains an open question rather than an assumed benchmark product.
+- Peru emphasized that data-sharing and data-resolution constraints limit what can be combined immediately, particularly for haul-level or otherwise sensitive information.
+- Participants noted that a single combined index may obscure fleet-, region-, and season-specific dynamics because gears and spatial coverage differ materially.
+- The general view was that the benchmark should evaluate prepared products that are already largely developed rather than attempt full raw-data harmonization during the meeting itself.
+
+## 5. Assessment configuration updates discussed
+
+- Jim reviewed updates on simplified assessment alternatives and the implications of those changes for stock trajectories.
+- Tests reducing the number of indices had very little effect on assessment history, whereas selectivity changes, especially blocked selectivity treatments, had much larger effects.
+- Restoring variable selectivity for South Central clarified why some blocked-selectivity runs diverged.
+- A completed run allowing time trends in catchability across the four indices was presented as nearly equivalent to combining indices into one.
+- PER noted that a 2002 fleet change in the far north and changes to productivity-regime structure can materially affect recent historical patterns and should be treated carefully and consistently across hypotheses.
+- Future-selectivity scenarios similar to those discussed in Seattle were considered straightforward to implement and should be retained as candidate scenarios.
+
+## 6. Biological data context request
+
+- A request was raised for a concise overview of biological inputs and age- and length-composition sample sizes used in the assessment.
+- Participants noted that the assessment document currently lacks a compact synthesis of those biological inputs.
+- Karolina pointed to the technical annex as the main compiled source for stock-assessment inputs, including age-composition matrices.
+- A follow-up review of biological aspects from the 2022 benchmark was suggested so unresolved biological uncertainties can be identified clearly before the next meeting.
+
+## 7. Benchmark deliverables vs longer-term workplan
+
+- A repeated concern was that benchmark deliverables must be more explicit and tangible before the meeting begins.
+- Niels stressed the need to bring near-final candidate indices and preparatory analyses to the benchmark so the meeting can evaluate concrete proposals rather than start from scratch.
+- Participants broadly agreed that the benchmark should be used to test and compare prepared alternatives in the assessment and MSE context, while follow-up methodological development should sit in the WP1 workplan.
+- This distinction between benchmark outputs and longer-term workplan items was reinforced as necessary for a decision-oriented process.
+
+## 8. JJMSE repository update (Iago)
+
+- Iago reported that the repository had been cleaned and downsized to address maintainability and storage issues.
+- A historical archived release of the previous version has been retained for reference.
+- Main-branch protections are now in place, so contributors should work on branches or send changes to Iago for merging rather than pushing directly to `main`.
+- Large outputs will no longer be stored routinely in the repository; instead, zipped outputs and runs will be made available through a managed download workflow documented in the `README`.
+- A fuller walkthrough of the revised workflow, checks, and merge process is planned for the next meeting.
+
+## 9. SAM diagnostic work update (Niels)
+
+- Niels presented SAM as a diagnostic complement to JJM rather than a replacement assessment framework.
+- SAM outputs were used to examine data-source weighting, process and observation error partitioning, retrospective behavior, and candidate selectivity-block breakpoints.
+- Retrospectives showed wide confidence bands and disagreement among datasets, particularly between offshore CPUE and Chilean acoustics, suggesting unresolved availability or movement issues.
+- Niels indicated that a catchability break is being added for the Chile Acoustic North series so early and late periods can be treated separately while retaining a common observation-variance structure.
+- He also plans to add configured GGM outputs beside SAM outputs in the shared HTML materials for ballpark comparison.
+
+## 10. Travel/admin note
+
+- Visitor information for the Lima/Miraflores benchmark meeting was posted.
+- A preferred hotel rate and room block were reported as available until approximately **20 April 2026**, after which alternative booking arrangements may be needed.
+
+# Decisions and Agreements
+
+1. Keep acoustic-focused sessions early in the benchmark week and include time for Chilean acoustic-standardization results.
+2. Schedule CPUE index discussions on the second day and prepare CPUE paper plans before the next intersessional virtual meeting.
+3. Maintain a hybrid-access approach for selected sessions and periodic summaries rather than full continuous broadcast.
+4. Use the modern-era segment of the problematic Chile northern acoustic series and drop early years from that index.
+5. Distinguish benchmark outputs from longer-term WP1 development tasks so the benchmark can focus on concrete recommendations for MSE preparation.
+
+# Action Items
+
+| Action | Lead | Support | Target timing |
+|---|---|---|---|
+| Schedule open sessions and periodic summaries for remote participants and link the coordinating page in Teams | Meeting coordinator | Ana, Secretariat | Before benchmark |
+| Finalize draft acoustic session agenda, including Chilean standardization and opportunity-vessel acoustics | Ignacio / Chile team | IMARPE, IFOP, Nicolas, other acoustic experts | Before next intersessional call |
+| Draft CPUE session agenda, historical review framing, and priority decision points | Ignacio | Niels, Sebastián, José | Before next intersessional call |
+| Integrate PER comments on the 2002 fleet change and regime treatment into the main assessment document | PER (Criscely Luján) | Jim, assessment subgroup | Near-term |
+| Prepare plans for the CPUE index component and identify candidate products to bring to benchmark | Ignacio and Niels | Sebastián as needed | Before next intersessional call |
+| Review 2022 benchmark biological aspects and identify unresolved biological uncertainties | To be assigned | Karolina / interested members | Before next meeting |
+| Locate and post the technical annex link with stock-assessment input summaries | To be assigned | Jim / site maintainers | Before next meeting |
+| Meet separately to define new CPUE indices and preparatory analyses for benchmark-ready products | Niels | Ignacio, Sebastián | Before benchmark |
+| Present the revised repository workflow, merge process, and archive access at the next meeting | Iago | All contributors | Next meeting |
+| Add SAM outputs to the shared HTML materials and include configured GGM comparisons | Niels | Jim | Near-term |
+| Push the catchability-break update for the Chile Acoustic North series and continue residual/correlation diagnostics | Niels | Assessment subgroup | Immediate / near-term |
+| Post finalized SAM materials and meeting notes once approved | Jim / meeting support | Niels | After approval |
+
+# Open Issues / Risks to Track
+
+- Data-access and data-resolution constraints may prevent development of new combined indices during the benchmark itself.
+- The trade-off between simplification for MSE tractability and retaining key recent dynamics remains unresolved, especially for selectivity and catchability behavior.
+- Acoustic products may need finer location-, length-, or age-resolution before the group can judge how they should be weighted in assessment.
+- The relationship between structural simplification and quantified uncertainty in the MSE remains an open technical question.
+- Spatial shifts in fishing behavior may require additional catchability blocks, and those spatial issues need to be carried into benchmark preparation.
+
+# Next Step
+
+Prepare and circulate benchmark-ready agenda drafts and candidate index products for the acoustic and CPUE sessions before the next intersessional meeting, so the benchmark can evaluate concrete proposals rather than use workshop time on first-stage development.

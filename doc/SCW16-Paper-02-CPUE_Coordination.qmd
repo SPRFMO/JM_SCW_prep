@@ -1,0 +1,234 @@
+---
+title: "CPUE coordination priorities and working-paper plan"
+format:
+  html:
+    output-file: "SCW16-Paper-02-CPUE_Coordination.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+  pdf:
+    output-file: "SCW16-Paper-02-CPUE_Coordination.pdf"
+    number-sections: false
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{SCW16/Paper-02}}
+        \fancyhead[L]{\textit{CPUE coordination}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{SCW16/Paper-02}}
+          \fancyhead[L]{\textit{CPUE coordination}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "SCW16-Paper-02-CPUE_Coordination.docx"
+    toc: true
+    number-sections: false
+    title-block: false
+execute:
+  echo: false
+  warning: false
+  message: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries CPUE coordination priorities and working-paper plan\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*SCW16/Paper-02*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">SCW16/Paper-02</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="SCW16-Paper-02-CPUE_Coordination.pdf">PDF-rendered version</a> | <a href="SCW16-Paper-02-CPUE_Coordination.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">CPUE coordination priorities and working-paper plan</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+This paper records the outcomes of the **CPUE indices coordination meeting held on 14 April 2026**.
+Its purpose is to define the scope of the Day 2 CPUE benchmark session, identify the main
+technical questions that need to be resolved at SCW16, and list the supporting working papers
+that members proposed to prepare before the workshop.
+
+The main conclusion is that this material should remain separate from
+`SCW16-Paper-03-CPUE_MetaAnalysis.qmd`. Paper 03 is a backward-looking synthesis of CPUE
+documents submitted from SC10 to SC13, while the present paper is a forward-looking coordination
+note for SCW16. The two papers are complementary: Paper 03 provides background and Paper 02
+defines the work plan and decision points for the benchmark session.
+
+# Meeting Details
+
+- Date: 14 April 2026
+- Meeting: CPUE indices coordination meeting
+- Main aim: coordinate the preliminary CPUE agenda and supporting papers for SCW16
+- Participants: Criscely Lujan, Miriam Geronimo, Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen
+
+# Benchmark Rationale
+
+The SC13 assessment model uses seven abundance indices spanning four fishery CPUE series and at
+least three survey series. Conditioning the operating model and tuning candidate management
+procedures depends critically on how these indices are standardized, interpreted, and selected.
+
+The group therefore agreed that the benchmark CPUE session should not be limited to routine
+annual updates. It should instead examine whether the available fishery and survey indices are
+internally coherent, whether some recent index behavior is driven more by availability than by
+abundance, and whether different index products should be treated differently in the assessment,
+the operating model, and the candidate management procedures.
+
+# Proposed Scope for the CPUE Session
+
+The coordination group proposed the following scope for the SCW16 CPUE session:
+
+- inventory all SC13 abundance indices, including fishery and survey series;
+- review acoustic survey indices from Chile, Peru, and international coordinated surveys where relevant to CPUE interpretation;
+- compare CPUE standardization approaches across fleets, including fleet definitions, GLM or GLMM formulations, spatio-temporal structures, and effort-creep assumptions;
+- examine the relationship between abundance indices and biomass, including proportionality assumptions and possible non-linear behavior;
+- document spatial coverage gaps and temporal discontinuities across fleets and countries;
+- review the role of environmental drivers, particularly ENSO-related effects on availability and catchability; and
+- recommend which indices are most suitable for operating-model conditioning and which, if any, should be treated as management-procedure input series.
+
+# Proposed Day 2 Session Structure
+
+The agreed thematic sequence for the CPUE session is summarized below. This structure is also
+reflected in `SCW16-Paper-00.qmd`.
+
+| Order | Topic | Main purpose |
+|---|---|---|
+| 1 | Metadata by fleet and country | Establish a common description of fleets, areas, observation level, and index construction. |
+| 2 | Methods by fleet and country | Compare GLM, spatio-temporal, and other standardization methods now in use. |
+| 3 | Comparative analysis and parsimony | Decide how much model complexity is justified for benchmark index candidates. |
+| 4 | Effort-creep review | Reassess current effort-creep assumptions and whether they should be retained or revised. |
+| 5 | Catchability and availability blocks | Consider explicit `q` blocks or related structures where distribution shifts make constant catchability implausible. |
+| 6 | CPUE weighting in the stock assessment | Review how alternative weighting choices affect model fit and interpretation. |
+| 7 | Separate versus combined indices for HCR use | Decide whether the benchmark should maintain separate series or define a combined product for OM and MP work. |
+
+# Supporting Working Papers Proposed at the Meeting
+
+The meeting identified the following candidate papers or updates for preparation before the
+benchmark. The deadline discussed in the coordination note was **1 May 2026**.
+
+| Proposed paper or update | Lead / contributors | Notes |
+|---|---|---|
+| Indices of abundance for jack mackerel: review and standardisation | Coordinated by Ignacio Payá | Core synthesis paper for the CPUE session; should complement rather than replace Paper 03. |
+| Update of the `sdmTMB` spatio-temporal CPUE index and related GLMM work | Ignacio Payá | Intended to update the Chilean spatial or spatio-temporal CPUE product. |
+| Update of the INLA spatio-temporal CPUE model | Sebastián Vásquez | Intended to present the current INLA-based Chilean spatio-temporal series. |
+| Comparison of alternative Fleet 2 CPUE indices | Ignacio Payá and Sebastián Vásquez | Compare competing methods and identify practical advantages, limitations, and benchmark relevance. |
+| Update of the effort-creep analysis for Fleet 2 CPUE | José Zenteno and Ignacio Payá | Revisit the earlier sensitivity analysis and its biomass implications. |
+| Update of the Peruvian CPUE index in the ANJ | Miriam Geronimo and Criscely Lujan | Review industrial and artisanal data, new trip-level analyses, and possible GLM, GAM, or `sdmTMB` updates. |
+
+# Main Technical Issues Identified
+
+## 1. Comparison of modelling approaches
+
+The group emphasized that traditional GLM products and newer spatio-temporal approaches should
+be compared directly rather than treated as unrelated alternatives. The benchmark should evaluate
+whether extra complexity produces a materially better and more defensible index, or whether a
+simpler method remains preferable.
+
+## 2. Need to avoid duplicated Chilean products where possible
+
+Participants noted substantial overlap between the Chilean GLM and spatio-temporal work streams.
+One of the practical benchmark goals should therefore be to decide whether a single Chilean CPUE
+time series can be recommended for the main assessment, even if multiple alternative series are
+retained for sensitivity analyses.
+
+## 3. Effort creep versus catchability or availability change
+
+The meeting highlighted the difficulty of applying a single flat effort-creep rate across periods
+with changing fleet behavior, area usage, and technology. At the same time, several participants
+noted that introducing effort creep in recent model runs had little effect because existing
+catchability blocks may already be absorbing part of the same signal. This remains a key benchmark
+question rather than a settled issue.
+
+## 4. Observation level and comparability across countries
+
+Peruvian CPUE work continues to rely mainly on trip-level information, while some Chilean products
+operate at set level or use more explicit spatial structure. The benchmark should note these
+differences clearly because they affect both comparability and the feasible level of harmonisation
+across countries and fleets.
+
+## 5. Availability shifts and recent index contradictions
+
+The coordination discussion treated the recent sharp decline in offshore CPUE as a probable
+availability or catchability signal rather than decisive evidence of an abrupt stock collapse.
+This reinforces the need to review index-biomass relationships explicitly rather than assuming
+that all indices are directly proportional to total stock biomass at all times.
+
+## 6. Combined index products for MSE
+
+The group did not assume that a single combined CPUE index should be produced for the benchmark.
+Instead, the benchmark should review whether separate country or fleet series are more informative,
+or whether some form of combined product would be more useful for operating-model conditioning and
+for candidate management procedures.
+
+# Action Items
+
+| Action | Lead | Support | Timing |
+|---|---|---|---|
+| Circulate the preliminary CPUE agenda and proposed supporting papers to Jim | Ignacio Payá | CPUE subgroup | Immediate |
+| Prepare updated Chilean CPUE products and comparison materials | Ignacio Payá and Sebastián Vásquez | Chilean CPUE subgroup | Before 1 May 2026 |
+| Update the Fleet 2 effort-creep analysis and summarize biomass impacts | José Zenteno and Ignacio Payá | Chilean CPUE subgroup | Before 1 May 2026 |
+| Prepare the Peruvian CPUE update and clarify lead attribution for artisanal-fleet work | Miriam Geronimo and Criscely Lujan | Peru subgroup | Before 1 May 2026 |
+| Coordinate workshop-session organization linked to the CPUE agenda | Criscely Lujan | Ana Alegre and workshop organizers | Before SCW16 |
+
+# Relationship to Paper 03
+
+`SCW16-Paper-03-CPUE_MetaAnalysis.qmd` should remain focused on the historical synthesis of CPUE
+papers submitted from SC10 to SC13. If additional editing is needed there, the most natural change
+would be a short cross-reference in the introduction noting that the forward-looking SCW16 CPUE
+work plan is documented separately in SCW16/Paper-02 rather than expanding Paper 03 into a second,
+different document type.
