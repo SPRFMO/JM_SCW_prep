@@ -152,13 +152,13 @@ ctrl_h1@obs.vars["Offshore_CPUE_late",  1] <- 407   # shared with early
 ctrl_h1@biomassTreat["Chile_AcousCS_early"] <- 5
 ctrl_h1@biomassTreat["Chile_AcousCS_late"]  <- 5
 ctrl_h1@biomassTreat["Chile_AcousN"]        <- 5
-ctrl_h1@biomassTreat["Chile_CPUE_early"]    <- 2
-ctrl_h1@biomassTreat["Chile_CPUE_late"]     <- 2
+ctrl_h1@biomassTreat["Chile_CPUE_early"]    <- 5
+ctrl_h1@biomassTreat["Chile_CPUE_late"]     <- 5
 ctrl_h1@biomassTreat["DEPM"]               <- 0
 ctrl_h1@biomassTreat["Peru_Acoustic"]       <- 5
-ctrl_h1@biomassTreat["Peru_CPUE"]          <- 2
-ctrl_h1@biomassTreat["Offshore_CPUE_early"] <- 2
-ctrl_h1@biomassTreat["Offshore_CPUE_late"]  <- 2
+ctrl_h1@biomassTreat["Peru_CPUE"]          <- 5
+ctrl_h1@biomassTreat["Offshore_CPUE_early"] <- 5
+ctrl_h1@biomassTreat["Offshore_CPUE_late"]  <- 5
 
 ctrl_h1 <- update(ctrl_h1)
 ctrl_h1@residuals <- TRUE
@@ -193,9 +193,9 @@ build_ctrl <- function(stk, idx_sub) {
                Offshore_CPUE_early=407, Offshore_CPUE_late=407)
   bio_map <- c(Chile_AcousCS_early=5,  Chile_AcousCS_late=5,
                Chile_AcousN=5,
-               Chile_CPUE_early=2,     Chile_CPUE_late=2,
-               DEPM=0, Peru_Acoustic=5, Peru_CPUE=2,
-               Offshore_CPUE_early=2,  Offshore_CPUE_late=2)
+               Chile_CPUE_early=5,     Chile_CPUE_late=5,
+               DEPM=0, Peru_Acoustic=5, Peru_CPUE=5,
+               Offshore_CPUE_early=5,  Offshore_CPUE_late=5)
 
   for (nm in names(idx_sub)) {
     ctrl@obs.vars[nm, 1]  <- obs_map[nm]
@@ -936,15 +936,28 @@ runs_results <- do.call(rbind, lapply(c(catch_fleets, survey_fleets_base), funct
 
 write.csv(runs_results, "diagnostics/h1_runs_test.csv", row.names = FALSE)
 
+runs_plot    <- runs_results
+runs_plot$p_display <- ifelse(is.na(runs_plot$p_value), 1.0, runs_plot$p_value)
+runs_plot$na_label  <- ifelse(is.na(runs_plot$p_value), runs_plot$result, NA_character_)
+
 png("diagnostics/h1_runs_test.png", width = 1400, height = 700, res = 150)
 print(
-  ggplot(runs_results, aes(x = fleet, y = p_value, fill = result)) +
+  ggplot(runs_plot, aes(x = fleet, y = p_display, fill = result)) +
     geom_col() +
+    geom_text(data = subset(runs_plot, !is.na(na_label)),
+              aes(label = na_label, y = 0.5),
+              colour = "white", size = 3, fontface = "italic",
+              hjust = 0.5, inherit.aes = FALSE) +
     geom_hline(yintercept = 0.05, linetype = "dashed", colour = "red") +
-    scale_fill_manual(values = c("pass" = "steelblue", "FAIL (trend)" = "tomato",
-                                 "too few obs" = "grey70", "all same sign" = "grey50")) +
+    scale_fill_manual(values = c("pass"          = "steelblue",
+                                 "FAIL (trend)"  = "tomato",
+                                 "too few obs"   = "grey70",
+                                 "all same sign" = "grey50")) +
+    scale_y_continuous(limits = c(0, 1),
+                       breaks = c(0, 0.05, 0.25, 0.5, 0.75, 1)) +
     coord_flip() +
     labs(title = "Runs test p-value by fleet (p < 0.05 = non-random residuals)",
+         subtitle = "Grey bar = test not applicable; label shows reason",
          x = NULL, y = "p-value", fill = NULL) +
     theme_bw()
 )
