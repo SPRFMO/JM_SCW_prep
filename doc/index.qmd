@@ -41,6 +41,7 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 ## Other background reports
 - [SC13 Assessment Update](SC13.html)
+- [JM SAM Model runs](https://sprfmo.github.io/JM_sam/)
 - [Helper Scripts Guide](helper_scripts_guide.html)
 - [User Guide](userguide/)
 - [Tutorial Guide](tutorial/)
