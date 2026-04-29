@@ -26,6 +26,8 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
   - [SCW16/ToR](JMWG_Benchmark_ToR.html) ([PDF](JMWG_Benchmark_ToR.pdf), [DOCX](JMWG_Benchmark_ToR.docx))
 
+  - [JM SAM Model runs](https://sprfmo.github.io/JM_sam/)
+
 ### Draft SCW16 papers
 
   - [SCW16/Paper-00: Preliminary agenda](SCW16-Paper-00.html) ([PDF](SCW16-Paper-00.pdf), [DOCX](SCW16-Paper-00.docx), [QMD](SCW16-Paper-00.qmd))
@@ -41,7 +43,6 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 ## Other background reports
 - [SC13 Assessment Update](SC13.html)
-- [JM SAM Model runs](https://sprfmo.github.io/JM_sam/)
 - [Helper Scripts Guide](helper_scripts_guide.html)
 - [User Guide](userguide/)
 - [Tutorial Guide](tutorial/)
