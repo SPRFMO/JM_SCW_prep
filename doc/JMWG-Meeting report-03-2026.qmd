@@ -100,6 +100,8 @@ date_stamp <- format(Sys.Date(), "%d %B %Y")
 :::
 :::
 
+![Participants in the JMWG benchmark-preparation meeting 03/2026.](images/JMWG-Meeting-report-03-2026-photo.png){fig-align="center" width="100%"}
+
 # Summary {.unnumbered}
 
 This report summarizes the **JMWG benchmark-preparation meeting held on 30 April 2026**, based on the automated transcript and discussion around the JM benchmark-preparation materials: [JM_SCW_prep](https://sprfmo.github.io/JM_SCW_prep/).
@@ -254,3 +256,5 @@ Finalize and circulate the benchmark agenda and updated working-paper expectatio
 # References
 
 This report is based on the supplied automated transcript for the JMWG benchmark-preparation meeting held on 30 April 2026. It is intended as a meeting-report draft using the same structure and rendering conventions as Meeting reports 01-2026 and 02-2026.
+
+![Navigation overview for the JM_SCW_prep assessment hub.](images/JMWG-Meeting-report-03-2026-navigation.png){fig-align="center" width="100%"}
