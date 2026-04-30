@@ -1,0 +1,256 @@
+---
+title: "JMWG Meeting 03/2026"
+format:
+  html:
+    output-file: "JMWG-Meeting report-03-2026.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+    number-depth: 2
+  pdf:
+    output-file: "JMWG-Meeting report-03-2026.pdf"
+    number-sections: false
+    number-depth: 2
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{Meeting report 03-2026}}
+        \fancyhead[L]{\textit{joint-jack mackerel model}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{Meeting report 03-2026}}
+          \fancyhead[L]{\textit{joint-jack mackerel model}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "JMWG-Meeting report-03-2026.docx"
+    toc: true
+    number-sections: false
+    number-depth: 2
+    title-block: false
+execute:
+  warning: false
+  message: false
+  echo: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries Meeting report 03-2026\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*Meeting report 03-2026*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">Meeting report 03-2026</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Meeting%20report-03-2026.pdf">PDF-rendered version</a> | <a href="JMWG-Meeting%20report-03-2026.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">JMWG Meeting report 03-2026</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+This report summarizes the **JMWG benchmark-preparation meeting held on 30 April 2026**, based on the automated transcript and discussion around the JM benchmark-preparation materials: [JM_SCW_prep](https://sprfmo.github.io/JM_SCW_prep/).
+
+The meeting focused on final preparations for the May benchmark workshop in Lima, including confirmation of the venue, review of the draft benchmark agenda, paper deadlines, expectations for CPUE and acoustic contributions, and how the benchmark should feed directly into operating-model conditioning and management-procedure work. Participants confirmed that the benchmark will be held at the Jose Antonio Hotel in Miraflores, with remote access available for selected sessions through Microsoft Teams.
+
+The technical discussion emphasized the need for concrete benchmark recommendations on each abundance index, including whether each index should be used in the assessment, used for operating-model conditioning, and/or projected as part of a management procedure. Important issues included possible extensions of benchmark paper deadlines to 7 May 2026, the need to accommodate new or split CPUE series in the JJM, interpretation of the 2026 Chilean acoustic and CPUE information under changing environmental conditions, treatment of Far North recruitment-regime structure, selectivity assumptions for recent and future years, and diagnostics for potential management-procedure input indices.
+
+Participants named in the discussion included Jim Ianelli, Ana Alegre Norza, Criscely Lujan, Miriam Geronimo, Benoit Berges, Ignacio Paya, Karolina Molla Gazi, Luciano Espinoza, Iago Mosqueira, Niels Hintzen, Jose Zenteno, Aquiles Sepulveda, and additional participants from Peru, Chile, the EU, PFA, and collaborating institutions.
+
+# Meeting Details
+
+- Meeting: JMWG benchmark-preparation meeting 03/2026
+- Date: 30 April 2026
+- Organisation: South Pacific Regional Fisheries Management Organisation
+- Working group: Jack Mackerel Working Group
+- Main focus: Final benchmark agenda, index and biological-data preparation, assessment/OM linkages, and MSE workflow
+
+# Key Dates and Action Times
+
+| Time or deadline | Item | Importance |
+|---|---|---|
+| 5 May 2026 | Chilean Jack Mackerel Scientific Committee meeting and local CPUE/acoustic workshop | Chile will use this meeting to review CPUE and acoustic material before final benchmark submissions |
+| 7 May 2026 | Requested extended deadline for some benchmark papers | Allows time for Chilean review, recent acoustic-survey interpretation, and PER benchmark-paper preparation |
+| May 2026 | Benchmark workshop in Lima, Peru | Main decision point for assessment inputs, benchmark recommendations, and OM conditioning setup |
+| Benchmark Thursday afternoon | Candidate time for MSE/OM coordination with Iago and Benoit | Allows rapid resolution of OM and MP setup questions during the benchmark week |
+| June 2026 | MSE workshop | Uses benchmark outputs to condition operating models and refine management procedures |
+
+# Key Discussion Summary
+
+## 1. Venue, participation, and meeting logistics
+
+- Ana confirmed that the May benchmark workshop will be held at the Jose Antonio Hotel in Miraflores, the same venue used for the 2024 Scientific Committee meeting and workshop.
+- The venue avoids daily commuting to IMARPE and is expected to provide suitable working space.
+- Remote access will be supported for selected parts of the benchmark through Microsoft Teams, with hotel Wi-Fi expected to be available.
+- Jim will ask the Secretariat for the current participant list, including expected in-person and online participation.
+- The group discussed rapporteur support; no dedicated rapporteurs were confirmed, but meeting recording and possible additional note-taking support were identified as options.
+
+## 2. Paper deadlines and benchmark expectations
+
+- Several participants noted that benchmark paper preparation is under time pressure.
+- Ignacio requested moving the Chilean contribution deadline to 7 May because the Chilean Scientific Committee will meet on 5 May and because the northern Chile acoustic survey had only just finished.
+- Criscely asked whether Peru could also provide benchmark papers during the following week; this was treated as reasonable given the compressed schedule.
+- Benoit and Iago clarified that the MSE/OM paper does not need to provide a final set of operating models before the benchmark. The immediate need is to describe the conditioning method and make the workflow ready to accept benchmark decisions.
+- Jim emphasized that the benchmark should produce the main recommendations on data use, model configuration, and MSE inputs rather than require all final MSE products beforehand.
+
+## 3. Benchmark agenda structure
+
+- The draft benchmark agenda retains an acoustic focus early in the week, followed by CPUE, biological inputs, assessment-model specification, projections, and report adoption.
+- Acoustic discussions are expected to include technical interpretation of acoustic products and preparation of summary recommendations for the benchmark report.
+- CPUE discussion will use the coordination material developed in mid-April, including the index inventory, methodological comparisons, effort-creep review, catchability/availability blocks, and index-weighting questions.
+- The benchmark should evaluate each abundance index in relation to three uses: the assessment model, operating-model conditioning, and potential management-procedure input data streams.
+- The final benchmark report should be adopted quickly enough to support the June MSE workshop and operating-model work.
+
+## 4. Biological input overview
+
+- Karolina reported that she is preparing an R Markdown overview of age-length compositions and associated biological data used in the assessment.
+- Jim asked that the overview document not only list biological inputs but also summarize the resolution of the data submitted to SPRFMO, including whether data are final age-length keys, length frequencies, sample sizes, or more detailed submissions.
+- Niels agreed to work with Karolina and provide background on how biological sampling data submitted for the assessment have been processed over roughly the past 15 years.
+- The group identified this biological-input overview as useful both for benchmark review and for later operating-model conditioning.
+
+## 5. New 2026 Chilean acoustic and CPUE information
+
+- Ignacio reported that the northern Chile acoustic survey had observed an important change in jack mackerel abundance and distribution, with fish close to the seafloor and difficult to survey acoustically.
+- Preliminary expectation, before final calculations, was that northern acoustic biomass could be substantially lower than in the previous year.
+- Ignacio linked the pattern to changing environmental conditions, including positive sea-temperature anomalies and the possible development of a strong El Nino event.
+- Aquiles cautioned that the recent information should not be dismissed as an exceptional outlier. He noted that low northern biomass, lower catches, and CPUE declines beginning in 2024 may indicate a real recent trend that should be treated carefully in the assessment and operating models.
+- Participants agreed that the benchmark should consider the new 2026 information as part of the system reality, while also documenting environmental and availability mechanisms that may affect interpretation.
+
+## 6. CPUE and acoustic index treatment in JJM
+
+- Ignacio asked how the JJM could accommodate updated CPUE series, including possible use of the current GLM-based series up to a break year and a new spatiotemporal series after that.
+- Jim noted that the JJM can accommodate a break in catchability for a specific year or split a series where methods or coverage have changed.
+- The group again emphasized that index interpretation is confounded with selectivity and fishery catchability, so benchmark recommendations should consider how index fits interact with selectivity changes.
+- Ignacio also questioned whether a single index, particularly Acoustic North, remains suitable as a basis for a harvest-control-rule input under the new 2026 information.
+- Niels emphasized that Acoustic North fits poorly in SAM and other diagnostic analyses and that its ecological relationship to the rest of the data remains unclear. He noted that the benchmark assessment should not be expected to mirror Acoustic North directly.
+
+## 7. Far North regime structure and projection implications
+
+- Criscely summarized PER feedback on Far North model structure, noting substantial literature support for a late-1990s regime shift with implications for recruitment and productivity.
+- PER views the regime structure as an important structural component that should be considered explicitly in operating models rather than removed purely as a simplification.
+- PER will consider whether similar regime-structure issues may apply beyond the Far North and how those ideas may affect reference points and performance metrics.
+- Peru also noted ongoing monitoring of the 2026 environmental impacts on jack mackerel in Peruvian waters, where lower catches and juvenile presence have been observed.
+
+## 8. SAM diagnostics and assessment model fitting
+
+- Niels reported that SAM converges but struggles with high-dimensional one-step-ahead residual calculations because some parameters are poorly defined.
+- Karolina noted difficulty running the model and observed that the north acoustic index was not fit well in the diagnostic report.
+- Ignacio stressed that early and recent portions of the North Acoustic Biomass Index differ because early surveys covered a restricted area, and those periods should not be mixed without accounting for the change.
+- Niels indicated that his SAM setup already separates relevant periods and that he had identified an issue in Jim's reduced-data setup that he could fix.
+- The diagnostic role of SAM remains focused on understanding fit, selectivity grouping, data conflicts, and candidate model configuration rather than replacing JJM as the assessment framework.
+
+## 9. Operating-model grid and MSE workflow
+
+- Iago presented the current MSE workflow as a flexible grid that can accept benchmark outputs and rerun conditioning once the final assessment model is specified.
+- The current grid includes stock hypotheses, stock-recruitment assumptions, steepness options, movement assumptions, selectivity/catchability treatments, and future-selectivity scenarios.
+- Jim asked members to think about whether the current grid columns should remain and whether additional axes of uncertainty should be added.
+- The benchmark should distinguish reference-set operating models from robustness-set operating models. Reference cases represent the main plausible uncertainty set, while robustness cases test management procedures against less likely but important alternatives.
+- Ignacio asked about future selectivity transitions from recent estimated selectivity to longer-period average selectivity. Iago clarified that previous Seattle work used a moving-window transition to avoid abrupt jumps, and that the same mechanism can be retained.
+
+## 10. Candidate management-procedure input diagnostics
+
+- Iago reviewed diagnostic work using receiver-operating-characteristic style metrics to evaluate how well indices identify whether spawning biomass is increasing or decreasing.
+- Offshore CPUE appeared more informative than some other indices for that specific task, even though it is shorter, because it more often moved in the same direction as estimated spawning biomass over the period examined.
+- Jim and Iago emphasized that this diagnostic is task-specific and not a general measure that an index is globally better.
+- Ignacio requested additional plots showing the direct relationship between each index and spawning biomass, and noted that lags may be important for indices that track younger fish rather than spawning biomass directly.
+- Iago agreed to add explanatory material and consider diagnostics for combined indices, additional metrics, scatter plots, and possible lagged relationships.
+
+# Decisions and Agreements
+
+1. The May benchmark workshop will be held at the Jose Antonio Hotel in Miraflores, with selected remote participation through Microsoft Teams.
+2. Several benchmark-paper contributions may be provided after the earlier deadline, with 7 May 2026 used as a practical target for updated Chilean, Peruvian, and MSE/OM material.
+3. The benchmark agenda should explicitly evaluate each index for assessment use, operating-model conditioning, and possible management-procedure input use.
+4. Updated 2026 acoustic and CPUE information should be considered at the benchmark rather than ignored as exceptional, while environmental and availability explanations should be documented.
+5. Biological-data inputs should be summarized before the benchmark, including the resolution and processing pathway of submitted age, length, and sample-size information.
+6. SAM and related diagnostic models will continue to support evaluation of data conflicts, selectivity, and index interpretation, but JJM remains the main benchmark assessment framework.
+7. The benchmark should produce an agreed OM grid or equivalent table that identifies reference-set and robustness-set uncertainties for the MSE workshop.
+
+# Action Items
+
+| Action | Lead | Support | Target timing |
+|---|---|---|---|
+| Finalize the benchmark agenda, including acoustic, CPUE, biological-input, assessment-specification, projection, and report-adoption sessions | Jim | All participants | Before benchmark |
+| Confirm the current in-person and remote participant list with the Secretariat | Jim | Secretariat | Near-term |
+| Provide selected remote-access arrangements and Teams link for benchmark sessions | Ana / PER host team | Secretariat | Before benchmark |
+| Review Chilean CPUE and acoustic materials through the Chilean Scientific Committee and local workshop | Ignacio / Chile team | Chilean Scientific Committee | 5 May 2026 |
+| Submit updated Chilean benchmark contributions, including CPUE and acoustic material | Ignacio / Chile team | Jose, Aquiles, Sebastian, others | Around 7 May 2026 |
+| Submit Peruvian benchmark paper material and feedback on Far North regime structure | Criscely / PER team | Ana, Miriam, Peruvian colleagues | Around 7 May 2026 |
+| Prepare MSE/OM method material that can accept final benchmark model decisions | Iago / Benoit | Jim | Around 7 May 2026 |
+| Prepare an R Markdown overview of biological inputs and age-length compositions | Karolina | Niels | Before benchmark |
+| Summarize data resolution and processing of submitted biological data over recent assessment history | Niels | Karolina, Secretariat as needed | Before benchmark |
+| Fix and update the reduced-data SAM diagnostic setup and circulate revised material | Niels | Jim | Near-term |
+| Add explanatory material for ROC/AUC index diagnostics, including direct index-biomass plots and possible lagged relationships | Iago | Benoit, Jim | Before or during benchmark |
+| Consider whether combined-index diagnostics can be added for MP input evaluation | Iago | Benchmark/MSE subgroup | Before or during benchmark |
+| Add recent-selectivity and future-selectivity transition assumptions to the benchmark discussion list | Jim | Ignacio, Iago | Benchmark agenda |
+| Consider whether Far North regime-shift structure affects other model areas, reference points, and performance metrics | PER team | Assessment/MSE subgroup | Benchmark discussion |
+| Schedule a dedicated MSE/OM coordination session during the benchmark, potentially late Thursday | Jim | Iago, Benoit, Niels | Benchmark week |
+
+# Open Issues / Risks to Track
+
+- The 2026 acoustic and CPUE information may materially change recent assessment interpretation, but final data and age/length information are not yet available.
+- Acoustic North remains difficult to reconcile with other data sources and may not provide a reliable direct proxy for spawning biomass or a stand-alone management-procedure input.
+- Index interpretation remains confounded with selectivity and catchability assumptions in the assessment model.
+- The benchmark must balance model simplification for MSE tractability against structural features that members view as scientifically important, including Far North regime structure and recent environmental effects.
+- The OM grid still needs final agreement on reference-set and robustness-set dimensions, especially selectivity, recruitment, stock-structure, and environmental/regime assumptions.
+- Remote participation can support selected sessions, but the workshop is not planned as a fully hybrid meeting.
+
+# Next Step
+
+Finalize and circulate the benchmark agenda and updated working-paper expectations before the May benchmark, with special attention to the 7 May submissions, biological-input overview, index-use recommendations, and an OM-grid table that can feed directly into the June MSE workshop.
+
+# References
+
+This report is based on the supplied automated transcript for the JMWG benchmark-preparation meeting held on 30 April 2026. It is intended as a meeting-report draft using the same structure and rendering conventions as Meeting reports 01-2026 and 02-2026.

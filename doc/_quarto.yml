@@ -17,6 +17,7 @@ project:
     - JMWG-2026-plan.qmd
     - "JMWG-Meeting report-01-2026.qmd"
     - "JMWG-Meeting report-02-2026.qmd"
+    - "JMWG-Meeting report-03-2026.qmd"
     - SCW16-Paper-03-CPUE_MetaAnalysis.qmd
     - SC13.qmd
     - helper_scripts_guide.qmd
@@ -40,6 +41,8 @@ website:
         text: Meeting report 01-2026
       - href: "JMWG-Meeting report-02-2026.qmd"
         text: Meeting report 02-2026
+      - href: "JMWG-Meeting report-03-2026.qmd"
+        text: Meeting report 03-2026
       - href: SCW16-Paper-03-CPUE_MetaAnalysis.qmd
         text: SCW16/Paper-03
       - href: SC13.qmd
