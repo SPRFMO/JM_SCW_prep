@@ -62,10 +62,13 @@ Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen
 | 13:20-13:45 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Mariano Gutiérrez (National University Federico Villarreal) |
 | 13:45-14:15 | General discussion and technical recommendations | All participants |
 
-## Day 2. Preliminary CPUE Session Agenda
+## Day 2. Preliminary CPUE Session Agenda ([SCW16/Paper-02](SCW16-Paper-02-CPUE_Coordination.qmd))
 
 The Day 2 CPUE session is currently organized as a thematic sequence. Exact time
-allocations and presenters remain to be confirmed.
+allocations and presenters remain to be confirmed. Background for these
+discussions is provided in [SCW16/Paper-02](SCW16-Paper-02-CPUE_Coordination.qmd),
+which summarizes the CPUE coordination discussion and candidate topics for the
+benchmark session.
 
 | Order | Topic | Notes |
 |---|---|---|
@@ -76,3 +79,52 @@ allocations and presenters remain to be confirmed.
 | 5 | Catchability-availability blocks by abundance index | Review evidence for temporal or spatial changes in availability, including possible El Niño effects and implications for `q` blocks. |
 | 6 | CPUE weighting factors for stock assessment | Discuss weighting choices and how they affect assessment fits and benchmark comparisons. |
 | 7 | Separate versus combined index products for HCR use | Consider whether the benchmark should retain separate series or define a combined CPUE product for OM conditioning and MP inputs. |
+
+## Day 3. Recap, Report Drafting, and Biological Inputs
+
+The morning session will be used to recap the Acoustic and CPUE sessions, identify
+remaining loose ends, and begin drafting the corresponding report sections. The
+objective is to document decisions, unresolved technical issues, and follow-up
+tasks while the index discussions are still current.
+
+The afternoon session will begin with a summary of SCW16/Paper-01 and its
+implications for benchmark and MSE development. This will be followed by a
+review of the biological assumptions used in the assessment and operating-model
+conditioning, including growth, maturity, natural mortality, weight-at-age,
+stock structure, and recruitment-productivity assumptions. The discussion should
+identify options for refining model runs and for defining a compact set of
+assessment and OM alternatives for further evaluation.
+
+| Session | Topic | Notes |
+|---|---|---|
+| Morning | Acoustic and CPUE recap and report drafting | Summarize key conclusions, outstanding questions, and text needed for the workshop report. |
+| Afternoon | SCW16/Paper-01 summary and biological inputs | Review assessment simplification results, biological assumptions, and options for refined model runs. |
+
+## Day 4. Projections, Recruitment Scenarios, and OM Specifications
+
+Day 4 will advance discussion of assessment-model projections, recruitment
+scenarios, and operating-model specifications. This should include how projection
+assumptions connect to benchmark assessment runs, how alternative recruitment
+histories or productivity regimes should be represented, and how operating-model
+sets should be structured for MSE testing.
+
+The session should also review MCMC evaluations and any technical constraints
+that affect their use, including convergence diagnostics, run time, storage,
+parameterization, and feasibility for candidate assessment and operating-model
+configurations.
+
+| Session | Topic | Notes |
+|---|---|---|
+| Morning | Assessment projections and recruitment scenarios | Review projection assumptions, recruitment windows, productivity regimes, and links to benchmark assessment runs. |
+| Afternoon | OM specifications and MCMC evaluations | Define candidate OM specifications and document MCMC diagnostics, feasibility, and technical constraints. |
+
+## Day 5. Final Decisions and Report Adoption
+
+Day 5 will focus on finalizing workshop decisions and completing report drafting.
+The goal is to agree on recommendations, document any unresolved issues, and
+adopt the workshop report for consideration by SC14.
+
+| Session | Topic | Notes |
+|---|---|---|
+| Morning | Final decisions and recommendations | Confirm agreed benchmark inputs, model-run priorities, OM specifications, and follow-up tasks. |
+| Afternoon | Report drafting and adoption | Finalize report text and adopt the report for SC14 consideration. |
