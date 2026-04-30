@@ -1263,12 +1263,40 @@ ggplot(harm_rec_df, aes(year, value / 1e6, color = model)) +
 
 ## Simplified Recruitment Alternatives
 
-Another option is to reduce recruitment complexity by using one recruitment 
-relationship per stock hypothesis, or one per stock under the two-stock model,
-without additional regime splitting unless that feature is shown to be essential 
-for management performance. The preferred approach is therefore to fit a single 
-Beverton-Holt relationship per stock in the simplified operating model, and then
-treat regime differences as a robustness test rather than a primary structural alternative.
+[Another option is to reduce recruitment complexity by using one recruitment
+relationship per stock hypothesis, or one per stock under the two-stock model.
+For the Far North, however, this simplification needs to be evaluated against
+the evidence for a late-1990s productivity shift in the northern Humboldt
+Current system. The current `h2` assessment structure already treats the
+northern component as having a recruitment-regime shift near 1999, and that
+feature is not only a statistical convenience in the control file. It is also
+consistent with a broader ecosystem interpretation in which jack mackerel
+productivity off Peru changed between the late 1990s and early 2000s.]{.mark}
+
+[Several independent lines of evidence support treating this as a structural
+axis for the Far North operating model. Regime shifts have been documented in
+the Humboldt Current ecosystem [@alheit2004regime], and a broader Pacific
+climate and productivity transition around the 1997-1998 El Niño has been
+described from sea-surface-temperature and production patterns [@chavez2011marine].
+Long-term diet and condition data for jack mackerel and chub mackerel off Peru
+also indicate a shift around 1999-2000, including lower stomach fullness after
+1999 and a marked increase in diet diversity during the subsequent cooler,
+more productive period [@alegre2015diet]. Other northern Humboldt analyses
+identify related ecosystem changes in zooplankton biomass, taxon richness,
+species composition, oxygen, productivity, and large-scale climate associations
+[@bertrand2011oxygen; @gutierrez2011coastal; @espino2013jurel; @arones2019spatio;
+@moron2017analisis].]{.mark}
+
+[The practical implication for TG-03 is that a two-regime Far North recruitment
+configuration, approximately pre- and post-1999, should remain part of the
+benchmark operating-model reference set. More complex covariate-driven
+formulations could still be treated as later robustness cases, but collapsing
+the Far North to a single productivity regime risks smoothing over the
+structure most relevant to recent stock perception and reference-point
+calculation. This issue also needs to be handled consistently with the 2002 Far
+North fleet change, so that recruitment-regime assumptions and selectivity
+regularization are not confounded across the one-stock and two-stock operating
+model hypotheses.]{.mark}
 
 ::: {.callout-note}
 ## Note (I. Mosqueira)
@@ -1278,7 +1306,7 @@ Under `h2_1.14`, the northern component already includes a regime shift at 1999,
 An important diagnostic concern is that some recent recruitments already exceed the upper envelope of the fitted stock-recruitment curve. This suggests that the fitted Beverton-Holt relationship may be conservative relative to actual recruitment productivity in recent years. Future work should consider whether alternative recruitment distributions, higher ceiling values for recruitment deviations, or a revisited steepness estimate are warranted. Projecting with a recruitment distribution that truncates the upper tail of realized recruitments would be systematically pessimistic about stock productivity, which would in turn bias MSE performance comparisons toward overly cautious management conclusions.
 :::
 
-To illustrate this simplification directly, I fitted `h2_2.03` as a variant of `h2_2.02` in which the second stock uses a single stock-recruitment regime spanning the combined years that were previously split across the two stock-2 regimes. The simplified model converged cleanly, with a slightly worse objective function than `h2_2.02` (`1117.2` versus `1111.4`). The fitted stock-recruitment curves for stock 2 are compared in @fig-h2-sr-compare.
+[To illustrate the consequences of collapsing this structure, I fitted `h2_2.03` as a variant of `h2_2.02` in which the second stock uses a single stock-recruitment regime spanning the combined years that were previously split across the two stock-2 regimes. This should be interpreted as a diagnostic simplification rather than as the preferred benchmark treatment for the Far North.]{.mark} The simplified model converged cleanly, with a slightly worse objective function than `h2_2.02` (`1117.2` versus `1111.4`). The fitted stock-recruitment curves for stock 2 are compared in @fig-h2-sr-compare.
 
 ```{r fig-h2-sr-compare}
 #| fig-cap: "Stock-2 Beverton-Holt stock-recruitment curves for `h2_2.02` and `h2_2.03`. The left panel shows the two stock-2 recruitment regimes retained in `h2_2.02`; the right panel shows the single stock-2 regime used in `h2_2.03`."
@@ -1396,7 +1424,7 @@ ggplot(sr_curve_df, aes(ssb, recruits, color = regime)) +
 
 As in `h2_1.14`, model `h2_2.02` uses two stock-2 recruitment-regime fitting windows for estimating the stock-recruitment relationships, but it intentionally omits some hatch years from those regime vectors. For `h2_2.02`, the fitting windows are `SR_Curve_years_1 = 1970:1996` and `SR_Curve_years_2 = 2001:2016`, so hatch years `1997-2000` are excluded from the stock-2 SR fitting windows. In principle a year label can be absent either because it is not assigned to a stock-2 SR regime or because label overlap is suppressed, but @fig-h2-sr-compare now plots all years explicitly. The years omitted from regime fitting are shown with yellow label backgrounds, so labels such as `98` now appear as excluded years rather than seeming to be missing by accident.
 
-The corresponding stock-2 spawning biomass trajectories are compared in @fig-h2-stock2-ssb. The single-regime formulation leaves the broad stock-2 biomass history similar to `h2_2.02`, but with a modest upward shift over much of the series. The corresponding stock-2 recruitment estimates are compared in @fig-h2-stock2-rec. The single-regime formulation changes the fitted recruitment trajectory modestly, with the largest differences occurring in the early years and around some of the higher-recruitment episodes.
+The corresponding stock-2 spawning biomass trajectories are compared in @fig-h2-stock2-ssb. The single-regime formulation leaves the broad stock-2 biomass history similar to `h2_2.02`, but with a modest upward shift over much of the series. The corresponding stock-2 recruitment estimates are compared in @fig-h2-stock2-rec. The single-regime formulation changes the fitted recruitment trajectory modestly, with the largest differences occurring in the early years and around some of the higher-recruitment episodes. [These diagnostics show that a single-regime formulation is computationally feasible, but they do not remove the biological and ecosystem rationale for retaining the late-1990s Far North productivity shift in the benchmark reference set.]{.mark}
 
 ```{r fig-h2-stock2-ssb}
 #| fig-cap: "Estimated stock-2 spawning biomass trajectories for `h2_2.02` and `h2_2.03`."
@@ -1629,10 +1657,10 @@ The evaluations presented here are intended as discussion items leading into the
 3. **The South-Central Chile fishery is the main driver of that deterioration.** Restoring annual selectivity flexibility only for that fleet in `h1_2.01.1` recovers much of the lost fit and pulls the spawning biomass trajectory back toward `h1_2.00`. By contrast, the five-block alternative `h1_2.01.2` remains too restrictive: it gives back much of the gain in fit, behaves more like `h1_2.01` than `h1_2.01.1`, and leaves broader terminal spawning-biomass uncertainty.
 4. **Allowing time-varying index catchability can recover retained-index fit, but it changes where the flexibility sits.** Model `h1_2.01.3` gives the best retained comparable index fit among the `h1_2.01`-based variants and shows that part of the tension can be absorbed by drifting q. However, it does so by moving flexibility from selectivity into time-varying catchability, with a lower terminal spawning-biomass distribution than the other S-C Chile variants. That makes `h1_2.01.3` more persuasive as a robustness case than as a primary operating-model simplification.
 5. **Far North selectivity harmonization is worthwhile before comparing `h1` and `h2`, and should be judged on dynamics as well as fit.** The harmonized single-stock model `h1_2.02` stays broadly close to `h1_2.00`, while `h2_2.02` provides a cleaner two-stock comparator because it uses the same reduced-index data treatment and aligned Far North selectivity structure. The `h1_2.02` versus `h2_2.02` contrast should therefore be interpreted using likelihoods together with spawning biomass and recruitment trajectories, not likelihoods alone.
-6. **Simplifying the stock-2 recruitment structure in `h2` appears feasible, but it changes both fit and interpretation.** Model `h2_2.03` converges cleanly and only modestly worsens the objective function relative to `h2_2.02`, so a single stock-2 relationship looks workable. At the same time, the stock-recruitment comparison now makes clearer that `h2_1.14` and `h2_2.02` estimated stock-2 relationships using restricted hatch-year windows and omitted hatch years `1997-2000`, whereas `h2_2.03` removes that gap by fitting one relationship across the combined period. The choice is therefore not only about the number of regimes; it also changes which years are allowed to inform the fitted stock-2 stock-recruitment relationship.
+6. [**The Far North recruitment-regime structure should remain a benchmark axis, with the single-regime version retained as a diagnostic sensitivity.** Model `h2_2.03` converges cleanly and only modestly worsens the objective function relative to `h2_2.02`, so a single stock-2 relationship is computationally workable. However, the external evidence for a late-1990s productivity shift in the northern Humboldt system argues against treating this collapse as the preferred benchmark simplification. The stock-recruitment comparison also makes clearer that `h2_1.14` and `h2_2.02` estimated stock-2 relationships using restricted hatch-year windows and omitted hatch years `1997-2000`, whereas `h2_2.03` removes that gap by fitting one relationship across the combined period. The choice is therefore not only about the number of regimes; it also changes which years are allowed to inform the fitted stock-2 stock-recruitment relationship.]{.mark}
 7. **The strongest current operating-model candidates are now better defined.** `h1_2.00` remains a sensible reduced-data baseline, `h1_2.01.1` is the strongest single-stock selectivity simplification tested so far, and `h1_2.02` versus `h2_2.02` provide the most interpretable harmonized single-stock versus two-stock comparison. `h1_2.01.3` is valuable, but primarily as a robustness test for index-standardization and q-variability assumptions.
 8. **The mean-selected-age versus $F_{MSY}$ diagnostic adds a clear selectivity signal.** The phase-space comparison across `h1_2.00`, `h1_2.01`, `h1_2.01.1`, and `h1_2.01.2` shows that shifts in fishery selectivity can move recent-year dynamic $F_{MSY}$ estimates directly, so apparent reference-point changes should not be interpreted as productivity changes alone.
-9. **Reference-point stabilization should be treated as a core design choice for MSE.** Projection-period selectivity uncertainty should still be explored using averaging-window alternatives, but reference points are likely to be more stable and interpretable if calculated from period means (multi-year averaged selectivity and related schedules) and then fixed for simulation. Stock-2 recruitment structure should be treated as an explicit robustness axis, and northern biology uncertainty and index-standardization choices remain natural later-phase candidates.
+9. **Reference-point stabilization should be treated as a core design choice for MSE.** Projection-period selectivity uncertainty should still be explored using averaging-window alternatives, but reference points are likely to be more stable and interpretable if calculated from period means (multi-year averaged selectivity and related schedules) and then fixed for simulation. [Far North productivity-regime structure should be treated as an explicit operating-model axis, and northern biology uncertainty and index-standardization choices remain natural later-phase candidates.]{.mark}
 
 Taken together, these results suggest that the next stage should focus less on broad additional simplification and more on selecting a compact set of well-motivated operating models and robustness scenarios. The current evidence points toward carrying forward a reduced-index baseline, a single-stock model that preserves South-Central Chile selectivity flexibility, a harmonized two-stock comparator, and targeted robustness cases for q variability, projection selectivity, and alternative stock-2 recruitment structure.
 
