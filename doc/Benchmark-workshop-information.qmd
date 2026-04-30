@@ -15,10 +15,11 @@ format:
 **BENCHMARK WORKSHOP VENUE**
 
 ::: {.callout-note}
-**Site event location:** Jorge Sanchez Romero Auditorium, Instituto del Mar del Peru (IMARPE)  
-**Address:** Corner of Gamarra and General Valle Streets, Callao, Callao Province, Callao, Peru 07021  
-**Map:** [Google Maps location](https://maps.app.goo.gl/sXNCkP8QhA7ex53s7)  
-**Telephone:** +51 1 904 0137  
+**Site event location:** Jose Antonio Deluxe Hotel  
+**Web:** <https://www.hotelesjoseantonio.com/hotels/jose-antonio-deluxe.html>  
+**Address:** Bellavista Street 133, Miraflores, Lima 15074, Peru  
+**Map:** [Google Maps location](https://maps.app.goo.gl/SHT5HvNNQ2yRHroD6)  
+**Telephone:** +51 1 6415050  
 **Dates:** May 18-22, 2026  
 **Hours:** 9:00 AM to 5:00 PM
 :::
