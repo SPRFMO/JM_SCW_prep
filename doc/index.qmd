@@ -13,7 +13,9 @@ format:
 
 # Overview
 
-This site collects the main Quarto documents in the `doc/` directory and renders them for direct browsing through GitHub Pages.
+This page is the working index for Jack Mackerel Working Group benchmark preparation and MSE planning materials. It links the current workshop notices, benchmark terms of reference, draft SCW16 working papers, preparatory meeting reports, model diagnostics, and supporting assessment resources needed to prepare for the 2026 benchmark and subsequent management-strategy-evaluation work.
+
+The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbered *S*cientific *C*ommittee *W*orkshops; for example, `SCW16` refers to the 16th Scientific Committee Workshop.
 
 ## Notices
 
