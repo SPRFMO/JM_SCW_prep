@@ -40,6 +40,7 @@ This site collects the main Quarto documents in the `doc/` directory and renders
 
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
 - [JMWG Meeting report 02-2026](JMWG-Meeting%20report-02-2026.html) ([PDF](JMWG-Meeting%20report-02-2026.pdf), [DOCX](JMWG-Meeting%20report-02-2026.docx))
+- [JMWG Meeting report 03-2026](JMWG-Meeting%20report-03-2026.html) ([PDF](JMWG-Meeting%20report-03-2026.pdf), [DOCX](JMWG-Meeting%20report-03-2026.docx))
 
 ## Other background reports
 - [SC13 Assessment Update](SC13.html)
@@ -69,6 +70,10 @@ These meeting notes are currently published from `JMWG-Meeting report-01-2026.qm
 ## JMWG Meeting report 02-2026
 
 These meeting notes are currently published from `JMWG-Meeting report-02-2026.qmd` as HTML, PDF, and DOCX outputs.
+
+## JMWG Meeting report 03-2026
+
+These meeting notes are currently published from `JMWG-Meeting report-03-2026.qmd` as HTML, PDF, and DOCX outputs.
 
 ## SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)
 
