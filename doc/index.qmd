@@ -38,6 +38,8 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)](SCW16-Paper-03-CPUE_MetaAnalysis.html) ([QMD](SCW16-Paper-03-CPUE_MetaAnalysis.qmd))
 
+  - [SCW16/Paper-05/JM_Biology](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.html) ([PDF](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.pdf), [DOCX](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.docx), [QMD](https://github.com/SPRFMO/JM_biol/blob/main/JM_biol.qmd))
+
 ### Prep meeting reports
 
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
@@ -80,6 +82,10 @@ These meeting notes are currently published from `JMWG-Meeting report-03-2026.qm
 ## SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)
 
 This document compiles CPUE-related SPRFMO meeting papers from SC10 through SC13 into a single review document.
+
+## SCW16/Paper-05/JM_Biology
+
+This external working paper evaluates biological data used in model `1.14`, including natural mortality, maturity, weight-at-age, and spawning biomass calculations. The source is maintained in the `SPRFMO/JM_biol` repository.
 
 ## SC13 Assessment Update
 
