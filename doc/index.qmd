@@ -54,6 +54,8 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [SCW16-Doc10: Update of Chilean jack mackerel CPUE abundance index estimated by spatiotemporal SPDE-based models using sdmTMB](SCW16-Doc10-Chile_CPUE_sdmTMB.pdf) ([PDF](SCW16-Doc10-Chile_CPUE_sdmTMB.pdf))
 
+  - [SCW16-Doc11: Catch/Fishery Data Quality Checks](SCW16-Doc11-Jack_mack_data_qc.html)
+
 ### Prep meeting reports
 
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))

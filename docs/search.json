@@ -459,7 +459,7 @@
     "href": "index.html#scw16-preparations",
     "title": "JJM Assessment Documents",
     "section": "SCW16 preparations",
-    "text": "SCW16 preparations\n\nJMWG 2026 Plan (DOCX, QMD)\nSCW16/ToR (PDF, DOCX)\n\n\nDraft SCW16 papers\n\nSCW16-Doc00: Preliminary agenda (PDF, DOCX, QMD)\nSCW16-Doc01 (PDF, DOCX)\nSCW16-Doc02: CPUE coordination priorities and working-paper plan (PDF, DOCX, QMD)\nSCW16-Doc03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025) (QMD)\nSCW16-Doc04: Operating Models for Jack Mackerel MSE (PDF)\nSCW16-Doc05/JM_Biology (PDF, DOCX, QMD)\nSCW16-Doc06: Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile (PDF)\nSCW16-Doc07: Implementation of an informed creep correction into the Chile Jack Mackerel CPUE index (PDF)\nSCW16-Doc08: Interannual variability in distribution, size structure, and biomass of Chilean jack mackerel estimated from fishery-dependent acoustics (PDF)\nSCW16-Doc09: Jack mackerel acoustic density index in the central-north acoustic surveys, estimated using spatiotemporal models with sdmTMB (PDF)\nSCW16-Doc10: Update of Chilean jack mackerel CPUE abundance index estimated by spatiotemporal SPDE-based models using sdmTMB (PDF)\n\n\n\nPrep meeting reports\n\nJMWG Meeting report 01-2026 (PDF, DOCX)\nJMWG Meeting report 02-2026 (PDF, DOCX)"
+    "text": "SCW16 preparations\n\nJMWG 2026 Plan (DOCX, QMD)\nSCW16/ToR (PDF, DOCX)\n\n\nDraft SCW16 papers\n\nSCW16-Doc00: Preliminary agenda (PDF, DOCX, QMD)\nSCW16-Doc01 (PDF, DOCX)\nSCW16-Doc02: CPUE coordination priorities and working-paper plan (PDF, DOCX, QMD)\nSCW16-Doc03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025) (QMD)\nSCW16-Doc04: Operating Models for Jack Mackerel MSE (PDF)\nSCW16-Doc05/JM_Biology (PDF, DOCX, QMD)\nSCW16-Doc06: Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile (PDF)\nSCW16-Doc07: Implementation of an informed creep correction into the Chile Jack Mackerel CPUE index (PDF)\nSCW16-Doc08: Interannual variability in distribution, size structure, and biomass of Chilean jack mackerel estimated from fishery-dependent acoustics (PDF)\nSCW16-Doc09: Jack mackerel acoustic density index in the central-north acoustic surveys, estimated using spatiotemporal models with sdmTMB (PDF)\nSCW16-Doc10: Update of Chilean jack mackerel CPUE abundance index estimated by spatiotemporal SPDE-based models using sdmTMB (PDF)\nSCW16-Doc11: Catch/Fishery Data Quality Checks\n\n\n\nPrep meeting reports\n\nJMWG Meeting report 01-2026 (PDF, DOCX)\nJMWG Meeting report 02-2026 (PDF, DOCX)"
   },
   {
     "objectID": "index.html#other-background-reports",
@@ -516,6 +516,13 @@
     "title": "JJM Assessment Documents",
     "section": "SCW16-Doc04: Operating Models for Jack Mackerel MSE",
     "text": "SCW16-Doc04: Operating Models for Jack Mackerel MSE\nThis external PDF working paper describes operating models for the jack mackerel MSE."
+  },
+  {
+    "objectID": "SCW16-Doc11-Jack_mack_data_qc.html",
+    "href": "SCW16-Doc11-Jack_mack_data_qc.html",
+    "title": "SCW16-Doc11: Catch/Fishery Data Quality Checks",
+    "section": "",
+    "text": "SCW16-Doc11: Catch/Fishery Data Quality Checks"
   },
   {
     "objectID": "index.html#sc13-assessment-update",
