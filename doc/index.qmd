@@ -32,23 +32,27 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
 ### Draft SCW16 papers
 
-  - [SCW16/Paper-00: Preliminary agenda](SCW16-Paper-00.html) ([PDF](SCW16-Paper-00.pdf), [DOCX](SCW16-Paper-00.docx), [QMD](SCW16-Paper-00.qmd))
+  - [SCW16-Doc00: Preliminary agenda](SCW16-Doc00.html) ([PDF](SCW16-Doc00.pdf), [DOCX](SCW16-Doc00.docx), [QMD](SCW16-Doc00.qmd))
 
-  - [SCW16/Paper-01](SCW16-Paper-01.html) ([PDF](SCW16-Paper-01.pdf), [DOCX](SCW16-Paper-01.docx))
+  - [SCW16-Doc01](SCW16-Doc01.html) ([PDF](SCW16-Doc01.pdf), [DOCX](SCW16-Doc01.docx))
 
-  - [SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)](SCW16-Paper-03-CPUE_MetaAnalysis.html) ([QMD](SCW16-Paper-03-CPUE_MetaAnalysis.qmd))
+  - [SCW16-Doc02: CPUE coordination priorities and working-paper plan](SCW16-Doc02-CPUE_Coordination.html) ([PDF](SCW16-Doc02-CPUE_Coordination.pdf), [DOCX](SCW16-Doc02-CPUE_Coordination.docx), [QMD](SCW16-Doc02-CPUE_Coordination.qmd))
 
-  - [SCW16/Paper-05/JM_Biology](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.html) ([PDF](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.pdf), [DOCX](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.docx), [QMD](https://github.com/SPRFMO/JM_biol/blob/main/JM_biol.qmd))
+  - [SCW16-Doc03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)](SCW16-Doc03-CPUE_MetaAnalysis.html) ([QMD](SCW16-Doc03-CPUE_MetaAnalysis.qmd))
 
-  - [SCW16/Paper-06: Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile](SCW16-Paper-06-Northern_Chile_Acoustic_STM.pdf) ([PDF](SCW16-Paper-06-Northern_Chile_Acoustic_STM.pdf))
+  - [SCW16-Doc04: Operating Models for Jack Mackerel MSE](SCW16-Doc04-Operating_Models.pdf) ([PDF](SCW16-Doc04-Operating_Models.pdf))
 
-  - [SCW16/Paper-07: Implementation of an informed creep correction into the Chile Jack Mackerel CPUE index](SCW16-Paper-07-Chile_CPUE_Effort_Creep.pdf) ([PDF](SCW16-Paper-07-Chile_CPUE_Effort_Creep.pdf))
+  - [SCW16-Doc05/JM_Biology](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.html) ([PDF](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.pdf), [DOCX](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.docx), [QMD](https://github.com/SPRFMO/JM_biol/blob/main/JM_biol.qmd))
 
-  - [SCW16/Paper-08: Interannual variability in distribution, size structure, and biomass of Chilean jack mackerel estimated from fishery-dependent acoustics](SCW16-Paper-08-Fishery_Dependent_Acoustics.pdf) ([PDF](SCW16-Paper-08-Fishery_Dependent_Acoustics.pdf))
+  - [SCW16-Doc06: Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile](SCW16-Doc06-Northern_Chile_Acoustic_STM.pdf) ([PDF](SCW16-Doc06-Northern_Chile_Acoustic_STM.pdf))
 
-  - [SCW16/Paper-09: Jack mackerel acoustic density index in the central-north acoustic surveys, estimated using spatiotemporal models with sdmTMB](SCW16-Paper-09-North_Acoustic_Density_sdmTMB.pdf) ([PDF](SCW16-Paper-09-North_Acoustic_Density_sdmTMB.pdf))
+  - [SCW16-Doc07: Implementation of an informed creep correction into the Chile Jack Mackerel CPUE index](SCW16-Doc07-Chile_CPUE_Effort_Creep.pdf) ([PDF](SCW16-Doc07-Chile_CPUE_Effort_Creep.pdf))
 
-  - [SCW16/Paper-10: Update of Chilean jack mackerel CPUE abundance index estimated by spatiotemporal SPDE-based models using sdmTMB](SCW16-Paper-10-Chile_CPUE_sdmTMB.pdf) ([PDF](SCW16-Paper-10-Chile_CPUE_sdmTMB.pdf))
+  - [SCW16-Doc08: Interannual variability in distribution, size structure, and biomass of Chilean jack mackerel estimated from fishery-dependent acoustics](SCW16-Doc08-Fishery_Dependent_Acoustics.pdf) ([PDF](SCW16-Doc08-Fishery_Dependent_Acoustics.pdf))
+
+  - [SCW16-Doc09: Jack mackerel acoustic density index in the central-north acoustic surveys, estimated using spatiotemporal models with sdmTMB](SCW16-Doc09-North_Acoustic_Density_sdmTMB.pdf) ([PDF](SCW16-Doc09-North_Acoustic_Density_sdmTMB.pdf))
+
+  - [SCW16-Doc10: Update of Chilean jack mackerel CPUE abundance index estimated by spatiotemporal SPDE-based models using sdmTMB](SCW16-Doc10-Chile_CPUE_sdmTMB.pdf) ([PDF](SCW16-Doc10-Chile_CPUE_sdmTMB.pdf))
 
 ### Prep meeting reports
 
@@ -69,13 +73,13 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
 These are the benchmark workshop terms of reference, tracked as `JMWG_Benchmark_ToR.qmd`, with published HTML, PDF, and DOCX outputs.
 
-## SCW16/Paper-01
+## SCW16-Doc01
 
-This is the main benchmark working paper, tracked as `SCW16-Paper-01.qmd`, with published HTML, PDF, and DOCX outputs.
+This is the main benchmark working paper, tracked as `SCW16-Doc01.qmd`, with published HTML, PDF, and DOCX outputs.
 
-## SCW16/Paper-00
+## SCW16-Doc00
 
-This is the preliminary agenda note for the IMARPE-IFOP online acoustic session, tracked as `SCW16-Paper-00.qmd`, with HTML, PDF, and DOCX outputs.
+This is the preliminary agenda note for the IMARPE-IFOP online acoustic session, tracked as `SCW16-Doc00.qmd`, with HTML, PDF, and DOCX outputs.
 
 ## JMWG Meeting report 01-2026
 
@@ -89,15 +93,19 @@ These meeting notes are currently published from `JMWG-Meeting report-02-2026.qm
 
 These meeting notes are currently published from `JMWG-Meeting report-03-2026.qmd` as HTML, PDF, and DOCX outputs.
 
-## SCW16/Paper-03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)
+## SCW16-Doc03: Meta-Analysis of CPUE Papers on Jack Mackerel (2022-2025)
 
 This document compiles CPUE-related SPRFMO meeting papers from SC10 through SC13 into a single review document.
 
-## SCW16/Paper-05/JM_Biology
+## SCW16-Doc04: Operating Models for Jack Mackerel MSE
+
+This external PDF working paper describes operating models for the jack mackerel MSE.
+
+## SCW16-Doc05/JM_Biology
 
 This external working paper evaluates biological data used in model `1.14`, including natural mortality, maturity, weight-at-age, and spawning biomass calculations. The source is maintained in the `SPRFMO/JM_biol` repository.
 
-## SCW16/Papers-06 through 10: Benchmark abundance-index working papers
+## SCW16-Docs-06 through 10: Benchmark abundance-index working papers
 
 These external PDF working papers cover Chilean jack mackerel acoustic and CPUE abundance-index updates prepared for SCW16 benchmark discussions. They are published directly in the `docs/` folder as PDFs.
 

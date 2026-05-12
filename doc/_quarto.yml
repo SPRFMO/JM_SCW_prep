@@ -11,14 +11,14 @@ project:
     - SPRFMO-MSE-Workshop-Visitor-Information.qmd
     - archive/index.qmd
     - JMWG_Benchmark_ToR.qmd
-    - SCW16-Paper-00.qmd
-    - SCW16-Paper-01.qmd
-    - SCW16-Paper-02-CPUE_Coordination.qmd
+    - SCW16-Doc00.qmd
+    - SCW16-Doc01.qmd
+    - SCW16-Doc02-CPUE_Coordination.qmd
     - JMWG-2026-plan.qmd
     - "JMWG-Meeting report-01-2026.qmd"
     - "JMWG-Meeting report-02-2026.qmd"
     - "JMWG-Meeting report-03-2026.qmd"
-    - SCW16-Paper-03-CPUE_MetaAnalysis.qmd
+    - SCW16-Doc03-CPUE_MetaAnalysis.qmd
     - SC13.qmd
     - helper_scripts_guide.qmd
     - userguide/index.qmd
@@ -31,20 +31,20 @@ website:
         text: Home
       - href: JMWG_Benchmark_ToR.qmd
         text: SCW16/ToR
-      - href: SCW16-Paper-00.qmd
-        text: SCW16/Paper-00
-      - href: SCW16-Paper-01.qmd
-        text: SCW16/Paper-01
-      - href: SCW16-Paper-02-CPUE_Coordination.qmd
-        text: SCW16/Paper-02
+      - href: SCW16-Doc00.qmd
+        text: SCW16-Doc00
+      - href: SCW16-Doc01.qmd
+        text: SCW16-Doc01
+      - href: SCW16-Doc02-CPUE_Coordination.qmd
+        text: SCW16-Doc02
       - href: "JMWG-Meeting report-01-2026.qmd"
         text: Meeting report 01-2026
       - href: "JMWG-Meeting report-02-2026.qmd"
         text: Meeting report 02-2026
       - href: "JMWG-Meeting report-03-2026.qmd"
         text: Meeting report 03-2026
-      - href: SCW16-Paper-03-CPUE_MetaAnalysis.qmd
-        text: SCW16/Paper-03
+      - href: SCW16-Doc03-CPUE_MetaAnalysis.qmd
+        text: SCW16-Doc03
       - href: SC13.qmd
         text: SC13
       - href: helper_scripts_guide.qmd
