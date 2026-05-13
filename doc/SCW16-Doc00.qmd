@@ -42,25 +42,34 @@ Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen
 
 - **Start time:** 09:00
 
-| Time | Topic | Presenter |
-|---|---|---|
-| 09:00-09:25 | Historical review of hydroacoustic survey programs in north-central Chile | V. Catasti (IFOP) |
-| 09:25-09:50 | Spatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using `sdmTMB` | I. Payá and V. Catasti (IFOP) |
-| 09:50-10:15 | Preliminary results of the 2026 north-central Chile hydroacoustic survey | V. Catasti (IFOP) |
-| 10:15-10:30 | Coffee break |  |
-
+### Session 1
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 10:30-11:00 | Examination and/or validation of jack mackerel echotraces | All participants |
-| 11:00-11:25 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA, TBC) |
-| 11:25-11:50 | Review of jack mackerel acoustic assessments conducted in Peru | Daniel Grados (IMARPE) |
-| 11:50-13:20 | Lunch break (1 hour 30 minutes) |  |
+| 09:00-09:20 | Historical review of hydroacoustic survey programs in north-central Chile | V. Catasti (IFOP) |
+| 09:20-09:40 | Preliminary results of the 2026 north-central Chile hydroacoustic survey | V. Catasti (IFOP) |
+| 09:40-10:00 | Oceanography conditions during the 2026 acoustic survey | J. Letelier (IFOP) |
+| 10:00-10:20 | Spatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using `sdmTMB` | I. Payá and V. Catasti (IFOP) |
+| 10:20-10:40 | Coffee break |  |
+| 10:40-11:00 | Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile | M.G. Pennino, S. Vásquez, N. Alegría, and A. Sepúlveda (INPESCA) |
+| 11:00-11:20 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA) |
+| 11:20-11:40 | Review of jack mackerel acoustic assessments conducted in Peru | Daniel Grados (IMARPE) |
+
+### Session 2
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 13:20-13:45 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Mariano Gutiérrez (National University Federico Villarreal) |
-| 13:45-14:15 | General discussion and technical recommendations | All participants |
+| 11:40-12:00 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | M. Gutiérrez (Instituto Humboldt de Investigación Marina y Acuícola) |
+| 12:00-13:30 | Lunch break (1 hour 30 minutes) |  |
+
+### Session 3
+
+| Time | Topic | Presenter |
+|---|---|---|
+| 13:30-14:30 | Examination and/or validation of jack mackerel echograms | All participants |
+| 14:30-14:50 | Coffee break |  |
+| 14:50-16:00 | General discussion | All participants |
+| 16:00-17:00 | Technical recommendations | All participants |
 
 ## Day 2. Preliminary CPUE Session Agenda ([SCW16-Doc02](SCW16-Doc02-CPUE_Coordination.qmd))
 
