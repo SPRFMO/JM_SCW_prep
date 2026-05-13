@@ -53,23 +53,24 @@ Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen
 | 10:20-10:40 | Coffee break |  |
 | 10:40-11:00 | Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile | M.G. Pennino, S. Vásquez, N. Alegría, and A. Sepúlveda (INPESCA) |
 | 11:00-11:20 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA) |
-| 11:20-11:40 | Review of jack mackerel acoustic assessments conducted in Peru | Daniel Grados (IMARPE) |
+| 11:20-11:40 | Review of jack mackerel acoustic assessments conducted in Peru | Carlos Valdes (IMARPE) |
 
 ### Session 2
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 11:40-12:00 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | M. Gutiérrez (Instituto Humboldt de Investigación Marina y Acuícola) |
-| 12:00-13:30 | Lunch break (1 hour 30 minutes) |  |
+| 11:40-12:00 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Daniel Grados (IMARPE) |
+| 12:20-12:40 | Use of acoustic data collected by fishing vessels for estimating the abundance/biomass of anchovy and Chilean jack mackerel in Peru | M. Gutiérrez (Instituto Humboldt de Investigación Marina y Acuícola) |
+| 12:40-14:00 | Lunch break (1 hour 40 minutes) |  |
 
 ### Session 3
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 13:30-14:30 | Examination and/or validation of jack mackerel echograms | All participants |
-| 14:30-14:50 | Coffee break |  |
-| 14:50-16:00 | General discussion | All participants |
-| 16:00-17:00 | Technical recommendations | All participants |
+| 14:00-15:00 | Examination and/or validation of jack mackerel echograms | All participants |
+| 15:00-15:20 | Coffee break |  |
+| 15:20-16:20 | General discussion | All participants |
+| 16:20-17:00 | Technical recommendations | All participants |
 
 ## Day 2. Preliminary CPUE Session Agenda ([SCW16-Doc02](SCW16-Doc02-CPUE_Coordination.qmd))
 
