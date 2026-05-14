@@ -110,6 +110,14 @@ documents submitted from SC10 to SC13, while the present paper is a forward-look
 note for SCW16. The two papers are complementary: Doc03 provides background and Doc02
 defines the work plan and decision points for the benchmark session.
 
+After the coordination meeting, Ana Alegre notified the organizers that work-related delays had
+affected delivery of several Peruvian delegation reports. She requested that the report
+*Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian
+national jurisdictional waters* (Miran Geronimo and Gersson Roman) be included for presentation
+and discussion during the Day 2 CPUE session. She also identified related Peruvian reports for
+the benchmark workshop, including one length-frequency report requested for the Day 3 biological
+inputs session and two additional reports on length-weight relationships and acoustic-index use.
+
 # Meeting Details
 
 - Date: 14 April 2026
@@ -150,11 +158,12 @@ reflected in `SCW16-Doc00.qmd`.
 |---|---|---|
 | 1 | Metadata by fleet and country | Establish a common description of fleets, areas, observation level, and index construction. |
 | 2 | Methods by fleet and country | Compare GLM, spatio-temporal, and other standardization methods now in use. |
-| 3 | Comparative analysis and parsimony | Decide how much model complexity is justified for benchmark index candidates. |
-| 4 | Effort-creep review | Reassess current effort-creep assumptions and whether they should be retained or revised. |
-| 5 | Catchability and availability blocks | Consider explicit `q` blocks or related structures where distribution shifts make constant catchability implausible. |
-| 6 | CPUE weighting in the stock assessment | Review how alternative weighting choices affect model fit and interpretation. |
-| 7 | Separate versus combined indices for HCR use | Decide whether the benchmark should maintain separate series or define a combined product for OM and MP work. |
+| 3 | Peruvian CPUE report | Present and discuss *Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters* (Miran Geronimo and Gersson Roman). |
+| 4 | Comparative analysis and parsimony | Decide how much model complexity is justified for benchmark index candidates. |
+| 5 | Effort-creep review | Reassess current effort-creep assumptions and whether they should be retained or revised. |
+| 6 | Catchability and availability blocks | Consider explicit `q` blocks or related structures where distribution shifts make constant catchability implausible. |
+| 7 | CPUE weighting in the stock assessment | Review how alternative weighting choices affect model fit and interpretation. |
+| 8 | Separate versus combined indices for HCR use | Decide whether the benchmark should maintain separate series or define a combined product for OM and MP work. |
 
 # Supporting Working Papers Proposed at the Meeting
 
@@ -168,7 +177,29 @@ benchmark. The deadline discussed in the coordination note was **1 May 2026**.
 | Update of the INLA spatio-temporal CPUE model | Sebastián Vásquez | Intended to present the current INLA-based Chilean spatio-temporal series. |
 | Comparison of alternative Fleet 2 CPUE indices | Ignacio Payá and Sebastián Vásquez | Compare competing methods and identify practical advantages, limitations, and benchmark relevance. |
 | Update of the effort-creep analysis for Fleet 2 CPUE | José Zenteno and Ignacio Payá | Revisit the earlier sensitivity analysis and its biomass implications. |
-| Update of the Peruvian CPUE index in the ANJ | Miriam Geronimo and Criscely Lujan | Review industrial and artisanal data, new trip-level analyses, and possible GLM, GAM, or `sdmTMB` updates. |
+| Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters | Miran Geronimo and Gersson Roman | Peruvian delegation report requested by Ana Alegre for presentation and discussion during the Day 2 CPUE session. Review national-jurisdiction CPUE standardization, industrial and artisanal data where available, and implications for benchmark index selection. |
+
+# Subsequent Peruvian Report Update
+
+On 14 May 2026, Ana Alegre notified the organizers that work-related delays had affected
+delivery of several Peruvian delegation reports planned for the benchmark workshop. The CPUE
+session should explicitly reserve time for the Peruvian CPUE standardization report listed above.
+This report is the CPUE-session item most directly linked to Doc02.
+
+Ana also identified the following related Peruvian reports:
+
+- *Technical report on the updated length-frequency data of the Peruvian jack mackerel
+  (Trachurus murphyi) stock in national jurisdictional waters* (Criscely Luján and Gersson
+  Roman). This report was requested for presentation and discussion during the Day 3 biological
+  inputs session.
+- *Length-weight relationship of jack mackerel (Trachurus murphyi) in Peru and its implications
+  for biomass estimation* (Sandra Cahuin, Ana Alegre and Marilú Bouchon).
+- *Considerations on the use of the jack mackerel acoustic index in Peruvian national
+  jurisdictional waters* (Gersson Roman, Sandra Cahuin and Marilú Bouchon).
+
+Although the latter three reports are not CPUE working papers, they affect the broader benchmark
+agenda and should be cross-referenced when the CPUE session discusses index interpretation,
+biological inputs, or consistency among abundance indices.
 
 # Main Technical Issues Identified
 
@@ -222,7 +253,8 @@ for candidate management procedures.
 | Circulate the preliminary CPUE agenda and proposed supporting papers to Jim | Ignacio Payá | CPUE subgroup | Immediate |
 | Prepare updated Chilean CPUE products and comparison materials | Ignacio Payá and Sebastián Vásquez | Chilean CPUE subgroup | Before 1 May 2026 |
 | Update the Fleet 2 effort-creep analysis and summarize biomass impacts | José Zenteno and Ignacio Payá | Chilean CPUE subgroup | Before 1 May 2026 |
-| Prepare the Peruvian CPUE update and clarify lead attribution for artisanal-fleet work | Miriam Geronimo and Criscely Lujan | Peru subgroup | Before 1 May 2026 |
+| Prepare and schedule the Peruvian CPUE standardization report for the Day 2 CPUE session | Miran Geronimo and Gersson Roman | Ana Alegre and Peru subgroup | Before SCW16 |
+| Track related Peruvian length-frequency, length-weight, and acoustic-index reports in the benchmark agenda | Ana Alegre and Peru subgroup | Workshop organizers | Before SCW16 |
 | Coordinate workshop-session organization linked to the CPUE agenda | Criscely Lujan | Ana Alegre and workshop organizers | Before SCW16 |
 
 # Relationship to Doc03
