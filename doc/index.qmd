@@ -56,6 +56,8 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [SCW16-Doc11: Catch/Fishery Data Quality Checks](SCW16-Doc11-Jack_mack_data_qc.html)
 
+  - [SCW16-Doc12: Standardization of Chilean jack mackerel CPUE fishery in central-southern Chile using Hierarchical Bayesian Models (INLA)](SCW16-Doc12-Spatio-temporal_modelling_INLA_CPUE.pdf) ([PDF](SCW16-Doc12-Spatio-temporal_modelling_INLA_CPUE.pdf))
+
 ### Prep meeting reports
 
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
