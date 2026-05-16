@@ -41,36 +41,46 @@ Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen
 ## Day 1. Preliminary Acoustic Session Agenda
 
 - **Start time:** 09:00
+- **Date:** Monday, 18 May 2026
+- **Note:** The morning coffee break is scheduled early on Day 1 only. For the
+  rest of the week, the morning coffee break is expected at 10:30.
+
+### Opening
+
+| Time | Topic | Presenter |
+|---|---|---|
+| 09:00-09:20 | Opening Ceremony | Executive President of IMARPE |
+| 09:20-09:30 | Official Photo | All participants |
+| 09:30-09:45 | Coffee break |  |
 
 ### Session 1
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 09:00-09:20 | Historical review of hydroacoustic survey programs in north-central Chile | V. Catasti (IFOP) |
-| 09:20-09:40 | Preliminary results of the 2026 north-central Chile hydroacoustic survey | V. Catasti (IFOP) |
-| 09:40-10:00 | Oceanography conditions during the 2026 acoustic survey | J. Letelier (IFOP) |
-| 10:00-10:20 | Spatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using `sdmTMB` | I. Payá and V. Catasti (IFOP) |
-| 10:20-10:40 | Coffee break |  |
-| 10:40-11:00 | Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile | M.G. Pennino, S. Vásquez, N. Alegría, and A. Sepúlveda (INPESCA) |
-| 11:00-11:20 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA) |
-| 11:20-11:40 | Review of jack mackerel acoustic assessments conducted in Peru | Carlos Valdes (IMARPE) |
+| 09:45-10:05 | Historical review of hydroacoustic survey programs in north-central Chile | V. Catasti (IFOP) |
+| 10:05-10:25 | Preliminary results of the 2026 north-central Chile hydroacoustic survey | V. Catasti (IFOP) |
+| 10:25-10:45 | Oceanography conditions during the 2026 acoustic survey | J. Letelier (IFOP) |
+| 10:45-11:05 | Spatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using `sdmTMB` | I. Payá and V. Catasti (IFOP) |
+| 11:05-11:25 | Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile | M.G. Pennino, S. Vásquez, N. Alegría, and A. Sepúlveda (INPESCA) |
+| 11:25-11:45 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA) |
+| 11:45-12:05 | Review of jack mackerel acoustic assessments conducted in Peru | Carlos Valdes (IMARPE) |
 
 ### Session 2
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 11:40-12:00 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Daniel Grados (IMARPE) |
-| 12:20-12:40 | Use of acoustic data collected by fishing vessels for estimating the abundance/biomass of anchovy and Chilean jack mackerel in Peru | M. Gutiérrez (Instituto Humboldt de Investigación Marina y Acuícola) |
-| 12:40-14:00 | Lunch break (1 hour 40 minutes) |  |
+| 12:05-12:25 | Application of sonar systems in Peruvian anchoveta fisheries and potential applicability for jack mackerel in Peru and Chile | Daniel Grados (IMARPE) |
+| 12:30-14:00 | Lunch break |  |
+| 14:00-14:20 | Use of acoustic data collected by fishing vessels for estimating the abundance/biomass of anchovy and Chilean jack mackerel in Peru | M. Gutiérrez (Instituto Humboldt de Investigación Marina y Acuícola) |
 
 ### Session 3
 
 | Time | Topic | Presenter |
 |---|---|---|
-| 14:00-15:00 | Examination and/or validation of jack mackerel echograms | All participants |
-| 15:00-15:20 | Coffee break |  |
-| 15:20-16:20 | General discussion | All participants |
-| 16:20-17:00 | Technical recommendations | All participants |
+| 14:20-15:15 | Examination and/or validation of jack mackerel echograms | All participants |
+| 15:15-15:35 | Coffee break |  |
+| 15:35-16:25 | General discussion | All participants |
+| 16:25-17:00 | Technical recommendations | All participants |
 
 ## Day 2. Preliminary CPUE Session Agenda ([SCW16-Doc02](SCW16-Doc02-CPUE_Coordination.qmd))
 
