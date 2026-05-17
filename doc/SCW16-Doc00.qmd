@@ -97,10 +97,10 @@ in Peruvian national jurisdictional waters* (Miran Geronimo and Gersson Roman).
 | Order | Topic | Notes |
 |---|---|---|
 | 1 | Metadata by fleet and country | Review fleet definitions, spatial coverage, observation level, and index construction by country and fishery. |
-| 2 | Methods by fleet and country | Compare GLM, spatio-temporal models, GLMMs with spatio-temporal random effects, and latitude-longitude smoothing approaches. |
+| 2 | Methods by fleet and country | Compare GLM, spatio-temporal models, GLMMs with spatio-temporal random effects, and latitude-longitude smoothing approaches, including SCW16-Doc10 and SCW16-Doc12. |
 | 3 | Peruvian CPUE report | Present and discuss *Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters* (Miran Geronimo and Gersson Roman). |
-| 4 | Comparative analysis and parsimony across candidate indices | Evaluate traditional GLM, spatio-temporal, and environmentally informed approaches and identify the most suitable benchmark candidates. |
-| 5 | Effort-creep review and decision for stock assessment use | Revisit current effort-creep assumptions and consider whether revised treatment is needed for benchmark runs. |
+| 4 | Comparative analysis and parsimony across candidate indices | Evaluate traditional GLM, spatio-temporal, and environmentally informed approaches and identify the most suitable benchmark candidates, informed by SCW16-Doc03. |
+| 5 | Effort-creep review and decision for stock assessment use | Revisit current effort-creep assumptions and consider whether revised treatment is needed for benchmark runs, including SCW16-Doc07. |
 | 6 | Catchability-availability blocks by abundance index | Review evidence for temporal or spatial changes in availability, including possible El Niño effects and implications for `q` blocks. |
 | 7 | CPUE weighting factors for stock assessment | Discuss weighting choices and how they affect assessment fits and benchmark comparisons. |
 | 8 | Separate versus combined index products for HCR use | Consider whether the benchmark should retain separate series or define a combined CPUE product for OM conditioning and MP inputs. |
@@ -136,8 +136,8 @@ Additional Peruvian reports noted for the benchmark workshop are:
 
 | Session | Topic | Notes |
 |---|---|---|
-| Morning | Acoustic and CPUE recap and report drafting | Summarize key conclusions, outstanding questions, and text needed for the workshop report. |
-| Afternoon | SCW16-Doc01 summary and biological inputs | Review assessment simplification results, biological assumptions, and options for refined model runs. Include the Peruvian length-frequency data report by Criscely Luján and Gersson Roman. |
+| Morning | Acoustic and CPUE recap and report drafting | Summarize key conclusions, outstanding questions, and text needed for the workshop report. Include SCW16-Doc11 catch/fishery data quality checks where they affect benchmark inputs or follow-up tasks. |
+| Afternoon | SCW16-Doc01 summary and biological inputs | Review assessment simplification results, biological assumptions, and options for refined model runs. Include SCW16-Doc05/JM_Biology and the Peruvian length-frequency data report by Criscely Luján and Gersson Roman. |
 
 ## Day 4. Projections, Recruitment Scenarios, and OM Specifications
 
@@ -155,7 +155,7 @@ configurations.
 | Session | Topic | Notes |
 |---|---|---|
 | Morning | Assessment projections and recruitment scenarios | Review projection assumptions, recruitment windows, productivity regimes, and links to benchmark assessment runs. |
-| Afternoon | OM specifications and MCMC evaluations | Define candidate OM specifications and document MCMC diagnostics, feasibility, and technical constraints. |
+| Afternoon | OM specifications and MCMC evaluations | Define candidate OM specifications and document MCMC diagnostics, feasibility, and technical constraints, including SCW16-Doc04. |
 
 ## Day 5. Final Decisions and Report Adoption
 
