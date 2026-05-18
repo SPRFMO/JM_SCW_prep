@@ -121,15 +121,16 @@ identify options for refining model runs and for defining a compact set of
 assessment and OM alternatives for further evaluation.
 
 The Peruvian delegation has requested time during the biological-inputs session
-for the report *Technical report on the updated length-frequency data of the
-Peruvian jack mackerel (Trachurus murphyi) stock in national jurisdictional
-waters* (Criscely Luján and Gersson Roman).
+for [SCW16-Doc14](SCW16-Doc14-Peru_Length_Frequency.pdf), *Technical report on
+the updated length-frequency data for the Peruvian jack mackerel stock
+(far-north stock) in Peruvian jurisdictional waters* (Criscely Luján and Gersson
+Roman).
 
 Additional Peruvian reports noted for the benchmark workshop are:
 
-- *Length-weight relationship of jack mackerel (Trachurus murphyi) in Peru and
-  its implications for biomass estimation* (Sandra Cahuin, Ana Alegre and Marilú
-  Bouchon).
+- [SCW16-Doc13](SCW16-Doc13-Peru_Length_Weight.pdf), *Length-weight relationship
+  of jack mackerel (Trachurus murphyi) in Peru and its implications for biomass
+  estimation* (Sandra Cahuin, Ana Alegre and Marilú Bouchon).
 - *Considerations on the use of the jack mackerel acoustic index in Peruvian
   national jurisdictional waters* (Gersson Roman, Sandra Cahuin and Marilú
   Bouchon).
@@ -137,7 +138,7 @@ Additional Peruvian reports noted for the benchmark workshop are:
 | Session | Topic | Notes |
 |---|---|---|
 | Morning | Acoustic and CPUE recap and report drafting | Summarize key conclusions, outstanding questions, and text needed for the workshop report. Include SCW16-Doc11 catch/fishery data quality checks where they affect benchmark inputs or follow-up tasks. |
-| Afternoon | SCW16-Doc01 summary and biological inputs | Review assessment simplification results, biological assumptions, and options for refined model runs. Include SCW16-Doc05/JM_Biology and the Peruvian length-frequency data report by Criscely Luján and Gersson Roman. |
+| Afternoon | SCW16-Doc01 summary and biological inputs | Review assessment simplification results, biological assumptions, and options for refined model runs. Include SCW16-Doc05/JM_Biology, SCW16-Doc13 Peru length-weight, and SCW16-Doc14 Peru length-frequency. |
 
 ## Day 4. Projections, Recruitment Scenarios, and OM Specifications
 
