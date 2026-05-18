@@ -58,6 +58,10 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [SCW16-Doc12: Standardization of Chilean jack mackerel CPUE fishery in central-southern Chile using Hierarchical Bayesian Models (INLA)](SCW16-Doc12-Spatio-temporal_modelling_INLA_CPUE.pdf) ([PDF](SCW16-Doc12-Spatio-temporal_modelling_INLA_CPUE.pdf))
 
+  - [SCW16-Doc13: Length-weight relationship of jack mackerel (*Trachurus murphyi*) in Peru and its implications for biomass estimation](SCW16-Doc13-Peru_Length_Weight.pdf) ([PDF](SCW16-Doc13-Peru_Length_Weight.pdf))
+
+  - [SCW16-Doc14: Technical report on the updated length-frequency data for the Peruvian jack mackerel stock (far-north stock) in Peruvian jurisdictional waters](SCW16-Doc14-Peru_Length_Frequency.pdf) ([PDF](SCW16-Doc14-Peru_Length_Frequency.pdf))
+
 ### Prep meeting reports
 
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
@@ -112,6 +116,14 @@ This external working paper evaluates biological data used in model `1.14`, incl
 ## SCW16-Docs-06 through 10: Benchmark abundance-index working papers
 
 These external PDF working papers cover Chilean jack mackerel acoustic and CPUE abundance-index updates prepared for SCW16 benchmark discussions. They are published directly in the `docs/` folder as PDFs.
+
+## SCW16-Doc13
+
+This external PDF working paper describes the length-weight relationship of jack mackerel in Peru and its implications for biomass estimation.
+
+## SCW16-Doc14
+
+This external PDF working paper provides updated length-frequency data for the Peruvian jack mackerel far-north stock in Peruvian jurisdictional waters.
 
 ## SC13 Assessment Update
 

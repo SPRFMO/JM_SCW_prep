@@ -26,6 +26,7 @@ project:
 website:
   title: "SPRFMO Jack Mackerel Working Group"
   navbar:
+    title: false
     left:
       - href: index.qmd
         text: Home
