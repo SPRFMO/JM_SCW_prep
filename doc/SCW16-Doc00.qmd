@@ -63,7 +63,7 @@ Erich Diaz, Ignacio Payá, José Zenteno, Sebastián Vásquez, and Niels Hintzen
 | 10:45-11:05 | Spatio-temporal modeling of acoustic backscatter (Sa) from the north-central Chile survey using `sdmTMB` | I. Payá and V. Catasti (IFOP) |
 | 11:05-11:25 | Toward a standardised abundance index for Chilean jack mackerel: spatio-temporal modelling of acoustic survey data in northern Chile | M.G. Pennino, S. Vásquez, N. Alegría, and A. Sepúlveda (INPESCA) |
 | 11:25-11:45 | Opportunistic acoustic data collection using the south-central Chilean commercial fleet | N. Alegría (INPESCA) |
-| 11:45-12:05 | Review of jack mackerel acoustic assessments conducted in Peru | Carlos Valdes (IMARPE) |
+| 11:45-12:05 | Review of jack mackerel acoustic assessments conducted in Peru, including [SCW16-Doc16](SCW16-Doc16-Peru_Acoustic_Index.pdf) | Carlos Valdes (IMARPE) |
 
 ### Session 2
 
@@ -90,15 +90,16 @@ discussions is provided in [SCW16-Doc02](SCW16-Doc02-CPUE_Coordination.qmd),
 which summarizes the CPUE coordination discussion and candidate topics for the
 benchmark session.
 
-The Peruvian delegation has requested time during the CPUE session for the report
-*Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025)
-in Peruvian national jurisdictional waters* (Miran Geronimo and Gersson Roman).
+The Peruvian delegation has requested time during the CPUE session for
+[SCW16-Doc15](SCW16-Doc15-Peru_CPUE.pdf), *Standardization of catch-per-unit-effort
+(CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters*
+(Miran Geronimo and Gersson Roman).
 
 | Order | Topic | Notes |
 |---|---|---|
 | 1 | Metadata by fleet and country | Review fleet definitions, spatial coverage, observation level, and index construction by country and fishery. |
 | 2 | Methods by fleet and country | Compare GLM, spatio-temporal models, GLMMs with spatio-temporal random effects, and latitude-longitude smoothing approaches, including SCW16-Doc10 and SCW16-Doc12. |
-| 3 | Peruvian CPUE report | Present and discuss *Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters* (Miran Geronimo and Gersson Roman). |
+| 3 | Peruvian CPUE report | Present and discuss [SCW16-Doc15](SCW16-Doc15-Peru_CPUE.pdf), *Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters* (Miran Geronimo and Gersson Roman). |
 | 4 | Comparative analysis and parsimony across candidate indices | Evaluate traditional GLM, spatio-temporal, and environmentally informed approaches and identify the most suitable benchmark candidates, informed by SCW16-Doc03. |
 | 5 | Effort-creep review and decision for stock assessment use | Revisit current effort-creep assumptions and consider whether revised treatment is needed for benchmark runs, including SCW16-Doc07. |
 | 6 | Catchability-availability blocks by abundance index | Review evidence for temporal or spatial changes in availability, including possible El Niño effects and implications for `q` blocks. |
@@ -131,9 +132,9 @@ Additional Peruvian reports noted for the benchmark workshop are:
 - [SCW16-Doc13](SCW16-Doc13-Peru_Length_Weight.pdf), *Length-weight relationship
   of jack mackerel (Trachurus murphyi) in Peru and its implications for biomass
   estimation* (Sandra Cahuin, Ana Alegre and Marilú Bouchon).
-- *Considerations on the use of the jack mackerel acoustic index in Peruvian
-  national jurisdictional waters* (Gersson Roman, Sandra Cahuin and Marilú
-  Bouchon).
+- [SCW16-Doc16](SCW16-Doc16-Peru_Acoustic_Index.pdf), *Considerations on the use
+  of the jack mackerel acoustic index in Peruvian national jurisdictional waters*
+  (Gersson Roman, Sandra Cahuin and Marilú Bouchon).
 
 | Session | Topic | Notes |
 |---|---|---|

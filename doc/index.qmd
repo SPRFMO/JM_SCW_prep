@@ -62,6 +62,10 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [SCW16-Doc14: Technical report on the updated length-frequency data for the Peruvian jack mackerel stock (far-north stock) in Peruvian jurisdictional waters](SCW16-Doc14-Peru_Length_Frequency.pdf) ([PDF](SCW16-Doc14-Peru_Length_Frequency.pdf))
 
+  - [SCW16-Doc15: Standardization of catch-per-unit-effort (CPUE) for jack mackerel (2015-2025) in Peruvian national jurisdictional waters](SCW16-Doc15-Peru_CPUE.pdf) ([PDF](SCW16-Doc15-Peru_CPUE.pdf))
+
+  - [SCW16-Doc16: Considerations on the use of the jack mackerel acoustic index in Peruvian national jurisdictional waters](SCW16-Doc16-Peru_Acoustic_Index.pdf) ([PDF](SCW16-Doc16-Peru_Acoustic_Index.pdf))
+
 ### Prep meeting reports
 
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
@@ -124,6 +128,14 @@ This external PDF working paper describes the length-weight relationship of jack
 ## SCW16-Doc14
 
 This external PDF working paper provides updated length-frequency data for the Peruvian jack mackerel far-north stock in Peruvian jurisdictional waters.
+
+## SCW16-Doc15
+
+This external PDF working paper standardizes Peruvian jack mackerel CPUE for 2015-2025 in Peruvian national jurisdictional waters.
+
+## SCW16-Doc16
+
+This external PDF working paper evaluates considerations for using the jack mackerel acoustic index in Peruvian national jurisdictional waters.
 
 ## SC13 Assessment Update
 
