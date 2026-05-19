@@ -163,7 +163,7 @@ record. The recommended workflow is described in the
 
 ## Acoustic Indices
 
-The Day 1 acoustic session combined formal SCW16 working papers with presentation-only material. The presentations covered the history of the north-central Chile acoustic survey programme, preliminary 2026 survey results, oceanographic conditions during the 2026 survey, spatio-temporal standardization of acoustic backscatter, fishery-dependent acoustic information, Peruvian acoustic assessment information, and sonar applications relevant to jack mackerel and anchoveta fisheries.
+The Day 1 acoustic session combined formal SCW16 working papers with presentation-only material. The presentations covered the history of the north-central Chile acoustic survey programme, preliminary 2026 survey results, oceanographic conditions during the 2026 survey, spatio-temporal standardization of acoustic backscatter, fishery-dependent acoustic information, Peruvian acoustic assessment information, sonar applications relevant to jack mackerel and anchoveta fisheries, and acoustic information collected by fishing vessels in Peru.
 
 For reporting purposes, the presentation material should be separated into four categories: formal papers tied to numbered SCW16 documents, presentation-only background, new 2026 evidence, and context or supporting methods. This distinction is important because not all Day 1 material is intended to become a direct assessment input. Some presentations provide candidate abundance indices, while others provide survey context, environmental interpretation, diagnostic information, or methodological background.
 
@@ -372,6 +372,7 @@ This appendix summarizes the draft agenda from SCW16-Doc00. It should be updated
 - Toward a standardized northern Chile acoustic abundance index.
 - Opportunistic acoustic data collection from the south-central Chilean commercial fleet.
 - Review of jack mackerel acoustic assessments conducted in Peru, including SCW16-Doc16.
+- Use of acoustic data collected by fishing vessels for estimating abundance/biomass in Peru.
 - Echogram examination and validation.
 - General discussion and technical recommendations.
 
@@ -572,6 +573,7 @@ This appendix records the Day 1 presentation files available in `docs/day1`. It 
 | [Opportunistic acoustic data collection using the south-central Chilean commercial fleet](day1/pdf/06_Interannual%20variability%20in%20distribution%2C%20size%20structure%2C%20and%20biomass%20of%20Chilean%20jack%20mackerel%20%28Trachurus%20murphyi%29%20estimated%20from%20fishery-dependent%20acoustics.pdf) | [SCW16-Doc08](SCW16-Doc08-Fishery_Dependent_Acoustics.pdf) | Fishery-dependent acoustic information on distribution, size structure, and biomass. | Formal paper / diagnostic or candidate index |
 | [Review of jack mackerel acoustic assessments conducted in Peru](day1/pdf/07_Stock%20Assessment%20Jack%20mackerel%20in%20Peru_C.Valdez.pdf) | [SCW16-Doc16](SCW16-Doc16-Peru_Acoustic_Index.pdf) | Peruvian acoustic assessment context and considerations for index use. | Formal paper / supporting evidence or candidate index |
 | [Sonar applications in Peruvian fisheries and applicability for jack mackerel](day1/pdf/08_Sonar_Applications.pdf) | Presentation only | Methods and operational context for sonar/acoustic information in Peru and Chile. | Context / supporting methods |
+| [Acoustic data collected by fishing vessels in Peru](day1/pdf/09_Acoustics%20fishing%20vessels%20Peru%20V1.pdf) | Presentation only | Use of fishing-vessel acoustic data for estimating abundance or biomass of anchovy and Chilean jack mackerel in Peru. | Context / supporting methods |
 
 Use the following labels when carrying presentation material into the report:
 
