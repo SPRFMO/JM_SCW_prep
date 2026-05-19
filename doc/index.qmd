@@ -76,6 +76,7 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
 ## Other background reports
 - [SC13 Assessment Update](SC13.html)
+- [mod0.14 and mod1.1 Comparison](mod0.14_mod1.1_comparison.html)
 - [Helper Scripts Guide](helper_scripts_guide.html)
 - [User Guide](userguide/)
 - [Tutorial Guide](tutorial/)
@@ -150,6 +151,10 @@ This external PDF working paper evaluates considerations for using the jack mack
 ## SC13 Assessment Update
 
 This is the converted Quarto version of the incremental SC13 assessment update document originally maintained as `assessment/R/SC13.rmd`.
+
+## mod0.14 and mod1.1 Comparison
+
+This report compares the standalone stock-2 `mod0.14` run against `mod1.1` using the current JJM output files.
 
 ## Helper Scripts Guide
 
