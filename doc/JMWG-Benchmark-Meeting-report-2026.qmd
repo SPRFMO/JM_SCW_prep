@@ -1,0 +1,437 @@
+---
+title: ""
+pagetitle: "JMWG Benchmark Meeting Report 2026"
+format:
+  html:
+    output-file: "JMWG-Benchmark-Meeting-report-2026.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+    number-depth: 2
+  pdf:
+    output-file: "JMWG-Benchmark-Meeting-report-2026.pdf"
+    number-sections: false
+    number-depth: 2
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{Benchmark meeting report 2026}}
+        \fancyhead[L]{\textit{SCW16 Draft}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{Benchmark meeting report 2026}}
+          \fancyhead[L]{\textit{SCW16 Draft}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "JMWG-Benchmark-Meeting-report-2026.docx"
+    toc: true
+    number-sections: false
+    number-depth: 2
+    title-block: false
+execute:
+  warning: false
+  message: false
+  echo: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\thispagestyle{empty}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries Benchmark meeting report 2026\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*Benchmark meeting report 2026*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">Benchmark meeting report 2026</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Benchmark-Meeting-report-2026.pdf">PDF-rendered version</a> | <a href="JMWG-Benchmark-Meeting-report-2026.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">JMWG Benchmark Meeting Report 2026</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+This is a starter draft for the 2026 Jack Mackerel Working Group benchmark meeting report. It is structured to capture the main workshop decisions, agreed recommendations, unresolved technical issues, and follow-up tasks needed to support the June 2026 management strategy evaluation workshop and subsequent Scientific Committee review.
+
+The benchmark meeting is expected to focus on assessment inputs, abundance-index evaluation, biological data and assumptions, assessment-model simplification, operating-model conditioning, and priorities for the MSE work programme. This draft should be updated during the workshop as sessions conclude, with short decision text and action items added while technical discussions are still current.
+
+# Meeting Details
+
+- Meeting: JMWG benchmark meeting 2026
+- Date: 18-22 May 2026
+- Location: Lima, Peru
+- Organisation: South Pacific Regional Fisheries Management Organisation
+- Working group: Jack Mackerel Working Group
+- Host: Peru / IMARPE
+- Chair: Jim Ianelli
+- Meeting format: Primarily in person, with selected remote participation as arranged
+
+# Opening of the Meeting
+
+The Chair opened the meeting and welcomed participants to the 2026 benchmark workshop. The Chair noted that the workshop has a practical purpose: to convert a large set of technical contributions into clear benchmark priorities, model-input decisions, and follow-up tasks for the JMWG and MSE process.
+
+The Chair emphasized that the benchmark material contains many sensitivities, including stock structure, index selection, catchability and availability, effort creep, selectivity, recruitment assumptions, biological inputs, and operating-model conditioning. The workshop should focus on which sensitivities materially affect advice, operating-model conditioning, and MSE readiness.
+
+Members were encouraged, to the extent practical, to supplement technical presentations with concise information on data extent, including years covered, spatial coverage, fleet or survey coverage, observation unit, sample sizes, treatment of missing data, and whether uncertainty is available for assessment use.
+
+The Chair also noted that work sessions and report-writing time are part of the technical work of the meeting. Each session should aim to leave behind short text on decisions, unresolved issues, data requests, and recommended follow-up.
+
+# Adoption of Agenda
+
+The meeting reviewed the draft agenda and agreed to organize the week around acoustic indices, CPUE indices, biological inputs, assessment-model development, projections, operating-model specifications, and final report adoption. A shortened agenda is provided in Appendix A.
+
+# Workshop Objectives
+
+The main objectives of the benchmark meeting are to:
+
+1. Review and document candidate abundance indices and their suitability for assessment use, operating-model conditioning, and possible management-procedure input.
+2. Review biological inputs, including maturity, natural mortality, weight-at-age, length-weight relationships, and length-frequency information.
+3. Review the SC13 assessment base model and candidate simplifications for benchmark and MSE use.
+4. Identify a defensible set of assessment-model alternatives, sensitivity runs, and diagnostics.
+5. Define operating-model conditioning priorities and uncertainty dimensions for the June 2026 MSE workshop.
+6. Document decisions, unresolved technical issues, and follow-up responsibilities in the meeting report.
+
+# Organization of Work
+
+The meeting work should be organized around technical sessions and smaller drafting or analysis groups. Where possible, each major topic should produce:
+
+- a short decision statement;
+- a list of accepted inputs or candidate inputs;
+- a list of sensitivities or diagnostics to run;
+- data or documentation requests;
+- text that can be inserted directly into the final workshop report.
+
+For contributors who are not working directly in GitHub, use Google Docs as the
+collaborative drafting layer and keep this Quarto report as the source of
+record. The recommended workflow is described in the
+[Report Collaboration Workflow](report-collaboration-workflow.html).
+
+# Key Discussion Summary
+
+## Acoustic Indices
+
+The Day 1 acoustic session combined formal SCW16 working papers with presentation-only material. The presentations covered the history of the north-central Chile acoustic survey programme, preliminary 2026 survey results, oceanographic conditions during the 2026 survey, spatio-temporal standardization of acoustic backscatter, fishery-dependent acoustic information, Peruvian acoustic assessment information, and sonar applications relevant to jack mackerel and anchoveta fisheries.
+
+For reporting purposes, the presentation material should be separated into four categories: formal papers tied to numbered SCW16 documents, presentation-only background, new 2026 evidence, and context or supporting methods. This distinction is important because not all Day 1 material is intended to become a direct assessment input. Some presentations provide candidate abundance indices, while others provide survey context, environmental interpretation, diagnostic information, or methodological background.
+
+A Day 1 presentation crosswalk is provided in Appendix D. That table should be updated as presenters confirm titles, authors, and whether each presentation should be cited as a working paper, supporting presentation, or meeting-record item.
+
+## CPUE Indices
+
+Text to be added during the meeting. This section should summarize the CPUE coordination discussion, historical CPUE synthesis, effort-creep treatment, spatio-temporal CPUE alternatives, Peruvian CPUE standardization, index-weighting questions, and whether separate or combined CPUE products should be carried forward.
+
+## Biological Inputs
+
+Text to be added during the meeting. This section should summarize biological assumptions and data inputs, including maturity, natural mortality, weight-at-age, length-weight relationships, length-frequency composition data, and implications for assessment and operating-model conditioning.
+
+## Assessment Model Development
+
+Text to be added during the meeting. This section should summarize the SC13 base-model developments, candidate simplifications, single-stock and two-stock alternatives, reduced-index configurations, selectivity assumptions, recruitment scenarios, and model diagnostics.
+
+## Operating Models and MSE Linkages
+
+Text to be added during the meeting. This section should summarize operating-model specifications, reference-set and robustness-set uncertainties, MCMC feasibility, management-procedure input diagnostics, and workflow needs for the June 2026 MSE workshop.
+
+# Decisions and Agreements
+
+Add agreed decisions here as the meeting proceeds.
+
+| No. | Decision or agreement | Topic | Follow-up needed |
+|---:|---|---|---|
+| 1 | TBD | TBD | TBD |
+
+# Action Items
+
+Add actions here as the meeting proceeds.
+
+| Action | Lead | Support | Target timing |
+|---|---|---|---|
+| Update the participant list and affiliations | Chair / Secretariat | Members | During meeting |
+| Maintain session-level report text as discussions conclude | Session leads | Rapporteurs / participants | Daily |
+| Prepare a final index-ranking table for candidate abundance indices | Assessment/index subgroup | Acoustic and CPUE contributors | Before report adoption |
+| Prepare an operating-model uncertainty table for MSE conditioning | MSE subgroup | Assessment subgroup | Before report adoption |
+
+# Open Issues / Risks to Track
+
+- Some candidate indices may have useful contrast but unresolved representativeness, catchability, availability, or uncertainty issues.
+- Acoustic and CPUE information may give conflicting recent signals, requiring clear documentation of interpretation and model-treatment choices.
+- Model simplification for MSE tractability must be balanced against structural assumptions that members view as scientifically important.
+- Biological inputs may differ by area, fleet, season, or stock hypothesis, and may require explicit sensitivity tests.
+- Report writing must keep pace with the technical discussion so that decisions are not lost before adoption.
+
+# Appendix A. Shortened Draft Agenda
+
+This appendix summarizes the draft agenda from SCW16-Doc00. It should be updated if the adopted meeting agenda differs materially.
+
+## Day 1: Acoustic Session
+
+- Opening ceremony, official photo, and meeting organization.
+- Historical review of hydroacoustic survey programs in north-central Chile.
+- Preliminary results of the 2026 north-central Chile hydroacoustic survey.
+- Oceanographic conditions during the 2026 acoustic survey.
+- Spatio-temporal modeling of acoustic backscatter from the north-central Chile survey.
+- Toward a standardized northern Chile acoustic abundance index.
+- Opportunistic acoustic data collection from the south-central Chilean commercial fleet.
+- Review of jack mackerel acoustic assessments conducted in Peru, including SCW16-Doc16.
+- Echogram examination and validation.
+- General discussion and technical recommendations.
+
+## Day 2: CPUE Session
+
+- Metadata by fleet and country.
+- CPUE methods by fleet and country.
+- Peruvian CPUE report, including SCW16-Doc15.
+- Comparative analysis and parsimony across candidate indices.
+- Effort-creep review and decision for stock assessment use.
+- Catchability and availability blocks by abundance index.
+- CPUE weighting factors for stock assessment.
+- Separate versus combined index products for HCR or management-procedure use.
+
+## Day 3: Recap, Report Drafting, and Biological Inputs
+
+- Recap of acoustic and CPUE sessions.
+- Drafting of index-session report text and follow-up tasks.
+- Summary of SCW16-Doc01 and benchmark-model implications.
+- Review of biological assumptions used in the assessment and operating models.
+- Review of Peru length-weight and length-frequency information, including SCW16-Doc13 and SCW16-Doc14.
+
+## Day 4: Projections, Recruitment Scenarios, and Operating Models
+
+- Assessment projections and recruitment scenarios.
+- Candidate assessment-model runs and sensitivity structure.
+- Operating-model specifications for MSE conditioning.
+- MCMC evaluations, convergence diagnostics, run-time constraints, and feasibility.
+
+## Day 5: Final Decisions and Report Adoption
+
+- Final benchmark decisions and recommendations.
+- Confirmation of model-run priorities, operating-model specifications, and follow-up tasks.
+- Report drafting, review, and adoption.
+
+# Appendix B. Participants
+
+This participant list is based on the registration information available at the
+start of the benchmark meeting. Email addresses are retained outside this public
+report.
+
+| Name | Delegation | Role | Organisation / agency | Format |
+|---|---|---|---|---|
+| Jose Ignacio Zenteno Loredo | Chile | Advisor | IFOP | In person |
+| Aquiles Sepulveda | Chile | Advisor | INPESCA | In person |
+| Qi Lee | Invited Expert | Invited Expert by SPRFMO | University of Washington | In person |
+| Niels Teon Hintzen | European Union | Expert | PFA | In person |
+| Karolina Molla Gazi | European Union | Designated Representative / HoD | Wageningen Marine Research | In person |
+| Jim Ianelli | JMWG Chairperson | Expert / Chair | NOAA | In person |
+| Victor Catasti | Chile | Expert | IFOP | In person |
+| Ignacio Paya | Chile | Expert | IFOP | In person |
+| Sebastian Vazquez | Chile | Expert | INPESCA | In person |
+| Nicolas Alegria | Chile | Expert | INPESCA | In person |
+| Nicole Mermoud | Chile | Designated Representative / HoD | SUBPESCA | In person |
+| Ana Alegre Norza Sior | Peru | Designated Representative / HoD | Instituto del Mar del Peru | In person |
+| Criscely Lujan Paredes | Peru | Expert | Instituto del Mar del Peru | In person |
+| Mirian Geronimo Aparicio | Peru | Expert | Instituto del Mar del Peru | In person |
+| Gersson Roman Amancio | Peru | Expert | Instituto del Mar del Peru | In person |
+| Erich Diaz Acuna | Peru | Expert | Instituto del Mar del Peru | In person |
+| Josymar Torrejon | Peru | Expert | Instituto del Mar del Peru | In person |
+| Daniel Isaias Grados Paredes | Peru | Expert | Instituto del Mar del Peru | In person |
+| Carlos Valdez Mego | Peru | Expert | Instituto del Mar del Peru | In person |
+| Marissela Pozada Herrera | Peru | Expert | Instituto del Mar del Peru | In person |
+| Mariano Sergio Gutierrez Torero | Peru | Expert | Instituto Humboldt | In person |
+| Salvador Peraltilla Neyra | Peru | Expert | Sociedad Nacional de Pesqueria | In person |
+| Sandra Marisol Cahuin Villanueva | Peru | Expert | Instituto del Mar del Peru | Virtual |
+| Iago Mosqueira | Expert | Expert | WUR | Virtual |
+| Teobaldo Dioses | Peru | Expert | GMAIL | In person |
+| Jaime Letelier | Chile | Expert | IFOP | TBD |
+| Esteban Molina | Chile | Expert | IFOP | TBD |
+| Francisco Leiva | Chile | Expert | IFOP | TBD |
+| Javier Legua | Chile | Expert | IFOP | TBD |
+| Jorge Castillo | Chile | Expert | IFOP | TBD |
+
+# Appendix C. Document Summary by Topic
+
+This appendix summarizes SCW16-Doc01 through SCW16-Doc16. The organization is by topic rather than document number so that related evidence can be reviewed together.
+
+## Assessment and Model Structure
+
+### Developments of the Base SC13 Model
+
+[SCW16-Doc01](SCW16-Doc01.html) documents benchmark development from the SC13 JJM assessment model, including single-stock and two-stock configurations, reduced-index sensitivities, selectivity alternatives, and model diagnostics. It is the main bridge between the current assessment model and the benchmark model set.
+
+Key report use: summarize accepted base-model structure, candidate simplifications, retained sensitivities, and any model configurations to carry into OM conditioning.
+
+## Operating Models and MSE
+
+### Operating Models for Jack Mackerel MSE
+
+[SCW16-Doc04](SCW16-Doc04-Operating_Models.pdf) describes the operating-model structure for jack mackerel MSE. It should be used to organize reference-set and robustness-set uncertainties, including stock hypotheses, recruitment assumptions, selectivity, catchability, and future projection structure.
+
+Key report use: define the operating-model grid or equivalent uncertainty table that will feed the June 2026 MSE workshop.
+
+## CPUE
+
+### CPUE Coordination Priorities and Working-Paper Plan
+
+[SCW16-Doc02](SCW16-Doc02-CPUE_Coordination.html) provides the forward-looking CPUE coordination plan for the benchmark, including candidate topics, decision points, metadata needs, and working-paper expectations.
+
+Key report use: structure the CPUE session and make sure each candidate CPUE product is classified for assessment, OM conditioning, MP input, diagnostic use, or hold.
+
+### Meta-Analysis of CPUE Papers on Jack Mackerel
+
+[SCW16-Doc03](SCW16-Doc03-CPUE_MetaAnalysis.html) synthesizes CPUE papers from 2022-2025. It provides historical context on CPUE methods, index conflicts, effort creep, spatial behavior, environmental effects, and recurring recommendations.
+
+Key report use: provide background for interpreting new CPUE papers and avoid repeating previously identified unresolved issues.
+
+### Chile CPUE Effort Creep
+
+[SCW16-Doc07](SCW16-Doc07-Chile_CPUE_Effort_Creep.pdf) focuses on implementation of an informed creep correction for the Chilean jack mackerel CPUE index. It is central to decisions about fishing-power correction and whether a revised CPUE series should be used directly or treated as a sensitivity.
+
+Key report use: document whether effort-creep treatment is accepted, treated as a sensitivity, or deferred pending additional diagnostics.
+
+### Chile CPUE with sdmTMB/SPDE
+
+[SCW16-Doc10](SCW16-Doc10-Chile_CPUE_sdmTMB.pdf) updates the Chilean CPUE abundance index using spatio-temporal SPDE-based models with `sdmTMB`. It should be compared directly with other Chilean CPUE standardization approaches.
+
+Key report use: evaluate whether the spatio-temporal CPUE product should replace, supplement, or diagnose the current assessment CPUE series.
+
+### Chile CPUE with INLA
+
+[SCW16-Doc12](SCW16-Doc12-Spatio-temporal_modelling_INLA_CPUE.pdf) standardizes the central-southern Chile CPUE fishery using hierarchical Bayesian models with INLA. It provides a complementary spatio-temporal approach to Doc10.
+
+Key report use: compare diagnostics, uncertainty, spatial extrapolation, and annual index behavior against the `sdmTMB` CPUE product.
+
+### Peru CPUE
+
+[SCW16-Doc15](SCW16-Doc15-Peru_CPUE.pdf) presents standardization of catch-per-unit-effort for jack mackerel from 2015-2025 in Peruvian national jurisdictional waters.
+
+Key report use: evaluate whether the Peruvian CPUE product is suitable as a far-north abundance index, an assessment sensitivity, an OM-conditioning input, or a diagnostic series.
+
+## Acoustic Indices
+
+### Northern Chile Acoustic Spatio-Temporal Model
+
+[SCW16-Doc06](SCW16-Doc06-Northern_Chile_Acoustic_STM.pdf) develops a standardized abundance index for Chilean jack mackerel using spatio-temporal modeling of acoustic survey data in northern Chile.
+
+Key report use: evaluate acoustic index representativeness, uncertainty, spatial coverage, and suitability for assessment and OM use.
+
+### Fishery-Dependent Acoustics
+
+[SCW16-Doc08](SCW16-Doc08-Fishery_Dependent_Acoustics.pdf) summarizes interannual variability in distribution, size structure, and biomass estimated from fishery-dependent acoustics.
+
+Key report use: decide whether fishery-dependent acoustic products provide a usable abundance signal or primarily diagnostic/context information.
+
+### Central-North Acoustic Density with sdmTMB
+
+[SCW16-Doc09](SCW16-Doc09-North_Acoustic_Density_sdmTMB.pdf) estimates a jack mackerel acoustic density index for central-north acoustic surveys using spatio-temporal models with `sdmTMB`.
+
+Key report use: compare with Doc06 and other acoustic products to determine whether indices are complementary, redundant, or conflicting.
+
+### Peru Acoustic Index Considerations
+
+[SCW16-Doc16](SCW16-Doc16-Peru_Acoustic_Index.pdf) summarizes considerations on the use of the jack mackerel acoustic index in Peruvian national jurisdictional waters.
+
+Key report use: classify the Peru acoustic information as a candidate index, supporting interpretation, or diagnostic evidence, depending on data extent, uncertainty, and assessment compatibility.
+
+## Biology and Composition Inputs
+
+### Biology
+
+[SCW16-Doc05](https://sprfmo.github.io/JM_biol/SCW16-Paper-05-JM_Biology.html) summarizes biological inputs for the assessment, including natural mortality, maturity, weight-at-age, and spawning-biomass calculations.
+
+Key report use: document accepted biological assumptions and identify sensitivity tests that should be carried into assessment or OM conditioning.
+
+### Peru Length-Weight Relationship
+
+[SCW16-Doc13](SCW16-Doc13-Peru_Length_Weight.pdf) presents the length-weight relationship of jack mackerel in Peru and implications for biomass estimation.
+
+Key report use: evaluate whether Peru-specific length-weight information affects biomass conversion, biological assumptions, or regional differences in assessment inputs.
+
+### Peru Length-Frequency Update
+
+[SCW16-Doc14](SCW16-Doc14-Peru_Length_Frequency.pdf) summarizes updated length-frequency data for the Peruvian jack mackerel far-north stock in Peruvian jurisdictional waters.
+
+Key report use: document the composition-data evidence available for the far-north stock and decide how it should be used in assessment and stock-structure discussions.
+
+## Data Quality and Supporting Evidence
+
+### Catch/Fishery Data Quality Checks
+
+[SCW16-Doc11](SCW16-Doc11-Jack_mack_data_qc.html) provides catch and fishery data quality-control checks.
+
+Key report use: use as a support screen for catch- and fishery-dependent indices, and document any data-quality issues that affect benchmark decisions.
+
+# Appendix D. Day 1 Presentations
+
+This appendix records the Day 1 presentation files available in `docs/day1`. It is intended as a crosswalk between the acoustic-session agenda, formal SCW16 papers, presentation-only material, and how each item should be used in the meeting report.
+
+| Presentation topic | Linked paper | Main contribution | Report use |
+|---|---|---|---|
+| [Historical review of hydroacoustic survey programs in north-central Chile](day1/pdf/01_Historical%20review%20of%20hydroacoustic%20survey%20programs%20in%20north%E2%80%91central%20Chile.pdf) | Presentation only | Survey-program history, continuity, and context for interpreting the northern Chile acoustic time series. | Background / context |
+| [Preliminary results of the 2026 north-central Chile hydroacoustic survey](day1/pdf/02_Preliminary%20results%20of%20the%202026%20north%E2%80%91central%20Chile%20hydroacoustic%20survey.pdf) | Presentation only; related to Chile acoustic index papers | New 2026 acoustic information and immediate interpretation of recent survey conditions and abundance signal. | New 2026 evidence / benchmark caveat |
+| [Oceanographic conditions during the 2026 acoustic survey](day1/pdf/03_Oceanography%20conditions%20during%20the%202026%20acoustic%20survey%20%28J.%20Letelier%2C%20IFOP%29.pdf) | Presentation only | Environmental context for interpreting the 2026 survey and potential availability or distribution effects. | Context / supporting interpretation |
+| [Spatio-temporal modeling of acoustic backscatter using `sdmTMB`](day1/pdf/04_Spatio%E2%80%91temporal%20modeling%20of%20acoustic%20backscatter%20%28Sa%29%20from%20the%20north%E2%80%91central%20Chile.pdf) | [SCW16-Doc09](SCW16-Doc09-North_Acoustic_Density_sdmTMB.pdf) | Acoustic density index estimated with spatio-temporal methods. | Formal paper / candidate index |
+| [Standardized northern Chile acoustic abundance index](day1/pdf/05_Spatial_modelling_acoustic_northern_Chile.pdf) | [SCW16-Doc06](SCW16-Doc06-Northern_Chile_Acoustic_STM.pdf) | Spatio-temporal modelling of northern Chile acoustic-survey data. | Formal paper / candidate index |
+| [Opportunistic acoustic data collection using the south-central Chilean commercial fleet](day1/pdf/06_Interannual%20variability%20in%20distribution%2C%20size%20structure%2C%20and%20biomass%20of%20Chilean%20jack%20mackerel%20%28Trachurus%20murphyi%29%20estimated%20from%20fishery-dependent%20acoustics.pdf) | [SCW16-Doc08](SCW16-Doc08-Fishery_Dependent_Acoustics.pdf) | Fishery-dependent acoustic information on distribution, size structure, and biomass. | Formal paper / diagnostic or candidate index |
+| [Review of jack mackerel acoustic assessments conducted in Peru](day1/pdf/07_Stock%20Assessment%20Jack%20mackerel%20in%20Peru_C.Valdez.pdf) | [SCW16-Doc16](SCW16-Doc16-Peru_Acoustic_Index.pdf) | Peruvian acoustic assessment context and considerations for index use. | Formal paper / supporting evidence or candidate index |
+| [Sonar applications in Peruvian fisheries and applicability for jack mackerel](day1/pdf/08_Sonar_Applications.pdf) | Presentation only | Methods and operational context for sonar/acoustic information in Peru and Chile. | Context / supporting methods |
+
+Use the following labels when carrying presentation material into the report:
+
+| Label | Meaning |
+|---|---|
+| Formal paper | Presentation tied to a numbered SCW16 working paper. |
+| Presentation only | Material presented to the meeting but not currently represented by a numbered SCW16 paper. |
+| New 2026 evidence | Recent information that may affect benchmark interpretation even if it is not a standalone paper. |
+| Context / supporting methods | Background or method information that helps interpret candidate indices but is not itself a direct assessment input. |

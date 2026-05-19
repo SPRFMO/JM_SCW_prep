@@ -1,0 +1,106 @@
+---
+title: "Report Collaboration Workflow"
+format:
+  html:
+    output-file: "report-collaboration-workflow.html"
+    self-contained: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+execute:
+  warning: false
+  message: false
+  echo: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div class="paper-title">Report Collaboration Workflow</div>
+```
+
+# Purpose
+
+This note describes how to use Google Docs for collaborative drafting while keeping the Quarto/GitHub repository as the source of record for the benchmark report.
+
+The intended audience is contributors who can help draft, comment on, or review report text but do not need to work directly in GitHub.
+
+# Source of Record
+
+The source of record for the benchmark report is:
+
+- Quarto source: [`JMWG-Benchmark-Meeting-report-2026.qmd`](JMWG-Benchmark-Meeting-report-2026.qmd)
+- Published HTML: [`JMWG-Benchmark-Meeting-report-2026.html`](JMWG-Benchmark-Meeting-report-2026.html)
+- Published PDF: [`JMWG-Benchmark-Meeting-report-2026.pdf`](JMWG-Benchmark-Meeting-report-2026.pdf)
+- Word export: [`JMWG-Benchmark-Meeting-report-2026.docx`](JMWG-Benchmark-Meeting-report-2026.docx)
+
+Google Docs should be treated as a collaborative drafting and review copy, not as the final technical source.
+
+# Recommended Workflow
+
+1. Render the benchmark report from Quarto to DOCX.
+2. Upload the DOCX to Google Drive and open it as a Google Doc.
+3. Share the Google Doc with contributors using comment or suggestion access.
+4. Ask contributors to work in assigned sections, such as Acoustic, CPUE, Biology, Assessment, Operating Models/MSE, Decisions, and Action Items.
+5. Periodically review the Google Doc and incorporate accepted edits into the Quarto source file.
+6. Re-render the Quarto report to refresh the HTML, PDF, and DOCX outputs.
+7. Replace or update the Google Docs drafting copy when the Quarto version has materially changed.
+
+# Contributor Guidance
+
+Contributors using Google Docs should:
+
+- use Suggesting mode for proposed wording changes;
+- use comments for questions, caveats, or requests for supporting evidence;
+- avoid broad formatting changes unless needed for clarity;
+- keep technical recommendations short enough to be moved into the meeting report;
+- include document numbers where possible, for example `SCW16-Doc06` or `SCW16-Doc15`;
+- identify whether a point is a decision, an unresolved issue, an action item, or background context.
+
+# Section Ownership
+
+Use a small ownership table to track who is drafting and whether the text has been integrated back into Quarto.
+
+| Section | Google Docs lead | Reviewers | Integrated into Quarto? | Notes |
+|---|---|---|---|---|
+| Acoustic indices | TBD | TBD | No | Include Chile and Peru acoustic material. |
+| CPUE indices | TBD | TBD | No | Include Chile, Peru, effort creep, and index ranking. |
+| Biological inputs | TBD | TBD | No | Include biology, length-weight, and length-frequency evidence. |
+| Assessment model | TBD | TBD | No | Include model structure, simplification, and diagnostics. |
+| Operating models / MSE | TBD | TBD | No | Include OM grid, MCMC feasibility, and MP-input diagnostics. |
+| Decisions and action items | Chair / rapporteurs | Session leads | No | Update daily. |
+
+# Reconciliation Rules
+
+When moving text from Google Docs back into Quarto:
+
+- keep accepted edits, not unresolved suggestions;
+- preserve report structure and heading levels from the Quarto file;
+- convert Google Docs comments into action items or open issues only when they require follow-up;
+- rewrite long discussion text into concise report language;
+- keep tables simple enough to render cleanly in HTML, PDF, and DOCX;
+- re-check links to SCW16 documents after edits are incorporated.
+
+# Practical Commands
+
+Render the benchmark report:
+
+```bash
+quarto render JMWG-Benchmark-Meeting-report-2026.qmd
+```
+
+Render the site home page after adding or changing links:
+
+```bash
+quarto render index.qmd
+```
+
+The rendered DOCX can then be uploaded to Google Drive for collaborative editing.
+
+# Versioning Practice
+
+Use dates in the Google Docs title so contributors know which draft they are editing, for example:
+
+`JMWG Benchmark Meeting Report 2026 - Google Docs Draft - 2026-05-18`
+
+When a new Google Docs draft is created from a re-rendered DOCX, mark the older Google Doc as superseded rather than deleting it immediately. This preserves comment history while making the current working copy clear.
