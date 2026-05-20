@@ -56,7 +56,7 @@ website:
       - href: SC13.qmd
         text: SC13
       - href: mod0.14_mod1.1_comparison.qmd
-        text: mod0.14 vs mod1.1
+        text: Model comparison
       - href: helper_scripts_guide.qmd
         text: Script Guide
 
