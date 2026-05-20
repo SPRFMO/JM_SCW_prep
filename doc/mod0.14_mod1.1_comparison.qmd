@@ -255,12 +255,20 @@ catch_comp |>
 #| fig-cap: "Observed and predicted indices for the two Peru survey series."
 #| echo: false
 
-survey_comp |>
-  pivot_longer(c(observed, predicted), names_to = "series", values_to = "index") |>
-  ggplot(aes(year, index, color = model, linetype = series)) +
+survey_obs <- survey_comp |>
+  distinct(survey, year, observed)
+
+ggplot(survey_comp, aes(year, predicted, color = model)) +
   geom_line(linewidth = 0.7) +
+  geom_point(
+    data = survey_obs,
+    aes(year, observed),
+    inherit.aes = FALSE,
+    color = "black",
+    size = 1.8
+  ) +
   facet_wrap(~survey, scales = "free_y", ncol = 1) +
-  labs(x = NULL, y = "Index", color = NULL, linetype = NULL) +
+  labs(x = NULL, y = "Index", color = NULL) +
   theme_report()
 ```
 
