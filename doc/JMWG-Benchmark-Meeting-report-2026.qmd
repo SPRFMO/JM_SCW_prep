@@ -43,6 +43,8 @@ execute:
   message: false
   echo: false
   results: false
+filters:
+  - narrative_paragraph_numbers.lua
 ---
 
 ```{r}
