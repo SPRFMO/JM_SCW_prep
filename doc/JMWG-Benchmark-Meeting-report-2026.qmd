@@ -167,7 +167,9 @@ The Day 1 acoustic session combined formal SCW16 working papers with presentatio
 
 For reporting purposes, the presentation material should be separated into four categories: formal papers tied to numbered SCW16 documents, presentation-only background, new 2026 evidence, and context or supporting methods. This distinction is important because not all Day 1 material is intended to become a direct assessment input. Some presentations provide candidate abundance indices, while others provide survey context, environmental interpretation, diagnostic information, or methodological background.
 
-A Day 1 presentation crosswalk is provided in Appendix D. That table should be updated as presenters confirm titles, authors, and whether each presentation should be cited as a working paper, supporting presentation, or meeting-record item.
+Presentation summaries are provided in Appendix D. Those tables should be updated
+as presenters confirm titles, authors, and whether each presentation should be
+cited as a working paper, supporting presentation, or meeting-record item.
 
 ::: {.callout-note title="New draft material: Day 1 acoustic session summary"}
 The meeting noted that many working papers and presentations analysed important
@@ -285,24 +287,6 @@ available. The objective is to determine which acoustic information is suitable
 for direct assessment likelihood use, which is suitable for operating-model
 conditioning or management-procedure diagnostics, and which should remain
 supporting context.
-
-### Day 1 Requests
-
-The following requests were identified during the Day 1 acoustic session and
-should be tracked separately from general discussion notes.
-
-| Request | Requested product | Lead / source | Purpose |
-|---|---|---|---|
-| Data extent for all index analyses | For each acoustic and CPUE analysis, provide years covered, spatial extent, fleet or survey coverage, observation unit, sample sizes, treatment of missing data, uncertainty, and expansion method. | All index contributors | Allow the benchmark to evaluate representativeness, data support, and suitability for assessment, OM conditioning, or MP use. |
-| Presentation/report summaries | Each technical discussion should leave short report-ready text summarizing decisions, unresolved issues, data requests, and follow-up tasks. | Session leads / rapporteurs | Keep the benchmark report current enough to support intersessional Scientific Committee approval and the June MSE workshop. |
-| Public access to presentations | Clarify whether presentations can be made available to the full Scientific Committee. | Secretariat / presenters | Ensure the Scientific Committee can review the evidence base supporting benchmark recommendations. |
-| Chile north acoustic survey metadata | Provide a table by year, where possible, with number of transects, area covered, number of trawls or biological samples used for backscatter interpretation, length-frequency data, and expansion information. | Chile acoustic contributors | Compare 2024-2026 survey data extent with previous years and evaluate survey support for candidate acoustic indices. |
-| Chile north acoustic table clarification | Clarify the distinction between total survey area, area containing jack mackerel, NASC density, and biomass-related quantities in the presented survey table. | Chile acoustic contributors | Avoid confusion between survey domain, occupied area, density, and biomass interpretation. |
-| Chile central-south acoustic exclusion rationale | Draft a paragraph explaining why central-south acoustic data, including 2012, 2015, 2017, 2020, 2021, and 2023, have not been used in the assessment and whether a benchmark sensitivity is warranted. | Chile acoustic / assessment contributors | Document whether exclusion is due to survey design, representativeness, data quality, model behaviour, or insufficient documentation. |
-| Cross-year acoustic data comparison | Prepare a dedicated analysis comparing survey extent, backscatter, biological sampling, length-frequency data, and numbers-at-age across years and regions. | Acoustic/index subgroup | Put northern Chile, central-south Chile, Peru, and fishery-dependent acoustic products on a common evidence basis. |
-| Peru acoustic backscatter and length composition | Provide acoustic survey backscatter and associated length-composition data, with metadata on survey timing, spatial extent, transect coverage, biological sampling, length type, and uncertainty. | Peru acoustic contributors | Evaluate whether Peru acoustic information can be used as an index, sensitivity, OM input, or diagnostic. |
-| Peru acoustic assessment treatment check | Check current assessment treatment of the Peru acoustic index, including selectivity, catchability, CV assumptions, relationship to Peru CPUE, and possible pre-/post-1997/1998 treatment. | Assessment subgroup | Determine whether the current model treatment is defensible and whether reintroduction or split-index treatment should be tested. |
-| Chile central-south acoustic sensitivity | Evaluate whether updated central-south acoustic data through 2023 should be included as a sensitivity or retained as diagnostic information. | Assessment subgroup / Chile contributors | Decide whether unused central-south acoustic information should be tested in the benchmark model set. |
 :::
 
 ## CPUE Indices
@@ -394,26 +378,6 @@ of how El Nino effects were represented relative to annual effects. The report
 should document the rationale for any offshore catchability break and whether
 environmental effects are interpreted as catchability effects, availability
 effects, or residual year effects.
-
-### Day 2 Requests
-
-The following requests were identified during the Day 2 CPUE and data-quality
-session and should be tracked separately from general discussion notes.
-
-| Request | Requested product | Lead / source | Purpose |
-|---|---|---|---|
-| Catch/fishery data workflow statement | Draft a paragraph explaining the JMWG's compressed data schedule, the current template-based submission routine, and why database development alone will not resolve near-term benchmark data needs. | Data-quality subgroup / Chair / Secretariat | Document why the current workflow is used and what should be improved without disrupting immediate assessment preparation. |
-| Post data-quality checks | Post the catch and fishery data quality-check material to the `jjmData` GitHub repository. | Data-quality subgroup | Make diagnostics and checks visible to members working on assessment inputs. |
-| Clarify sampling and ALK sample sizes | Investigate reported sample sizes in age-length-key and composition data, including discrepancies between numbers of ages and numbers of length measurements. | Data-quality subgroup / Members | Improve interpretation of sample size, coverage, and uncertainty in composition inputs. |
-| Effort-creep diagnostic run | Run an assessment configuration with no creep correction but with a catchability step change in 2005. | Assessment subgroup / Chile CPUE contributors | Test whether the model estimates a large catchability shift without directly imposing the effort-creep correction. |
-| Chile CPUE early-period explanation | Provide a clear explanation for why the new set-based CPUE series gives lower CPUE in earlier years with high catches than the current trip-based assessment index. | Chile CPUE contributors | Support any defensible recommendation to replace, supplement, or retain the current Chile CPUE index. |
-| Chile CPUE set coverage | Add number and proportion of sets by year to the CPUE data-summary table. | Chile CPUE contributors | Document representativeness and low early-period coverage. |
-| Chile CPUE model-comparison summary | Summarize the `sdmTMB` and INLA model-comparison discussion, including year-effect treatment, mesh sensitivity, northern fishing activity, and annual uncertainty. | Sebastian / Ignacio / Niels | Provide report-ready text for deciding whether a new Chile CPUE index can be used in the assessment. |
-| Days-at-sea coefficient check | Check the strength and interpretation of the days-at-sea or DFP coefficient in the INLA-based CPUE analysis. | Sebastian / Chile CPUE contributors | Determine whether this covariate reflects fishing effort, spatial availability, or movement effects that could bias the abundance signal. |
-| True-zero CPUE records | Check whether zero CPUE records are true fishing zeroes or technical/non-fishing records, and whether they should be included in the CPUE standardization. | Chile CPUE contributors | Decide whether positive-only models are adequate or whether zero-inflated/delta treatment should be evaluated. |
-| Peru CPUE full-series evaluation | Extend and evaluate the Peru CPUE time series before using it as an assessment or MSE input. | Peru CPUE contributors / Assessment subgroup | Avoid adopting a truncated recent series before its relationship to the historical series can be evaluated. |
-| Peru CPUE year-interaction diagnostic | Provide the smoother or effect plot for the year interaction in the Peru CPUE model. | Peru CPUE contributors | Help evaluate whether spatial or fleet changes are being absorbed by model smoothers. |
-| Offshore CPUE catchability treatment | Document the rationale for the 2021 offshore catchability break and the interpretation of El Nino effects relative to annual effects. | Offshore CPUE contributor / Assessment subgroup | Clarify whether offshore CPUE changes represent abundance, catchability, availability, or environmental effects. |
 :::
 
 ## Biological Inputs
@@ -681,9 +645,17 @@ Key report use: document the composition-data evidence available for the far-nor
 
 Key report use: use as a support screen for catch- and fishery-dependent indices, and document any data-quality issues that affect benchmark decisions.
 
-# Appendix D. Day 1 Presentations
+# Appendix D. Presentation summaries
 
-This appendix records the Day 1 presentation files available in `docs/day1`. It is intended as a crosswalk between the acoustic-session agenda, formal SCW16 papers, presentation-only material, and how each item should be used in the meeting report.
+This appendix records presentation files available for the benchmark meeting. It
+is intended as a crosswalk between the meeting agenda, formal SCW16 papers,
+presentation-only material, and how each item should be used in the meeting
+report.
+
+## Day 1 Presentations
+
+The Day 1 presentation files are available in `docs/day1` and are organized
+around the acoustic-session agenda.
 
 | Presentation topic | Linked paper | Main contribution | Report use |
 |---|---|---|---|
@@ -696,6 +668,18 @@ This appendix records the Day 1 presentation files available in `docs/day1`. It 
 | [Review of jack mackerel acoustic assessments conducted in Peru](day1/pdf/07_Stock%20Assessment%20Jack%20mackerel%20in%20Peru_C.Valdez.pdf) | [SCW16-Doc16](SCW16-Doc16-Peru_Acoustic_Index.pdf) | Peruvian acoustic assessment context and considerations for index use. | Formal paper / supporting evidence or candidate index |
 | [Sonar applications in Peruvian fisheries and applicability for jack mackerel](day1/pdf/08_Sonar_Applications.pdf) | Presentation only | Methods and operational context for sonar/acoustic information in Peru and Chile. | Context / supporting methods |
 | [Acoustic data collected by fishing vessels in Peru](day1/pdf/09_Acoustics%20fishing%20vessels%20Peru%20V1.pdf) | Presentation only | Use of fishing-vessel acoustic data for estimating abundance or biomass of anchovy and Chilean jack mackerel in Peru. | Context / supporting methods |
+
+## Day 2 Presentations
+
+The Day 2 presentation files currently available in `docs/day2` are organized
+around the CPUE and data-quality session.
+
+| Presentation topic | Linked paper | Main contribution | Report use |
+|---|---|---|---|
+| [Implementation of an informed creep correction into the Chile Jack Mackerel CPUE Index](day2/02_Implementation%20of%20an%20informed%20creep%20correction%20into%20the%20Chile%20Jack%20Mackerel%20CPUE%20Index.pptx) | [SCW16-Doc07](SCW16-Doc07-Chile_CPUE_Effort_Creep.pdf) | Industrial-vessel fishing-power and effort-creep correction for the Chilean jack mackerel CPUE index. | Formal paper / candidate base or sensitivity treatment |
+| [Standardization of Chilean jack mackerel CPUE fishery in central-southern Chile using Hierarchical Bayesian Models](day2/04_Standardization%20of%20Chilean%20jack%20mackerel%20CPUE%20fishery%20in%20central-southern%20Chile%20using%20Hierarchical%20Bayesian%20Models%20%28INLA%29.pptx) | [SCW16-Doc12](SCW16-Doc12-Spatio-temporal_modelling_INLA_CPUE.pdf) | INLA-based spatio-temporal standardization of the central-southern Chile CPUE fishery. | Formal paper / candidate index |
+| [Standardization of CPUE for jack mackerel in Peru](day2/05_CPUE_Peru.pdf) | [SCW16-Doc15](SCW16-Doc15-Peru_CPUE.pdf) | Updated Peruvian CPUE standardization for 2015-2025 using industrial and artisanal fleet information. | Formal paper / candidate diagnostic or future index |
+| [CPUE standardisation offshore fleet](day2/06_CPUE%20standardisation%20offshore%20fleet.pptx) | Presentation only; related to offshore CPUE assessment treatment | Offshore fleet CPUE standardization, including treatment of a 2021 catchability break and environmental or catchability interpretation. | Presentation only / model-treatment diagnostic |
 
 Use the following labels when carrying presentation material into the report:
 
