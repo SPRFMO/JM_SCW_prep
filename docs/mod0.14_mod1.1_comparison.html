@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-05-19">
 
-<title>Comparison of mod0.14 and mod1.1 – SPRFMO Jack Mackerel Working Group</title>
+<title>Comparison of mod0.14, mod1.1, and mod1.2 – SPRFMO Jack Mackerel Working Group</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Comparison of mod0.14 and mod1.1</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Comparison of mod0.14, mod1.1, and mod1.2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
 </div>
-<div class="paper-title">Comparison of mod0.14 and mod1.1</div>
+<div class="paper-title">Comparison of mod0.14, mod1.1, and mod1.2</div>
 <section id="model-inputs" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="model-inputs"><span class="header-section-number">1</span> Model Inputs</h2>
 <div class="cell">
@@ -405,6 +405,19 @@ Table&nbsp;1: Model input files and retained data sources.
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">8</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">mod1.2</td>
+<td style="text-align: left;">mod1.2.dat</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FarNorth</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Peru_Acoustic, Peru_CPUE</td>
+<td style="text-align: right;">1970</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -441,6 +454,12 @@ Table&nbsp;2: Model fit statistics read from the ADMB .par files.
 <td style="text-align: right;">149</td>
 <td style="text-align: right;">638.2225</td>
 <td style="text-align: right;">0.00012</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mod1.2</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">636.4521</td>
+<td style="text-align: right;">0.00009</td>
 </tr>
 </tbody>
 </table>
@@ -573,6 +592,7 @@ Table&nbsp;3: Likelihood component values.
 <th style="text-align: left;">component</th>
 <th style="text-align: right;">mod0.14</th>
 <th style="text-align: right;">mod1.1</th>
+<th style="text-align: right;">mod1.2</th>
 </tr>
 </thead>
 <tbody>
@@ -580,9 +600,11 @@ Table&nbsp;3: Likelihood component values.
 <td style="text-align: left;">catch_like</td>
 <td style="text-align: right;">0.875</td>
 <td style="text-align: right;">1.995</td>
+<td style="text-align: right;">2.085</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">age_like_fsh</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -590,19 +612,23 @@ Table&nbsp;3: Likelihood component values.
 <td style="text-align: left;">length_like_fsh</td>
 <td style="text-align: right;">473.206</td>
 <td style="text-align: right;">514.382</td>
+<td style="text-align: right;">516.467</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">sel_like_fsh</td>
 <td style="text-align: right;">8.713</td>
 <td style="text-align: right;">17.035</td>
+<td style="text-align: right;">16.443</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ind_like</td>
 <td style="text-align: right;">59.308</td>
 <td style="text-align: right;">73.947</td>
+<td style="text-align: right;">75.271</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">age_like_ind</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -610,9 +636,11 @@ Table&nbsp;3: Likelihood component values.
 <td style="text-align: left;">length_like_ind</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">sel_like_ind</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -620,19 +648,23 @@ Table&nbsp;3: Likelihood component values.
 <td style="text-align: left;">rec_like</td>
 <td style="text-align: right;">16.542</td>
 <td style="text-align: right;">30.331</td>
+<td style="text-align: right;">25.857</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">fpen</td>
 <td style="text-align: right;">0.054</td>
 <td style="text-align: right;">0.348</td>
+<td style="text-align: right;">0.163</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">post_priors_indq</td>
 <td style="text-align: right;">0.041</td>
 <td style="text-align: right;">0.055</td>
+<td style="text-align: right;">0.044</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">post_priors</td>
+<td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.000</td>
 </tr>
@@ -640,11 +672,13 @@ Table&nbsp;3: Likelihood component values.
 <td style="text-align: left;">residual</td>
 <td style="text-align: right;">0.185</td>
 <td style="text-align: right;">0.128</td>
+<td style="text-align: right;">0.122</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">total</td>
 <td style="text-align: right;">558.922</td>
 <td style="text-align: right;">638.222</td>
+<td style="text-align: right;">636.452</td>
 </tr>
 </tbody>
 </table>
@@ -1112,7 +1146,7 @@ Table&nbsp;3: Likelihood component values.
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Comparison of mod0.14 and mod1.1"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Comparison of mod0.14, mod1.1, and mod1.2"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
@@ -1148,7 +1182,7 @@ Table&nbsp;3: Likelihood component values.
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mod0.14"</span>, <span class="st">"mod1.1"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mod0.14"</span>, <span class="st">"mod1.1"</span>, <span class="st">"mod1.2"</span>)</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>read_par_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(model, <span class="at">output =</span> <span class="fu">file.path</span>(assessment_dir, <span class="st">"results"</span>)) {</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  vals <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scan</span>(<span class="fu">file.path</span>(output, <span class="fu">paste0</span>(model, <span class="st">".par"</span>)),</span>
@@ -1266,7 +1300,7 @@ Table&nbsp;3: Likelihood component values.
 <span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>{{&lt; include _includes/sprfmo-banner.html &gt;}}</span>
 <span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="paper-title"&gt;Comparison of mod0.14 and mod1.1&lt;/div&gt;</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="paper-title"&gt;Comparison of mod0.14, mod1.1, and mod1.2&lt;/div&gt;</span></span>
 <span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model Inputs</span></span>

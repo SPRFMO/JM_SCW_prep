@@ -154,7 +154,7 @@ This is the converted Quarto version of the incremental SC13 assessment update d
 
 ## mod0.14 and mod1.1 Comparison
 
-This report compares the standalone stock-2 `mod0.14` run against `mod1.1` using the current JJM output files.
+This report compares the standalone stock-2 `mod0.14` run against `mod1.1` and the 12-age `mod1.2` variant using the current JJM output files.
 
 ## Helper Scripts Guide
 

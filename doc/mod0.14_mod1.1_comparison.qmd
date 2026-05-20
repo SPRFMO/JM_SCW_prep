@@ -1,5 +1,5 @@
 ---
-title: "Comparison of mod0.14 and mod1.1"
+title: "Comparison of mod0.14, mod1.1, and mod1.2"
 date: today
 format:
   html:
@@ -35,7 +35,7 @@ library(knitr)
 library(purrr)
 library(tidyr)
 
-models <- c("mod0.14", "mod1.1")
+models <- c("mod0.14", "mod1.1", "mod1.2")
 
 read_par_summary <- function(model, output = file.path(assessment_dir, "results")) {
   vals <- as.numeric(scan(file.path(output, paste0(model, ".par")),
@@ -153,7 +153,7 @@ like_comp <- map_dfr(models, like_df)
 {{< include _includes/sprfmo-banner.html >}}
 
 ```{=html}
-<div class="paper-title">Comparison of mod0.14 and mod1.1</div>
+<div class="paper-title">Comparison of mod0.14, mod1.1, and mod1.2</div>
 ```
 
 ## Model Inputs
