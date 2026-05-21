@@ -416,6 +416,103 @@ index should be documented carefully, because substantial changes to CPUE
 treatment between the benchmark and MSE implementation could affect perceptions
 of the MSE results.
 
+The agreed uncertainty treatment for the new Chilean South-Central CPUE series
+is summarized in @tbl-chile-cpue-cv-weighting. The CV weight is calculated as
+the square-root of annual coverage relative to the maximum coverage in the
+series; equivalently, the table reports the inverse multiplier (`1/CV_wt`) used
+to inflate the annual CV. The assessment model uses the 1998-2025 rows and the
+weighted (`wtd`) CV column.
+
+```{r tbl-chile-cpue-cv-weighting}
+#| tbl-cap: "Chilean South-Central CPUE uncertainty table. The 1998-2025 rows were selected for the assessment-model input, and the weighted (`wtd`) CV is the CV used for the assessment model. The CV weight is the square-root of annual coverage relative to the maximum coverage."
+#| results: asis
+chile_cpue_cv <- data.frame(
+  year = c(
+    as.character(1994:2025),
+    "Mean 1998-2025"
+  ),
+  mean_cpue = c(
+    85.370, 95.896, 109.032, 77.243, 100.264, 91.383, 127.563,
+    130.360, 120.465, 138.190, 163.079, 193.942, 178.593, 148.058,
+    169.673, 161.031, 141.411, 89.460, 88.672, 97.089, 92.191,
+    91.071, 103.501, 111.113, 104.030, 153.819, 143.967, 140.068,
+    134.764, 146.730, 123.286, 145.421, 129.614
+  ),
+  sd_cpue = c(
+    17.484, 12.781, 13.295, 11.940, 12.860, 12.188, 13.687,
+    15.797, 11.277, 11.606, 12.033, 14.731, 25.286, 16.480,
+    10.637, 9.894, 10.989, 7.215, 9.422, 10.991, 10.589,
+    7.820, 10.668, 13.865, 13.952, 18.896, 16.481, 19.265,
+    21.881, 22.071, 14.038, 13.947, 13.877
+  ),
+  cv = c(
+    "20%", "13%", "12%", "15%", "13%", "13%", "11%", "12%",
+    "9%", "8%", "7%", "8%", "14%", "11%", "6%", "6%", "8%",
+    "8%", "11%", "11%", "11%", "9%", "10%", "12%", "13%", "12%",
+    "11%", "14%", "16%", "15%", "11%", "10%", "11%"
+  ),
+  wtd_cv = c(
+    "359%", "135%", "85%", "105%", "42%", "38%", "28%", "21%",
+    "18%", "18%", "11%", "11%", "49%", "28%", "10%", "10%", "11%",
+    "14%", "12%", "14%", "24%", "13%", "18%", "25%", "31%", "18%",
+    "15%", "16%", "17%", "16%", "11%", "10%", "20%"
+  ),
+  coverage = c(
+    0.3, 0.9, 1.9, 2.0, 8.6, 11.4, 13.8, 30.2, 24.6, 19.8,
+    44.9, 43.6, 7.7, 14.5, 39.1, 36.8, 46.0, 32.6, 76.5,
+    56.4, 21.2, 40.3, 29.2, 23.3, 16.8, 41.2, 50.9, 69.7,
+    80.9, 83.4, 92.4, 88.8, 81.0
+  ),
+  inv_cv_wt = c(
+    17.5499, 10.1325, 6.9736, 6.7971, 3.2778, 2.8470, 2.5876,
+    1.7492, 1.9381, 2.1602, 1.4345, 1.4558, 3.4641, 2.5244,
+    1.5373, 1.5846, 1.4173, 1.6836, 1.0990, 1.2800, 2.0877,
+    1.5142, 1.7789, 1.9914, 2.3452, 1.4976, 1.3473, 1.1514,
+    1.0687, 1.0526, 1.0000, 1.0201, 1.0681
+  )
+)
+
+if (knitr::is_html_output()) {
+  chile_cpue_cv |>
+    gt::gt() |>
+    gt::tab_header(
+      title = "Chilean South-Central CPUE CV weighting",
+      subtitle = "Assessment model uses 1998-2025 and the weighted CV column"
+    ) |>
+    gt::cols_label(
+      year = "Year",
+      mean_cpue = "Mean CPUE",
+      sd_cpue = "SD CPUE",
+      cv = "CV",
+      wtd_cv = "wtd CV",
+      coverage = "Coverage (%)",
+      inv_cv_wt = "1/CV_wt"
+    ) |>
+    gt::fmt_number(columns = c(mean_cpue, sd_cpue), decimals = 3) |>
+    gt::fmt_number(columns = coverage, decimals = 1) |>
+    gt::fmt_number(columns = inv_cv_wt, decimals = 4) |>
+    gt::tab_style(
+      style = gt::cell_text(weight = "bold"),
+      locations = gt::cells_body(rows = year == "Mean 1998-2025")
+    ) |>
+    gt::tab_source_note(
+      "CV weight = sqrt(coverage / maximum coverage); 1/CV_wt is the inverse multiplier applied to the CV."
+    ) |>
+    gt::tab_options(table.font.size = gt::px(11))
+} else {
+  knitr::kable(
+    chile_cpue_cv,
+    caption = paste(
+      "Chilean South-Central CPUE uncertainty table.",
+      "The 1998-2025 rows were selected for the assessment-model input,",
+      "and the weighted (`wtd`) CV is the CV used for the assessment model.",
+      "The CV weight is the square-root of annual coverage relative to the maximum coverage."
+    ),
+    align = c("c", rep("r", 6))
+  )
+}
+```
+
 The Peruvian CPUE presentation covered a standardized CPUE series for 2015-2025
 that combines industrial and artisanal fleets. The meeting noted this combined
 fleet treatment as a strength, but also discussed the interpretation of trip
@@ -694,6 +791,12 @@ The annual length-composition sample-size plot was digitized from the provided f
 
 ![Annual Far North length-composition shapes by year. Each ridge is scaled within year to emphasize modal structure; dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_ridges_by_year.svg){#fig-farnorth-length-ridges width=100%}
 
+The Season 1 and Season 2 Far North length-composition rows used in `mod0.5.dat` were also reviewed against the retained 10-50 cm assessment bins (@fig-farnorth-mod05-season1-ridges; @fig-farnorth-mod05-season2-ridges). The ridge plots preserve gaps for missing years so the temporal coverage of each seasonal series is explicit.
+
+![Season 1 Far North length-composition shapes from `mod0.5.dat`. Each ridge is scaled within year to emphasize modal structure; dashed vertical lines mark the retained 10-50 cm assessment length-bin interval, and blank rows indicate missing years.](images/farnorth_mod05_season1_length_ridges.svg){#fig-farnorth-mod05-season1-ridges width=100%}
+
+![Season 2 Far North length-composition shapes from `mod0.5.dat`. Each ridge is scaled within year to emphasize modal structure; dashed vertical lines mark the retained 10-50 cm assessment length-bin interval, and blank rows indicate missing years.](images/farnorth_mod05_season2_length_ridges.svg){#fig-farnorth-mod05-season2-ridges width=100%}
+
 
 For Peru acoustic information, the meeting agreed to move to the new Peruvian
 acoustic indices and remove the previous Peru acoustic index from the base
@@ -704,7 +807,9 @@ at this stage.
 
 ## Assessment Model Development
 
-Text to be added during the meeting. This section should summarize the SC13 base-model developments, candidate simplifications, single-stock and two-stock alternatives, reduced-index configurations, selectivity assumptions, recruitment scenarios, and model diagnostics.
+The meeting reviewed Paper 01 ([SCW16-Doc01](SCW16-Doc01.html)), which evaluated and updated the previous assessment model from SC13. Participants noted that the paper covered a broad set of model alternatives, including single-stock and two-stock configurations, reduced-index options, selectivity alternatives, and other candidate simplifications intended to improve benchmark and MSE tractability.
+
+The group also noted that several simplification suggestions in Paper 01 should be interpreted in light of the data updates agreed during the benchmark meeting. Because several abundance-index and composition series were updated or replaced during the meeting, some simplifications that were informative under the SC13 data configuration may no longer apply directly to the updated benchmark configuration. The final candidate model set should therefore reassess those simplification options after the updated input series are implemented, rather than carrying all earlier simplification conclusions forward unchanged.
 
 ## Operating Models and MSE Linkages
 
