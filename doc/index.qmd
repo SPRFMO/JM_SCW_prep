@@ -32,6 +32,8 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [JM SAM Model runs](https://sprfmo.github.io/JM_sam/)
 
+  - [SCW16 benchmark model sequence](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16_models.qmd) (`SPRFMO/jjm` source QMD)
+
 ### Draft SCW16 papers
 
   - [SCW16-Doc00: Preliminary agenda](SCW16-Doc00.html) ([PDF](SCW16-Doc00.pdf), [DOCX](SCW16-Doc00.docx), [QMD](SCW16-Doc00.qmd))
@@ -92,6 +94,12 @@ These are the benchmark workshop terms of reference, tracked as `JMWG_Benchmark_
 ## SCW16-Doc01
 
 This is the main benchmark working paper, tracked as `SCW16-Doc01.qmd`, with published HTML, PDF, and DOCX outputs.
+
+## SCW16 benchmark model sequence
+
+This source document is maintained in `SPRFMO/jjm` as `doc/SCW16_models.qmd`.
+It tracks the SCW16 benchmark model sequence, beginning with the documented
+`1.14` model series and moving to the candidate `2.00` benchmark series.
 
 ## SCW16-Doc00
 

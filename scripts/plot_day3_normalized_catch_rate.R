@@ -1,13 +1,25 @@
 input <- "docs/day3/fishing_trip_summary_1994_2026.csv"
 output_png <- "docs/day3/normalized_catch_rate_loess.png"
+output_csv <- "docs/day3/normalized_catch_rate_values.csv"
 
 dat <- read.csv(input)
 dat$catch_per_set_per_hold_set <- with(
   dat,
   catch_per_set_tons / (vessel_hold_capacity_m3 * number_of_fishing_sets)
 )
-excluded_years <- c(min(dat$year), 2006, 2026)
+excluded_years <- c(1994, 2006, 2026)
 dat <- dat[!dat$year %in% excluded_years, ]
+write.csv(
+  dat[, c(
+    "year",
+    "catch_per_set_tons",
+    "vessel_hold_capacity_m3",
+    "number_of_fishing_sets",
+    "catch_per_set_per_hold_set"
+  )],
+  output_csv,
+  row.names = FALSE
+)
 
 fit <- loess(catch_per_set_per_hold_set ~ year, data = dat, span = 0.55, degree = 1)
 pred_year <- seq(min(dat$year), max(dat$year), length.out = 300)
@@ -51,3 +63,4 @@ par(op)
 dev.off()
 
 cat("Wrote:", output_png, "\n")
+cat("Wrote:", output_csv, "\n")

@@ -163,17 +163,8 @@ record. The recommended workflow is described in the
 
 # Key Discussion Summary
 
-## Acoustic Indices
+## General data recommendations
 
-The Day 1 acoustic session combined formal SCW16 working papers with presentation-only material. The presentations covered the history of the north-central Chile acoustic survey programme, preliminary 2026 survey results, oceanographic conditions during the 2026 survey, spatio-temporal standardization of acoustic backscatter, fishery-dependent acoustic information, Peruvian acoustic assessment information, sonar applications relevant to jack mackerel and anchoveta fisheries, and acoustic information collected by fishing vessels in Peru.
-
-For reporting purposes, the presentation material should be separated into four categories: formal papers tied to numbered SCW16 documents, presentation-only background, new 2026 evidence, and context or supporting methods. This distinction is important because not all Day 1 material is intended to become a direct assessment input. Some presentations provide candidate abundance indices, while others provide survey context, environmental interpretation, diagnostic information, or methodological background.
-
-Presentation summaries are provided in Appendix D. Those tables should be updated
-as presenters confirm titles, authors, and whether each presentation should be
-cited as a working paper, supporting presentation, or meeting-record item.
-
-::: {.callout-note title="New draft material: Day 1 acoustic session summary"}
 The meeting noted that many working papers and presentations analysed important
 abundance-index data, but did not consistently document the extent of the data
 used in each analysis. This limited the group's ability to evaluate
@@ -184,6 +175,27 @@ extent, survey or fleet coverage, observation unit, number of observations or
 transects, number of biological samples or tows, expansion methods, whether
 lengths are fork length or total length, and the uncertainty available for
 assessment use.
+
+The catch and fishery data quality-check presentation emphasized that the JMWG
+has historically worked under a compressed assessment-data schedule. Members
+noted that the current data-submission templates and associated processing
+routines are pragmatic tools for meeting that schedule, and that development of
+Secretariat database infrastructure would not by itself resolve the immediate
+benchmark needs. The meeting requested that the quality-check work be posted to
+the `jjmData` GitHub repository, and that the group clarify how members use terms
+such as sampling, coverage, and sample size. In particular, the meeting requested
+checks on the age-length-key sample-size reporting to identify discrepancies
+between reported numbers of ages and numbers of length measurements.
+
+## Acoustic Indices
+
+The Day 1 acoustic session combined formal SCW16 working papers with presentation-only material. The presentations covered the history of the north-central Chile acoustic survey programme, preliminary 2026 survey results, oceanographic conditions during the 2026 survey, spatio-temporal standardization of acoustic backscatter, fishery-dependent acoustic information, Peruvian acoustic assessment information, sonar applications relevant to jack mackerel and anchoveta fisheries, and acoustic information collected by fishing vessels in Peru.
+
+For reporting purposes, the presentation material should be separated into four categories: formal papers tied to numbered SCW16 documents, presentation-only background, new 2026 evidence, and context or supporting methods. This distinction is important because not all Day 1 material is intended to become a direct assessment input. Some presentations provide candidate abundance indices, while others provide survey context, environmental interpretation, diagnostic information, or methodological background.
+
+Presentation summaries are provided in Appendix D. Those tables should be updated
+as presenters confirm titles, authors, and whether each presentation should be
+cited as a working paper, supporting presentation, or meeting-record item.
 
 For the north-central Chile acoustic survey programme, the meeting requested a
 summary table giving, by year where possible, the number of transects, area
@@ -211,7 +223,8 @@ noted that a high proportion of individuals was observed in the upper 30 m in
 2025 and 2026, but that participants did not identify a survey dead-zone issue
 for these observations. Participants discussed whether fish close to the surface
 or more dispersed schools could affect detectability. The presentation indicated
-that fish were more dispersed in 2026 than in 2025 and that acoustic-trawl
+that the distribution of fish in 2026 compared to 2025 was more patchy, which
+may render it largely undetectable by acoustics, and that acoustic-trawl
 operations were most effective around dawn, when jack mackerel tended to
 concentrate.
 
@@ -243,8 +256,15 @@ coverage.
 On Day 3, the meeting revisited the Chile Acoustic North survey treatment.
 Participants noted that the spatio-temporal modelling work by INPESCA is a
 substantial contribution and should be acknowledged in the report. The group
-also discussed the distinction between model-based indicators for CPUE and
-design-based indicators for surveys. The Day 3 decision was to retain the raw or
+noted that geostatistical modelling of acoustic data is generally uncommon,
+contrary to geostatistical standardization of CPUE. The latter time series is
+largely affected by fishers' choice, which often disguises changes in population
+densities. The Chile Acoustic North survey, however, follows a design-based
+approach with pre-determined transects that are largely comparable across years
+and hence do not suffer from fisheries behaviour in the same way. It is assumed
+that the survey observes all relevant fish densities in the area and hence does
+not require interpolation or extrapolation to other areas such as those used for
+the CPUE standardization. The Day 3 decision was to retain the raw or
 design-based acoustic biomass treatment for assessment use at this stage, while
 using the spatio-temporal acoustic modelling as research and diagnostic
 information rather than as a replacement base-model index.
@@ -302,7 +322,6 @@ available. The objective is to determine which acoustic information is suitable
 for direct assessment likelihood use, which is suitable for operating-model
 conditioning or management-procedure diagnostics, and which should remain
 supporting context.
-:::
 
 ## CPUE Indices
 
@@ -313,40 +332,23 @@ CPUE treatment. The discussion focused on whether candidate CPUE products are
 ready for assessment use, what additional diagnostics are needed, and how to
 document any change from the current assessment CPUE treatment.
 
-::: {.callout-note title="New draft material: Day 2 CPUE session summary"}
-The catch and fishery data quality-check presentation emphasized that the JMWG
-has historically worked under a compressed assessment-data schedule. Members
-noted that the current data-submission templates and associated processing
-routines are pragmatic tools for meeting that schedule, and that development of
-Secretariat database infrastructure would not by itself resolve the immediate
-benchmark needs. The meeting requested that the quality-check work be posted to
-the `jjmData` GitHub repository, and that the group clarify how members use terms
-such as sampling, coverage, and sample size. In particular, the meeting requested
-checks on the age-length-key sample-size reporting to identify discrepancies
-between reported numbers of ages and numbers of length measurements.
-
 During the evaluation of the modelling procedure for the Chilean South-Central
 (SC) fleet abundance index, benchmark participants deliberated on the most
 robust method to account for effort creep. Initial positions diverged, with
 Chile proposing to apply an informed correction factor from 2005 onwards,
 whereas the EU advocated for maintaining a fixed 1% compounded factor across the
-entire time series. After extensive discussion, the members agreed
-to proceed with Chile's proposal and apply a 1% compounded increase creep
+entire time series. Arguments suggesting continuous improvement in efficiency
+focused on development in gear technology, improved online communication between
+skippers via WhatsApp, improved echosounders and sonars, and newly available
+AI-derived predictions of resource density via providers such as Greenfish.
+Industry representatives from several member countries corroborated that these
+innovations increased fishing efficiency. After extensive discussion, it was
+agreed to proceed with Chile's proposal and apply a 1% compounded increase creep
 factor up to 2004, followed by a transition to the p10 correction factor from
 2005 onward, where a fixed multiplicative factor of 0.669 is applied to the
-abundance index, as proposed by Zenteno and Paya (2026). The EU objected and the 
-Chair noted that it could be raised again at SC but should not have a large effect
-on making progress with the MSE.
-
-The technical rationale supporting this methodological update is grounded in
-both empirical data and historical fleet dynamics. First, this approach directly
-incorporates operational feedback from the Chilean SC fleet captains, who
-identified 2005 as an inflection point for changes in fishing efficiency.
-Second, acknowledging this shift, the majority of members concurred that
-applying a continuously increasing efficiency correction after that period is
-largely unnecessary. Finally, retaining the 1% factor prior to 2005 effectively
-anchors the earlier time series, avoiding the substantial jump in historical
-efficiency that was the primary concern with the initial proposal.
+abundance index, as proposed by Zenteno and Paya (2026). The EU objected and the
+Chair noted that it could be raised again at SC but should not have a large
+effect on making progress with the MSE.
 
 Participants also discussed whether applying the creep factor as an effort
 correction is equivalent to imposing a catchability change, and whether the
@@ -357,13 +359,16 @@ diagnostic, the meeting requested a model run with no creep correction but with 
 catchability step change in 2005, to evaluate whether the assessment estimates a
 large catchability shift without imposing the creep correction directly.
 
+Chile agreed to continue surveying industry on innovations that may trigger
+effort-creep corrections in the future.
+
 For the Chilean `sdmTMB` CPUE analysis, the meeting noted that the index was
 updated through 2026 and is based on set-level data. Discussion focused on haul
 capacity treatment, the use of a spline smoother versus vessel categories, the
 large imbalance in early-year data coverage, and whether true zero catches are
 available and should be incorporated. Participants noted that the early part of
 the set-level data may represent a very small fraction of total catch, raising
-questions about representativeness before about 2005. The meeting requested that
+questions about representativeness before about 2001. The meeting requested that
 the data table include the number and proportion of sets by year, and that the
 authors provide a clear explanation for why the new set-based CPUE series gives
 lower CPUE in earlier years with high catches than the current trip-based
@@ -374,15 +379,23 @@ standardization. Participants discussed mesh resolution, the treatment of
 northern fishing activity, whether assessment fleets should be defined primarily
 by area or vessel behaviour, and whether CPUE weighting should be based on catch
 rates rather than catch. The meeting noted that the model appeared sensitive to
-data updates, with inclusion of 2026 data changing earlier predictions, and that
-this sensitivity needs to be explained before replacing the existing assessment
-index. Participants also discussed fixed versus random year effects, AR(1)
-versus independent year effects, and the interpretation of the days-at-sea or
-DFP coefficient. Because offshore movement can increase days at sea without
-necessarily indicating reduced abundance, the meeting requested that the strength
-and interpretation of this coefficient be checked, and that Sebastian, Ignacio,
-and Niels summarize the model-comparison and year-effect discussion for the
-report.
+data updates, with inclusion of 2026 data changing specifically the 2021
+estimate, and that this sensitivity needs to be explained before replacing the
+existing assessment index, for example through an analytical retrospective.
+Participants also discussed fixed versus random year effects, AR(1) versus
+independent year effects, and the interpretation of the days-at-sea or DFP
+coefficient. Movement of the resource further offshore could lead to increases
+in days at sea, which hence may not suggest a decrease in stock size although it
+does result in a decline in CPUE. As such, including days at sea in a CPUE
+standardization may bias the outcomes. Since the INLA approach accounts for
+annual spatial shifts by explicitly fitting an annual spatial random field, this
+concern is alleviated. Previous versions of the INLA model submitted to SC12 and
+SC13 were compared to the updated 2026 configuration. The introduction of annual
+spatial random fields changed the perception of the resource dynamics, with less
+profound increases and decreases over the time series. Model consistency between
+the SC12 and SC13 configurations was high, and it is expected that model
+consistency for the new method is of similar quality. A formal retrospective
+analysis is pending and will be presented at SC14.
 
 The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment
 starting in 1998, using the agreed effort-creep treatment described above.
@@ -410,11 +423,14 @@ locations, haul-capacity and distance-to-coast smoothers, possible differences
 between industrial and artisanal fleet effects, and changes in Peruvian fishing
 operations. Members noted that jack mackerel has been used for direct human
 consumption in Peru since 2002, and that the artisanal fishery has accounted for
-a larger share of the quota since 2019. The Day 3 discussion agreed that the new
-Peruvian CPUE series starts later than the historical assessment CPUE treatment
-and should replace the previous Peru CPUE index rather than be appended to it in
-the base model. The previous Peru CPUE index should therefore be removed from the
-base configuration.
+a larger share of the quota since 2019. These changes, in combination with
+environmental impacts on the distribution of jack mackerel, led to a marked
+shift of the resource over the CPUE time series. This shift is currently
+untreated in the CPUE standardization, as efforts to account for it were
+unsuccessful. The Day 3 discussion agreed that the new Peruvian CPUE series
+starts later than the historical assessment CPUE treatment and should replace the
+previous Peru CPUE index rather than be appended to it in the base model. The
+previous Peru CPUE index should therefore be removed from the base configuration.
 
 The offshore CPUE discussion included the treatment of a catchability break in
 2021 associated with movement of the offshore fleet to the north, and discussion
@@ -422,7 +438,231 @@ of how El Nino effects were represented relative to annual effects. The report
 should document the rationale for any offshore catchability break and whether
 environmental effects are interpreted as catchability effects, availability
 effects, or residual year effects.
-:::
+
+As part of the meeting request to better understand patterns in data collection
+and fishing-set coverage for the Chilean CPUE series, Chile provided a summary
+table of annual fleet and sampling characteristics (@tbl-chile-cpue-fishing-trip-summary).
+The table includes distance from port, trip duration, catch per set, vessel hold
+capacity, the proportion of catch referenced by the set-level data, and the
+number of fishing sets available by year. This table was reviewed during a lengthy discussion about the period
+over which the modeled CPUE series presented by Vasquez should be used. A
+critical concern was low data coverage in the early period and the
+counter-intuitive result that the CPUE standardization model indicated low
+abundance during years when the largest catches were made. The Chair also
+considered a diagnostic figure based on the mean catch per set divided by hold
+capacity times the number of sets, and suggested omitting 1994, 2006, and 2026
+from that diagnostic as outlying observations. The resulting normalized
+catch-rate pattern (@fig-chile-cpue-normalized-catch-rate) provides a simple
+nominal check on the annual information in the table rather than a replacement
+for the CPUE standardization. The diagnostic declines from the high early values
+toward lower values in the early 2000s, increases through the mid- to late
+2010s, and then declines in the most recent retained years.
+
+![Normalized annual catch-rate diagnostic calculated as mean catch per set divided by hold capacity and number of fishing sets. The plot omits 1994, 2006, and 2026 and shows a LOESS smoother with an approximate 95% standard-error band.](../docs/day3/normalized_catch_rate_loess.png){#fig-chile-cpue-normalized-catch-rate width=100%}
+
+The broader pairwise diagnostic summary is shown in @fig-chile-cpue-fishing-trip-pairs.
+
+```{r tbl-chile-cpue-fishing-trip-summary}
+#| tbl-cap: "Annual Chilean South-Central fleet and fishing-set summary used to evaluate CPUE data coverage."
+#| results: asis
+trip_summary_path <- c(
+  file.path("..", "docs", "day3", "fishing_trip_summary_1994_2026.csv"),
+  file.path("docs", "day3", "fishing_trip_summary_1994_2026.csv")
+)
+trip_summary_path <- trip_summary_path[file.exists(trip_summary_path)][1]
+
+trip_summary <- read.csv(trip_summary_path)
+
+display_summary <- trip_summary
+names(display_summary) <- c(
+  "Year",
+  "Distance from port (km)",
+  "Trip duration (days)",
+  "Catch per set (t)",
+  "Hold capacity (m3)",
+  "Catch represented (%)",
+  "Fishing sets (n)"
+)
+
+if (knitr::is_html_output()) {
+  trip_summary |>
+    gt::gt() |>
+    gt::tab_header(
+      title = "Chilean CPUE fishing-trip and set-coverage summary",
+      subtitle = "Annual data supplied to evaluate representativeness of the set-based CPUE series"
+    ) |>
+    gt::cols_label(
+      year = "Year",
+      distance_from_port_km = "Distance from port (km)",
+      fishing_trip_duration_days = "Trip duration (days)",
+      catch_per_set_tons = "Catch per set (t)",
+      vessel_hold_capacity_m3 = "Hold capacity (m3)",
+      catch_proportion_referenced_st_percent = "Catch represented (%)",
+      number_of_fishing_sets = "Fishing sets (n)"
+    ) |>
+    gt::fmt_number(
+      columns = c(
+        distance_from_port_km,
+        fishing_trip_duration_days,
+        catch_per_set_tons,
+        catch_proportion_referenced_st_percent
+      ),
+      decimals = 1
+    ) |>
+    gt::fmt_integer(columns = c(vessel_hold_capacity_m3, number_of_fishing_sets)) |>
+    gt::cols_align(align = "center", columns = year) |>
+    gt::cols_align(
+      align = "right",
+      columns = c(
+        distance_from_port_km,
+        fishing_trip_duration_days,
+        catch_per_set_tons,
+        vessel_hold_capacity_m3,
+        catch_proportion_referenced_st_percent,
+        number_of_fishing_sets
+      )
+    ) |>
+    gt::tab_options(table.font.size = gt::px(11))
+} else {
+  knitr::kable(
+    display_summary,
+    caption = "Annual Chilean South-Central fleet and fishing-set summary used to evaluate CPUE data coverage.",
+    digits = c(0, 1, 1, 1, 0, 1, 0),
+    align = c("c", rep("r", 6))
+  )
+}
+```
+
+```{r fig-chile-cpue-fishing-trip-pairs}
+#| fig-cap: "Pairs plot of annual Chilean South-Central fishing-trip and set-coverage variables from `fishing_trip_summary_1994_2026.csv`. Lower panels show annual points labeled by year with loess smoothers; upper panels show Pearson correlations."
+#| fig-width: 10
+#| fig-height: 10
+#| out-width: 100%
+pair_vars <- c(
+  "distance_from_port_km",
+  "fishing_trip_duration_days",
+  "catch_per_set_tons",
+  "vessel_hold_capacity_m3",
+  "catch_proportion_referenced_st_percent",
+  "number_of_fishing_sets"
+)
+
+pair_data <- trip_summary[, pair_vars]
+pair_labels <- c(
+  "Distance\nfrom port\n(km)",
+  "Trip\nduration\n(days)",
+  "Catch\nper set\n(t)",
+  "Hold\ncapacity\n(m3)",
+  "Catch\nrepresented\n(%)",
+  "Fishing\nsets\n(n)"
+)
+
+year_labels <- trip_summary$year
+
+panel_years <- function(x, y, ...) {
+  points(x, y, pch = 16, col = "#0B2545", cex = 0.7)
+  text(x, y, labels = year_labels, pos = 3, cex = 0.48, col = "#334155")
+}
+
+panel_smooth_years <- function(x, y, ...) {
+  keep <- is.finite(x) & is.finite(y)
+  x_keep <- x[keep]
+  y_keep <- y[keep]
+
+  if (length(unique(x_keep)) >= 4 && length(y_keep) >= 8) {
+    fit <- try(
+      loess(y_keep ~ x_keep, span = 0.8, degree = 1, surface = "direct"),
+      silent = TRUE
+    )
+
+    if (!inherits(fit, "try-error")) {
+      x_grid <- seq(min(x_keep), max(x_keep), length.out = 80)
+      pred <- try(predict(fit, newdata = data.frame(x_keep = x_grid)), silent = TRUE)
+
+      if (!inherits(pred, "try-error")) {
+        lines(x_grid, pred, col = "#D78C34", lwd = 2)
+      }
+    }
+  }
+
+  panel_years(x, y, ...)
+}
+
+panel_cor <- function(x, y, ...) {
+  keep <- is.finite(x) & is.finite(y)
+  r <- cor(x[keep], y[keep])
+
+  usr <- par("usr")
+  on.exit(par(usr = usr), add = TRUE)
+  par(usr = c(0, 1, 0, 1))
+
+  cex <- 0.9 + 1.1 * abs(r)
+  text(
+    0.5,
+    0.5,
+    labels = paste0("r = ", formatC(r, digits = 2, format = "f")),
+    cex = cex,
+    font = 2,
+    col = ifelse(r >= 0, "#0B5CAD", "#B64A3B")
+  )
+}
+
+panel_hist <- function(x, ...) {
+  usr <- par("usr")
+  on.exit(par(usr = usr), add = TRUE)
+  par(usr = c(usr[1:2], 0, 1.5))
+
+  hist_data <- hist(x, plot = FALSE)
+  counts <- hist_data$counts
+  y <- counts / max(counts)
+
+  rect(
+    hist_data$breaks[-length(hist_data$breaks)],
+    0,
+    hist_data$breaks[-1],
+    y,
+    col = "#EAF2FA",
+    border = "#0B5CAD"
+  )
+}
+
+op <- par(
+  mar = c(3.2, 3.2, 2.1, 1.1),
+  oma = c(2.2, 1, 5.2, 1),
+  xaxs = "r",
+  yaxs = "r"
+)
+
+pairs(
+  pair_data,
+  labels = pair_labels,
+  lower.panel = panel_smooth_years,
+  upper.panel = panel_cor,
+  diag.panel = panel_hist,
+  gap = 0.45,
+  cex.labels = 0.95,
+  font.labels = 2,
+  main = ""
+)
+mtext(
+  "Chilean CPUE Fishing-Trip and Set-Coverage Variables",
+  outer = TRUE,
+  side = 3,
+  line = 3.2,
+  cex = 1.35,
+  font = 2
+)
+mtext(
+  "Lower panels show annual points labeled by year and a loess smoother; upper panels show Pearson correlations.",
+  outer = TRUE,
+  side = 1,
+  line = 0.5,
+  cex = 0.68,
+  col = "#52606D"
+)
+
+par(op)
+```
 
 ## Biological Inputs
 
@@ -439,6 +679,21 @@ sizes. Members noted that the number of fish measured would be useful in
 addition to the current reporting of sampling events such as boxes or trips. The
 group also discussed whether the SPRFMO length-bin range should be expanded to
 match the Peruvian 5-90 cm length bins.
+
+### Far North length-composition binning and data specification
+
+The updated Far North length-composition information was provided in annual rows for 1972-2025 with centimetre bins from 5 to 90 cm. The assessment input currently uses 10-50 cm length bins. The meeting reviewed cumulative length distributions and annual length-composition shapes to evaluate whether expanding the model length-bin range was necessary for the benchmark configuration.
+
+The diagnostic plots show that the retained 10-50 cm interval captures nearly all of the observed length-composition mass in most years (@fig-farnorth-length-cumulative-all; @fig-farnorth-length-cumulative; @fig-farnorth-length-ridges). Across the annual rows, the median proportion within 10-50 cm was 0.9998, and the minimum was 0.895. When the length compositions were summed across all years, 0.9986 of the total was within the retained 10-50 cm interval. The lower annual coverage years were mainly early observations and the most recent 2024 row. On this basis, the practical benchmark decision was to retain the existing 10-50 cm assessment bins for the Far North length-composition treatment rather than expanding the JJM length-bin range to 5-90 cm at this stage.
+
+The annual length-composition sample-size plot was digitized from the provided figure for 1972-2025. The digitized values were treated as relative sample-size weights and rescaled by multiplying by `200 / 1094 = 0.1828154`, so that the largest annual effective sample size equals 200. These rescaled values were inserted as the Far North fishery length-composition sample-size vector in `input/mod0.4.dat`. The scaled input vector is archived in `doc/data/farnorth_sample_sizes_scaled_for_mod0.4.csv`. The rightmost visible bar in the source image was assigned to 2025 for the model input vector.
+
+![Cumulative Far North length-composition distribution after summing across all years. The curve uses the full 5-90 cm composition data, with the x-axis truncated at 60 cm. Dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_cumulative_all_years.svg){#fig-farnorth-length-cumulative-all width=100%}
+
+![Cumulative Far North length-composition distributions by year. Lines show row-wise cumulative proportions from the full 5-90 cm composition data, with the x-axis truncated at 60 cm. Dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_cumulative_by_year.svg){#fig-farnorth-length-cumulative width=100%}
+
+![Annual Far North length-composition shapes by year. Each ridge is scaled within year to emphasize modal structure; dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_ridges_by_year.svg){#fig-farnorth-length-ridges width=100%}
+
 
 For Peru acoustic information, the meeting agreed to move to the new Peruvian
 acoustic indices and remove the previous Peru acoustic index from the base
