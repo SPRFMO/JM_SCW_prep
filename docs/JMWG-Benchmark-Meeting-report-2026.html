@@ -4328,32 +4328,40 @@ border-bottom: 4px solid #1b4576;
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>26.</strong> The catch and fishery data quality-check presentation emphasized that the JMWG has historically worked under a compressed assessment-data schedule. Members noted that the current data-submission templates and associated processing routines are pragmatic tools for meeting that schedule, and that development of Secretariat database infrastructure would not by itself resolve the immediate benchmark needs. The meeting requested that the quality-check work be posted to the <code>jjmData</code> GitHub repository, and that the group clarify how members use terms such as sampling, coverage, and sample size. In particular, the meeting requested checks on the age-length-key sample-size reporting to identify discrepancies between reported numbers of ages and numbers of length measurements.</p>
-<p><strong>27.</strong> The Chilean effort-creep presentation showed that the number of active industrial vessels has declined while average hold capacity has increased over time. Participants discussed whether applying the creep factor as an effort correction is equivalent to imposing a catchability change, and whether the survey/interview information used to estimate creep can be maintained regularly. The meeting also noted that the artisanal fleet now accounts for a larger share of Chilean catch and may need to be considered in future effort-creep work. As a diagnostic, the meeting requested a model run with no creep correction but with a catchability step change in 2005, to evaluate whether the assessment estimates a large catchability shift without imposing the creep correction directly.</p>
-<p><strong>28.</strong> For the Chilean <code>sdmTMB</code> CPUE analysis, the meeting noted that the index was updated through 2026 and is based on set-level data. Discussion focused on haul capacity treatment, the use of a spline smoother versus vessel categories, the large imbalance in early-year data coverage, and whether true zero catches are available and should be incorporated. Participants noted that the early part of the set-level data may represent a very small fraction of total catch, raising questions about representativeness before about 2005. The meeting requested that the data table include the number and proportion of sets by year, and that the authors provide a clear explanation for why the new set-based CPUE series gives lower CPUE in earlier years with high catches than the current trip-based assessment series.</p>
-<p><strong>29.</strong> The INLA-based Chilean CPUE analysis provided a complementary spatio-temporal standardization. Participants discussed mesh resolution, the treatment of northern fishing activity, whether assessment fleets should be defined primarily by area or vessel behaviour, and whether CPUE weighting should be based on catch rates rather than catch. The meeting noted that the model appeared sensitive to data updates, with inclusion of 2026 data changing earlier predictions, and that this sensitivity needs to be explained before replacing the existing assessment index. Participants also discussed fixed versus random year effects, AR(1) versus independent year effects, and the interpretation of the days-at-sea or DFP coefficient. Because offshore movement can increase days at sea without necessarily indicating reduced abundance, the meeting requested that the strength and interpretation of this coefficient be checked, and that Sebastian, Ignacio, and Niels summarize the model-comparison and year-effect discussion for the report.</p>
-<p><strong>30.</strong> The meeting did not reach a final decision on replacing the current Chilean CPUE series. The group needs a defensible explanation for any move from the current trip-based index to a new spatio-temporal set-based index, including how early low coverage, model sensitivity, year-effect treatment, northern fishing activity, catchability, and annual standard errors would be handled in the stock assessment. If a new Chilean CPUE product is carried forward, the assessment model should use the annual uncertainty estimates from that analysis.</p>
-<p><strong>31.</strong> The Peruvian CPUE presentation covered a standardized CPUE series for 2015-2025 that combines industrial and artisanal fleets. The meeting noted this combined fleet treatment as a strength, but also discussed the interpretation of trip locations, haul-capacity and distance-to-coast smoothers, possible differences between industrial and artisanal fleet effects, and changes in Peruvian fishing operations. Members noted that jack mackerel has been used for direct human consumption in Peru since 2002, and that the artisanal fishery has accounted for a larger share of the quota since 2019. The updated CPUE series does not yet extend back far enough to evaluate the full historical period, and extension to earlier years is expected later in 2026. The meeting therefore noted that the benchmark cannot make a final decision on using the new Peru CPUE series for the June 2026 MSE work, because the full time series will not be available for evaluation until later. The meeting requested additional diagnostics, including the smoother on the year interaction, before deciding whether and how the new series could be linked with the older Peru CPUE and acoustic information.</p>
-<p><strong>32.</strong> The offshore CPUE discussion included the treatment of a catchability break in 2021 associated with movement of the offshore fleet to the north, and discussion of how El Nino effects were represented relative to annual effects. The report should document the rationale for any offshore catchability break and whether environmental effects are interpreted as catchability effects, availability effects, or residual year effects.</p>
+<p><strong>27.</strong> During the evaluation of the modelling procedure for the Chilean South-Central (SC) fleet abundance index, benchmark participants deliberated on the most robust method to account for effort creep. Initial positions diverged, with Chile proposing to apply an informed correction factor from 2005 onwards, whereas the EU advocated for maintaining a fixed 1% compounded factor across the entire time series. After extensive discussion, the majority of members agreed to proceed with an alternative approach: applying a 1% compounded increase creep factor up to 2004, followed by a transition to the p10 correction factor from 2005 onward, where a fixed multiplicative factor of 0.669 is applied to the abundance index, as proposed by Zenteno and Paya (2026).</p>
+<p><strong>28.</strong> The technical rationale supporting this methodological update is grounded in both empirical data and historical fleet dynamics. First, this approach directly incorporates operational feedback from the Chilean SC fleet captains, who identified 2005 as an inflection point for changes in fishing efficiency. Second, acknowledging this shift, the majority of members concurred that applying a continuously increasing efficiency correction after that period is largely unnecessary. Finally, retaining the 1% factor prior to 2005 effectively anchors the earlier time series, avoiding the substantial jump in historical efficiency that was the primary concern with the initial proposal.</p>
+<p><strong>29.</strong> Participants also discussed whether applying the creep factor as an effort correction is equivalent to imposing a catchability change, and whether the survey/interview information used to estimate creep can be maintained regularly. The meeting noted that the artisanal fleet now accounts for a larger share of Chilean catch and may need to be considered in future effort-creep work. As a diagnostic, the meeting requested a model run with no creep correction but with a catchability step change in 2005, to evaluate whether the assessment estimates a large catchability shift without imposing the creep correction directly.</p>
+<p><strong>30.</strong> For the Chilean <code>sdmTMB</code> CPUE analysis, the meeting noted that the index was updated through 2026 and is based on set-level data. Discussion focused on haul capacity treatment, the use of a spline smoother versus vessel categories, the large imbalance in early-year data coverage, and whether true zero catches are available and should be incorporated. Participants noted that the early part of the set-level data may represent a very small fraction of total catch, raising questions about representativeness before about 2005. The meeting requested that the data table include the number and proportion of sets by year, and that the authors provide a clear explanation for why the new set-based CPUE series gives lower CPUE in earlier years with high catches than the current trip-based assessment series.</p>
+<p><strong>31.</strong> The INLA-based Chilean CPUE analysis provided a complementary spatio-temporal standardization. Participants discussed mesh resolution, the treatment of northern fishing activity, whether assessment fleets should be defined primarily by area or vessel behaviour, and whether CPUE weighting should be based on catch rates rather than catch. The meeting noted that the model appeared sensitive to data updates, with inclusion of 2026 data changing earlier predictions, and that this sensitivity needs to be explained before replacing the existing assessment index. Participants also discussed fixed versus random year effects, AR(1) versus independent year effects, and the interpretation of the days-at-sea or DFP coefficient. Because offshore movement can increase days at sea without necessarily indicating reduced abundance, the meeting requested that the strength and interpretation of this coefficient be checked, and that Sebastian, Ignacio, and Niels summarize the model-comparison and year-effect discussion for the report.</p>
+<p><strong>32.</strong> The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment starting in 1998, using the agreed effort-creep treatment described above. Annual CVs should be weighted by percentage coverage and should incorporate standard errors from the INLA analysis. The previous Chilean CPUE index should be removed from the base model. A sensitivity run should be retained that uses the old CPUE information piecemeal before 1998, to evaluate the consequence of preserving historical contrast before the new CPUE series begins.</p>
+<p><strong>33.</strong> The Peruvian CPUE presentation covered a standardized CPUE series for 2015-2025 that combines industrial and artisanal fleets. The meeting noted this combined fleet treatment as a strength, but also discussed the interpretation of trip locations, haul-capacity and distance-to-coast smoothers, possible differences between industrial and artisanal fleet effects, and changes in Peruvian fishing operations. Members noted that jack mackerel has been used for direct human consumption in Peru since 2002, and that the artisanal fishery has accounted for a larger share of the quota since 2019. The Day 3 discussion agreed that the new Peruvian CPUE series starts later than the historical assessment CPUE treatment and should replace the previous Peru CPUE index rather than be appended to it in the base model. The previous Peru CPUE index should therefore be removed from the base configuration.</p>
+<p><strong>34.</strong> The offshore CPUE discussion included the treatment of a catchability break in 2021 associated with movement of the offshore fleet to the north, and discussion of how El Nino effects were represented relative to annual effects. The report should document the rationale for any offshore catchability break and whether environmental effects are interpreted as catchability effects, availability effects, or residual year effects.</p>
 </div>
 </div>
 </section>
 <section id="biological-inputs" class="level2">
 <h2 class="anchored" data-anchor-id="biological-inputs">Biological Inputs</h2>
-<p><strong>33.</strong> Text to be added during the meeting. This section should summarize biological assumptions and data inputs, including maturity, natural mortality, weight-at-age, length-weight relationships, length-frequency composition data, and implications for assessment and operating-model conditioning.</p>
+<p><strong>35.</strong> The Day 3 biological-input discussion reviewed the Peruvian length-weight and length-frequency material and agreed that the Peruvian length frequencies should be treated as fork length. Growth parameters used with those data should therefore also be in fork length. The assessment should also increase the plus group so the Peruvian length-frequency information and growth assumptions are handled consistently in the model.</p>
+<p><strong>36.</strong> For Peru acoustic information, the meeting agreed to move to the new Peruvian acoustic indices and remove the previous Peru acoustic index from the base configuration. The associated Peruvian length-frequency information should be carried forward with the new acoustic treatment. No new Chilean Acoustic North or Chilean Acoustic South-Central index treatment was selected for the base model at this stage.</p>
 </section>
 <section id="assessment-model-development" class="level2">
 <h2 class="anchored" data-anchor-id="assessment-model-development">Assessment Model Development</h2>
-<p><strong>34.</strong> Text to be added during the meeting. This section should summarize the SC13 base-model developments, candidate simplifications, single-stock and two-stock alternatives, reduced-index configurations, selectivity assumptions, recruitment scenarios, and model diagnostics.</p>
+<p><strong>37.</strong> Text to be added during the meeting. This section should summarize the SC13 base-model developments, candidate simplifications, single-stock and two-stock alternatives, reduced-index configurations, selectivity assumptions, recruitment scenarios, and model diagnostics.</p>
 </section>
 <section id="operating-models-and-mse-linkages" class="level2">
 <h2 class="anchored" data-anchor-id="operating-models-and-mse-linkages">Operating Models and MSE Linkages</h2>
-<p><strong>35.</strong> Text to be added during the meeting. This section should summarize operating-model specifications, reference-set and robustness-set uncertainties, MCMC feasibility, management-procedure input diagnostics, and workflow needs for the June 2026 MSE workshop.</p>
+<p><strong>38.</strong> Text to be added during the meeting. This section should summarize operating-model specifications, reference-set and robustness-set uncertainties, MCMC feasibility, management-procedure input diagnostics, and workflow needs for the June 2026 MSE workshop.</p>
 </section>
 </section>
 <section id="decisions-and-agreements" class="level1">
 <h1>Decisions and Agreements</h1>
-<p><strong>36.</strong> Add agreed decisions here as the meeting proceeds.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;">No.</th>
@@ -4365,16 +4373,64 @@ border-bottom: 4px solid #1b4576;
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">1</td>
-<td>TBD</td>
-<td>TBD</td>
-<td>TBD</td>
+<td>Use the new Chilean CPUE series beginning in 1998.</td>
+<td>Chile CPUE</td>
+<td>Implement in the base model and remove the previous Chilean CPUE index.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td>Apply the Chilean effort-creep treatment with 1% annual creep through 2004 and the 0.669 adjustment beginning in 2005.</td>
+<td>Chile CPUE / effort creep</td>
+<td>Confirm the exact implementation in the model input and control files.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td>Weight Chilean CPUE CVs by percentage coverage and include standard errors from the INLA analysis.</td>
+<td>Chile CPUE uncertainty</td>
+<td>Prepare the annual uncertainty vector for assessment input.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td>Retain a sensitivity with piecemeal use of the old Chilean CPUE before 1998.</td>
+<td>Chile CPUE sensitivity</td>
+<td>Add to the candidate sensitivity-run list.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td>Use the new Peruvian CPUE series as a later-starting replacement and remove the previous Peru CPUE index.</td>
+<td>Peru CPUE</td>
+<td>Implement the replacement in the base model.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td>Treat Peruvian length frequencies as fork length and use growth parameters in fork length.</td>
+<td>Peru biology / composition</td>
+<td>Check consistency of growth, length-frequency bins, and length-weight inputs.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td>Increase the plus group for the Peruvian length-frequency and growth treatment.</td>
+<td>Peru biology / composition</td>
+<td>Specify the plus-group age in the candidate model configuration.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td>Use the new Peruvian acoustic indices and remove the previous Peru acoustic index.</td>
+<td>Peru acoustic index</td>
+<td>Carry forward associated length-frequency information with the new acoustic treatment.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td>Do not add a new base-model treatment for Chilean Acoustic North or Chilean Acoustic South-Central at this stage.</td>
+<td>Chile acoustic indices</td>
+<td>Retain as diagnostic or supporting information unless a later sensitivity is requested.</td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="action-items" class="level1">
 <h1>Action Items</h1>
-<p><strong>37.</strong> Add actions here as the meeting proceeds.</p>
+<p><strong>39.</strong> Add actions here as the meeting proceeds.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -4479,37 +4535,49 @@ border-bottom: 4px solid #1b4576;
 <td>Add number and proportion of sets by year to the Chile CPUE data-summary table</td>
 <td>Chile CPUE contributors</td>
 <td>Assessment/index subgroup</td>
-<td>Before CPUE index decisions</td>
+<td>Before final model-run list</td>
 </tr>
 <tr class="even">
-<td>Prepare report-ready text explaining differences between the current trip-based Chile CPUE and the new set-based spatio-temporal CPUE products, especially in early high-catch years</td>
+<td>Prepare the new Chilean CPUE input beginning in 1998, including the agreed effort-creep adjustment and annual CVs weighted by percentage coverage with INLA standard errors</td>
 <td>Chile CPUE contributors</td>
-<td>Sebastian / Ignacio / Niels</td>
-<td>Before CPUE index decisions</td>
+<td>Assessment subgroup</td>
+<td>Before final model-run list</td>
 </tr>
 <tr class="odd">
+<td>Add the sensitivity using piecemeal old Chilean CPUE before 1998</td>
+<td>Assessment subgroup</td>
+<td>Chile CPUE contributors</td>
+<td>Before final model-run list</td>
+</tr>
+<tr class="even">
 <td>Check the strength and interpretation of the days-at-sea or DFP coefficient in the INLA-based Chile CPUE analysis</td>
 <td>Chile CPUE contributors</td>
 <td>Assessment/index subgroup</td>
 <td>Before CPUE index decisions</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Check whether zero CPUE records are true fishing zeroes or technical/non-fishing records and whether zeroes should be included in Chile CPUE standardization</td>
 <td>Chile CPUE contributors</td>
 <td>Assessment/index subgroup</td>
 <td>Before final model-run list</td>
 </tr>
-<tr class="odd">
-<td>Extend and evaluate the Peru CPUE time series before deciding whether it can be used as an assessment or MSE input</td>
-<td>Peru CPUE contributors</td>
+<tr class="even">
+<td>Replace the previous Peru CPUE index with the new later-starting Peruvian CPUE series</td>
 <td>Assessment subgroup</td>
-<td>Before future benchmark/model updates</td>
+<td>Peru CPUE contributors</td>
+<td>Before final model-run list</td>
+</tr>
+<tr class="odd">
+<td>Replace the previous Peru acoustic index with the new Peruvian acoustic indices and associated length-frequency information</td>
+<td>Assessment subgroup</td>
+<td>Peru acoustic contributors</td>
+<td>Before final model-run list</td>
 </tr>
 <tr class="even">
-<td>Provide the year-interaction smoother or effect plot for the Peru CPUE model</td>
-<td>Peru CPUE contributors</td>
-<td>Assessment/index subgroup</td>
-<td>Before final CPUE recommendations</td>
+<td>Prepare Peruvian length-frequency inputs in fork length, with fork-length growth parameters and the agreed increased plus group</td>
+<td>Assessment subgroup</td>
+<td>Peru biology contributors</td>
+<td>Before final model-run list</td>
 </tr>
 <tr class="odd">
 <td>Document the rationale for the 2021 offshore CPUE catchability break and the interpretation of El Nino effects relative to annual effects</td>
@@ -4532,9 +4600,9 @@ border-bottom: 4px solid #1b4576;
 <li>Peru acoustic information may contain useful historical and seasonal signal, but its assessment use depends on survey coverage relative to jack mackerel distribution, biological sampling, and possible pre-/post-1997/1998 changes.</li>
 <li>Fishery-dependent acoustic products may add spatial and seasonal information, but preferential sampling, fishing behaviour, technology effects, and correlation with CPUE must be evaluated before direct assessment use.</li>
 <li>The current data-submission workflow is expedient but depends on consistent interpretation of sampling, coverage, and sample-size fields across members.</li>
-<li>The Chilean effort-creep correction may be confounded with catchability changes, and the assessment consequence should be tested before accepting the correction as a base input.</li>
-<li>A switch from the current trip-based Chile CPUE series to a set-based spatio-temporal series requires a clear explanation of early-period coverage, model sensitivity, year-effect treatment, northern fishing activity, and annual uncertainty.</li>
-<li>The Peru CPUE series is currently too short for June 2026 MSE use because the full historical extension has not yet been evaluated.</li>
+<li>The Chilean effort-creep correction may be confounded with catchability changes, and the assessment consequence should be tested alongside the agreed base treatment.</li>
+<li>The new Chile CPUE base treatment begins in 1998; the old pre-1998 CPUE sensitivity is needed to evaluate the effect of retaining earlier historical contrast.</li>
+<li>The new Peru CPUE and Peru acoustic treatments remove previous assessment indices, so the implementation should document exactly which historical series have been dropped.</li>
 <li>Offshore CPUE catchability breaks and environmental effects need clear interpretation so that abundance, availability, and fishing-behaviour changes are not conflated.</li>
 </ul>
 </section>
