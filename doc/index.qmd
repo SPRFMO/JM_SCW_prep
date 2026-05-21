@@ -11,6 +11,8 @@ format:
 <div class="paper-title">JJM Assessment Documents</div>
 ```
 
+[Draft Benchmark report](JMWG-Benchmark-Meeting-report-2026.html) ([PDF](JMWG-Benchmark-Meeting-report-2026.pdf), [DOCX](JMWG-Benchmark-Meeting-report-2026.docx)). Please add proposed report text and edits in the [shared Google Drive folder](https://drive.google.com/drive/u/1/folders/1CkFqB1tXmmIHIWddzSm7kqdZx1wfS9MX) for incorporation into the draft.
+
 # Overview
 
 This page is the working index for Jack Mackerel Working Group benchmark preparation and MSE planning materials. It links the current workshop notices, benchmark terms of reference, draft SCW16 working papers, preparatory meeting reports, model diagnostics, and supporting assessment resources needed to prepare for the 2026 benchmark and subsequent management-strategy-evaluation work.
@@ -71,7 +73,6 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
 - [JMWG Meeting report 02-2026](JMWG-Meeting%20report-02-2026.html) ([PDF](JMWG-Meeting%20report-02-2026.pdf), [DOCX](JMWG-Meeting%20report-02-2026.docx))
 - [JMWG Meeting report 03-2026](JMWG-Meeting%20report-03-2026.html) ([PDF](JMWG-Meeting%20report-03-2026.pdf), [DOCX](JMWG-Meeting%20report-03-2026.docx))
-- [JMWG Benchmark meeting report 2026](JMWG-Benchmark-Meeting-report-2026.html) ([PDF](JMWG-Benchmark-Meeting-report-2026.pdf), [DOCX](JMWG-Benchmark-Meeting-report-2026.docx))
 - [Report collaboration workflow](report-collaboration-workflow.html)
 
 ## Other background reports
