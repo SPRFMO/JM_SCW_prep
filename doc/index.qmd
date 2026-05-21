@@ -13,6 +13,8 @@ format:
 
 [Draft Benchmark report](JMWG-Benchmark-Meeting-report-2026.html) ([PDF](JMWG-Benchmark-Meeting-report-2026.pdf), [DOCX](JMWG-Benchmark-Meeting-report-2026.docx)). Please add proposed report text and edits in the [shared Google Drive folder](https://drive.google.com/drive/u/1/folders/1CkFqB1tXmmIHIWddzSm7kqdZx1wfS9MX) for incorporation into the draft.
 
+[SCW16 benchmark model runs](SCW16_models.html) from the `SPRFMO/jjm` repository show the current benchmark model sequence and diagnostic results ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16_models.qmd)).
+
 # Overview
 
 This page is the working index for Jack Mackerel Working Group benchmark preparation and MSE planning materials. It links the current workshop notices, benchmark terms of reference, draft SCW16 working papers, preparatory meeting reports, model diagnostics, and supporting assessment resources needed to prepare for the 2026 benchmark and subsequent management-strategy-evaluation work.
@@ -32,7 +34,7 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [JM SAM Model runs](https://sprfmo.github.io/JM_sam/)
 
-  - [SCW16 benchmark model sequence](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16_models.qmd) (`SPRFMO/jjm` source QMD)
+  - [SCW16 benchmark model runs](SCW16_models.html) ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16_models.qmd))
 
 ### Draft SCW16 papers
 
