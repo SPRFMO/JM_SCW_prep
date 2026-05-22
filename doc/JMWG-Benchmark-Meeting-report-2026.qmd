@@ -704,8 +704,8 @@ can be considered.
 ::: {.callout-note}
 ## Zenteno comment
 
-Peru noted that the new Peruvian CPUE series is still in development and is
-expected to be completed by November 2026.
+Peru noted that the new Peruvian CPUE series can be extended to be completed by
+November 2026.
 :::
 
 ::: {.callout-note}
