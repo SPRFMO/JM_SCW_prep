@@ -22,6 +22,7 @@ project:
     - report-collaboration-workflow.qmd
     - SCW16-Doc03-CPUE_MetaAnalysis.qmd
     - SC13.qmd
+    - SCW16_models.qmd
     - mod0.14_mod1.1_comparison.qmd
     - helper_scripts_guide.qmd
     - userguide/index.qmd
