@@ -1141,3 +1141,7 @@ Use the following labels when carrying presentation material into the report:
 | Presentation only | Material presented to the meeting but not currently represented by a numbered SCW16 paper. |
 | New 2026 evidence | Recent information that may affect benchmark interpretation even if it is not a standalone paper. |
 | Context / supporting methods | Background or method information that helps interpret candidate indices but is not itself a direct assessment input. |
+
+{{< pagebreak >}}
+
+{{< include appendix_diagnostics.qmd >}}

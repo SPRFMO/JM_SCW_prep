@@ -1,0 +1,260 @@
+# Appendix E. 0.05 Diagnostic Figure Series
+
+This appendix provides the diagnostic figure series for the 0.05 model set. The selection follows the requested annex figure groups and keeps the figures organized by diagnostic purpose.
+
+| Diagnostic group | Annex figures | Appendix content |
+|---|---:|---|
+| Retrospective patterns | 6-9 | Analytical retrospective diagnostics for spawning biomass and recruitment under the single-stock and two-stock hypotheses. |
+| Input weight-at-age sanity check | 12-13 | Fishery and survey input mean weight-at-age series. |
+| Composition fits | 14-27 | Fishery age fits, Far North length fits, and survey age fits. |
+| Index fits | 28-29 | Single-stock index fits and combined two-stock index fits. |
+| Selection patterns | 37-40 | Fishery and survey selectivity patterns under both stock hypotheses. |
+
+```{r}
+#| label: setup-appendix-diagnostic-series
+#| include: false
+suppressPackageStartupMessages(library(jjmR))
+
+knitr::opts_chunk$set(
+  fig.width = 11,
+  fig.height = 9,
+  out.width = "100%"
+)
+
+diag_model_id <- "0.05"
+diag_h1nm <- geth(diag_model_id, "h1")
+diag_h2nm <- geth(diag_model_id, "h2")
+
+diag_config_dir <- file.path("..", "assessment", "config")
+diag_input_dir <- file.path("..", "assessment", "input")
+diag_output_dir <- file.path("..", "assessment", "results")
+
+diag_required_files <- c(
+  file.path(diag_config_dir, paste0(diag_h1nm, ".ctl")),
+  file.path(diag_config_dir, paste0(diag_h2nm, ".ctl")),
+  file.path(diag_output_dir, paste0(diag_h1nm, ".rep")),
+  file.path(diag_output_dir, paste0(diag_h2nm, ".rep")),
+  file.path(diag_output_dir, paste0(diag_h1nm, "_retrospective.RData")),
+  file.path(diag_output_dir, paste0(diag_h2nm, "_retrospective.RData"))
+)
+diag_missing <- diag_required_files[!file.exists(diag_required_files)]
+if (length(diag_missing)) {
+  stop(
+    "Missing files required for the 0.05 diagnostic appendix:\n",
+    paste(diag_missing, collapse = "\n"),
+    call. = FALSE
+  )
+}
+
+diag_h1_mod <- readJJM(
+  diag_h1nm,
+  path = diag_config_dir,
+  input = diag_input_dir,
+  output = diag_output_dir
+)
+diag_h1_diag <- diagnostics(diag_h1_mod, plot = FALSE)
+
+diag_h2_mod <- readJJM(
+  diag_h2nm,
+  path = diag_config_dir,
+  input = diag_input_dir,
+  output = diag_output_dir
+)
+diag_h2_diag <- diagnostics(diag_h2_mod, plot = FALSE)
+
+diag_retro_env <- new.env(parent = emptyenv())
+load(file.path(diag_output_dir, paste0(diag_h1nm, "_retrospective.RData")), envir = diag_retro_env)
+diag_h1_retro <- diag_retro_env$output
+
+diag_retro_env <- new.env(parent = emptyenv())
+load(file.path(diag_output_dir, paste0(diag_h2nm, "_retrospective.RData")), envir = diag_retro_env)
+diag_h2_retro <- diag_retro_env$output
+```
+
+## Retrospective Patterns
+
+```{r}
+#| label: fig-diag-retro-ssb-h1
+#| fig-cap: !expr paste0("Analytical retrospective of spawning biomass from five peel runs based on Model ", diag_h1nm, " under the single-stock hypothesis.")
+plot(diag_h1_retro, var = "SSB")
+```
+
+```{r}
+#| label: fig-diag-retro-r-h1
+#| fig-cap: !expr paste0("Analytical retrospective of recruitment from five peel runs based on Model ", diag_h1nm, " under the single-stock hypothesis.")
+plot(diag_h1_retro, var = "R")
+```
+
+```{r}
+#| label: fig-diag-retro-ssb-h2
+#| fig-cap: !expr paste0("Analytical retrospective of spawning biomass from five peel runs for the southern stock (top) and Far North stock (bottom), based on Model ", diag_h2nm, " under the two-stock hypothesis.")
+#| fig-height: 10
+op <- par(no.readonly = TRUE)
+on.exit(par(op), add = TRUE)
+par(mfrow = c(2, 1), mar = c(3, 4, 2, 1))
+plot(diag_h2_retro, var = "SSB")
+```
+
+```{r}
+#| label: fig-diag-retro-r-h2
+#| fig-cap: !expr paste0("Analytical retrospective of recruitment from five peel runs for the southern stock (top) and Far North stock (bottom), based on Model ", diag_h2nm, " under the two-stock hypothesis.")
+#| fig-height: 12
+op <- par(no.readonly = TRUE)
+on.exit(par(op), add = TRUE)
+par(mfrow = c(2, 1), mar = c(3, 4, 2, 1))
+plot(diag_h2_retro, var = "R")
+```
+
+## Input Weight-at-Age Sanity Checks
+
+```{r}
+#| label: fig-diag-wtatage-fishery
+#| fig-cap: "Mean weights-at-age used for the fisheries in the JJM models. Each line represents an age from 1 to 12."
+plot(diag_h1_diag, var = "weightFishery")
+```
+
+```{r}
+#| label: fig-diag-wtatage-survey
+#| fig-cap: "Mean weights-at-age used for the surveys in the JJM models. Each line represents an age from 1 to 12."
+plot(diag_h1_diag, var = "weightAge")
+```
+
+## Composition Fits
+
+```{r}
+#| label: fig-diag-agefits-fsh-h1-n-chile
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to age compositions for the Chilean northern zone fishery under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "ageFitsCatch", fleet = "N_Chile")
+```
+
+```{r}
+#| label: fig-diag-agefits-fsh-h2-n-chile
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to age compositions for the Chilean northern zone fishery under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "ageFitsCatch", fleet = "N_Chile")
+```
+
+```{r}
+#| label: fig-diag-agefits-fsh-h1-sc-chile-ps
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to age compositions for the South-Central Chilean purse-seine fishery under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "ageFitsCatch", fleet = "SC_Chile_PS")
+```
+
+```{r}
+#| label: fig-diag-agefits-fsh-h2-sc-chile-ps
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to age compositions for the South-Central Chilean purse-seine fishery under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "ageFitsCatch", fleet = "SC_Chile_PS")
+```
+
+```{r}
+#| label: fig-diag-agefits-fsh-h1-offshore-trawl
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to age compositions for the offshore trawl fishery under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "ageFitsCatch", fleet = "Offshore_Trawl")
+```
+
+```{r}
+#| label: fig-diag-agefits-fsh-h2-offshore-trawl
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to age compositions for the offshore trawl fishery under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "ageFitsCatch", fleet = "Offshore_Trawl")
+```
+
+```{r}
+#| label: fig-diag-lenfits-fsh-h1-far-north
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to length compositions for the Far North fishery under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "lengthFitsCatch")
+```
+
+```{r}
+#| label: fig-diag-lenfits-fsh-h2-far-north
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to length compositions for the Far North fishery under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "lengthFitsCatch")
+```
+
+```{r}
+#| label: fig-diag-agefits-srv-h1-chile-acouscs
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to age compositions for the South-Central Acoustic survey under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "ageFitsSurvey", fleet = "Chile_AcousCS")
+```
+
+```{r}
+#| label: fig-diag-agefits-srv-h2-chile-acouscs
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to age compositions for the South-Central Acoustic survey under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "ageFitsSurvey", fleet = "Chile_AcousCS")
+```
+
+```{r}
+#| label: fig-diag-agefits-srv-h1-chile-acousn
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to age compositions for the North Chilean Acoustic survey under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "ageFitsSurvey", fleet = "Chile_AcousN")
+```
+
+```{r}
+#| label: fig-diag-agefits-srv-h2-chile-acousn
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to age compositions for the North Chilean Acoustic survey under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "ageFitsSurvey", fleet = "Chile_AcousN")
+```
+
+```{r}
+#| label: fig-diag-agefits-srv-h1-depm
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to age compositions for the Daily Egg Production Method survey under the single-stock hypothesis.")
+plot(diag_h1_diag, var = "ageFitsSurvey", fleet = "DEPM")
+```
+
+```{r}
+#| label: fig-diag-agefits-srv-h2-depm
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to age compositions for the Daily Egg Production Method survey under the two-stock hypothesis.")
+plot(diag_h2_diag, var = "ageFitsSurvey", fleet = "DEPM")
+```
+
+## Index Fits
+
+```{r}
+#| label: fig-diag-indfits-h1
+#| fig-cap: !expr paste0("Model ", diag_h1nm, " fit to abundance indices under the single-stock hypothesis. Vertical bars represent two standard deviations around the observations.")
+plot(diag_h1_diag, var = "predictedObservedIndices")
+```
+
+```{r}
+#| label: fig-diag-indfits-h2
+#| fig-cap: !expr paste0("Model ", diag_h2nm, " fit to abundance indices under the two-stock hypothesis for the south stock (top) and Far North stock (bottom). Vertical bars represent two standard deviations around the observations.")
+#| fig-width: 11
+#| fig-height: 11
+op <- par(no.readonly = TRUE)
+diag_h2_index_file <- file.path(
+  knitr::opts_current$get("fig.path"),
+  "fig-diag-indfits-h2-combined.png"
+)
+dir.create(dirname(diag_h2_index_file), recursive = TRUE, showWarnings = FALSE)
+png(diag_h2_index_file, width = 11, height = 11, units = "in", res = 144)
+par(mfrow = c(2, 1), mar = c(3.4, 4, 2.1, 1))
+plot(diag_h2_diag, var = "predictedObservedIndices", stock = 1)
+plot(diag_h2_diag, var = "predictedObservedIndices", stock = 2)
+par(op)
+dev.off()
+knitr::include_graphics(diag_h2_index_file)
+```
+
+## Selection Patterns
+
+```{r}
+#| label: fig-diag-selfsh-h1
+#| fig-cap: !expr paste0("Estimated fishery selectivity over time for Model ", diag_h1nm, " under the single-stock hypothesis.")
+print(plot_selectivities(get_selectivities(diag_h1_mod)))
+```
+
+```{r}
+#| label: fig-diag-selfsh-h2
+#| fig-cap: !expr paste0("Estimated fishery selectivity over time for Model ", diag_h2nm, " under the two-stock hypothesis.")
+print(plot_selectivities(get_selectivities(diag_h2_mod)))
+```
+
+```{r}
+#| label: fig-diag-selsrv-h1
+#| fig-cap: !expr paste0("Estimated survey selectivity over time for Model ", diag_h1nm, " under the single-stock hypothesis.")
+plot(diag_h1_mod, what = "selectivity", fleet = "ind", alpha = 0.2, scale = 10)
+```
+
+```{r}
+#| label: fig-diag-selsrv-h2
+#| fig-cap: !expr paste0("Estimated survey selectivity over time for Model ", diag_h2nm, " under the two-stock hypothesis.")
+plot(diag_h2_mod, what = "selectivity", fleet = "ind", alpha = 0.2, scale = 10)
+```
