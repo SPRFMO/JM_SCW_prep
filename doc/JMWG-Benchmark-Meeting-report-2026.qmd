@@ -462,10 +462,10 @@ effect on making progress with the MSE.
 Chile noted that the rationale for this effort-creep treatment was grounded in
 both empirical data and historical fleet dynamics. The approach incorporated
 operational feedback from Chilean south-central fleet captains, who identified
-2005 as an inflection point in fishing efficiency. On that basis, most members
-agreed that applying a continuously increasing efficiency correction after 2005
-was unnecessary. Retaining the 1% factor before 2005 was also viewed as a way to
-anchor the early time series and avoid a large historical efficiency jump.
+2005 as an inflection point in fishing efficiency. On that basis, applying a
+continuously increasing efficiency correction after 2005 was unnecessary.
+Retaining the 1% factor before 2005 was also viewed as a way to anchor the early
+time series and avoid a large historical efficiency jump.
 :::
 
 Participants also discussed whether applying the creep factor as an effort
