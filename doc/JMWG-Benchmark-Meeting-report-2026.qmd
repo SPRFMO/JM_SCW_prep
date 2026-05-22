@@ -266,9 +266,10 @@ of zeros, whether the survey design and spatial mesh could absorb abundance
 signal, and how uncertainty in extrapolated areas should be carried through to
 the final index. Participants cautioned that summing median predictions across
 areas may understate uncertainty if spatially extrapolated cells are weakly
-informed. The INLA-based northern Chile analysis used acoustic information
-converted to biomass with biological data, and participants discussed the roles
-of occurrence, positive density, anisotropy, and environmental covariates. The
+informed. The second northern Chile analysis also used `sdmTMB`, with acoustic
+information converted to biomass using biological data, and participants
+discussed the roles of occurrence, positive density, anisotropy, and
+environmental covariates. The
 meeting noted that these two acoustic products use related data and should be
 compared for complementarity, redundancy, uncertainty, and sensitivity to survey
 coverage.
@@ -414,8 +415,7 @@ SC13 were compared to the updated 2026 configuration. The introduction of annual
 spatial random fields changed the perception of the resource dynamics, with less
 profound increases and decreases over the time series. Model consistency between
 the SC12 and SC13 configurations was high, and it is expected that model
-consistency for the new method is of similar quality. A formal retrospective
-analysis is pending and will be presented at SC14.
+consistency for the new method is of similar quality.
 
 The updated INLA-based Chilean CPUE retrospective analysis was reviewed using
 six peels. The resulting Mohn's rho was 0.0254, and participants considered the
@@ -426,9 +426,9 @@ The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment
 starting in 1998, using the agreed effort-creep treatment described above.
 Annual CVs should be weighted by percentage coverage and should incorporate
 standard errors from the INLA analysis. The previous Chilean CPUE index should
-be removed from the base model. A sensitivity run should be retained that uses
-the old CPUE information piecemeal before 1998, to evaluate the consequence of
-preserving historical contrast before the new CPUE series begins.
+be removed from the base model. A sensitivity run should replace the new
+Chilean CPUE series with the SC13 CPUE series to evaluate the effect of removing
+the old CPUE treatment on historical biomass.
 
 The 1998 start year was selected because earlier set-level coverage was poor and
 may not be representative of the fishery, particularly in years when catches were
@@ -567,10 +567,11 @@ a larger share of the quota since 2019. These changes, in combination with
 environmental impacts on the distribution of jack mackerel, led to a marked
 shift of the resource over the CPUE time series. This shift is currently
 untreated in the CPUE standardization, as efforts to account for it were
-unsuccessful. The Day 3 discussion agreed that the new Peruvian CPUE series
-starts later than the historical assessment CPUE treatment and should replace the
-previous Peru CPUE index rather than be appended to it in the base model. The
-previous Peru CPUE index should therefore be removed from the base configuration.
+unsuccessful. The Day 3 discussion agreed that the new, shorter Peruvian CPUE
+series provides better information and should be preferred for the base model.
+The previous Peru CPUE index should therefore be removed from the base
+configuration, while a sensitivity that also includes the old Peru CPUE series
+can be considered.
 
 The offshore CPUE discussion included the treatment of a catchability break in
 2021 associated with movement of the offshore fleet to the north, and discussion
@@ -598,7 +599,7 @@ for the CPUE standardization. The diagnostic declines from the high early values
 toward lower values in the early 2000s, increases through the mid- to late
 2010s, and then declines in the most recent retained years.
 
-![Normalized annual catch-rate diagnostic calculated as mean catch per set divided by hold capacity and number of fishing sets. The plot omits 1994, 2006, and 2026 and shows a LOESS smoother with an approximate 95% standard-error band.](../docs/day3/normalized_catch_rate_loess.png){#fig-chile-cpue-normalized-catch-rate width=100%}
+![Normalized annual catch-rate diagnostic calculated as mean catch per set divided by hold capacity and number of fishing sets. The plot omits 1994, 2006, and 2026 and shows annual points only.](../docs/day3/normalized_catch_rate_loess.png){#fig-chile-cpue-normalized-catch-rate width=100%}
 
 The broader pairwise diagnostic summary is shown in @fig-chile-cpue-fishing-trip-pairs.
 
@@ -940,8 +941,8 @@ action-item list.
 | 1 | Use the new Chilean CPUE series beginning in 1998. | Chile CPUE | Implement in the base model and remove the previous Chilean CPUE index. | 0.01 |
 | 2 | Apply the Chilean effort-creep treatment with 1% annual creep through 2004 and the 0.669 adjustment beginning in 2005. | Chile CPUE / effort creep | Confirm the exact implementation in the model input and control files. | 0.06 |
 | 3 | Weight Chilean CPUE CVs by percentage coverage and include standard errors from the INLA analysis. | Chile CPUE uncertainty | Prepare the annual uncertainty vector for assessment input. | 0.05 |
-| 4 | Retain a sensitivity with piecemeal use of the old Chilean CPUE before 1998. | Chile CPUE sensitivity | Add to the candidate sensitivity-run list. | TBD |
-| 5 | Use the new Peruvian CPUE series as a later-starting replacement and remove the previous Peru CPUE index. | Peru CPUE | Implement the replacement in the base model. | 0.02 |
+| 4 | Run a sensitivity replacing the new Chilean CPUE series with the SC13 CPUE series. | Chile CPUE sensitivity | Evaluate the impact of removing the old CPUE series on historical biomass. | TBD |
+| 5 | Use the new short Peruvian CPUE series as the preferred base-model treatment. | Peru CPUE | Implement the new series in the base model and consider a sensitivity that also includes the old Peru CPUE series. | 0.02 |
 | 6 | Treat Peruvian length frequencies as fork length and use growth parameters in fork length. | Peru biology / composition | Check consistency of growth, length-frequency bins, and length-weight inputs. | 0.00+ |
 | 7 | Retain the 50 cm plus group for the Peruvian length-frequency and growth treatment. | Peru biology / composition | Confirm the retained plus-group treatment in the candidate model configuration. | Complete |
 | 8 | Use the new Peruvian acoustic indices and remove the previous Peru acoustic index. | Peru acoustic index | Carry forward associated length-frequency information with the new acoustic treatment. | 0.05 |
