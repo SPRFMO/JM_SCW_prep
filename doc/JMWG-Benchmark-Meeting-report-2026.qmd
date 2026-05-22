@@ -1018,12 +1018,15 @@ The Season 1 and Season 2 Far North length-composition rows used in `mod0.5.dat`
 ![Season 2 Far North length-composition shapes from `mod0.5.dat`. Each ridge is scaled within year to emphasize modal structure; dashed vertical lines mark the retained 10-50 cm assessment length-bin interval, and blank rows indicate missing years.](images/farnorth_mod05_season2_length_ridges.svg){#fig-farnorth-mod05-season2-ridges width=100%}
 
 
-For Peru acoustic information, the meeting agreed to move to the new Peruvian
-acoustic indices and remove the previous Peru acoustic index from the base
-configuration. The associated Peruvian length-frequency information should be
-carried forward with the new acoustic treatment. No new Chilean Acoustic North
-or Chilean Acoustic South-Central index treatment was selected for the base model
-at this stage.
+After discussions regarding the representativeness of the jack mackerel (JM)
+abundance estimates off Peru, given that the coverage of the Peruvian acoustic
+surveys, which are primarily designed to assess Peruvian anchovy, does not fully
+match the distribution of JM, the meeting agreed to move to the new Peruvian
+acoustic indices as indices of availability and remove the previous Peru
+acoustic index from the base configuration. The associated Peruvian
+length-frequency information should be carried forward with the new acoustic
+treatment. No new Chilean Acoustic North or Chilean Acoustic South-Central index
+treatment was selected for the base model at this stage.
 
 ## Assessment Model Development
 
