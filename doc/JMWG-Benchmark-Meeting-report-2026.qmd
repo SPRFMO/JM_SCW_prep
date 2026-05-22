@@ -272,7 +272,10 @@ discussed the roles of occurrence, positive density, anisotropy, and
 environmental covariates. The
 meeting noted that these two acoustic products use related data and should be
 compared for complementarity, redundancy, uncertainty, and sensitivity to survey
-coverage.
+coverage. The meeting also noted that there would be an advantage to developing
+a synoptic acoustic survey design that covers the northern to southern parts of
+Chile, so that future survey information can better distinguish changes in
+abundance from shifts in distribution and availability.
 
 On Day 3, the meeting revisited the Chile Acoustic North survey treatment.
 Participants noted that the spatio-temporal modelling work by INPESCA is a
@@ -982,6 +985,10 @@ workshop.
 - **Recommended** retaining the raw or design-based Chile Acoustic North biomass
   treatment for assessment use, while treating spatio-temporal acoustic modelling
   as research and diagnostic information unless a later sensitivity is requested.
+- **Recommended** that the JMWG and relevant Members evaluate the feasibility and
+  benefits of a synoptic acoustic survey covering the northern to southern parts
+  of Chile, given the importance of distinguishing abundance trends from spatial
+  redistribution and availability changes.
 - **Recommended** retaining the existing 10-50 cm Far North length-composition bins
   and 50 cm plus group for the benchmark configuration, using Peruvian
   length-frequency information as fork length and applying fork-length growth
@@ -998,6 +1005,35 @@ workshop.
   feasible, that reflect the 2026 acoustic and catch information so the
   Scientific Committee and MSE process have a clear indication of the apparent
   recent stock trend and its uncertainty.
+
+# References
+
+The meeting report relied on the SCW16 working papers and supporting
+presentations listed below. Presentation-only material and file crosswalks are
+provided in Appendix D.
+
+- SCW16-Doc01. Developments of the base SC13 model for benchmark and MSE
+  considerations.
+- SCW16-Doc02. CPUE coordination priorities and working-paper plan.
+- SCW16-Doc03. Meta-analysis of CPUE papers on jack mackerel.
+- SCW16-Doc04. Conditioning of an operating-model grid for South Pacific jack
+  mackerel.
+- SCW16-Doc05. Jack mackerel biology summary.
+- SCW16-Doc06. Standardized northern Chile acoustic abundance index.
+- SCW16-Doc07. Implementation of an informed creep correction into the Chile
+  jack mackerel CPUE index.
+- SCW16-Doc08. Interannual variability in distribution, size structure, and
+  biomass estimated from fishery-dependent acoustics.
+- SCW16-Doc09. Spatio-temporal modelling of acoustic backscatter from
+  north-central Chile acoustic surveys using `sdmTMB`.
+- SCW16-Doc10. Chilean CPUE standardization using `sdmTMB`.
+- SCW16-Doc11. Jack mackerel catch and fishery data quality-control checks.
+- SCW16-Doc12. Spatio-temporal modelling of Chilean CPUE using INLA.
+- SCW16-Doc13. Length-weight relationship of jack mackerel in Peru.
+- SCW16-Doc14. Updated length-frequency data for Peruvian jack mackerel.
+- SCW16-Doc15. Standardization of CPUE for jack mackerel in Peru.
+- SCW16-Doc16. Considerations on the use of the jack mackerel acoustic index in
+  Peruvian national jurisdictional waters.
 
 # Appendix A. Shortened Draft Agenda
 
