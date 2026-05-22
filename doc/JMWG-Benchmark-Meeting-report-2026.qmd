@@ -353,14 +353,43 @@ combined, but noted that the fishery-dependent product may be more appropriate
 as a diagnostic or future sensitivity until the effects of seasonality, vessel
 coverage, and fleet behaviour are better understood.
 
-For the Chile central-south acoustic survey series, participants requested a
-short paragraph explaining why the historical central-south acoustic data have
-not been used in the assessment in recent years, including specific reference to
-available survey years such as 2012, 2015, 2017, 2020, 2021, and 2023. The
-paragraph should state whether the exclusion is due to survey design, data
-quality, representativeness, inconsistency with other indices, model behaviour,
-or lack of documentation, and whether any sensitivity run should be considered
-for the benchmark.
+For the Chile South-Central acoustic survey time series, participants noted that
+significant changes in acoustic survey sampling designs have been necessary to
+track shifts in Chilean jack mackerel distribution. During the early part of the
+series, from 1997-2003, survey cruises maintained a relatively stable transect
+design focused on the coastal zone, approximately the first 100 nmi from
+Valparaiso (33 degrees S) to Corral (40 degrees S). This was followed by an
+extended period from 2004-2017 characterized by annual changes to transect
+design, driven primarily by offshore movement of jack mackerel into oceanic
+waters. This spatial shift is supported by commercial fleet catch distributions,
+which show vessels operating up to 800 nmi from the coast in search of fishing
+grounds. In some years the survey could not operate, while in other years
+operational and administrative issues may have resulted in false negatives in
+the acoustic data, particularly during 2009-2015.
+
+These methodological changes raised concerns about comparability of survey
+results over time, including changes in the number of transects, longitudinal
+extent, latitudinal extent, and overall study area. Consequently, only a
+restricted period of the time series, 2001-2009, has historically been used for
+jack mackerel stock assessments, consistent with the SCW14 benchmark agreement.
+Participants noted that modifying acoustic survey design is essential for highly
+mobile pelagic stocks whose spatial distributions shift with changing
+oceanographic conditions. Fixed historical grids can bias abundance estimates
+when fish move beyond the original sampling frame, while adaptive sampling
+protocols that track density boundaries can reduce these errors. However,
+fluctuating survey areas also challenge the assumption of constant catchability,
+making raw design-based indices difficult to use directly in population models
+without additional standardization. Spatio-temporal standardization approaches,
+including methods such as VAST, were identified as tools that could account for
+the varying survey footprint and generate a more robust continuous biomass index
+for modern assessments. Chile noted that a project is underway to improve jack
+mackerel hydroacoustic surveys through optimized survey design, estimation of
+mean acoustic density and associated uncertainty, and standardization of
+historical survey time series using Bayesian and/or classical approaches. The
+project also aims to propose standardized abundance and biomass indices derived
+from jack mackerel acoustic surveys, with results expected to be presented at a
+future SPRFMO Scientific Committee meeting for consideration in the jack mackerel
+stock assessment model.
 
 The Peruvian acoustic discussion emphasized that the acoustic survey programme
 was primarily designed for anchovy, and that jack mackerel may occur outside the
@@ -1216,6 +1245,32 @@ provided in Appendix D.
 - SCW16-Doc15. Standardization of CPUE for jack mackerel in Peru.
 - SCW16-Doc16. Considerations on the use of the jack mackerel acoustic index in
   Peruvian national jurisdictional waters.
+- Harbitz, A., Ona, E., and Pennington, M. (2009). The use of an adaptive
+  acoustic-survey design to estimate the abundance of highly skewed fish
+  populations. *ICES Journal of Marine Science*, 66, 1349-1354.
+  <https://doi.org/10.1093/icesjms/fsp088>.
+- Stenevik, E. K., Volstad, J. H., Hoines, A., Aanes, S., Oskarsson, G. J.,
+  Jacobsen, J. A., and Tangen, O. (2015). Precision in estimates of density and
+  biomass of Norwegian spring-spawning herring based on acoustic surveys.
+  *Marine Biology Research*, 11, 449-461.
+  <https://doi.org/10.1080/17451000.2014.995672>.
+- Thorson, J. T. (2019). Guidance for decisions using the Vector Autoregressive
+  Spatio-Temporal (VAST) package in stock, ecosystem, habitat and climate
+  assessments. *Fisheries Research*, 210, 143-161.
+  <https://doi.org/10.1016/j.fishres.2018.10.013>.
+- Paya, I. (2025). Update on the Chilean jack mackerel CPUE index and acoustic
+  biomass estimates in Chile. South Pacific Regional Fisheries Management
+  Organisation (SPRFMO).
+  <https://sprfmo.int/assets/Meetings/02-SC/13th-SC-2025/Jack-Mackerel/SC13-JM04-Jack-Mackerel-CPUE-index-and-acoustic-biomass-in-the-south-central-Chile-up-to-2025-.pdf>.
+- Vasquez, S., and Sepulveda, A. (2025). Update on CPUE standardization for the
+  Chilean jack mackerel fishery in central-southern Chile using spatio-temporal
+  Bayesian models. South Pacific Regional Fisheries Management Organisation
+  (SPRFMO).
+  <https://www.sprfmo.int/assets/Meetings/02-SC/13th-SC-2025/Jack-Mackerel/SC13-JM02-Update-on-CPUE-standardization-for-CJM-fishery-in-central-southern-Chile.pdf>.
+- SCW14. (2022). 14th Scientific Committee Workshop Report: Jack Mackerel
+  Benchmark Workshop. South Pacific Regional Fisheries Management Organisation
+  (SPRFMO).
+  <https://www.sprfmo.int/assets/Meetings/SC_WS/SCW14-Jack-Mackerel/SPRFMO-SC-JM-Benchmark-Workshop-2022-Report-SCW14.pdf>.
 
 # Appendix A. Shortened Draft Agenda
 
