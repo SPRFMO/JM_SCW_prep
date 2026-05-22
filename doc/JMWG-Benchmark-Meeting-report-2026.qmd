@@ -1191,7 +1191,7 @@ workshop.
   against the previous SC13 input set.
 - **Noted** that the new Chilean CPUE treatment begins in 1998, includes the
   agreed effort-creep adjustment, and uses annual uncertainty weighted by data
-  coverage with INLA standard errors.
+  coverage with INLA model-estimated standard errors.
 - **Noted** that the 2026 Chile acoustic survey and year-to-date fishery
   information indicate exceptional recent conditions, including apparent
   dispersion of jack mackerel and a large decline in the north-central Chile
