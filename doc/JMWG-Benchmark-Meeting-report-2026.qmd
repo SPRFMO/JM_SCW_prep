@@ -421,10 +421,13 @@ is summarized in @tbl-chile-cpue-cv-weighting. The CV weight is calculated as
 the square-root of annual coverage relative to the maximum coverage in the
 series; equivalently, the table reports the inverse multiplier (`1/CV_wt`) used
 to inflate the annual CV. The assessment model uses the 1998-2025 rows and the
-weighted (`wtd`) CV column.
+weighted (`wtd`) CV column. The `0.06 CPUE index (CPUE+creep)` column is the
+effort-creep-adjusted Chilean CPUE vector used as `Chile_CPUE` in the 0.06 model
+input file. It applies the agreed 1% compounded fishing-power correction through
+2004 and the 0.669 multiplicative adjustment from 2005 onward.
 
 ```{r tbl-chile-cpue-cv-weighting}
-#| tbl-cap: "Chilean South-Central CPUE uncertainty table. The 1998-2025 rows were selected for the assessment-model input, and the weighted (`wtd`) CV is the CV used for the assessment model. The CV weight is the square-root of annual coverage relative to the maximum coverage."
+#| tbl-cap: "Chilean South-Central CPUE uncertainty and 0.06 input-index table. The 1998-2025 rows were selected for the assessment-model input; the 0.06 CPUE index (`CPUE+creep`) column is the Chile_CPUE vector used in the 0.06 model, and the weighted (`wtd`) CV is the CV used for the assessment model."
 #| results: asis
 chile_cpue_cv <- data.frame(
   year = c(
@@ -472,31 +475,45 @@ chile_cpue_cv <- data.frame(
   )
 )
 
+chile_cpue_0_06 <- read.delim(
+  file.path("..", "assessment", "data", "chile_cpue_2025.tsv"),
+  check.names = FALSE
+)
+chile_cpue_0_06_lookup <- setNames(chile_cpue_0_06[["CPUE+creep"]], chile_cpue_0_06$Year_num)
+chile_cpue_cv$cpue_creep_0_06 <- unname(chile_cpue_0_06_lookup[chile_cpue_cv$year])
+chile_cpue_cv$cpue_creep_0_06[chile_cpue_cv$year == "Mean 1998-2025"] <-
+  mean(chile_cpue_0_06[["CPUE+creep"]])
+chile_cpue_cv <- chile_cpue_cv[
+  c("year", "mean_cpue", "cpue_creep_0_06", "sd_cpue", "cv", "wtd_cv", "coverage", "inv_cv_wt")
+]
+
 if (knitr::is_html_output()) {
   chile_cpue_cv |>
     gt::gt() |>
     gt::tab_header(
       title = "Chilean South-Central CPUE CV weighting",
-      subtitle = "Assessment model uses 1998-2025 and the weighted CV column"
+      subtitle = "Assessment model 0.06 uses 1998-2025, the CPUE+creep index, and the weighted CV column"
     ) |>
     gt::cols_label(
       year = "Year",
       mean_cpue = "Mean CPUE",
+      cpue_creep_0_06 = gt::html("0.06 CPUE index<br>(CPUE+creep)"),
       sd_cpue = "SD CPUE",
       cv = "CV",
       wtd_cv = "wtd CV",
       coverage = "Coverage (%)",
       inv_cv_wt = "1/CV_wt"
     ) |>
-    gt::fmt_number(columns = c(mean_cpue, sd_cpue), decimals = 3) |>
+    gt::fmt_number(columns = c(mean_cpue, cpue_creep_0_06, sd_cpue), decimals = 3) |>
     gt::fmt_number(columns = coverage, decimals = 1) |>
     gt::fmt_number(columns = inv_cv_wt, decimals = 4) |>
+    gt::sub_missing(columns = cpue_creep_0_06, missing_text = "--") |>
     gt::tab_style(
       style = gt::cell_text(weight = "bold"),
       locations = gt::cells_body(rows = year == "Mean 1998-2025")
     ) |>
     gt::tab_source_note(
-      "CV weight = sqrt(coverage / maximum coverage); 1/CV_wt is the inverse multiplier applied to the CV."
+      "CV weight = sqrt(coverage / maximum coverage); 1/CV_wt is the inverse multiplier applied to the CV. CPUE+creep is the effort-creep-adjusted index written to assessment/input/0.06.dat."
     ) |>
     gt::tab_options(table.font.size = gt::px(11))
 } else {
@@ -505,10 +522,11 @@ if (knitr::is_html_output()) {
     caption = paste(
       "Chilean South-Central CPUE uncertainty table.",
       "The 1998-2025 rows were selected for the assessment-model input,",
+      "the 0.06 CPUE index (`CPUE+creep`) column is the Chile_CPUE vector used in the 0.06 model,",
       "and the weighted (`wtd`) CV is the CV used for the assessment model.",
       "The CV weight is the square-root of annual coverage relative to the maximum coverage."
     ),
-    align = c("c", rep("r", 6))
+    align = c("c", rep("r", 7))
   )
 }
 ```
