@@ -1193,7 +1193,7 @@ workshop.
   agreed effort-creep adjustment, and uses annual uncertainty weighted by data
   coverage with INLA model-estimated standard errors.
 - **Noted** that the 2026 Chile acoustic survey and year-to-date fishery
-  information indicate exceptional recent conditions, including apparent
+  information indicate unusual recent conditions, including apparent
   dispersion of jack mackerel and a large decline in the north-central Chile
   acoustic biomass estimate relative to 2025.
 - **Noted** that acoustic and CPUE data may give different recent signals and
