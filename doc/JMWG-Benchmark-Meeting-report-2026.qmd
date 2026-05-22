@@ -418,6 +418,21 @@ SC13 were compared to the updated 2026 configuration. The introduction of annual
 spatial random fields changed the perception of the resource dynamics, with less
 profound increases and decreases over the time series.
 
+Comparisons between the CPUE index model based on `sdmTMB`-INLA (Paya 2026) and
+INLA (Vasquez and Sepulveda 2026) were presented and discussed
+(@fig-glmm-index-inla-2026). There were no significant differences between model
+outputs. For benchmark purposes, the INLA model (Vasquez and Sepulveda 2026) was
+selected. For the update of the indices for the next stock assessment, which
+should include data up to June 2026, the group agreed on a common model
+configuration:
+
+`C = Year + Quarter + DAS + s(hc, 5) + s`
+
+where `DAS` is days at sea, `hc` is holding capacity, and `s` represents
+spatio-temporal random effects.
+
+![CPUE indices normalized as z-scores and estimated using `sdmTMB`-INLA (`GLMM_ST`; Paya 2026) and INLA (`GLMM_ST`; Vasquez and Sepulveda 2026).](images/GLMM_Index_INLA_2026.png){#fig-glmm-index-inla-2026 width=100%}
+
 The updated INLA-based Chilean CPUE retrospective analysis was reviewed using
 six peels. The resulting Mohn's rho was 0.0254, and participants considered the
 diagnostic performance favourable for assessment use.
