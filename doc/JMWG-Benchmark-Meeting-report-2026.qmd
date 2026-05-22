@@ -835,55 +835,28 @@ Text to be added during the meeting. This section should summarize operating-mod
 
 # Decisions and Agreements
 
-| No. | Decision or agreement | Topic | Follow-up needed |
-|---:|---|---|---|
-| 1 | Use the new Chilean CPUE series beginning in 1998. | Chile CPUE | Implement in the base model and remove the previous Chilean CPUE index. |
-| 2 | Apply the Chilean effort-creep treatment with 1% annual creep through 2004 and the 0.669 adjustment beginning in 2005. | Chile CPUE / effort creep | Confirm the exact implementation in the model input and control files. |
-| 3 | Weight Chilean CPUE CVs by percentage coverage and include standard errors from the INLA analysis. | Chile CPUE uncertainty | Prepare the annual uncertainty vector for assessment input. |
-| 4 | Retain a sensitivity with piecemeal use of the old Chilean CPUE before 1998. | Chile CPUE sensitivity | Add to the candidate sensitivity-run list. |
-| 5 | Use the new Peruvian CPUE series as a later-starting replacement and remove the previous Peru CPUE index. | Peru CPUE | Implement the replacement in the base model. |
-| 6 | Treat Peruvian length frequencies as fork length and use growth parameters in fork length. | Peru biology / composition | Check consistency of growth, length-frequency bins, and length-weight inputs. |
-| 7 | Increase the plus group for the Peruvian length-frequency and growth treatment. | Peru biology / composition | Specify the plus-group age in the candidate model configuration. |
-| 8 | Use the new Peruvian acoustic indices and remove the previous Peru acoustic index. | Peru acoustic index | Carry forward associated length-frequency information with the new acoustic treatment. |
-| 9 | Retain raw/design-based Chile Acoustic North biomass for assessment use and keep spatio-temporal acoustic modelling as research and diagnostic information. | Chile acoustic indices | Acknowledge INPESCA's modelling contribution and document why model-based CPUE indicators and design-based survey indicators are treated differently. |
-| 10 | Do not add a new base-model treatment for Chilean Acoustic South-Central at this stage. | Chile acoustic indices | Retain as diagnostic or supporting information unless a later sensitivity is requested. |
+The table below consolidates the benchmark decisions and agreements reached
+during the meeting and identifies the follow-up work needed to translate them
+into model inputs, sensitivity runs, and final report text. Items are grouped by
+technical topic so that implementation checks can be tracked alongside the
+action-item list.
 
-# Action Items
+::: {tbl-colwidths="[5,37,16,30,12]"}
+| No. | Decision or agreement | Topic | Follow-up needed | Status |
+|---:|---|---|---|:---:|
+| 1 | Use the new Chilean CPUE series beginning in 1998. | Chile CPUE | Implement in the base model and remove the previous Chilean CPUE index. | 0.01 |
+| 2 | Apply the Chilean effort-creep treatment with 1% annual creep through 2004 and the 0.669 adjustment beginning in 2005. | Chile CPUE / effort creep | Confirm the exact implementation in the model input and control files. | 0.06 |
+| 3 | Weight Chilean CPUE CVs by percentage coverage and include standard errors from the INLA analysis. | Chile CPUE uncertainty | Prepare the annual uncertainty vector for assessment input. | 0.05 |
+| 4 | Retain a sensitivity with piecemeal use of the old Chilean CPUE before 1998. | Chile CPUE sensitivity | Add to the candidate sensitivity-run list. | TBD |
+| 5 | Use the new Peruvian CPUE series as a later-starting replacement and remove the previous Peru CPUE index. | Peru CPUE | Implement the replacement in the base model. | 0.02 |
+| 6 | Treat Peruvian length frequencies as fork length and use growth parameters in fork length. | Peru biology / composition | Check consistency of growth, length-frequency bins, and length-weight inputs. | 0.00+ |
+| 7 | Increase the plus group for the Peruvian length-frequency and growth treatment. | Peru biology / composition | Specify the plus-group age in the candidate model configuration. | Complete |
+| 8 | Use the new Peruvian acoustic indices and remove the previous Peru acoustic index. | Peru acoustic index | Carry forward associated length-frequency information with the new acoustic treatment. | 0.05 |
+| 9 | Retain raw/design-based Chile Acoustic North biomass for assessment use and keep spatio-temporal acoustic modelling as research and diagnostic information. | Chile acoustic indices | Acknowledge INPESCA's modelling contribution and document why model-based CPUE indicators and design-based survey indicators are treated differently. | Research |
+| 10 | Do not add a new base-model treatment for Chilean Acoustic South-Central at this stage. | Chile acoustic indices | Retain as diagnostic or supporting information unless a later sensitivity is requested. | Complete |
 
-Add actions here as the meeting proceeds.
-
-| Action | Lead | Support | Target timing |
-|---|---|---|---|
-| Update the participant list and affiliations | Chair / Secretariat | Members | During meeting |
-| Maintain session-level report text as discussions conclude | Session leads | Rapporteurs / participants | Daily |
-| Prepare a final index-ranking table for candidate abundance indices | Assessment/index subgroup | Acoustic and CPUE contributors | Before report adoption |
-| Prepare an operating-model uncertainty table for MSE conditioning | MSE subgroup | Assessment subgroup | Before report adoption |
-| Provide data-extent metadata for each acoustic and CPUE analysis, including years, area, observation units, sample sizes, survey or fleet coverage, biological samples, uncertainty, and expansion methods | All index contributors | Secretariat / rapporteurs | Before report adoption |
-| Prepare a north-central Chile acoustic data-extent table with transects, area covered, trawls or biological samples, length-frequency data, and expansion information by year | Chile acoustic contributors | Assessment/index subgroup | Before report adoption |
-| Add report text acknowledging the INPESCA spatio-temporal Chile Acoustic North modelling contribution and explaining why model-based CPUE indicators and design-based survey indicators are treated differently | Chile acoustic contributors | Assessment/index subgroup | Before report adoption |
-| Draft a paragraph explaining why the Chile central-south acoustic survey series has not been used in the assessment, and whether any benchmark sensitivity should be run | Chile acoustic contributors | Assessment subgroup | Before report adoption |
-| Provide Peru acoustic backscatter and associated length-composition metadata, including survey timing, spatial extent, length type, biological sampling, and uncertainty | Peru acoustic contributors | Assessment/index subgroup | Before report adoption |
-| Provide Peru acoustic survey length frequencies as soon as possible | Peru acoustic contributors | Assessment/index subgroup | Before final model-run list |
-| Check average month, seasonal assignment, and fits to zero observations for the new Peru acoustic index runs | Assessment subgroup | Peru acoustic contributors | Before final model-run list |
-| Compare acoustic survey extent, biological sampling, length-frequency data, and numbers-at-age across northern Chile, central-south Chile, Peru, and fishery-dependent acoustic products | Acoustic/index subgroup | Chile and Peru contributors | Before final index recommendations |
-| Check current assessment treatment of the Peru acoustic index, including selectivity, catchability, CV assumptions, relationship to Peru CPUE, and whether pre-/post-1997/1998 treatment should be considered | Assessment subgroup | Peru contributors | Before model-run decisions |
-| Evaluate whether updated Chile central-south acoustic data through 2023 should be included as an assessment sensitivity or retained as diagnostic information | Assessment subgroup | Chile contributors | Before final model-run list |
-| Draft text on the JMWG's compressed data-submission workflow and post catch/fishery data quality-check material to the `jjmData` repository | Data-quality subgroup | Chair / Secretariat | Before report adoption |
-| Investigate age-length-key and composition-data sample-size reporting, including discrepancies between numbers of ages and numbers of length measurements | Data-quality subgroup | Members | Before biological-input decisions |
-| Run an assessment diagnostic with no Chilean effort-creep correction but with a catchability step change in 2005 | Assessment subgroup | Chile CPUE contributors | Before CPUE index decisions |
-| Add number and proportion of sets by year to the Chile CPUE data-summary table | Chile CPUE contributors | Assessment/index subgroup | Before final model-run list |
-| Prepare the new Chilean CPUE input beginning in 1998, including the agreed effort-creep adjustment and annual CVs weighted by percentage coverage with INLA standard errors | Chile CPUE contributors | Assessment subgroup | Before final model-run list |
-| Draft a paragraph explaining the criteria for starting the new Chilean CPUE series in 1998, including data coverage, representativeness, catch history, and fleet-behaviour changes after 1997 | Chile CPUE contributors | Assessment subgroup | Before report adoption |
-| Define what CPUE model or data changes will be allowed between the benchmark and subsequent assessment or MSE implementation | Chair / Assessment subgroup | Members | Before final report adoption |
-| Add the sensitivity using piecemeal old Chilean CPUE before 1998 | Assessment subgroup | Chile CPUE contributors | Before final model-run list |
-| Check the strength and interpretation of the days-at-sea or DFP coefficient in the INLA-based Chile CPUE analysis | Chile CPUE contributors | Assessment/index subgroup | Before CPUE index decisions |
-| Check whether zero CPUE records are true fishing zeroes or technical/non-fishing records and whether zeroes should be included in Chile CPUE standardization | Chile CPUE contributors | Assessment/index subgroup | Before final model-run list |
-| Replace the previous Peru CPUE index with the new later-starting Peruvian CPUE series | Assessment subgroup | Peru CPUE contributors | Before final model-run list |
-| Replace the previous Peru acoustic index with the new Peruvian acoustic indices and associated length-frequency information | Assessment subgroup | Peru acoustic contributors | Before final model-run list |
-| Prepare Peruvian length-frequency inputs in fork length, with fork-length growth parameters and the agreed increased plus group | Assessment subgroup | Peru biology contributors | Before final model-run list |
-| Provide Peru composition sample-size information in terms of numbers of fish where available, in addition to sampling-event counts | Peru biology contributors | Assessment subgroup | Before biological-input finalization |
-| Evaluate whether the SPRFMO length-bin range should be expanded to match Peru's 5-90 cm length bins | Assessment subgroup | Peru biology contributors | Before biological-input finalization |
-| Document the rationale for the 2021 offshore CPUE catchability break and the interpretation of El Nino effects relative to annual effects | Offshore CPUE contributor | Assessment subgroup | Before final model-run list |
+: Benchmark decisions and agreements. Numbered entries in the Status column identify the corresponding model reference.
+:::
 
 # Open Issues / Risks to Track
 
