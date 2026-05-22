@@ -836,7 +836,14 @@ The updated Far North length-composition information was provided in annual rows
 
 The diagnostic plots show that the retained 10-50 cm interval captures nearly all of the observed length-composition mass in most years (@fig-farnorth-length-cumulative-all; @fig-farnorth-length-cumulative; @fig-farnorth-length-ridges). Across the annual rows, the median proportion within 10-50 cm was 0.9998, and the minimum was 0.895. When the length compositions were summed across all years, 0.9986 of the total was within the retained 10-50 cm interval. The lower annual coverage years were mainly early observations and the most recent 2024 row. On this basis, the practical benchmark decision was to retain the existing 10-50 cm assessment bins for the Far North length-composition treatment rather than expanding the JJM length-bin range to 5-90 cm at this stage.
 
-The annual length-composition sample-size plot was digitized from the provided figure for 1972-2025. The digitized values were treated as relative sample-size weights and rescaled by multiplying by `100 / 1094 = 0.091`, so that the largest annual effective sample size equals 100. These rescaled values were inserted as the Far North fishery length-composition sample-size vector in `input/mod0.5.dat`. The scaled input vector is archived in `doc/data/farnorth_sample_sizes_scaled_for_mod0.5.csv`. 
+The annual length-composition sample-size plot was digitized from the provided
+figure for 1972-2025. The digitized values were treated as relative sample-size
+weights. The meeting noted that rescaling the Far North length-frequency sample
+sizes to have a maximum value of 100 would not preserve the scale used
+previously in the assessment. Instead, the effective sample-size vector should
+maintain the same mean as in the past. Consequently, the vector was rescaled to
+have a mean effective sample size of 30. The scaled input vector is archived in
+`doc/data/farnorth_sample_sizes_scaled_for_mod0.5.csv`.
 
 ![Cumulative Far North length-composition distribution after summing across all years. The curve uses the full 5-90 cm composition data, with the x-axis truncated at 60 cm. Dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_cumulative_all_years.svg){#fig-farnorth-length-cumulative-all width=100%}
 

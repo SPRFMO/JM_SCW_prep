@@ -1,6 +1,6 @@
-# Appendix E. 0.06 Diagnostic Figure Series
+# Appendix E. 0.07 Diagnostic Figure Series
 
-This appendix provides the diagnostic figure series for the 0.06 model set. The selection follows the requested annex figure groups and keeps the figures organized by diagnostic purpose.
+This appendix provides the diagnostic figure series for the 0.07 model set. The selection follows the requested annex figure groups and keeps the figures organized by diagnostic purpose.
 
 | Diagnostic group | Annex figures | Appendix content |
 |---|---|---|
@@ -23,13 +23,14 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-diag_model_id <- "0.06"
+diag_model_id <- "0.07"
 diag_h1nm <- geth(diag_model_id, "h1")
 diag_h2nm <- geth(diag_model_id, "h2")
 
-diag_config_dir <- file.path("..", "assessment", "config")
-diag_input_dir <- file.path("..", "assessment", "input")
-diag_output_dir <- file.path("..", "assessment", "results")
+diag_assessment_dir <- "/Users/jim/_mymods/sprfmo/jjm/assessment"
+diag_config_dir <- file.path(diag_assessment_dir, "config")
+diag_input_dir <- file.path(diag_assessment_dir, "input")
+diag_output_dir <- file.path(diag_assessment_dir, "results")
 
 diag_required_files <- c(
   file.path(diag_config_dir, paste0(diag_h1nm, ".ctl")),
@@ -40,7 +41,7 @@ diag_required_files <- c(
 diag_missing <- diag_required_files[!file.exists(diag_required_files)]
 if (length(diag_missing)) {
   stop(
-    "Missing files required for the 0.06 diagnostic appendix:\n",
+    "Missing files required for the 0.07 diagnostic appendix:\n",
     paste(diag_missing, collapse = "\n"),
     call. = FALSE
   )
@@ -71,7 +72,7 @@ diag_check_indices <- function(mod, label) {
   if (!identical(observed, diag_expected_indices)) {
     stop(
       label,
-      " index names do not match the expected 0.06 configuration:\n",
+      " index names do not match the expected 0.07 configuration:\n",
       "observed: ", paste(observed, collapse = ", "), "\n",
       "expected: ", paste(diag_expected_indices, collapse = ", "),
       call. = FALSE
@@ -206,10 +207,11 @@ diag_mcmc_available <- all(file.exists(diag_mcmc_images)) &&
 ## Retrospective Patterns
 
 The single-stock model was rerun with five retrospective peels. For the
-two-stock model, the first four peels converged and are shown here; the fifth
-peel failed under the updated 0.06 inputs with a non-finite final objective
-function and an unstable Hessian, so it is excluded from the plotted
-retrospective diagnostic.
+two-stock model, peels 1 and 2 failed under the updated 0.07 inputs with
+non-finite final objective functions, while peels 3-5 converged. Because the
+successful two-stock peels do not form a contiguous retrospective series, the
+two-stock retrospective diagnostic is marked as unavailable below rather than
+plotted as an incomplete series.
 
 ```{r}
 #| label: fig-diag-retro-ssb-h1
@@ -485,18 +487,13 @@ plot(diag_h2_mod, what = "selectivity", fleet = "ind", alpha = 0.2, scale = 10)
 
 ## ADNuts MCMC Diagnostics
 
-ADNuts diagnostic chains were run for `h1_0.06` and `h2_0.06` with four chains,
-1000 iterations per chain, 500 warmup iterations, unit metric,
-`adapt_delta = 0.9`, and `max_treedepth = 6`. These chains are included as
-sampler diagnostics and are not suitable for posterior inference. The
-single-stock run retained low effective sample sizes, high Rhat values, and
-divergent transitions. The two-stock run had many divergent transitions and
-also retained low effective sample sizes and high Rhat values. Longer and
-better tuned runs would be required before using MCMC output for inference.
+ADNuts diagnostic chains have not yet been rerun for the 0.07 model set after
+the Far North length-composition sample-size update. The MCMC tables and plots
+below are included only when matching 0.07 ADNuts diagnostic output is present.
 
 ```{r}
 #| label: tbl-diag-adnuts-mcmc-summary
-#| tbl-cap: "ADNuts MCMC diagnostic run summary for the 0.06 model pair. These short chains are intended for convergence diagnostics, not posterior inference."
+#| tbl-cap: "ADNuts MCMC diagnostic run summary for the 0.07 model pair. These short chains are intended for convergence diagnostics, not posterior inference."
 #| results: asis
 if (diag_mcmc_available) {
   adnuts_summary <- read.csv(diag_mcmc_summary_file)
@@ -518,13 +515,13 @@ if (diag_mcmc_available) {
     ) |>
     knitr::kable()
 } else {
-  knitr::kable(data.frame(note = "ADNuts MCMC summary is not yet available for the 0.06 model pair."))
+  knitr::kable(data.frame(note = "ADNuts MCMC summary is not yet available for the 0.07 model pair."))
 }
 ```
 
 ```{r}
 #| label: tbl-diag-adnuts-mcmc-slow-parameters
-#| tbl-cap: "Ten slowest-mixing parameters retained from each ADNuts fit for the 0.06 model pair."
+#| tbl-cap: "Ten slowest-mixing parameters retained from each ADNuts fit for the 0.07 model pair."
 #| results: asis
 if (diag_mcmc_available) {
   adnuts_slow <- read.csv(diag_mcmc_slow_file)
@@ -533,22 +530,18 @@ if (diag_mcmc_available) {
     dplyr::mutate(Rhat = round(Rhat, 3)) |>
     knitr::kable()
 } else {
-  knitr::kable(data.frame(note = "Slowest-mixing ADNuts parameters are not yet available for the 0.06 model pair."))
+  knitr::kable(data.frame(note = "Slowest-mixing ADNuts parameters are not yet available for the 0.07 model pair."))
 }
 ```
 
-![ADNuts pairs plot for the ten slowest-mixing parameters in Model h1_0.06 under the single-stock hypothesis. Diagonal panels show trace plots, lower panels show posterior draws, and upper panels show pairwise correlations.](images/mcmc_diagnostics/h1_0.06_pairs_slow.png){#fig-diag-adnuts-h1-pairs-slow width=100%}
-
-![ADNuts sampler diagnostics for Model h1_0.06 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.06_sampler_params.png){#fig-diag-adnuts-h1-sampler width=100%}
-
-![Marginal posterior diagnostics for the slowest-mixing parameters in Model h1_0.06 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.06_marginals_slow.png){#fig-diag-adnuts-h1-marginals width=100%}
-
-![Posterior standard deviations compared with MLE standard errors for Model h1_0.06 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.06_uncertainties.png){#fig-diag-adnuts-h1-uncertainties width=100%}
-
-![ADNuts pairs plot for the ten slowest-mixing parameters in Model h2_0.06 under the two-stock hypothesis. Diagonal panels show trace plots, lower panels show posterior draws, upper panels show pairwise correlations, and green points indicate divergent transitions.](images/mcmc_diagnostics/h2_0.06_pairs_slow.png){#fig-diag-adnuts-h2-pairs-slow width=100%}
-
-![ADNuts sampler diagnostics for Model h2_0.06 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.06_sampler_params.png){#fig-diag-adnuts-h2-sampler width=100%}
-
-![Marginal posterior diagnostics for the slowest-mixing parameters in Model h2_0.06 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.06_marginals_slow.png){#fig-diag-adnuts-h2-marginals width=100%}
-
-![Posterior standard deviations compared with MLE standard errors for Model h2_0.06 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.06_uncertainties.png){#fig-diag-adnuts-h2-uncertainties width=100%}
+```{r}
+#| label: fig-diag-adnuts-mcmc-images
+#| fig-cap: "ADNuts MCMC diagnostic plots for the 0.07 model pair, shown when matching diagnostic images are available."
+#| echo: false
+#| results: asis
+if (diag_mcmc_available) {
+  knitr::include_graphics(diag_mcmc_images)
+} else {
+  cat("ADNuts MCMC diagnostic plots are not yet available for the 0.07 model pair.")
+}
+```
