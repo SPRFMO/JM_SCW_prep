@@ -293,6 +293,16 @@ design-based acoustic biomass treatment for assessment use at this stage, while
 using the spatio-temporal acoustic modelling as research and diagnostic
 information rather than as a replacement base-model index.
 
+::: {.callout-note}
+## Last-day model-run note
+
+The final-day discussion noted that earlier model configurations included two
+catchability breaks for the Chile Acoustic North survey that were no longer
+present in the current runs. The group identified this as a candidate model-run
+check, including whether those breaks should be restored or otherwise tested
+given the large apparent change in Chile Acoustic North catchability.
+:::
+
 The fishery-dependent acoustic presentation for south-central Chile was viewed as
 potentially useful but not yet ready for direct assessment use without further
 work. Participants noted the high temporal resolution and lower cost of
@@ -588,6 +598,15 @@ The previous Peru CPUE index should therefore be removed from the base
 configuration, while a sensitivity that also includes the old Peru CPUE series
 can be considered.
 
+::: {.callout-note}
+## Last-day model-run note
+
+The final-day discussion also identified a Peruvian CPUE catchability-break run
+as a candidate sensitivity, to evaluate whether an explicit break improves
+interpretation of the new short Peruvian CPUE series and its relationship to the
+historical assessment treatment.
+:::
+
 The offshore CPUE discussion included the treatment of a catchability break in
 2021 associated with movement of the offshore fleet to the north, and discussion
 of how El Nino effects were represented relative to annual effects. The report
@@ -864,6 +883,18 @@ maintain the same mean as in the past. Consequently, the vector was rescaled to
 have a mean effective sample size of 30. The scaled input vector is archived in
 `doc/data/farnorth_sample_sizes_scaled_for_mod0.5.csv`.
 
+::: {.callout-note}
+## Last-day diagnostics note
+
+The final-day diagnostics discussion noted that the previous cap of 100 for Far
+North length-composition sample sizes was arbitrary and that the mean-30
+rescaling was preferred for the benchmark runs. Participants also supported
+continued development of annually varying effective sample sizes for Far North
+composition data. As a future improvement, the group noted that survey effective
+sample sizes could be weighted by the number of trawls or equivalent biological
+sampling units.
+:::
+
 ![Cumulative Far North length-composition distribution after summing across all years. The curve uses the full 5-90 cm composition data, with the x-axis truncated at 60 cm. Dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_cumulative_all_years.svg){#fig-farnorth-length-cumulative-all width=100%}
 
 ![Cumulative Far North length-composition distributions by year. Lines show row-wise cumulative proportions from the full 5-90 cm composition data, with the x-axis truncated at 60 cm. Dashed vertical lines mark the retained 10-50 cm assessment length-bin interval.](images/farnorth_length_cumulative_by_year.svg){#fig-farnorth-length-cumulative width=100%}
@@ -910,6 +941,18 @@ evaluation. Several iterations are still needed to improve model fit. The Chair
 suggested allowing until Wednesday 27 May 2026 to improve model fit and
 double-check data inputs and model settings. The group agreed to this approach.
 
+::: {.callout-note}
+## Last-day model-development note
+
+The final-day diagnostics discussion also noted that Season 2 was missing from
+one index plot and should be checked. Participants discussed the difference
+between allowing time-varying selectivity for the Far North fleet in the
+single-stock hypothesis and not applying the same treatment in the two-stock
+hypothesis. Peru indicated openness to considering time-varying selectivity for
+the two-stock Far North component so that the h1 and h2 configurations can be
+compared more consistently.
+:::
+
 ## Operating Models and MSE Linkages
 
 The working group conferred with the MSE contractor on details of the projection
@@ -935,6 +978,17 @@ supporting documentation is available. The group identified an urgent need to
 specify transition assumptions for selectivity and weight-at-age in projections,
 given the strong mandate to have an MSE ready during 2026.
 
+::: {.callout-note}
+## Last-day MSE workplan note
+
+The final-day discussion emphasized that the benchmark model set provides a
+foundation for operating-model conditioning, but should not be interpreted as the
+complete operating-model set for MSE testing. Additional work before the MSE
+workshop should evaluate block-pattern changes and other projection
+specifications that are not fully resolved by the benchmark model selection
+alone.
+:::
+
 Participants also discussed projected recruitment deviations and whether
 terminal-year uncertainty should be propagated directly into future recruitment.
 The group noted the need to separate estimation uncertainty from prediction and
@@ -959,6 +1013,23 @@ conditioning use, and whether MSE scenarios should include banking and borrowing
 provisions approved at the previous Commission meeting. The current MSE setup can
 represent banking and borrowing across all fleets, rather than by fleet, and the
 specific TAC-change bounds should be checked against the Commission report.
+
+::: {.callout-note}
+## Last-day MSE implementation note
+
+The group discussed avoiding an annual $F_{MSY}$ calculation for the MSE, with a
+preference to fix $F_{MSY}$ so that projections do not require additional
+assumptions about future selectivity patterns. Participants also discussed
+whether alternative productivity regimes should be used in the operating models.
+The preferred approach was to use recent productivity patterns for the main MSE
+simulations and treat alternative productivity regimes as sensitivities rather
+than adopting them as the primary basis for MSE use. Hindcast-style projections
+from earlier years, such as 2018, were identified as useful diagnostics because
+the MSE should test management-procedure robustness across a range of stock
+conditions rather than depend only on the current stock state. This was framed
+partly as a communication issue, including how to explain exceptional
+circumstances and robustness testing to stakeholders.
+:::
 
 # Decisions and Agreements
 
