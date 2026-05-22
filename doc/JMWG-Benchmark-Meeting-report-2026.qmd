@@ -523,7 +523,7 @@ SC13 were compared to the updated 2026 configuration. The introduction of annual
 spatial random fields changed the perception of the resource dynamics, with less
 profound increases and decreases over the time series.
 
-Comparisons between the CPUE index model based on `sdmTMB`-INLA (Paya 2026) and
+Comparisons between the CPUE index model based on `sdmTMB` (Paya 2026) and
 INLA (Vasquez and Sepulveda 2026) were presented and discussed
 (@fig-glmm-index-inla-2026). There were no significant differences between model
 outputs. For benchmark purposes, the INLA model (Vasquez and Sepulveda 2026) was
