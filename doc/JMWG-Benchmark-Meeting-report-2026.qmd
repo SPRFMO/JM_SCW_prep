@@ -726,7 +726,7 @@ effects, or residual year effects.
 
 As part of the meeting request to better understand patterns in data collection
 and fishing-set coverage for the Chilean CPUE series, Chile provided a summary
-table of annual fleet and sampling characteristics (@tbl-chile-cpue-fishing-trip-summary).
+table of annual fleet and coverage characteristics (@tbl-chile-cpue-fishing-trip-summary).
 The table includes distance from port, trip duration, catch per set, vessel hold
 capacity, the proportion of catch referenced by the set-level data, and the
 number of fishing sets available by year. This table was reviewed during a lengthy discussion about the period
