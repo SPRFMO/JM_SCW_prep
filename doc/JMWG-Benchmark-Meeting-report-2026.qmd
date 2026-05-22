@@ -240,14 +240,25 @@ may render it largely undetectable by acoustics, and that acoustic-trawl
 operations were most effective around dawn, when jack mackerel tended to
 concentrate.
 
+::: {.callout-note}
+## Zenteno comment
+
+Chile noted that substantial effort was made to provide preliminary results from
+the north-central Chile acoustic survey conducted during March-April 2026 in time
+for the benchmark workshop. The acoustic and biological information presented at
+the workshop was preliminary, final survey results may change, and oceanographic
+samples collected during the survey were still being processed in laboratories.
+:::
+
 The working group had a long discussion about whether to include the most recent
 2026 acoustic survey data point in the assessment runs, noting that the survey
-biomass estimate had declined from more than 3 million t in 2025 to just over
-0.64 million t in 2026. Members also noted that the Chilean fleet's
-year-to-date catch was about 30% of the comparable catch level from the previous
-year. The Chair requested that members provide their best estimate of the most
-likely 2026 catch so that at least some indication of the apparent stock trend
-could be relayed before the MSE meeting and Scientific Committee review. Part
+biomass estimate had declined from more than 3 million t in 2025 to a
+preliminary value just over 0.64 million t in 2026. Members also noted that the
+Chilean fleet's year-to-date catch was about 30% of the comparable catch level
+from the previous year. The Chair requested that members provide their best
+estimate of the most likely 2026 catch so that at least some indication of the
+apparent stock trend could be relayed before the MSE meeting and Scientific
+Committee review. Part
 of the difficulty was that the benchmark had two related but distinct goals: to
 improve future assessment modelling, and to generate appropriate scenarios for
 MSE testing. If the benchmark were being used only to improve the assessment,
@@ -292,8 +303,8 @@ abundance from shifts in distribution and availability.
 On Day 3, the meeting revisited the Chile Acoustic North survey treatment.
 Participants noted that the spatio-temporal modelling work by INPESCA is a
 substantial contribution and should be acknowledged in the report. The group
-noted that geostatistical modelling of acoustic data is generally uncommon,
-contrary to geostatistical standardization of CPUE. The latter time series is
+noted that spatio-temporal modelling of acoustic data is generally less common
+than spatio-temporal standardization of CPUE. The latter time series is
 largely affected by fishers' choice, which often disguises changes in population
 densities. The Chile Acoustic North survey, however, follows a design-based
 approach with pre-determined transects that are largely comparable across years
@@ -304,6 +315,23 @@ the CPUE standardization. The Day 3 decision was to retain the raw or
 design-based acoustic biomass treatment for assessment use at this stage, while
 using the spatio-temporal acoustic modelling as research and diagnostic
 information rather than as a replacement base-model index.
+
+::: {.callout-note}
+## Zenteno comment
+
+Chile noted that the north-central Chile acoustic survey has undergone
+substantial design changes over its history as jack mackerel distribution shifted
+between coastal and more oceanic areas. The early part of the series used a more
+stable coastal transect design, whereas later years required annual changes in
+survey footprint and some years were affected by operational or administrative
+constraints. These changes raise concerns about comparability of raw
+design-based biomass estimates and constant catchability assumptions. Chile
+therefore noted that spatio-temporal modelling can be used to develop an
+alternative acoustic index that is more robust to methodological changes, and
+that a Chilean project is underway to improve survey design, estimate acoustic
+density and uncertainty, and standardize historical survey time series for future
+Scientific Committee review.
+:::
 
 ::: {.callout-note}
 ## Last-day model-run note
@@ -400,6 +428,18 @@ abundance index, as proposed by Zenteno and Paya (2026). The EU objected and the
 Chair noted that it could be raised again at SC but should not have a large
 effect on making progress with the MSE.
 
+::: {.callout-note}
+## Zenteno comment
+
+Chile noted that the rationale for this effort-creep treatment was grounded in
+both empirical data and historical fleet dynamics. The approach incorporated
+operational feedback from Chilean south-central fleet captains, who identified
+2005 as an inflection point in fishing efficiency. On that basis, most members
+agreed that applying a continuously increasing efficiency correction after 2005
+was unnecessary. Retaining the 1% factor before 2005 was also viewed as a way to
+anchor the early time series and avoid a large historical efficiency jump.
+:::
+
 Participants also discussed whether applying the creep factor as an effort
 correction is equivalent to imposing a catchability change, and whether the
 survey/interview information used to estimate creep can be maintained regularly.
@@ -423,6 +463,17 @@ the data table include the number and proportion of sets by year, and that the
 authors provide a clear explanation for why the new set-based CPUE series gives
 lower CPUE in earlier years with high catches than the current trip-based
 assessment series.
+
+::: {.callout-note}
+## Zenteno comment
+
+Chile noted that, because jack mackerel availability in Chilean fisheries
+declined strongly during 2026, substantial work was done to obtain official
+e-logbook data through April 2026 and fit the spatio-temporal CPUE models for
+presentation at the workshop. The e-logbook data do not include vessels that did
+not fish and remained in port, which was estimated to represent approximately
+70-80% of the fleet.
+:::
 
 The INLA-based Chilean CPUE analysis provided a complementary spatio-temporal
 standardization. Participants discussed mesh resolution, the treatment of
@@ -458,6 +509,14 @@ where `DAS` is days at sea, `hc` is holding capacity, and `s` represents
 spatio-temporal random effects.
 
 ![CPUE indices normalized as z-scores and estimated using `sdmTMB`-INLA (`GLMM_ST`; Paya 2026) and INLA (`GLMM_ST`; Vasquez and Sepulveda 2026).](images/GLMM_Index_INLA_2026.png){#fig-glmm-index-inla-2026 width=100%}
+
+::: {.callout-note}
+## Zenteno comment
+
+Chile noted that future work will focus on standardizing the Chilean CPUE
+database so that a single common and complete database is used in the modelling
+procedure.
+:::
 
 The updated INLA-based Chilean CPUE retrospective analysis was reviewed using
 six peels. The resulting Mohn's rho was 0.0254, and participants considered the
@@ -613,6 +672,13 @@ series provides better information and should be preferred for the base model.
 The previous Peru CPUE index should therefore be removed from the base
 configuration, while a sensitivity that also includes the old Peru CPUE series
 can be considered.
+
+::: {.callout-note}
+## Zenteno comment
+
+Peru noted that the new Peruvian CPUE series is still in development and is
+expected to be completed by November 2026.
+:::
 
 ::: {.callout-note}
 ## Last-day model-run note
