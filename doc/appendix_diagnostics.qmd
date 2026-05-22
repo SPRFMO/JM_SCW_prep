@@ -1,6 +1,6 @@
-# Appendix E. 0.05 Diagnostic Figure Series
+# Appendix E. 0.06 Diagnostic Figure Series
 
-This appendix provides the diagnostic figure series for the 0.05 model set. The selection follows the requested annex figure groups and keeps the figures organized by diagnostic purpose.
+This appendix provides the diagnostic figure series for the 0.06 model set. The selection follows the requested annex figure groups and keeps the figures organized by diagnostic purpose.
 
 | Diagnostic group | Annex figures | Appendix content |
 |---|---|---|
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-diag_model_id <- "0.05"
+diag_model_id <- "0.06"
 diag_h1nm <- geth(diag_model_id, "h1")
 diag_h2nm <- geth(diag_model_id, "h2")
 
@@ -35,14 +35,12 @@ diag_required_files <- c(
   file.path(diag_config_dir, paste0(diag_h1nm, ".ctl")),
   file.path(diag_config_dir, paste0(diag_h2nm, ".ctl")),
   file.path(diag_output_dir, paste0(diag_h1nm, ".rep")),
-  file.path(diag_output_dir, paste0(diag_h2nm, ".rep")),
-  file.path(diag_output_dir, paste0(diag_h1nm, "_retrospective.RData")),
-  file.path(diag_output_dir, paste0(diag_h2nm, "_retrospective.RData"))
+  file.path(diag_output_dir, paste0(diag_h2nm, ".rep"))
 )
 diag_missing <- diag_required_files[!file.exists(diag_required_files)]
 if (length(diag_missing)) {
   stop(
-    "Missing files required for the 0.05 diagnostic appendix:\n",
+    "Missing files required for the 0.06 diagnostic appendix:\n",
     paste(diag_missing, collapse = "\n"),
     call. = FALSE
   )
@@ -73,7 +71,7 @@ diag_check_indices <- function(mod, label) {
   if (!identical(observed, diag_expected_indices)) {
     stop(
       label,
-      " index names do not match the expected 0.05 configuration:\n",
+      " index names do not match the expected 0.06 configuration:\n",
       "observed: ", paste(observed, collapse = ", "), "\n",
       "expected: ", paste(diag_expected_indices, collapse = ", "),
       call. = FALSE
@@ -165,13 +163,35 @@ plot_index_fit_panels <- function(diag_obj, model_name, stock_name, main, ncol =
   )
 }
 
-diag_retro_env <- new.env(parent = emptyenv())
-load(file.path(diag_output_dir, paste0(diag_h1nm, "_retrospective.RData")), envir = diag_retro_env)
-diag_h1_retro <- diag_retro_env$output
+diag_h1_retro_file <- file.path(diag_output_dir, paste0(diag_h1nm, "_retrospective.RData"))
+diag_h2_retro_file <- file.path(diag_output_dir, paste0(diag_h2nm, "_retrospective.RData"))
+diag_h1_retro_available <- file.exists(diag_h1_retro_file)
+diag_h2_retro_available <- file.exists(diag_h2_retro_file)
 
-diag_retro_env <- new.env(parent = emptyenv())
-load(file.path(diag_output_dir, paste0(diag_h2nm, "_retrospective.RData")), envir = diag_retro_env)
-diag_h2_retro <- diag_retro_env$output
+if (diag_h1_retro_available) {
+  diag_retro_env <- new.env(parent = emptyenv())
+  load(diag_h1_retro_file, envir = diag_retro_env)
+  diag_h1_retro <- diag_retro_env$output
+}
+
+if (diag_h2_retro_available) {
+  diag_retro_env <- new.env(parent = emptyenv())
+  load(diag_h2_retro_file, envir = diag_retro_env)
+  diag_h2_retro <- diag_retro_env$output
+}
+
+diag_mcmc_summary_file <- file.path("data", "adnuts_mcmc_summary.csv")
+diag_mcmc_slow_file <- file.path("data", "adnuts_mcmc_slow_parameters.csv")
+diag_mcmc_models <- c(diag_h1nm, diag_h2nm)
+diag_mcmc_images <- file.path(
+  "images",
+  "mcmc_diagnostics",
+  paste0(
+    rep(diag_mcmc_models, each = 4),
+    rep(c("_pairs_slow.png", "_sampler_params.png", "_marginals_slow.png", "_uncertainties.png"), times = 2)
+  )
+)
+diag_mcmc_available <- all(file.exists(c(diag_mcmc_summary_file, diag_mcmc_slow_file, diag_mcmc_images)))
 ```
 
 ## Retrospective Patterns
@@ -179,13 +199,23 @@ diag_h2_retro <- diag_retro_env$output
 ```{r}
 #| label: fig-diag-retro-ssb-h1
 #| fig-cap: !expr paste0("Analytical retrospective of spawning biomass from five peel runs based on Model ", diag_h1nm, " under the single-stock hypothesis.")
-plot(diag_h1_retro, var = "SSB")
+if (!diag_h1_retro_available) {
+  plot.new()
+  text(0.5, 0.5, paste("Retrospective output is not yet available for", diag_h1nm), cex = 1.1)
+} else {
+  plot(diag_h1_retro, var = "SSB")
+}
 ```
 
 ```{r}
 #| label: fig-diag-retro-r-h1
 #| fig-cap: !expr paste0("Analytical retrospective of recruitment from five peel runs based on Model ", diag_h1nm, " under the single-stock hypothesis.")
-plot(diag_h1_retro, var = "R")
+if (!diag_h1_retro_available) {
+  plot.new()
+  text(0.5, 0.5, paste("Retrospective output is not yet available for", diag_h1nm), cex = 1.1)
+} else {
+  plot(diag_h1_retro, var = "R")
+}
 ```
 
 ```{r}
@@ -195,7 +225,12 @@ plot(diag_h1_retro, var = "R")
 op <- par(no.readonly = TRUE)
 on.exit(par(op), add = TRUE)
 par(mfrow = c(2, 1), mar = c(3, 4, 2, 1))
-plot(diag_h2_retro, var = "SSB")
+if (!diag_h2_retro_available) {
+  plot.new()
+  text(0.5, 0.5, paste("Retrospective output is not yet available for", diag_h2nm), cex = 1.1)
+} else {
+  plot(diag_h2_retro, var = "SSB")
+}
 ```
 
 ```{r}
@@ -205,7 +240,12 @@ plot(diag_h2_retro, var = "SSB")
 op <- par(no.readonly = TRUE)
 on.exit(par(op), add = TRUE)
 par(mfrow = c(2, 1), mar = c(3, 4, 2, 1))
-plot(diag_h2_retro, var = "R")
+if (!diag_h2_retro_available) {
+  plot.new()
+  text(0.5, 0.5, paste("Retrospective output is not yet available for", diag_h2nm), cex = 1.1)
+} else {
+  plot(diag_h2_retro, var = "R")
+}
 ```
 
 ## Input Weight-at-Age Sanity Checks
@@ -430,60 +470,56 @@ plot(diag_h2_mod, what = "selectivity", fleet = "ind", alpha = 0.2, scale = 10)
 
 ## ADNuts MCMC Diagnostics
 
-ADNuts diagnostic chains were run for `h1_0.05` and `h2_0.05` with four chains,
-250 iterations, 50 warmup iterations, unit metric, `adapt_delta = 0.9`, and
-`max_treedepth = 6`. These short runs are included as sampler diagnostics and
-are not suitable for posterior inference. The single-stock run had no
-post-warmup divergences but reached maximum treedepth on all iterations. The
-two-stock run had many post-warmup divergences. Both runs had low effective
-sample sizes and high Rhat values, so longer and better tuned runs would be
-required before using MCMC output for inference.
+ADNuts diagnostic outputs for the 0.06 model pair are not yet available in this
+report directory. This section should be regenerated when short diagnostic
+chains have been run for `h1_0.06` and `h2_0.06`.
 
 ```{r}
 #| label: tbl-diag-adnuts-mcmc-summary
-#| tbl-cap: "ADNuts MCMC diagnostic run summary for the 0.05 model pair. These short chains are intended for convergence diagnostics, not posterior inference."
+#| tbl-cap: "ADNuts MCMC diagnostic run summary for the 0.06 model pair. These short chains are intended for convergence diagnostics, not posterior inference."
 #| results: asis
-adnuts_summary <- read.csv(file.path("data", "adnuts_mcmc_summary.csv"))
-adnuts_summary |>
-  dplyr::transmute(
-    model,
-    chains,
-    iter,
-    warmup,
-    post_warmup_per_chain,
-    n_parameters,
-    divergences,
-    max_treedepth_hits,
-    max_rhat = round(max_rhat, 3),
-    min_bulk_ess,
-    median_bulk_ess,
-    wall_minutes = round(wall_seconds / 60, 1)
-  ) |>
-  knitr::kable()
+if (diag_mcmc_available) {
+  adnuts_summary <- read.csv(diag_mcmc_summary_file)
+  adnuts_summary |>
+    dplyr::filter(model %in% diag_mcmc_models) |>
+    dplyr::transmute(
+      model,
+      chains,
+      iter,
+      warmup,
+      post_warmup_per_chain,
+      n_parameters,
+      divergences,
+      max_treedepth_hits,
+      max_rhat = round(max_rhat, 3),
+      min_bulk_ess,
+      median_bulk_ess,
+      wall_minutes = round(wall_seconds / 60, 1)
+    ) |>
+    knitr::kable()
+} else {
+  knitr::kable(data.frame(note = "ADNuts MCMC summary is not yet available for the 0.06 model pair."))
+}
 ```
 
 ```{r}
 #| label: tbl-diag-adnuts-mcmc-slow-parameters
-#| tbl-cap: "Ten slowest-mixing parameters retained from each ADNuts fit for the 0.05 model pair."
+#| tbl-cap: "Ten slowest-mixing parameters retained from each ADNuts fit for the 0.06 model pair."
 #| results: asis
-adnuts_slow <- read.csv(file.path("data", "adnuts_mcmc_slow_parameters.csv"))
-adnuts_slow |>
-  dplyr::mutate(Rhat = round(Rhat, 3)) |>
-  knitr::kable()
+if (diag_mcmc_available) {
+  adnuts_slow <- read.csv(diag_mcmc_slow_file)
+  adnuts_slow |>
+    dplyr::filter(model %in% diag_mcmc_models) |>
+    dplyr::mutate(Rhat = round(Rhat, 3)) |>
+    knitr::kable()
+} else {
+  knitr::kable(data.frame(note = "Slowest-mixing ADNuts parameters are not yet available for the 0.06 model pair."))
+}
 ```
 
-![ADNuts pairs plot for the ten slowest-mixing parameters in Model h1_0.05 under the single-stock hypothesis. Diagonal panels show trace plots, lower panels show posterior draws, and upper panels show pairwise correlations.](images/mcmc_diagnostics/h1_0.05_pairs_slow.png){#fig-diag-adnuts-h1-pairs-slow width=100%}
-
-![ADNuts sampler diagnostics for Model h1_0.05 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.05_sampler_params.png){#fig-diag-adnuts-h1-sampler width=100%}
-
-![Marginal posterior diagnostics for the slowest-mixing parameters in Model h1_0.05 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.05_marginals_slow.png){#fig-diag-adnuts-h1-marginals width=100%}
-
-![Posterior standard deviations compared with MLE standard errors for Model h1_0.05 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.05_uncertainties.png){#fig-diag-adnuts-h1-uncertainties width=100%}
-
-![ADNuts pairs plot for the ten slowest-mixing parameters in Model h2_0.05 under the two-stock hypothesis. Diagonal panels show trace plots, lower panels show posterior draws, upper panels show pairwise correlations, and green points indicate divergent transitions.](images/mcmc_diagnostics/h2_0.05_pairs_slow.png){#fig-diag-adnuts-h2-pairs-slow width=100%}
-
-![ADNuts sampler diagnostics for Model h2_0.05 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.05_sampler_params.png){#fig-diag-adnuts-h2-sampler width=100%}
-
-![Marginal posterior diagnostics for the slowest-mixing parameters in Model h2_0.05 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.05_marginals_slow.png){#fig-diag-adnuts-h2-marginals width=100%}
-
-![Posterior standard deviations compared with MLE standard errors for Model h2_0.05 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.05_uncertainties.png){#fig-diag-adnuts-h2-uncertainties width=100%}
+```{r}
+#| label: fig-diag-adnuts-placeholder
+#| fig-cap: "ADNuts MCMC diagnostic graphics for the 0.06 model pair."
+plot.new()
+text(0.5, 0.5, "ADNuts MCMC graphics are not yet available for h1_0.06 and h2_0.06.", cex = 1.1)
+```
