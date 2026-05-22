@@ -49,6 +49,7 @@ filters:
 
 ```{r}
 date_stamp <- format(Sys.Date(), "%d %B %Y")
+time_stamp <- format(Sys.time(), "%H:%M %Z")
 ```
 
 {{< include _includes/sprfmo-banner.html >}}
@@ -93,22 +94,33 @@ date_stamp <- format(Sys.Date(), "%d %B %Y")
 ::: {.content-visible when-format="pdf"}
 ```{=latex}
 \begin{center}
-\today
+`r date_stamp`\\
+`r time_stamp`
 \end{center}
 ```
 :::
 
 ::: {.content-visible .no-para-number unless-format="pdf"}
 ::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
-`r date_stamp`
+`r date_stamp`<br>
+`r time_stamp`
 :::
 :::
 
 # Summary {.unnumbered}
 
-This is a starter draft for the 2026 Jack Mackerel Working Group benchmark meeting report. It is structured to capture the main workshop decisions, agreed recommendations, unresolved technical issues, and follow-up tasks needed to support the June 2026 management strategy evaluation workshop and subsequent Scientific Committee review.
+This report summarizes the 2026 Jack Mackerel Working Group benchmark meeting.
+It records the main workshop decisions, agreed recommendations, unresolved
+technical issues, and follow-up tasks needed to support the June 2026 management
+strategy evaluation workshop and subsequent Scientific Committee review.
 
-The benchmark meeting is expected to focus on assessment inputs, abundance-index evaluation, biological data and assumptions, assessment-model simplification, operating-model conditioning, and priorities for the MSE work programme. This draft should be updated during the workshop as sessions conclude, with short decision text and action items added while technical discussions are still current.
+The benchmark meeting focused on assessment inputs, abundance-index evaluation,
+biological data and assumptions, assessment-model simplification,
+operating-model conditioning, and priorities for the MSE work programme. The
+report was developed from meeting notes, technical presentations, comments, and
+working-group discussion. Artificial intelligence tools were used extensively to
+help convert notes and comments into report text, with content reviewed and
+edited by the report authors and meeting participants.
 
 # Meeting Details
 
