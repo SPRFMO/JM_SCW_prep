@@ -416,14 +416,11 @@ annual spatial shifts by explicitly fitting an annual spatial random field, this
 concern is alleviated. Previous versions of the INLA model submitted to SC12 and
 SC13 were compared to the updated 2026 configuration. The introduction of annual
 spatial random fields changed the perception of the resource dynamics, with less
-profound increases and decreases over the time series. Model consistency between
-the SC12 and SC13 configurations was high, and it is expected that model
-consistency for the new method is of similar quality.
+profound increases and decreases over the time series.
 
 The updated INLA-based Chilean CPUE retrospective analysis was reviewed using
 six peels. The resulting Mohn's rho was 0.0254, and participants considered the
-diagnostic performance favourable for assessment use. Niels was asked to update
-the report text describing these retrospective results.
+diagnostic performance favourable for assessment use.
 
 The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment
 starting in 1998, using the agreed effort-creep treatment described above.
@@ -600,7 +597,10 @@ catch-rate pattern (@fig-chile-cpue-normalized-catch-rate) provides a simple
 nominal check on the annual information in the table rather than a replacement
 for the CPUE standardization. The diagnostic declines from the high early values
 toward lower values in the early 2000s, increases through the mid- to late
-2010s, and then declines in the most recent retained years.
+2010s, and then declines in the most recent retained years. From this analysis,
+as well as from other statistical analyses, such as PCA, evaluated during the
+meeting, starting the time series in 1998 was considered most suitable given
+that sampling coverage was similar across years from that time point onwards.
 
 ![Normalized annual catch-rate diagnostic calculated as mean catch per set divided by hold capacity and number of fishing sets. The plot omits 1994, 2006, and 2026 and shows annual points only.](../docs/day3/normalized_catch_rate_loess.png){#fig-chile-cpue-normalized-catch-rate width=100%}
 
@@ -887,6 +887,14 @@ South-Central option, but that request was later withdrawn. The practical
 proposal carried forward was to retain the series as currently configured unless
 a later sensitivity is requested.
 
+The group discussed diagnostics of the 0.06 model, noting that sample sizes for
+the Far North fleet were high. It was agreed to rescale these sample sizes to
+have an average of 30 over the time series. New diagnostic plots, including
+one-step-ahead residuals, were created and deemed valuable for model-performance
+evaluation. Several iterations are still needed to improve model fit. The Chair
+suggested allowing until Wednesday 27 May 2026 to improve model fit and
+double-check data inputs and model settings. The group agreed to this approach.
+
 ## Operating Models and MSE Linkages
 
 The working group conferred with the MSE contractor on details of the projection
@@ -921,7 +929,14 @@ should consider whether to exclude the extremely high 1986 and 1987 recruitment
 events or use a more recent recruitment period. The group also noted that
 exceptional circumstances, including the apparent 2026 dispersion of jack
 mackerel, need to be considered when framing MSE scenarios and subsequent
-advice.
+advice. Day 5 discussions revisited the estimation of recruitment deviations,
+as the contractor had simulated deviates in an alternative manner, including
+autocorrelation correction for recruitment deviates. This resulted in
+substantially narrower ranges of deviates, in line with recent and long-term
+observations. Since autocorrelation was estimated at around 0.68, it was assumed
+that this parameter was reliably estimated and hence the newly developed
+approach seemed appropriate. The group considered recent recruitment deviations
+most suitable for the MSE simulations.
 
 The group discussed management-procedure implementation questions, including how
 to rank indices for management-procedure input versus assessment and
