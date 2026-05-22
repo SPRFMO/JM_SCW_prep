@@ -534,7 +534,7 @@ configuration:
 `C = Year + Quarter + DAS + s(hc, 5) + s`
 
 where `DAS` is days at sea, `hc` is holding capacity, and `s` represents
-spatio-temporal random effects.
+spatio-temporal random effects independent of software platform.
 
 ![CPUE indices normalized as z-scores and estimated using `sdmTMB`-INLA (`GLMM_ST`; Paya 2026) and INLA (`GLMM_ST`; Vasquez and Sepulveda 2026).](images/GLMM_Index_INLA_2026.png){#fig-glmm-index-inla-2026 width=100%}
 
