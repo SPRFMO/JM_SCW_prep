@@ -1,0 +1,929 @@
+---
+title: "JJM Assessment – Annex Figures"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    theme: flatly
+    embed-resources: true
+    page-layout: full
+    lightbox: true
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+library(jjmR)
+library(tidyverse)
+source("annex_plot_helpers.R")
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+h1nm <- "h1_0.07"
+h2nm <- "h2_0.07"
+
+h1_mod <- readJJM(h1nm, path = "../../assessment/config",
+                  input = "../../assessment/input", output = "../../assessment/results")
+h2_mod <- readJJM(h2nm, path = "../../assessment/config",
+                  input = "../../assessment/input", output = "../../assessment/results")
+
+h1_retro <- NULL
+h1_retro_f <- file.path("../../assessment/results", paste0(h1nm, "_retrospective.RData"))
+if (file.exists(h1_retro_f)) { load(h1_retro_f); h1_retro <- output }
+
+h2_retro <- NULL
+h2_retro_f <- file.path("../../assessment/results", paste0(h2nm, "_retrospective.RData"))
+if (file.exists(h2_retro_f)) { load(h2_retro_f); h2_retro <- output }
+
+#Sys.setenv(QUARTO_PATH = "C:/Users/NielsHintzen/AppData/Local/Programs/Quarto/bin/quarto.exe")
+
+# Read real length bins (cm) from the shared input dat file
+.lenbins <- read_lenbins(
+  dat_path_from_ctl(h1nm, "../../assessment/config", "../../assessment/input")
+)
+
+# Cache composition data (used in eval guards and plot calls)
+.h1_agefits_fsh <- extr_agefits_fsh(h1_mod)
+.h2_agefits_fsh <- extr_agefits_fsh(h2_mod)
+.h1_agefits_srv <- extr_agefits_srv(h1_mod)
+.h2_agefits_srv <- extr_agefits_srv(h2_mod)
+.h1_lenfits_fsh <- extr_lenfits_fsh(h1_mod, lenbins = .lenbins)
+.h2_lenfits_fsh <- bind_rows(
+  extr_lenfits_fsh(h2_mod, stock = 1, lenbins = .lenbins),
+  extr_lenfits_fsh(h2_mod, stock = 2, lenbins = .lenbins)
+)
+
+# Cache index data
+.h1_ind   <- extr_indices(h1_mod, stock = 1)
+.h2_ind_1 <- extr_indices(h2_mod, stock = 1)
+.h2_ind_2 <- extr_indices(h2_mod, stock = 2)
+
+# Precompute max fig heights for dynamic-tab comp-fits chunks
+.fsh_fleets_h1 <- unique(.h1_agefits_fsh$fleet)
+.fsh_fleets_h2 <- unique(.h2_agefits_fsh$fleet)
+.srv_srvs_h1   <- unique(.h1_agefits_srv$survey)
+.srv_srvs_h2   <- unique(.h2_agefits_srv$survey)
+
+.maxh_fsh_h1 <- max(4, sapply(.fsh_fleets_h1, \(fl) comp_fig_height(.h1_agefits_fsh, "fleet", fl)))
+.maxh_fsh_h2 <- max(4, sapply(.fsh_fleets_h2, \(fl) comp_fig_height(.h2_agefits_fsh, "fleet", fl)))
+.maxh_srv_h1 <- max(4, sapply(.srv_srvs_h1,   \(s)  comp_fig_height(.h1_agefits_srv, "survey", s)))
+.maxh_srv_h2 <- max(4, sapply(.srv_srvs_h2,   \(s)  comp_fig_height(.h2_agefits_srv, "survey", s)))
+.maxh_len_h1 <- max(4, comp_fig_height(.h1_lenfits_fsh))
+.maxh_len_h2 <- max(4, comp_fig_height(.h2_lenfits_fsh))
+
+# Precompute heights that need multi-step expressions (avoids {} in !expr YAML)
+.effn_h1_height <- facet_fig_height(
+  length(unique(paste(extr_effn(h1_mod)$name, extr_effn(h1_mod)$type))),
+  ncol = 2, panel_h = 3)
+.ind_h1_n  <- length(unique(.h1_ind$survey[!is.na(.h1_ind$obs)]))
+.ind_h2_1_n <- length(unique(.h2_ind_1$survey[!is.na(.h2_ind_1$obs)]))
+.ind_h2_2_n <- length(unique(.h2_ind_2$survey[!is.na(.h2_ind_2$obs)]))
+
+# Fig height for Francis reweighting (same panel structure as effn, h2 only — h1 reuses .effn_h1_height)
+.francis_h2_height <- facet_fig_height(
+  length(unique(paste(extr_effn(h2_mod)$name, extr_effn(h2_mod)$type))),
+  ncol = 2, panel_h = 3)
+
+# Precompute Q-breaks per survey (used in individual diagnostic tabs)
+.h1_qbreaks <- extr_q_breaks(h1_mod)
+.h2_qbreaks <- extr_q_breaks(h2_mod)
+
+# Survey counts for Q-trajectory plots (reuse cached index survey counts)
+.qtraj_h1_n   <- .ind_h1_n
+.qtraj_h2_1_n <- .ind_h2_1_n
+.qtraj_h2_2_n <- .ind_h2_2_n
+
+# Ridge plot heights (nrow=1 facets; height driven by year range of observed data)
+.ridge_h <- function(df, type_col = "type") {
+  n <- length(unique(df$year[df[[type_col]] == "observed"]))
+  max(5, 1.5 + n * 0.13)
+}
+.ridge_age_fsh_h1 <- .ridge_h(.h1_agefits_fsh)
+.ridge_age_fsh_h2 <- .ridge_h(.h2_agefits_fsh)
+.ridge_age_srv_h1 <- .ridge_h(.h1_agefits_srv)
+.ridge_age_srv_h2 <- .ridge_h(.h2_agefits_srv)
+.ridge_len_fsh_h1 <- .ridge_h(.h1_lenfits_fsh)
+.ridge_len_fsh_h2 <- .ridge_h(.h2_lenfits_fsh)
+```
+
+```{=html}
+<script>
+/* Lightbox fallback for knit_child tab plots that bypass Quarto's Lua filter.
+   Quarto's lightbox: true only wraps figures processed through Pandoc (labeled,
+   captioned chunks). Dynamic tab plots from knitr::knit_child() emit bare <img>
+   tags; this script wraps them with a separate GLightbox instance at page load. */
+window.addEventListener('load', function () {
+  var imgs = document.querySelectorAll('.cell-output-display img:not(a img)');
+  imgs.forEach(function (img) {
+    var a = document.createElement('a');
+    a.href = img.src;
+    a.className = 'tab-lightbox';
+    a.setAttribute('data-gallery', 'tab-plots');
+    a.setAttribute('title', img.alt || '');
+    img.parentNode.insertBefore(a, img);
+    a.appendChild(img);
+    img.style.cursor = 'zoom-in';
+  });
+  if (imgs.length > 0 && typeof GLightbox !== 'undefined') {
+    GLightbox({ selector: '.tab-lightbox' });
+  }
+});
+</script>
+```
+
+```{=html}
+<style>
+/* PFA green tab styling */
+.panel-tabset .nav-tabs .nav-link.active,
+.panel-tabset .nav-tabs .nav-link.active:focus,
+.panel-tabset .nav-tabs .nav-link.active:hover {
+  color: #004868;
+  border-bottom-color: #00B764;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  font-weight: 600;
+}
+.panel-tabset .nav-tabs .nav-link:hover {
+  color: #00B764;
+  border-bottom-color: #00B764;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.panel-tabset .nav-tabs .nav-link {
+  color: #004868;
+}
+.panel-tabset .nav-tabs {
+  border-bottom-color: #00B764;
+}
+</style>
+```
+
+## Input Data
+
+```{r}
+#| label: fig-metadata
+#| fig-cap: "Years and types of information used in the jack mackerel assessment models."
+source("../../assessment/R/plot_metadataoverview.R")
+print(p1)
+```
+
+```{r}
+#| label: fig-effn
+#| fig-cap: "Input sample sizes for all age and length composition data sources."
+#| fig-height: !expr .effn_h1_height
+plot_effn(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+```{r}
+#| label: fig-catchbyfleet
+#| fig-cap: "Catch of jack mackerel by fleet, with input catch CV (bottom panel)."
+plot_catch_fleet(h1_mod, title = jjm_label(h1nm))
+```
+
+### Weight-at-age
+
+::: {.panel-tabset}
+
+#### Fisheries
+```{r}
+#| label: fig-wtatagefsh
+#| fig-cap: !expr paste0("Mean weights-at-age (kg) over time used for the fisheries. Each line represents one age.")
+#| fig-height: !expr facet_fig_height(length(unique(extr_wtat_fsh(h1_mod)$fleet)))
+plot_wtat(extr_wtat_fsh(h1_mod), facet_var = "fleet", title = jjm_label(h1nm))
+```
+
+#### Surveys
+```{r}
+#| label: fig-wtatagesrv
+#| fig-cap: !expr paste0("Mean weights-at-age (kg) over time used for the surveys. Each line represents one age.")
+#| fig-height: !expr facet_fig_height(length(unique(extr_wtat_srv(h1_mod)$survey)))
+plot_wtat(extr_wtat_srv(h1_mod), facet_var = "survey", title = jjm_label(h1nm))
+```
+
+#### Cohort – Fisheries
+```{r}
+#| label: fig-wtatcohortfsh
+#| fig-cap: "Weight-at-age (kg) by cohort for the fisheries. Each line traces one cohort."
+#| fig-height: !expr facet_fig_height(length(unique(extr_wtat_fsh(h1_mod)$fleet)))
+plot_wtat_cohort(extr_wtat_fsh(h1_mod), facet_var = "fleet", title = jjm_label(h1nm))
+```
+
+#### Cohort – Surveys
+```{r}
+#| label: fig-wtatcohortsrv
+#| fig-cap: "Weight-at-age (kg) by cohort for the surveys. Each line traces one cohort."
+#| fig-height: !expr facet_fig_height(length(unique(extr_wtat_srv(h1_mod)$survey)))
+plot_wtat_cohort(extr_wtat_srv(h1_mod), facet_var = "survey", title = jjm_label(h1nm))
+```
+
+:::
+
+### Input age compositions
+
+::: {.panel-tabset}
+
+#### Fisheries – h1
+```{r}
+#| label: fig-ageridge-fsh-h1
+#| fig-cap: !expr paste0("Observed age compositions by fishery – ", jjm_label(h1nm))
+#| fig-height: !expr .ridge_age_fsh_h1
+plot_comp_ridge(.h1_agefits_fsh, x_var = "age", facet_var = "fleet",
+                x_lab = "Age", title = jjm_label(h1nm))
+```
+
+#### Fisheries – h2
+```{r}
+#| label: fig-ageridge-fsh-h2
+#| fig-cap: !expr paste0("Observed age compositions by fishery – ", jjm_label(h2nm))
+#| fig-height: !expr .ridge_age_fsh_h2
+plot_comp_ridge(.h2_agefits_fsh, x_var = "age", facet_var = "fleet",
+                x_lab = "Age", title = jjm_label(h2nm))
+```
+
+#### Surveys – h1
+```{r}
+#| label: fig-ageridge-srv-h1
+#| fig-cap: !expr paste0("Observed age compositions by survey – ", jjm_label(h1nm))
+#| fig-height: !expr .ridge_age_srv_h1
+plot_comp_ridge(.h1_agefits_srv, x_var = "age", facet_var = "survey",
+                x_lab = "Age", title = jjm_label(h1nm))
+```
+
+#### Surveys – h2
+```{r}
+#| label: fig-ageridge-srv-h2
+#| fig-cap: !expr paste0("Observed age compositions by survey – ", jjm_label(h2nm))
+#| fig-height: !expr .ridge_age_srv_h2
+plot_comp_ridge(.h2_agefits_srv, x_var = "age", facet_var = "survey",
+                x_lab = "Age", title = jjm_label(h2nm))
+```
+
+:::
+
+### Input length compositions
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-lenridge-fsh-h1
+#| eval: !expr has_comp(.h1_lenfits_fsh)
+#| fig-cap: !expr paste0("Observed length compositions by fishery – ", jjm_label(h1nm))
+#| fig-height: !expr .ridge_len_fsh_h1
+plot_comp_ridge(.h1_lenfits_fsh, x_var = "length_bin", facet_var = "fleet",
+                x_lab = "Length bin", title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-lenridge-fsh-h2
+#| eval: !expr has_comp(.h2_lenfits_fsh)
+#| fig-cap: !expr paste0("Observed length compositions by fishery – ", jjm_label(h2nm))
+#| fig-height: !expr .ridge_len_fsh_h2
+plot_comp_ridge(.h2_lenfits_fsh, x_var = "length_bin", facet_var = "fleet",
+                x_lab = "Length bin", title = jjm_label(h2nm))
+```
+
+:::
+
+
+## Index Diagnostics
+
+::: {.panel-tabset}
+
+### Single-stock – h1
+
+```{r}
+#| label: fig-indfitsh1
+#| fig-cap: !expr paste0("Index fits overview – ", jjm_label(h1nm))
+#| fig-height: !expr facet_fig_height(.ind_h1_n, ncol = 2, panel_h = 4.5)
+plot_indices_v2(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+```{r}
+#| label: fig-inddiagh1
+#| results: asis
+surveys <- .h1_ind |> filter(!is.na(obs), obs > 0, model > 0) |> pull(survey) |> unique()
+out <- character(0)
+for (s in surveys) {
+  df_s <- filter(.h1_ind, survey == s, !is.na(obs), obs > 0, model > 0)
+  if (nrow(df_s) == 0) next
+  .df_s <- df_s
+  .s_title <- paste0(s, " | ", jjm_label(h1nm))
+  .byr <- .h1_qbreaks$break_year[.h1_qbreaks$survey == s]
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("#### ", s, "\n"),
+    "",
+    "```{r, fig.height=8, echo=FALSE}",
+    "plot_fit_diagnostics(.df_s, title = .s_title, break_years = .byr)",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+### Two-stock – h2 – South stock
+
+```{r}
+#| label: fig-indfitsh2-1
+#| fig-cap: !expr paste0("Index fits overview – ", jjm_label(h2nm, "South stock"))
+#| fig-height: !expr facet_fig_height(.ind_h2_1_n, ncol = 2, panel_h = 4.5)
+plot_indices_v2(h2_mod, stock = 1, title = jjm_label(h2nm, "South stock"))
+```
+
+```{r}
+#| label: fig-inddiagh2-1
+#| results: asis
+surveys <- .h2_ind_1 |> filter(!is.na(obs), obs > 0, model > 0) |> pull(survey) |> unique()
+out <- character(0)
+for (s in surveys) {
+  df_s <- filter(.h2_ind_1, survey == s, !is.na(obs), obs > 0, model > 0)
+  if (nrow(df_s) == 0) next
+  .df_s <- df_s
+  .s_title <- paste0(s, " | ", jjm_label(h2nm, "South stock"))
+  .byr <- .h2_qbreaks$break_year[.h2_qbreaks$survey == s]
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("#### ", s, "\n"),
+    "",
+    "```{r, fig.height=8, echo=FALSE}",
+    "plot_fit_diagnostics(.df_s, title = .s_title, break_years = .byr)",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+### Two-stock – h2 – Far north stock
+
+```{r}
+#| label: fig-indfitsh2-2
+#| fig-cap: !expr paste0("Index fits overview – ", jjm_label(h2nm, "Far north stock"))
+#| fig-height: !expr facet_fig_height(.ind_h2_2_n, ncol = 2, panel_h = 4.5)
+plot_indices_v2(h2_mod, stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+```{r}
+#| label: fig-inddiagh2-2
+#| results: asis
+surveys <- .h2_ind_2 |> filter(!is.na(obs), obs > 0, model > 0) |> pull(survey) |> unique()
+out <- character(0)
+for (s in surveys) {
+  df_s <- filter(.h2_ind_2, survey == s, !is.na(obs), obs > 0, model > 0)
+  if (nrow(df_s) == 0) next
+  .df_s <- df_s
+  .s_title <- paste0(s, " | ", jjm_label(h2nm, "Far north stock"))
+  .byr <- .h2_qbreaks$break_year[.h2_qbreaks$survey == s]
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("#### ", s, "\n"),
+    "",
+    "```{r, fig.height=8, echo=FALSE}",
+    "plot_fit_diagnostics(.df_s, title = .s_title, break_years = .byr)",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+### Survey skill (ROC)
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-skill-h1
+#| fig-cap: !expr paste0("Survey skill ROC curves – ", jjm_label(h1nm))
+#| fig-height: !expr facet_fig_height(.qtraj_h1_n, ncol = 2, panel_h = 3.5)
+plot_survey_skill(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2 – South stock
+```{r}
+#| label: fig-skill-h2-1
+#| fig-cap: !expr paste0("Survey skill ROC curves – ", jjm_label(h2nm, "South stock"))
+#| fig-height: !expr facet_fig_height(.qtraj_h2_1_n, ncol = 2, panel_h = 3.5)
+plot_survey_skill(h2_mod, stock = 1, title = jjm_label(h2nm, "South stock"))
+```
+
+#### Two-stock – h2 – Far north stock
+```{r}
+#| label: fig-skill-h2-2
+#| fig-cap: !expr paste0("Survey skill ROC curves – ", jjm_label(h2nm, "Far north stock"))
+#| fig-height: !expr facet_fig_height(.qtraj_h2_2_n, ncol = 2, panel_h = 3.5)
+plot_survey_skill(h2_mod, stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+:::
+
+### Q-trajectories
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-qtraj-h1
+#| fig-cap: !expr paste0("Catchability (q) trajectories – ", jjm_label(h1nm))
+#| fig-height: !expr facet_fig_height(.qtraj_h1_n, ncol = 2, panel_h = 3)
+plot_q_trajectory(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2 – South stock
+```{r}
+#| label: fig-qtraj-h2-1
+#| fig-cap: !expr paste0("Q-trajectories – ", jjm_label(h2nm, "South stock"))
+#| fig-height: !expr facet_fig_height(.qtraj_h2_1_n, ncol = 2, panel_h = 3)
+plot_q_trajectory(h2_mod, stock = 1, title = jjm_label(h2nm, "South stock"))
+```
+
+#### Two-stock – h2 – Far north stock
+```{r}
+#| label: fig-qtraj-h2-2
+#| fig-cap: !expr paste0("Q-trajectories – ", jjm_label(h2nm, "Far north stock"))
+#| fig-height: !expr facet_fig_height(.qtraj_h2_2_n, ncol = 2, panel_h = 3)
+plot_q_trajectory(h2_mod, stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+:::
+
+:::
+
+
+## Composition Diagnostics
+
+::: {.panel-tabset}
+
+### Age fits – Fisheries
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+
+```{r}
+#| label: fig-agefits-fsh-h1
+#| results: asis
+out <- character(0)
+for (fl in .fsh_fleets_h1) {
+  if (!has_comp(.h1_agefits_fsh, "fleet", fl)) next
+  .fl <- fl
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("##### ", fl, "\n"),
+    "",
+    paste0("```{r, fig.height=", .maxh_fsh_h1, ", echo=FALSE}"),
+    "plot_comp_fits(.h1_agefits_fsh, 'age', 'fleet', .fl, 'Age', paste0(.fl, ' | ', jjm_label(h1nm)))",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+#### Two-stock – h2
+
+```{r}
+#| label: fig-agefits-fsh-h2
+#| results: asis
+out <- character(0)
+for (fl in .fsh_fleets_h2) {
+  if (!has_comp(.h2_agefits_fsh, "fleet", fl)) next
+  .fl <- fl
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("##### ", fl, "\n"),
+    "",
+    paste0("```{r, fig.height=", .maxh_fsh_h2, ", echo=FALSE}"),
+    "plot_comp_fits(.h2_agefits_fsh, 'age', 'fleet', .fl, 'Age', paste0(.fl, ' | ', jjm_label(h2nm)))",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+:::
+
+### Age fits – Surveys
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+
+```{r}
+#| label: fig-agefits-srv-h1
+#| results: asis
+out <- character(0)
+for (s in .srv_srvs_h1) {
+  if (!has_comp(.h1_agefits_srv, "survey", s)) next
+  .s <- s
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("##### ", s, "\n"),
+    "",
+    paste0("```{r, fig.height=", .maxh_srv_h1, ", echo=FALSE}"),
+    "plot_comp_fits(.h1_agefits_srv, 'age', 'survey', .s, 'Age', paste0(.s, ' | ', jjm_label(h1nm)))",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+#### Two-stock – h2
+
+```{r}
+#| label: fig-agefits-srv-h2
+#| results: asis
+out <- character(0)
+for (s in .srv_srvs_h2) {
+  if (!has_comp(.h2_agefits_srv, "survey", s)) next
+  .s <- s
+  out <- c(out, knitr::knit_child(text = c(
+    paste0("##### ", s, "\n"),
+    "",
+    paste0("```{r, fig.height=", .maxh_srv_h2, ", echo=FALSE}"),
+    "plot_comp_fits(.h2_agefits_srv, 'age', 'survey', .s, 'Age', paste0(.s, ' | ', jjm_label(h2nm)))",
+    "```",
+    ""
+  ), envir = environment(), quiet = TRUE))
+}
+cat("::: {.panel-tabset}\n\n")
+cat(paste(out, collapse = "\n"))
+cat("\n\n:::\n\n")
+```
+
+:::
+
+### Length fits
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-lenfitsfshh1
+#| eval: !expr has_comp(.h1_lenfits_fsh)
+#| fig-height: !expr .maxh_len_h1
+plot_comp_fits(.h1_lenfits_fsh, x_var = "length_bin", grp_var = "fleet",
+               x_lab = "Length bin", title = paste0("Length fits | ", jjm_label(h1nm)))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-lenfitsfshh2
+#| eval: !expr has_comp(.h2_lenfits_fsh)
+#| fig-height: !expr .maxh_len_h2
+plot_comp_fits(.h2_lenfits_fsh, x_var = "length_bin", grp_var = "fleet",
+               x_lab = "Length bin", title = paste0("Length fits | ", jjm_label(h2nm)))
+```
+
+:::
+
+### Mean age
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-meanage-h1
+#| fig-height: !expr facet_fig_height(length(unique(c(extr_meanage_fsh(h1_mod)$fleet, extr_meanage_srv(h1_mod)$survey))))
+plot_meanstat(extr_meanage_fsh(h1_mod), facet_var = "fleet", y_lab = "Mean age (years)",
+              title = paste0("Fisheries – ", jjm_label(h1nm)))
+plot_meanstat(extr_meanage_srv(h1_mod), facet_var = "survey", y_lab = "Mean age (years)",
+              title = paste0("Surveys – ", jjm_label(h1nm)))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-meanage-h2
+#| fig-height: !expr facet_fig_height(length(unique(c(extr_meanage_fsh(h2_mod)$fleet, extr_meanage_srv(h2_mod)$survey))))
+plot_meanstat(extr_meanage_fsh(h2_mod), facet_var = "fleet", y_lab = "Mean age (years)",
+              title = paste0("Fisheries – ", jjm_label(h2nm)))
+plot_meanstat(extr_meanage_srv(h2_mod), facet_var = "survey", y_lab = "Mean age (years)",
+              title = paste0("Surveys – ", jjm_label(h2nm)))
+```
+
+:::
+
+### Mean length
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-meanlen-h1
+#| fig-height: !expr facet_fig_height(length(unique(extr_meanlen_fsh(h1_mod)$fleet)))
+plot_meanstat(extr_meanlen_fsh(h1_mod), facet_var = "fleet", y_lab = "Mean length (cm)",
+              title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-meanlen-h2
+#| fig-height: !expr facet_fig_height(length(unique(extr_meanlen_fsh(h2_mod)$fleet)))
+plot_meanstat(extr_meanlen_fsh(h2_mod), facet_var = "fleet", y_lab = "Mean length (cm)",
+              title = jjm_label(h2nm))
+```
+
+:::
+
+### Francis reweighting
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-francis-h1
+#| fig-cap: !expr paste0("Francis T1.8 reweighting – ", jjm_label(h1nm))
+#| fig-height: !expr .effn_h1_height
+plot_francis(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-francis-h2
+#| fig-cap: !expr paste0("Francis T1.8 reweighting – ", jjm_label(h2nm))
+#| fig-height: !expr .francis_h2_height
+plot_francis(h2_mod, stock = 1, title = jjm_label(h2nm))
+```
+
+:::
+
+:::
+
+
+## Selectivity
+
+::: {.panel-tabset}
+
+### Single-stock – h1
+
+::: {.panel-tabset}
+
+#### Fisheries
+```{r}
+#| label: fig-selfshh1
+#| fig-cap: !expr paste0("Selectivity by fishery – ", jjm_label(h1nm))
+plot_sel_ridge(extr_sel_fsh(h1_mod), facet_var = "fleet", title = jjm_label(h1nm),
+               breaks_df = extr_sel_breaks(h1_mod, "fsh"))
+```
+
+#### Surveys
+```{r}
+#| label: fig-selsrvh1
+#| fig-cap: !expr paste0("Selectivity by survey – ", jjm_label(h1nm))
+plot_sel_ridge(extr_sel_srv(h1_mod), facet_var = "survey", title = jjm_label(h1nm),
+               breaks_df = extr_sel_breaks(h1_mod, "srv"))
+```
+
+:::
+
+### Two-stock – h2
+
+::: {.panel-tabset}
+
+#### Fisheries
+```{r}
+#| label: fig-selfshh2
+#| fig-cap: !expr paste0("Selectivity by fishery – ", jjm_label(h2nm))
+plot_sel_ridge(extr_sel_fsh(h2_mod), facet_var = "fleet", title = jjm_label(h2nm),
+               breaks_df = extr_sel_breaks(h2_mod, "fsh"))
+```
+
+#### Surveys
+```{r}
+#| label: fig-selsrvh2
+#| fig-cap: !expr paste0("Selectivity by survey – ", jjm_label(h2nm))
+plot_sel_ridge(extr_sel_srv(h2_mod), facet_var = "survey", title = jjm_label(h2nm),
+               breaks_df = extr_sel_breaks(h2_mod, "srv"))
+```
+
+:::
+
+:::
+
+
+## Stock Status
+
+### Summary sheets
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+
+```{r}
+#| label: fig-sumsheet-h1
+#| fig-cap: !expr paste0("Summary sheet – ", jjm_label(h1nm))
+#| fig-height: 8
+plot_summary_sheet(fixed_bmsy(h1_mod), stock = 1, title = jjm_label(h1nm))
+```
+
+```{r}
+#| label: fig-unfshbio-h1
+#| fig-cap: !expr paste0("Fished vs unfished biomass – ", jjm_label(h1nm))
+plot_fished_unfished(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2
+
+```{r}
+#| label: fig-sumsheet-h2-1
+#| fig-cap: !expr paste0("Summary sheet – ", jjm_label(h2nm, "South stock"))
+#| fig-height: 8
+plot_summary_sheet(fixed_bmsy(h2_mod), stock = 1, title = jjm_label(h2nm, "South stock"))
+```
+
+```{r}
+#| label: fig-sumsheet-h2-2
+#| fig-cap: !expr paste0("Summary sheet – ", jjm_label(h2nm, "Far north stock"))
+#| fig-height: 8
+plot_summary_sheet(fixed_bmsy(h2_mod), stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+```{r}
+#| label: fig-unfshbio-h2-1
+#| fig-cap: !expr paste0("Fished vs unfished biomass – ", jjm_label(h2nm, "South stock"))
+plot_fished_unfished(h2_mod, stock = 1, title = jjm_label(h2nm, "South stock"))
+```
+
+```{r}
+#| label: fig-unfshbio-h2-2
+#| fig-cap: !expr paste0("Fished vs unfished biomass – ", jjm_label(h2nm, "Far north stock"))
+plot_fished_unfished(h2_mod, stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+:::
+
+
+### Retrospective
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+
+::: {.panel-tabset}
+
+##### SSB
+```{r}
+#| label: fig-retro-ssb-h1
+#| fig-cap: !expr paste0("Retrospective of SSB – ", jjm_label(h1nm))
+#| eval: !expr isFALSE(is.null(h1_retro))
+plot_retro(h1_retro, var = "SSB", stock = 1, title = jjm_label(h1nm))
+```
+
+##### Fbar
+```{r}
+#| label: fig-retro-f-h1
+#| fig-cap: !expr paste0("Retrospective of fishing mortality – ", jjm_label(h1nm))
+#| eval: !expr isFALSE(is.null(h1_retro))
+plot_retro(h1_retro, var = "F", stock = 1, title = jjm_label(h1nm))
+```
+
+##### Recruitment
+```{r}
+#| label: fig-retro-r-h1
+#| fig-cap: !expr paste0("Retrospective of recruitment – ", jjm_label(h1nm))
+#| eval: !expr isFALSE(is.null(h1_retro))
+plot_retro(h1_retro, var = "R", stock = 1, title = jjm_label(h1nm))
+```
+
+:::
+
+#### Two-stock – h2
+
+::: {.panel-tabset}
+
+##### SSB
+```{r}
+#| label: fig-retro-ssb-h2
+#| fig-cap: !expr paste0("Retrospective of SSB – ", jjm_label(h2nm))
+#| fig-height: 8
+#| eval: !expr isFALSE(is.null(h2_retro))
+plot_retro(h2_retro, var = "SSB", stock = 1, title = jjm_label(h2nm, "South stock")) /
+plot_retro(h2_retro, var = "SSB", stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+##### Fbar
+```{r}
+#| label: fig-retro-f-h2
+#| fig-cap: !expr paste0("Retrospective of fishing mortality – ", jjm_label(h2nm))
+#| fig-height: 8
+#| eval: !expr isFALSE(is.null(h2_retro))
+plot_retro(h2_retro, var = "F", stock = 1, title = jjm_label(h2nm, "South stock")) /
+plot_retro(h2_retro, var = "F", stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+##### Recruitment
+```{r}
+#| label: fig-retro-r-h2
+#| fig-cap: !expr paste0("Retrospective of recruitment – ", jjm_label(h2nm))
+#| fig-height: 8
+#| eval: !expr isFALSE(is.null(h2_retro))
+plot_retro(h2_retro, var = "R", stock = 1, title = jjm_label(h2nm, "South stock")) /
+plot_retro(h2_retro, var = "R", stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+:::
+
+:::
+
+
+### Historical retrospective
+
+```{r}
+#| label: histretro-source
+#| include: false
+pg <- NULL; pg2 <- NULL
+histretro_f <- file.path("../../assessment", "R/plot_historicretro.R")
+if (file.exists(histretro_f)) {
+  local({
+    owd <- setwd("../../assessment")
+    on.exit(setwd(owd))
+    source("R/plot_historicretro.R")
+    pg  <<- pg
+    pg2 <<- pg2
+  })
+}
+```
+
+::: {.panel-tabset}
+
+#### SSB, F, Recruitment
+```{r}
+#| label: fig-histretroquants
+#| fig-cap: !expr paste0("Historical retrospective of SSB, F, and recruitment from Model ",h1nm,".")
+#| fig-height: 10
+#| eval: !expr isFALSE(is.null(pg))
+print(pg)
+```
+
+#### Reference points
+```{r}
+#| label: fig-histretrorefpts
+#| fig-cap: !expr paste0("Historical retrospective of reference points from Model ",h1nm,".")
+#| fig-height: 10
+#| eval: !expr isFALSE(is.null(pg2))
+print(pg2)
+```
+
+:::
+
+
+### Kobe plots
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-kobe-h1
+#| fig-cap: !expr paste0("Kobe plot – ", jjm_label(h1nm))
+plot_kobe(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-kobe-h2
+#| fig-cap: !expr paste0("Kobe plots – ", jjm_label(h2nm))
+#| fig-height: 8
+plot_kobe(h2_mod, stock = 1, title = jjm_label(h2nm, "South stock")) /
+plot_kobe(h2_mod, stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+:::
+
+
+### Stock–recruitment
+
+::: {.panel-tabset}
+
+#### Single-stock – h1
+```{r}
+#| label: fig-sr-h1
+#| fig-cap: !expr paste0("Stock–recruitment – ", jjm_label(h1nm))
+plot_sr(h1_mod, stock = 1, title = jjm_label(h1nm))
+```
+
+#### Two-stock – h2
+```{r}
+#| label: fig-sr-h2
+#| fig-cap: !expr paste0("Stock–recruitment – ", jjm_label(h2nm))
+#| fig-height: 8
+plot_sr(h2_mod, stock = 1, title = jjm_label(h2nm, "South stock")) /
+plot_sr(h2_mod, stock = 2, title = jjm_label(h2nm, "Far north stock"))
+```
+
+:::
+

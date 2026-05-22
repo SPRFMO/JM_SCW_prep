@@ -44,10 +44,10 @@ i <-
   mutate(seriesnr = row_number()) 
 
 df <-
-            data.frame(var = "Iyears"   , as_tibble(h1_mod[[1]]$data$Iyears)   , stringsAsFactors = FALSE) %>% 
-  bind_rows(data.frame(var = "Iyearsage", as_tibble(h1_mod[[1]]$data$Iyearsage), stringsAsFactors = FALSE)) %>% 
-  bind_rows(data.frame(var = "Iyearslength", as_tibble(h1_mod[[1]]$data$Iyearslength), stringsAsFactors = FALSE)) %>% 
-  pivot_longer(names_to = "seriesnr", values_to="year", 2:8) %>% 
+            data.frame(var = "Iyears"   , as_tibble(h1_mod[[1]]$data$Iyears)   , stringsAsFactors = FALSE) %>%
+  bind_rows(data.frame(var = "Iyearsage", as_tibble(h1_mod[[1]]$data$Iyearsage), stringsAsFactors = FALSE)) %>%
+  bind_rows(data.frame(var = "Iyearslength", as_tibble(h1_mod[[1]]$data$Iyearslength), stringsAsFactors = FALSE)) %>%
+  pivot_longer(names_to = "seriesnr", values_to="year", starts_with("index")) %>%
   mutate(seriesnr = as.integer(gsub("index","", seriesnr)) ) %>% 
   mutate(var     = ifelse(var == "Iyears", "index", var)) %>% 
   mutate(var     = ifelse(var == "Iyearsage", "age", var)) %>% 
@@ -64,9 +64,9 @@ i <-
   mutate(seriesnr = row_number()) 
 
 df <-
-            data.frame(var = "Cyearsage"   , as_tibble(h1_mod[[1]]$data$Fageyears)   , stringsAsFactors = FALSE) %>% 
-  bind_rows(data.frame(var = "Cyearslength", as_tibble(h1_mod[[1]]$data$Flengthyears), stringsAsFactors = FALSE)) %>% 
-  pivot_longer(names_to = "seriesnr", values_to="year", 2:5) %>% 
+            data.frame(var = "Cyearsage"   , as_tibble(h1_mod[[1]]$data$Fageyears)   , stringsAsFactors = FALSE) %>%
+  bind_rows(data.frame(var = "Cyearslength", as_tibble(h1_mod[[1]]$data$Flengthyears), stringsAsFactors = FALSE)) %>%
+  pivot_longer(names_to = "seriesnr", values_to="year", starts_with("fishery")) %>%
   mutate(seriesnr = as.integer(gsub("fishery","", seriesnr)) ) %>% 
   mutate(var     = ifelse(var == "Cyearsage", "age", var)) %>% 
   mutate(var     = ifelse(var == "Cyearslength", "length", var)) %>% 
