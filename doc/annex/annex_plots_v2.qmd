@@ -728,7 +728,7 @@ plot_sel_ridge(extr_sel_srv(h2_mod), facet_var = "survey", title = jjm_label(h2n
 #| label: fig-sumsheet-h1
 #| fig-cap: !expr paste0("Summary sheet – ", jjm_label(h1nm))
 #| fig-height: 8
-plot_summary_sheet(fixed_bmsy(h1_mod), stock = 1, title = jjm_label(h1nm))
+plot_summary_sheet(tryCatch(fixed_bmsy(h1_mod), error = \(e) h1_mod), stock = 1, title = jjm_label(h1nm))
 ```
 
 ```{r}
@@ -743,14 +743,14 @@ plot_fished_unfished(h1_mod, stock = 1, title = jjm_label(h1nm))
 #| label: fig-sumsheet-h2-1
 #| fig-cap: !expr paste0("Summary sheet – ", jjm_label(h2nm, "South stock"))
 #| fig-height: 8
-plot_summary_sheet(fixed_bmsy(h2_mod), stock = 1, title = jjm_label(h2nm, "South stock"))
+plot_summary_sheet(tryCatch(fixed_bmsy(h2_mod), error = \(e) h2_mod), stock = 1, title = jjm_label(h2nm, "South stock"))
 ```
 
 ```{r}
 #| label: fig-sumsheet-h2-2
 #| fig-cap: !expr paste0("Summary sheet – ", jjm_label(h2nm, "Far north stock"))
 #| fig-height: 8
-plot_summary_sheet(fixed_bmsy(h2_mod), stock = 2, title = jjm_label(h2nm, "Far north stock"))
+plot_summary_sheet(tryCatch(fixed_bmsy(h2_mod), error = \(e) h2_mod), stock = 2, title = jjm_label(h2nm, "Far north stock"))
 ```
 
 ```{r}

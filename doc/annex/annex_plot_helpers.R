@@ -935,9 +935,13 @@ plot_fished_unfished <- function(mod, stock = 1, title = NULL) {
 plot_summary_sheet <- function(mod, stock = 1, title = NULL) {
   out <- .jjm_out(mod, stock)
   yr  <- out$Yr
-  msy <- out$msy_mt
+  # msy_mt can contain "NaN" strings when the model fails to estimate Bmsy
+  # for a stock (common for the far-north stock in h2). Coerce to numeric so
+  # divisions don't error; affected rows become NA and render as gaps.
+  msy <- matrix(as.numeric(out$msy_mt),
+                nrow = nrow(out$msy_mt), ncol = ncol(out$msy_mt))
 
-  avg_bmsy <- mean(rev(msy[, 10])[1:min(10, nrow(msy))])
+  avg_bmsy <- mean(rev(msy[, 10])[1:min(10, nrow(msy))], na.rm = TRUE)
 
   ssb <- as.data.frame(out$SSB); colnames(ssb) <- c("year", "est", "sd", "lower", "upper")
   p_ssb <- ggplot(ssb, aes(year)) +
@@ -1056,7 +1060,8 @@ plot_sr <- function(mod, stock = 1, title = NULL) {
 # 7=fsprmsy, 8=msy, 9=msyl, 10=bmsy, 11=bzero, 12=ssb, 13=b_bmsy
 extr_kobe <- function(mod, stock = 1) {
   out <- .jjm_out(mod, stock)
-  msy <- out$msy_mt
+  msy <- matrix(as.numeric(out$msy_mt),
+                nrow = nrow(out$msy_mt), ncol = ncol(out$msy_mt))
   tibble(
     year  = as.integer(msy[, 1]),
     bbmsy = msy[, 13],
@@ -1238,8 +1243,9 @@ plot_q_trajectory <- function(mod, stock = 1, title = NULL) {
 extr_survey_skill <- function(mod, stock = 1) {
   out <- .jjm_out(mod, stock)
 
-  # SSB direction from msy_mt col 12 = ssb
-  msy <- out$msy_mt
+  # SSB direction from msy_mt col 12 = ssb; coerce to numeric (can contain "NaN" strings)
+  msy <- matrix(as.numeric(out$msy_mt),
+                nrow = nrow(out$msy_mt), ncol = ncol(out$msy_mt))
   ssb_df <- tibble(year = as.integer(msy[, 1]), ssb = msy[, 12]) |>
     arrange(year) |>
     mutate(ssb_dir = as.integer(ssb > lag(ssb))) |>
