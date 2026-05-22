@@ -29,7 +29,7 @@ knitr::opts_knit$set(root.dir = assessment_dir)
 knitr::opts_chunk$set(warning=F, message=F, echo=F, results=F,fig.width=6, fig.height=5)
 ```
 
-This document was originally compiled in `RMarkdown` then converted into Quarto (a different flavor of markdown). It now tracks the SCW16 benchmark model sequence for Chilean jack mackerel (*Trachurus murphyi*), beginning with the documented `1.14` model series and moving to the candidate `2.00` benchmark pair. The files associated with this document can be found on [Github](https://github.com/SPRFMO/jjm/tree/master/assessment).
+This document was originally compiled in `RMarkdown` then converted into Quarto (a different flavor of markdown). It now tracks the SCW16 model sequence for Chilean jack mackerel (*Trachurus murphyi*), beginning with the documented `1.14` model series and moving to the candidate `0.05` pair for now. The files associated with this document can be found on [Github](https://github.com/SPRFMO/jjm/tree/master/assessment).
 
 The code to create the input files for this assessment and to run these models can be found in [`jjm/assessment/R/SC13_Bridging.R`](https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC13_Bridging.R). Should you choose to run the models, please ensure that you have:
 
@@ -108,7 +108,7 @@ style_status_table <- function(x) {
 }
 
 reference_model <- "1.14"
-candidate_model <- "2.00"
+candidate_model <- "0.05"
 candidate_pair <- paste0(c("h1_", "h2_"), candidate_model)
 candidate_pair_available <- all(model_file_status(candidate_pair)$report_file)
 finmodname <- if (candidate_pair_available) candidate_model else reference_model
@@ -122,8 +122,8 @@ yr_curr <- as.numeric(format(Sys.time(), "%Y"))
 # Model Naming Convention
 File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The `h1` denotes the single-stock hypothesis, while `h2` denotes the two-stock one.
 
-For SCW16, the benchmark work is being reorganized around two paired model
-series:
+For SCW16, the work is being reorganized around the reference pair and the
+paired `0.xx` data-replacement sequence:
 
 * `h1_1.14` and `h2_1.14` are the documented reference models from the SC13
   update sequence. They provide the immediate baseline for biological inputs,
@@ -145,21 +145,19 @@ series:
   CPUE series as `Peru_CPUE`.
 * `h1_0.05` and `h2_0.05` add the split Peru acoustic seasonal survey
   indices as `Peru_Acoust_S1` and `Peru_Acoust_S2`, with length-composition
-  data and independent survey selectivity blocks for each new index.
-* `h1_2.00` and `h2_2.00` define the active SCW16 benchmark candidate pair.
-  This active report keeps those candidate files visible while the incremental
-  `0.xx` data-replacement sequence is developed.
+  data and independent survey selectivity blocks for each new index. This is
+  the active SCW16 candidate pair for now.
 
 ```{r scw16_model_series_status, results = "asis"}
 scw16_model_series <- tibble(
-  model = c("h1_1.14", "h2_1.14", "h1_2.00", "h2_2.00"),
+  model = c("h1_1.14", "h2_1.14", paste0("h1_", candidate_model), paste0("h2_", candidate_model)),
   hypothesis = c("Single-stock", "Two-stock", "Single-stock", "Two-stock"),
   series = c("Reference", "Reference", "SCW16 candidate", "SCW16 candidate"),
   role = c(
     "Reference single-stock model from the 1.14 sequence",
     "Reference two-stock model from the 1.14 sequence",
-    "Candidate single-stock benchmark baseline",
-    "Candidate two-stock benchmark baseline"
+    "Candidate single-stock model",
+    "Candidate two-stock model"
   )
 )
 
@@ -230,7 +228,7 @@ scw16_data_run_status %>%
 
 
 
-The full historical SC13 bridging table and incremental update sections are omitted from this working SCW16 version so that the report starts with the current paired reference models while tracking the active SCW16 data-replacement and candidate benchmark sequences.
+The full historical SC13 bridging table and incremental update sections are omitted from this working SCW16 version so that the report starts with the current paired reference models while tracking the active SCW16 data-replacement and candidate sequence.
 
 You will need to be in the `jjm/assessment` directory in order for the code here to run.
 
@@ -309,14 +307,14 @@ if (h2_data_update_ready) {
 
 # Reference and Candidate Model Comparison
 
-The initial SCW16 benchmark comparison is from the `1.14` reference pair to the
-`2.00` candidate pair. This section is intended to become the main bridge
-between the documented SC13 update sequence and the benchmark model sequence. The report lists the paired two-stock candidate even when `h2_2.00.ctl` and its output are still pending.
+The initial SCW16 comparison is from the `1.14` reference pair to the
+`0.05` candidate pair. This section is intended to become the main bridge
+between the documented SC13 update sequence and the active SCW16 model sequence.
 
 ```{r mods_compare_scw16_candidate}
 mods2compare <- c(reference_model, candidate_model)
-h1_mod_cap <- "from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."
-h2_mod_cap <- "from the h2_1.14 reference model to the h2_2.00 SCW16 candidate model."
+h1_mod_cap <- paste0("from the h1_", reference_model, " reference model to the h1_", candidate_model, " SCW16 candidate model.")
+h2_mod_cap <- paste0("from the h2_", reference_model, " reference model to the h2_", candidate_model, " SCW16 candidate model.")
 ```
 
 ## Single-stock hypothesis
@@ -330,7 +328,7 @@ if (h1_candidate_ready) {
   res <- compareModels(geth(mods2compare, "h1"))
   plot(res, combine = TRUE, what = "biomass", stack = FALSE, main = "Biomass")
 } else {
-  message("Single-stock candidate comparison pending: h1_2.00 results are not available.")
+  message(paste0("Single-stock candidate comparison pending: h1_", candidate_model, " results are not available."))
 }
 ```
 
@@ -360,7 +358,7 @@ if (h2_candidate_ready) {
   res <- compareModels(geth(mods2compare, "h2"))
   plot(res, combine = TRUE, what = "biomass", stack = FALSE, main = "Biomass")
 } else {
-  message("Two-stock candidate comparison pending: h2_2.00 results are not available.")
+  message(paste0("Two-stock candidate comparison pending: h2_", candidate_model, " results are not available."))
 }
 ```
 
@@ -382,4 +380,4 @@ if (h2_candidate_ready) {
 
 # Notes
 
-This working report is currently scoped to `h1_1.14.ctl` and `h2_1.14.ctl` as the reference pair, the fitted `0.01` through `0.05` data-replacement runs, and the `h1_2.00` and `h2_2.00` candidate pair as files and model outputs become available. Additional diagnostic and sensitivity sections can be added back once the benchmark sequence is settled.
+This working report is currently scoped to `h1_1.14.ctl` and `h2_1.14.ctl` as the reference pair, the fitted `0.01` through `0.05` data-replacement runs, and the `h1_0.05` and `h2_0.05` candidate pair. Additional diagnostic and sensitivity sections can be added back once the model sequence is settled.

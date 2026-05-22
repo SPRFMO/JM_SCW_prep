@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </div>
 <div class="paper-title">Jack Mackerel Assessment SCW16</div>
-<p>This document was originally compiled in <code>RMarkdown</code> then converted into Quarto (a different flavor of markdown). It now tracks the SCW16 benchmark model sequence for Chilean jack mackerel (<em>Trachurus murphyi</em>), beginning with the documented <code>1.14</code> model series and moving to the candidate <code>2.00</code> benchmark pair. The files associated with this document can be found on <a href="https://github.com/SPRFMO/jjm/tree/master/assessment">Github</a>.</p>
+<p>This document was originally compiled in <code>RMarkdown</code> then converted into Quarto (a different flavor of markdown). It now tracks the SCW16 model sequence for Chilean jack mackerel (<em>Trachurus murphyi</em>), beginning with the documented <code>1.14</code> model series and moving to the candidate <code>0.05</code> pair for now. The files associated with this document can be found on <a href="https://github.com/SPRFMO/jjm/tree/master/assessment">Github</a>.</p>
 <p>The code to create the input files for this assessment and to run these models can be found in <a href="https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC13_Bridging.R"><code>jjm/assessment/R/SC13_Bridging.R</code></a>. Should you choose to run the models, please ensure that you have:</p>
 <ul>
 <li>Compiled the latest <code>jjm/src/jjms.tpl</code>
@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>reference_model <span class="ot">&lt;-</span> <span class="st">"1.14"</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>candidate_model <span class="ot">&lt;-</span> <span class="st">"2.00"</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>candidate_model <span class="ot">&lt;-</span> <span class="st">"0.05"</span></span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>candidate_pair <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"h1_"</span>, <span class="st">"h2_"</span>), candidate_model)</span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>candidate_pair_available <span class="ot">&lt;-</span> <span class="fu">all</span>(<span class="fu">model_file_status</span>(candidate_pair)<span class="sc">$</span>report_file)</span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>finmodname <span class="ot">&lt;-</span> <span class="cf">if</span> (candidate_pair_available) candidate_model <span class="cf">else</span> reference_model</span>
@@ -442,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-naming-convention" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Model Naming Convention</h1>
 <p>File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The <code>h1</code> denotes the single-stock hypothesis, while <code>h2</code> denotes the two-stock one.</p>
-<p>For SCW16, the benchmark work is being reorganized around two paired model series:</p>
+<p>For SCW16, the work is being reorganized around the reference pair and the paired <code>0.xx</code> data-replacement sequence:</p>
 <ul>
 <li><code>h1_1.14</code> and <code>h2_1.14</code> are the documented reference models from the SC13 update sequence. They provide the immediate baseline for biological inputs, index treatment, selectivity changes, and FarNorth weight-at-age corrections.</li>
 <li><code>h1_0.00</code> and <code>h2_0.00</code> relabel the <code>1.14</code> reference pair as the SCW16 data-update baseline. The <code>0.00.dat</code> file is the <code>1.14.dat</code> base data file, so the <code>h1_1.14</code> and <code>h2_1.14</code> outputs remain the reference output pair for the first comparisons until the relabeled <code>0.00</code> controls are explicitly rerun.</li>
@@ -450,19 +450,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>h1_0.02</code> and <code>h2_0.02</code> replace the FarNorth-associated CPUE (<code>Peru_CPUE</code>) with the 2015-2025 series after the Chile CPUE replacement.</li>
 <li><code>h1_0.03</code> and <code>h2_0.03</code> replace the FarNorth fishery length-composition data with the 1972-2025 series after the FarNorth-associated CPUE replacement.</li>
 <li><code>h1_0.04</code> and <code>h2_0.04</code> remove the Peru acoustic index from the <code>0.03</code> data set while retaining the new 2015-2025 FarNorth-associated CPUE series as <code>Peru_CPUE</code>.</li>
-<li><code>h1_0.05</code> and <code>h2_0.05</code> add the split Peru acoustic seasonal survey indices as <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>, with length-composition data and independent survey selectivity blocks for each new index.</li>
-<li><code>h1_2.00</code> and <code>h2_2.00</code> define the active SCW16 benchmark candidate pair. This active report keeps those candidate files visible while the incremental <code>0.xx</code> data-replacement sequence is developed.</li>
+<li><code>h1_0.05</code> and <code>h2_0.05</code> add the split Peru acoustic seasonal survey indices as <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>, with length-composition data and independent survey selectivity blocks for each new index. This is the active SCW16 candidate pair for now.</li>
 </ul>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 7%">
+<col style="width: 5%">
 <col style="width: 9%">
-<col style="width: 31%">
+<col style="width: 11%">
+<col style="width: 38%">
+<col style="width: 9%">
 <col style="width: 7%">
-<col style="width: 6%">
+<col style="width: 8%">
 <col style="width: 7%">
-<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -498,24 +497,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">available</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">h1_2.00</td>
+<td style="text-align: left;">h1_0.05</td>
 <td style="text-align: left;">Single-stock</td>
 <td style="text-align: left;">SCW16 candidate</td>
-<td style="text-align: left;">Candidate single-stock benchmark baseline</td>
+<td style="text-align: left;">Candidate single-stock model</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">available</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">h2_2.00</td>
+<td style="text-align: left;">h2_0.05</td>
 <td style="text-align: left;">Two-stock</td>
 <td style="text-align: left;">SCW16 candidate</td>
-<td style="text-align: left;">Candidate two-stock benchmark baseline</td>
-<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Candidate two-stock model</td>
 <td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">data available; control/results pending</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">available</td>
 </tr>
 </tbody>
 </table>
@@ -613,7 +612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>The full historical SC13 bridging table and incremental update sections are omitted from this working SCW16 version so that the report starts with the current paired reference models while tracking the active SCW16 data-replacement and candidate benchmark sequences.</p>
+<p>The full historical SC13 bridging table and incremental update sections are omitted from this working SCW16 version so that the report starts with the current paired reference models while tracking the active SCW16 data-replacement and candidate sequence.</p>
 <p>You will need to be in the <code>jjm/assessment</code> directory in order for the code here to run.</p>
 </section>
 <section id="scw16-data-replacement-sequence" class="level1" data-number="2">
@@ -710,7 +709,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="reference-and-candidate-model-comparison" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Reference and Candidate Model Comparison</h1>
-<p>The initial SCW16 benchmark comparison is from the <code>1.14</code> reference pair to the <code>2.00</code> candidate pair. This section is intended to become the main bridge between the documented SC13 update sequence and the benchmark model sequence. The report lists the paired two-stock candidate even when <code>h2_2.00.ctl</code> and its output are still pending.</p>
+<p>The initial SCW16 comparison is from the <code>1.14</code> reference pair to the <code>0.05</code> candidate pair. This section is intended to become the main bridge between the documented SC13 update sequence and the active SCW16 model sequence.</p>
 <section id="single-stock-hypothesis" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="single-stock-hypothesis"><span class="header-section-number">3.1</span> Single-stock hypothesis</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -721,8 +720,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_models_files/figure-html/scw16_candidate_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Plot comparing biomass estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."></a></p>
-<figcaption>Plot comparing biomass estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model.</figcaption>
+<p><a href="SCW16_models_files/figure-html/scw16_candidate_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Plot comparing biomass estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model."></a></p>
+<figcaption>Plot comparing biomass estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model.</figcaption>
 </figure>
 </div>
 </div>
@@ -733,8 +732,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_models_files/figure-html/scw16_candidate_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Plot comparing recruitment estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."></a></p>
-<figcaption>Plot comparing recruitment estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model.</figcaption>
+<p><a href="SCW16_models_files/figure-html/scw16_candidate_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Plot comparing recruitment estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model."></a></p>
+<figcaption>Plot comparing recruitment estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model.</figcaption>
 </figure>
 </div>
 </div>
@@ -745,8 +744,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_models_files/figure-html/scw16_candidate_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Plot comparing fishing mortality estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model."></a></p>
-<figcaption>Plot comparing fishing mortality estimates from the h1_1.14 reference model to the h1_2.00 SCW16 candidate model.</figcaption>
+<p><a href="SCW16_models_files/figure-html/scw16_candidate_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Plot comparing fishing mortality estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from the h1_1.14 reference model to the h1_0.05 SCW16 candidate model.</figcaption>
 </figure>
 </div>
 </div>
@@ -761,13 +760,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_models_files/figure-html/scw16_candidate_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Plot comparing biomass estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model."></a></p>
+<figcaption>Plot comparing biomass estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_models_files/figure-html/scw16_candidate_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Plot comparing recruitment estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model."></a></p>
+<figcaption>Plot comparing recruitment estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
-
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_models_files/figure-html/scw16_candidate_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Plot comparing fishing mortality estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model."><img src="SCW16_models_files/figure-html/scw16_candidate_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from the h2_1.14 reference model to the h2_0.05 SCW16 candidate model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -775,7 +801,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="notes" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Notes</h1>
-<p>This working report is currently scoped to <code>h1_1.14.ctl</code> and <code>h2_1.14.ctl</code> as the reference pair, the fitted <code>0.01</code> through <code>0.05</code> data-replacement runs, and the <code>h1_2.00</code> and <code>h2_2.00</code> candidate pair as files and model outputs become available. Additional diagnostic and sensitivity sections can be added back once the benchmark sequence is settled.</p>
+<p>This working report is currently scoped to <code>h1_1.14.ctl</code> and <code>h2_1.14.ctl</code> as the reference pair, the fitted <code>0.01</code> through <code>0.05</code> data-replacement runs, and the <code>h1_0.05</code> and <code>h2_0.05</code> candidate pair. Additional diagnostic and sensitivity sections can be added back once the model sequence is settled.</p>
 
 
 </section>
