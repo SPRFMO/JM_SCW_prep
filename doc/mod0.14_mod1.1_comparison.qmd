@@ -1,5 +1,5 @@
 ---
-title: "Comparison of mod0.14, mod1.1, mod1.2, and mod2.1"
+title: "Comparison of mod0.14 and mod0.5"
 date: today
 format:
   html:
@@ -35,7 +35,7 @@ library(knitr)
 library(purrr)
 library(tidyr)
 
-models <- c("mod0.14", "mod1.1", "mod1.2", "mod2.1")
+models <- c("mod0.14", "mod0.5")
 
 read_par_summary <- function(model, output = file.path(assessment_dir, "results")) {
   vals <- as.numeric(scan(file.path(output, paste0(model, ".par")),
@@ -145,7 +145,11 @@ bio_df <- map_dfr(models, \(model) bind_rows(
 ))
 
 catch_comp <- map_dfr(models, catch_df)
-survey_comp <- map_dfr(models, \(model) bind_rows(survey_df(model, 1), survey_df(model, 2)))
+survey_comp <- map_dfr(models, \(model) {
+  map_dfr(seq_len(mods[[model]]$data$Inum), \(survey_number) {
+    survey_df(model, survey_number)
+  })
+})
 f_comp <- map_dfr(models, f_df)
 like_comp <- map_dfr(models, like_df)
 ```
@@ -153,7 +157,7 @@ like_comp <- map_dfr(models, like_df)
 {{< include _includes/sprfmo-banner.html >}}
 
 ```{=html}
-<div class="paper-title">Comparison of mod0.14, mod1.1, mod1.2, and mod2.1</div>
+<div class="paper-title">Comparison of mod0.14 and mod0.5</div>
 ```
 
 ## Model Inputs
@@ -252,7 +256,7 @@ catch_comp |>
 
 ```{r}
 #| label: fig-survey-fit
-#| fig-cap: "Observed and predicted indices for the two Peru survey series."
+#| fig-cap: "Observed and predicted indices for the retained Peru survey and CPUE series."
 #| echo: false
 
 survey_obs <- survey_comp |>
