@@ -331,13 +331,17 @@ distribution from nearshore to more offshore areas, and whether the existing Per
 acoustic series in the assessment adequately reflects those changes. The meeting
 requested Peruvian acoustic survey backscatter data and associated length
 composition data, including survey timing, spatial extent, transect coverage,
-biological sampling, length type, and uncertainty. The meeting also noted that
-summer and winter surveys may need to be treated separately because seasonal
-differences and contrasting within-year values may contain useful information.
-Day 3 follow-up items included checking that the average survey month and
-seasonal assignment were implemented correctly in the model runs, reviewing fits
-to zero observations, and obtaining survey length frequencies as soon as
-possible.
+biological sampling, length type, and uncertainty. For the new acoustic surveys
+in the Peruvian zone, the length-composition effective sample size was scaled to
+the number of survey tows that included jack mackerel. For scaling, large
+numbers of tows were capped at 30, and the survey vector was then rescaled to an
+average effective sample size of 15, consistent with other surveys of this type.
+The meeting also noted that summer and winter surveys may need to be treated
+separately because seasonal differences and contrasting within-year values may
+contain useful information. Day 3 follow-up items included checking that the
+average survey month and seasonal assignment were implemented correctly in the
+model runs, reviewing fits to zero observations, and obtaining survey length
+frequencies as soon as possible.
 
 The sonar and fishing-vessel acoustic presentations provided methodological
 context rather than immediate assessment inputs. Sonar may improve information on
