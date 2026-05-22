@@ -205,6 +205,12 @@ diag_mcmc_available <- all(file.exists(diag_mcmc_images)) &&
 
 ## Retrospective Patterns
 
+The single-stock model was rerun with five retrospective peels. For the
+two-stock model, the first four peels converged and are shown here; the fifth
+peel failed under the updated 0.06 inputs with a non-finite final objective
+function and an unstable Hessian, so it is excluded from the plotted
+retrospective diagnostic.
+
 ```{r}
 #| label: fig-diag-retro-ssb-h1
 #| fig-cap: !expr paste0("Analytical retrospective of spawning biomass from five peel runs based on Model ", diag_h1nm, " under the single-stock hypothesis.")
@@ -229,7 +235,7 @@ if (!diag_h1_retro_available) {
 
 ```{r}
 #| label: fig-diag-retro-ssb-h2
-#| fig-cap: !expr paste0("Analytical retrospective of spawning biomass from five peel runs for the southern stock (top) and Far North stock (bottom), based on Model ", diag_h2nm, " under the two-stock hypothesis.")
+#| fig-cap: !expr paste0("Analytical retrospective of spawning biomass from four successful peel runs for the southern stock (top) and Far North stock (bottom), based on Model ", diag_h2nm, " under the two-stock hypothesis.")
 #| fig-height: 10
 op <- par(no.readonly = TRUE)
 on.exit(par(op), add = TRUE)
@@ -244,7 +250,7 @@ if (!diag_h2_retro_available) {
 
 ```{r}
 #| label: fig-diag-retro-r-h2
-#| fig-cap: !expr paste0("Analytical retrospective of recruitment from five peel runs for the southern stock (top) and Far North stock (bottom), based on Model ", diag_h2nm, " under the two-stock hypothesis.")
+#| fig-cap: !expr paste0("Analytical retrospective of recruitment from four successful peel runs for the southern stock (top) and Far North stock (bottom), based on Model ", diag_h2nm, " under the two-stock hypothesis.")
 #| fig-height: 12
 op <- par(no.readonly = TRUE)
 on.exit(par(op), add = TRUE)
@@ -479,9 +485,14 @@ plot(diag_h2_mod, what = "selectivity", fleet = "ind", alpha = 0.2, scale = 10)
 
 ## ADNuts MCMC Diagnostics
 
-ADNuts diagnostic outputs for the 0.06 model pair are not yet available in this
-report directory. This section should be regenerated when short diagnostic
-chains have been run for `h1_0.06` and `h2_0.06`.
+ADNuts diagnostic chains were run for `h1_0.06` and `h2_0.06` with four chains,
+1000 iterations per chain, 500 warmup iterations, unit metric,
+`adapt_delta = 0.9`, and `max_treedepth = 6`. These chains are included as
+sampler diagnostics and are not suitable for posterior inference. The
+single-stock run retained low effective sample sizes, high Rhat values, and
+divergent transitions. The two-stock run had many divergent transitions and
+also retained low effective sample sizes and high Rhat values. Longer and
+better tuned runs would be required before using MCMC output for inference.
 
 ```{r}
 #| label: tbl-diag-adnuts-mcmc-summary
@@ -526,9 +537,18 @@ if (diag_mcmc_available) {
 }
 ```
 
-```{r}
-#| label: fig-diag-adnuts-placeholder
-#| fig-cap: "ADNuts MCMC diagnostic graphics for the 0.06 model pair."
-plot.new()
-text(0.5, 0.5, "ADNuts MCMC graphics are not yet available for h1_0.06 and h2_0.06.", cex = 1.1)
-```
+![ADNuts pairs plot for the ten slowest-mixing parameters in Model h1_0.06 under the single-stock hypothesis. Diagonal panels show trace plots, lower panels show posterior draws, and upper panels show pairwise correlations.](images/mcmc_diagnostics/h1_0.06_pairs_slow.png){#fig-diag-adnuts-h1-pairs-slow width=100%}
+
+![ADNuts sampler diagnostics for Model h1_0.06 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.06_sampler_params.png){#fig-diag-adnuts-h1-sampler width=100%}
+
+![Marginal posterior diagnostics for the slowest-mixing parameters in Model h1_0.06 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.06_marginals_slow.png){#fig-diag-adnuts-h1-marginals width=100%}
+
+![Posterior standard deviations compared with MLE standard errors for Model h1_0.06 under the single-stock hypothesis.](images/mcmc_diagnostics/h1_0.06_uncertainties.png){#fig-diag-adnuts-h1-uncertainties width=100%}
+
+![ADNuts pairs plot for the ten slowest-mixing parameters in Model h2_0.06 under the two-stock hypothesis. Diagonal panels show trace plots, lower panels show posterior draws, upper panels show pairwise correlations, and green points indicate divergent transitions.](images/mcmc_diagnostics/h2_0.06_pairs_slow.png){#fig-diag-adnuts-h2-pairs-slow width=100%}
+
+![ADNuts sampler diagnostics for Model h2_0.06 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.06_sampler_params.png){#fig-diag-adnuts-h2-sampler width=100%}
+
+![Marginal posterior diagnostics for the slowest-mixing parameters in Model h2_0.06 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.06_marginals_slow.png){#fig-diag-adnuts-h2-marginals width=100%}
+
+![Posterior standard deviations compared with MLE standard errors for Model h2_0.06 under the two-stock hypothesis.](images/mcmc_diagnostics/h2_0.06_uncertainties.png){#fig-diag-adnuts-h2-uncertainties width=100%}
