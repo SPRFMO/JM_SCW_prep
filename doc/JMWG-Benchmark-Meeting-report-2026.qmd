@@ -347,12 +347,11 @@ The fishery-dependent acoustic presentation for south-central Chile was viewed a
 potentially useful but not yet ready for direct assessment use without further
 work. Participants noted the high temporal resolution and lower cost of
 commercial-vessel acoustic information, but also discussed preferential sampling,
-changes in fishing behaviour, possible technology effects, seasonal shifts, and
-correlation with CPUE from the same fleet. The meeting discussed whether
+changes in fishing behaviour, and seasonal shifts. The meeting discussed whether
 fishery-dependent and fishery-independent acoustic data could eventually be
-combined, but noted that the fishery-dependent product may be more appropriate as
-a diagnostic or future sensitivity until the effects of seasonality, vessel
-coverage, fleet behaviour, and sampling design are better understood.
+combined, but noted that the fishery-dependent product may be more appropriate
+as a diagnostic or future sensitivity until the effects of seasonality, vessel
+coverage, and fleet behaviour are better understood.
 
 For the Chile central-south acoustic survey series, participants requested a
 short paragraph explaining why the historical central-south acoustic data have
