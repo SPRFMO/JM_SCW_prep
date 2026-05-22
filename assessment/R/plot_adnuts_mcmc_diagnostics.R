@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-models <- c("h1_0.05", "h2_0.05")
+models <- c("h1_0.06", "h2_0.06")
 run_label <- "report_diag_20260522"
 run_root <- "mcmc_runs"
 image_dir <- file.path("..", "doc", "images", "mcmc_diagnostics")

@@ -191,7 +191,16 @@ diag_mcmc_images <- file.path(
     rep(c("_pairs_slow.png", "_sampler_params.png", "_marginals_slow.png", "_uncertainties.png"), times = 2)
   )
 )
-diag_mcmc_available <- all(file.exists(c(diag_mcmc_summary_file, diag_mcmc_slow_file, diag_mcmc_images)))
+diag_mcmc_has_model_rows <- function(path, models = diag_mcmc_models) {
+  if (!file.exists(path)) {
+    return(FALSE)
+  }
+  dat <- read.csv(path, stringsAsFactors = FALSE)
+  "model" %in% names(dat) && all(models %in% dat$model)
+}
+diag_mcmc_available <- all(file.exists(diag_mcmc_images)) &&
+  diag_mcmc_has_model_rows(diag_mcmc_summary_file) &&
+  diag_mcmc_has_model_rows(diag_mcmc_slow_file)
 ```
 
 ## Retrospective Patterns

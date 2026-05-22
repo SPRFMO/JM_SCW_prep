@@ -831,7 +831,17 @@ The group also noted that several simplification suggestions in Paper 01 should 
 
 ## Operating Models and MSE Linkages
 
-Text to be added during the meeting. This section should summarize operating-model specifications, reference-set and robustness-set uncertainties, MCMC feasibility, management-procedure input diagnostics, and workflow needs for the June 2026 MSE workshop.
+The working group conferred with the MSE contractor on details of the projection
+and scenario specifications needed to link the benchmark assessment work to the
+MSE process. Discussion focused in particular on how recruitment process errors
+would be developed for the projection runs. The contractor clarified that an
+ARIMA-based treatment may be preferable, with both the autocorrelation parameter
+(`rho`) and residual scale (`sigma`) estimated from that process. Under that
+treatment, `sigma` is interpreted as the innovation standard deviation: the
+remaining recruitment variability after accounting for autocorrelation. The
+working group agreed in principle with the proposed base-model configuration
+runs, noting that the final base-model set used for MSE conditioning will arise
+from the benchmark decisions.
 
 # Decisions and Agreements
 
