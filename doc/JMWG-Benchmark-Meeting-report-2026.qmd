@@ -1089,7 +1089,12 @@ information from the beginning of 2025 and should not be interpreted as using
 assumptions accepted at the previous Scientific Committee was tabled until
 supporting documentation is available. The group identified an urgent need to
 specify transition assumptions for selectivity and weight-at-age in projections,
-given the strong mandate to have an MSE ready during 2026.
+given the strong mandate to have an MSE ready during 2026. The group recognized
+that these specifications are prerequisites for the contractor to advance the MSE
+work. The group acknowledged that any delay in providing these specifications
+would directly affect the contractor's ability to deliver against the agreed
+timeline, and that progress on the MSE is contingent on timely decisions by the
+group.
 
 ::: {.callout-note}
 ## Last-day MSE workplan note
