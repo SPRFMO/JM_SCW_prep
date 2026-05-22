@@ -7,9 +7,21 @@ h1_0.05
 #nameStock 
 Stock 
 #SelMatrix 
+#N_Chile 
+# SC_Chile_PS 
+#   FarNorth 
+#     Offshore_Trawl 
+#       Chile_AcousCS 
+#			  Chile_AcousN 
+#				  Chile_CPUE 
+#					  DEPM 
+#						  Peru_CPUE 
+#							  Offshore_CPUE 
+#								  Peru_Acoust_S1 
+#									  Peru_Acoust_S2 
 1 1 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 2 2 1 2 1 1 2 2
-1 2 3 4 1 2 2 4 3 4 5 6
+1 2 3 4 1 2 2 4 3 4 7 8
 #nregbyStock 
 1 
 #SrType 

@@ -1393,10 +1393,7 @@ DATA_SECTION
   else
     phase_fmort = 1;
 
-    if (nproj_yrs>0)
-      phase_proj  =  5;
-    else
-      phase_proj  =  -5;
+    phase_proj  =  -5;
 
   Steepness_UB = .9999; // upper bound of steepness
   offset_ind.initialize();
@@ -3527,6 +3524,7 @@ FUNCTION Future_projections
 
       nage_future(s,styr_fut)(2,nages) = ++elem_prod(natage(s,endyr)(1,nages-1),S(s,endyr)(1,nages-1));
       nage_future(s,styr_fut,nages)  += natage(s,endyr,nages)*S(s,endyr,nages);
+      S_future(s,styr_fut)             = S(s,endyr);
       Sp_Biom_future(s,styr_fut)       = wt_mature(s) * elem_prod(nage_future(s,styr_fut),pow(S_future(s,styr_fut),spmo_frac)) ;
       // Future Recruitment (and Sp_Biom)
       for (i=styr_fut;i<endyr_fut;i++)

@@ -9,7 +9,7 @@ Stock
 #SelMatrix 
 1 1 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 2 2 1 2 1 1 2 2
-1 2 3 4 1 2 2 4 3 4 5 6
+1 2 3 4 1 2 2 4 3 4 7 8
 #nregbyStock 
 1 
 #SrType 

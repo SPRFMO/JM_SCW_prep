@@ -228,6 +228,26 @@ may render it largely undetectable by acoustics, and that acoustic-trawl
 operations were most effective around dawn, when jack mackerel tended to
 concentrate.
 
+The working group had a long discussion about whether to include the most recent
+2026 acoustic survey data point in the assessment runs, noting that the survey
+biomass estimate had declined from more than 3 million t in 2025 to just over
+0.64 million t in 2026. Members also noted that the Chilean fleet's
+year-to-date catch was about 30% of the comparable catch level from the previous
+year. The Chair requested that members provide their best estimate of the most
+likely 2026 catch so that at least some indication of the apparent stock trend
+could be relayed before the MSE meeting and Scientific Committee review. Part
+of the difficulty was that the benchmark had two related but distinct goals: to
+improve future assessment modelling, and to generate appropriate scenarios for
+MSE testing. If the benchmark were being used only to improve the assessment,
+there would be less immediate need to resolve the 2026 treatment because the
+issue could be taken up at the Scientific Committee meeting later in the year.
+However, the need to define plausible MSE scenarios made the question more
+time-sensitive. One member was reluctant to conduct that model run, citing too
+much uncertainty in estimating 2026 catch levels, even as a sensitivity. The
+group noted the awkwardness of proposing an MSE under conditions that appear to
+be exceptional, given the apparent dispersion of jack mackerel and pending El
+Nino conditions.
+
 The oceanographic presentation proposed that large jack mackerel may have moved
 offshore and dispersed in response to reduced coastal food concentration
 associated with ENSO-related inhibition of coastal upwelling. The meeting noted
@@ -396,6 +416,11 @@ profound increases and decreases over the time series. Model consistency between
 the SC12 and SC13 configurations was high, and it is expected that model
 consistency for the new method is of similar quality. A formal retrospective
 analysis is pending and will be presented at SC14.
+
+The updated INLA-based Chilean CPUE retrospective analysis was reviewed using
+six peels. The resulting Mohn's rho was 0.0254, and participants considered the
+diagnostic performance favourable for assessment use. Niels was asked to update
+the report text describing these retrospective results.
 
 The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment
 starting in 1998, using the agreed effort-creep treatment described above.
@@ -784,9 +809,11 @@ par(op)
 The Day 3 biological-input discussion reviewed the Peruvian length-weight and
 length-frequency material and agreed that the Peruvian length frequencies should
 be treated as fork length. Growth parameters used with those data should
-therefore also be in fork length. The assessment should also increase the plus
-group so the Peruvian length-frequency information and growth assumptions are
-handled consistently in the model.
+therefore also be in fork length. Members noted the SPRFMO convention that
+length information should be reported in fork length rather than total length.
+The group agreed to leave the length-composition plus group at 50 cm so the
+Peruvian length-frequency information and growth assumptions are handled
+consistently in the model.
 
 The meeting also requested that Peru provide sample-size information for the
 composition data in a form that can be translated into assessment input sample
@@ -794,6 +821,14 @@ sizes. Members noted that the number of fish measured would be useful in
 addition to the current reporting of sampling events such as boxes or trips. The
 group also discussed whether the SPRFMO length-bin range should be expanded to
 match the Peruvian 5-90 cm length bins.
+
+Jim presented model runs using the updated Peruvian length-composition data.
+Members requested additional checks on the resulting selectivity patterns,
+particularly that selectivity should not become dome-shaped after 2020. The
+Peruvian length-weight presentation also noted that the allometric parameter
+`b` fluctuates and tends to decline sharply during El Nino events, which should
+be considered when interpreting biological inputs from years affected by
+environmental anomalies.
 
 ### Far North length-composition binning and data specification
 
@@ -829,6 +864,18 @@ The meeting reviewed Paper 01 ([SCW16-Doc01](SCW16-Doc01.html)), which evaluated
 
 The group also noted that several simplification suggestions in Paper 01 should be interpreted in light of the data updates agreed during the benchmark meeting. Because several abundance-index and composition series were updated or replaced during the meeting, some simplifications that were informative under the SC13 data configuration may no longer apply directly to the updated benchmark configuration. The final candidate model set should therefore reassess those simplification options after the updated input series are implemented, rather than carrying all earlier simplification conclusions forward unchanged.
 
+Participants also discussed whether 2026 information should be included in the
+benchmark or MSE model runs. One suggested approach was to estimate total 2026
+catch from year-to-date Chilean catch information and use that estimate in a
+sensitivity run. The group also reviewed options for Chile Acoustic South-Central
+data treatment, including dropping the series, retaining it as currently used,
+updating CVs based on geostatistical spatial coverage, transect design, and
+operational reliability, or retaining the series with heavier downweighting.
+Chile initially indicated interest in presenting an updated Chile Acoustic
+South-Central option, but that request was later withdrawn. The practical
+proposal carried forward was to retain the series as currently configured unless
+a later sensitivity is requested.
+
 ## Operating Models and MSE Linkages
 
 The working group conferred with the MSE contractor on details of the projection
@@ -842,6 +889,35 @@ remaining recruitment variability after accounting for autocorrelation. The
 working group agreed in principle with the proposed base-model configuration
 runs, noting that the final base-model set used for MSE conditioning will arise
 from the benchmark decisions.
+
+The group reviewed the operating-model grid paper presented by I. Mosquiera and
+discussed how the benchmark model set would condition the South Pacific jack
+mackerel MSE. Participants noted that, although preliminary 2025 information has
+been presented as best available science, the conditioning model uses abundance
+information from the beginning of 2025 and should not be interpreted as using
+2025 as a complete year. Discussion of projection selectivity and reference-point
+assumptions accepted at the previous Scientific Committee was tabled until
+supporting documentation is available. The group identified an urgent need to
+specify transition assumptions for selectivity and weight-at-age in projections,
+given the strong mandate to have an MSE ready during 2026.
+
+Participants also discussed projected recruitment deviations and whether
+terminal-year uncertainty should be propagated directly into future recruitment.
+The group noted the need to separate estimation uncertainty from prediction and
+requested that Iago examine the distribution of values for `sigma_R`, which had
+not been revisited since the September model. Future recruitment variability
+should consider whether to exclude the extremely high 1986 and 1987 recruitment
+events or use a more recent recruitment period. The group also noted that
+exceptional circumstances, including the apparent 2026 dispersion of jack
+mackerel, need to be considered when framing MSE scenarios and subsequent
+advice.
+
+The group discussed management-procedure implementation questions, including how
+to rank indices for management-procedure input versus assessment and
+conditioning use, and whether MSE scenarios should include banking and borrowing
+provisions approved at the previous Commission meeting. The current MSE setup can
+represent banking and borrowing across all fleets, rather than by fleet, and the
+specific TAC-change bounds should be checked against the Commission report.
 
 # Decisions and Agreements
 
@@ -860,7 +936,7 @@ action-item list.
 | 4 | Retain a sensitivity with piecemeal use of the old Chilean CPUE before 1998. | Chile CPUE sensitivity | Add to the candidate sensitivity-run list. | TBD |
 | 5 | Use the new Peruvian CPUE series as a later-starting replacement and remove the previous Peru CPUE index. | Peru CPUE | Implement the replacement in the base model. | 0.02 |
 | 6 | Treat Peruvian length frequencies as fork length and use growth parameters in fork length. | Peru biology / composition | Check consistency of growth, length-frequency bins, and length-weight inputs. | 0.00+ |
-| 7 | Increase the plus group for the Peruvian length-frequency and growth treatment. | Peru biology / composition | Specify the plus-group age in the candidate model configuration. | Complete |
+| 7 | Retain the 50 cm plus group for the Peruvian length-frequency and growth treatment. | Peru biology / composition | Confirm the retained plus-group treatment in the candidate model configuration. | Complete |
 | 8 | Use the new Peruvian acoustic indices and remove the previous Peru acoustic index. | Peru acoustic index | Carry forward associated length-frequency information with the new acoustic treatment. | 0.05 |
 | 9 | Retain raw/design-based Chile Acoustic North biomass for assessment use and keep spatio-temporal acoustic modelling as research and diagnostic information. | Chile acoustic indices | Acknowledge INPESCA's modelling contribution and document why model-based CPUE indicators and design-based survey indicators are treated differently. | Research |
 | 10 | Do not add a new base-model treatment for Chilean Acoustic South-Central at this stage. | Chile acoustic indices | Retain as diagnostic or supporting information unless a later sensitivity is requested. | Complete |
@@ -868,21 +944,52 @@ action-item list.
 : Benchmark decisions and agreements. Numbered entries in the Status column identify the corresponding model reference.
 :::
 
-# Open Issues / Risks to Track
+# Benchmark Summary and Recommendations
 
-- Some candidate indices may have useful contrast but unresolved representativeness, catchability, availability, or uncertainty issues.
-- Acoustic and CPUE information may give conflicting recent signals, requiring clear documentation of interpretation and model-treatment choices.
-- Model simplification for MSE tractability must be balanced against structural assumptions that members view as scientifically important.
-- Biological inputs may differ by area, fleet, season, or stock hypothesis, and may require explicit sensitivity tests.
-- Report writing must keep pace with the technical discussion so that decisions are not lost before adoption.
-- Several acoustic and CPUE analyses currently lack enough data-extent metadata to evaluate representativeness and sample support.
-- Peru acoustic information may contain useful historical and seasonal signal, but its assessment use depends on survey coverage relative to jack mackerel distribution, biological sampling, and possible pre-/post-1997/1998 changes.
-- Fishery-dependent acoustic products may add spatial and seasonal information, but preferential sampling, fishing behaviour, technology effects, and correlation with CPUE must be evaluated before direct assessment use.
-- The current data-submission workflow is expedient but depends on consistent interpretation of sampling, coverage, and sample-size fields across members.
-- The Chilean effort-creep correction may be confounded with catchability changes, and the assessment consequence should be tested alongside the agreed base treatment.
-- The new Chile CPUE base treatment begins in 1998; the old pre-1998 CPUE sensitivity is needed to evaluate the effect of retaining earlier historical contrast.
-- The new Peru CPUE and Peru acoustic treatments remove previous assessment indices, so the implementation should document exactly which historical series have been dropped.
-- Offshore CPUE catchability breaks and environmental effects need clear interpretation so that abundance, availability, and fishing-behaviour changes are not conflated.
+Based on the 2026 benchmark workshop of the Jack Mackerel Working Group, the
+following points are directed to the Scientific Committee and to the upcoming MSE
+workshop.
+
+- **Noted** that the benchmark reviewed and re-evaluated multiple data streams,
+  including acoustic surveys, Chilean and Peruvian CPUE indices, biological
+  inputs, composition data, and candidate assessment-model configurations.
+- **Noted** that several abundance-index and composition series were updated or
+  replaced during the meeting, so model simplification and MSE conditioning
+  should be evaluated against the benchmark data configuration rather than
+  against the previous SC13 input set.
+- **Noted** that the new Chilean CPUE treatment begins in 1998, includes the
+  agreed effort-creep adjustment, and uses annual uncertainty weighted by data
+  coverage with INLA standard errors.
+- **Noted** that the 2026 Chile acoustic survey and year-to-date fishery
+  information indicate exceptional recent conditions, including apparent
+  dispersion of jack mackerel and a large decline in the north-central Chile
+  acoustic biomass estimate relative to 2025.
+- **Noted** that acoustic and CPUE data may give different recent signals and
+  that interpretation of availability, catchability, survey coverage, and
+  biological sampling remains important for both assessment and MSE use.
+- **Recommended** using the agreed benchmark index set in the candidate base-model
+  configuration, including the new Chilean CPUE series, the new Peruvian CPUE
+  series, and the new Peruvian acoustic indices, while removing the previous Peru
+  CPUE and acoustic index treatments from the base configuration.
+- **Recommended** retaining the raw or design-based Chile Acoustic North biomass
+  treatment for assessment use, while treating spatio-temporal acoustic modelling
+  as research and diagnostic information unless a later sensitivity is requested.
+- **Recommended** retaining the existing 10-50 cm Far North length-composition bins
+  and 50 cm plus group for the benchmark configuration, using Peruvian
+  length-frequency information as fork length and applying fork-length growth
+  parameters.
+- **Recommended** that the MSE workshop use the benchmark-derived base-model set
+  for operating-model conditioning and explicitly document recruitment-process
+  assumptions, including any ARIMA-based treatment of autocorrelation and
+  innovation variance.
+- **Recommended** that the JMWG develop a set of meta-rules for identifying and
+  responding to exceptional circumstances, including cases where recent survey,
+  fishery, environmental, or distributional information may fall outside the
+  conditions anticipated by the operating models or management procedures.
+- **Recommended** presenting near-term model sensitivities or diagnostics, where
+  feasible, that reflect the 2026 acoustic and catch information so the
+  Scientific Committee and MSE process have a clear indication of the apparent
+  recent stock trend and its uncertainty.
 
 # Appendix A. Shortened Draft Agenda
 
