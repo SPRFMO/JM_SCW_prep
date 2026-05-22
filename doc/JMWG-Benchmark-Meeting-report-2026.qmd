@@ -1170,6 +1170,8 @@ action-item list.
 | 8 | Use the new Peruvian acoustic indices and remove the previous Peru acoustic index. | Peru acoustic index | Carry forward associated length-frequency information with the new acoustic treatment. | 0.05 |
 | 9 | Retain raw/design-based Chile Acoustic North biomass for assessment use and keep spatio-temporal acoustic modelling as research and diagnostic information. | Chile acoustic indices | Acknowledge INPESCA's modelling contribution and document why model-based CPUE indicators and design-based survey indicators are treated differently. | Research |
 | 10 | Do not add a new base-model treatment for Chilean Acoustic South-Central at this stage. | Chile acoustic indices | Retain as diagnostic or supporting information unless a later sensitivity is requested. | Complete |
+| 11 | Estimate variable fishery selectivity for Peru catch length frequencies. | Peru fishery selectivity | Implement or test variable selectivity for Peru catch length-frequency data. | TBD |
+| 12 | Use Peru survey length frequencies to estimate survey selectivity. | Peru survey selectivity | Link Peru survey length frequencies to survey selectivity estimation in the model configuration. | TBD |
 
 : Benchmark decisions and agreements. Numbered entries in the Status column identify the corresponding model reference.
 :::
