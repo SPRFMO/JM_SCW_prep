@@ -1206,10 +1206,10 @@ workshop.
 - **Recommended** retaining the raw or design-based Chile Acoustic North biomass
   treatment for assessment use, while treating spatio-temporal acoustic modelling
   as research and diagnostic information unless a later sensitivity is requested.
-- **Recommended** that the JMWG and relevant Members evaluate the feasibility and
-  benefits of a synoptic acoustic survey covering the northern to southern parts
-  of Chile, given the importance of distinguishing abundance trends from spatial
-  redistribution and availability changes.
+- **Recommended** that the JMWG and relevant Members evaluate the feasibility of
+  a synoptic acoustic survey covering the northern to southern parts of Chile.
+  The group emphasized the importance of such surveys and data to distinguish
+  abundance trends from spatial redistribution and availability changes.
 - **Recommended** retaining the existing 10-50 cm Far North length-composition bins
   and 50 cm plus group for the benchmark configuration, using Peruvian
   length-frequency information as fork length and applying fork-length growth
