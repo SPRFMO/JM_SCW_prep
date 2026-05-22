@@ -1041,10 +1041,8 @@ sensitivity run. The group also reviewed options for Chile Acoustic South-Centra
 data treatment, including dropping the series, retaining it as currently used,
 updating CVs based on geostatistical spatial coverage, transect design, and
 operational reliability, or retaining the series with heavier downweighting.
-Chile initially indicated interest in presenting an updated Chile Acoustic
-South-Central option, but that request was later withdrawn. The practical
-proposal carried forward was to retain the series as currently configured unless
-a later sensitivity is requested.
+The practical proposal carried forward was to retain the series as currently
+configured unless a later sensitivity is requested.
 
 The group discussed diagnostics of the 0.06 model, noting that sample sizes for
 the Far North fleet were high. It was agreed to rescale these sample sizes to
