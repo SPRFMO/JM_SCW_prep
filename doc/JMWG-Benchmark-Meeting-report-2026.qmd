@@ -1539,6 +1539,6 @@ Use the following labels when carrying presentation material into the report:
 | New 2026 evidence | Recent information that may affect benchmark interpretation even if it is not a standalone paper. |
 | Context / supporting methods | Background or method information that helps interpret candidate indices but is not itself a direct assessment input. |
 
-{{< pagebreak >}}
-
-{{< include appendix_diagnostics.qmd >}}
+The diagnostic figure appendix previously appended to this meeting report has
+been removed. It is replaced by the [SCW16 benchmark assessment report](SCW16.html),
+which maintains the current model sequence and diagnostic material.
