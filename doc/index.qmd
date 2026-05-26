@@ -13,7 +13,7 @@ format:
 
 [Draft Benchmark report](JMWG-Benchmark-Meeting-report-2026.html) ([PDF](JMWG-Benchmark-Meeting-report-2026.pdf), [DOCX](JMWG-Benchmark-Meeting-report-2026.docx)). Please add proposed report text and edits in the [shared Google Drive folder](https://drive.google.com/drive/u/1/folders/1CkFqB1tXmmIHIWddzSm7kqdZx1wfS9MX) for incorporation into the draft.
 
-[SCW16 benchmark model runs](SCW16_models.html) from the `SPRFMO/jjm` repository show the current benchmark model sequence and diagnostic results ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16_models.qmd)).
+[SCW16 benchmark assessment report](SCW16.html) from the `SPRFMO/jjm` repository shows the current benchmark model sequence and diagnostic results ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16.qmd)).
 
 # Overview
 
@@ -34,7 +34,7 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [JM SAM Model runs](https://sprfmo.github.io/JM_sam/)
 
-  - [SCW16 benchmark model runs](SCW16_models.html) ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16_models.qmd))
+  - [SCW16 benchmark assessment report](SCW16.html) ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16.qmd))
 
 ### Draft SCW16 papers
 
@@ -97,11 +97,10 @@ These are the benchmark workshop terms of reference, tracked as `JMWG_Benchmark_
 
 This is the main benchmark working paper, tracked as `SCW16-Doc01.qmd`, with published HTML, PDF, and DOCX outputs.
 
-## SCW16 benchmark model sequence
+## SCW16 benchmark assessment report
 
-This source document is maintained in `SPRFMO/jjm` as `doc/SCW16_models.qmd`.
-It tracks the SCW16 benchmark model sequence, beginning with the documented
-`1.14` model series and moving to the candidate `2.00` benchmark series.
+This source document is maintained in `SPRFMO/jjm` as `doc/SCW16.qmd`.
+It tracks the SCW16 benchmark model sequence and the current diagnostic results.
 
 ## SCW16-Doc00
 

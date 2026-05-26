@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-05-25">
+
+<title>Jack Mackerel Assessment SCW16</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="SCW16_files/libs/clipboard/clipboard.min.js"></script>
+<script src="SCW16_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="SCW16_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="SCW16_files/libs/quarto-html/popper.min.js"></script>
+<script src="SCW16_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="SCW16_files/libs/quarto-html/anchor.min.js"></script>
+<link href="SCW16_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="SCW16_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="SCW16_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="SCW16_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="SCW16_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="SCW16_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="SCW16_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="SCW16_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="SCW16_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="SCW16_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#model-naming-convention" id="toc-model-naming-convention" class="nav-link active" data-scroll-target="#model-naming-convention"><span class="header-section-number">1</span> Model Naming Convention</a></li>
+  <li><a href="#updated-data" id="toc-updated-data" class="nav-link" data-scroll-target="#updated-data"><span class="header-section-number">2</span> Updated Data</a>
+  <ul class="collapse">
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets"><span class="header-section-number">2.1</span> Datasets</a></li>
+  </ul></li>
+  <li><a href="#bridging-model" id="toc-bridging-model" class="nav-link" data-scroll-target="#bridging-model"><span class="header-section-number">3</span> Bridging Model</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis" id="toc-single-stock-hypothesis" class="nav-link" data-scroll-target="#single-stock-hypothesis"><span class="header-section-number">3.1</span> Single-stock hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis" id="toc-two-stock-hypothesis" class="nav-link" data-scroll-target="#two-stock-hypothesis"><span class="header-section-number">3.2</span> Two-stock hypothesis</a></li>
+  </ul></li>
+  <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">4</span> Sensitivity Analyses</a>
+  <ul class="collapse">
+  <li><a href="#adding-the-previous-cpue-indices" id="toc-adding-the-previous-cpue-indices" class="nav-link" data-scroll-target="#adding-the-previous-cpue-indices"><span class="header-section-number">4.1</span> Adding the previous CPUE indices</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis-1" id="toc-single-stock-hypothesis-1" class="nav-link" data-scroll-target="#single-stock-hypothesis-1"><span class="header-section-number">4.1.1</span> Single-stock hypothesis</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#final-model" id="toc-final-model" class="nav-link" data-scroll-target="#final-model"><span class="header-section-number">5</span> Final Model</a>
+  <ul class="collapse">
+  <li><a href="#comparison-to-last-year" id="toc-comparison-to-last-year" class="nav-link" data-scroll-target="#comparison-to-last-year"><span class="header-section-number">5.1</span> Comparison to last year</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis-2" id="toc-single-stock-hypothesis-2" class="nav-link" data-scroll-target="#single-stock-hypothesis-2"><span class="header-section-number">5.1.1</span> Single-stock hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-1" id="toc-two-stock-hypothesis-1" class="nav-link" data-scroll-target="#two-stock-hypothesis-1"><span class="header-section-number">5.1.2</span> Two-stock hypothesis</a></li>
+  </ul></li>
+  <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics"><span class="header-section-number">5.2</span> Model Diagnostics</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis-3" id="toc-single-stock-hypothesis-3" class="nav-link" data-scroll-target="#single-stock-hypothesis-3"><span class="header-section-number">5.2.1</span> Single-Stock Hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-2" id="toc-two-stock-hypothesis-2" class="nav-link" data-scroll-target="#two-stock-hypothesis-2"><span class="header-section-number">5.2.2</span> Two-Stock Hypothesis</a></li>
+  </ul></li>
+  <li><a href="#likelihood-table" id="toc-likelihood-table" class="nav-link" data-scroll-target="#likelihood-table"><span class="header-section-number">5.3</span> Likelihood Table</a></li>
+  </ul></li>
+  <li><a href="#other-business" id="toc-other-business" class="nav-link" data-scroll-target="#other-business"><span class="header-section-number">6</span> Other Business</a>
+  <ul class="collapse">
+  <li><a href="#data-needs" id="toc-data-needs" class="nav-link" data-scroll-target="#data-needs"><span class="header-section-number">6.1</span> Data needs</a></li>
+  <li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general"><span class="header-section-number">6.2</span> General</a></li>
+  <li><a href="#other-models-to-run" id="toc-other-models-to-run" class="nav-link" data-scroll-target="#other-models-to-run"><span class="header-section-number">6.3</span> Other models to run</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Jack Mackerel Assessment SCW16</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 25, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.quarto-title-block {
+  display: none;
+}
+
+.sprfmo-front {
+  margin: 0 0 0.5rem 0;
+}
+
+.sprfmo-banner {
+  display: flex;
+  align-items: stretch;
+  gap: 1.75rem;
+  margin: 0 0 1rem 0;
+}
+
+.sprfmo-mark {
+  flex: 0 0 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1.5rem;
+  border-right: 4px solid #1b4576;
+}
+
+.sprfmo-mark img {
+  display: block;
+  width: 150px;
+  max-width: 100%;
+  height: auto;
+}
+
+.sprfmo-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sprfmo-wordmark {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 5.8vw, 4.6rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: #0f4c8a;
+}
+
+.sprfmo-subtitle {
+  margin: 0.15rem 0 1rem 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  color: #0f4c8a;
+}
+
+.sprfmo-rule {
+  height: 4px;
+  margin: 0 0 0.8rem 0;
+  background: #ea9b1f;
+}
+
+.sprfmo-group {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.35rem);
+  line-height: 1.12;
+  font-weight: 700;
+  color: #233f73;
+}
+
+.paper-title {
+  margin: 0.25rem 0 1.75rem 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+  line-height: 1.15;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+@media (max-width: 800px) {
+  .sprfmo-banner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sprfmo-mark {
+    flex-basis: auto;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    border-right: 0;
+    border-bottom: 4px solid #1b4576;
+  }
+}
+</style>
+
+<div class="sprfmo-front">
+  <div class="sprfmo-banner">
+    <div class="sprfmo-mark" aria-hidden="true">
+      <img src="annex/logo.png" alt="SPRFMO logo">
+    </div>
+    <div class="sprfmo-copy">
+      <h1 class="sprfmo-wordmark">SPRFMO</h1>
+      <div class="sprfmo-subtitle">South Pacific Regional Fisheries Management Organisation</div>
+      <div class="sprfmo-rule"></div>
+      <div class="sprfmo-group">Jack Mackerel Working Group</div>
+    </div>
+  </div>
+</div>
+<div class="paper-title">Jack Mackerel Assessment SCW16</div>
+<p>This document was originally compiled in <code>RMarkdown</code> then converted into Quarto (a different flavor of markdown). It shows the incremental results of the Chilean Jack Mackerel (<em>Trachurus murphyi</em>) stock assessment update in 2026. The files associated with this document can be found on <a href="https://github.com/SPRFMO/jjm/tree/master/assessment">Github</a>.</p>
+<p>The code to create the input files for this assessment and to run these models can be found in <a href="https://github.com/SPRFMO/jjm/tree/master/assessment/R/SC13_Bridging.R"><code>jjm/assessment/R/SC13_Bridging.R</code></a>. Should you choose to run the models, please ensure that you have:</p>
+<ul>
+<li>Compiled the latest <code>jjm/src/jjms.tpl</code>
+<ul>
+<li>This can be done by navigating to the <code>jjm/src</code> folder in your Terminal, and using the <code>make</code> command</li>
+<li>You will need to have <a href="http://www.admb-project.org/">ADMB</a> installed to do this.</li>
+<li>This does not need to be done if you’re only re-compiling the R Markdown document.</li>
+</ul></li>
+<li>Updated the <code>jjmR</code> package
+<ul>
+<li>This can be done in <code>R</code> using the command <code>remotes::install_github("SPRFMO/jjmR")</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">'devtools'</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()) <span class="fu">install.packages</span>(<span class="st">'devtools'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SPRFMO/jjmR"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="st">'kableExtra'</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()) <span class="fu">install.packages</span>(<span class="st">'kableExtra'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jjmR)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_jjm</span>(<span class="at">base_size =</span> <span class="dv">15</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>pwd <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fn_seldata <span class="ot">&lt;-</span> <span class="cf">function</span>(x, i) {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  i_offshore <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"Offshore_CPUE"</span>, x<span class="sc">$</span>data<span class="sc">$</span>Inames)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>data<span class="sc">$</span>Index[,i] <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"year"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">year =</span> <span class="fu">as.numeric</span>(year),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">assessment_year =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        i<span class="sc">==</span>i_offshore,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">max</span>(year)<span class="sc">+</span><span class="dv">1</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">max</span>(year)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>fn_plotind <span class="ot">&lt;-</span> <span class="cf">function</span>(mods2compare, indname) {</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  mods <span class="ot">&lt;-</span> <span class="fu">compareModels</span>(<span class="fu">geth</span>(mods2compare, <span class="st">"h1"</span>))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="fu">grep</span>(indname,mods[[<span class="dv">1</span>]]<span class="sc">$</span>data<span class="sc">$</span>Inames)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  dat2use <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(m <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(mods)) {</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    dat2use[[m]] <span class="ot">&lt;-</span> <span class="fu">fn_seldata</span>(mods[[m]],i) <span class="sc">%&gt;%</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">assessment_year =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        m <span class="sc">==</span> <span class="dv">1</span>, yr_prev, yr_curr</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      ))</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(dat2use, <span class="sc">~</span><span class="fu">as_tibble</span>(.)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">assessment_year=</span><span class="fu">as.factor</span>(assessment_year)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>value,<span class="at">colour=</span>assessment_year)) <span class="sc">+</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span> scales<span class="sc">::</span><span class="fu">pretty_breaks</span>())</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(p)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>finmodname <span class="ot">&lt;-</span> <span class="st">"0.11"</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>yr_prev <span class="ot">&lt;-</span> <span class="dv">2025</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>yr_curr <span class="ot">&lt;-</span> <span class="dv">2026</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>h1_mod0<span class="fl">.00</span> <span class="ot">&lt;-</span> <span class="fu">readJJM</span>(<span class="fu">geth</span>(<span class="st">"0.00"</span>, <span class="st">"h1"</span>), <span class="at">path =</span> <span class="st">"config"</span>, <span class="at">input =</span> <span class="st">"input"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>h2_mod0<span class="fl">.00</span> <span class="ot">&lt;-</span> <span class="fu">readJJM</span>(<span class="fu">geth</span>(<span class="st">"0.00"</span>, <span class="st">"h2"</span>), <span class="at">path =</span> <span class="st">"config"</span>, <span class="at">input =</span> <span class="st">"input"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="model-naming-convention" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Model Naming Convention</h1>
+<p>File naming conventions have been changed to reflect the stock structure hypotheses associated with each run. The <code>h1</code> denotes the single-stock hypothesis, while <code>h2</code> denotes the two-stock one.</p>
+<p>This working draft includes the single-stock (<code>h1</code>) and analogous two-stock (<code>h2</code>) comparisons for the 0.00 baseline and 0.11 bridge configuration.</p>
+<p>The existing model numbers are retained to match the input, configuration, and result files. The table below lists the decision-level model configurations used in this document. Intermediate models <code>0.01</code> through <code>0.10</code> were retained as audit steps for sequential data introductions and corrections needed to reach the meeting specifications, but they are not treated here as separate model configurations.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Models 0.x</strong></td>
+<td><strong>Bridging configurations</strong></td>
+</tr>
+<tr class="even">
+<td>0.00</td>
+<td>Baseline 2025 SC13 framing for the single-stock <code>h1</code> and two-stock <code>h2</code> hypotheses, retained with 0.00 naming for the bridge comparisons.</td>
+</tr>
+<tr class="odd">
+<td>0.11</td>
+<td>Current bridge from 0.00, including the updated data, specified input corrections, Chilean CPUE and Peru acoustic-survey catchability settings, and rescaled sample sizes for the Peru acoustic-survey length compositions.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Model</strong></td>
+<td><strong>Sensitivity Analyses</strong></td>
+</tr>
+<tr class="even">
+<td>1.01</td>
+<td>As 0.11 but with the full Chilean CPUE series from the previous assessment.</td>
+</tr>
+<tr class="odd">
+<td>1.02</td>
+<td>As 0.11 but with the full Chilean CPUE series from the previous assessment and the alternative sensitivity settings documented in the control file.</td>
+</tr>
+</tbody>
+</table>
+<p>You’ll need to be in the <code>jjm/assessment</code> directory in order for the code here to run.</p>
+</section>
+<section id="updated-data" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Updated Data</h1>
+<section id="datasets" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="datasets"><span class="header-section-number">2.1</span> Datasets</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Catch by Fleet</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Indices of Abundance</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Fishery Weight at Age</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false" href="">Survey Weight at Age</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/dat_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="SCW16_files/figure-html/dat_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/dat_index-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="SCW16_files/figure-html/dat_index-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/dat_ages-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="SCW16_files/figure-html/dat_ages-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/dat_lengths-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="SCW16_files/figure-html/dat_lengths-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/wtatagefsh-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="SCW16_files/figure-html/wtatagefsh-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/wtatagesrv-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="SCW16_files/figure-html/wtatagesrv-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bridging-model" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Bridging Model</h1>
+<p>The key bridging comparison is model 0.11 relative to model 0.00. Model 0.00 provides the baseline SC13 framing for both stock-structure hypotheses, while model 0.11 represents the cumulative update to the meeting specifications.</p>
+<p>The intermediate runs from 0.01 through 0.10 introduced and checked individual data and configuration changes, including the revised Chilean and Peruvian CPUE inputs, Peruvian fishery length-composition updates, Peru acoustic-survey inputs and length compositions, sample-size and index-error rescaling, effort-creep assumptions, and catchability-break specifications. These runs document the path to 0.11, but are not shown as separate model configurations here.</p>
+<section id="single-stock-hypothesis" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="single-stock-hypothesis"><span class="header-section-number">3.1</span> Single-stock hypothesis</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/biomass_h1_bridge-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Plot comparing biomass estimates from h1_0.00 to h1_0.11."><img src="SCW16_files/figure-html/biomass_h1_bridge-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from h1_0.00 to h1_0.11."></a></p>
+<figcaption>Plot comparing biomass estimates from h1_0.00 to h1_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/recruitment_h1_bridge-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Plot comparing recruitment estimates from h1_0.00 to h1_0.11."><img src="SCW16_files/figure-html/recruitment_h1_bridge-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from h1_0.00 to h1_0.11."></a></p>
+<figcaption>Plot comparing recruitment estimates from h1_0.00 to h1_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/fmort_h1_bridge-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Plot comparing fishing mortality estimates from h1_0.00 to h1_0.11."><img src="SCW16_files/figure-html/fmort_h1_bridge-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from h1_0.00 to h1_0.11."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from h1_0.00 to h1_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stock-hypothesis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="two-stock-hypothesis"><span class="header-section-number">3.2</span> Two-stock hypothesis</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/biomass_h2_bridge-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Plot comparing biomass estimates from h2_0.00 to h2_0.11."><img src="SCW16_files/figure-html/biomass_h2_bridge-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from h2_0.00 to h2_0.11."></a></p>
+<figcaption>Plot comparing biomass estimates from h2_0.00 to h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/recruitment_h2_bridge-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Plot comparing recruitment estimates from h2_0.00 to h2_0.11."><img src="SCW16_files/figure-html/recruitment_h2_bridge-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from h2_0.00 to h2_0.11."></a></p>
+<figcaption>Plot comparing recruitment estimates from h2_0.00 to h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/fmort_h2_bridge-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Plot comparing fishing mortality estimates from h2_0.00 to h2_0.11."><img src="SCW16_files/figure-html/fmort_h2_bridge-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from h2_0.00 to h2_0.11."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from h2_0.00 to h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sensitivity-analyses" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Sensitivity Analyses</h1>
+<section id="adding-the-previous-cpue-indices" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="adding-the-previous-cpue-indices"><span class="header-section-number">4.1</span> Adding the previous CPUE indices</h2>
+<section id="single-stock-hypothesis-1" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="single-stock-hypothesis-1"><span class="header-section-number">4.1.1</span> Single-stock hypothesis</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Fit to survey</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/chile_acousn_downweight_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Plot comparing biomass estimates from adding previous CPUE indices."><img src="SCW16_files/figure-html/chile_acousn_downweight_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from adding previous CPUE indices."></a></p>
+<figcaption>Plot comparing biomass estimates from adding previous CPUE indices.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/chile_acousn_downweight_h1_fit_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="SCW16_files/figure-html/chile_acousn_downweight_h1_fit_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="final-model" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Final Model</h1>
+<p>Model 0.11 was selected as the current working final model for 2026. This model incorporates the cumulative data updates and meeting-specified configuration changes represented by model 0.11.</p>
+<section id="comparison-to-last-year" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="comparison-to-last-year"><span class="header-section-number">5.1</span> Comparison to last year</h2>
+<section id="single-stock-hypothesis-2" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="single-stock-hypothesis-2"><span class="header-section-number">5.1.1</span> Single-stock hypothesis</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_compare_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Plot comparing biomass estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from last year’s model with the final model selected for this year."></a></p>
+<figcaption>Plot comparing biomass estimates from last year’s model with the final model selected for this year.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_compare_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."></a></p>
+<figcaption>Plot comparing recruitment estimates from last year’s model with the final model selected for this year.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_compare_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stock-hypothesis-1" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="two-stock-hypothesis-1"><span class="header-section-number">5.1.2</span> Two-stock hypothesis</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_compare_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Plot comparing biomass estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from last year’s model with the final model selected for this year."></a></p>
+<figcaption>Plot comparing biomass estimates from last year’s model with the final model selected for this year.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_compare_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."></a></p>
+<figcaption>Plot comparing recruitment estimates from last year’s model with the final model selected for this year.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_compare_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-diagnostics" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="model-diagnostics"><span class="header-section-number">5.2</span> Model Diagnostics</h2>
+<section id="single-stock-hypothesis-3" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="single-stock-hypothesis-3"><span class="header-section-number">5.2.1</span> Single-Stock Hypothesis</h3>
+<p>The <span class="math inline">\(B_{MSY}\)</span> for this year (an average of the most recent ten years) will be <strong><em>6.272</em></strong> million tons.</p>
+<section id="fits-to-data" class="level4" data-number="5.2.1.1">
+<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="fits-to-data"><span class="header-section-number">5.2.1.1</span> Fits to Data</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Survey Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false" href="">Index Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-2.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-3.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="SCW16_files/figure-html/h1_diag_length_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-2.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-3.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_diag_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="SCW16_files/figure-html/h1_diag_index_fits-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="retrospective-analysis" class="level4" data-number="5.2.1.2">
+<h4 data-number="5.2.1.2" class="anchored" data-anchor-id="retrospective-analysis"><span class="header-section-number">5.2.1.2</span> Retrospective Analysis</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">Spawning Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Recruitment</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Retrospective analysis of spawning biomass from five peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h1_0.11."></a></p>
+<figcaption>Retrospective analysis of spawning biomass from five peels for h1_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Retrospective analysis of recruitment from five peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h1_0.11."></a></p>
+<figcaption>Retrospective analysis of recruitment from five peels for h1_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="kobe-plot" class="level4" data-number="5.2.1.3">
+<h4 data-number="5.2.1.3" class="anchored" data-anchor-id="kobe-plot"><span class="header-section-number">5.2.1.3</span> Kobe Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_kobe_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="BMSY fixed at 6.272 million tons."><img src="SCW16_files/figure-html/h1_kobe_plot-1.png" class="img-fluid figure-img" width="768" alt="BMSY fixed at 6.272 million tons."></a></p>
+<figcaption>BMSY fixed at 6.272 million tons.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-plot" class="level4" data-number="5.2.1.4">
+<h4 data-number="5.2.1.4" class="anchored" data-anchor-id="summary-plot"><span class="header-section-number">5.2.1.4</span> Summary Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h1_summary_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h1_summary_plot-1.png" class="img-fluid figure-img" width="576" alt="BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
+<figcaption>BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="two-stock-hypothesis-2" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="two-stock-hypothesis-2"><span class="header-section-number">5.2.2</span> Two-Stock Hypothesis</h3>
+<p>The analogous two-stock model is h2_0.11. Its <span class="math inline">\(B_{MSY}\)</span> values for this year (averaged across the most recent ten years) are <strong><em>7.327</em></strong> million tons for the south stock and <strong><em>0.27</em></strong> million tons for the north stock.</p>
+<section id="fits-to-data-1" class="level4" data-number="5.2.2.1">
+<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="fits-to-data-1"><span class="header-section-number">5.2.2.1</span> Fits to Data</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Survey Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-4" role="tab" aria-controls="tabset-9-4" aria-selected="false" href="">Index Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-2.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-3.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="SCW16_files/figure-html/h2_diag_length_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-2.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-3.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40"><img src="SCW16_files/figure-html/h2_diag_index_fits-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_diag_index_fits-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41"><img src="SCW16_files/figure-html/h2_diag_index_fits-2.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="retrospective-analysis-1" class="level4" data-number="5.2.2.2">
+<h4 data-number="5.2.2.2" class="anchored" data-anchor-id="retrospective-analysis-1"><span class="header-section-number">5.2.2.2</span> Retrospective Analysis</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Spawning Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Recruitment</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42" title="Retrospective analysis of spawning biomass from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h2_0.11."></a></p>
+<figcaption>Retrospective analysis of spawning biomass from five peels for h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_retro_ssb-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43" title="Retrospective analysis of spawning biomass from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_ssb-2.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h2_0.11."></a></p>
+<figcaption>Retrospective analysis of spawning biomass from five peels for h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44" title="Retrospective analysis of recruitment from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h2_0.11."></a></p>
+<figcaption>Retrospective analysis of recruitment from five peels for h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_retro_recruitment-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-45" title="Retrospective analysis of recruitment from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_recruitment-2.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h2_0.11."></a></p>
+<figcaption>Retrospective analysis of recruitment from five peels for h2_0.11.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="kobe-plot-1" class="level4" data-number="5.2.2.3">
+<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="kobe-plot-1"><span class="header-section-number">5.2.2.3</span> Kobe Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_kobe_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-46" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock."><img src="SCW16_files/figure-html/h2_kobe_plot-1.png" class="img-fluid figure-img" width="768" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock."></a></p>
+<figcaption>BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-plot-1" class="level4" data-number="5.2.2.4">
+<h4 data-number="5.2.2.4" class="anchored" data-anchor-id="summary-plot-1"><span class="header-section-number">5.2.2.4</span> Summary Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_summary_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-47" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h2_summary_plot-1.png" class="img-fluid figure-img" width="576" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
+<figcaption>BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/h2_summary_plot-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-48" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h2_summary_plot-2.png" class="img-fluid figure-img" width="576" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
+<figcaption>BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="likelihood-table" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="likelihood-table"><span class="header-section-number">5.3</span> Likelihood Table</h2>
+<table class="table caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">h1_0.11</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">h2_0.11</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">catch_like</td>
+<td style="text-align: right;">5.21</td>
+<td style="text-align: right;">22.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age_like_fsh</td>
+<td style="text-align: right;">312.24</td>
+<td style="text-align: right;">251.79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">length_like_fsh</td>
+<td style="text-align: right;">517.73</td>
+<td style="text-align: right;">638.28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sel_like_fsh</td>
+<td style="text-align: right;">345.06</td>
+<td style="text-align: right;">252.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ind_like</td>
+<td style="text-align: right;">2181.32</td>
+<td style="text-align: right;">1784.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age_like_ind</td>
+<td style="text-align: right;">65.01</td>
+<td style="text-align: right;">136.93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">length_like_ind</td>
+<td style="text-align: right;">746.47</td>
+<td style="text-align: right;">737.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sel_like_ind</td>
+<td style="text-align: right;">11.09</td>
+<td style="text-align: right;">4.66</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rec_like</td>
+<td style="text-align: right;">14.15</td>
+<td style="text-align: right;">61.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fpen</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">1.79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">post_priors_indq</td>
+<td style="text-align: right;">2.11</td>
+<td style="text-align: right;">1.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">post_priors</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">residual</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">total</td>
+<td style="text-align: right;">4200.46</td>
+<td style="text-align: right;">3893.00</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="other-business" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Other Business</h1>
+<section id="data-needs" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="data-needs"><span class="header-section-number">6.1</span> Data needs</h2>
+</section>
+<section id="general" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="general"><span class="header-section-number">6.2</span> General</h2>
+</section>
+<section id="other-models-to-run" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="other-models-to-run"><span class="header-section-number">6.3</span> Other models to run</h2>
+<p>The two-stock baseline (<code>h2_0.00</code>) and current bridge model (<code>h2_0.11</code>) have been run and are included in the bridging and final-model diagnostics above.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
