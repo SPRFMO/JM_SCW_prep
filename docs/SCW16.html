@@ -135,28 +135,33 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#single-stock-hypothesis-1" id="toc-single-stock-hypothesis-1" class="nav-link" data-scroll-target="#single-stock-hypothesis-1"><span class="header-section-number">4.1.1</span> Single-stock hypothesis</a></li>
   </ul></li>
-  <li><a href="#leave-one-out-index-diagnostics" id="toc-leave-one-out-index-diagnostics" class="nav-link" data-scroll-target="#leave-one-out-index-diagnostics"><span class="header-section-number">4.2</span> Leave-One-Out Index Diagnostics</a>
+  <li><a href="#dropping-the-peru-acoustic-survey-indices" id="toc-dropping-the-peru-acoustic-survey-indices" class="nav-link" data-scroll-target="#dropping-the-peru-acoustic-survey-indices"><span class="header-section-number">4.2</span> Dropping the Peru acoustic survey indices</a>
   <ul class="collapse">
   <li><a href="#single-stock-hypothesis-2" id="toc-single-stock-hypothesis-2" class="nav-link" data-scroll-target="#single-stock-hypothesis-2"><span class="header-section-number">4.2.1</span> Single-stock hypothesis</a></li>
   <li><a href="#two-stock-hypothesis-1" id="toc-two-stock-hypothesis-1" class="nav-link" data-scroll-target="#two-stock-hypothesis-1"><span class="header-section-number">4.2.2</span> Two-stock hypothesis</a></li>
   </ul></li>
-  <li><a href="#leave-one-in-index-diagnostics" id="toc-leave-one-in-index-diagnostics" class="nav-link" data-scroll-target="#leave-one-in-index-diagnostics"><span class="header-section-number">4.3</span> Leave-One-In Index Diagnostics</a>
+  <li><a href="#leave-one-out-index-diagnostics" id="toc-leave-one-out-index-diagnostics" class="nav-link" data-scroll-target="#leave-one-out-index-diagnostics"><span class="header-section-number">4.3</span> Leave-One-Out Index Diagnostics</a>
   <ul class="collapse">
   <li><a href="#single-stock-hypothesis-3" id="toc-single-stock-hypothesis-3" class="nav-link" data-scroll-target="#single-stock-hypothesis-3"><span class="header-section-number">4.3.1</span> Single-stock hypothesis</a></li>
   <li><a href="#two-stock-hypothesis-2" id="toc-two-stock-hypothesis-2" class="nav-link" data-scroll-target="#two-stock-hypothesis-2"><span class="header-section-number">4.3.2</span> Two-stock hypothesis</a></li>
+  </ul></li>
+  <li><a href="#leave-one-in-index-diagnostics" id="toc-leave-one-in-index-diagnostics" class="nav-link" data-scroll-target="#leave-one-in-index-diagnostics"><span class="header-section-number">4.4</span> Leave-One-In Index Diagnostics</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis-4" id="toc-single-stock-hypothesis-4" class="nav-link" data-scroll-target="#single-stock-hypothesis-4"><span class="header-section-number">4.4.1</span> Single-stock hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-3" id="toc-two-stock-hypothesis-3" class="nav-link" data-scroll-target="#two-stock-hypothesis-3"><span class="header-section-number">4.4.2</span> Two-stock hypothesis</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#final-model" id="toc-final-model" class="nav-link" data-scroll-target="#final-model"><span class="header-section-number">5</span> Final Model</a>
   <ul class="collapse">
   <li><a href="#comparison-to-last-year" id="toc-comparison-to-last-year" class="nav-link" data-scroll-target="#comparison-to-last-year"><span class="header-section-number">5.1</span> Comparison to last year</a>
   <ul class="collapse">
-  <li><a href="#single-stock-hypothesis-4" id="toc-single-stock-hypothesis-4" class="nav-link" data-scroll-target="#single-stock-hypothesis-4"><span class="header-section-number">5.1.1</span> Single-stock hypothesis</a></li>
-  <li><a href="#two-stock-hypothesis-3" id="toc-two-stock-hypothesis-3" class="nav-link" data-scroll-target="#two-stock-hypothesis-3"><span class="header-section-number">5.1.2</span> Two-stock hypothesis</a></li>
+  <li><a href="#single-stock-hypothesis-5" id="toc-single-stock-hypothesis-5" class="nav-link" data-scroll-target="#single-stock-hypothesis-5"><span class="header-section-number">5.1.1</span> Single-stock hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-4" id="toc-two-stock-hypothesis-4" class="nav-link" data-scroll-target="#two-stock-hypothesis-4"><span class="header-section-number">5.1.2</span> Two-stock hypothesis</a></li>
   </ul></li>
   <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics"><span class="header-section-number">5.2</span> Model Diagnostics</a>
   <ul class="collapse">
-  <li><a href="#single-stock-hypothesis-5" id="toc-single-stock-hypothesis-5" class="nav-link" data-scroll-target="#single-stock-hypothesis-5"><span class="header-section-number">5.2.1</span> Single-Stock Hypothesis</a></li>
-  <li><a href="#two-stock-hypothesis-4" id="toc-two-stock-hypothesis-4" class="nav-link" data-scroll-target="#two-stock-hypothesis-4"><span class="header-section-number">5.2.2</span> Two-Stock Hypothesis</a></li>
+  <li><a href="#single-stock-hypothesis-6" id="toc-single-stock-hypothesis-6" class="nav-link" data-scroll-target="#single-stock-hypothesis-6"><span class="header-section-number">5.2.1</span> Single-Stock Hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-5" id="toc-two-stock-hypothesis-5" class="nav-link" data-scroll-target="#two-stock-hypothesis-5"><span class="header-section-number">5.2.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
   <li><a href="#likelihood-table" id="toc-likelihood-table" class="nav-link" data-scroll-target="#likelihood-table"><span class="header-section-number">5.3</span> Likelihood Table</a></li>
   </ul></li>
@@ -492,6 +497,10 @@ window.Quarto = {
 <td>1.10</td>
 <td>As 0.11 but retaining only the Peruvian CPUE abundance index at nominal weight, with all other abundance indices downweighted by 100x.</td>
 </tr>
+<tr class="even">
+<td>1.11</td>
+<td>As 0.11 but with both Peru acoustic-survey abundance-index series (<code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>) dropped.</td>
+</tr>
 </tbody>
 </table>
 <p>You’ll need to be in the <code>jjm/assessment</code> directory in order for the code here to run.</p>
@@ -703,21 +712,66 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="leave-one-out-index-diagnostics" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="leave-one-out-index-diagnostics"><span class="header-section-number">4.2</span> Leave-One-Out Index Diagnostics</h2>
-<p>These diagnostics follow the SC13 approach for the four focal abundance indices with recent data: Offshore CPUE, Chile acoustic north, Chilean CPUE, and Peruvian CPUE. Each run retains the full model structure and composition data but downweights one focal abundance-index error series by 100x.</p>
+<section id="dropping-the-peru-acoustic-survey-indices" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="dropping-the-peru-acoustic-survey-indices"><span class="header-section-number">4.2</span> Dropping the Peru acoustic survey indices</h2>
+<p>Model 1.11 removes both Peru acoustic-survey abundance-index series (<code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>) while retaining the other 0.11 data and control-file settings. Because the likelihood excludes two survey series in 1.11, raw negative log-likelihood values are not directly comparable to 0.11 as a measure of improved fit.</p>
+<div class="cell" data-tbl-cap="Terminal-year comparison of model 1.11 to 0.11 after dropping the two Peru acoustic-survey abundance-index series.">
+<table class="table caption-top table-sm table-striped small">
+<caption>Terminal-year comparison of model 1.11 to 0.11 after dropping the two Peru acoustic-survey abundance-index series.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SSB (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total biomass (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Recruitment (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max total F at age (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">58.1</td>
+<td style="text-align: right;">36.1</td>
+<td style="text-align: right;">-2.9</td>
+<td style="text-align: right;">-22.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">6949.8</td>
+<td style="text-align: right;">713.3</td>
+<td style="text-align: right;">20.3</td>
+<td style="text-align: right;">-98.3</td>
+</tr>
+</tbody>
+</table>
+</div>
 <section id="single-stock-hypothesis-2" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="single-stock-hypothesis-2"><span class="header-section-number">4.2.1</span> Single-stock hypothesis</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Fishing Mortality</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false" href="">Focal Index Fits</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
-<figcaption>Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/peru_acoustic_drop_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Plot comparing biomass estimates from dropping both Peru acoustic-survey abundance-index series."><img src="SCW16_files/figure-html/peru_acoustic_drop_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from dropping both Peru acoustic-survey abundance-index series."></a></p>
+<figcaption>Plot comparing biomass estimates from dropping both Peru acoustic-survey abundance-index series.</figcaption>
 </figure>
 </div>
 </div>
@@ -728,8 +782,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
-<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/peru_acoustic_drop_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Plot comparing recruitment estimates from dropping both Peru acoustic-survey abundance-index series."><img src="SCW16_files/figure-html/peru_acoustic_drop_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from dropping both Peru acoustic-survey abundance-index series."></a></p>
+<figcaption>Plot comparing recruitment estimates from dropping both Peru acoustic-survey abundance-index series.</figcaption>
 </figure>
 </div>
 </div>
@@ -740,19 +794,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
-<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h1_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="SCW16_files/figure-html/loo_h1_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
+<p><a href="SCW16_files/figure-html/peru_acoustic_drop_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Plot comparing fishing mortality estimates from dropping both Peru acoustic-survey abundance-index series."><img src="SCW16_files/figure-html/peru_acoustic_drop_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from dropping both Peru acoustic-survey abundance-index series."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from dropping both Peru acoustic-survey abundance-index series.</figcaption>
 </figure>
 </div>
 </div>
@@ -764,15 +807,15 @@ window.Quarto = {
 <section id="two-stock-hypothesis-1" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="two-stock-hypothesis-1"><span class="header-section-number">4.2.2</span> Two-stock hypothesis</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Fishing Mortality</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false" href="">Focal Index Fits</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
-<figcaption>Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/peru_acoustic_drop_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Plot comparing biomass estimates from dropping both Peru acoustic-survey abundance-index series."><img src="SCW16_files/figure-html/peru_acoustic_drop_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from dropping both Peru acoustic-survey abundance-index series."></a></p>
+<figcaption>Plot comparing biomass estimates from dropping both Peru acoustic-survey abundance-index series.</figcaption>
 </figure>
 </div>
 </div>
@@ -783,8 +826,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
-<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/peru_acoustic_drop_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Plot comparing recruitment estimates from dropping both Peru acoustic-survey abundance-index series."><img src="SCW16_files/figure-html/peru_acoustic_drop_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from dropping both Peru acoustic-survey abundance-index series."></a></p>
+<figcaption>Plot comparing recruitment estimates from dropping both Peru acoustic-survey abundance-index series.</figcaption>
 </figure>
 </div>
 </div>
@@ -795,19 +838,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
-<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="SCW16_files/figure-html/loo_h2_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="SCW16_files/figure-html/loo_h2_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
+<p><a href="SCW16_files/figure-html/peru_acoustic_drop_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Plot comparing fishing mortality estimates from dropping both Peru acoustic-survey abundance-index series."><img src="SCW16_files/figure-html/peru_acoustic_drop_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from dropping both Peru acoustic-survey abundance-index series."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from dropping both Peru acoustic-survey abundance-index series.</figcaption>
 </figure>
 </div>
 </div>
@@ -817,9 +849,9 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="leave-one-in-index-diagnostics" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="leave-one-in-index-diagnostics"><span class="header-section-number">4.3</span> Leave-One-In Index Diagnostics</h2>
-<p>These diagnostics retain one focal abundance index at nominal weight and downweight all other abundance-index error series by 100x. This treats the runs as diagnostic contrasts rather than reduced-data base candidates.</p>
+<section id="leave-one-out-index-diagnostics" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="leave-one-out-index-diagnostics"><span class="header-section-number">4.3</span> Leave-One-Out Index Diagnostics</h2>
+<p>These diagnostics follow the SC13 approach for the four focal abundance indices with recent data: Offshore CPUE, Chile acoustic north, Chilean CPUE, and Peruvian CPUE. Each run retains the full model structure and composition data but downweights one focal abundance-index error series by 100x.</p>
 <section id="single-stock-hypothesis-3" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="single-stock-hypothesis-3"><span class="header-section-number">4.3.1</span> Single-stock hypothesis</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -830,8 +862,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
-<figcaption>Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/loo_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
+<figcaption>Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
 </figure>
 </div>
 </div>
@@ -842,8 +874,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
-<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/loo_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
+<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
 </figure>
 </div>
 </div>
@@ -854,8 +886,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
-<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/loo_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
 </figure>
 </div>
 </div>
@@ -866,7 +898,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h1_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="SCW16_files/figure-html/loi_h1_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
+<p><a href="SCW16_files/figure-html/loo_h1_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="SCW16_files/figure-html/loo_h1_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -885,8 +917,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
-<figcaption>Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/loo_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
+<figcaption>Plot comparing biomass estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
 </figure>
 </div>
 </div>
@@ -897,8 +929,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
-<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/loo_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
+<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
 </figure>
 </div>
 </div>
@@ -909,8 +941,8 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
-<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+<p><a href="SCW16_files/figure-html/loo_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."><img src="SCW16_files/figure-html/loo_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index out by downweighting its index errors 100x.</figcaption>
 </figure>
 </div>
 </div>
@@ -921,7 +953,121 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/loi_h2_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="SCW16_files/figure-html/loi_h2_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
+<p><a href="SCW16_files/figure-html/loo_h2_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="SCW16_files/figure-html/loo_h2_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="leave-one-in-index-diagnostics" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="leave-one-in-index-diagnostics"><span class="header-section-number">4.4</span> Leave-One-In Index Diagnostics</h2>
+<p>These diagnostics retain one focal abundance index at nominal weight and downweight all other abundance-index error series by 100x. This treats the runs as diagnostic contrasts rather than reduced-data base candidates.</p>
+<section id="single-stock-hypothesis-4" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="single-stock-hypothesis-4"><span class="header-section-number">4.4.1</span> Single-stock hypothesis</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Fishing Mortality</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-4" role="tab" aria-controls="tabset-9-4" aria-selected="false" href="">Focal Index Fits</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
+<figcaption>Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
+<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h1_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="SCW16_files/figure-html/loi_h1_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stock-hypothesis-3" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="two-stock-hypothesis-3"><span class="header-section-number">4.4.2</span> Two-stock hypothesis</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false" href="">Fishing Mortality</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-4" role="tab" aria-controls="tabset-10-4" aria-selected="false" href="">Focal Index Fits</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
+<figcaption>Plot comparing biomass estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
+<figcaption>Plot comparing recruitment estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."><img src="SCW16_files/figure-html/loi_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x."></a></p>
+<figcaption>Plot comparing fishing mortality estimates from leaving one focal abundance index in at nominal weight while downweighting all other abundance indices 100x.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-4-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/loi_h2_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="SCW16_files/figure-html/loi_h2_index_fits-1.png" class="img-fluid figure-img" width="768"></a></p>
 </figure>
 </div>
 </div>
@@ -937,41 +1083,41 @@ window.Quarto = {
 <p>Model 0.11 was selected as the current working final model for 2026. This model incorporates the cumulative data updates and meeting-specified configuration changes represented by model 0.11.</p>
 <section id="comparison-to-last-year" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="comparison-to-last-year"><span class="header-section-number">5.1</span> Comparison to last year</h2>
-<section id="single-stock-hypothesis-4" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="single-stock-hypothesis-4"><span class="header-section-number">5.1.1</span> Single-stock hypothesis</h3>
+<section id="single-stock-hypothesis-5" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="single-stock-hypothesis-5"><span class="header-section-number">5.1.1</span> Single-stock hypothesis</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_compare_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Plot comparing biomass estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from last year’s model with the final model selected for this year."></a></p>
+<p><a href="SCW16_files/figure-html/final_compare_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Plot comparing biomass estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from last year’s model with the final model selected for this year."></a></p>
 <figcaption>Plot comparing biomass estimates from last year’s model with the final model selected for this year.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_compare_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."></a></p>
+<p><a href="SCW16_files/figure-html/final_compare_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."></a></p>
 <figcaption>Plot comparing recruitment estimates from last year’s model with the final model selected for this year.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_compare_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."></a></p>
+<p><a href="SCW16_files/figure-html/final_compare_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h1_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."></a></p>
 <figcaption>Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year.</figcaption>
 </figure>
 </div>
@@ -981,41 +1127,41 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="two-stock-hypothesis-3" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="two-stock-hypothesis-3"><span class="header-section-number">5.1.2</span> Two-stock hypothesis</h3>
+<section id="two-stock-hypothesis-4" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="two-stock-hypothesis-4"><span class="header-section-number">5.1.2</span> Two-stock hypothesis</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_compare_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="Plot comparing biomass estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from last year’s model with the final model selected for this year."></a></p>
+<p><a href="SCW16_files/figure-html/final_compare_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40" title="Plot comparing biomass estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_biomass-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing biomass estimates from last year’s model with the final model selected for this year."></a></p>
 <figcaption>Plot comparing biomass estimates from last year’s model with the final model selected for this year.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_compare_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."></a></p>
+<p><a href="SCW16_files/figure-html/final_compare_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41" title="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing recruitment estimates from last year’s model with the final model selected for this year."></a></p>
 <figcaption>Plot comparing recruitment estimates from last year’s model with the final model selected for this year.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_compare_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."></a></p>
+<p><a href="SCW16_files/figure-html/final_compare_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42" title="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."><img src="SCW16_files/figure-html/final_compare_h2_fmort-1.png" class="img-fluid figure-img" width="576" alt="Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year."></a></p>
 <figcaption>Plot comparing fishing mortality estimates from last year’s model with the final model selected for this year.</figcaption>
 </figure>
 </div>
@@ -1028,81 +1174,81 @@ window.Quarto = {
 </section>
 <section id="model-diagnostics" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="model-diagnostics"><span class="header-section-number">5.2</span> Model Diagnostics</h2>
-<section id="single-stock-hypothesis-5" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="single-stock-hypothesis-5"><span class="header-section-number">5.2.1</span> Single-Stock Hypothesis</h3>
+<section id="single-stock-hypothesis-6" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="single-stock-hypothesis-6"><span class="header-section-number">5.2.1</span> Single-Stock Hypothesis</h3>
 <p>The <span class="math inline">\(B_{MSY}\)</span> for this year (an average of the most recent ten years) will be <strong><em>6.272</em></strong> million tons.</p>
 <section id="fits-to-data" class="level4" data-number="5.2.1.1">
 <h4 data-number="5.2.1.1" class="anchored" data-anchor-id="fits-to-data"><span class="header-section-number">5.2.1.1</span> Fits to Data</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">Survey Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-4" role="tab" aria-controls="tabset-11-4" aria-selected="false" href="">Index Data</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-3" role="tab" aria-controls="tabset-13-3" aria-selected="false" href="">Survey Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-4" role="tab" aria-controls="tabset-13-4" aria-selected="false" href="">Index Data</a></li></ul>
 <div class="tab-content">
-<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-2.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-2.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-3.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-45"><img src="SCW16_files/figure-html/h1_diag_age_fits_catch-3.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40"><img src="SCW16_files/figure-html/h1_diag_length_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-46"><img src="SCW16_files/figure-html/h1_diag_length_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<div id="tabset-13-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-47"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-2.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-48"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-2.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-3.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_age_fits_survey-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-49"><img src="SCW16_files/figure-html/h1_diag_age_fits_survey-3.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-11-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-4-tab">
+<div id="tabset-13-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-4-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_diag_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44"><img src="SCW16_files/figure-html/h1_diag_index_fits-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h1_diag_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-50"><img src="SCW16_files/figure-html/h1_diag_index_fits-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
@@ -1114,25 +1260,25 @@ window.Quarto = {
 <section id="composition-diagnostics" class="level4" data-number="5.2.1.2">
 <h4 data-number="5.2.1.2" class="anchored" data-anchor-id="composition-diagnostics"><span class="header-section-number">5.2.1.2</span> Composition Diagnostics</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Length Composition</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Length Composition</a></li></ul>
 <div class="tab-content">
-<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_composition_diagnostics_age-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-45"><img src="SCW16_files/figure-html/h1_composition_diagnostics_age-1.png" class="img-fluid figure-img" width="960"></a></p>
+<p><a href="SCW16_files/figure-html/h1_composition_diagnostics_age-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-51"><img src="SCW16_files/figure-html/h1_composition_diagnostics_age-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_composition_diagnostics_length-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-46"><img src="SCW16_files/figure-html/h1_composition_diagnostics_length-1.png" class="img-fluid figure-img" width="960"></a></p>
+<p><a href="SCW16_files/figure-html/h1_composition_diagnostics_length-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-52"><img src="SCW16_files/figure-html/h1_composition_diagnostics_length-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1144,26 +1290,26 @@ window.Quarto = {
 <section id="selectivity-patterns" class="level4" data-number="5.2.1.3">
 <h4 data-number="5.2.1.3" class="anchored" data-anchor-id="selectivity-patterns"><span class="header-section-number">5.2.1.3</span> Selectivity Patterns</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">Fishery Selectivity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Survey Selectivity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">Fishery Selectivity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Survey Selectivity</a></li></ul>
 <div class="tab-content">
-<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_fishery_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-47" title="Estimated fishery selectivity over time for h1_0.11."><img src="SCW16_files/figure-html/h1_fishery_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated fishery selectivity over time for h1_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h1_fishery_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-53" title="Estimated fishery selectivity over time for h1_0.11."><img src="SCW16_files/figure-html/h1_fishery_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated fishery selectivity over time for h1_0.11."></a></p>
 <figcaption>Estimated fishery selectivity over time for h1_0.11.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_survey_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-48" title="Estimated survey selectivity over time for h1_0.11."><img src="SCW16_files/figure-html/h1_survey_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated survey selectivity over time for h1_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h1_survey_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-54" title="Estimated survey selectivity over time for h1_0.11."><img src="SCW16_files/figure-html/h1_survey_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated survey selectivity over time for h1_0.11."></a></p>
 <figcaption>Estimated survey selectivity over time for h1_0.11.</figcaption>
 </figure>
 </div>
@@ -1177,38 +1323,38 @@ window.Quarto = {
 <h4 data-number="5.2.1.4" class="anchored" data-anchor-id="retrospective-analysis"><span class="header-section-number">5.2.1.4</span> Retrospective Analysis</h4>
 <p>The retrospective diagnostics shown below use the standard five peels. A separate ten-peel retrospective was also completed for the one-stock hypothesis, and the SSB pattern changes when the additional peels are included. This indicates that the apparent retrospective pattern is sensitive to how many peels have completed, so the extended h1 run is included here as a sensitivity check rather than a replacement for the standard diagnostic.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">Spawning Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Spawning Biomass (10 Peels)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-3" role="tab" aria-controls="tabset-14-3" aria-selected="false" href="">Recruitment</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">Spawning Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">Spawning Biomass (10 Peels)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-3" role="tab" aria-controls="tabset-16-3" aria-selected="false" href="">Recruitment</a></li></ul>
 <div class="tab-content">
-<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-49" title="Retrospective analysis of spawning biomass from five peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h1_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h1_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-55" title="Retrospective analysis of spawning biomass from five peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h1_0.11."></a></p>
 <figcaption>Retrospective analysis of spawning biomass from five peels for h1_0.11.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_retro10_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-50" title="Retrospective analysis of spawning biomass from ten peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro10_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from ten peels for h1_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h1_retro10_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-56" title="Retrospective analysis of spawning biomass from ten peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro10_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from ten peels for h1_0.11."></a></p>
 <figcaption>Retrospective analysis of spawning biomass from ten peels for h1_0.11.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-14-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-3-tab">
+<div id="tabset-16-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-51" title="Retrospective analysis of recruitment from five peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h1_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h1_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-57" title="Retrospective analysis of recruitment from five peels for h1_0.11."><img src="SCW16_files/figure-html/h1_retro_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h1_0.11."></a></p>
 <figcaption>Retrospective analysis of recruitment from five peels for h1_0.11.</figcaption>
 </figure>
 </div>
@@ -1224,7 +1370,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_kobe_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-52" title="BMSY fixed at 6.272 million tons."><img src="SCW16_files/figure-html/h1_kobe_plot-1.png" class="img-fluid figure-img" width="768" alt="BMSY fixed at 6.272 million tons."></a></p>
+<p><a href="SCW16_files/figure-html/h1_kobe_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-58" title="BMSY fixed at 6.272 million tons."><img src="SCW16_files/figure-html/h1_kobe_plot-1.png" class="img-fluid figure-img" width="768" alt="BMSY fixed at 6.272 million tons."></a></p>
 <figcaption>BMSY fixed at 6.272 million tons.</figcaption>
 </figure>
 </div>
@@ -1237,7 +1383,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h1_summary_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-53" title="BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h1_summary_plot-1.png" class="img-fluid figure-img" width="576" alt="BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
+<p><a href="SCW16_files/figure-html/h1_summary_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-59" title="BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h1_summary_plot-1.png" class="img-fluid figure-img" width="576" alt="BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
 <figcaption>BMSY is fixed at 6.272 million tons, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.</figcaption>
 </figure>
 </div>
@@ -1245,88 +1391,88 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="two-stock-hypothesis-4" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="two-stock-hypothesis-4"><span class="header-section-number">5.2.2</span> Two-Stock Hypothesis</h3>
+<section id="two-stock-hypothesis-5" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="two-stock-hypothesis-5"><span class="header-section-number">5.2.2</span> Two-Stock Hypothesis</h3>
 <p>The analogous two-stock model is h2_0.11. Its <span class="math inline">\(B_{MSY}\)</span> values for this year (averaged across the most recent ten years) are <strong><em>7.327</em></strong> million tons for the south stock and <strong><em>0.27</em></strong> million tons for the north stock.</p>
 <section id="fits-to-data-1" class="level4" data-number="5.2.2.1">
 <h4 data-number="5.2.2.1" class="anchored" data-anchor-id="fits-to-data-1"><span class="header-section-number">5.2.2.1</span> Fits to Data</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-3" role="tab" aria-controls="tabset-15-3" aria-selected="false" href="">Survey Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-4" role="tab" aria-controls="tabset-15-4" aria-selected="false" href="">Index Data</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-3" role="tab" aria-controls="tabset-17-3" aria-selected="false" href="">Survey Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-4" role="tab" aria-controls="tabset-17-4" aria-selected="false" href="">Index Data</a></li></ul>
 <div class="tab-content">
-<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-54"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-60"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-55"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-2.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-61"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-2.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-56"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-3.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-62"><img src="SCW16_files/figure-html/h2_diag_age_fits_catch-3.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-57"><img src="SCW16_files/figure-html/h2_diag_length_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-63"><img src="SCW16_files/figure-html/h2_diag_length_fits_catch-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-15-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-3-tab">
+<div id="tabset-17-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-58"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-64"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-59"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-2.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-65"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-2.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-60"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-3.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_age_fits_survey-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-66"><img src="SCW16_files/figure-html/h2_diag_age_fits_survey-3.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-15-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-4-tab">
+<div id="tabset-17-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-4-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-61"><img src="SCW16_files/figure-html/h2_diag_index_fits-1.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-67"><img src="SCW16_files/figure-html/h2_diag_index_fits-1.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_diag_index_fits-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-62"><img src="SCW16_files/figure-html/h2_diag_index_fits-2.png" class="img-fluid figure-img" width="576"></a></p>
+<p><a href="SCW16_files/figure-html/h2_diag_index_fits-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-68"><img src="SCW16_files/figure-html/h2_diag_index_fits-2.png" class="img-fluid figure-img" width="576"></a></p>
 </figure>
 </div>
 </div>
@@ -1338,47 +1484,47 @@ window.Quarto = {
 <section id="composition-diagnostics-1" class="level4" data-number="5.2.2.2">
 <h4 data-number="5.2.2.2" class="anchored" data-anchor-id="composition-diagnostics-1"><span class="header-section-number">5.2.2.2</span> Composition Diagnostics</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">South Stock Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">South Stock Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-3" role="tab" aria-controls="tabset-16-3" aria-selected="false" href="">North Stock Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-4" role="tab" aria-controls="tabset-16-4" aria-selected="false" href="">North Stock Length Composition</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">South Stock Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">South Stock Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-3" role="tab" aria-controls="tabset-18-3" aria-selected="false" href="">North Stock Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-4" role="tab" aria-controls="tabset-18-4" aria-selected="false" href="">North Stock Length Composition</a></li></ul>
 <div class="tab-content">
-<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
+<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_south_composition_diagnostics_age-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-63"><img src="SCW16_files/figure-html/h2_south_composition_diagnostics_age-1.png" class="img-fluid figure-img" width="960"></a></p>
+<p><a href="SCW16_files/figure-html/h2_south_composition_diagnostics_age-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-69"><img src="SCW16_files/figure-html/h2_south_composition_diagnostics_age-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
+<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_south_composition_diagnostics_length-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-64"><img src="SCW16_files/figure-html/h2_south_composition_diagnostics_length-1.png" class="img-fluid figure-img" width="960"></a></p>
+<p><a href="SCW16_files/figure-html/h2_south_composition_diagnostics_length-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-70"><img src="SCW16_files/figure-html/h2_south_composition_diagnostics_length-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-16-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-3-tab">
+<div id="tabset-18-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_north_composition_diagnostics_age-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-65"><img src="SCW16_files/figure-html/h2_north_composition_diagnostics_age-1.png" class="img-fluid figure-img" width="960"></a></p>
+<p><a href="SCW16_files/figure-html/h2_north_composition_diagnostics_age-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-71"><img src="SCW16_files/figure-html/h2_north_composition_diagnostics_age-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-16-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-4-tab">
+<div id="tabset-18-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-4-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_north_composition_diagnostics_length-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-66"><img src="SCW16_files/figure-html/h2_north_composition_diagnostics_length-1.png" class="img-fluid figure-img" width="960"></a></p>
+<p><a href="SCW16_files/figure-html/h2_north_composition_diagnostics_length-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-72"><img src="SCW16_files/figure-html/h2_north_composition_diagnostics_length-1.png" class="img-fluid figure-img" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1390,26 +1536,26 @@ window.Quarto = {
 <section id="selectivity-patterns-1" class="level4" data-number="5.2.2.3">
 <h4 data-number="5.2.2.3" class="anchored" data-anchor-id="selectivity-patterns-1"><span class="header-section-number">5.2.2.3</span> Selectivity Patterns</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">Fishery Selectivity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">Survey Selectivity</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">Fishery Selectivity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">Survey Selectivity</a></li></ul>
 <div class="tab-content">
-<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
+<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_fishery_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-67" title="Estimated fishery selectivity over time for h2_0.11."><img src="SCW16_files/figure-html/h2_fishery_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated fishery selectivity over time for h2_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h2_fishery_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-73" title="Estimated fishery selectivity over time for h2_0.11."><img src="SCW16_files/figure-html/h2_fishery_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated fishery selectivity over time for h2_0.11."></a></p>
 <figcaption>Estimated fishery selectivity over time for h2_0.11.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
+<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_survey_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-68" title="Estimated survey selectivity over time for h2_0.11."><img src="SCW16_files/figure-html/h2_survey_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated survey selectivity over time for h2_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h2_survey_selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-74" title="Estimated survey selectivity over time for h2_0.11."><img src="SCW16_files/figure-html/h2_survey_selectivity-1.png" class="img-fluid figure-img" width="960" alt="Estimated survey selectivity over time for h2_0.11."></a></p>
 <figcaption>Estimated survey selectivity over time for h2_0.11.</figcaption>
 </figure>
 </div>
@@ -1422,14 +1568,14 @@ window.Quarto = {
 <section id="retrospective-analysis-1" class="level4" data-number="5.2.2.4">
 <h4 data-number="5.2.2.4" class="anchored" data-anchor-id="retrospective-analysis-1"><span class="header-section-number">5.2.2.4</span> Retrospective Analysis</h4>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">Spawning Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">Recruitment</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true" href="">Spawning Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-20-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-2" role="tab" aria-controls="tabset-20-2" aria-selected="false" href="">Recruitment</a></li></ul>
 <div class="tab-content">
-<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
+<div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-69" title="Retrospective analysis of spawning biomass from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h2_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h2_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-75" title="Retrospective analysis of spawning biomass from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_ssb-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h2_0.11."></a></p>
 <figcaption>Retrospective analysis of spawning biomass from five peels for h2_0.11.</figcaption>
 </figure>
 </div>
@@ -1437,19 +1583,19 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_retro_ssb-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-70" title="Retrospective analysis of spawning biomass from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_ssb-2.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h2_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h2_retro_ssb-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-76" title="Retrospective analysis of spawning biomass from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_ssb-2.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of spawning biomass from five peels for h2_0.11."></a></p>
 <figcaption>Retrospective analysis of spawning biomass from five peels for h2_0.11.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
+<div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-71" title="Retrospective analysis of recruitment from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h2_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h2_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-77" title="Retrospective analysis of recruitment from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_recruitment-1.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h2_0.11."></a></p>
 <figcaption>Retrospective analysis of recruitment from five peels for h2_0.11.</figcaption>
 </figure>
 </div>
@@ -1457,7 +1603,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_retro_recruitment-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-72" title="Retrospective analysis of recruitment from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_recruitment-2.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h2_0.11."></a></p>
+<p><a href="SCW16_files/figure-html/h2_retro_recruitment-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-78" title="Retrospective analysis of recruitment from five peels for h2_0.11."><img src="SCW16_files/figure-html/h2_retro_recruitment-2.png" class="img-fluid figure-img" width="576" alt="Retrospective analysis of recruitment from five peels for h2_0.11."></a></p>
 <figcaption>Retrospective analysis of recruitment from five peels for h2_0.11.</figcaption>
 </figure>
 </div>
@@ -1473,7 +1619,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_kobe_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-73" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock."><img src="SCW16_files/figure-html/h2_kobe_plot-1.png" class="img-fluid figure-img" width="768" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock."></a></p>
+<p><a href="SCW16_files/figure-html/h2_kobe_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-79" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock."><img src="SCW16_files/figure-html/h2_kobe_plot-1.png" class="img-fluid figure-img" width="768" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock."></a></p>
 <figcaption>BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock.</figcaption>
 </figure>
 </div>
@@ -1486,7 +1632,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_summary_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-74" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h2_summary_plot-1.png" class="img-fluid figure-img" width="576" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
+<p><a href="SCW16_files/figure-html/h2_summary_plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-80" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h2_summary_plot-1.png" class="img-fluid figure-img" width="576" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
 <figcaption>BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.</figcaption>
 </figure>
 </div>
@@ -1494,7 +1640,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/h2_summary_plot-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-75" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h2_summary_plot-2.png" class="img-fluid figure-img" width="576" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
+<p><a href="SCW16_files/figure-html/h2_summary_plot-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-81" title="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."><img src="SCW16_files/figure-html/h2_summary_plot-2.png" class="img-fluid figure-img" width="576" alt="BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model."></a></p>
 <figcaption>BMSY fixed at 7.327 million tons for the south stock and 0.27 million tons for the north stock, shown by the orange line. The blue lines show the MSY values (BMSY and FMSY) estimated annually within the model.</figcaption>
 </figure>
 </div>
@@ -1717,9 +1863,9 @@ Table&nbsp;2: Ten slowest-mixing parameters from each ADNUTS diagnostic run.
 </figure>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">Single-Stock Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">Two-Stock Model</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true" href="">Single-Stock Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-21-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-2" role="tab" aria-controls="tabset-21-2" aria-selected="false" href="">Two-Stock Model</a></li></ul>
 <div class="tab-content">
-<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
+<div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
 <figure class="figure">
 <img src="images/mcmc_diagnostics/h1_0.11_pairs_slow.png" alt="h1_0.11 pairs plot ordered by slowest-mixing parameters" style="width: 100%;" class="figure-img">
 <figcaption>
@@ -1745,7 +1891,7 @@ h1_0.11 posterior standard deviation versus MLE standard error
 </figcaption>
 </figure>
 </div>
-<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
+<div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
 <figure class="figure">
 <img src="images/mcmc_diagnostics/h2_0.11_pairs_slow.png" alt="h2_0.11 pairs plot ordered by slowest-mixing parameters" style="width: 100%;" class="figure-img">
 <figcaption>
