@@ -1363,7 +1363,7 @@ report.
 | Salvador Peraltilla Neyra | Peru | Expert | Sociedad Nacional de Pesqueria | In person |
 | Sandra Marisol Cahuin Villanueva | Peru | Expert | Instituto del Mar del Peru | Virtual |
 | Iago Mosqueira | Expert | Expert | WUR | Virtual |
-| Teobaldo Dioses | Peru | Expert | GMAIL | In person |
+| Teobaldo Dioses | Peru | Expert | Instituto del Mar del Peru (retired) | In person |
 | Jaime Letelier | Chile | Expert | IFOP | TBD |
 | Esteban Molina | Chile | Expert | IFOP | TBD |
 | Francisco Leiva | Chile | Expert | IFOP | TBD |
