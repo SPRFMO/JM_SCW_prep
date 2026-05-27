@@ -1,0 +1,273 @@
+---
+title: ""
+pagetitle: "SPRFMO Jack Mackerel MSE Task Team Agenda 2026"
+format:
+  html:
+    output-file: "MSE_agenda.html"
+    self-contained: true
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+  pdf:
+    output-file: "MSE_agenda.pdf"
+    number-sections: false
+    title-block: false
+execute:
+  warning: false
+  message: false
+  echo: false
+---
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div class="paper-title">Jack Mackerel MSE Task Team<br>2026 Meeting Schedule and Agendas</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\thispagestyle{empty}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries Jack Mackerel MSE Task Team: 2026 Meeting Schedule and Agendas\end{center}
+```
+:::
+
+**Chair:** J. Ianelli  
+**Regular meeting time:** 13:00-15:00 UTC  
+**Meeting mode:** Online, by Zoom or Teams unless otherwise specified  
+**Purpose:** Coordinate the technical path from benchmark outcomes to the June
+2026 MSE workshop, SC14 documentation, and Commission decision-making.
+
+# Evaluation
+
+This agenda is a useful working plan, but several items should be updated before
+circulation because the benchmark workshop has now occurred and because some
+dates in the source material are inconsistent.
+
+::: {.callout-warning}
+## Items to Resolve Before Circulation
+
+- The source agenda lists the benchmark workshop as early or mid-May, whereas the
+  benchmark meeting was held in Lima on 18-22 May 2026. References to the
+  benchmark should be updated to the actual dates and outcomes.
+- The Wageningen MSE workshop is listed as 15-19 June 2026 in the milestone
+  table, while one agenda line refers to 16 June. Use a single date range in the
+  final agenda.
+- TT-04 and TT-05 should be revised to reflect the benchmark-derived model set,
+  currently represented by model 0.11 in the assessment summary, rather than
+  treating the benchmark handoff as unresolved background.
+- The agenda should explicitly identify the decisions that are prerequisites for
+  the MSE contractor: operating-model conditioning, recruitment-process
+  assumptions, stock-hypothesis treatment, performance metrics, robustness
+  scenarios, and exceptional-circumstances meta-rules.
+:::
+
+::: {.callout-note}
+## Post-Benchmark Update Needed
+
+The benchmark meeting moved the technical baseline from the SC13 configuration
+toward a materially updated assessment data configuration. The MSE agenda should
+therefore make clear which items are decisions for the Task Team, which are
+contractor implementation inputs, and which are remaining diagnostics or
+sensitivity analyses.
+:::
+
+# At-a-Glance Schedule
+
+Regular meetings are the second Thursday of each month unless otherwise noted.
+Extra meetings are milestone-driven.
+
+| Meeting | Date | Topic | Key milestone |
+|---|---|---|---|
+| TT-01 | Thu 26 Mar 2026 | Post-Commission kickoff | Working-paper plan launched |
+| TT-02 | Thu 9 Apr 2026 | WP1 launch and benchmark preparation | Leads to benchmark workshop |
+| TT-03 | Thu 30 Apr 2026 | Final pre-benchmark preparation | Benchmark handoff checklist |
+| TT-04 | Thu 28 May 2026 | Post-Lima / pre-intersessional debrief | MSE-02 draft performance metrics |
+| TT-05 | Thu 11 Jun 2026 | Pre-Wageningen final preparation | Leads to Wageningen MSE workshop |
+| TT-06 | Thu 9 Jul 2026 | Post-Wageningen: CMP shortlist review | SC14 paper drafting begins |
+| TT-07 | Thu 13 Aug 2026 | Pre-SC14 draft review | Leads to SC14 |
+| TT-08 | Fri 28 Aug 2026 | Final SC14 paper sign-off | SC14 submission deadline |
+| TT-09 | Thu 8 Oct 2026 | Post-SC14 debrief and Commission preparation | Leads to Commission decision |
+| TT-10 | Thu 12 Nov 2026 | WP4 report review and year-end close | SC15 / archive |
+
+# Programme Milestones
+
+| Month | Event | Deliverable | Output for |
+|---|---|---|---|
+| May 2026 | Benchmark workshop, Lima, Peru | Candidate assessment models | SC intersessional |
+| Late May 2026 | SC intersessional meeting | Approved OM for MSE | Wageningen workshop |
+| 15-19 Jun 2026 | MSE workshop, Wageningen, Netherlands | CMP shortlist | SC14 document |
+| Sep 2026 | SC14 Scientific Committee | CMP recommendation | Commission decision |
+| Nov 2026 | WP4 final deliverable | Technical report and source code | SC15 / archive |
+
+# Detailed Task Team Agenda Plan
+
+The detailed agenda below follows the source agenda structure for the first five
+Task Team meetings. Where consensus cannot be reached, decisions should be
+deferred by at most one session or assigned to a focused subgroup with a clear
+return date.
+
+## TT-01: Post-Commission Kickoff
+
+**Date:** 26 March 2026, 13:00 UTC  
+**Working papers:** BM-01, BM-02, planning document
+
+**Discussion topics**
+
+- Review and endorse the working-paper plan for the benchmark, Wageningen MSE
+  workshop, and SC14.
+- Sequence and allocate technical topics across TT-02 to TT-05.
+- Identify which decisions require a two-session process from preparation to
+  conclusion.
+
+**Decisions**
+
+- Endorse the working-paper plan and confirm lead authors.
+- Agree the TT-02 to TT-05 topic schedule that frames subsequent work.
+
+**Preparation**
+
+- Chair circulates BM-01 draft, BM-02 draft, working-paper plan, Carruthers MSE
+  roadmap summary, and proposed topic allocation at least five working days
+  before the meeting.
+
+## TT-02: Benchmark Preparation
+
+**Date:** 9 April 2026, 13:00 UTC  
+**Working papers:** BM-01, BM-03
+
+**Discussion topics**
+
+- Selectivity alternatives, including block-based alternatives, time-varying
+  selectivity, and fleet implications.
+- Reference points, including fixed reference points versus dynamic
+  \(B_{MSY}\) and \(F_{MSY}\).
+- Stock-recruitment alternatives for initial reaction.
+- Abundance indices, including inventory, CPUE standardization, and
+  index-biomass proportionality.
+- Uncertainty dimensions most consequential for long-term projections.
+
+**Decisions**
+
+- Narrow selectivity block options to no more than two candidates for conclusion
+  at TT-03.
+- Identify the preferred reference-point direction for conclusion at TT-03.
+- Confirm BM-03 lead, scope, and index-standardization methodology.
+
+**Preparation**
+
+- BM-01 selectivity diagnostics, BM-03 outline, and updated topic schedule from
+  TT-01.
+
+## TT-03: Final Pre-Benchmark Preparation
+
+**Date:** 30 April 2026, 13:00 UTC  
+**Working papers:** BM-01, BM-03, BM-04
+
+**Discussion topics**
+
+- Conclude selectivity options for operating-model conditioning.
+- Conclude fixed benchmark reference points and document the rationale.
+- Far North treatment and consistency between the single-stock and two-stock
+  hypotheses.
+- OM grid design, including reference set versus robustness set and uncertainty
+  axes in each tier.
+- Define minimum benchmark outputs needed for TT-04 to proceed.
+
+**Decisions**
+
+- Agree selectivity block structure for OM conditioning.
+- Agree fixed reference-point approach.
+- Agree harmonized Far North treatment for both stock hypotheses.
+- Agree OM grid structure and criteria for OM reconditioning.
+
+**Preparation**
+
+- BM-01 draft, BM-03 draft, BM-04 outline with OM grid sketch, and benchmark
+  handoff checklist.
+
+## TT-04: Post-Lima / Pre-Intersessional Debrief
+
+**Date:** 28 May 2026, 13:00 UTC  
+**Working papers:** BM-04, MSE-02, BM-01 outcomes
+
+**Discussion topics**
+
+- Benchmark debrief: model simplification, indices, OM design, agreed items, and
+  unresolved items.
+- Critical fork: recondition the OM on benchmark outputs or proceed with an
+  SC13-based OM.
+- Stock-hypothesis treatment for deriving advice.
+- Performance metrics, including conservation, yield, and stability metrics.
+- MP families, including model-free and model-based approaches.
+
+**Decisions**
+
+- Decide whether to recondition OMs on benchmark outputs or proceed with an
+  SC13-based OM. This decision gates the Wageningen scope.
+- Agree stock-recruitment priors and recruitment-regime treatment across OMs.
+- Discuss stock-hypothesis treatment for advice, for conclusion at TT-05.
+- Endorse draft performance metrics and time horizons for finalization at TT-05.
+
+**Post-benchmark update**
+
+The TT-04 agenda should now refer explicitly to the benchmark-derived model set,
+including model 0.11 as the current working final model in the assessment
+summary, and should identify which benchmark decisions are ready for OM
+conditioning.
+
+## TT-05: Pre-Wageningen Final Preparation
+
+**Date:** 11 June 2026, 13:00 UTC  
+**Working papers:** MSE-01, MSE-02, MSE-03
+
+**Discussion topics**
+
+- Conclude stock-hypothesis treatment or confirm fallback treatment.
+- Finalize performance metrics, time horizons, and risk tolerance for
+  Wageningen.
+- Freeze MP specifications, including data streams, tuning targets, harvest
+  control rule, and buffer settings.
+- Finalize robustness scenario matrix for the reference set and robustness set.
+- Cross-platform validation between FLR and RTMB/OpenMSE.
+- Wageningen trade-off format and decision-making protocol.
+
+**Decisions**
+
+- Conclude stock-hypothesis treatment.
+- Finalize performance metrics, time horizons, and risk tolerance.
+- Freeze MP specifications; no new MPs should be added after this Task Team
+  meeting.
+- Agree the complete robustness scenario matrix.
+- Agree cross-platform validation protocol and assign responsibilities.
+- Agree Wageningen communication and decision-making format.
+
+**Preparation**
+
+- Full drafts of MSE-01 and MSE-03, draft MSE-02 performance metrics, trade-off
+  prototype if available, and updated OM status note from WMR.
+
+# Implementation Notes
+
+- If the benchmark endorses OM reconditioning, TT-04 should be adjusted to
+  incorporate benchmark outcomes before the Wageningen workshop.
+- Stock-hypothesis weighting remains a potential sticking point. If no consensus
+  is likely by TT-05, the Task Team should plan a focused subgroup call and
+  define a fallback treatment.
+- All working-paper drafts should be circulated at least five working days
+  before each Task Team meeting.
+
