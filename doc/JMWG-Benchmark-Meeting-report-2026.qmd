@@ -5,6 +5,7 @@ format:
   html:
     output-file: "JMWG-Benchmark-Meeting-report-2026.html"
     self-contained: true
+    embed-resources: true
     lightbox: true
     html-math-method: katex
     toc: true
