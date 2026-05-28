@@ -6,6 +6,14 @@ diagnostic_empty_plot <- function(label) {
     ggplot2::theme_void()
 }
 
+diagnostic_theme <- function(base_size = 12) {
+  if (exists("theme_jjm", mode = "function")) {
+    theme_jjm(base_size = base_size)
+  } else {
+    ggplot2::theme_bw(base_size = base_size)
+  }
+}
+
 diagnostic_series_names <- function(x) {
   if (is.matrix(x)) {
     as.character(x[, 1])
@@ -123,7 +131,11 @@ diagnostic_comp_extract_one <- function(mod, stock, source_type, source_id,
   fit_values <- fit[, seq_len(n_bins) + 1, drop = FALSE]
   bins <- diagnostic_comp_bins(mod, n_bins, comp_type)
   source_names <- diagnostic_comp_names(dat, source_type)
-  source_name <- if (source_id <= length(source_names)) source_names[source_id] else paste(source_type, source_id)
+  source_name <- if (source_id <= length(source_names)) {
+    source_names[source_id]
+  } else {
+    paste(source_type, source_id)
+  }
   sample_size <- diagnostic_sample_sizes(
     dat, source_type, comp_type, source_id, years
   )
@@ -292,7 +304,7 @@ plot_osa_qq_diagnostics <- function(comp_df, model_label = NULL) {
       x = "Theoretical quantiles",
       y = "Sample quantiles"
     ) +
-    theme_jjm(base_size = 12) +
+    diagnostic_theme(base_size = 12) +
     ggplot2::theme(legend.position = "none")
 }
 
@@ -348,7 +360,111 @@ plot_aggregate_composition_fits <- function(comp_df, model_label = NULL) {
       x = comp_label,
       y = "Proportion"
     ) +
-    theme_jjm(base_size = 12) +
+    diagnostic_theme(base_size = 12) +
+    ggplot2::theme(legend.position = "none")
+}
+
+plot_agecomp_fit <- function(data, source_name, ncol = 4) {
+  pred_col <- if ("predicted" %in% names(data)) "predicted" else "fitted"
+  if (!pred_col %in% names(data)) {
+    return(diagnostic_empty_plot("No predicted age-composition fits available."))
+  }
+
+  plot_data <- data |>
+    dplyr::filter(
+      .data$source_name == .env$source_name,
+      is.finite(.data$observed) | is.finite(.data[[pred_col]])
+    ) |>
+    dplyr::transmute(
+      year = as.integer(.data$year),
+      age = as.numeric(.data$bin),
+      observed = as.numeric(.data$observed),
+      predicted = as.numeric(.data[[pred_col]])
+    ) |>
+    dplyr::group_by(.data$year, .data$age) |>
+    dplyr::summarise(
+      observed = if (all(is.na(.data$observed))) NA_real_ else mean(.data$observed, na.rm = TRUE),
+      predicted = if (all(is.na(.data$predicted))) NA_real_ else mean(.data$predicted, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    dplyr::arrange(.data$year, .data$age) |>
+    dplyr::mutate(
+      year = factor(.data$year, levels = sort(unique(.data$year)))
+    )
+
+  if (!nrow(plot_data)) {
+    return(diagnostic_empty_plot(paste("No age-composition fits for", source_name)))
+  }
+
+  ggplot2::ggplot(plot_data, ggplot2::aes(x = .data$age)) +
+    ggplot2::geom_line(
+      ggplot2::aes(y = .data$predicted),
+      linewidth = 0.5,
+      color = "#4daf4a",
+      na.rm = TRUE
+    ) +
+    ggplot2::geom_point(
+      ggplot2::aes(y = .data$observed),
+      color = "#1f78b4",
+      size = 0.9,
+      alpha = 0.8,
+      na.rm = TRUE
+    ) +
+    ggplot2::facet_wrap(~year, ncol = ncol, dir = "v") +
+    ggplot2::scale_y_continuous(limits = c(0, NA)) +
+    ggplot2::scale_x_continuous(breaks = scales::pretty_breaks()) +
+    ggplot2::labs(
+      x = "Age",
+      y = "Proportion",
+      title = paste(source_name, "Age Composition Fits")
+    ) +
+    diagnostic_theme(base_size = 11) +
+    ggplot2::theme(legend.position = "none")
+}
+
+plot_lengthcomp_fit <- function(data, source_name, ncol = 4) {
+  pred_col <- if ("predicted" %in% names(data)) "predicted" else "fitted"
+  if (!pred_col %in% names(data)) {
+    return(diagnostic_empty_plot("No predicted length-composition fits available."))
+  }
+
+  plot_data <- data |>
+    dplyr::filter(
+      .data$source_name == .env$source_name,
+      is.finite(.data$observed) | is.finite(.data[[pred_col]])
+    ) |>
+    dplyr::mutate(
+      length = .data$bin,
+      predicted = .data[[pred_col]]
+    )
+
+  if (!nrow(plot_data)) {
+    return(diagnostic_empty_plot(paste("No length-composition fits for", source_name)))
+  }
+
+  ggplot2::ggplot(plot_data, ggplot2::aes(x = .data$length)) +
+    ggplot2::geom_line(
+      ggplot2::aes(y = .data$predicted),
+      linewidth = 0.5,
+      color = "#4daf4a",
+      na.rm = TRUE
+    ) +
+    ggplot2::geom_point(
+      ggplot2::aes(y = .data$observed),
+      color = "#1f78b4",
+      size = 0.9,
+      alpha = 0.8,
+      na.rm = TRUE
+    ) +
+    ggplot2::facet_wrap(~year, ncol = ncol, dir = "v") +
+    ggplot2::scale_y_continuous(limits = c(0, NA)) +
+    ggplot2::scale_x_continuous(breaks = scales::pretty_breaks()) +
+    ggplot2::labs(
+      x = "Length",
+      y = "Proportion",
+      title = paste(source_name, "Length Composition Fits")
+    ) +
+    diagnostic_theme(base_size = 11) +
     ggplot2::theme(legend.position = "none")
 }
 
@@ -368,3 +484,5 @@ plot_composition_diagnostics <- function(mod, stock = 1,
     heights = c(1, 1.05)
   )
 }
+
+plot_diagnostics <- plot_composition_diagnostics
