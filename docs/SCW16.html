@@ -78,6 +78,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#single-stock-hypothesis-3" id="toc-single-stock-hypothesis-3" class="nav-link" data-scroll-target="#single-stock-hypothesis-3"><span class="header-section-number">8.1</span> Single-Stock Hypothesis</a></li>
   <li><a href="#two-stock-hypothesis-3" id="toc-two-stock-hypothesis-3" class="nav-link" data-scroll-target="#two-stock-hypothesis-3"><span class="header-section-number">8.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
+  <li><a href="#other-trials" id="toc-other-trials" class="nav-link" data-scroll-target="#other-trials"><span class="header-section-number">9</span> Other trials</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis-4" id="toc-single-stock-hypothesis-4" class="nav-link" data-scroll-target="#single-stock-hypothesis-4"><span class="header-section-number">9.1</span> Single-Stock Hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-4" id="toc-two-stock-hypothesis-4" class="nav-link" data-scroll-target="#two-stock-hypothesis-4"><span class="header-section-number">9.2</span> Two-Stock Hypothesis</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -212,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 <div class="paper-title">Jack Mackerel Assessment SCW16</div>
-<p>This focused report summarizes the completed SCW16 model outputs for the SC13 baseline (<code>0.00</code>), the current final model (<code>0.12</code>), the 2018 Peruvian CPUE catchability-break sensitivity (<code>0.13</code>), the data sensitivities completed so far (<code>1.01</code>-<code>1.04</code>), and the additional SC13 downweighting sensitivity (<code>SC13_1.15</code>). ADNUTS MCMC diagnostics for the final <code>0.12</code> configuration are included for the single-stock and two-stock hypotheses.</p>
+<p>This focused report summarizes the completed SCW16 model outputs for the SC13 baseline (<code>0.00</code>), the current final model (<code>0.12</code>), the 2018 Peruvian CPUE catchability-break sensitivity (<code>0.13</code>), the data sensitivities completed so far (<code>1.01</code>-<code>1.04</code>), and the additional SC13 downweighting sensitivity (<code>SC13_1.15</code>). Two additional diagnostic trials (<code>1.05</code> and <code>1.06</code>) are shown separately from the data sensitivities under “Other trials.” ADNUTS MCMC diagnostics for the final <code>0.12</code> configuration are included for the single-stock and two-stock hypotheses.</p>
 <section id="model-set" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Model Set</h1>
 <div id="tbl-model-set" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -264,6 +269,16 @@ Table&nbsp;1: Model configurations included in this report.
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Data sensitivity</td>
 <td style="text-align: left;">As 1.03 but adds the old 0.00 `Peru_Acoustic` index, with selectivity tied to the FarNorth fishery.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Other trial</td>
+<td style="text-align: left;">As 0.12 but replaces `Peru_CPUE` with a noisy (CV = 60%) nominal CPUE series for 1990-2025.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Other trial</td>
+<td style="text-align: left;">As 1.05 but removes `Peru_Acoust_S1` and `Peru_Acoust_S2`.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SC13_1.15</td>
@@ -2060,6 +2075,426 @@ Figure&nbsp;50: Recruitment estimates for the final model and completed sensitiv
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;51: Fishing mortality estimates for the final model and completed sensitivities.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="other-trials" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Other trials</h1>
+<p>These trials are shown separately from the formal data sensitivities because they are diagnostic checks on the Peruvian/FarNorth signal rather than candidate bridge configurations. The motivation is that the Peruvian/FarNorth fishery continues to catch jack mackerel, so the trials ask whether the very low FarNorth biomass and very high terminal fishing mortality in the final <code>0.12</code> two-stock model are driven primarily by the standardized Peruvian CPUE and seasonal Peru acoustic survey signals.</p>
+<p>Model <code>1.05</code> starts from <code>0.12</code> and replaces <code>Peru_CPUE</code> with a noisy (CV = 60%) nominal CPUE series for 1990-2025. Model <code>1.06</code> starts from <code>1.05</code> and removes the two seasonal Peru acoustic abundance-index series, <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>. Both trials are compared directly with <code>0.12</code> below.</p>
+<div id="tbl-other-trials-fit-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-other-trials-fit-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7: Deterministic fit summaries for the final model and other trials. Negative log-likelihoods are not strictly comparable because the input data differ among these runs.
+</figcaption>
+<div aria-describedby="tbl-other-trials-fit-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table cell caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Run</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">N parameters</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NLL</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max gradient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">h1_0.12</td>
+<td style="text-align: right;">1871</td>
+<td style="text-align: right;">3820.555</td>
+<td style="text-align: right;">0.0003189</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">h1_1.05</td>
+<td style="text-align: right;">1871</td>
+<td style="text-align: right;">3781.912</td>
+<td style="text-align: right;">0.0002602</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">h1_1.06</td>
+<td style="text-align: right;">1843</td>
+<td style="text-align: right;">1315.561</td>
+<td style="text-align: right;">0.0002240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">h2_0.12</td>
+<td style="text-align: right;">1932</td>
+<td style="text-align: right;">2712.406</td>
+<td style="text-align: right;">0.0001995</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">h2_1.05</td>
+<td style="text-align: right;">1932</td>
+<td style="text-align: right;">2701.650</td>
+<td style="text-align: right;">0.0003403</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">h2_1.06</td>
+<td style="text-align: right;">1904</td>
+<td style="text-align: right;">1270.705</td>
+<td style="text-align: right;">0.0002805</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-other-trials-terminal-metrics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-other-trials-terminal-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8: Terminal-year metrics for the final model and other trials.
+</figcaption>
+<div aria-describedby="tbl-other-trials-terminal-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table cell caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SSB</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total biomass</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Recruitment</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max total F at age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">3211</td>
+<td style="text-align: right;">6342</td>
+<td style="text-align: right;">10667</td>
+<td style="text-align: right;">2.462</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">4097</td>
+<td style="text-align: right;">7509</td>
+<td style="text-align: right;">11050</td>
+<td style="text-align: right;">2.541</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">5768</td>
+<td style="text-align: right;">9672</td>
+<td style="text-align: right;">12359</td>
+<td style="text-align: right;">2.121</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">6719</td>
+<td style="text-align: right;">11510</td>
+<td style="text-align: right;">21317</td>
+<td style="text-align: right;">2.212</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">277</td>
+<td style="text-align: right;">444</td>
+<td style="text-align: right;">37.232</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">6719</td>
+<td style="text-align: right;">11510</td>
+<td style="text-align: right;">21317</td>
+<td style="text-align: right;">2.212</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">274</td>
+<td style="text-align: right;">439</td>
+<td style="text-align: right;">9.677</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">6719</td>
+<td style="text-align: right;">11510</td>
+<td style="text-align: right;">21317</td>
+<td style="text-align: right;">2.212</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">296</td>
+<td style="text-align: right;">693</td>
+<td style="text-align: right;">1015</td>
+<td style="text-align: right;">3.626</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-other-trials-terminal-delta" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-other-trials-terminal-delta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9: Terminal-year percent difference for other trials relative to the final model, 0.12.
+</figcaption>
+<div aria-describedby="tbl-other-trials-terminal-delta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table cell caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SSB (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total biomass (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Recruitment (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max total F at age (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">27.6</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">3.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">79.6</td>
+<td style="text-align: right;">52.5</td>
+<td style="text-align: right;">15.9</td>
+<td style="text-align: right;">-13.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.05</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">-9.5</td>
+<td style="text-align: right;">-1.0</td>
+<td style="text-align: right;">-1.3</td>
+<td style="text-align: right;">-74.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">1.06</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">695.3</td>
+<td style="text-align: right;">150.3</td>
+<td style="text-align: right;">128.5</td>
+<td style="text-align: right;">-90.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="single-stock-hypothesis-4" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="single-stock-hypothesis-4"><span class="header-section-number">9.1</span> Single-Stock Hypothesis</h2>
+<p>Under the single-stock hypothesis, replacing the standardized Peruvian CPUE with the noisy nominal CPUE (<code>1.05</code>) increases terminal biomass moderately relative to <code>0.12</code> while leaving terminal fishing mortality close to the final model. Removing the two seasonal Peru acoustic series as well (<code>1.06</code>) produces a larger biomass increase and lowers terminal fishing mortality below <code>0.12</code>. The single-stock pattern therefore indicates that the nominal CPUE trial alone changes scale modestly, while the additional removal of the seasonal Peru acoustic series has the larger effect on the recent biomass trajectory.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-other-trials-h1-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-trials-h1-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-other-trials-h1-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-58" title="Figure&nbsp;52: Biomass estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-biomass-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h1-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;52: Biomass estimates for the final model and other trial runs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-other-trials-h1-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-trials-h1-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-other-trials-h1-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-59" title="Figure&nbsp;53: Recruitment estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h1-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;53: Recruitment estimates for the final model and other trial runs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-other-trials-h1-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-trials-h1-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-other-trials-h1-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-60" title="Figure&nbsp;54: Fishing mortality estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-fmort-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h1-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;54: Fishing mortality estimates for the final model and other trial runs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stock-hypothesis-4" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="two-stock-hypothesis-4"><span class="header-section-number">9.2</span> Two-Stock Hypothesis</h2>
+<p>Under the two-stock hypothesis, these trials mainly affect the FarNorth stock. The southern stock remains effectively unchanged from <code>0.12</code> because the altered data are assigned to the Peruvian/FarNorth component. For the FarNorth stock, <code>1.05</code> leaves terminal biomass near the final-model level but sharply reduces terminal fishing mortality, indicating that the noisy nominal CPUE relaxes the most extreme terminal-F behavior even without removing the seasonal Peru acoustic surveys. Model <code>1.06</code> then raises FarNorth terminal biomass and recruitment and further reduces terminal fishing mortality after <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code> are removed.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-other-trials-h2-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-trials-h2-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-other-trials-h2-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-61" title="Figure&nbsp;55: Biomass estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-biomass-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h2-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;55: Biomass estimates for the final model and other trial runs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-other-trials-h2-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-trials-h2-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-other-trials-h2-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-62" title="Figure&nbsp;56: Recruitment estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h2-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;56: Recruitment estimates for the final model and other trial runs.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-other-trials-h2-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-trials-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-other-trials-h2-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-63" title="Figure&nbsp;57: Fishing mortality estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-fmort-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;57: Fishing mortality estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
