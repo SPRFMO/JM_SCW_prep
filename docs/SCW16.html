@@ -484,9 +484,9 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">h2_0.12</td>
-<td style="text-align: right;">1932</td>
-<td style="text-align: right;">2712.406</td>
-<td style="text-align: right;">0.0001995</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">2641.727</td>
+<td style="text-align: right;">0.0001820</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">h2</td>
@@ -687,10 +687,10 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
 <td style="text-align: left;">2025</td>
-<td style="text-align: right;">6719</td>
-<td style="text-align: right;">11510</td>
-<td style="text-align: right;">21317</td>
-<td style="text-align: right;">2.212</td>
+<td style="text-align: right;">5398</td>
+<td style="text-align: right;">9024</td>
+<td style="text-align: right;">11710</td>
+<td style="text-align: right;">1.809</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">h2</td>
@@ -982,10 +982,10 @@ Table&nbsp;4: Terminal-year percent difference relative to the proposed final mo
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
 <td style="text-align: left;">2025</td>
-<td style="text-align: right;">24.5</td>
-<td style="text-align: right;">27.5</td>
-<td style="text-align: right;">82.0</td>
-<td style="text-align: right;">22.3</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">h2</td>
@@ -2111,7 +2111,7 @@ Figure&nbsp;58: OSA residual QQ diagnostics and aggregate length-composition fit
 </section>
 <section id="data-sensitivities" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Data Sensitivities</h1>
-<p>These sensitivities are shown against both the previous final bridge model (<code>0.12</code>) and the proposed final model (<code>0.14</code>). Most sensitivities start from the <code>0.12</code> bridge configuration; <code>1.04</code> starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>, while proposed final <code>0.14</code> starts from <code>1.03</code> and adds the same 2018 catchability break for the Peruvian CPUE index used in <code>0.13</code>. Model <code>0.13</code> keeps the <code>0.12</code> data and adds only the 2018 Peruvian CPUE catchability break. The terminal-year metric and percent-difference tables are provided near the beginning of the report and are not repeated here.</p>
+<p>These sensitivities are shown against both the previous final bridge model (<code>0.12</code>) and the proposed final model (<code>0.14</code>). Most sensitivities were developed from the <code>0.12</code> bridge configuration; <code>1.04</code> starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>, while proposed final <code>0.14</code> starts from <code>1.03</code> and adds the same 2018 catchability break for the Peruvian CPUE index used in <code>0.13</code>. Model <code>0.13</code> keeps the <code>0.12</code> data and adds only the 2018 Peruvian CPUE catchability break. For the two-stock hypothesis, the <code>0.12</code>, <code>0.13</code>, and <code>0.14</code> bridge comparisons reflect the latest updated control-file runs, while the earlier data-sensitivity outputs remain the completed trial runs shown for comparison. The terminal-year metric and percent-difference tables are provided near the beginning of the report and are not repeated here.</p>
 <p><code>SC13_1.15</code> is included as an additional SC13-style sensitivity. It fully downweights the Acoustic N and Peruvian CPUE index series across all years, effectively removing their likelihood contribution rather than only reducing the influence of terminal-year observations. The run should therefore be interpreted as a diagnostic of how strongly those two complete index series affect the final-year stock status and fishing mortality pattern rather than as a competing final-model configuration.</p>
 <section id="single-stock-hypothesis-3" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="single-stock-hypothesis-3"><span class="header-section-number">9.1</span> Single-Stock Hypothesis</h2>
@@ -2175,12 +2175,12 @@ Figure&nbsp;61: Fishing mortality estimates for the previous final bridge model,
 </section>
 <section id="two-stock-hypothesis-3" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="two-stock-hypothesis-3"><span class="header-section-number">9.2</span> Two-Stock Hypothesis</h2>
-<p>Under the two-stock hypothesis, the updated <code>0.13</code> and proposed final <code>0.14</code> runs now affect both stocks. For the southern stock, both runs lower terminal biomass and recruitment relative to <code>0.12</code> and reduce terminal fishing mortality. For the FarNorth stock, the 2018 Peruvian CPUE catchability break (<code>0.13</code>) leaves terminal biomass near the very low <code>0.12</code> level but sharply reduces terminal fishing mortality. Removing the two Peru acoustic series (<code>1.03</code>) raises FarNorth biomass from the <code>0.12</code> level, and adding the same Peruvian CPUE catchability break to that configuration gives proposed final <code>0.14</code>, which raises FarNorth biomass slightly above <code>1.03</code> while cutting terminal fishing mortality further. Adding back the old Peru acoustic series (<code>1.04</code>) produces the largest FarNorth terminal biomass and the lowest terminal fishing mortality among the data sensitivities. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) reduces southern-stock biomass relative to <code>0.12</code> while raising FarNorth biomass well above <code>0.12</code> but below <code>1.04</code>.</p>
+<p>Under the two-stock hypothesis, the updated <code>0.12</code>, <code>0.13</code>, and proposed final <code>0.14</code> runs have essentially the same southern-stock terminal biomass, recruitment, and fishing mortality. The main differences among those bridge runs are in the FarNorth stock: the 2018 Peruvian CPUE catchability break (<code>0.13</code>) leaves terminal biomass near the very low <code>0.12</code> level but sharply reduces terminal fishing mortality. Removing the two Peru acoustic series (<code>1.03</code>) raises FarNorth biomass from the <code>0.12</code> level, and adding the same Peruvian CPUE catchability break to that configuration gives proposed final <code>0.14</code>, which raises FarNorth biomass slightly above <code>1.03</code> while cutting terminal fishing mortality further. Adding back the old Peru acoustic series (<code>1.04</code>) produces the largest FarNorth terminal biomass and the lowest terminal fishing mortality among the data sensitivities. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) reduces southern-stock biomass relative to <code>0.12</code> while raising FarNorth biomass well above <code>0.12</code> but below <code>1.04</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<p>The biomass panel highlights the stock-specific nature of the sensitivity results. Southern-stock biomass is lower in the updated <code>0.13</code>, proposed final <code>0.14</code>, and <code>SC13_1.15</code> runs than in <code>0.12</code>, while <code>1.02</code>-<code>1.04</code> remain close to the previous final bridge trajectory for that stock. The FarNorth biomass trajectory is controlled by the Peru acoustic/CPUE treatment and is much higher in <code>1.03</code>, proposed final <code>0.14</code>, <code>1.04</code>, and <code>SC13_1.15</code> than in <code>0.12</code>. The <code>0.13</code> catchability-break run stays close to the <code>0.12</code> FarNorth biomass trajectory because it keeps the two seasonal Peru acoustic series.</p>
+<p>The biomass panel highlights the stock-specific nature of the sensitivity results. Southern-stock biomass is nearly identical for the updated <code>0.12</code>, <code>0.13</code>, and proposed final <code>0.14</code> bridge runs, lower under <code>SC13_1.15</code>, and higher in the earlier completed <code>1.02</code>-<code>1.04</code> trial outputs. The FarNorth biomass trajectory is controlled by the Peru acoustic/CPUE treatment and is much higher in <code>1.03</code>, proposed final <code>0.14</code>, <code>1.04</code>, and <code>SC13_1.15</code> than in <code>0.12</code>. The <code>0.13</code> catchability-break run stays close to the <code>0.12</code> FarNorth biomass trajectory because it keeps the two seasonal Peru acoustic series.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2197,7 +2197,7 @@ Figure&nbsp;62: Biomass estimates for the previous final bridge model, proposed 
 </div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<p>Recruitment follows the same split. Southern-stock recruitment is lower in the updated <code>0.13</code>, proposed final <code>0.14</code>, and <code>SC13_1.15</code> runs than in <code>0.12</code>, while <code>1.02</code>-<code>1.04</code> remain close to the previous final bridge trajectory for that stock. FarNorth recruitment increases when the seasonal Peru acoustic series are removed or replaced, with <code>1.04</code> giving the highest FarNorth terminal recruitment among the current data sensitivities. Proposed final <code>0.14</code> is slightly above <code>1.03</code>, while the <code>0.13</code> catchability-break run leaves terminal FarNorth recruitment close to <code>0.12</code>.</p>
+<p>Recruitment follows the same split. Southern-stock recruitment is nearly identical for the updated <code>0.12</code>, <code>0.13</code>, and proposed final <code>0.14</code> bridge runs, lower under <code>SC13_1.15</code>, and higher in the earlier completed <code>1.02</code>-<code>1.04</code> trial outputs. FarNorth recruitment increases when the seasonal Peru acoustic series are removed or replaced, with <code>1.04</code> giving the highest FarNorth terminal recruitment among the current data sensitivities. Proposed final <code>0.14</code> is slightly above <code>1.03</code>, while the <code>0.13</code> catchability-break run leaves terminal FarNorth recruitment close to <code>0.12</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2214,7 +2214,7 @@ Figure&nbsp;63: Recruitment estimates for the previous final bridge model, propo
 </div>
 </div>
 <div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
-<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The previous final bridge model (<code>0.12</code>) estimates very high terminal FarNorth fishing mortality, while <code>0.13</code>, <code>1.02</code>, <code>1.03</code>, proposed final <code>0.14</code>, and especially <code>1.04</code> reduce that estimate. The <code>0.13</code> result indicates that allowing a 2018 catchability break in the Peruvian CPUE index can reduce the extreme terminal-F estimate even when terminal FarNorth biomass remains close to <code>0.12</code>. Proposed final <code>0.14</code> shows that applying the same break after removing the seasonal Peru acoustic series reduces terminal FarNorth fishing mortality further than <code>1.03</code>; it also lowers southern-stock fishing mortality relative to <code>0.12</code> in the updated two-stock run. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with fully downweighting the Acoustic N and Peruvian CPUE index series that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
+<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The previous final bridge model (<code>0.12</code>) estimates very high terminal FarNorth fishing mortality, while <code>0.13</code>, <code>1.02</code>, <code>1.03</code>, proposed final <code>0.14</code>, and especially <code>1.04</code> reduce that estimate. The <code>0.13</code> result indicates that allowing a 2018 catchability break in the Peruvian CPUE index can reduce the extreme terminal-F estimate even when terminal FarNorth biomass remains close to <code>0.12</code>. Proposed final <code>0.14</code> shows that applying the same break after removing the seasonal Peru acoustic series reduces terminal FarNorth fishing mortality further than <code>1.03</code>, while keeping the southern-stock fishing mortality close to the updated <code>0.12</code> bridge run. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with fully downweighting the Acoustic N and Peruvian CPUE index series that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2292,9 +2292,9 @@ Table&nbsp;5: Deterministic fit summaries for the proposed final model and other
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">h2_0.12</td>
-<td style="text-align: right;">1932</td>
-<td style="text-align: right;">2712.406</td>
-<td style="text-align: right;">0.0001995</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">2641.727</td>
+<td style="text-align: right;">0.0001820</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">h2</td>
@@ -2390,10 +2390,10 @@ Table&nbsp;6: Terminal-year metrics for the proposed final model and other trial
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
 <td style="text-align: left;">2025</td>
-<td style="text-align: right;">6719</td>
-<td style="text-align: right;">11510</td>
-<td style="text-align: right;">21317</td>
-<td style="text-align: right;">2.212</td>
+<td style="text-align: right;">5398</td>
+<td style="text-align: right;">9024</td>
+<td style="text-align: right;">11710</td>
+<td style="text-align: right;">1.809</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">h2</td>
@@ -2535,10 +2535,10 @@ Table&nbsp;7: Terminal-year percent difference for other trials relative to the 
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
 <td style="text-align: left;">2025</td>
-<td style="text-align: right;">24.5</td>
-<td style="text-align: right;">27.5</td>
-<td style="text-align: right;">82.0</td>
-<td style="text-align: right;">22.3</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">h2</td>
@@ -2674,7 +2674,7 @@ Figure&nbsp;67: Fishing mortality estimates for the previous final bridge model,
 </section>
 <section id="two-stock-hypothesis-4" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="two-stock-hypothesis-4"><span class="header-section-number">10.2</span> Two-Stock Hypothesis</h2>
-<p>Under the two-stock hypothesis, these trials mainly affect the FarNorth stock and retain the <code>0.12</code> southern-stock trajectory, which is higher than the updated proposed final <code>0.14</code> southern-stock trajectory. For the FarNorth stock, <code>1.05</code> leaves terminal biomass near the <code>0.12</code> level but sharply reduces terminal fishing mortality, indicating that the noisy nominal CPUE relaxes the most extreme terminal-F behavior even without removing the seasonal Peru acoustic surveys. Model <code>1.06</code> then raises FarNorth terminal biomass and recruitment and further reduces terminal fishing mortality after <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code> are removed, making it a useful comparison with proposed final <code>0.14</code>.</p>
+<p>Under the two-stock hypothesis, these trials mainly affect the FarNorth stock and retain a higher southern-stock trajectory from their completed trial configuration. For the FarNorth stock, <code>1.05</code> leaves terminal biomass near the <code>0.12</code> level but sharply reduces terminal fishing mortality, indicating that the noisy nominal CPUE relaxes the most extreme terminal-F behavior even without removing the seasonal Peru acoustic surveys. Model <code>1.06</code> then raises FarNorth terminal biomass and recruitment and further reduces terminal fishing mortality after <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code> are removed, making it a useful comparison with proposed final <code>0.14</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
