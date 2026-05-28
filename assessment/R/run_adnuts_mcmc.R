@@ -194,8 +194,20 @@ derive_summary <- function(fit, model_name, ctl_file, data_file, run_dir, prep_s
   }
 
   if (!is.null(fit$sampler_params) && length(fit$sampler_params) > 0) {
-    div_chain <- vapply(fit$sampler_params, function(x) sum(x[, "divergent__"], na.rm = TRUE), numeric(1))
-    td_chain <- vapply(fit$sampler_params, function(x) sum(x[, "treedepth__"] >= fit$max_treedepth, na.rm = TRUE), numeric(1))
+    post_warmup <- function(x) {
+      keep <- seq.int(fit$warmup + 1L, nrow(x))
+      x[keep, , drop = FALSE]
+    }
+    div_chain <- vapply(
+      fit$sampler_params,
+      function(x) sum(post_warmup(x)[, "divergent__"], na.rm = TRUE),
+      numeric(1)
+    )
+    td_chain <- vapply(
+      fit$sampler_params,
+      function(x) sum(post_warmup(x)[, "treedepth__"] >= fit$max_treedepth, na.rm = TRUE),
+      numeric(1)
+    )
     sampler_df <- data.frame(
       chain = seq_along(div_chain),
       divergences = div_chain,

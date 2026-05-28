@@ -68,10 +68,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#single-stock-hypothesis-1" id="toc-single-stock-hypothesis-1" class="nav-link" data-scroll-target="#single-stock-hypothesis-1"><span class="header-section-number">5.1</span> Single-Stock Hypothesis</a></li>
   <li><a href="#two-stock-hypothesis-1" id="toc-two-stock-hypothesis-1" class="nav-link" data-scroll-target="#two-stock-hypothesis-1"><span class="header-section-number">5.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
-  <li><a href="#data-sensitivities" id="toc-data-sensitivities" class="nav-link" data-scroll-target="#data-sensitivities"><span class="header-section-number">6</span> Data Sensitivities</a>
+  <li><a href="#adnuts-mcmc-diagnostics" id="toc-adnuts-mcmc-diagnostics" class="nav-link" data-scroll-target="#adnuts-mcmc-diagnostics"><span class="header-section-number">6</span> ADNUTS MCMC Diagnostics</a></li>
+  <li><a href="#data-sensitivities" id="toc-data-sensitivities" class="nav-link" data-scroll-target="#data-sensitivities"><span class="header-section-number">7</span> Data Sensitivities</a>
   <ul class="collapse">
-  <li><a href="#single-stock-hypothesis-2" id="toc-single-stock-hypothesis-2" class="nav-link" data-scroll-target="#single-stock-hypothesis-2"><span class="header-section-number">6.1</span> Single-Stock Hypothesis</a></li>
-  <li><a href="#two-stock-hypothesis-2" id="toc-two-stock-hypothesis-2" class="nav-link" data-scroll-target="#two-stock-hypothesis-2"><span class="header-section-number">6.2</span> Two-Stock Hypothesis</a></li>
+  <li><a href="#single-stock-hypothesis-3" id="toc-single-stock-hypothesis-3" class="nav-link" data-scroll-target="#single-stock-hypothesis-3"><span class="header-section-number">7.1</span> Single-Stock Hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-3" id="toc-two-stock-hypothesis-3" class="nav-link" data-scroll-target="#two-stock-hypothesis-3"><span class="header-section-number">7.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -207,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 <div class="paper-title">Jack Mackerel Assessment SCW16</div>
-<p>This focused report summarizes the completed SCW16 model outputs for the SC13 baseline (<code>0.00</code>), the current final model (<code>0.12</code>), and the data sensitivities completed so far (<code>1.01</code>-<code>1.04</code>). ADNUTS MCMC diagnostics are intentionally omitted from this pass.</p>
+<p>This focused report summarizes the completed SCW16 model outputs for the SC13 baseline (<code>0.00</code>), the current final model (<code>0.12</code>), the data sensitivities completed so far (<code>1.01</code>-<code>1.04</code>), and the additional SC13 downweighting sensitivity (<code>SC13_1.15</code>). ADNUTS MCMC diagnostics for the final <code>0.12</code> configuration are included for the single-stock and two-stock hypotheses.</p>
 <section id="model-set" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Model Set</h1>
 <div class="cell" data-tbl-cap="Model configurations included in this report.">
@@ -251,15 +252,21 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">Data sensitivity</td>
 <td style="text-align: left;">As 1.03 but adds the old 0.00 `Peru_Acoustic` index, with selectivity tied to the FarNorth fishery.</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">SC13 sensitivity</td>
+<td style="text-align: left;">Additional SC13 run that downweights the terminal-year northern acoustic and Peruvian CPUE information.</td>
+</tr>
 </tbody>
 </table>
 </div>
 </section>
 <section id="fit-summaries" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Fit Summaries</h1>
-<div class="cell" data-tbl-cap="Negative log-likelihood and maximum gradient from completed deterministic model fits.">
+<p>The fit summaries are useful for checking convergence and for comparing runs that share the same data and likelihood structure. Several rows in this table intentionally change the data configuration, so negative log-likelihood values should not be interpreted as a strict ranking across all models.</p>
+<div class="cell" data-tbl-cap="Negative log-likelihood and maximum gradient from completed deterministic model fits. Negative log-likelihoods are not strictly comparable when input data differ among models.">
 <table class="table caption-top table-sm table-striped small">
-<caption>Negative log-likelihood and maximum gradient from completed deterministic model fits.</caption>
+<caption>Negative log-likelihood and maximum gradient from completed deterministic model fits. Negative log-likelihoods are not strictly comparable when input data differ among models.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
@@ -320,6 +327,14 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0003000</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">h1_1.15</td>
+<td style="text-align: right;">1865</td>
+<td style="text-align: right;">1166.248</td>
+<td style="text-align: right;">0.0002013</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">h2_0.00</td>
@@ -327,7 +342,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">1249.606</td>
 <td style="text-align: right;">0.0002636</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">h2_0.12</td>
@@ -335,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">2712.406</td>
 <td style="text-align: right;">0.0001995</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">h2_1.01</td>
@@ -343,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">2699.890</td>
 <td style="text-align: right;">0.0003842</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">h2_1.02</td>
@@ -351,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">2692.811</td>
 <td style="text-align: right;">0.0002865</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">h2_1.03</td>
@@ -359,13 +374,21 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">1275.404</td>
 <td style="text-align: right;">0.0004646</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">h2_1.04</td>
 <td style="text-align: right;">1905</td>
 <td style="text-align: right;">1311.022</td>
 <td style="text-align: right;">0.0002846</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">h2_1.15</td>
+<td style="text-align: right;">1648</td>
+<td style="text-align: right;">1049.019</td>
+<td style="text-align: right;">0.0002749</td>
 </tr>
 </tbody>
 </table>
@@ -450,6 +473,16 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">2.109</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">4675</td>
+<td style="text-align: right;">8081</td>
+<td style="text-align: right;">9536</td>
+<td style="text-align: right;">0.837</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_1</td>
@@ -459,7 +492,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">15257</td>
 <td style="text-align: right;">0.596</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_2</td>
@@ -469,7 +502,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">1118</td>
 <td style="text-align: right;">0.483</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
@@ -479,7 +512,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_2</td>
@@ -489,7 +522,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">444</td>
 <td style="text-align: right;">37.232</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_1</td>
@@ -499,7 +532,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">22503</td>
 <td style="text-align: right;">0.694</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_2</td>
@@ -509,7 +542,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">444</td>
 <td style="text-align: right;">37.232</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_1</td>
@@ -519,7 +552,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_2</td>
@@ -529,7 +562,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">445</td>
 <td style="text-align: right;">7.674</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_1</td>
@@ -539,7 +572,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_2</td>
@@ -549,7 +582,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">979</td>
 <td style="text-align: right;">8.301</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_1</td>
@@ -559,7 +592,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_2</td>
@@ -568,6 +601,26 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">1747</td>
 <td style="text-align: right;">1420</td>
 <td style="text-align: right;">0.292</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">4596</td>
+<td style="text-align: right;">7841</td>
+<td style="text-align: right;">9432</td>
+<td style="text-align: right;">0.748</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">766</td>
+<td style="text-align: right;">1269</td>
+<td style="text-align: right;">948</td>
+<td style="text-align: right;">1.062</td>
 </tr>
 </tbody>
 </table>
@@ -649,6 +702,16 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">-14.3</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">h1</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">45.6</td>
+<td style="text-align: right;">27.4</td>
+<td style="text-align: right;">-10.6</td>
+<td style="text-align: right;">-66.0</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_1</td>
@@ -658,7 +721,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">-28.4</td>
 <td style="text-align: right;">-73.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_2</td>
@@ -668,7 +731,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">151.8</td>
 <td style="text-align: right;">-98.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
@@ -678,7 +741,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_2</td>
@@ -688,7 +751,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_1</td>
@@ -698,7 +761,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">5.6</td>
 <td style="text-align: right;">-68.6</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_2</td>
@@ -708,7 +771,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_1</td>
@@ -718,7 +781,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_2</td>
@@ -728,7 +791,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.2</td>
 <td style="text-align: right;">-79.4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_1</td>
@@ -738,7 +801,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_2</td>
@@ -748,7 +811,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">120.3</td>
 <td style="text-align: right;">-77.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_1</td>
@@ -758,7 +821,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_2</td>
@@ -767,6 +830,26 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">531.3</td>
 <td style="text-align: right;">219.6</td>
 <td style="text-align: right;">-99.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">-31.6</td>
+<td style="text-align: right;">-31.9</td>
+<td style="text-align: right;">-55.8</td>
+<td style="text-align: right;">-66.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">SC13_1.15</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">1960.5</td>
+<td style="text-align: right;">358.5</td>
+<td style="text-align: right;">113.3</td>
+<td style="text-align: right;">-97.1</td>
 </tr>
 </tbody>
 </table>
@@ -869,10 +952,12 @@ ul.task-list li input[type="checkbox"] {
 <p>The diagnostics below use model <code>0.12</code> as the current final model. Retrospective diagnostics use the standard five peels that have already been run.</p>
 <section id="single-stock-hypothesis-1" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="single-stock-hypothesis-1"><span class="header-section-number">5.1</span> Single-Stock Hypothesis</h2>
+<p>For the single-stock final model, the diagnostics are interpreted as evidence about the internally aggregated stock trajectory. The main diagnostic tension is expected in recent composition and index data because the final bridge configuration removes DEPM and relies on the remaining fishery, acoustic, and CPUE information to resolve the recent scale and age/length structure.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Index Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Retrospective SSB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">Retrospective Recruitment</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Index Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Age OSA and Aggregate Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">Peru Acoustic Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" role="tab" aria-controls="tabset-3-6" aria-selected="false" href="">Retrospective SSB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-7" role="tab" aria-controls="tabset-3-7" aria-selected="false" href="">Retrospective Recruitment</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>The index fits provide the primary check on whether the final model follows the retained abundance-index signals after dropping DEPM. The single-stock model fits a common population trajectory to all retained indices, so departures among individual series should be read as conflicts in relative scale and timing rather than as stock-specific deviations.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -885,6 +970,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>The fishery age-composition plots show the final model tracking the main modal shifts in the Chilean and offshore-trawl age data. The corrected ggplot panels keep each fishery separate; this avoids mixing the northern Chile, south-central Chile purse-seine, and offshore-trawl observations and makes the recent modal ages easier to compare among fleets.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -913,35 +999,72 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>The OSA and aggregate age-composition diagnostics summarize the same age-composition fits at a coarser level. They are useful for checking whether residual structure is concentrated in particular fleets or age bins after the year-by-year panels are collapsed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h1_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Fishery length-composition fits for h1_0.12."><img src="SCW16_files/figure-html/final_h1_length_fits_catch-1.png" class="img-fluid figure-img" width="672" alt="Fishery length-composition fits for h1_0.12."></a></p>
-<figcaption>Fishery length-composition fits for h1_0.12.</figcaption>
+<p><a href="SCW16_files/figure-html/final_h1_age_osa_aggregate-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="OSA residual QQ diagnostics and aggregate age-composition fits for h1_0.12."><img src="SCW16_files/figure-html/final_h1_age_osa_aggregate-1.png" class="img-fluid figure-img" width="864" alt="OSA residual QQ diagnostics and aggregate age-composition fits for h1_0.12."></a></p>
+<figcaption>OSA residual QQ diagnostics and aggregate age-composition fits for h1_0.12.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<p>The FarNorth fishery length-composition panels now use the same observed-point and predicted-line style as the age fits. This makes the model fit to the long FarNorth length series easier to scan by year, particularly in years with narrow observed modes or sparse tails.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h1_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Retrospective spawning biomass from five peels for h1_0.12."><img src="SCW16_files/figure-html/final_h1_retro_ssb-1.png" class="img-fluid figure-img" width="672" alt="Retrospective spawning biomass from five peels for h1_0.12."></a></p>
-<figcaption>Retrospective spawning biomass from five peels for h1_0.12.</figcaption>
+<p><a href="SCW16_files/figure-html/final_h1_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Fishery length-composition fits for h1_0.12."><img src="SCW16_files/figure-html/final_h1_length_fits_catch-1.png" class="img-fluid figure-img" width="960" alt="Fishery length-composition fits for h1_0.12."></a></p>
+<figcaption>Fishery length-composition fits for h1_0.12.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<p>The Peru acoustic length-composition panels show the fit to the new seasonal Peru acoustic length data. These are survey length compositions rather than fishery compositions, so they are shown separately from the FarNorth fishery length series; this distinction is important because the Peru acoustic series also enter the abundance-index sensitivity tests.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h1_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Retrospective recruitment from five peels for h1_0.12."><img src="SCW16_files/figure-html/final_h1_retro_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Retrospective recruitment from five peels for h1_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h1_length_fits_peru_acoustics-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Peru acoustic-survey length-composition fits for h1_0.12."><img src="SCW16_files/figure-html/final_h1_length_fits_peru_acoustics-1.png" class="img-fluid figure-img" width="960" alt="Peru acoustic-survey length-composition fits for h1_0.12."></a></p>
+<figcaption>Peru acoustic-survey length-composition fits for h1_0.12.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h1_length_fits_peru_acoustics-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Peru acoustic-survey length-composition fits for h1_0.12."><img src="SCW16_files/figure-html/final_h1_length_fits_peru_acoustics-2.png" class="img-fluid figure-img" width="960" alt="Peru acoustic-survey length-composition fits for h1_0.12."></a></p>
+<figcaption>Peru acoustic-survey length-composition fits for h1_0.12.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-6-tab">
+<p>The retrospective SSB plot checks whether recent biomass estimates are stable when terminal years are peeled from the assessment. Any systematic peel pattern would indicate that the final years are exerting leverage on the single-stock biomass scale.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h1_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Retrospective spawning biomass from five peels for h1_0.12."><img src="SCW16_files/figure-html/final_h1_retro_ssb-1.png" class="img-fluid figure-img" width="672" alt="Retrospective spawning biomass from five peels for h1_0.12."></a></p>
+<figcaption>Retrospective spawning biomass from five peels for h1_0.12.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-7-tab">
+<p>The retrospective recruitment plot provides the corresponding check for year-class estimates. Recruitment peels are expected to be more variable than biomass peels, but persistent directional changes would be evidence that recent data are revising the estimated strength of terminal cohorts.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h1_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Retrospective recruitment from five peels for h1_0.12."><img src="SCW16_files/figure-html/final_h1_retro_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Retrospective recruitment from five peels for h1_0.12."></a></p>
 <figcaption>Retrospective recruitment from five peels for h1_0.12.</figcaption>
 </figure>
 </div>
@@ -953,15 +1076,17 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="two-stock-hypothesis-1" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="two-stock-hypothesis-1"><span class="header-section-number">5.2</span> Two-Stock Hypothesis</h2>
+<p>For the two-stock final model, diagnostics are interpreted by stock. The southern stock carries the age-composition information, while the FarNorth stock carries the FarNorth fishery and Peru acoustic length-composition information. This split is important when comparing the diagnostic behavior with the data sensitivities because several sensitivity runs affect the FarNorth stock without changing the southern-stock trajectory.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Index Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Retrospective SSB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false" href="">Retrospective Recruitment</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Index Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Age OSA and Aggregate Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-5" role="tab" aria-controls="tabset-4-5" aria-selected="false" href="">Peru Acoustic Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-6" role="tab" aria-controls="tabset-4-6" aria-selected="false" href="">Retrospective SSB</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-7" role="tab" aria-controls="tabset-4-7" aria-selected="false" href="">Retrospective Recruitment</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>The two-stock index fits show how the final model partitions retained abundance indices between the southern and FarNorth stocks. The FarNorth index behavior is especially important because the terminal <code>0.12</code> run estimates very low FarNorth spawning biomass and high fishing mortality.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Observed and predicted abundance-index values for h2_0.12."><img src="SCW16_files/figure-html/final_h2_index_fits-1.png" class="img-fluid figure-img" width="768" alt="Observed and predicted abundance-index values for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_index_fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Observed and predicted abundance-index values for h2_0.12."><img src="SCW16_files/figure-html/final_h2_index_fits-1.png" class="img-fluid figure-img" width="768" alt="Observed and predicted abundance-index values for h2_0.12."></a></p>
 <figcaption>Observed and predicted abundance-index values for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -969,7 +1094,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_index_fits-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Observed and predicted abundance-index values for h2_0.12."><img src="SCW16_files/figure-html/final_h2_index_fits-2.png" class="img-fluid figure-img" width="768" alt="Observed and predicted abundance-index values for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_index_fits-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Observed and predicted abundance-index values for h2_0.12."><img src="SCW16_files/figure-html/final_h2_index_fits-2.png" class="img-fluid figure-img" width="768" alt="Observed and predicted abundance-index values for h2_0.12."></a></p>
 <figcaption>Observed and predicted abundance-index values for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -977,11 +1102,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>The age-composition diagnostics for the two-stock model apply to the southern stock. The same fleet-specific ggplot display is used here as in the single-stock model, which makes differences in modal age and tail behavior among the southern-stock fisheries easier to identify.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Fishery age-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_fits_catch-1.png" class="img-fluid figure-img" width="960" alt="Fishery age-composition fits for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_age_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Fishery age-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_fits_catch-1.png" class="img-fluid figure-img" width="960" alt="Fishery age-composition fits for h2_0.12."></a></p>
 <figcaption>Fishery age-composition fits for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -989,7 +1115,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Fishery age-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_fits_catch-2.png" class="img-fluid figure-img" width="960" alt="Fishery age-composition fits for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_age_fits_catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Fishery age-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_fits_catch-2.png" class="img-fluid figure-img" width="960" alt="Fishery age-composition fits for h2_0.12."></a></p>
 <figcaption>Fishery age-composition fits for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -997,7 +1123,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Fishery age-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_fits_catch-3.png" class="img-fluid figure-img" width="960" alt="Fishery age-composition fits for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_age_fits_catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Fishery age-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_fits_catch-3.png" class="img-fluid figure-img" width="960" alt="Fishery age-composition fits for h2_0.12."></a></p>
 <figcaption>Fishery age-composition fits for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -1005,43 +1131,80 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>The OSA and aggregate age-composition diagnostics for the two-stock model summarize southern-stock age residuals. These diagnostics are complementary to the year-by-year age panels because they show whether residual departures are broadly distributed or concentrated in specific fleets or ages.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Fishery length-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_length_fits_catch-1.png" class="img-fluid figure-img" width="672" alt="Fishery length-composition fits for h2_0.12."></a></p>
-<figcaption>Fishery length-composition fits for h2_0.12.</figcaption>
+<p><a href="SCW16_files/figure-html/final_h2_age_osa_aggregate-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="OSA residual QQ diagnostics and aggregate age-composition fits for the southern stock in h2_0.12."><img src="SCW16_files/figure-html/final_h2_age_osa_aggregate-1.png" class="img-fluid figure-img" width="864" alt="OSA residual QQ diagnostics and aggregate age-composition fits for the southern stock in h2_0.12."></a></p>
+<figcaption>OSA residual QQ diagnostics and aggregate age-composition fits for the southern stock in h2_0.12.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<p>The FarNorth fishery length-composition diagnostics are shown on stock 2 for the two-stock model. These fits are central to evaluating the FarNorth component because the FarNorth terminal biomass and fishing mortality are highly sensitive to the treatment of Peruvian data.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Retrospective spawning biomass from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_ssb-1.png" class="img-fluid figure-img" width="672" alt="Retrospective spawning biomass from five peels for h2_0.12."></a></p>
-<figcaption>Retrospective spawning biomass from five peels for h2_0.12.</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_retro_ssb-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Retrospective spawning biomass from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_ssb-2.png" class="img-fluid figure-img" width="672" alt="Retrospective spawning biomass from five peels for h2_0.12."></a></p>
-<figcaption>Retrospective spawning biomass from five peels for h2_0.12.</figcaption>
+<p><a href="SCW16_files/figure-html/final_h2_length_fits_catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Fishery length-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_length_fits_catch-1.png" class="img-fluid figure-img" width="960" alt="Fishery length-composition fits for h2_0.12."></a></p>
+<figcaption>Fishery length-composition fits for h2_0.12.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
+<p>The Peru acoustic length-composition panels are also shown on stock 2 for the two-stock model. They provide a direct check on the seasonal Peru acoustic length data that are removed in <code>1.03</code> and replaced with the older Peru acoustic configuration in <code>1.04</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Retrospective recruitment from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Retrospective recruitment from five peels for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_length_fits_peru_acoustics-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Peru acoustic-survey length-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_length_fits_peru_acoustics-1.png" class="img-fluid figure-img" width="960" alt="Peru acoustic-survey length-composition fits for h2_0.12."></a></p>
+<figcaption>Peru acoustic-survey length-composition fits for h2_0.12.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h2_length_fits_peru_acoustics-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Peru acoustic-survey length-composition fits for h2_0.12."><img src="SCW16_files/figure-html/final_h2_length_fits_peru_acoustics-2.png" class="img-fluid figure-img" width="960" alt="Peru acoustic-survey length-composition fits for h2_0.12."></a></p>
+<figcaption>Peru acoustic-survey length-composition fits for h2_0.12.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
+<p>The two-stock retrospective SSB plot should be read by stock because peel behavior can differ between the southern and FarNorth components. The FarNorth trajectory is the key diagnostic target given the low terminal biomass in <code>0.12</code> and the sensitivity of that result to Peru acoustic data treatment.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h2_retro_ssb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Retrospective spawning biomass from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_ssb-1.png" class="img-fluid figure-img" width="672" alt="Retrospective spawning biomass from five peels for h2_0.12."></a></p>
+<figcaption>Retrospective spawning biomass from five peels for h2_0.12.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h2_retro_ssb-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Retrospective spawning biomass from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_ssb-2.png" class="img-fluid figure-img" width="672" alt="Retrospective spawning biomass from five peels for h2_0.12."></a></p>
+<figcaption>Retrospective spawning biomass from five peels for h2_0.12.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-7-tab">
+<p>The two-stock recruitment retrospectives evaluate whether recent year-class estimates are stable under the same five peels. As with biomass, the FarNorth recruitment estimates should be interpreted alongside the data sensitivities because the composition and abundance-index information for that stock is more limited and more influential.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="SCW16_files/figure-html/final_h2_retro_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Retrospective recruitment from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Retrospective recruitment from five peels for h2_0.12."></a></p>
 <figcaption>Retrospective recruitment from five peels for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -1049,7 +1212,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/final_h2_retro_recruitment-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Retrospective recruitment from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_recruitment-2.png" class="img-fluid figure-img" width="672" alt="Retrospective recruitment from five peels for h2_0.12."></a></p>
+<p><a href="SCW16_files/figure-html/final_h2_retro_recruitment-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Retrospective recruitment from five peels for h2_0.12."><img src="SCW16_files/figure-html/final_h2_retro_recruitment-2.png" class="img-fluid figure-img" width="672" alt="Retrospective recruitment from five peels for h2_0.12."></a></p>
 <figcaption>Retrospective recruitment from five peels for h2_0.12.</figcaption>
 </figure>
 </div>
@@ -1060,442 +1223,294 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="data-sensitivities" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Data Sensitivities</h1>
-<p>These sensitivities all start from the <code>0.12</code> final bridge configuration, except <code>1.04</code>, which starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>.</p>
-<div class="cell" data-tbl-cap="Terminal-year metrics by model, hypothesis, and stock.">
+<section id="adnuts-mcmc-diagnostics" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> ADNUTS MCMC Diagnostics</h1>
+<p>ADNUTS was run for the final <code>0.12</code> configuration under both stock-structure hypotheses using four chains and 1,000 iterations per chain, with 500 warmup and 500 post-warmup iterations. These diagnostics are intended to check posterior sampling behavior for the final deterministic configuration, not to compare alternative data sensitivities.</p>
+<p>h1_0.12 single-stock produced 2,000 post-warmup draws, with 0 divergences, 0 maximum-tree-depth hits, maximum Rhat of 1.040, minimum bulk ESS of 106, and median bulk ESS of 1554. h2_0.12 two-stock produced 2,000 post-warmup draws, with 0 divergences, 0 maximum-tree-depth hits, maximum Rhat of 1.080, minimum bulk ESS of 54, and median bulk ESS of 1566. Both runs had zero post-warmup divergences and zero post-warmup maximum-tree-depth hits, so the short runs did not show the clearest NUTS geometry failures. The Rhat and ESS diagnostics are still not fully satisfactory: the single-stock run shows mild residual mixing concerns concentrated in fishing-mortality and recruitment-deviation parameters, while the two-stock run shows stronger mixing concerns in fishery-selectivity parameters. These MCMC results should therefore be read as diagnostics of the final model configuration rather than as final posterior summaries for inference.</p>
+<p>The pair and trace plots focus on the parameters with the highest Rhat values from each run, so they deliberately emphasize the parameters most likely to reveal mixing problems.</p>
+<div class="cell" data-tbl-cap="ADNUTS MCMC summary diagnostics for the final 0.12 models.">
 <table class="table caption-top table-sm table-striped small">
-<caption>Terminal-year metrics by model, hypothesis, and stock.</caption>
+<caption>ADNUTS MCMC summary diagnostics for the final 0.12 models.</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">SSB</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Total biomass</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Recruitment</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Max total F at age</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Chains</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Iterations</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Warmup</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Post-warmup per chain</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Divergences</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max treedepth hits</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max Rhat</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Min bulk ESS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Median bulk ESS</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">0.00</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">15183</td>
-<td style="text-align: right;">21807</td>
-<td style="text-align: right;">17018</td>
-<td style="text-align: right;">0.589</td>
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">1554</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">0.12</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">3211</td>
-<td style="text-align: right;">6342</td>
-<td style="text-align: right;">10667</td>
-<td style="text-align: right;">2.462</td>
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">1566</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell" data-tbl-cap="Ten lowest-effective-sample-size monitored parameters from each final 0.12 ADNUTS run.">
+<table class="table caption-top table-sm table-striped small">
+<caption>Ten lowest-effective-sample-size monitored parameters from each final 0.12 ADNUTS run.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Bulk ESS</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rhat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[180]</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">1.018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[181]</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">1.019</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.01</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">3342</td>
-<td style="text-align: right;">6471</td>
-<td style="text-align: right;">10365</td>
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[12]</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">1.027</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[179]</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">1.014</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[31]</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">1.020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[14]</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">1.026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[67]</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">1.022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[68]</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">1.023</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">fmort[13]</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">1.025</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.12 single-stock</td>
+<td style="text-align: left;">rec_dev[11]</td>
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">1.031</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][173]</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">1.080</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][155]</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">1.075</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][145]</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">1.078</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][146]</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">1.076</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][154]</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.066</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][163]</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.069</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][172]</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">1.072</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][181]</td>
+<td style="text-align: right;">70</td>
 <td style="text-align: right;">1.064</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.02</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">5998</td>
-<td style="text-align: right;">9922</td>
-<td style="text-align: right;">11610</td>
-<td style="text-align: right;">3.061</td>
-</tr>
 <tr class="odd">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.03</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">5187</td>
-<td style="text-align: right;">8917</td>
-<td style="text-align: right;">12005</td>
-<td style="text-align: right;">2.074</td>
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][136]</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">1.070</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.04</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">5223</td>
-<td style="text-align: right;">8955</td>
-<td style="text-align: right;">11927</td>
-<td style="text-align: right;">2.109</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.00</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">11075</td>
-<td style="text-align: right;">16426</td>
-<td style="text-align: right;">15257</td>
-<td style="text-align: right;">0.596</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.00</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">936</td>
-<td style="text-align: right;">1507</td>
-<td style="text-align: right;">1118</td>
-<td style="text-align: right;">0.483</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.12</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">6719</td>
-<td style="text-align: right;">11510</td>
-<td style="text-align: right;">21317</td>
-<td style="text-align: right;">2.212</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.12</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">37</td>
-<td style="text-align: right;">277</td>
-<td style="text-align: right;">444</td>
-<td style="text-align: right;">37.232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.01</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">7973</td>
-<td style="text-align: right;">13164</td>
-<td style="text-align: right;">22503</td>
-<td style="text-align: right;">0.694</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.01</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">37</td>
-<td style="text-align: right;">277</td>
-<td style="text-align: right;">444</td>
-<td style="text-align: right;">37.232</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.02</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">6719</td>
-<td style="text-align: right;">11510</td>
-<td style="text-align: right;">21317</td>
-<td style="text-align: right;">2.212</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.02</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">34</td>
-<td style="text-align: right;">277</td>
-<td style="text-align: right;">445</td>
-<td style="text-align: right;">7.674</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.03</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">6719</td>
-<td style="text-align: right;">11510</td>
-<td style="text-align: right;">21317</td>
-<td style="text-align: right;">2.212</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.03</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">253</td>
-<td style="text-align: right;">634</td>
-<td style="text-align: right;">979</td>
-<td style="text-align: right;">8.301</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.04</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">6719</td>
-<td style="text-align: right;">11510</td>
-<td style="text-align: right;">21317</td>
-<td style="text-align: right;">2.212</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.04</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">1083</td>
-<td style="text-align: right;">1747</td>
-<td style="text-align: right;">1420</td>
-<td style="text-align: right;">0.292</td>
+<td style="text-align: left;">h2_0.12 two-stock</td>
+<td style="text-align: left;">log_selcoffs_fsh[4][127]</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">1.066</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="cell" data-tbl-cap="Terminal-year percent difference relative to the final model, 0.12.">
-<table class="table caption-top table-sm table-striped small">
-<caption>Terminal-year percent difference relative to the final model, 0.12.</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Hypothesis</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">SSB (%)</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Total biomass (%)</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Recruitment (%)</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Max total F at age (%)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">0.00</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">372.8</td>
-<td style="text-align: right;">243.8</td>
-<td style="text-align: right;">59.5</td>
-<td style="text-align: right;">-76.1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">0.12</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.01</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">4.1</td>
-<td style="text-align: right;">2.0</td>
-<td style="text-align: right;">-2.8</td>
-<td style="text-align: right;">-56.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.02</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">86.8</td>
-<td style="text-align: right;">56.4</td>
-<td style="text-align: right;">8.8</td>
-<td style="text-align: right;">24.3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.03</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">61.5</td>
-<td style="text-align: right;">40.6</td>
-<td style="text-align: right;">12.5</td>
-<td style="text-align: right;">-15.7</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h1</td>
-<td style="text-align: left;">1.04</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">62.6</td>
-<td style="text-align: right;">41.2</td>
-<td style="text-align: right;">11.8</td>
-<td style="text-align: right;">-14.3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.00</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">64.8</td>
-<td style="text-align: right;">42.7</td>
-<td style="text-align: right;">-28.4</td>
-<td style="text-align: right;">-73.1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.00</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">2418.0</td>
-<td style="text-align: right;">444.4</td>
-<td style="text-align: right;">151.8</td>
-<td style="text-align: right;">-98.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.12</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">0.12</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.01</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">18.7</td>
-<td style="text-align: right;">14.4</td>
-<td style="text-align: right;">5.6</td>
-<td style="text-align: right;">-68.6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.01</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.02</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.02</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">-8.9</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: right;">-79.4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.03</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.03</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">580.9</td>
-<td style="text-align: right;">129.0</td>
-<td style="text-align: right;">120.3</td>
-<td style="text-align: right;">-77.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.04</td>
-<td style="text-align: left;">Stock_1</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">h2</td>
-<td style="text-align: left;">1.04</td>
-<td style="text-align: left;">Stock_2</td>
-<td style="text-align: left;">2025</td>
-<td style="text-align: right;">2811.2</td>
-<td style="text-align: right;">531.3</td>
-<td style="text-align: right;">219.6</td>
-<td style="text-align: right;">-99.2</td>
-</tr>
-</tbody>
-</table>
-</div>
-<section id="single-stock-hypothesis-2" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="single-stock-hypothesis-2"><span class="header-section-number">6.1</span> Single-Stock Hypothesis</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Single-Stock Hypothesis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Two-Stock Hypothesis</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>The single-stock MCMC diagnostics should be read as a check on the aggregate-stock final model. The trace and pair plots emphasize the highest-Rhat monitored parameters; stable trace overlap across chains indicates adequate mixing for the most diagnostic subset of monitored parameters, while tree-depth hits indicate where NUTS required long trajectories even when chains otherwise mixed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h1_0_12_pairs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30" title="ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_pairs.png" class="img-fluid figure-img" style="width:100.0%" alt="ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12."></a></p>
+<figcaption>ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h1_0_12_trace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="ADNUTS trace plots for selected high-Rhat parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_trace.png" class="img-fluid figure-img" style="width:100.0%" alt="ADNUTS trace plots for selected high-Rhat parameters in h1_0.12."></a></p>
+<figcaption>ADNUTS trace plots for selected high-Rhat parameters in h1_0.12.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h1_0_12_rhat_ess.png" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_rhat_ess.png" class="img-fluid figure-img" style="width:100.0%" alt="Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12."></a></p>
+<figcaption>Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h1_0_12_sampler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="ADNUTS sampler diagnostics for h1_0.12."><img src="figures/adnuts/h1_0_12_sampler.png" class="img-fluid figure-img" style="width:100.0%" alt="ADNUTS sampler diagnostics for h1_0.12."></a></p>
+<figcaption>ADNUTS sampler diagnostics for h1_0.12.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>The two-stock MCMC diagnostics are especially important for the FarNorth component because the deterministic <code>0.12</code> result estimates very low terminal FarNorth biomass and high fishing mortality. The selected pair and trace diagnostics therefore provide a practical check on whether the posterior sampling is showing clear non-mixing in the parameters most flagged by Rhat and ESS.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h2_0_12_pairs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_pairs.png" class="img-fluid figure-img" style="width:100.0%" alt="ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12."></a></p>
+<figcaption>ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h2_0_12_trace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-35" title="ADNUTS trace plots for selected high-Rhat parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_trace.png" class="img-fluid figure-img" style="width:100.0%" alt="ADNUTS trace plots for selected high-Rhat parameters in h2_0.12."></a></p>
+<figcaption>ADNUTS trace plots for selected high-Rhat parameters in h2_0.12.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h2_0_12_rhat_ess.png" class="lightbox" data-gallery="quarto-lightbox-gallery-36" title="Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_rhat_ess.png" class="img-fluid figure-img" style="width:100.0%" alt="Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12."></a></p>
+<figcaption>Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/adnuts/h2_0_12_sampler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="ADNUTS sampler diagnostics for h2_0.12."><img src="figures/adnuts/h2_0_12_sampler.png" class="img-fluid figure-img" style="width:100.0%" alt="ADNUTS sampler diagnostics for h2_0.12."></a></p>
+<figcaption>ADNUTS sampler diagnostics for h2_0.12.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-sensitivities" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Data Sensitivities</h1>
+<p>These sensitivities all start from the <code>0.12</code> final bridge configuration, except <code>1.04</code>, which starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>. The terminal-year metric and percent-difference tables are provided near the beginning of the report and are not repeated here.</p>
+<p><code>SC13_1.15</code> is included as an additional SC13-style sensitivity. It downweights the terminal-year northern acoustic and Peruvian CPUE information, and therefore should be interpreted as a diagnostic of how strongly those recent observations affect the final-year stock status and fishing mortality pattern rather than as a competing final-model configuration.</p>
+<section id="single-stock-hypothesis-3" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="single-stock-hypothesis-3"><span class="header-section-number">7.1</span> Single-Stock Hypothesis</h2>
+<p>Under the single-stock hypothesis, the sensitivities retain the broad increase in biomass after the mid-2010s but differ in the magnitude of the rebuilding signal. Replacing the Chilean CPUE series (<code>1.01</code>) leaves terminal biomass close to <code>0.12</code>, while replacing the Peruvian CPUE (<code>1.02</code>) and dropping the two Peru acoustic series (<code>1.03</code>) both raise terminal biomass substantially. Adding the old Peru acoustic series back in <code>1.04</code> leaves the single-stock trajectory close to <code>1.03</code>, indicating that the larger single-stock biomass response is driven mainly by removal of the two seasonal Peru acoustic series rather than by the replacement index itself. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) is intermediate: terminal biomass is above <code>0.12</code> but below <code>1.02</code>-<code>1.04</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>The biomass panel shows the strongest separation among single-stock sensitivities after about 2015. <code>1.02</code>, <code>1.03</code>, and <code>1.04</code> all imply a higher recent biomass trajectory than the final model, whereas <code>1.01</code> remains close to <code>0.12</code> and <code>SC13_1.15</code> gives a moderate upward shift.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/sensitivity_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Biomass estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h1_biomass-1.png" class="img-fluid figure-img" width="672" alt="Biomass estimates for the final model and completed data sensitivities."></a></p>
+<p><a href="SCW16_files/figure-html/sensitivity_h1_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-38" title="Biomass estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h1_biomass-1.png" class="img-fluid figure-img" width="672" alt="Biomass estimates for the final model and completed data sensitivities."></a></p>
 <figcaption>Biomass estimates for the final model and completed data sensitivities.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>Recent recruitment remains elevated relative to the preceding low period across all single-stock sensitivities. The Peruvian CPUE and Peru acoustic sensitivities (<code>1.02</code>-<code>1.04</code>) produce somewhat higher terminal recruitment than <code>0.12</code>, while <code>SC13_1.15</code> gives lower terminal recruitment than the final model despite its higher terminal biomass.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/sensitivity_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Recruitment estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h1_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Recruitment estimates for the final model and completed data sensitivities."></a></p>
+<p><a href="SCW16_files/figure-html/sensitivity_h1_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39" title="Recruitment estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h1_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Recruitment estimates for the final model and completed data sensitivities."></a></p>
 <figcaption>Recruitment estimates for the final model and completed data sensitivities.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<p>The fishing-mortality response is not monotonic with biomass. <code>1.01</code> reduces terminal fishing mortality relative to <code>0.12</code>, <code>1.02</code> increases it, and <code>1.03</code>-<code>1.04</code> remain slightly below the final model but above the Chilean CPUE replacement. This indicates that the data substitutions affect both scale and recent selectivity/catch-at-age reconciliation, not only biomass level.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/sensitivity_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Fishing mortality estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h1_fmort-1.png" class="img-fluid figure-img" width="672" alt="Fishing mortality estimates for the final model and completed data sensitivities."></a></p>
+<p><a href="SCW16_files/figure-html/sensitivity_h1_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40" title="Fishing mortality estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h1_fmort-1.png" class="img-fluid figure-img" width="672" alt="Fishing mortality estimates for the final model and completed data sensitivities."></a></p>
 <figcaption>Fishing mortality estimates for the final model and completed data sensitivities.</figcaption>
 </figure>
 </div>
@@ -1505,41 +1520,45 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="two-stock-hypothesis-2" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="two-stock-hypothesis-2"><span class="header-section-number">6.2</span> Two-Stock Hypothesis</h2>
+<section id="two-stock-hypothesis-3" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="two-stock-hypothesis-3"><span class="header-section-number">7.2</span> Two-Stock Hypothesis</h2>
+<p>Under the two-stock hypothesis, the southern stock is insensitive to the FarNorth-only data changes in <code>1.02</code>-<code>1.04</code>, so its biomass, recruitment, and fishing mortality trajectories remain essentially the same as <code>0.12</code> in those runs. The FarNorth stock is much more sensitive: removing the two Peru acoustic series (<code>1.03</code>) raises FarNorth biomass from the very low final-model level, and adding back the old Peru acoustic series (<code>1.04</code>) produces the largest FarNorth terminal biomass and the lowest terminal fishing mortality among the data sensitivities. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) reduces southern-stock biomass relative to <code>0.12</code> while raising FarNorth biomass well above the final model but below <code>1.04</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>The biomass panel highlights the stock-specific nature of the sensitivity results. Southern-stock biomass changes mainly under <code>1.01</code> and <code>SC13_1.15</code>, whereas the FarNorth biomass trajectory is controlled by the Peru acoustic/CPUE treatment and is much higher in <code>1.03</code>, <code>1.04</code>, and <code>SC13_1.15</code> than in <code>0.12</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/sensitivity_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Biomass estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h2_biomass-1.png" class="img-fluid figure-img" width="672" alt="Biomass estimates for the final model and completed data sensitivities."></a></p>
+<p><a href="SCW16_files/figure-html/sensitivity_h2_biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-41" title="Biomass estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h2_biomass-1.png" class="img-fluid figure-img" width="672" alt="Biomass estimates for the final model and completed data sensitivities."></a></p>
 <figcaption>Biomass estimates for the final model and completed data sensitivities.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>Recruitment follows the same split. Southern-stock recruitment is unchanged for <code>1.02</code>-<code>1.04</code> but is lower under <code>SC13_1.15</code>; FarNorth recruitment increases when the seasonal Peru acoustic series are removed or replaced, with <code>1.04</code> giving the highest FarNorth terminal recruitment among the current data sensitivities.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/sensitivity_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Recruitment estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h2_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Recruitment estimates for the final model and completed data sensitivities."></a></p>
+<p><a href="SCW16_files/figure-html/sensitivity_h2_recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-42" title="Recruitment estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h2_recruitment-1.png" class="img-fluid figure-img" width="672" alt="Recruitment estimates for the final model and completed data sensitivities."></a></p>
 <figcaption>Recruitment estimates for the final model and completed data sensitivities.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The final model estimates very high terminal FarNorth fishing mortality, while <code>1.02</code>, <code>1.03</code>, and especially <code>1.04</code> reduce that estimate. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with downweighting recent observations that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="SCW16_files/figure-html/sensitivity_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29" title="Fishing mortality estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h2_fmort-1.png" class="img-fluid figure-img" width="672" alt="Fishing mortality estimates for the final model and completed data sensitivities."></a></p>
+<p><a href="SCW16_files/figure-html/sensitivity_h2_fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43" title="Fishing mortality estimates for the final model and completed data sensitivities."><img src="SCW16_files/figure-html/sensitivity_h2_fmort-1.png" class="img-fluid figure-img" width="672" alt="Fishing mortality estimates for the final model and completed data sensitivities."></a></p>
 <figcaption>Fishing mortality estimates for the final model and completed data sensitivities.</figcaption>
 </figure>
 </div>

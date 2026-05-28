@@ -433,9 +433,21 @@ plot_lengthcomp_fit <- function(data, source_name, ncol = 4) {
       .data$source_name == .env$source_name,
       is.finite(.data$observed) | is.finite(.data[[pred_col]])
     ) |>
+    dplyr::transmute(
+      year = as.integer(.data$year),
+      length = as.numeric(.data$bin),
+      observed = as.numeric(.data$observed),
+      predicted = as.numeric(.data[[pred_col]])
+    ) |>
+    dplyr::group_by(.data$year, .data$length) |>
+    dplyr::summarise(
+      observed = if (all(is.na(.data$observed))) NA_real_ else mean(.data$observed, na.rm = TRUE),
+      predicted = if (all(is.na(.data$predicted))) NA_real_ else mean(.data$predicted, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    dplyr::arrange(.data$year, .data$length) |>
     dplyr::mutate(
-      length = .data$bin,
-      predicted = .data[[pred_col]]
+      year = factor(.data$year, levels = sort(unique(.data$year)))
     )
 
   if (!nrow(plot_data)) {
