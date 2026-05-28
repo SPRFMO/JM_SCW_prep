@@ -259,7 +259,7 @@ Table&nbsp;1: Model configurations included in this report.
 <tr class="odd">
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">SC13 sensitivity</td>
-<td style="text-align: left;">Additional SC13 run that downweights the terminal-year northern acoustic and Peruvian CPUE information.</td>
+<td style="text-align: left;">Additional SC13 run that fully downweights the Acoustic N and Peruvian CPUE index series across all years.</td>
 </tr>
 </tbody>
 </table>
@@ -1785,7 +1785,7 @@ Figure&nbsp;45: ADNUTS sampler diagnostics for h2_0.12.
 <section id="data-sensitivities" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Data Sensitivities</h1>
 <p>These sensitivities all start from the <code>0.12</code> final bridge configuration, except <code>1.04</code>, which starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>. The terminal-year metric and percent-difference tables are provided near the beginning of the report and are not repeated here.</p>
-<p><code>SC13_1.15</code> is included as an additional SC13-style sensitivity. It downweights the terminal-year northern acoustic and Peruvian CPUE information, and therefore should be interpreted as a diagnostic of how strongly those recent observations affect the final-year stock status and fishing mortality pattern rather than as a competing final-model configuration.</p>
+<p><code>SC13_1.15</code> is included as an additional SC13-style sensitivity. It fully downweights the Acoustic N and Peruvian CPUE index series across all years, effectively removing their likelihood contribution rather than only reducing the influence of terminal-year observations. The run should therefore be interpreted as a diagnostic of how strongly those two complete index series affect the final-year stock status and fishing mortality pattern rather than as a competing final-model configuration.</p>
 <section id="single-stock-hypothesis-3" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="single-stock-hypothesis-3"><span class="header-section-number">7.1</span> Single-Stock Hypothesis</h2>
 <p>Under the single-stock hypothesis, the sensitivities retain the broad increase in biomass after the mid-2010s but differ in the magnitude of the rebuilding signal. Replacing the Chilean CPUE series (<code>1.01</code>) leaves terminal biomass close to <code>0.12</code>, while replacing the Peruvian CPUE (<code>1.02</code>) and dropping the two Peru acoustic series (<code>1.03</code>) both raise terminal biomass substantially. Adding the old Peru acoustic series back in <code>1.04</code> leaves the single-stock trajectory close to <code>1.03</code>, indicating that the larger single-stock biomass response is driven mainly by removal of the two seasonal Peru acoustic series rather than by the replacement index itself. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) is intermediate: terminal biomass is above <code>0.12</code> but below <code>1.02</code>-<code>1.04</code>.</p>
@@ -1887,7 +1887,7 @@ Figure&nbsp;50: Recruitment estimates for the final model and completed data sen
 </div>
 </div>
 <div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
-<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The final model estimates very high terminal FarNorth fishing mortality, while <code>1.02</code>, <code>1.03</code>, and especially <code>1.04</code> reduce that estimate. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with downweighting recent observations that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
+<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The final model estimates very high terminal FarNorth fishing mortality, while <code>1.02</code>, <code>1.03</code>, and especially <code>1.04</code> reduce that estimate. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with fully downweighting the Acoustic N and Peruvian CPUE index series that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
