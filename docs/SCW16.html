@@ -77,16 +77,21 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#single-stock-hypothesis-2" id="toc-single-stock-hypothesis-2" class="nav-link" data-scroll-target="#single-stock-hypothesis-2"><span class="header-section-number">7.1</span> Single-Stock Hypothesis</a></li>
   <li><a href="#two-stock-hypothesis-2" id="toc-two-stock-hypothesis-2" class="nav-link" data-scroll-target="#two-stock-hypothesis-2"><span class="header-section-number">7.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
-  <li><a href="#adnuts-mcmc-diagnostics" id="toc-adnuts-mcmc-diagnostics" class="nav-link" data-scroll-target="#adnuts-mcmc-diagnostics"><span class="header-section-number">8</span> ADNUTS MCMC Diagnostics</a></li>
-  <li><a href="#data-sensitivities" id="toc-data-sensitivities" class="nav-link" data-scroll-target="#data-sensitivities"><span class="header-section-number">9</span> Data Sensitivities</a>
+  <li><a href="#acoustic-drop-catchability-break-diagnostics" id="toc-acoustic-drop-catchability-break-diagnostics" class="nav-link" data-scroll-target="#acoustic-drop-catchability-break-diagnostics"><span class="header-section-number">8</span> 0.14 Acoustic-Drop Catchability-Break Diagnostics</a>
   <ul class="collapse">
-  <li><a href="#single-stock-hypothesis-4" id="toc-single-stock-hypothesis-4" class="nav-link" data-scroll-target="#single-stock-hypothesis-4"><span class="header-section-number">9.1</span> Single-Stock Hypothesis</a></li>
-  <li><a href="#two-stock-hypothesis-4" id="toc-two-stock-hypothesis-4" class="nav-link" data-scroll-target="#two-stock-hypothesis-4"><span class="header-section-number">9.2</span> Two-Stock Hypothesis</a></li>
+  <li><a href="#single-stock-hypothesis-3" id="toc-single-stock-hypothesis-3" class="nav-link" data-scroll-target="#single-stock-hypothesis-3"><span class="header-section-number">8.1</span> Single-Stock Hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-3" id="toc-two-stock-hypothesis-3" class="nav-link" data-scroll-target="#two-stock-hypothesis-3"><span class="header-section-number">8.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
-  <li><a href="#other-trials" id="toc-other-trials" class="nav-link" data-scroll-target="#other-trials"><span class="header-section-number">10</span> Other trials</a>
+  <li><a href="#adnuts-mcmc-diagnostics" id="toc-adnuts-mcmc-diagnostics" class="nav-link" data-scroll-target="#adnuts-mcmc-diagnostics"><span class="header-section-number">9</span> ADNUTS MCMC Diagnostics</a></li>
+  <li><a href="#data-sensitivities" id="toc-data-sensitivities" class="nav-link" data-scroll-target="#data-sensitivities"><span class="header-section-number">10</span> Data Sensitivities</a>
   <ul class="collapse">
   <li><a href="#single-stock-hypothesis-5" id="toc-single-stock-hypothesis-5" class="nav-link" data-scroll-target="#single-stock-hypothesis-5"><span class="header-section-number">10.1</span> Single-Stock Hypothesis</a></li>
   <li><a href="#two-stock-hypothesis-5" id="toc-two-stock-hypothesis-5" class="nav-link" data-scroll-target="#two-stock-hypothesis-5"><span class="header-section-number">10.2</span> Two-Stock Hypothesis</a></li>
+  </ul></li>
+  <li><a href="#other-trials" id="toc-other-trials" class="nav-link" data-scroll-target="#other-trials"><span class="header-section-number">11</span> Other trials</a>
+  <ul class="collapse">
+  <li><a href="#single-stock-hypothesis-6" id="toc-single-stock-hypothesis-6" class="nav-link" data-scroll-target="#single-stock-hypothesis-6"><span class="header-section-number">11.1</span> Single-Stock Hypothesis</a></li>
+  <li><a href="#two-stock-hypothesis-6" id="toc-two-stock-hypothesis-6" class="nav-link" data-scroll-target="#two-stock-hypothesis-6"><span class="header-section-number">11.2</span> Two-Stock Hypothesis</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -222,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 <div class="paper-title">Jack Mackerel Assessment SCW16</div>
-<p>This focused report summarizes the completed SCW16 model outputs for the SC13 baseline (<code>0.00</code>), the current final model (<code>0.12</code>), the 2018 Peruvian CPUE catchability-break sensitivity (<code>0.13</code>), the data sensitivities completed so far (<code>1.01</code>-<code>1.04</code>), and the additional SC13 downweighting sensitivity (<code>SC13_1.15</code>). Two additional diagnostic trials (<code>1.05</code> and <code>1.06</code>) are shown separately from the data sensitivities under “Other trials.” ADNUTS MCMC diagnostics for the final <code>0.12</code> configuration are included for the single-stock and two-stock hypotheses.</p>
+<p>This focused report summarizes the completed SCW16 model outputs for the SC13 baseline (<code>0.00</code>), the current final model (<code>0.12</code>), the 2018 Peruvian CPUE catchability-break sensitivities (<code>0.13</code> and <code>0.14</code>), the data sensitivities completed so far (<code>1.01</code>-<code>1.04</code>), and the additional SC13 downweighting sensitivity (<code>SC13_1.15</code>). Two additional diagnostic trials (<code>1.05</code> and <code>1.06</code>) are shown separately from the data sensitivities under “Other trials.” ADNUTS MCMC diagnostics for the final <code>0.12</code> configuration are included for the single-stock and two-stock hypotheses.</p>
 <section id="model-set" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Model Set</h1>
 <div id="tbl-model-set" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -256,36 +261,41 @@ Table&nbsp;1: Model configurations included in this report.
 <td style="text-align: left;">As 0.12 but adds a 2018 catchability break for the Peruvian CPUE index.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Catchability/data sensitivity</td>
+<td style="text-align: left;">As 1.03 but adds the 2018 catchability break for the Peruvian CPUE index.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Data sensitivity</td>
 <td style="text-align: left;">As 0.12 but replaces `Chile_CPUE` with the 0.00 Chilean CPUE series.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Data sensitivity</td>
 <td style="text-align: left;">As 0.12 but replaces `Peru_CPUE` with the 0.00 Peruvian CPUE series.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Data sensitivity</td>
 <td style="text-align: left;">As 0.12 but drops `Peru_Acoust_S1` and `Peru_Acoust_S2`.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Data sensitivity</td>
 <td style="text-align: left;">As 1.03 but adds the old 0.00 `Peru_Acoustic` index, with selectivity tied to the FarNorth fishery.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">1.05</td>
 <td style="text-align: left;">Other trial</td>
 <td style="text-align: left;">As 0.12 but replaces `Peru_CPUE` with a noisy (CV = 60%) nominal CPUE series for 1990-2025.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1.06</td>
 <td style="text-align: left;">Other trial</td>
 <td style="text-align: left;">As 1.05 but removes `Peru_Acoust_S1` and `Peru_Acoust_S2`.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">SC13 sensitivity</td>
 <td style="text-align: left;">Additional SC13 run that fully downweights the Acoustic N and Peruvian CPUE index series across all years.</td>
@@ -421,13 +431,21 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 </tr>
 <tr class="even">
 <td style="text-align: left;">h1</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">h1_0.14</td>
+<td style="text-align: right;">1844</td>
+<td style="text-align: right;">1301.560</td>
+<td style="text-align: right;">0.0003153</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">h1_1.01</td>
 <td style="text-align: right;">1871</td>
 <td style="text-align: right;">3811.122</td>
 <td style="text-align: right;">0.0002282</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">h1_1.02</td>
@@ -435,7 +453,7 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: right;">3831.319</td>
 <td style="text-align: right;">0.0002985</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">h1_1.03</td>
@@ -443,7 +461,7 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: right;">1306.689</td>
 <td style="text-align: right;">0.0002805</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">h1_1.04</td>
@@ -451,7 +469,7 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: right;">1354.092</td>
 <td style="text-align: right;">0.0003000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">h1_1.15</td>
@@ -459,7 +477,7 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: right;">1166.248</td>
 <td style="text-align: right;">0.0002013</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">h2_0.00</td>
@@ -467,7 +485,7 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: right;">1249.606</td>
 <td style="text-align: right;">0.0002636</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">h2_0.12</td>
@@ -475,13 +493,21 @@ Table&nbsp;2: Negative log-likelihood and maximum gradient from completed determ
 <td style="text-align: right;">2712.406</td>
 <td style="text-align: right;">0.0001995</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.13</td>
 <td style="text-align: left;">h2_0.13</td>
 <td style="text-align: right;">1933</td>
 <td style="text-align: right;">2680.857</td>
 <td style="text-align: right;">0.0002882</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">h2_0.14</td>
+<td style="text-align: right;">1905</td>
+<td style="text-align: right;">1254.991</td>
+<td style="text-align: right;">0.0001779</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">h2</td>
@@ -583,6 +609,16 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 </tr>
 <tr class="even">
 <td style="text-align: left;">h1</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">5773</td>
+<td style="text-align: right;">9679</td>
+<td style="text-align: right;">12358</td>
+<td style="text-align: right;">2.162</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_1</td>
 <td style="text-align: left;">2025</td>
@@ -591,7 +627,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">10365</td>
 <td style="text-align: right;">1.064</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_1</td>
@@ -601,7 +637,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">11610</td>
 <td style="text-align: right;">3.061</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_1</td>
@@ -611,7 +647,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">12005</td>
 <td style="text-align: right;">2.074</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_1</td>
@@ -621,7 +657,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">11927</td>
 <td style="text-align: right;">2.109</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">Stock_1</td>
@@ -631,7 +667,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">9536</td>
 <td style="text-align: right;">0.837</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_1</td>
@@ -641,7 +677,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">15257</td>
 <td style="text-align: right;">0.596</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_2</td>
@@ -651,7 +687,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">1118</td>
 <td style="text-align: right;">0.483</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
@@ -661,7 +697,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_2</td>
@@ -671,7 +707,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">444</td>
 <td style="text-align: right;">37.232</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.13</td>
 <td style="text-align: left;">Stock_1</td>
@@ -681,7 +717,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.13</td>
 <td style="text-align: left;">Stock_2</td>
@@ -691,7 +727,27 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">445</td>
 <td style="text-align: right;">6.176</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">6719</td>
+<td style="text-align: right;">11510</td>
+<td style="text-align: right;">21317</td>
+<td style="text-align: right;">2.212</td>
+</tr>
 <tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">279</td>
+<td style="text-align: right;">669</td>
+<td style="text-align: right;">997</td>
+<td style="text-align: right;">3.956</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_1</td>
@@ -701,7 +757,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">22503</td>
 <td style="text-align: right;">0.694</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_2</td>
@@ -711,7 +767,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">444</td>
 <td style="text-align: right;">37.232</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_1</td>
@@ -721,7 +777,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_2</td>
@@ -731,7 +787,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">445</td>
 <td style="text-align: right;">7.674</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_1</td>
@@ -741,7 +797,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_2</td>
@@ -751,7 +807,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">979</td>
 <td style="text-align: right;">8.301</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_1</td>
@@ -761,7 +817,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">21317</td>
 <td style="text-align: right;">2.212</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_2</td>
@@ -771,7 +827,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">1420</td>
 <td style="text-align: right;">0.292</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">Stock_1</td>
@@ -781,7 +837,7 @@ Table&nbsp;3: Terminal-year metrics by model, hypothesis, and stock.
 <td style="text-align: right;">9432</td>
 <td style="text-align: right;">0.748</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">Stock_2</td>
@@ -848,6 +904,16 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 </tr>
 <tr class="even">
 <td style="text-align: left;">h1</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">79.8</td>
+<td style="text-align: right;">52.6</td>
+<td style="text-align: right;">15.9</td>
+<td style="text-align: right;">-12.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_1</td>
 <td style="text-align: left;">2025</td>
@@ -856,7 +922,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">-2.8</td>
 <td style="text-align: right;">-56.8</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_1</td>
@@ -866,7 +932,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">8.8</td>
 <td style="text-align: right;">24.3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_1</td>
@@ -876,7 +942,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">12.5</td>
 <td style="text-align: right;">-15.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_1</td>
@@ -886,7 +952,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">11.8</td>
 <td style="text-align: right;">-14.3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h1</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">Stock_1</td>
@@ -896,7 +962,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">-10.6</td>
 <td style="text-align: right;">-66.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_1</td>
@@ -906,7 +972,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">-28.4</td>
 <td style="text-align: right;">-73.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.00</td>
 <td style="text-align: left;">Stock_2</td>
@@ -916,7 +982,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">151.8</td>
 <td style="text-align: right;">-98.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_1</td>
@@ -926,7 +992,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.12</td>
 <td style="text-align: left;">Stock_2</td>
@@ -936,7 +1002,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.13</td>
 <td style="text-align: left;">Stock_1</td>
@@ -946,7 +1012,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">0.13</td>
 <td style="text-align: left;">Stock_2</td>
@@ -956,7 +1022,27 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.1</td>
 <td style="text-align: right;">-83.4</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Stock_1</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
 <tr class="odd">
+<td style="text-align: left;">h2</td>
+<td style="text-align: left;">0.14</td>
+<td style="text-align: left;">Stock_2</td>
+<td style="text-align: left;">2025</td>
+<td style="text-align: right;">649.9</td>
+<td style="text-align: right;">141.5</td>
+<td style="text-align: right;">124.4</td>
+<td style="text-align: right;">-89.4</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_1</td>
@@ -966,7 +1052,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">5.6</td>
 <td style="text-align: right;">-68.6</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.01</td>
 <td style="text-align: left;">Stock_2</td>
@@ -976,7 +1062,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_1</td>
@@ -986,7 +1072,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.02</td>
 <td style="text-align: left;">Stock_2</td>
@@ -996,7 +1082,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.2</td>
 <td style="text-align: right;">-79.4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_1</td>
@@ -1006,7 +1092,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.03</td>
 <td style="text-align: left;">Stock_2</td>
@@ -1016,7 +1102,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">120.3</td>
 <td style="text-align: right;">-77.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_1</td>
@@ -1026,7 +1112,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">0.0</td>
 <td style="text-align: right;">0.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">1.04</td>
 <td style="text-align: left;">Stock_2</td>
@@ -1036,7 +1122,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">219.6</td>
 <td style="text-align: right;">-99.2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">Stock_1</td>
@@ -1046,7 +1132,7 @@ Table&nbsp;4: Terminal-year percent difference relative to the final model, 0.12
 <td style="text-align: right;">-55.8</td>
 <td style="text-align: right;">-66.2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">h2</td>
 <td style="text-align: left;">SC13_1.15</td>
 <td style="text-align: left;">Stock_2</td>
@@ -2082,8 +2168,356 @@ Figure&nbsp;62: OSA residual QQ diagnostics and aggregate length-composition fit
 </div>
 </section>
 </section>
-<section id="adnuts-mcmc-diagnostics" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> ADNUTS MCMC Diagnostics</h1>
+<section id="acoustic-drop-catchability-break-diagnostics" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 0.14 Acoustic-Drop Catchability-Break Diagnostics</h1>
+<p>Model <code>0.14</code> starts from <code>1.03</code>, which drops the two seasonal Peru acoustic abundance-index series (<code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>), and then adds the same 2018 catchability break for the Peruvian CPUE index used in <code>0.13</code>. The diagnostics in this section therefore focus on the combined effect of removing the seasonal Peru acoustic series and allowing a post-2018 Peruvian CPUE catchability shift. No ADNUTS MCMC diagnostics are included for <code>0.14</code>, and retrospective diagnostics are not shown because <code>0.14</code> retrospective peels have not been run.</p>
+<section id="single-stock-hypothesis-3" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="single-stock-hypothesis-3"><span class="header-section-number">8.1</span> Single-Stock Hypothesis</h2>
+<p>For the single-stock hypothesis, <code>0.14</code> increases terminal biomass relative to <code>1.03</code> and keeps terminal fishing mortality below the <code>0.12</code> final model. The diagnostic question is whether the Peruvian CPUE catchability break changes the index fit while leaving the remaining fishery composition residuals broadly comparable to the acoustic-drop configuration.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">Index Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Index Catchability</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false" href="">Selectivity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-4" role="tab" aria-controls="tabset-8-4" aria-selected="false" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-5" role="tab" aria-controls="tabset-8-5" aria-selected="false" href="">Age OSA and Aggregate Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-6" role="tab" aria-controls="tabset-8-6" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-7" role="tab" aria-controls="tabset-8-7" aria-selected="false" href="">Length OSA and Aggregate Fits</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<p>The single-stock index fits show the retained five-index configuration inherited from <code>1.03</code>. Because <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code> are removed, the main FarNorth index contrast in this run is the Peruvian CPUE fit before and after the 2018 catchability break.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-index-fits" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-index-fits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-index-fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-69" title="Figure&nbsp;63: Observed and predicted abundance-index values for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-index-fits-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-index-fits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;63: Observed and predicted abundance-index values for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<p>The catchability panel shows the fitted <code>q</code> paths for the retained abundance indices. For <code>0.14</code>, the key diagnostic feature is the 2018 Peruvian CPUE step applied after the seasonal Peru acoustic series have been removed.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-index-catchability" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-index-catchability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-index-catchability-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-70" title="Figure&nbsp;64: Index catchability time series for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-index-catchability-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-index-catchability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;64: Index catchability time series for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<p>The selectivity diagnostics check that the <code>0.14</code> change is being evaluated as an index-catchability sensitivity rather than as a change in fishery or survey/index selectivity. The survey/index panel is also useful for confirming the reduced index set relative to <code>0.12</code> and <code>0.13</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-fishery-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-fishery-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-fishery-selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-71" title="Figure&nbsp;65: Fishery selectivity diagnostics for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-fishery-selectivity-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-fishery-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;65: Fishery selectivity diagnostics for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-index-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-index-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-index-selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-72" title="Figure&nbsp;66: Survey/index selectivity diagnostics for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-index-selectivity-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-index-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;66: Survey/index selectivity diagnostics for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-4-tab">
+<p>The fishery age-composition panels show whether the added Peruvian CPUE catchability break changes the fitted age pattern in the retained fishery age data. These diagnostics are expected to be close to <code>1.03</code> because the age-composition inputs are unchanged.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-age-fits-catch-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-age-fits-catch-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-age-fits-catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-73" title="Figure&nbsp;67: Fishery age-composition fits for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-age-fits-catch-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-age-fits-catch-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;67: Fishery age-composition fits for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-014-h1-age-fits-catch-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-age-fits-catch-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-age-fits-catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-74" title="Figure&nbsp;68: Fishery age-composition fits for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-age-fits-catch-2.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-age-fits-catch-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;68: Fishery age-composition fits for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-014-h1-age-fits-catch-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-age-fits-catch-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-age-fits-catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-75" title="Figure&nbsp;69: Fishery age-composition fits for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-age-fits-catch-3.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-age-fits-catch-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;69: Fishery age-composition fits for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-5-tab">
+<p>The age OSA and aggregate diagnostics summarize non-CPUE age-composition residuals for <code>0.14</code>. CPUE index age weights remain excluded from this diagnostic, so the panel focuses on the fishery and retained acoustic-survey age-composition fits.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-age-osa-aggregate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-age-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-age-osa-aggregate-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-76" title="Figure&nbsp;70: Non-CPUE OSA residual QQ diagnostics and aggregate age-composition fits for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-age-osa-aggregate-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-age-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;70: Non-CPUE OSA residual QQ diagnostics and aggregate age-composition fits for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-6-tab">
+<p>The FarNorth fishery length-composition panels are the main length-composition diagnostics for <code>0.14</code>, because the seasonal Peru acoustic length-composition series are not present in the <code>1.03</code> data configuration used as the base for this run.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-length-fits-catch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-length-fits-catch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-length-fits-catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-77" title="Figure&nbsp;71: Fishery length-composition fits for h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-length-fits-catch-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-length-fits-catch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;71: Fishery length-composition fits for h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-8-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-7-tab">
+<p>The length OSA and aggregate diagnostics are limited to the FarNorth fishery for <code>0.14</code>. This keeps the diagnostic aligned with the actual <code>0.14</code> data configuration and avoids implying that the removed Peru acoustic seasonal length compositions contribute to the run.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h1-length-osa-aggregate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h1-length-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h1-length-osa-aggregate-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-78" title="Figure&nbsp;72: OSA residual QQ diagnostics and aggregate length-composition fits for the FarNorth fishery in h1_0.14."><img src="SCW16_files/figure-html/fig-014-h1-length-osa-aggregate-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h1-length-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;72: OSA residual QQ diagnostics and aggregate length-composition fits for the FarNorth fishery in h1_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stock-hypothesis-3" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="two-stock-hypothesis-3"><span class="header-section-number">8.2</span> Two-Stock Hypothesis</h2>
+<p>For the two-stock hypothesis, <code>0.14</code> leaves the southern stock essentially unchanged from <code>0.12</code> and <code>1.03</code>, while the FarNorth stock has higher terminal biomass than <code>1.03</code> and substantially lower terminal fishing mortality. The diagnostics therefore emphasize the FarNorth index and length-composition behavior under the combined acoustic-drop and Peruvian CPUE catchability-break configuration.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Index Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Index Catchability</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Selectivity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-4" role="tab" aria-controls="tabset-9-4" aria-selected="false" href="">Fishery Age Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-5" role="tab" aria-controls="tabset-9-5" aria-selected="false" href="">Age OSA and Aggregate Fits</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-6" role="tab" aria-controls="tabset-9-6" aria-selected="false" href="">Fishery Length Composition</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-7" role="tab" aria-controls="tabset-9-7" aria-selected="false" href="">Length OSA and Aggregate Fits</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p>The two-stock index-fit panel shows the retained five-index configuration partitioned across the southern and FarNorth stocks. For <code>0.14</code>, the main diagnostic target is the Peruvian CPUE fit on the FarNorth stock after adding the 2018 catchability break.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-index-fits-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-index-fits-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-index-fits-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-79" title="Figure&nbsp;73: Observed and predicted abundance-index values for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-index-fits-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-index-fits-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;73: Observed and predicted abundance-index values for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-014-h2-index-fits-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-index-fits-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-index-fits-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-80" title="Figure&nbsp;74: Observed and predicted abundance-index values for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-index-fits-2.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-index-fits-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;74: Observed and predicted abundance-index values for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<p>The catchability panel shows the 2018 Peruvian CPUE step in the two-stock acoustic-drop configuration. This is the clearest diagnostic for confirming that <code>0.14</code> differs from <code>1.03</code> by the intended catchability break.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-index-catchability" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-index-catchability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-index-catchability-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-81" title="Figure&nbsp;75: Index catchability time series for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-index-catchability-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-index-catchability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;75: Index catchability time series for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<p>The two-stock selectivity diagnostics show the retained fishery and index selectivity structure after the seasonal Peru acoustic series have been removed. The FarNorth fishery remains the key length-composition source for stock 2 in this run.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-fishery-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-fishery-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-fishery-selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-82" title="Figure&nbsp;76: Fishery selectivity diagnostics for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-fishery-selectivity-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-fishery-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;76: Fishery selectivity diagnostics for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-index-selectivity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-index-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-index-selectivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-83" title="Figure&nbsp;77: Survey/index selectivity diagnostics for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-index-selectivity-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-index-selectivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;77: Survey/index selectivity diagnostics for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-4-tab">
+<p>The two-stock age-composition diagnostics are shown for the southern stock. These diagnostics should remain close to <code>1.03</code> because the <code>0.14</code> change targets the FarNorth Peruvian CPUE catchability treatment rather than the southern-stock age data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-age-fits-catch-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-age-fits-catch-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-age-fits-catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-84" title="Figure&nbsp;78: Fishery age-composition fits for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-age-fits-catch-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-age-fits-catch-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;78: Fishery age-composition fits for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-014-h2-age-fits-catch-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-age-fits-catch-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-age-fits-catch-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-85" title="Figure&nbsp;79: Fishery age-composition fits for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-age-fits-catch-2.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-age-fits-catch-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;79: Fishery age-composition fits for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-014-h2-age-fits-catch-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-age-fits-catch-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-age-fits-catch-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-86" title="Figure&nbsp;80: Fishery age-composition fits for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-age-fits-catch-3.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-age-fits-catch-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;80: Fishery age-composition fits for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-5-tab">
+<p>The southern-stock age OSA and aggregate diagnostics summarize the non-CPUE age-composition residuals for <code>0.14</code>. They provide a compact check that the FarNorth catchability change does not introduce broad residual changes in the southern-stock age data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-age-osa-aggregate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-age-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-age-osa-aggregate-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-87" title="Figure&nbsp;81: Non-CPUE OSA residual QQ diagnostics and aggregate age-composition fits for the southern stock in h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-age-osa-aggregate-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-age-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;81: Non-CPUE OSA residual QQ diagnostics and aggregate age-composition fits for the southern stock in h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-6-tab">
+<p>The FarNorth fishery length-composition diagnostics are the main composition check for stock 2 in <code>0.14</code>. The seasonal Peru acoustic length-composition sources are not shown because they were removed in the <code>1.03</code> base configuration.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-length-fits-catch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-length-fits-catch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-length-fits-catch-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-88" title="Figure&nbsp;82: Fishery length-composition fits for h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-length-fits-catch-1.png" class="img-fluid figure-img" width="960"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-length-fits-catch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;82: Fishery length-composition fits for h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-7-tab">
+<p>The FarNorth length OSA and aggregate diagnostics summarize the FarNorth fishery length residuals for <code>0.14</code>. This panel should be read as the composition counterpart to the Peruvian CPUE catchability diagnostic because the two seasonal Peru acoustic length sources are absent from this run.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-014-h2-length-osa-aggregate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-014-h2-length-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="SCW16_files/figure-html/fig-014-h2-length-osa-aggregate-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-89" title="Figure&nbsp;83: OSA residual QQ diagnostics and aggregate length-composition fits for the FarNorth fishery in h2_0.14."><img src="SCW16_files/figure-html/fig-014-h2-length-osa-aggregate-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-014-h2-length-osa-aggregate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;83: OSA residual QQ diagnostics and aggregate length-composition fits for the FarNorth fishery in h2_0.14.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="adnuts-mcmc-diagnostics" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> ADNUTS MCMC Diagnostics</h1>
 <p>ADNUTS was run for the final <code>0.12</code> configuration under both stock-structure hypotheses using four chains and 1,000 iterations per chain, with 500 warmup and 500 post-warmup iterations. These diagnostics are intended to check posterior sampling behavior for the final deterministic configuration, not to compare alternative data sensitivities.</p>
 <p>h1_0.12 single-stock produced 2,000 post-warmup draws, with 0 divergences, 0 maximum-tree-depth hits, maximum Rhat of 1.040, minimum bulk ESS of 106, and median bulk ESS of 1554. h2_0.12 two-stock produced 2,000 post-warmup draws, with 0 divergences, 0 maximum-tree-depth hits, maximum Rhat of 1.080, minimum bulk ESS of 54, and median bulk ESS of 1566. Both runs had zero post-warmup divergences and zero post-warmup maximum-tree-depth hits, so the short runs did not show the clearest NUTS geometry failures. The Rhat and ESS diagnostics are still not fully satisfactory: the single-stock run shows mild residual mixing concerns concentrated in fishing-mortality and recruitment-deviation parameters, while the two-stock run shows stronger mixing concerns in fishery-selectivity parameters. These MCMC results should therefore be read as diagnostics of the final model configuration rather than as final posterior summaries for inference.</p>
 <p>The pair and trace plots focus on the parameters with the highest Rhat values from each run, so they deliberately emphasize the parameters most likely to reveal mixing problems.</p>
@@ -2280,90 +2714,90 @@ Table&nbsp;6: Ten lowest-effective-sample-size monitored parameters from each fi
 </figure>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">Single-Stock Hypothesis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Two-Stock Hypothesis</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Single-Stock Hypothesis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Two-Stock Hypothesis</a></li></ul>
 <div class="tab-content">
-<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <p>The single-stock MCMC diagnostics should be read as a check on the aggregate-stock final model. The trace and pair plots emphasize the highest-Rhat monitored parameters; stable trace overlap across chains indicates adequate mixing for the most diagnostic subset of monitored parameters, while tree-depth hits indicate where NUTS required long trajectories even when chains otherwise mixed.</p>
 <div id="fig-adnuts-h1-pairs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h1-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h1_0_12_pairs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-69" title="Figure&nbsp;63: ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_pairs.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h1_0_12_pairs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-90" title="Figure&nbsp;84: ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_pairs.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h1-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;63: ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12.
+Figure&nbsp;84: ADNUTS posterior pair plot for selected high-Rhat parameters in h1_0.12.
 </figcaption>
 </figure>
 </div>
 <div id="fig-adnuts-h1-trace" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h1-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h1_0_12_trace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-70" title="Figure&nbsp;64: ADNUTS trace plots for selected high-Rhat parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_trace.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h1_0_12_trace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-91" title="Figure&nbsp;85: ADNUTS trace plots for selected high-Rhat parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_trace.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h1-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;64: ADNUTS trace plots for selected high-Rhat parameters in h1_0.12.
+Figure&nbsp;85: ADNUTS trace plots for selected high-Rhat parameters in h1_0.12.
 </figcaption>
 </figure>
 </div>
 <div id="fig-adnuts-h1-rhat-ess" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h1-rhat-ess-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h1_0_12_rhat_ess.png" class="lightbox" data-gallery="quarto-lightbox-gallery-71" title="Figure&nbsp;65: Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_rhat_ess.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h1_0_12_rhat_ess.png" class="lightbox" data-gallery="quarto-lightbox-gallery-92" title="Figure&nbsp;86: Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12."><img src="figures/adnuts/h1_0_12_rhat_ess.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h1-rhat-ess-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;65: Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12.
+Figure&nbsp;86: Rhat and bulk effective sample size diagnostics for monitored parameters in h1_0.12.
 </figcaption>
 </figure>
 </div>
 <div id="fig-adnuts-h1-sampler" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h1-sampler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h1_0_12_sampler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-72" title="Figure&nbsp;66: ADNUTS sampler diagnostics for h1_0.12."><img src="figures/adnuts/h1_0_12_sampler.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h1_0_12_sampler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-93" title="Figure&nbsp;87: ADNUTS sampler diagnostics for h1_0.12."><img src="figures/adnuts/h1_0_12_sampler.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h1-sampler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;66: ADNUTS sampler diagnostics for h1_0.12.
+Figure&nbsp;87: ADNUTS sampler diagnostics for h1_0.12.
 </figcaption>
 </figure>
 </div>
 </div>
-<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <p>The two-stock MCMC diagnostics are especially important for the FarNorth component because the deterministic <code>0.12</code> result estimates very low terminal FarNorth biomass and high fishing mortality. The selected pair and trace diagnostics therefore provide a practical check on whether the posterior sampling is showing clear non-mixing in the parameters most flagged by Rhat and ESS.</p>
 <div id="fig-adnuts-h2-pairs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h2-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h2_0_12_pairs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-73" title="Figure&nbsp;67: ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_pairs.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h2_0_12_pairs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-94" title="Figure&nbsp;88: ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_pairs.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h2-pairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;67: ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12.
+Figure&nbsp;88: ADNUTS posterior pair plot for selected high-Rhat parameters in h2_0.12.
 </figcaption>
 </figure>
 </div>
 <div id="fig-adnuts-h2-trace" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h2-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h2_0_12_trace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-74" title="Figure&nbsp;68: ADNUTS trace plots for selected high-Rhat parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_trace.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h2_0_12_trace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-95" title="Figure&nbsp;89: ADNUTS trace plots for selected high-Rhat parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_trace.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h2-trace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;68: ADNUTS trace plots for selected high-Rhat parameters in h2_0.12.
+Figure&nbsp;89: ADNUTS trace plots for selected high-Rhat parameters in h2_0.12.
 </figcaption>
 </figure>
 </div>
 <div id="fig-adnuts-h2-rhat-ess" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h2-rhat-ess-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h2_0_12_rhat_ess.png" class="lightbox" data-gallery="quarto-lightbox-gallery-75" title="Figure&nbsp;69: Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_rhat_ess.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h2_0_12_rhat_ess.png" class="lightbox" data-gallery="quarto-lightbox-gallery-96" title="Figure&nbsp;90: Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12."><img src="figures/adnuts/h2_0_12_rhat_ess.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h2-rhat-ess-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;69: Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12.
+Figure&nbsp;90: Rhat and bulk effective sample size diagnostics for monitored parameters in h2_0.12.
 </figcaption>
 </figure>
 </div>
 <div id="fig-adnuts-h2-sampler" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adnuts-h2-sampler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="figures/adnuts/h2_0_12_sampler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-76" title="Figure&nbsp;70: ADNUTS sampler diagnostics for h2_0.12."><img src="figures/adnuts/h2_0_12_sampler.png" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="figures/adnuts/h2_0_12_sampler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-97" title="Figure&nbsp;91: ADNUTS sampler diagnostics for h2_0.12."><img src="figures/adnuts/h2_0_12_sampler.png" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adnuts-h2-sampler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;70: ADNUTS sampler diagnostics for h2_0.12.
+Figure&nbsp;91: ADNUTS sampler diagnostics for h2_0.12.
 </figcaption>
 </figure>
 </div>
@@ -2371,61 +2805,61 @@ Figure&nbsp;70: ADNUTS sampler diagnostics for h2_0.12.
 </div>
 </div>
 </section>
-<section id="data-sensitivities" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Data Sensitivities</h1>
-<p>These sensitivities all start from the <code>0.12</code> final bridge configuration, except <code>1.04</code>, which starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>. Model <code>0.13</code> keeps the <code>0.12</code> data and adds only a 2018 catchability break for the Peruvian CPUE index. The terminal-year metric and percent-difference tables are provided near the beginning of the report and are not repeated here.</p>
+<section id="data-sensitivities" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Data Sensitivities</h1>
+<p>These sensitivities all start from the <code>0.12</code> final bridge configuration, except <code>1.04</code>, which starts from <code>1.03</code> and adds back the old <code>Peru_Acoustic</code> series from <code>0.00</code>, and <code>0.14</code>, which starts from <code>1.03</code> and adds the same 2018 catchability break for the Peruvian CPUE index used in <code>0.13</code>. Model <code>0.13</code> keeps the <code>0.12</code> data and adds only the 2018 Peruvian CPUE catchability break. The terminal-year metric and percent-difference tables are provided near the beginning of the report and are not repeated here.</p>
 <p><code>SC13_1.15</code> is included as an additional SC13-style sensitivity. It fully downweights the Acoustic N and Peruvian CPUE index series across all years, effectively removing their likelihood contribution rather than only reducing the influence of terminal-year observations. The run should therefore be interpreted as a diagnostic of how strongly those two complete index series affect the final-year stock status and fishing mortality pattern rather than as a competing final-model configuration.</p>
-<section id="single-stock-hypothesis-4" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="single-stock-hypothesis-4"><span class="header-section-number">9.1</span> Single-Stock Hypothesis</h2>
-<p>Under the single-stock hypothesis, the sensitivities retain the broad increase in biomass after the mid-2010s but differ in the magnitude of the rebuilding signal. Adding the 2018 Peruvian CPUE catchability break (<code>0.13</code>) raises terminal biomass relative to <code>0.12</code>, but less than replacing the Peruvian CPUE (<code>1.02</code>) or dropping the two Peru acoustic series (<code>1.03</code>). Replacing the Chilean CPUE series (<code>1.01</code>) leaves terminal biomass close to <code>0.12</code>, while adding the old Peru acoustic series back in <code>1.04</code> leaves the single-stock trajectory close to <code>1.03</code>, indicating that the larger single-stock biomass response is driven mainly by removal of the two seasonal Peru acoustic series rather than by the replacement index itself. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) is intermediate: terminal biomass is above <code>0.12</code> but below <code>1.02</code>-<code>1.04</code>.</p>
+<section id="single-stock-hypothesis-5" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="single-stock-hypothesis-5"><span class="header-section-number">10.1</span> Single-Stock Hypothesis</h2>
+<p>Under the single-stock hypothesis, the sensitivities retain the broad increase in biomass after the mid-2010s but differ in the magnitude of the rebuilding signal. Adding the 2018 Peruvian CPUE catchability break (<code>0.13</code>) raises terminal biomass relative to <code>0.12</code>, but less than replacing the Peruvian CPUE (<code>1.02</code>) or dropping the two Peru acoustic series (<code>1.03</code>). Applying the same catchability break after dropping the two Peru acoustic series (<code>0.14</code>) raises terminal biomass above <code>1.03</code> and leaves terminal fishing mortality below the final model but slightly above <code>1.03</code>. Replacing the Chilean CPUE series (<code>1.01</code>) leaves terminal biomass close to <code>0.12</code>, while adding the old Peru acoustic series back in <code>1.04</code> leaves the single-stock trajectory close to <code>1.03</code>, indicating that the larger single-stock biomass response is driven mainly by removal of the two seasonal Peru acoustic series rather than by the replacement index itself. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) is intermediate: terminal biomass is above <code>0.12</code> but below <code>1.02</code> and <code>0.14</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<p>The biomass panel shows the strongest separation among single-stock sensitivities after about 2015. <code>1.02</code>, <code>1.03</code>, and <code>1.04</code> all imply a higher recent biomass trajectory than the final model, whereas <code>1.01</code> remains close to <code>0.12</code>. The <code>0.13</code> catchability-break sensitivity and <code>SC13_1.15</code> both give moderate upward shifts.</p>
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<p>The biomass panel shows the strongest separation among single-stock sensitivities after about 2015. <code>1.02</code>, <code>0.14</code>, <code>1.03</code>, and <code>1.04</code> all imply a higher recent biomass trajectory than the final model, whereas <code>1.01</code> remains close to <code>0.12</code>. The <code>0.13</code> catchability-break sensitivity and <code>SC13_1.15</code> both give moderate upward shifts.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h1-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sensitivity-h1-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-sensitivity-h1-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-77" title="Figure&nbsp;71: Biomass estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h1-biomass-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-sensitivity-h1-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-98" title="Figure&nbsp;92: Biomass estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h1-biomass-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h1-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;71: Biomass estimates for the final model and completed sensitivities.
+Figure&nbsp;92: Biomass estimates for the final model and completed sensitivities.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<p>Recent recruitment remains elevated relative to the preceding low period across all single-stock sensitivities. The Peruvian CPUE and Peru acoustic sensitivities (<code>1.02</code>-<code>1.04</code>) produce somewhat higher terminal recruitment than <code>0.12</code>; <code>0.13</code> is only slightly higher than the final model, while <code>SC13_1.15</code> gives lower terminal recruitment despite its higher terminal biomass.</p>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<p>Recent recruitment remains elevated relative to the preceding low period across all single-stock sensitivities. The Peruvian CPUE and Peru acoustic sensitivities (<code>1.02</code>-<code>1.04</code>) produce somewhat higher terminal recruitment than <code>0.12</code>; <code>0.14</code> is also higher because it combines removal of the two seasonal Peru acoustic series with the Peruvian CPUE catchability break. Model <code>0.13</code> is only slightly higher than the final model, while <code>SC13_1.15</code> gives lower terminal recruitment despite its higher terminal biomass.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h1-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sensitivity-h1-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-sensitivity-h1-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-78" title="Figure&nbsp;72: Recruitment estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h1-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-sensitivity-h1-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-99" title="Figure&nbsp;93: Recruitment estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h1-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h1-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;72: Recruitment estimates for the final model and completed sensitivities.
+Figure&nbsp;93: Recruitment estimates for the final model and completed sensitivities.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
-<p>The fishing-mortality response is not monotonic with biomass. <code>1.01</code> reduces terminal fishing mortality relative to <code>0.12</code>, <code>0.13</code> and <code>1.02</code> increase it, and <code>1.03</code>-<code>1.04</code> remain slightly below the final model but above the Chilean CPUE replacement. This indicates that the data substitutions and catchability treatment affect both scale and recent selectivity/catch-at-age reconciliation, not only biomass level.</p>
+<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<p>The fishing-mortality response is not monotonic with biomass. <code>1.01</code> reduces terminal fishing mortality relative to <code>0.12</code>, <code>0.13</code> and <code>1.02</code> increase it, and <code>1.03</code>-<code>1.04</code> remain slightly below the final model but above the Chilean CPUE replacement. Model <code>0.14</code> remains below the final model but is slightly higher than <code>1.03</code>, indicating that the added Peruvian CPUE catchability break changes both the biomass scale and recent catch-at-age reconciliation after the seasonal Peru acoustic series are removed.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h1-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sensitivity-h1-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-sensitivity-h1-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-79" title="Figure&nbsp;73: Fishing mortality estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h1-fmort-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-sensitivity-h1-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-100" title="Figure&nbsp;94: Fishing mortality estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h1-fmort-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h1-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;73: Fishing mortality estimates for the final model and completed sensitivities.
+Figure&nbsp;94: Fishing mortality estimates for the final model and completed sensitivities.
 </figcaption>
 </figure>
 </div>
@@ -2435,57 +2869,57 @@ Figure&nbsp;73: Fishing mortality estimates for the final model and completed se
 </div>
 </div>
 </section>
-<section id="two-stock-hypothesis-4" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="two-stock-hypothesis-4"><span class="header-section-number">9.2</span> Two-Stock Hypothesis</h2>
-<p>Under the two-stock hypothesis, the southern stock is insensitive to the FarNorth-only data changes in <code>0.13</code> and <code>1.02</code>-<code>1.04</code>, so its biomass, recruitment, and fishing mortality trajectories remain essentially the same as <code>0.12</code> in those runs. The FarNorth stock is much more sensitive: the 2018 Peruvian CPUE catchability break (<code>0.13</code>) leaves terminal biomass near the final-model level but reduces terminal fishing mortality, removing the most extreme terminal-F behavior without changing the biomass scale. Removing the two Peru acoustic series (<code>1.03</code>) raises FarNorth biomass from the very low final-model level, and adding back the old Peru acoustic series (<code>1.04</code>) produces the largest FarNorth terminal biomass and the lowest terminal fishing mortality among the data sensitivities. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) reduces southern-stock biomass relative to <code>0.12</code> while raising FarNorth biomass well above the final model but below <code>1.04</code>.</p>
+<section id="two-stock-hypothesis-5" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="two-stock-hypothesis-5"><span class="header-section-number">10.2</span> Two-Stock Hypothesis</h2>
+<p>Under the two-stock hypothesis, the southern stock is insensitive to the FarNorth-only data changes in <code>0.13</code>, <code>0.14</code>, and <code>1.02</code>-<code>1.04</code>, so its biomass, recruitment, and fishing mortality trajectories remain essentially the same as <code>0.12</code> in those runs. The FarNorth stock is much more sensitive: the 2018 Peruvian CPUE catchability break (<code>0.13</code>) leaves terminal biomass near the final-model level but reduces terminal fishing mortality, removing the most extreme terminal-F behavior without changing the biomass scale. Removing the two Peru acoustic series (<code>1.03</code>) raises FarNorth biomass from the very low final-model level, and adding the same Peruvian CPUE catchability break to that configuration (<code>0.14</code>) raises FarNorth biomass slightly above <code>1.03</code> while cutting terminal fishing mortality further. Adding back the old Peru acoustic series (<code>1.04</code>) produces the largest FarNorth terminal biomass and the lowest terminal fishing mortality among the data sensitivities. The SC13 downweighting sensitivity (<code>SC13_1.15</code>) reduces southern-stock biomass relative to <code>0.12</code> while raising FarNorth biomass well above the final model but below <code>1.04</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<p>The biomass panel highlights the stock-specific nature of the sensitivity results. Southern-stock biomass changes mainly under <code>1.01</code> and <code>SC13_1.15</code>, whereas the FarNorth biomass trajectory is controlled by the Peru acoustic/CPUE treatment and is much higher in <code>1.03</code>, <code>1.04</code>, and <code>SC13_1.15</code> than in <code>0.12</code>. The <code>0.13</code> catchability-break run stays close to the final-model FarNorth biomass trajectory.</p>
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<p>The biomass panel highlights the stock-specific nature of the sensitivity results. Southern-stock biomass changes mainly under <code>1.01</code> and <code>SC13_1.15</code>, whereas the FarNorth biomass trajectory is controlled by the Peru acoustic/CPUE treatment and is much higher in <code>1.03</code>, <code>0.14</code>, <code>1.04</code>, and <code>SC13_1.15</code> than in <code>0.12</code>. The <code>0.13</code> catchability-break run stays close to the final-model FarNorth biomass trajectory because it keeps the two seasonal Peru acoustic series.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sensitivity-h2-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-sensitivity-h2-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-80" title="Figure&nbsp;74: Biomass estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h2-biomass-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-sensitivity-h2-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-101" title="Figure&nbsp;95: Biomass estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h2-biomass-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h2-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;74: Biomass estimates for the final model and completed sensitivities.
+Figure&nbsp;95: Biomass estimates for the final model and completed sensitivities.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<p>Recruitment follows the same split. Southern-stock recruitment is unchanged for <code>0.13</code> and <code>1.02</code>-<code>1.04</code> but is lower under <code>SC13_1.15</code>; FarNorth recruitment increases when the seasonal Peru acoustic series are removed or replaced, with <code>1.04</code> giving the highest FarNorth terminal recruitment among the current data sensitivities. The <code>0.13</code> catchability-break run leaves terminal FarNorth recruitment close to <code>0.12</code>.</p>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<p>Recruitment follows the same split. Southern-stock recruitment is unchanged for <code>0.13</code>, <code>0.14</code>, and <code>1.02</code>-<code>1.04</code> but is lower under <code>SC13_1.15</code>; FarNorth recruitment increases when the seasonal Peru acoustic series are removed or replaced, with <code>1.04</code> giving the highest FarNorth terminal recruitment among the current data sensitivities. Model <code>0.14</code> is slightly above <code>1.03</code>, while the <code>0.13</code> catchability-break run leaves terminal FarNorth recruitment close to <code>0.12</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sensitivity-h2-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-sensitivity-h2-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-81" title="Figure&nbsp;75: Recruitment estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h2-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-sensitivity-h2-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-102" title="Figure&nbsp;96: Recruitment estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h2-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h2-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;75: Recruitment estimates for the final model and completed sensitivities.
+Figure&nbsp;96: Recruitment estimates for the final model and completed sensitivities.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
-<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The final model estimates very high terminal FarNorth fishing mortality, while <code>0.13</code>, <code>1.02</code>, <code>1.03</code>, and especially <code>1.04</code> reduce that estimate. The <code>0.13</code> result indicates that allowing a 2018 catchability break in the Peruvian CPUE index can reduce the extreme terminal-F estimate even when terminal FarNorth biomass remains close to <code>0.12</code>. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with fully downweighting the Acoustic N and Peruvian CPUE index series that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
+<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
+<p>FarNorth fishing mortality is the clearest diagnostic contrast among the two-stock sensitivities. The final model estimates very high terminal FarNorth fishing mortality, while <code>0.13</code>, <code>1.02</code>, <code>1.03</code>, <code>0.14</code>, and especially <code>1.04</code> reduce that estimate. The <code>0.13</code> result indicates that allowing a 2018 catchability break in the Peruvian CPUE index can reduce the extreme terminal-F estimate even when terminal FarNorth biomass remains close to <code>0.12</code>. Model <code>0.14</code> shows that applying the same break after removing the seasonal Peru acoustic series reduces terminal FarNorth fishing mortality further than <code>1.03</code>. <code>SC13_1.15</code> also moves FarNorth fishing mortality downward relative to <code>0.12</code>, consistent with fully downweighting the Acoustic N and Peruvian CPUE index series that otherwise pull the FarNorth stock to a very low terminal biomass.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-sensitivity-h2-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sensitivity-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-sensitivity-h2-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-82" title="Figure&nbsp;76: Fishing mortality estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h2-fmort-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-sensitivity-h2-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-103" title="Figure&nbsp;97: Fishing mortality estimates for the final model and completed sensitivities."><img src="SCW16_files/figure-html/fig-sensitivity-h2-fmort-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sensitivity-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;76: Fishing mortality estimates for the final model and completed sensitivities.
+Figure&nbsp;97: Fishing mortality estimates for the final model and completed sensitivities.
 </figcaption>
 </figure>
 </div>
@@ -2496,8 +2930,8 @@ Figure&nbsp;76: Fishing mortality estimates for the final model and completed se
 </div>
 </section>
 </section>
-<section id="other-trials" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Other trials</h1>
+<section id="other-trials" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Other trials</h1>
 <p>These trials are shown separately from the formal data sensitivities because they are diagnostic checks on the Peruvian/FarNorth signal rather than candidate bridge configurations. The motivation is that the Peruvian/FarNorth fishery continues to catch jack mackerel, so the trials ask whether the very low FarNorth biomass and very high terminal fishing mortality in the final <code>0.12</code> two-stock model are driven primarily by the standardized Peruvian CPUE and seasonal Peru acoustic survey signals.</p>
 <p>Model <code>1.05</code> starts from <code>0.12</code> and replaces <code>Peru_CPUE</code> with a noisy (CV = 60%) nominal CPUE series for 1990-2025. Model <code>1.06</code> starts from <code>1.05</code> and removes the two seasonal Peru acoustic abundance-index series, <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code>. Both trials are compared directly with <code>0.12</code> below.</p>
 <div id="tbl-other-trials-fit-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -2801,54 +3235,54 @@ Table&nbsp;9: Terminal-year percent difference for other trials relative to the 
 </div>
 </figure>
 </div>
-<section id="single-stock-hypothesis-5" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="single-stock-hypothesis-5"><span class="header-section-number">10.1</span> Single-Stock Hypothesis</h2>
+<section id="single-stock-hypothesis-6" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="single-stock-hypothesis-6"><span class="header-section-number">11.1</span> Single-Stock Hypothesis</h2>
 <p>Under the single-stock hypothesis, replacing the standardized Peruvian CPUE with the noisy nominal CPUE (<code>1.05</code>) increases terminal biomass moderately relative to <code>0.12</code> while leaving terminal fishing mortality close to the final model. Removing the two seasonal Peru acoustic series as well (<code>1.06</code>) produces a larger biomass increase and lowers terminal fishing mortality below <code>0.12</code>. The single-stock pattern therefore indicates that the nominal CPUE trial alone changes scale modestly, while the additional removal of the seasonal Peru acoustic series has the larger effect on the recent biomass trajectory.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-3" role="tab" aria-controls="tabset-13-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-other-trials-h1-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-other-trials-h1-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-other-trials-h1-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-83" title="Figure&nbsp;77: Biomass estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-biomass-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-other-trials-h1-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-104" title="Figure&nbsp;98: Biomass estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-biomass-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h1-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;77: Biomass estimates for the final model and other trial runs.
+Figure&nbsp;98: Biomass estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-other-trials-h1-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-other-trials-h1-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-other-trials-h1-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-84" title="Figure&nbsp;78: Recruitment estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-other-trials-h1-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-105" title="Figure&nbsp;99: Recruitment estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h1-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;78: Recruitment estimates for the final model and other trial runs.
+Figure&nbsp;99: Recruitment estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<div id="tabset-13-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-other-trials-h1-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-other-trials-h1-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-other-trials-h1-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-85" title="Figure&nbsp;79: Fishing mortality estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-fmort-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-other-trials-h1-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-106" title="Figure&nbsp;100: Fishing mortality estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h1-fmort-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h1-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;79: Fishing mortality estimates for the final model and other trial runs.
+Figure&nbsp;100: Fishing mortality estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
@@ -2858,54 +3292,54 @@ Figure&nbsp;79: Fishing mortality estimates for the final model and other trial 
 </div>
 </div>
 </section>
-<section id="two-stock-hypothesis-5" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="two-stock-hypothesis-5"><span class="header-section-number">10.2</span> Two-Stock Hypothesis</h2>
+<section id="two-stock-hypothesis-6" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="two-stock-hypothesis-6"><span class="header-section-number">11.2</span> Two-Stock Hypothesis</h2>
 <p>Under the two-stock hypothesis, these trials mainly affect the FarNorth stock. The southern stock remains effectively unchanged from <code>0.12</code> because the altered data are assigned to the Peruvian/FarNorth component. For the FarNorth stock, <code>1.05</code> leaves terminal biomass near the final-model level but sharply reduces terminal fishing mortality, indicating that the noisy nominal CPUE relaxes the most extreme terminal-F behavior even without removing the seasonal Peru acoustic surveys. Model <code>1.06</code> then raises FarNorth terminal biomass and recruitment and further reduces terminal fishing mortality after <code>Peru_Acoust_S1</code> and <code>Peru_Acoust_S2</code> are removed.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">Biomass</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Recruitment</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-3" role="tab" aria-controls="tabset-14-3" aria-selected="false" href="">Fishing Mortality</a></li></ul>
 <div class="tab-content">
-<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-other-trials-h2-biomass" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-other-trials-h2-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-other-trials-h2-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-86" title="Figure&nbsp;80: Biomass estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-biomass-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-other-trials-h2-biomass-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-107" title="Figure&nbsp;101: Biomass estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-biomass-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h2-biomass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;80: Biomass estimates for the final model and other trial runs.
+Figure&nbsp;101: Biomass estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-other-trials-h2-recruitment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-other-trials-h2-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-other-trials-h2-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-87" title="Figure&nbsp;81: Recruitment estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-other-trials-h2-recruitment-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-108" title="Figure&nbsp;102: Recruitment estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-recruitment-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h2-recruitment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;81: Recruitment estimates for the final model and other trial runs.
+Figure&nbsp;102: Recruitment estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
+<div id="tabset-14-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-3-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-other-trials-h2-fmort" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-other-trials-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="SCW16_files/figure-html/fig-other-trials-h2-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-88" title="Figure&nbsp;82: Fishing mortality estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-fmort-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="SCW16_files/figure-html/fig-other-trials-h2-fmort-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-109" title="Figure&nbsp;103: Fishing mortality estimates for the final model and other trial runs."><img src="SCW16_files/figure-html/fig-other-trials-h2-fmort-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-trials-h2-fmort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;82: Fishing mortality estimates for the final model and other trial runs.
+Figure&nbsp;103: Fishing mortality estimates for the final model and other trial runs.
 </figcaption>
 </figure>
 </div>
