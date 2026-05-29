@@ -298,6 +298,54 @@ productivity_scenario_colors <- c(
   "High steepness, short SR" = "#fdb863"
 )
 
+read_productivity_majuro <- function(model_name) {
+  model_obj <- if (identical(model_name, params$model_name)) model else read_model(model_name)
+  stock_obj <- model_obj$output[[params$stock]]
+  f_names <- grep("^F_fsh_[0-9]+$", names(stock_obj), value = TRUE)
+
+  annual_f <- bind_rows(
+    lapply(f_names, \(name) {
+      values <- as_tibble(stock_obj[[name]], .name_repair = "minimal")
+      names(values) <- c("year", "mean_f", "max_selectivity_scaled_f")
+      values
+    })
+  ) |>
+    mutate(across(everything(), as.numeric)) |>
+    group_by(year) |>
+    summarize(f = sum(mean_f), .groups = "drop")
+
+  depletion <- as_estimate_df(stock_obj$SSB_NoFishR, "SSB_NoFishR") |>
+    select(year, depletion = estimate, depletion_lower = lower, depletion_upper = upper)
+
+  depletion |>
+    left_join(annual_f, by = "year") |>
+    mutate(
+      model = model_name,
+      f_fmsy = f / productivity_reference$Fmsy[match(model_name, productivity_reference$model)],
+      .before = 1
+    )
+}
+
+majuro_series <- bind_rows(
+  lapply(productivity_models$model, read_productivity_majuro)
+) |>
+  left_join(
+    productivity_models |>
+      select(model, scenario),
+    by = "model"
+  ) |>
+  mutate(
+    scenario = factor(scenario, levels = levels(productivity_reference$scenario))
+  )
+
+majuro_terminal <- majuro_series |>
+  group_by(model, scenario) |>
+  filter(year == max(year)) |>
+  ungroup()
+
+majuro_x_upper <- max(0.6, ceiling(max(majuro_series$depletion[majuro_series$year >= 2000], na.rm = TRUE) * 10) / 10)
+majuro_y_upper <- max(1.2, ceiling(max(majuro_series$f_fmsy[majuro_series$year >= 2000], na.rm = TRUE) * 10) / 10)
+
 df1 <- as_tibble(stock_output$df1)
 names(df1) <- c("quantity", "year", "estimate", "sd", "lower", "upper")
 df1 <- df1 |>
@@ -543,6 +591,61 @@ ssb_comparison |>
 
 kable(ssb_summary, digits = 4)
 ```
+
+## Majuro Plot
+
+A Majuro plot is a WCPFC-style modification of a Kobe plot that puts fishing pressure on the y-axis as F/Fmsy, but puts biomass on the x-axis as depletion relative to unfished spawning biomass, SSB/SSB~F=0~, rather than SSB/Bmsy. The vertical line at 0.2 follows the common WCPFC tuna-stock display convention and is shown here only as a visual reference, not as a proposed jack mackerel limit reference point.
+
+```{r}
+#| label: fig-majuro-productivity
+#| fig-cap: "Majuro plot for model 0.14 productivity assumptions, showing the 2000-2025 trajectory. Larger points mark terminal-year status. The vertical line marks SSB/SSB_F=0 = 0.2 for orientation and the horizontal line marks F/Fmsy = 1."
+#| echo: false
+
+majuro_series |>
+  filter(year >= 2000) |>
+  ggplot(aes(depletion, f_fmsy, color = scenario)) +
+  annotate("rect", xmin = -Inf, xmax = 0.2, ymin = 1, ymax = Inf, fill = "#d73027", alpha = 0.08) +
+  annotate("rect", xmin = 0.2, xmax = Inf, ymin = 1, ymax = Inf, fill = "#fc8d59", alpha = 0.08) +
+  annotate("rect", xmin = -Inf, xmax = 0.2, ymin = -Inf, ymax = 1, fill = "#fee08b", alpha = 0.12) +
+  geom_vline(xintercept = 0.2, linewidth = 0.65, linetype = "dashed", color = "gray35") +
+  geom_hline(yintercept = 1, linewidth = 0.65, linetype = "dashed", color = "gray35") +
+  geom_path(linewidth = 0.75, alpha = 0.85) +
+  geom_point(aes(alpha = year == max(year)), size = 1.4, show.legend = FALSE) +
+  geom_point(
+    data = majuro_terminal,
+    aes(depletion, f_fmsy, color = scenario),
+    inherit.aes = FALSE,
+    size = 3
+  ) +
+  scale_color_manual(values = productivity_scenario_colors) +
+  scale_alpha_manual(values = c(`FALSE` = 0.45, `TRUE` = 1)) +
+  coord_cartesian(xlim = c(0, majuro_x_upper), ylim = c(0, majuro_y_upper), expand = FALSE) +
+  labs(x = expression(SSB / SSB[F == 0]), y = expression(F / F[MSY]), color = NULL) +
+  guides(color = guide_legend(nrow = 2)) +
+  theme_report() +
+  theme(
+    legend.position = "bottom",
+    legend.box = "vertical"
+  )
+```
+
+```{r}
+#| label: tbl-majuro-terminal
+#| tbl-cap: "Terminal-year Majuro plot coordinates for the productivity sensitivity runs."
+#| echo: false
+
+majuro_terminal |>
+  transmute(
+    model,
+    scenario = as.character(scenario),
+    year,
+    SSB_over_SSB_F0 = depletion,
+    F_over_Fmsy = f_fmsy
+  ) |>
+  kable(digits = 4)
+```
+
+In @fig-majuro-productivity, the low-steepness runs are above F/Fmsy = 1 in the terminal year, while the high-steepness runs are just below 1. The biomass axis shows the same productivity contrast: terminal SSB/SSB~F=0~ is lower for the low-steepness runs (`r paste(round(range(majuro_terminal$depletion[productivity_reference$steepness[match(majuro_terminal$model, productivity_reference$model)] == 0.65], na.rm = TRUE), 3), collapse = "-")`) than for the high-steepness runs (`r paste(round(range(majuro_terminal$depletion[productivity_reference$steepness[match(majuro_terminal$model, productivity_reference$model)] == 0.85], na.rm = TRUE), 3), collapse = "-")`). This is the same pattern as the Fmsy and Bmsy diagnostics: the stock-status interpretation is sensitive to the productivity assumption, even though the recent fished biomass trajectories are similar.
 
 ## Productivity Range
 
