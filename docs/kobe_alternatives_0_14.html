@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-05-28">
+
+<title>Kobe Plot Alternatives for Model 0.14 – SPRFMO Jack Mackerel Working Group</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./JMWG_Benchmark_ToR.html"> 
+<span class="menu-text">SCW16/ToR</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SCW16-Doc00.html"> 
+<span class="menu-text">SCW16-Doc00</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SCW16-Doc01.html"> 
+<span class="menu-text">SCW16-Doc01</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SCW16-Doc02-CPUE_Coordination.html"> 
+<span class="menu-text">SCW16-Doc02</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./JMWG-Meeting report-01-2026.html"> 
+<span class="menu-text">Meeting report 01-2026</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./JMWG-Meeting report-02-2026.html"> 
+<span class="menu-text">Meeting report 02-2026</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./JMWG-Meeting report-03-2026.html"> 
+<span class="menu-text">Meeting report 03-2026</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./JMWG-Benchmark-Meeting-report-2026.html"> 
+<span class="menu-text">Benchmark report 2026</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./report-collaboration-workflow.html"> 
+<span class="menu-text">Report workflow</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SCW16-Doc03-CPUE_MetaAnalysis.html"> 
+<span class="menu-text">SCW16-Doc03</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./SC13.html"> 
+<span class="menu-text">SC13</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mod0.14_mod1.1_comparison.html"> 
+<span class="menu-text">Model comparison</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./kobe_alternatives_0_14.html" aria-current="page"> 
+<span class="menu-text">Kobe alternatives</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./helper_scripts_guide.html"> 
+<span class="menu-text">Script Guide</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#spawning-biomass" id="toc-spawning-biomass" class="nav-link active" data-scroll-target="#spawning-biomass"><span class="header-section-number">1</span> Spawning Biomass</a></li>
+  <li><a href="#productivity-range" id="toc-productivity-range" class="nav-link" data-scroll-target="#productivity-range"><span class="header-section-number">2</span> Productivity Range</a></li>
+  <li><a href="#spr-reference-point" id="toc-spr-reference-point" class="nav-link" data-scroll-target="#spr-reference-point"><span class="header-section-number">3</span> SPR Reference Point</a></li>
+  <li><a href="#total-biomass" id="toc-total-biomass" class="nav-link" data-scroll-target="#total-biomass"><span class="header-section-number">4</span> Total Biomass</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Kobe Plot Alternatives for Model 0.14</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 28, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This report uses h1_0.14, stock 1. The no-fishing spawning biomass is taken from <code>df1</code> in the model output object as <code>SSB_Nofishing</code>; the reported depletion comparison is taken from <code>SSB_NoFishR</code>, with <code>SSB0_Dynamic</code> included as a consistency check.</p>
+<section id="spawning-biomass" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="spawning-biomass"><span class="header-section-number">1</span> Spawning Biomass</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ssb-fished-unfished" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ssb-fished-unfished-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-ssb-fished-unfished-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Estimated spawning biomass with fishing and the model counterfactual spawning biomass without fishing."><img src="kobe_alternatives_0_14_files/figure-html/fig-ssb-fished-unfished-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ssb-fished-unfished-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Estimated spawning biomass with fishing and the model counterfactual spawning biomass without fishing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ssb-bmsy-productivity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ssb-bmsy-productivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-ssb-bmsy-productivity-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Fished spawning biomass since 2000 across productivity assumptions. Dashed horizontal lines show Bmsy for each run."><img src="kobe_alternatives_0_14_files/figure-html/fig-ssb-bmsy-productivity-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ssb-bmsy-productivity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Fished spawning biomass since 2000 across productivity assumptions. Dashed horizontal lines show Bmsy for each run.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The post-2000 view in <a href="#fig-ssb-bmsy-productivity" class="quarto-xref">Figure&nbsp;2</a> shows that the recent fished SSB trajectories are broadly similar, but the Bmsy reference levels diverge strongly among productivity assumptions. The low-steepness, long-SR run has the highest Bmsy (9130 kt), while the high-steepness, short-SR run has the lowest Bmsy (2998 kt). As a result, terminal status relative to Bmsy is mostly a productivity-assumption result: the same recent biomass scale is below the low-steepness Bmsy levels but above the high-steepness Bmsy levels.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ssb-difference-depletion" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ssb-difference-depletion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-ssb-difference-depletion-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Spawning biomass depletion ratio estimated as fished spawning biomass divided by no-fishing spawning biomass, compared with the reported depletion estimate."><img src="kobe_alternatives_0_14_files/figure-html/fig-ssb-difference-depletion-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ssb-difference-depletion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Spawning biomass depletion ratio estimated as fished spawning biomass divided by no-fishing spawning biomass, compared with the reported depletion estimate.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-ssb-terminal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ssb-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Terminal-year spawning biomass impact and depletion comparison.
+</figcaption>
+<div aria-describedby="tbl-ssb-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">ssb_with_fishing</th>
+<th style="text-align: right;">ssb_without_fishing</th>
+<th style="text-align: right;">difference</th>
+<th style="text-align: right;">ratio</th>
+<th style="text-align: right;">reported_depletion</th>
+<th style="text-align: right;">ssb0_dynamic</th>
+<th style="text-align: right;">ratio_minus_reported</th>
+<th style="text-align: right;">ssb0_minus_reported</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">5772.81</td>
+<td style="text-align: right;">19620.5</td>
+<td style="text-align: right;">13847.69</td>
+<td style="text-align: right;">0.2942</td>
+<td style="text-align: right;">0.2942</td>
+<td style="text-align: right;">0.2942</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="productivity-range" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="productivity-range"><span class="header-section-number">2</span> Productivity Range</h2>
+<p>The productivity sensitivity runs span Fmsy values from 0.315 to 0.878. The low-steepness runs produce the lower end of the range, while the high-steepness runs shift the F profile peak to substantially higher F values.</p>
+<div class="cell">
+<div id="tbl-productivity-reference" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-productivity-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Fmsy values across productivity assumptions. Intervals use the reported standard errors from the .std files; profile_Fmsy is the F value at maximum yield in Fprof.yld.
+</figcaption>
+<div aria-describedby="tbl-productivity-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 14%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: left;">scenario</th>
+<th style="text-align: right;">steepness</th>
+<th style="text-align: left;">sr_years</th>
+<th style="text-align: right;">Fmsy</th>
+<th style="text-align: right;">Fmsy_se</th>
+<th style="text-align: right;">F35_est</th>
+<th style="text-align: right;">F_at_SPR35_profile</th>
+<th style="text-align: right;">Fcur_Fmsy</th>
+<th style="text-align: right;">Bmsy</th>
+<th style="text-align: right;">Bmsy_se</th>
+<th style="text-align: right;">Bcur_Bmsy</th>
+<th style="text-align: right;">profile_Fmsy</th>
+<th style="text-align: right;">MSY</th>
+<th style="text-align: right;">SPR_at_profile_Fmsy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1_0.14</td>
+<td style="text-align: left;">Low steepness, short SR</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: left;">2000-2022</td>
+<td style="text-align: right;">0.3148</td>
+<td style="text-align: right;">0.0280</td>
+<td style="text-align: right;">0.4623</td>
+<td style="text-align: right;">0.4623</td>
+<td style="text-align: right;">2.5361</td>
+<td style="text-align: right;">6380.9</td>
+<td style="text-align: right;">1405.00</td>
+<td style="text-align: right;">0.9047</td>
+<td style="text-align: right;">0.314</td>
+<td style="text-align: right;">1217.07</td>
+<td style="text-align: right;">0.4231</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.14ll</td>
+<td style="text-align: left;">Low steepness, long SR</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: left;">1970-2022</td>
+<td style="text-align: right;">0.3167</td>
+<td style="text-align: right;">0.0279</td>
+<td style="text-align: right;">0.4662</td>
+<td style="text-align: right;">0.4662</td>
+<td style="text-align: right;">2.5321</td>
+<td style="text-align: right;">9130.4</td>
+<td style="text-align: right;">1194.30</td>
+<td style="text-align: right;">0.6424</td>
+<td style="text-align: right;">0.316</td>
+<td style="text-align: right;">1740.14</td>
+<td style="text-align: right;">0.4233</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">h1_0.14hs</td>
+<td style="text-align: left;">High steepness, short SR</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: left;">2000-2022</td>
+<td style="text-align: right;">0.8430</td>
+<td style="text-align: right;">0.1345</td>
+<td style="text-align: right;">0.4625</td>
+<td style="text-align: right;">0.4625</td>
+<td style="text-align: right;">0.9480</td>
+<td style="text-align: right;">2997.6</td>
+<td style="text-align: right;">450.53</td>
+<td style="text-align: right;">1.9120</td>
+<td style="text-align: right;">0.840</td>
+<td style="text-align: right;">1118.53</td>
+<td style="text-align: right;">0.2546</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">h1_0.14hl</td>
+<td style="text-align: left;">High steepness, long SR</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: left;">1970-2022</td>
+<td style="text-align: right;">0.8777</td>
+<td style="text-align: right;">0.1389</td>
+<td style="text-align: right;">0.4745</td>
+<td style="text-align: right;">0.4745</td>
+<td style="text-align: right;">0.9191</td>
+<td style="text-align: right;">4653.5</td>
+<td style="text-align: right;">472.11</td>
+<td style="text-align: right;">1.2944</td>
+<td style="text-align: right;">0.874</td>
+<td style="text-align: right;">1747.21</td>
+<td style="text-align: right;">0.2535</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-productivity-fmsy-range" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-productivity-fmsy-range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-productivity-fmsy-range-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: Fmsy and F35% estimates across productivity assumptions. Horizontal bars show approximate 95% intervals for Fmsy using the reported standard errors."><img src="kobe_alternatives_0_14_files/figure-html/fig-productivity-fmsy-range-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-productivity-fmsy-range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Fmsy and F35% estimates across productivity assumptions. Horizontal bars show approximate 95% intervals for Fmsy using the reported standard errors.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The contrast in <a href="#fig-productivity-fmsy-range" class="quarto-xref">Figure&nbsp;4</a> is mostly a steepness effect. The low-steepness cases put Fmsy near 0.315-0.317, while the high-steepness cases shift Fmsy upward to 0.843-0.878. Changing from the short to the long stock-recruit fitting period has a much smaller effect within each steepness assumption than changing steepness itself.</p>
+<p>F35% is comparatively stable across these runs, ranging from 0.462 to 0.475. That is expected because the SPR-based reference point is controlled mainly by selectivity, maturity, growth, and natural mortality, whereas Fmsy also depends strongly on the assumed stock-recruit productivity. Under low steepness, F35% sits above Fmsy, so it would imply a more aggressive F than the production-based MSY estimate. Under high steepness, Fmsy is well above F35%, so F35% becomes the more conservative reference point.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-productivity-yield-profiles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-productivity-yield-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-productivity-yield-profiles-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: Yield profiles across productivity assumptions. Points mark the profile maximum and dashed vertical lines mark the reported Fmsy values."><img src="kobe_alternatives_0_14_files/figure-html/fig-productivity-yield-profiles-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-productivity-yield-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Yield profiles across productivity assumptions. Points mark the profile maximum and dashed vertical lines mark the reported Fmsy values.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="spr-reference-point" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="spr-reference-point"><span class="header-section-number">3</span> SPR Reference Point</h2>
+<div class="cell">
+<div id="tbl-spr-reference" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-spr-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: SPR reference point from the refreshed model run. SBF35 is interpolated from the yield profile at SPR = 0.35.
+</figcaption>
+<div aria-describedby="tbl-spr-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 13%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">stock</th>
+<th style="text-align: right;">F35_est</th>
+<th style="text-align: right;">F_at_SPR35_profile</th>
+<th style="text-align: right;">Fmsy</th>
+<th style="text-align: right;">SBF35</th>
+<th style="text-align: right;">yield_at_SPR35</th>
+<th style="text-align: right;">yield_at_Fmsy</th>
+<th style="text-align: right;">SPR_at_Fmsy</th>
+<th style="text-align: right;">recruitment_at_SPR35</th>
+<th style="text-align: right;">total_biomass_at_SPR35</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">h1_0.14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.4623</td>
+<td style="text-align: right;">0.4623</td>
+<td style="text-align: right;">0.3148</td>
+<td style="text-align: right;">4771.575</td>
+<td style="text-align: right;">1184.616</td>
+<td style="text-align: right;">1217.07</td>
+<td style="text-align: right;">0.4226</td>
+<td style="text-align: right;">8532.228</td>
+<td style="text-align: right;">7849.583</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-f-profile" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-f-profile-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: F profile from Fprof.yld. Vertical lines mark F35% and Fmsy on the profile."><img src="kobe_alternatives_0_14_files/figure-html/fig-f-profile-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-profile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: F profile from Fprof.yld. Vertical lines mark F35% and Fmsy on the profile.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-f-ratio-by-fishery" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-f-ratio-by-fishery-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Fishery ratios used to apportion F-based reference points. Ratios are based on mean end-year F by fishery, matching the Fratio calculation used for SPR rates.
+</figcaption>
+<div aria-describedby="tbl-f-ratio-by-fishery-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 18%">
+<col style="width: 5%">
+<col style="width: 15%">
+<col style="width: 23%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">fishery</th>
+<th style="text-align: right;">end_year</th>
+<th style="text-align: right;">mean_f</th>
+<th style="text-align: right;">max_selectivity_scaled_f</th>
+<th style="text-align: right;">f_ratio</th>
+<th style="text-align: right;">F35_est_contribution</th>
+<th style="text-align: right;">F_at_SPR35_profile_contribution</th>
+<th style="text-align: right;">Fmsy_contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">N_Chile</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">0.0410</td>
+<td style="text-align: right;">0.0813</td>
+<td style="text-align: right;">0.0513</td>
+<td style="text-align: right;">0.0237</td>
+<td style="text-align: right;">0.0237</td>
+<td style="text-align: right;">0.0162</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SC_Chile_PS</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">0.7253</td>
+<td style="text-align: right;">2.0370</td>
+<td style="text-align: right;">0.9086</td>
+<td style="text-align: right;">0.4200</td>
+<td style="text-align: right;">0.4200</td>
+<td style="text-align: right;">0.2860</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FarNorth</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">0.0251</td>
+<td style="text-align: right;">0.0453</td>
+<td style="text-align: right;">0.0315</td>
+<td style="text-align: right;">0.0146</td>
+<td style="text-align: right;">0.0146</td>
+<td style="text-align: right;">0.0099</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Offshore_Trawl</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">0.0069</td>
+<td style="text-align: right;">0.0142</td>
+<td style="text-align: right;">0.0086</td>
+<td style="text-align: right;">0.0040</td>
+<td style="text-align: right;">0.0040</td>
+<td style="text-align: right;">0.0027</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="total-biomass" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="total-biomass"><span class="header-section-number">4</span> Total Biomass</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-total-fished-unfished" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-total-fished-unfished-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-total-fished-unfished-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: Estimated total biomass with fishing and the model counterfactual total biomass without fishing."><img src="kobe_alternatives_0_14_files/figure-html/fig-total-fished-unfished-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-total-fished-unfished-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Estimated total biomass with fishing and the model counterfactual total biomass without fishing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-total-difference-ratio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-total-difference-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="kobe_alternatives_0_14_files/figure-html/fig-total-difference-ratio-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;8: Absolute difference between no-fishing and fished total biomass compared with the total-biomass ratio."><img src="kobe_alternatives_0_14_files/figure-html/fig-total-difference-ratio-1.png" class="img-fluid figure-img" width="864"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-total-difference-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Absolute difference between no-fishing and fished total biomass compared with the total-biomass ratio.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-total-terminal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-total-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Terminal-year total biomass impact and fished/no-fishing ratio.
+</figcaption>
+<div aria-describedby="tbl-total-terminal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 33%">
+<col style="width: 37%">
+<col style="width: 13%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">total_biomass_with_fishing</th>
+<th style="text-align: right;">total_biomass_without_fishing</th>
+<th style="text-align: right;">difference</th>
+<th style="text-align: right;">ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">9678.61</td>
+<td style="text-align: right;">25914.7</td>
+<td style="text-align: right;">16236.09</td>
+<td style="text-align: right;">0.3735</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Kobe Plot Alternatives for Model 0.14"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 9</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 5</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    lightbox: true</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="an">params:</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">  model_name: "h1_0.14"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">  stock: 1</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jjmR)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>assessment_dir <span class="ot">&lt;-</span> <span class="fu">normalizePath</span>(<span class="fu">file.path</span>(<span class="st">".."</span>, <span class="st">"assessment"</span>), <span class="at">mustWork =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>assessment_file <span class="ot">&lt;-</span> <span class="cf">function</span>(...) <span class="fu">file.path</span>(assessment_dir, ...)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>read_model <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readJJM</span>(</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    model_name,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="fu">assessment_file</span>(<span class="st">"config"</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">input =</span> <span class="fu">assessment_file</span>(<span class="st">"input"</span>),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">output =</span> <span class="fu">assessment_file</span>(<span class="st">"results"</span>),</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">version =</span> <span class="st">"2015MS"</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  )[[<span class="dv">1</span>]]</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>theme_report <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title.position =</span> <span class="st">"plot"</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>as_estimate_df <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">quantity =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(x)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(out) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"estimate"</span>, <span class="st">"sd"</span>, <span class="st">"lower"</span>, <span class="st">"upper"</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">mutate</span>(out, <span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(quantity)) {</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">mutate</span>(out, <span class="at">quantity =</span> quantity, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  out</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>read_yield_profile <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  yld_file <span class="ot">&lt;-</span> <span class="fu">assessment_file</span>(<span class="st">"results"</span>, <span class="fu">paste0</span>(model_name, <span class="st">".yld"</span>))</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.table</span>(</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    yld_file,</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">5</span>,</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"spawning_biomass"</span>, <span class="st">"yield"</span>, <span class="st">"recruitment"</span>, <span class="st">"spr"</span>, <span class="st">"total_biomass"</span>)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(f), <span class="sc">!</span><span class="fu">is.na</span>(spr)) <span class="sc">|&gt;</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>read_std_terms <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name, terms) {</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  std_file <span class="ot">&lt;-</span> <span class="fu">assessment_file</span>(<span class="st">"results"</span>, <span class="fu">paste0</span>(model_name, <span class="st">".std"</span>))</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">term =</span> terms,</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">std_dev =</span> <span class="cn">NA_real_</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(std_file)) {</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>  std_output <span class="ot">&lt;-</span> <span class="fu">read.table</span>(std_file, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>  matched <span class="ot">&lt;-</span> <span class="fu">match</span>(terms, std_output<span class="sc">$</span>name)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>  out<span class="sc">$</span>value <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(std_output<span class="sc">$</span>value[matched])</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>  out<span class="sc">$</span>std_dev <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(std_output<span class="sc">$</span>std.dev[matched])</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  out</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>read_std_value <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name, term) {</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_std_terms</span>(model_name, term)<span class="sc">$</span>value[[<span class="dv">1</span>]]</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>read_r_report_value <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name, term) {</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  r_report_file <span class="ot">&lt;-</span> <span class="fu">assessment_file</span>(<span class="st">"results"</span>, <span class="fu">paste0</span>(model_name, <span class="st">"_1_R.rep"</span>))</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(r_report_file)) {</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  r_report <span class="ot">&lt;-</span> <span class="fu">readLines</span>(r_report_file, <span class="at">warn =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>  term_line <span class="ot">&lt;-</span> <span class="fu">which</span>(r_report <span class="sc">==</span> <span class="fu">paste0</span>(<span class="st">"$"</span>, term))[<span class="dv">1</span>]</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(term_line) <span class="sc">||</span> term_line <span class="sc">==</span> <span class="fu">length</span>(r_report)) {</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">strsplit</span>(<span class="fu">trimws</span>(r_report[term_line <span class="sc">+</span> <span class="dv">1</span>]), <span class="st">"</span><span class="sc">\\</span><span class="st">s+"</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>])</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>interpolate_spr <span class="ot">&lt;-</span> <span class="cf">function</span>(profile, <span class="at">target_spr =</span> <span class="fl">0.35</span>) {</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>  profile <span class="ot">&lt;-</span> <span class="fu">arrange</span>(profile, f)</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>  crossing <span class="ot">&lt;-</span> <span class="fu">which</span>(</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">head</span>(profile<span class="sc">$</span>spr, <span class="sc">-</span><span class="dv">1</span>) <span class="sc">-</span> target_spr) <span class="sc">*</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>      (<span class="fu">tail</span>(profile<span class="sc">$</span>spr, <span class="sc">-</span><span class="dv">1</span>) <span class="sc">-</span> target_spr) <span class="sc">&lt;=</span> <span class="dv">0</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>  )[<span class="dv">1</span>]</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(crossing)) {</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>      <span class="at">profile_f_at_spr35 =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>      <span class="at">sbf35 =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>      <span class="at">yield_at_spr35 =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>      <span class="at">recruitment_at_spr35 =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>      <span class="at">total_biomass_at_spr35 =</span> <span class="cn">NA_real_</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>  lower <span class="ot">&lt;-</span> profile[crossing, ]</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>  upper <span class="ot">&lt;-</span> profile[crossing <span class="sc">+</span> <span class="dv">1</span>, ]</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>  weight <span class="ot">&lt;-</span> (target_spr <span class="sc">-</span> lower<span class="sc">$</span>spr) <span class="sc">/</span> (upper<span class="sc">$</span>spr <span class="sc">-</span> lower<span class="sc">$</span>spr)</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">profile_f_at_spr35 =</span> lower<span class="sc">$</span>f <span class="sc">+</span> weight <span class="sc">*</span> (upper<span class="sc">$</span>f <span class="sc">-</span> lower<span class="sc">$</span>f),</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">sbf35 =</span> lower<span class="sc">$</span>spawning_biomass <span class="sc">+</span> weight <span class="sc">*</span> (upper<span class="sc">$</span>spawning_biomass <span class="sc">-</span> lower<span class="sc">$</span>spawning_biomass),</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_at_spr35 =</span> lower<span class="sc">$</span>yield <span class="sc">+</span> weight <span class="sc">*</span> (upper<span class="sc">$</span>yield <span class="sc">-</span> lower<span class="sc">$</span>yield),</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>    <span class="at">recruitment_at_spr35 =</span> lower<span class="sc">$</span>recruitment <span class="sc">+</span> weight <span class="sc">*</span> (upper<span class="sc">$</span>recruitment <span class="sc">-</span> lower<span class="sc">$</span>recruitment),</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_biomass_at_spr35 =</span> lower<span class="sc">$</span>total_biomass <span class="sc">+</span> weight <span class="sc">*</span> (upper<span class="sc">$</span>total_biomass <span class="sc">-</span> lower<span class="sc">$</span>total_biomass)</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>interpolate_f <span class="ot">&lt;-</span> <span class="cf">function</span>(profile, target_f) {</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.finite</span>(target_f)) {</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">tibble</span>(</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>      <span class="at">spawning_biomass_at_f =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>      <span class="at">yield_at_f =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>      <span class="at">recruitment_at_f =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>      <span class="at">spr_at_f =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>      <span class="at">total_biomass_at_f =</span> <span class="cn">NA_real_</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>  profile <span class="ot">&lt;-</span> <span class="fu">arrange</span>(profile, f)</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">spawning_biomass_at_f =</span> <span class="fu">approx</span>(profile<span class="sc">$</span>f, profile<span class="sc">$</span>spawning_biomass, <span class="at">xout =</span> target_f)<span class="sc">$</span>y,</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_at_f =</span> <span class="fu">approx</span>(profile<span class="sc">$</span>f, profile<span class="sc">$</span>yield, <span class="at">xout =</span> target_f)<span class="sc">$</span>y,</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>    <span class="at">recruitment_at_f =</span> <span class="fu">approx</span>(profile<span class="sc">$</span>f, profile<span class="sc">$</span>recruitment, <span class="at">xout =</span> target_f)<span class="sc">$</span>y,</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>    <span class="at">spr_at_f =</span> <span class="fu">approx</span>(profile<span class="sc">$</span>f, profile<span class="sc">$</span>spr, <span class="at">xout =</span> target_f)<span class="sc">$</span>y,</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_biomass_at_f =</span> <span class="fu">approx</span>(profile<span class="sc">$</span>f, profile<span class="sc">$</span>total_biomass, <span class="at">xout =</span> target_f)<span class="sc">$</span>y</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">read_model</span>(params<span class="sc">$</span>model_name)</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>stock_output <span class="ot">&lt;-</span> model<span class="sc">$</span>output[[params<span class="sc">$</span>stock]]</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>yield_profile <span class="ot">&lt;-</span> <span class="fu">read_yield_profile</span>(params<span class="sc">$</span>model_name)</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>profile_fmsy <span class="ot">&lt;-</span> yield_profile<span class="sc">$</span>f[<span class="fu">which.max</span>(yield_profile<span class="sc">$</span>yield)]</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>reported_fmsy <span class="ot">&lt;-</span> <span class="fu">read_std_value</span>(params<span class="sc">$</span>model_name, <span class="st">"Fmsy"</span>)</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>fmsy <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.finite</span>(reported_fmsy)) reported_fmsy <span class="cf">else</span> profile_fmsy</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>productivity_models <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="fu">c</span>(params<span class="sc">$</span>model_name, <span class="st">"h1_0.14ll"</span>, <span class="st">"h1_0.14hl"</span>, <span class="st">"h1_0.14hs"</span>),</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>  <span class="at">scenario =</span> <span class="fu">c</span>(</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Low steepness, short SR"</span>,</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Low steepness, long SR"</span>,</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>    <span class="st">"High steepness, long SR"</span>,</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>    <span class="st">"High steepness, short SR"</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>  <span class="at">steepness =</span> <span class="fu">c</span>(<span class="fl">0.65</span>, <span class="fl">0.65</span>, <span class="fl">0.85</span>, <span class="fl">0.85</span>),</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>  <span class="at">sr_fit =</span> <span class="fu">c</span>(<span class="st">"Short"</span>, <span class="st">"Long"</span>, <span class="st">"Long"</span>, <span class="st">"Short"</span>),</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>  <span class="at">sr_years =</span> <span class="fu">c</span>(<span class="st">"2000-2022"</span>, <span class="st">"1970-2022"</span>, <span class="st">"1970-2022"</span>, <span class="st">"2000-2022"</span>)</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>summarize_productivity_model <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>  profile <span class="ot">&lt;-</span> <span class="fu">read_yield_profile</span>(model_name)</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>  profile_msy_row <span class="ot">&lt;-</span> profile[<span class="fu">which.max</span>(profile<span class="sc">$</span>yield), ]</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>  std_terms <span class="ot">&lt;-</span> <span class="fu">read_std_terms</span>(model_name, <span class="fu">c</span>(<span class="st">"Fmsy"</span>, <span class="st">"Fcur_Fmsy"</span>, <span class="st">"Bmsy"</span>, <span class="st">"Bcur_Bmsy"</span>))</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>  spr35 <span class="ot">&lt;-</span> <span class="fu">interpolate_spr</span>(profile, <span class="at">target_spr =</span> <span class="fl">0.35</span>)</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> model_name,</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fmsy =</span> std_terms<span class="sc">$</span>value[std_terms<span class="sc">$</span>term <span class="sc">==</span> <span class="st">"Fmsy"</span>],</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fmsy_se =</span> std_terms<span class="sc">$</span>std_dev[std_terms<span class="sc">$</span>term <span class="sc">==</span> <span class="st">"Fmsy"</span>],</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>    <span class="at">F35_est =</span> <span class="fu">read_r_report_value</span>(model_name, <span class="st">"F35_est"</span>),</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>    <span class="at">F_at_SPR35_profile =</span> spr35<span class="sc">$</span>profile_f_at_spr35,</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fcur_Fmsy =</span> std_terms<span class="sc">$</span>value[std_terms<span class="sc">$</span>term <span class="sc">==</span> <span class="st">"Fcur_Fmsy"</span>],</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>    <span class="at">Bmsy =</span> std_terms<span class="sc">$</span>value[std_terms<span class="sc">$</span>term <span class="sc">==</span> <span class="st">"Bmsy"</span>],</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">Bmsy_se =</span> std_terms<span class="sc">$</span>std_dev[std_terms<span class="sc">$</span>term <span class="sc">==</span> <span class="st">"Bmsy"</span>],</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">Bcur_Bmsy =</span> std_terms<span class="sc">$</span>value[std_terms<span class="sc">$</span>term <span class="sc">==</span> <span class="st">"Bcur_Bmsy"</span>],</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">profile_Fmsy =</span> profile_msy_row<span class="sc">$</span>f,</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">MSY =</span> profile_msy_row<span class="sc">$</span>yield,</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">SPR_at_profile_Fmsy =</span> profile_msy_row<span class="sc">$</span>spr</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>productivity_reference <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(productivity_models<span class="sc">$</span>model, summarize_productivity_model)</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(productivity_models, <span class="at">by =</span> <span class="st">"model"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fmsy_lower =</span> <span class="fu">pmax</span>(Fmsy <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> Fmsy_se, <span class="dv">0</span>),</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fmsy_upper =</span> Fmsy <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> Fmsy_se</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Fmsy) <span class="sc">|&gt;</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>    <span class="at">scenario =</span> <span class="fu">factor</span>(scenario, <span class="at">levels =</span> scenario),</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>    <span class="at">sr_fit =</span> <span class="fu">factor</span>(sr_fit, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Short"</span>, <span class="st">"Long"</span>)),</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">steepness_label =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="st">"h = "</span>, steepness),</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"h = 0.65"</span>, <span class="st">"h = 0.85"</span>)</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>productivity_yield_profiles <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(productivity_models<span class="sc">$</span>model, \(model_name) {</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_yield_profile</span>(model_name) <span class="sc">|&gt;</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">model =</span> model_name, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>    productivity_reference <span class="sc">|&gt;</span></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(model, scenario, steepness_label, sr_fit),</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"model"</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>productivity_f_reference_points <span class="ot">&lt;-</span> productivity_reference <span class="sc">|&gt;</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(model, scenario, steepness_label, sr_fit, Fmsy, F35_est) <span class="sc">|&gt;</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(Fmsy, F35_est),</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"reference"</span>,</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"f"</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>    <span class="at">reference =</span> <span class="fu">recode</span>(reference, <span class="at">Fmsy =</span> <span class="st">"Fmsy"</span>, <span class="at">F35_est =</span> <span class="st">"F35%"</span>),</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>    <span class="at">reference =</span> <span class="fu">factor</span>(reference, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Fmsy"</span>, <span class="st">"F35%"</span>))</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>bmsy_reference <span class="ot">&lt;-</span> productivity_reference <span class="sc">|&gt;</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>    scenario,</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>    Bmsy,</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>    Bmsy_se,</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>    Bcur_Bmsy,</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmsy_label =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>      <span class="fu">recode</span>(</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>        <span class="fu">as.character</span>(scenario),</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Low steepness, short SR"</span> <span class="ot">=</span> <span class="st">"low h, short"</span>,</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Low steepness, long SR"</span> <span class="ot">=</span> <span class="st">"low h, long"</span>,</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>        <span class="st">"High steepness, short SR"</span> <span class="ot">=</span> <span class="st">"high h, short"</span>,</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>        <span class="st">"High steepness, long SR"</span> <span class="ot">=</span> <span class="st">"high h, long"</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"low h, short"</span>, <span class="st">"low h, long"</span>, <span class="st">"high h, short"</span>, <span class="st">"high h, long"</span>)</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>read_productivity_ssb <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>  model_obj <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">identical</span>(model_name, params<span class="sc">$</span>model_name)) model <span class="cf">else</span> <span class="fu">read_model</span>(model_name)</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>  stock_obj <span class="ot">&lt;-</span> model_obj<span class="sc">$</span>output[[params<span class="sc">$</span>stock]]</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>  ssb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(stock_obj<span class="sc">$</span>df1)</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(ssb) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"quantity"</span>, <span class="st">"year"</span>, <span class="st">"estimate"</span>, <span class="st">"sd"</span>, <span class="st">"lower"</span>, <span class="st">"upper"</span>)</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>  ssb <span class="sc">|&gt;</span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>quantity, as.numeric)) <span class="sc">|&gt;</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(quantity <span class="sc">==</span> <span class="st">"SSB"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> model_name, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>productivity_ssb_series <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(productivity_models<span class="sc">$</span>model, read_productivity_ssb)</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>    productivity_models <span class="sc">|&gt;</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(model, scenario),</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"model"</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>    <span class="at">scenario =</span> <span class="fu">factor</span>(scenario, <span class="at">levels =</span> <span class="fu">levels</span>(productivity_reference<span class="sc">$</span>scenario))</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>productivity_scenario_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Low steepness, short SR"</span> <span class="ot">=</span> <span class="st">"#2c7fb8"</span>,</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Low steepness, long SR"</span> <span class="ot">=</span> <span class="st">"#74a9cf"</span>,</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>  <span class="st">"High steepness, long SR"</span> <span class="ot">=</span> <span class="st">"#d95f0e"</span>,</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>  <span class="st">"High steepness, short SR"</span> <span class="ot">=</span> <span class="st">"#fdb863"</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(stock_output<span class="sc">$</span>df1)</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"quantity"</span>, <span class="st">"year"</span>, <span class="st">"estimate"</span>, <span class="st">"sd"</span>, <span class="st">"lower"</span>, <span class="st">"upper"</span>)</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df1 <span class="sc">|&gt;</span></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span>quantity, as.numeric))</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>biomass_series <span class="ot">&lt;-</span> df1 <span class="sc">|&gt;</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(quantity <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SSB"</span>,</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SSB_Nofishing"</span>,</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Total_Biom"</span>,</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Total_Biom_Nofishing"</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>    <span class="at">metric =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>      quantity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SSB"</span>, <span class="st">"SSB_Nofishing"</span>) <span class="sc">~</span> <span class="st">"Spawning biomass"</span>,</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>      quantity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Total_Biom"</span>, <span class="st">"Total_Biom_Nofishing"</span>) <span class="sc">~</span> <span class="st">"Total biomass"</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>    <span class="at">scenario =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>      quantity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SSB"</span>, <span class="st">"Total_Biom"</span>) <span class="sc">~</span> <span class="st">"With fishing"</span>,</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>      quantity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SSB_Nofishing"</span>, <span class="st">"Total_Biom_Nofishing"</span>) <span class="sc">~</span> <span class="st">"Without fishing"</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(metric, scenario, year, estimate, sd, lower, upper)</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>biomass_wide <span class="ot">&lt;-</span> biomass_series <span class="sc">|&gt;</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(metric, scenario, year, estimate) <span class="sc">|&gt;</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> scenario, <span class="at">values_from =</span> estimate) <span class="sc">|&gt;</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>    <span class="at">difference =</span> <span class="st">`</span><span class="at">Without fishing</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">With fishing</span><span class="st">`</span>,</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio =</span> <span class="st">`</span><span class="at">With fishing</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">Without fishing</span><span class="st">`</span>,</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_loss =</span> <span class="dv">1</span> <span class="sc">-</span> ratio</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>reported_ssb_depletion <span class="ot">&lt;-</span> <span class="fu">as_estimate_df</span>(stock_output<span class="sc">$</span>SSB_NoFishR, <span class="st">"SSB_NoFishR"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> estimate,</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> <span class="st">"Output SSB_NoFishR"</span>,</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel =</span> <span class="st">"Depletion ratio"</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>ssb0_dynamic <span class="ot">&lt;-</span> df1 <span class="sc">|&gt;</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(quantity <span class="sc">==</span> <span class="st">"SSB0_Dynamic"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, <span class="at">ssb0_dynamic =</span> estimate)</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>ssb_derived <span class="ot">&lt;-</span> biomass_wide <span class="sc">|&gt;</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">==</span> <span class="st">"Spawning biomass"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>    difference,</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>    ratio</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>ssb_comparison <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>  ssb_derived <span class="sc">|&gt;</span></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>      year,</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> difference,</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>      <span class="at">source =</span> <span class="st">"SSB_Nofishing - SSB"</span>,</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel =</span> <span class="st">"Biomass difference (kt)"</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>  ssb_derived <span class="sc">|&gt;</span></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>      year,</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> ratio,</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>      <span class="at">source =</span> <span class="st">"SSB / SSB_Nofishing"</span>,</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel =</span> <span class="st">"Depletion ratio"</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>  reported_ssb_depletion</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>ssb_summary <span class="ot">&lt;-</span> biomass_wide <span class="sc">|&gt;</span></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">==</span> <span class="st">"Spawning biomass"</span>, year <span class="sc">==</span> <span class="fu">max</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>    reported_ssb_depletion <span class="sc">|&gt;</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(year, <span class="at">reported_depletion =</span> value),</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"year"</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ssb0_dynamic, <span class="at">by =</span> <span class="st">"year"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio_minus_reported =</span> ratio <span class="sc">-</span> reported_depletion,</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>    <span class="at">ssb0_minus_reported =</span> ssb0_dynamic <span class="sc">-</span> reported_depletion</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>    <span class="at">ssb_with_fishing =</span> <span class="st">`</span><span class="at">With fishing</span><span class="st">`</span>,</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>    <span class="at">ssb_without_fishing =</span> <span class="st">`</span><span class="at">Without fishing</span><span class="st">`</span>,</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>    difference,</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>    ratio,</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>    reported_depletion,</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>    ssb0_dynamic,</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>    ratio_minus_reported,</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>    ssb0_minus_reported</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>total_summary <span class="ot">&lt;-</span> biomass_wide <span class="sc">|&gt;</span></span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">==</span> <span class="st">"Total biomass"</span>, year <span class="sc">==</span> <span class="fu">max</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_biomass_with_fishing =</span> <span class="st">`</span><span class="at">With fishing</span><span class="st">`</span>,</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_biomass_without_fishing =</span> <span class="st">`</span><span class="at">Without fishing</span><span class="st">`</span>,</span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>    difference,</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>    ratio</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>spr_reference <span class="ot">&lt;-</span> <span class="fu">interpolate_spr</span>(yield_profile, <span class="at">target_spr =</span> <span class="fl">0.35</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="fu">interpolate_f</span>(yield_profile, fmsy)) <span class="sc">|&gt;</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> params<span class="sc">$</span>model_name,</span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>    <span class="at">stock =</span> params<span class="sc">$</span>stock,</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>    <span class="at">f35_est =</span> <span class="fu">as.numeric</span>(stock_output<span class="sc">$</span>F35_est),</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>    <span class="at">fmsy =</span> fmsy,</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>    <span class="at">.before =</span> <span class="dv">1</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>    stock,</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>    <span class="at">F35_est =</span> f35_est,</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>    <span class="at">F_at_SPR35_profile =</span> profile_f_at_spr35,</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fmsy =</span> fmsy,</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>    <span class="at">SBF35 =</span> sbf35,</span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_at_SPR35 =</span> yield_at_spr35,</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>    <span class="at">yield_at_Fmsy =</span> yield_at_f,</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>    <span class="at">SPR_at_Fmsy =</span> spr_at_f,</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>    <span class="at">recruitment_at_SPR35 =</span> recruitment_at_spr35,</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_biomass_at_SPR35 =</span> total_biomass_at_spr35</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>f_profile <span class="ot">&lt;-</span> yield_profile <span class="sc">|&gt;</span></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(f <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>    f,</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Spawning biomass</span><span class="st">`</span> <span class="ot">=</span> spawning_biomass,</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>    <span class="at">Yield =</span> yield,</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>    <span class="at">Recruitment =</span> recruitment,</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>    <span class="at">SPR =</span> spr</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>f, <span class="at">names_to =</span> <span class="st">"quantity"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantity =</span> <span class="fu">factor</span>(quantity, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Yield"</span>, <span class="st">"Spawning biomass"</span>, <span class="st">"Recruitment"</span>, <span class="st">"SPR"</span>))</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>f_reference_lines <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>  <span class="at">reference =</span> <span class="fu">c</span>(<span class="st">"F35%"</span>, <span class="st">"Fmsy"</span>),</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> <span class="fu">c</span>(spr_reference<span class="sc">$</span>F35_est, spr_reference<span class="sc">$</span>Fmsy)</span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>fishery_f_ratio <span class="ot">&lt;-</span> {</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>  f_fishery_names <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^F_fsh_[0-9]+$"</span>, <span class="fu">names</span>(stock_output), <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>  f_fishery_ids <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">sub</span>(<span class="st">"^F_fsh_"</span>, <span class="st">""</span>, f_fishery_names))</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>    <span class="at">fishery =</span> model<span class="sc">$</span>data<span class="sc">$</span>Fnames[f_fishery_ids],</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>    <span class="at">end_year =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(f_fishery_names, \(name) <span class="fu">max</span>(stock_output[[name]][, <span class="dv">1</span>])),</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_f =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(f_fishery_names, \(name) {</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>      values <span class="ot">&lt;-</span> stock_output[[name]]</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>      values[<span class="fu">which.max</span>(values[, <span class="dv">1</span>]), <span class="dv">2</span>]</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>    }),</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_selectivity_scaled_f =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(f_fishery_names, \(name) {</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>      values <span class="ot">&lt;-</span> stock_output[[name]]</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>      values[<span class="fu">which.max</span>(values[, <span class="dv">1</span>]), <span class="dv">3</span>]</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>      <span class="at">f_ratio =</span> mean_f <span class="sc">/</span> <span class="fu">sum</span>(mean_f),</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>      <span class="at">F35_est_contribution =</span> spr_reference<span class="sc">$</span>F35_est <span class="sc">*</span> f_ratio,</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>      <span class="at">F_at_SPR35_profile_contribution =</span> spr_reference<span class="sc">$</span>F_at_SPR35_profile <span class="sc">*</span> f_ratio,</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>      <span class="at">Fmsy_contribution =</span> spr_reference<span class="sc">$</span>Fmsy <span class="sc">*</span> f_ratio</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>This report uses <span class="in">`r params$model_name`</span>, stock <span class="in">`r params$stock`</span>. The no-fishing spawning biomass is taken from <span class="in">`df1`</span> in the model output object as <span class="in">`SSB_Nofishing`</span>; the reported depletion comparison is taken from <span class="in">`SSB_NoFishR`</span>, with <span class="in">`SSB0_Dynamic`</span> included as a consistency check.</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spawning Biomass</span></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ssb-fished-unfished</span></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Estimated spawning biomass with fishing and the model counterfactual spawning biomass without fishing."</span></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>biomass_series <span class="sc">|&gt;</span></span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">==</span> <span class="st">"Spawning biomass"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, estimate, <span class="at">color =</span> scenario, <span class="at">fill =</span> scenario)) <span class="sc">+</span></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Spawning biomass (kt)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ssb-bmsy-productivity</span></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Fished spawning biomass since 2000 across productivity assumptions. Dashed horizontal lines show Bmsy for each run."</span></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>productivity_ssb_series <span class="sc">|&gt;</span></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, estimate, <span class="at">color =</span> scenario, <span class="at">fill =</span> scenario)) <span class="sc">+</span></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.08</span>, <span class="at">linewidth =</span> <span class="dv">0</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> bmsy_reference,</span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">yintercept =</span> Bmsy, <span class="at">color =</span> scenario),</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.55</span>,</span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.85</span></span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> productivity_scenario_colors) <span class="sc">+</span></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> productivity_scenario_colors) <span class="sc">+</span></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="fu">max</span>(productivity_ssb_series<span class="sc">$</span>year), <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Spawning biomass (kt)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>() <span class="sc">+</span></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.box =</span> <span class="st">"vertical"</span></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>The post-2000 view in @fig-ssb-bmsy-productivity shows that the recent fished SSB trajectories are broadly similar, but the Bmsy reference levels diverge strongly among productivity assumptions. The low-steepness, long-SR run has the highest Bmsy (<span class="in">`r round(max(bmsy_reference$Bmsy, na.rm = TRUE), 0)`</span> kt), while the high-steepness, short-SR run has the lowest Bmsy (<span class="in">`r round(min(bmsy_reference$Bmsy, na.rm = TRUE), 0)`</span> kt). As a result, terminal status relative to Bmsy is mostly a productivity-assumption result: the same recent biomass scale is below the low-steepness Bmsy levels but above the high-steepness Bmsy levels.</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ssb-difference-depletion</span></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Spawning biomass depletion ratio estimated as fished spawning biomass divided by no-fishing spawning biomass, compared with the reported depletion estimate."</span></span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>ssb_comparison <span class="sc">|&gt;</span></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(panel <span class="sc">==</span> <span class="st">"Depletion ratio"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, value, <span class="at">color =</span> source, <span class="at">linetype =</span> source)) <span class="sc">+</span></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Fished / no-fishing SSB"</span>, <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">linetype =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ssb-terminal</span></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Terminal-year spawning biomass impact and depletion comparison."</span></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(ssb_summary, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a><span class="fu">## Productivity Range</span></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>The productivity sensitivity runs span Fmsy values from <span class="in">`r round(min(productivity_reference$Fmsy, na.rm = TRUE), 3)`</span> to <span class="in">`r round(max(productivity_reference$Fmsy, na.rm = TRUE), 3)`</span>. The low-steepness runs produce the lower end of the range, while the high-steepness runs shift the F profile peak to substantially higher F values.</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-productivity-reference</span></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Fmsy values across productivity assumptions. Intervals use the reported standard errors from the .std files; profile_Fmsy is the F value at maximum yield in Fprof.yld."</span></span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>productivity_reference <span class="sc">|&gt;</span></span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>    <span class="at">scenario =</span> <span class="fu">as.character</span>(scenario),</span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>    steepness,</span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>    sr_years,</span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>    Fmsy,</span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>    Fmsy_se,</span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a>    F35_est,</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>    F_at_SPR35_profile,</span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>    Fcur_Fmsy,</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>    Bmsy,</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>    Bmsy_se,</span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>    Bcur_Bmsy,</span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>    profile_Fmsy,</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>    MSY,</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>    SPR_at_profile_Fmsy</span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-productivity-fmsy-range</span></span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Fmsy and F35% estimates across productivity assumptions. Horizontal bars show approximate 95% intervals for Fmsy using the reported standard errors."</span></span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(productivity_reference, <span class="fu">aes</span>(Fmsy, scenario, <span class="at">color =</span> steepness_label)) <span class="sc">+</span></span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Fmsy_lower, <span class="at">xend =</span> Fmsy_upper, <span class="at">y =</span> scenario, <span class="at">yend =</span> scenario),</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.9</span>,</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.65</span></span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> productivity_f_reference_points,</span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(f, scenario, <span class="at">color =</span> steepness_label, <span class="at">shape =</span> reference),</span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"h = 0.65"</span> <span class="ot">=</span> <span class="st">"#2c7fb8"</span>, <span class="st">"h = 0.85"</span> <span class="ot">=</span> <span class="st">"#d95f0e"</span>)) <span class="sc">+</span></span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Fmsy"</span> <span class="ot">=</span> <span class="dv">16</span>, <span class="st">"F35%"</span> <span class="ot">=</span> <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"F"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">color =</span> <span class="st">"Steepness"</span>, <span class="at">shape =</span> <span class="st">"Reference point"</span>) <span class="sc">+</span></span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>The contrast in @fig-productivity-fmsy-range is mostly a steepness effect. The low-steepness cases put Fmsy near <span class="in">`r round(min(productivity_reference$Fmsy[productivity_reference$steepness == 0.65], na.rm = TRUE), 3)`</span>-<span class="in">`r round(max(productivity_reference$Fmsy[productivity_reference$steepness == 0.65], na.rm = TRUE), 3)`</span>, while the high-steepness cases shift Fmsy upward to <span class="in">`r round(min(productivity_reference$Fmsy[productivity_reference$steepness == 0.85], na.rm = TRUE), 3)`</span>-<span class="in">`r round(max(productivity_reference$Fmsy[productivity_reference$steepness == 0.85], na.rm = TRUE), 3)`</span>. Changing from the short to the long stock-recruit fitting period has a much smaller effect within each steepness assumption than changing steepness itself.</span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>F35% is comparatively stable across these runs, ranging from <span class="in">`r round(min(productivity_reference$F35_est, na.rm = TRUE), 3)`</span> to <span class="in">`r round(max(productivity_reference$F35_est, na.rm = TRUE), 3)`</span>. That is expected because the SPR-based reference point is controlled mainly by selectivity, maturity, growth, and natural mortality, whereas Fmsy also depends strongly on the assumed stock-recruit productivity. Under low steepness, F35% sits above Fmsy, so it would imply a more aggressive F than the production-based MSY estimate. Under high steepness, Fmsy is well above F35%, so F35% becomes the more conservative reference point.</span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-productivity-yield-profiles</span></span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Yield profiles across productivity assumptions. Points mark the profile maximum and dashed vertical lines mark the reported Fmsy values."</span></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(productivity_yield_profiles, <span class="fu">aes</span>(f, yield, <span class="at">color =</span> scenario, <span class="at">linetype =</span> sr_fit)) <span class="sc">+</span></span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> productivity_reference,</span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> Fmsy, <span class="at">color =</span> scenario),</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.55</span>,</span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.75</span></span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> productivity_reference,</span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(profile_Fmsy, MSY, <span class="at">color =</span> scenario, <span class="at">shape =</span> sr_fit),</span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">2.4</span></span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"F"</span>, <span class="at">y =</span> <span class="st">"Equilibrium yield (kt)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">linetype =</span> <span class="st">"SR fit"</span>, <span class="at">shape =</span> <span class="st">"SR fit"</span>) <span class="sc">+</span></span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="fu">## SPR Reference Point</span></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-spr-reference</span></span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "SPR reference point from the refreshed model run. SBF35 is interpolated from the yield profile at SPR = 0.35."</span></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(spr_reference, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-f-profile</span></span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "F profile from Fprof.yld. Vertical lines mark F35% and Fmsy on the profile."</span></span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(f_profile, <span class="fu">aes</span>(f, value)) <span class="sc">+</span></span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"#2c7fb8"</span>) <span class="sc">+</span></span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> f_reference_lines,</span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> f, <span class="at">color =</span> reference, <span class="at">linetype =</span> reference),</span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>quantity, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"F35%"</span> <span class="ot">=</span> <span class="st">"#d95f0e"</span>, <span class="st">"Fmsy"</span> <span class="ot">=</span> <span class="st">"#1b9e77"</span>)) <span class="sc">+</span></span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"F35%"</span> <span class="ot">=</span> <span class="st">"dashed"</span>, <span class="st">"Fmsy"</span> <span class="ot">=</span> <span class="st">"dotdash"</span>)) <span class="sc">+</span></span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"F"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">linetype =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-f-ratio-by-fishery</span></span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Fishery ratios used to apportion F-based reference points. Ratios are based on mean end-year F by fishery, matching the Fratio calculation used for SPR rates."</span></span>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(fishery_f_ratio, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a><span class="fu">## Total Biomass</span></span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-total-fished-unfished</span></span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Estimated total biomass with fishing and the model counterfactual total biomass without fishing."</span></span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a>biomass_series <span class="sc">|&gt;</span></span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">==</span> <span class="st">"Total biomass"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, estimate, <span class="at">color =</span> scenario, <span class="at">fill =</span> scenario)) <span class="sc">+</span></span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Total biomass (kt)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-total-difference-ratio</span></span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Absolute difference between no-fishing and fished total biomass compared with the total-biomass ratio."</span></span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a>biomass_wide <span class="sc">|&gt;</span></span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(metric <span class="sc">==</span> <span class="st">"Total biomass"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Biomass difference (kt)</span><span class="st">`</span> <span class="ot">=</span> difference,</span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Fished / no-fishing ratio</span><span class="st">`</span> <span class="ot">=</span> ratio</span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"panel"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">panel =</span> <span class="fu">factor</span>(panel, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Biomass difference (kt)"</span>, <span class="st">"Fished / no-fishing ratio"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, value)) <span class="sc">+</span></span>
+<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.85</span>, <span class="at">color =</span> <span class="st">"#2c7fb8"</span>) <span class="sc">+</span></span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>panel, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>()</span>
+<span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-total-terminal</span></span>
+<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Terminal-year total biomass impact and fished/no-fishing ratio."</span></span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(total_summary, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
