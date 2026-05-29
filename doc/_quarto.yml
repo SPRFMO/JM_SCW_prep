@@ -25,6 +25,7 @@ project:
     - SCW16_models.qmd
     - mod0.14_mod1.1_comparison.qmd
     - kobe_alternatives_0_14.qmd
+    - SCW17-Paper-02-ReferencePoints.qmd
     - helper_scripts_guide.qmd
     - userguide/index.qmd
 
@@ -61,6 +62,8 @@ website:
         text: Model comparison
       - href: kobe_alternatives_0_14.qmd
         text: Kobe alternatives
+      - href: SCW17-Paper-02-ReferencePoints.qmd
+        text: SCW17/Paper-02
       - href: helper_scripts_guide.qmd
         text: Script Guide
 

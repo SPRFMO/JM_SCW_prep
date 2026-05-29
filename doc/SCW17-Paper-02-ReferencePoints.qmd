@@ -1,0 +1,804 @@
+---
+title: "Consideration of reference points used for SPRFMO Jack mackerel management"
+date: today
+format:
+  html:
+    output-file: "SCW17-Paper-02-ReferencePoints.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+    theme: cosmo
+    fig-width: 9
+    fig-height: 5
+    df-print: paged
+bibliography:
+  - sc13_base_model_mse_refs.bib
+  - reference_points_refs.bib
+csl: annex/apa.csl
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(jjmR)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(tidyr)
+
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+doc_dir <- dirname(knitr::current_input(dir = TRUE))
+assessment_dir <- normalizePath(file.path(doc_dir, "..", "assessment"), winslash = "/", mustWork = TRUE)
+assessment_file <- function(...) file.path(assessment_dir, ...)
+
+read_model <- function(model_name) {
+  readJJM(
+    model_name,
+    path = assessment_file("config"),
+    input = assessment_file("input"),
+    output = assessment_file("results"),
+    version = "2015MS"
+  )[[1]]
+}
+
+theme_report <- function() {
+  theme_minimal(base_size = 12) +
+    theme(
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      plot.title.position = "plot"
+    )
+}
+
+as_estimate_df <- function(x, quantity = NULL) {
+  out <- as_tibble(x)
+  names(out) <- c("year", "estimate", "sd", "lower", "upper")
+  out <- mutate(out, across(everything(), as.numeric))
+  if (!is.null(quantity)) {
+    out <- mutate(out, quantity = quantity, .before = 1)
+  }
+  out
+}
+
+format_range <- function(x, digits = 3) {
+  paste(round(range(x, na.rm = TRUE), digits), collapse = "-")
+}
+
+read_yield_profile <- function(model_name) {
+  yld_file <- assessment_file("results", paste0(model_name, ".yld"))
+  read.table(
+    yld_file,
+    skip = 5,
+    fill = TRUE,
+    col.names = c("f", "spawning_biomass", "yield", "recruitment", "spr", "total_biomass")
+  ) |>
+    as_tibble() |>
+    filter(!is.na(f), !is.na(spr)) |>
+    mutate(across(everything(), as.numeric))
+}
+
+read_std_terms <- function(model_name, terms) {
+  std_file <- assessment_file("results", paste0(model_name, ".std"))
+  out <- tibble(
+    term = terms,
+    value = NA_real_,
+    std_dev = NA_real_
+  )
+
+  if (!file.exists(std_file)) {
+    return(out)
+  }
+
+  std_output <- read.table(std_file, header = TRUE)
+  matched <- match(terms, std_output$name)
+  out$value <- as.numeric(std_output$value[matched])
+  out$std_dev <- as.numeric(std_output$std.dev[matched])
+  out
+}
+
+read_std_value <- function(model_name, term) {
+  read_std_terms(model_name, term)$value[[1]]
+}
+
+read_r_report_value <- function(model_name, term) {
+  r_report_file <- assessment_file("results", paste0(model_name, "_1_R.rep"))
+  if (!file.exists(r_report_file)) {
+    return(NA_real_)
+  }
+
+  r_report <- readLines(r_report_file, warn = FALSE)
+  term_line <- which(r_report == paste0("$", term))[1]
+  if (is.na(term_line) || term_line == length(r_report)) {
+    return(NA_real_)
+  }
+
+  as.numeric(strsplit(trimws(r_report[term_line + 1]), "\\s+")[[1]][1])
+}
+
+interpolate_spr <- function(profile, target_spr = 0.35) {
+  profile <- arrange(profile, f)
+  crossing <- which(
+    (head(profile$spr, -1) - target_spr) *
+      (tail(profile$spr, -1) - target_spr) <= 0
+  )[1]
+
+  if (is.na(crossing)) {
+    return(tibble(
+      profile_f_at_spr35 = NA_real_,
+      sbf35 = NA_real_,
+      yield_at_spr35 = NA_real_,
+      recruitment_at_spr35 = NA_real_,
+      total_biomass_at_spr35 = NA_real_
+    ))
+  }
+
+  lower <- profile[crossing, ]
+  upper <- profile[crossing + 1, ]
+  weight <- (target_spr - lower$spr) / (upper$spr - lower$spr)
+
+  tibble(
+    profile_f_at_spr35 = lower$f + weight * (upper$f - lower$f),
+    sbf35 = lower$spawning_biomass + weight * (upper$spawning_biomass - lower$spawning_biomass),
+    yield_at_spr35 = lower$yield + weight * (upper$yield - lower$yield),
+    recruitment_at_spr35 = lower$recruitment + weight * (upper$recruitment - lower$recruitment),
+    total_biomass_at_spr35 = lower$total_biomass + weight * (upper$total_biomass - lower$total_biomass)
+  )
+}
+
+interpolate_f <- function(profile, target_f) {
+  if (!is.finite(target_f)) {
+    return(tibble(
+      spawning_biomass_at_f = NA_real_,
+      yield_at_f = NA_real_,
+      recruitment_at_f = NA_real_,
+      spr_at_f = NA_real_,
+      total_biomass_at_f = NA_real_
+    ))
+  }
+
+  profile <- arrange(profile, f)
+  tibble(
+    spawning_biomass_at_f = approx(profile$f, profile$spawning_biomass, xout = target_f)$y,
+    yield_at_f = approx(profile$f, profile$yield, xout = target_f)$y,
+    recruitment_at_f = approx(profile$f, profile$recruitment, xout = target_f)$y,
+    spr_at_f = approx(profile$f, profile$spr, xout = target_f)$y,
+    total_biomass_at_f = approx(profile$f, profile$total_biomass, xout = target_f)$y
+  )
+}
+
+params <- list(model_name = "h1_0.14", stock = 1)
+model <- read_model(params$model_name)
+stock_output <- model$output[[params$stock]]
+yield_profile <- read_yield_profile(params$model_name)
+profile_fmsy <- yield_profile$f[which.max(yield_profile$yield)]
+reported_fmsy <- read_std_value(params$model_name, "Fmsy")
+fmsy <- if (is.finite(reported_fmsy)) reported_fmsy else profile_fmsy
+
+productivity_models <- tibble(
+  model = c(params$model_name, "h1_0.14ll", "h1_0.14hl", "h1_0.14hs"),
+  scenario = c(
+    "Low steepness, short SR",
+    "Low steepness, long SR",
+    "High steepness, long SR",
+    "High steepness, short SR"
+  ),
+  steepness = c(0.65, 0.65, 0.85, 0.85),
+  sr_fit = c("Short", "Long", "Long", "Short"),
+  sr_years = c("2000-2022", "1970-2022", "1970-2022", "2000-2022")
+)
+
+summarize_productivity_model <- function(model_name) {
+  profile <- read_yield_profile(model_name)
+  profile_msy_row <- profile[which.max(profile$yield), ]
+  std_terms <- read_std_terms(model_name, c("Fmsy", "Fcur_Fmsy", "Bmsy", "Bcur_Bmsy"))
+  spr35 <- interpolate_spr(profile, target_spr = 0.35)
+
+  tibble(
+    model = model_name,
+    Fmsy = std_terms$value[std_terms$term == "Fmsy"],
+    Fmsy_se = std_terms$std_dev[std_terms$term == "Fmsy"],
+    F35_est = read_r_report_value(model_name, "F35_est"),
+    F_at_SPR35_profile = spr35$profile_f_at_spr35,
+    Fcur_Fmsy = std_terms$value[std_terms$term == "Fcur_Fmsy"],
+    Bmsy = std_terms$value[std_terms$term == "Bmsy"],
+    Bmsy_se = std_terms$std_dev[std_terms$term == "Bmsy"],
+    Bcur_Bmsy = std_terms$value[std_terms$term == "Bcur_Bmsy"],
+    profile_Fmsy = profile_msy_row$f,
+    MSY = profile_msy_row$yield,
+    SPR_at_profile_Fmsy = profile_msy_row$spr
+  )
+}
+
+productivity_reference <- bind_rows(
+  lapply(productivity_models$model, summarize_productivity_model)
+) |>
+  left_join(productivity_models, by = "model") |>
+  mutate(
+    Fmsy_lower = pmax(Fmsy - 1.96 * Fmsy_se, 0),
+    Fmsy_upper = Fmsy + 1.96 * Fmsy_se
+  ) |>
+  arrange(Fmsy) |>
+  mutate(
+    scenario = factor(scenario, levels = scenario),
+    sr_fit = factor(sr_fit, levels = c("Short", "Long")),
+    steepness_label = factor(
+      paste0("h = ", steepness),
+      levels = c("h = 0.65", "h = 0.85")
+    )
+  )
+
+productivity_yield_profiles <- bind_rows(
+  lapply(productivity_models$model, \(model_name) {
+    read_yield_profile(model_name) |>
+      mutate(model = model_name, .before = 1)
+  })
+) |>
+  left_join(
+    productivity_reference |>
+      select(model, scenario, steepness_label, sr_fit),
+    by = "model"
+  )
+
+productivity_f_reference_points <- productivity_reference |>
+  select(model, scenario, steepness_label, sr_fit, Fmsy, F35_est) |>
+  pivot_longer(
+    cols = c(Fmsy, F35_est),
+    names_to = "reference",
+    values_to = "f"
+  ) |>
+  mutate(
+    reference = recode(reference, Fmsy = "Fmsy", F35_est = "F35%"),
+    reference = factor(reference, levels = c("Fmsy", "F35%"))
+  )
+
+bmsy_reference <- productivity_reference |>
+  transmute(model, scenario, Bmsy, Bmsy_se, Bcur_Bmsy)
+
+read_productivity_ssb <- function(model_name) {
+  model_obj <- if (identical(model_name, params$model_name)) model else read_model(model_name)
+  stock_obj <- model_obj$output[[params$stock]]
+  ssb <- as_tibble(stock_obj$df1)
+  names(ssb) <- c("quantity", "year", "estimate", "sd", "lower", "upper")
+
+  ssb |>
+    mutate(across(-quantity, as.numeric)) |>
+    filter(quantity == "SSB") |>
+    mutate(model = model_name, .before = 1)
+}
+
+productivity_ssb_series <- bind_rows(
+  lapply(productivity_models$model, read_productivity_ssb)
+) |>
+  left_join(
+    productivity_models |>
+      select(model, scenario),
+    by = "model"
+  ) |>
+  mutate(
+    scenario = factor(scenario, levels = levels(productivity_reference$scenario))
+  )
+
+productivity_scenario_colors <- c(
+  "Low steepness, short SR" = "#2c7fb8",
+  "Low steepness, long SR" = "#74a9cf",
+  "High steepness, long SR" = "#d95f0e",
+  "High steepness, short SR" = "#fdb863"
+)
+
+read_productivity_majuro <- function(model_name) {
+  model_obj <- if (identical(model_name, params$model_name)) model else read_model(model_name)
+  stock_obj <- model_obj$output[[params$stock]]
+  f_names <- grep("^F_fsh_[0-9]+$", names(stock_obj), value = TRUE)
+
+  annual_f <- bind_rows(
+    lapply(f_names, \(name) {
+      values <- as_tibble(stock_obj[[name]], .name_repair = "minimal")
+      names(values) <- c("year", "mean_f", "max_selectivity_scaled_f")
+      values
+    })
+  ) |>
+    mutate(across(everything(), as.numeric)) |>
+    group_by(year) |>
+    summarize(f = sum(mean_f), .groups = "drop")
+
+  depletion <- as_estimate_df(stock_obj$SSB_NoFishR, "SSB_NoFishR") |>
+    select(year, depletion = estimate, depletion_lower = lower, depletion_upper = upper)
+
+  depletion |>
+    left_join(annual_f, by = "year") |>
+    mutate(
+      model = model_name,
+      f_fmsy = f / productivity_reference$Fmsy[match(model_name, productivity_reference$model)],
+      .before = 1
+    )
+}
+
+majuro_series <- bind_rows(
+  lapply(productivity_models$model, read_productivity_majuro)
+) |>
+  left_join(
+    productivity_models |>
+      select(model, scenario),
+    by = "model"
+  ) |>
+  mutate(
+    scenario = factor(scenario, levels = levels(productivity_reference$scenario))
+  )
+
+majuro_terminal <- majuro_series |>
+  group_by(model, scenario) |>
+  filter(year == max(year)) |>
+  ungroup()
+
+terminal_status <- majuro_terminal |>
+  left_join(
+    productivity_reference |>
+      select(model, steepness),
+    by = "model"
+  )
+
+majuro_x_upper <- max(0.6, ceiling(max(majuro_series$depletion[majuro_series$year >= 2000], na.rm = TRUE) * 10) / 10)
+majuro_y_upper <- max(1.2, ceiling(max(majuro_series$f_fmsy[majuro_series$year >= 2000], na.rm = TRUE) * 10) / 10)
+
+df1 <- as_tibble(stock_output$df1)
+names(df1) <- c("quantity", "year", "estimate", "sd", "lower", "upper")
+df1 <- df1 |>
+  mutate(across(-quantity, as.numeric))
+
+biomass_series <- df1 |>
+  filter(quantity %in% c("SSB", "SSB_Nofishing")) |>
+  mutate(
+    scenario = case_when(
+      quantity == "SSB" ~ "With fishing",
+      quantity == "SSB_Nofishing" ~ "Dynamic Bzero"
+    )
+  ) |>
+  select(scenario, year, estimate, sd, lower, upper)
+
+biomass_wide <- biomass_series |>
+  select(scenario, year, estimate) |>
+  pivot_wider(names_from = scenario, values_from = estimate) |>
+  mutate(
+    difference = `Dynamic Bzero` - `With fishing`,
+    ratio = `With fishing` / `Dynamic Bzero`,
+    percent_loss = 1 - ratio
+  )
+
+reported_ssb_depletion <- as_estimate_df(stock_output$SSB_NoFishR, "SSB_NoFishR") |>
+  transmute(
+    year,
+    value = estimate,
+    source = "Output SSB_NoFishR",
+    panel = "Depletion ratio"
+  )
+
+ssb_derived <- biomass_wide |>
+  transmute(year, difference, ratio)
+
+ssb_comparison <- bind_rows(
+  ssb_derived |>
+    transmute(
+      year,
+      value = ratio,
+      source = "SSB / dynamic Bzero",
+      panel = "Depletion ratio"
+    ),
+  reported_ssb_depletion
+)
+
+ssb_summary <- biomass_wide |>
+  filter(year == max(year)) |>
+  left_join(
+    reported_ssb_depletion |>
+      select(year, reported_depletion = value),
+    by = "year"
+  ) |>
+  mutate(ratio_minus_reported = ratio - reported_depletion) |>
+  select(
+    year,
+    ssb_with_fishing = `With fishing`,
+    ssb_dynamic_bzero = `Dynamic Bzero`,
+    dynamic_bzero_difference = difference,
+    ssb_over_dynamic_bzero = ratio,
+    reported_depletion,
+    ratio_minus_reported
+  )
+
+spr_reference <- interpolate_spr(yield_profile, target_spr = 0.35) |>
+  bind_cols(interpolate_f(yield_profile, fmsy)) |>
+  mutate(
+    model = params$model_name,
+    stock = params$stock,
+    f35_est = as.numeric(stock_output$F35_est),
+    fmsy = fmsy,
+    .before = 1
+  ) |>
+  select(
+    model,
+    stock,
+    F35_est = f35_est,
+    F_at_SPR35_profile = profile_f_at_spr35,
+    Fmsy = fmsy,
+    SBF35 = sbf35,
+    yield_at_SPR35 = yield_at_spr35,
+    yield_at_Fmsy = yield_at_f,
+    SPR_at_Fmsy = spr_at_f,
+    recruitment_at_SPR35 = recruitment_at_spr35
+  )
+
+f_profile <- yield_profile |>
+  filter(f > 0) |>
+  select(
+    f,
+    `Spawning biomass` = spawning_biomass,
+    Yield = yield,
+    Recruitment = recruitment,
+    SPR = spr
+  ) |>
+  pivot_longer(-f, names_to = "quantity", values_to = "value") |>
+  mutate(
+    quantity = factor(quantity, levels = c("Yield", "Spawning biomass", "Recruitment", "SPR"))
+  )
+
+f_reference_lines <- tibble(
+  reference = c("F35%", "Fmsy"),
+  f = c(spr_reference$F35_est, spr_reference$Fmsy)
+)
+
+fishery_f_ratio <- {
+  f_fishery_names <- grep("^F_fsh_[0-9]+$", names(stock_output), value = TRUE)
+  f_fishery_ids <- as.integer(sub("^F_fsh_", "", f_fishery_names))
+
+  tibble(
+    fishery = model$data$Fnames[f_fishery_ids],
+    end_year = purrr::map_dbl(f_fishery_names, \(name) max(stock_output[[name]][, 1])),
+    mean_f = purrr::map_dbl(f_fishery_names, \(name) {
+      values <- stock_output[[name]]
+      values[which.max(values[, 1]), 2]
+    }),
+    max_selectivity_scaled_f = purrr::map_dbl(f_fishery_names, \(name) {
+      values <- stock_output[[name]]
+      values[which.max(values[, 1]), 3]
+    })
+  ) |>
+    mutate(
+      f_ratio = mean_f / sum(mean_f),
+      F35_est_contribution = spr_reference$F35_est * f_ratio,
+      F_at_SPR35_profile_contribution = spr_reference$F_at_SPR35_profile * f_ratio,
+      Fmsy_contribution = spr_reference$Fmsy * f_ratio
+    )
+}
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">SCW17/Paper-02</div>
+<div class="paper-title">Consideration of reference points used for SPRFMO Jack mackerel management</div>
+```
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+Based on the outcomes of the SCW16 benchmark workshop, the framework for developing and conditioning operating models depends partly on assumptions used for the stock-recruitment relationship (SRR). Here we explore those assumptions using four productivity cases and evaluate the potential for using proxy reference points, including spawning-biomass per-recruit (SPR) quantities that are commonly used worldwide.
+
+The current model `0.14` represents the short stock-recruit time series and low-productivity case. Three additional runs were added to separate the effects of stock-recruit fitting period and steepness: low steepness with the long time series, high steepness with the long time series, and high steepness with the short time series. Across these runs, $F_{MSY}$ spans `r round(min(productivity_reference$Fmsy, na.rm = TRUE), 3)` to `r round(max(productivity_reference$Fmsy, na.rm = TRUE), 3)`, while $F_{35\%}$ spans only `r round(min(productivity_reference$F35_est, na.rm = TRUE), 3)` to `r round(max(productivity_reference$F35_est, na.rm = TRUE), 3)`.
+
+The contrast is useful for management strategy evaluation (MSE). MSY-based reference points are sensitive to SRR assumptions and therefore to operating-model productivity choices. SPR-based reference points are not free of biological or selectivity assumptions, but they are free of SRR assumptions. Dynamic Bzero and Majuro-style stock-status plots provide an additional way to communicate current stock status without dividing biomass by an estimated $B_{MSY}$ that changes across productivity cases.
+
+# Introduction
+
+SPRFMO jack mackerel management currently relies on reference points derived from the Joint Jack Mackerel Model (JJM). The technical details of the assessment model, reference-point calculations, and data treatment are documented in the SC13 technical annex and in SCW16 working papers [@sprfmo2025annex11; @sprfmo2026scw16paper01]. The present paper is narrower. It focuses on how candidate reference points behave when the same model structure is evaluated under different productivity assumptions.
+
+The issue matters because the MSE operating-model grid must represent uncertainty in the stock-recruitment relationship while keeping management quantities interpretable. Dynamic $B_{MSY}$ and $F_{MSY}$ can be suitable for annual assessment advice, but they can complicate MSE interpretation if reference points move because of terminal-year selectivity, weights-at-age, or assumed productivity rather than because of a change in management performance. This concern was also raised in JMWG discussions about fixing reference points for projections and MSE simulations [@sprfmo2026meeting01].
+
+This paper therefore compares MSY-based quantities with SPR-based proxies and depletion measures based on dynamic Bzero. It is not intended to replace the full technical documentation. Instead, it identifies a compact set of diagnostics that the working group can use when choosing reference-point conventions for the MSE workshop.
+
+# Methods
+
+Technical details of the JJM, likelihood components, biological inputs, and assessment diagnostics are described in the SC13 and SCW16 reports [@sprfmo2025annex11; @sprfmo2026scw16paper01]. The analyses here use model outputs already available from the 2026 benchmark-preparation runs and focus on derived quantities relevant to reference-point discussion.
+
+## Productivity Cases
+
+The base run is `h1_0.14`, which uses the short SRR fitting period and low steepness. In this paper, "low productivity" refers to steepness $h = 0.65$ and "high productivity" refers to steepness $h = 0.85$. The short SRR fitting period uses 2000-2022 and the long SRR fitting period uses 1970-2022. The three additional runs are:
+
+1. `h1_0.14ll`: low steepness and long SRR fitting period;
+2. `h1_0.14hl`: high steepness and long SRR fitting period;
+3. `h1_0.14hs`: high steepness and short SRR fitting period.
+
+For each run, the yield profile was read from the `.yld` output and the reported standard-deviation terms were read from the `.std` output. The reported $F_{MSY}$, $B_{MSY}$, current ratios, profile maximum, and $F_{35\%}$ were then compiled for comparison.
+
+## Dynamic Bzero
+
+Dynamic Bzero is computed here only for spawning biomass. The model output contains a fished spawning-biomass time series (`SSB`) and a counterfactual no-fishing spawning-biomass time series (`SSB_Nofishing`). The no-fishing series is interpreted as annual dynamic Bzero because it carries the same biological schedules and recruitment history through the population dynamics with fishing mortality removed. Annual depletion is then calculated as:
+
+$$
+D_t = \frac{SSB_t}{SSB_{F=0,t}}.
+$$
+
+The derived ratio is compared with the reported model output `SSB_NoFishR`. This comparison checks that the displayed dynamic-Bzero depletion is consistent with the model's own reported ratio.
+
+## SPR Reference Points
+
+SPR rates are calculated from the equilibrium F profile by finding the fishing mortality that leaves a specified fraction of unfished spawning biomass per recruit. For $F_{35\%}$, the profile is interpolated to the F value where SPR equals 0.35. This calculation depends on maturity, growth, natural mortality, selectivity, and the relative fishing-mortality pattern among fisheries. It does not depend on the SRR, steepness, unfished recruitment, or the recruitment time-series window. For this reason, SPR-based proxies are useful for comparison with $F_{MSY}$ when the working group wants a reference point that is less sensitive to productivity assumptions.
+
+Fishery-specific F contributions are calculated using end-year mean F by fishery. The ratios are used only to describe the composition of the aggregate F reference point, not to estimate a separate reference point for each fishery.
+
+## Stock-Status Displays
+
+Three stock-status display conventions are relevant. A Kobe plot uses $B/B_{MSY}$ or $SSB/SSB_{MSY}$ on the biomass axis and $F/F_{MSY}$ on the fishing-mortality axis. A Majuro plot keeps $F/F_{MSY}$ on the fishing-mortality axis but replaces the biomass axis with depletion relative to unfished biomass, $B/B_{F=0}$ or $SSB/SSB_{F=0}$. A combined plot overlays a limit-reference-point threshold on the unfished-biomass scale and uses color categories to distinguish low-biomass and high-fishing-mortality combinations [@merino2020uncertainty].
+
+The Majuro plot in this paper uses $SSB/SSB_{F=0}$ from `SSB_NoFishR` and annual aggregate F divided by each run's $F_{MSY}$. The vertical line at 0.2 is shown only as an orienting convention from WCPFC-style tuna displays. It is not proposed here as a jack mackerel limit reference point.
+
+# Results
+
+## Productivity Estimates
+
+The F profile from `h1_0.14` provides the starting point for comparing MSY-based and SPR-based reference points. In @fig-f-profile, $F_{35\%}$ is marked against the same profile as $F_{MSY}$. The two values are close only under some productivity assumptions. Across all four runs, $F_{35\%}$ is much more stable than $F_{MSY}$ because it does not use the SRR.
+
+```{r}
+#| label: tbl-spr-reference
+#| tbl-cap: "SPR reference point from model 0.14. SBF35 is interpolated from the yield profile at SPR = 0.35."
+
+kable(spr_reference, digits = 4)
+```
+
+```{r}
+#| label: fig-f-profile
+#| fig-cap: "F profile from the 0.14 yield-profile output. Vertical lines mark F35% and Fmsy on the profile."
+
+ggplot(f_profile, aes(f, value)) +
+  geom_line(linewidth = 0.8, color = "#2c7fb8") +
+  geom_vline(
+    data = f_reference_lines,
+    aes(xintercept = f, color = reference, linetype = reference),
+    linewidth = 0.8
+  ) +
+  facet_wrap(~quantity, scales = "free_y", ncol = 1) +
+  scale_color_manual(values = c("F35%" = "#d95f0e", "Fmsy" = "#1b9e77")) +
+  scale_linetype_manual(values = c("F35%" = "dashed", "Fmsy" = "dotdash")) +
+  labs(x = "F", y = NULL, color = NULL, linetype = NULL) +
+  theme_report()
+```
+
+```{r}
+#| label: tbl-f-ratio-by-fishery
+#| tbl-cap: "Fishery ratios used to apportion F-based reference points. Ratios are based on mean end-year F by fishery, matching the Fratio calculation used for SPR rates."
+
+kable(fishery_f_ratio, digits = 4)
+```
+
+The productivity sensitivity runs span $F_{MSY}$ values from `r round(min(productivity_reference$Fmsy, na.rm = TRUE), 3)` to `r round(max(productivity_reference$Fmsy, na.rm = TRUE), 3)`. The low-steepness cases define the lower end of the range, while the high-steepness cases shift the F-profile peak to substantially higher F values. Changing from the short to the long stock-recruit fitting period has a smaller effect within each steepness assumption than changing steepness itself.
+
+```{r}
+#| label: tbl-productivity-reference
+#| tbl-cap: "Fmsy values across productivity assumptions. Intervals use the reported standard errors from the .std files; profile_Fmsy is the F value at maximum yield in the yield profile."
+
+productivity_reference |>
+  transmute(
+    model,
+    scenario = as.character(scenario),
+    steepness,
+    sr_years,
+    Fmsy,
+    Fmsy_se,
+    F35_est,
+    F_at_SPR35_profile,
+    Fcur_Fmsy,
+    Bmsy,
+    Bmsy_se,
+    Bcur_Bmsy,
+    profile_Fmsy,
+    MSY,
+    SPR_at_profile_Fmsy
+  ) |>
+  kable(digits = 4)
+```
+
+```{r}
+#| label: fig-productivity-fmsy-range
+#| fig-cap: "Fmsy and F35% estimates across productivity assumptions. Horizontal bars show approximate 95% intervals for Fmsy using the reported standard errors."
+
+ggplot(productivity_reference, aes(Fmsy, scenario, color = steepness_label)) +
+  geom_segment(
+    aes(x = Fmsy_lower, xend = Fmsy_upper, y = scenario, yend = scenario),
+    linewidth = 0.9,
+    alpha = 0.65
+  ) +
+  geom_point(
+    data = productivity_f_reference_points,
+    aes(f, scenario, color = steepness_label, shape = reference),
+    inherit.aes = FALSE,
+    size = 3
+  ) +
+  scale_color_manual(values = c("h = 0.65" = "#2c7fb8", "h = 0.85" = "#d95f0e")) +
+  scale_shape_manual(values = c("Fmsy" = 16, "F35%" = 17)) +
+  labs(x = "F", y = NULL, color = "Steepness", shape = "Reference point") +
+  theme_report()
+```
+
+F35% is comparatively stable across these runs, ranging from `r round(min(productivity_reference$F35_est, na.rm = TRUE), 3)` to `r round(max(productivity_reference$F35_est, na.rm = TRUE), 3)`. Under low steepness, F35% sits above $F_{MSY}$, so it would imply a more aggressive F than the production-based MSY estimate. Under high steepness, $F_{MSY}$ is well above F35%, so F35% becomes the more conservative reference point.
+
+```{r}
+#| label: fig-productivity-yield-profiles
+#| fig-cap: "Yield profiles across productivity assumptions. Points mark the profile maximum and dashed vertical lines mark the reported Fmsy values."
+
+ggplot(productivity_yield_profiles, aes(f, yield, color = scenario, linetype = sr_fit)) +
+  geom_line(linewidth = 0.8) +
+  geom_vline(
+    data = productivity_reference,
+    aes(xintercept = Fmsy, color = scenario),
+    inherit.aes = FALSE,
+    linetype = "dashed",
+    linewidth = 0.55,
+    alpha = 0.75
+  ) +
+  geom_point(
+    data = productivity_reference,
+    aes(profile_Fmsy, MSY, color = scenario, shape = sr_fit),
+    inherit.aes = FALSE,
+    size = 2.4
+  ) +
+  labs(x = "F", y = "Equilibrium yield (kt)", color = NULL, linetype = "SR fit", shape = "SR fit") +
+  theme_report()
+```
+
+## Dynamic Bzero Estimates
+
+The post-2000 view in @fig-ssb-bmsy-productivity shows that recent fished SSB trajectories are broadly similar across productivity cases, but the $B_{MSY}$ reference levels diverge strongly. The low-steepness, long-SR run has the highest $B_{MSY}$ (`r round(max(bmsy_reference$Bmsy, na.rm = TRUE), 0)` kt), while the high-steepness, short-SR run has the lowest $B_{MSY}$ (`r round(min(bmsy_reference$Bmsy, na.rm = TRUE), 0)` kt). Consequently, status relative to $B_{MSY}$ is strongly influenced by the productivity assumption.
+
+```{r}
+#| label: fig-ssb-bmsy-productivity
+#| fig-cap: "Fished spawning biomass since 2000 across productivity assumptions. Dashed horizontal lines show Bmsy for each run."
+
+productivity_ssb_series |>
+  filter(year >= 2000) |>
+  ggplot(aes(year, estimate, color = scenario, fill = scenario)) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.08, linewidth = 0, show.legend = FALSE) +
+  geom_line(linewidth = 0.8) +
+  geom_hline(
+    data = bmsy_reference,
+    aes(yintercept = Bmsy, color = scenario),
+    inherit.aes = FALSE,
+    linetype = "dashed",
+    linewidth = 0.55,
+    alpha = 0.85
+  ) +
+  scale_color_manual(values = productivity_scenario_colors) +
+  scale_fill_manual(values = productivity_scenario_colors) +
+  scale_x_continuous(breaks = seq(2000, max(productivity_ssb_series$year), by = 5)) +
+  labs(x = NULL, y = "Spawning biomass (kt)", color = NULL, fill = NULL) +
+  guides(fill = "none", color = guide_legend(nrow = 2)) +
+  theme_report() +
+  theme(
+    legend.position = "bottom",
+    legend.box = "vertical"
+  )
+```
+
+The dynamic-Bzero comparison for `h1_0.14` is shown in @fig-ssb-fished-dynamic-bzero. This is a counterfactual SSB comparison: the no-fishing trajectory is not a fixed scalar but an annual dynamic series.
+
+```{r}
+#| label: fig-ssb-fished-dynamic-bzero
+#| fig-cap: "Estimated spawning biomass with fishing and the model counterfactual dynamic Bzero spawning biomass without fishing."
+
+biomass_series |>
+  ggplot(aes(year, estimate, color = scenario, fill = scenario)) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.12, linewidth = 0) +
+  geom_line(linewidth = 0.8) +
+  labs(x = NULL, y = "Spawning biomass (kt)", color = NULL, fill = NULL) +
+  theme_report()
+```
+
+```{r}
+#| label: fig-ssb-dynamic-bzero-ratio
+#| fig-cap: "Spawning biomass depletion ratio estimated as fished spawning biomass divided by dynamic Bzero spawning biomass, compared with the reported SSB_NoFishR estimate."
+
+ssb_comparison |>
+  filter(panel == "Depletion ratio") |>
+  ggplot(aes(year, value, color = source, linetype = source)) +
+  geom_line(linewidth = 0.85) +
+  labs(x = NULL, y = "SSB / dynamic Bzero", color = NULL, linetype = NULL) +
+  theme_report()
+```
+
+```{r}
+#| label: tbl-ssb-terminal
+#| tbl-cap: "Terminal-year dynamic-Bzero spawning-biomass comparison."
+
+kable(ssb_summary, digits = 4)
+```
+
+## Stock Status
+
+Kobe, Majuro, and combined plots communicate different biomass-axis choices. Kobe plots divide biomass by $B_{MSY}$, so they can be sensitive to productivity assumptions when $B_{MSY}$ changes. Majuro plots use depletion relative to unfished biomass, which can be easier to interpret when the working group wants to distinguish biomass depletion from the production-model estimate of $B_{MSY}$. Combined plots add a limit-reference-point threshold to the unfished-biomass scale while retaining the fishing-pressure axis (@fig-status-plot-types).
+
+```{r}
+#| label: fig-status-plot-types
+#| fig-cap: "Common stock-status display formats: Kobe, Majuro, and combined. Reproduced from Merino et al. (2020)."
+#| out-width: "100%"
+
+knitr::include_graphics(file.path(doc_dir, "assets", "reference-point-plot-types.png"))
+```
+
+The Majuro plot in @fig-majuro-productivity shows the 2000-2025 trajectory for each productivity case. Low-steepness runs end above $F/F_{MSY} = 1$, whereas high-steepness runs end just below 1. The biomass axis shows the same productivity contrast: terminal $SSB/SSB_{F=0}$ is lower for the low-steepness runs (`r format_range(terminal_status$depletion[terminal_status$steepness == 0.65])`) than for the high-steepness runs (`r format_range(terminal_status$depletion[terminal_status$steepness == 0.85])`).
+
+```{r}
+#| label: fig-majuro-productivity
+#| fig-cap: "Majuro plot for model 0.14 productivity assumptions, showing the 2000-2025 trajectory. Larger points mark terminal-year status. The vertical line marks SSB/SSB_F=0 = 0.2 for orientation and the horizontal line marks F/Fmsy = 1."
+
+majuro_series |>
+  filter(year >= 2000) |>
+  ggplot(aes(depletion, f_fmsy, color = scenario)) +
+  annotate("rect", xmin = -Inf, xmax = 0.2, ymin = 1, ymax = Inf, fill = "#d73027", alpha = 0.08) +
+  annotate("rect", xmin = 0.2, xmax = Inf, ymin = 1, ymax = Inf, fill = "#fc8d59", alpha = 0.08) +
+  annotate("rect", xmin = -Inf, xmax = 0.2, ymin = -Inf, ymax = 1, fill = "#fee08b", alpha = 0.12) +
+  geom_vline(xintercept = 0.2, linewidth = 0.65, linetype = "dashed", color = "gray35") +
+  geom_hline(yintercept = 1, linewidth = 0.65, linetype = "dashed", color = "gray35") +
+  geom_path(linewidth = 0.75, alpha = 0.85) +
+  geom_point(aes(alpha = year == max(year)), size = 1.4, show.legend = FALSE) +
+  geom_point(
+    data = majuro_terminal,
+    aes(depletion, f_fmsy, color = scenario),
+    inherit.aes = FALSE,
+    size = 3
+  ) +
+  scale_color_manual(values = productivity_scenario_colors) +
+  scale_alpha_manual(values = c(`FALSE` = 0.45, `TRUE` = 1)) +
+  coord_cartesian(xlim = c(0, majuro_x_upper), ylim = c(0, majuro_y_upper), expand = FALSE) +
+  labs(x = expression(SSB / SSB[F == 0]), y = expression(F / F[MSY]), color = NULL) +
+  guides(color = guide_legend(nrow = 2)) +
+  theme_report() +
+  theme(
+    legend.position = "bottom",
+    legend.box = "vertical"
+  )
+```
+
+```{r}
+#| label: tbl-majuro-terminal
+#| tbl-cap: "Terminal-year Majuro plot coordinates for the productivity sensitivity runs."
+
+majuro_terminal |>
+  transmute(
+    model,
+    scenario = as.character(scenario),
+    year,
+    SSB_over_SSB_F0 = depletion,
+    F_over_Fmsy = f_fmsy
+  ) |>
+  kable(digits = 4)
+```
+
+# Discussion
+
+The working group has several options heading into the MSE workshop.
+
+First, the MSE operating-model grid can retain explicit productivity uncertainty by conditioning operating models under low and high steepness and under short and long SRR fitting windows. That approach preserves the key biological uncertainty, but it requires clear rules about how reference points are calculated and held fixed during simulation.
+
+Second, the working group can use SPR-based proxies such as $F_{35\%}$ as candidate management-procedure reference points or as diagnostics alongside MSY-based quantities. SPR proxies do not remove uncertainty about selectivity, natural mortality, maturity, or growth, but they avoid direct dependence on the fitted SRR. This makes them useful when productivity assumptions are a central axis of the operating-model grid.
+
+Third, the working group can use dynamic-Bzero and Majuro-style depletion displays to communicate stock status without requiring every biomass comparison to pass through $B_{MSY}$. This is especially useful here because the recent SSB trajectories are similar across productivity cases while $B_{MSY}$ and $F_{MSY}$ differ substantially.
+
+The practical MSE choice is therefore not whether to keep or discard MSY-based reference points, but how to use them. A defensible near-term path is to carry MSY-based quantities as operating-model diagnostics, evaluate one or more SPR-based harvest-rate proxies as candidate management quantities, and use dynamic-Bzero depletion plots to communicate status across productivity cases. The final choice should be made after the working group agrees on which productivity cases enter the operating-model grid and whether reference points are fixed by draw, fixed by scenario, or recalculated during simulation.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

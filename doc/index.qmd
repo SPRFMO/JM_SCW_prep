@@ -38,6 +38,10 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 
   - [Model 0.14 Kobe alternatives and productivity sensitivity diagnostics](kobe_alternatives_0_14.html) ([source QMD](kobe_alternatives_0_14.qmd))
 
+### Draft SCW17 papers
+
+  - [SCW17/Paper-02: Consideration of reference points used for SPRFMO Jack mackerel management](SCW17-Paper-02-ReferencePoints.html) ([source QMD](SCW17-Paper-02-ReferencePoints.qmd))
+
 ### Draft SCW16 papers
 
   - [SCW16-Doc00: Preliminary agenda](SCW16-Doc00.html) ([PDF](SCW16-Doc00.pdf), [DOCX](SCW16-Doc00.docx), [QMD](SCW16-Doc00.qmd))
@@ -172,6 +176,10 @@ This report compares the standalone stock-2 `mod0.14` run against `mod1.1`, the 
 ## Model 0.14 Kobe alternatives and productivity sensitivity diagnostics
 
 This report compares fished and no-fishing biomass trajectories for `h1_0.14`, shows alternative depletion-style diagnostics, and summarizes Fmsy, F35%, and Bmsy across low/high steepness and short/long stock-recruit fitting-period sensitivities.
+
+## SCW17/Paper-02
+
+This working paper compares MSY-based reference points, SPR proxies, dynamic-Bzero depletion, and Majuro-style status displays for the model 0.14 productivity sensitivity runs.
 
 ## Helper Scripts Guide
 
