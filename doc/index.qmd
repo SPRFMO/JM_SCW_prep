@@ -83,6 +83,7 @@ The `SCW` prefix follows the SPRFMO Commission convention for sequentially numbe
 - [JMWG Meeting report 01-2026](JMWG-Meeting%20report-01-2026.html) ([PDF](JMWG-Meeting%20report-01-2026.pdf), [DOCX](JMWG-Meeting%20report-01-2026v2.docx))
 - [JMWG Meeting report 02-2026](JMWG-Meeting%20report-02-2026.html) ([PDF](JMWG-Meeting%20report-02-2026.pdf), [DOCX](JMWG-Meeting%20report-02-2026.docx))
 - [JMWG Meeting report 03-2026](JMWG-Meeting%20report-03-2026.html) ([PDF](JMWG-Meeting%20report-03-2026.pdf), [DOCX](JMWG-Meeting%20report-03-2026.docx))
+- [JMWG Meeting report 04-2026](JMWG-Meeting%20report-04-2026.html) ([PDF](JMWG-Meeting%20report-04-2026.pdf), [DOCX](JMWG-Meeting%20report-04-2026.docx))
 - [Report collaboration workflow](report-collaboration-workflow.html)
 
 ## Other background reports
@@ -124,6 +125,10 @@ These meeting notes are currently published from `JMWG-Meeting report-02-2026.qm
 ## JMWG Meeting report 03-2026
 
 These meeting notes are currently published from `JMWG-Meeting report-03-2026.qmd` as HTML, PDF, and DOCX outputs.
+
+## JMWG Meeting report 04-2026
+
+These meeting notes are currently published from `JMWG-Meeting report-04-2026.qmd` as HTML, PDF, and DOCX outputs.
 
 ## JMWG Benchmark meeting report 2026
 

@@ -18,6 +18,7 @@ project:
     - "JMWG-Meeting report-01-2026.qmd"
     - "JMWG-Meeting report-02-2026.qmd"
     - "JMWG-Meeting report-03-2026.qmd"
+    - "JMWG-Meeting report-04-2026.qmd"
     - JMWG-Benchmark-Meeting-report-2026.qmd
     - report-collaboration-workflow.qmd
     - SCW16-Doc03-CPUE_MetaAnalysis.qmd
@@ -50,6 +51,8 @@ website:
         text: Meeting report 02-2026
       - href: "JMWG-Meeting report-03-2026.qmd"
         text: Meeting report 03-2026
+      - href: "JMWG-Meeting report-04-2026.qmd"
+        text: Meeting report 04-2026
       - href: JMWG-Benchmark-Meeting-report-2026.qmd
         text: Benchmark report 2026
       - href: report-collaboration-workflow.qmd

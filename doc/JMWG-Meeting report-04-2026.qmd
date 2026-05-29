@@ -1,0 +1,175 @@
+---
+title: "JMWG Virtual Meeting 04/2026"
+format:
+  html:
+    output-file: "JMWG-Meeting report-04-2026.html"
+    self-contained: true
+    lightbox: true
+    html-math-method: katex
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+    number-depth: 2
+  pdf:
+    output-file: "JMWG-Meeting report-04-2026.pdf"
+    number-sections: false
+    number-depth: 2
+    title-block: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \fancyhf{}
+        \fancyhead[R]{\textit{Meeting report 04-2026}}
+        \fancyhead[L]{\textit{joint-jack mackerel model}}
+        \fancyfoot[C]{\thepage}
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyhead[R]{\textit{Meeting report 04-2026}}
+          \fancyhead[L]{\textit{joint-jack mackerel model}}
+          \fancyfoot[C]{\thepage}
+        }
+        \pagestyle{fancy}
+  docx:
+    output-file: "JMWG-Meeting report-04-2026.docx"
+    toc: true
+    number-sections: false
+    number-depth: 2
+    title-block: false
+execute:
+  warning: false
+  message: false
+  echo: false
+  results: false
+---
+
+```{r}
+date_stamp <- format(Sys.Date(), "%d %B %Y")
+```
+
+{{< include _includes/sprfmo-banner.html >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\begin{minipage}[c]{0.18\textwidth}
+\centering
+\includegraphics[width=\linewidth]{annex/logo.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\textwidth}
+{\Huge \textbf{SPRFMO}}\par
+{\large South Pacific Regional Fisheries Management Organisation}\par
+\vspace{0.4em}
+{\Large \textbf{Jack Mackerel Working Group}}
+\end{minipage}
+\end{center}
+\noindent\rule{\linewidth}{1pt}
+\begin{center}\Large\bfseries Meeting report 04-2026\end{center}
+```
+:::
+
+::: {.content-visible when-format="docx"}
+| ![](annex/logo.png){width=1.35in} | **SPRFMO**<br>South Pacific Regional Fisheries Management Organisation<br><br>**Jack Mackerel Working Group** |
+|:---:|:---|
+
+*Meeting report 04-2026*
+
+:::
+
+```{=html}
+<div style="font-style: italic; margin-top: 0.5rem;">Meeting report 04-2026</div>
+<div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Meeting%20report-04-2026.pdf">PDF-rendered version</a> | <a href="JMWG-Meeting%20report-04-2026.docx">MS Word version</a></div>
+```
+
+```{=html}
+<div class="paper-title">JMWG Virtual Meeting report 04-2026</div>
+```
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\begin{center}
+\today
+\end{center}
+```
+:::
+
+::: {.content-visible .no-para-number unless-format="pdf"}
+::: {.no-para-number style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;"}
+`r date_stamp`
+:::
+:::
+
+# Summary {.unnumbered}
+
+This report summarizes the **JMWG virtual follow-up meeting held on 28 May 2026**, based on the automated transcript and discussion of recent jack mackerel benchmark assessment runs and operating-model conditioning needs.
+
+The meeting focused on disagreements among historical and updated Peruvian acoustic and CPUE inputs, candidate model configurations for the MSE operating model, and how to communicate the large change in perceived stock status emerging from the benchmark update. The main technical issue was that recent Peruvian acoustic information pulls the Peruvian biomass trend downward, apparently because jack mackerel have redistributed offshore relative to coastal survey coverage, while the updated Peruvian CPUE series is shorter and flatter than the historical series.
+
+The working proposal at the end of the meeting was **model 0.14**, equivalent to model `1.03` / `1.03` with the Peruvian acoustic S1 and S2 indices excluded and a 2018 catchability break added to the Peruvian CPUE. This model was proposed for **operating-model conditioning and MSE work**, not for immediate fishery advice. Members were asked to review the outputs and raise any substantive concerns by **Monday, 1 June 2026**.
+
+# Meeting Details
+
+- Meeting: JMWG virtual follow-up on benchmark assessment runs and MSE conditioning
+- Date: 28 May 2026
+- Main purpose: Identify a pragmatic proposed assessment model for operating-model conditioning
+- Proposed working model: model `0.14`, defined as model `103` without Peruvian acoustics and with a 2018 Peruvian CPUE catchability break
+- Immediate deadline: final sensitivity requests to Jim on 28 May 2026; member review by 1 June 2026
+- Participants named in the discussion included Jim Ianelli, Josymar Torrejon Magallanes, Marissela Pozada Herrera, Benoit Berges, Ignacio Paya, Niels Hintzen, Criscely Lujan, Jose Zenteno, Mirian Geronimo, Karolina Molla Gazi, Nicole Mermoud Aldea, Ana Alegre Norza, and Iago Mosqueira, with additional participants from member delegations and collaborating groups.
+
+# Key Discussion Summary
+
+## 1. Peruvian Acoustic Index
+
+Peruvian participants explained the rationale for truncating the historical acoustic series in 2013. The former acoustic index was considered informative for the earlier period, when jack mackerel were distributed closer to the coast and more consistently detected by coastal-oriented surveys. Since the 2000s, jack mackerel appear to have shifted offshore, reducing the ability of the Peruvian survey track to measure a consistent fraction of the stock.
+
+The group distinguished ordinary bias in a relative index from potential bias in the **trend** of an index. The concern for the updated Peruvian acoustic information is trend bias caused by changing habitat distribution and survey coverage, rather than only imprecision in individual survey estimates. Several participants supported excluding the new Peruvian acoustic indices from the proposed working model while treating improved acoustic availability modelling as a research priority.
+
+## 2. CPUE Inputs and Sensitivity Runs
+
+Jim reviewed the benchmark model sequence beginning from model `0.0` / `1.14`, including sensitivities replacing Chilean or Peruvian CPUE series, dropping acoustic data, reinstating historical selectivity ties, and testing an informal nominal Peruvian CPUE. The sensitivity results indicated that Peruvian acoustics and the treatment of Peruvian CPUE are major drivers of divergence between single-stock and two-stock hypotheses.
+
+Chile raised concern that the updated Peruvian CPUE is shorter and flatter than the previous series and that a small number of early points in the updated series strongly affect perceived stock status. Peruvian participants clarified that the new CPUE uses an improved standardization approach, includes artisanal and industrial fleets, and that the earliest points are mainly from the artisanal fleet targeting jack mackerel. The group agreed that the report should document the CVs, coverage, and weighting of abundance indices clearly.
+
+## 3. 2018 Catchability Break
+
+Niels proposed a 2018 catchability break for the Peruvian CPUE to reflect a change in jack mackerel distribution and availability to the fleet. Model `13`, defined as model `12` with the 2018 catchability break, improved the likelihood by roughly 50 points and appeared to resolve some two-stock convergence problems. Participants agreed that the logical next configuration was to combine this catchability break with the model that drops Peruvian acoustics.
+
+The final proposed configuration discussed in the meeting was therefore model `0.14`: model `103` with the Peruvian acoustic indices excluded and the 2018 CPUE catchability break added.
+
+## 4. MSE Conditioning and Communication
+
+The immediate objective is to condition operating models and keep the MSE schedule moving so candidate management procedures can be considered by the Commission. Participants emphasized that the benchmark update may change stock perception substantially, but the purpose of this step is not to provide annual fishery advice.
+
+Several participants requested more time to review diagnostics before formally agreeing to the proposed model. There was also discussion of Kobe plots and whether they are appropriate when productivity regimes and availability may shift. Jim and Iago suggested that depletion-based metrics, comparing biomass with and without fishing under the model, may be a more useful communication tool than relying only on Kobe plots.
+
+# Decisions and Agreements
+
+1. Model `0.14` will be treated as the proposed working assessment model for operating-model conditioning, subject to member review through 1 June 2026.
+2. Model `0.14` excludes the new Peruvian acoustic S1 and S2 indices and retains the updated Peruvian CPUE with a 2018 catchability break.
+3. The updated Peruvian CPUE will remain the working CPUE series for this benchmark step; the historical CPUE will not be reinstated as the base case at this stage.
+4. The report and diagnostics should clearly document abundance-index CVs, weighting, and coverage assumptions.
+5. The Peruvian acoustic information should remain an active research topic, including possible use of habitat distribution maps to adjust survey availability.
+6. Further discussion should proceed by email unless new diagnostics reveal a substantive issue that has not already been discussed.
+
+# Action Items
+
+| Action | Lead | Timing |
+|---|---|---|
+| Finalize model `0.14`, run full diagnostics, and update the report and assessment repository | Jim Ianelli | 28 May 2026 |
+| Submit any additional explicit sensitivity requests, with rationale | All members | 28 May 2026 |
+| Review the proposed model outputs and identify any substantive new issues | Member delegations | By 1 June 2026 |
+| Share side-by-side plots comparing model `12` and model `13` | Niels Hintzen | Near term |
+| Share benchmark-change slides and narrative support for external communication | Niels Hintzen | Near term |
+| Check and document CVs, weighting, and coverage for CPUE and other abundance indices | Jim Ianelli / modelling team | Report update |
+| Collaborate on habitat-map methods to improve interpretation of Peruvian acoustic survey availability | Peru, Jim Ianelli, interested collaborators | Research follow-up |
+| Exchange exact MCMC code and JJMR fixes needed for reproducible diagnostics | Jim Ianelli and Iago Mosqueira | Before 1 June 2026 |
+| Develop robustness-test scenarios for MSE related to alternative stock-status and productivity assumptions  based on 2025 model, and compare risks and potential yield | Iago Mosqueira | MSE preparation |
+
+# Open Issues
+
+- Whether the first four updated Peruvian CPUE points need additional diagnostic treatment or uncertainty weighting.
+- How best to present the comparison between historical and updated Peruvian CPUE series.
+- Whether depletion metrics should be added alongside, or instead of, Kobe plots for communication.
+- How to communicate that model uncertainty is larger than the usual assessment confidence bands imply.
+- Whether failure to agree on the proposed working model by 1 June 2026 would require reducing the scope of the MSE contractor's work.
