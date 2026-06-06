@@ -4019,86 +4019,6 @@ font-family: inherit;
   }
 }</script>
 
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var head = document.getElementsByTagName("head")[0];
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
-      head.appendChild(link);
-      
-      function renderMathElements() {
-        var mathElements = document.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            if (window.katex) {
-              window.katex.render(texText.data, mathElements[i], {
-                displayMode: mathElements[i].classList.contains('display'),
-                throwOnError: false,
-                macros: macros,
-                fleqn: false
-              });
-            } else {
-              console.error("KaTeX has not been loaded correctly, as not found globally.");
-            }
-          }
-        }
-      }
-
-      var script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
-      script.onload = renderMathElements;
-      
-      // Check for RequireJS and AMD detection as it conflicts with KaTeX loading.
-      if (typeof require === 'function' && typeof define === 'function' && define.amd) {
-        // Disable require.js AMD detection temporarily, as it conflicts with KaTeX loading using CommonJS
-        var disableAmdScript = document.createElement("script");
-        disableAmdScript.textContent = 'window._amd_backup = window.define.amd; window.define.amd = false;';
-        head.appendChild(disableAmdScript);
-        
-        // overwrite onload to restore Require.js AMD detection
-        script.onload = function() {
-          // Restore Require.js AMD detection
-          window.define.amd = window._amd_backup;
-          delete window._amd_backup;
-          renderMathElements();
-        };
-      }
-
-      head.appendChild(script);
-    });
-  </script>
-  
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -4147,6 +4067,10 @@ window.Quarto = {
 <span class="menu-text">Meeting report 03-2026</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./JMWG-Meeting report-04-2026.html"> 
+<span class="menu-text">Meeting report 04-2026</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./JMWG-Benchmark-Meeting-report-2026.html" aria-current="page"> 
 <span class="menu-text">Benchmark report 2026</span></a>
   </li>  
@@ -4165,6 +4089,10 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link" href="./mod0.14_mod1.1_comparison.html"> 
 <span class="menu-text">Model comparison</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./kobe_alternatives_0_14.html"> 
+<span class="menu-text">Kobe alternatives</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./helper_scripts_guide.html"> 
@@ -4330,7 +4258,7 @@ border-bottom: 4px solid #1b4576;
 <div style="margin-top: 0.35rem; margin-bottom: 0.35rem;"><a href="JMWG-Benchmark-Meeting-report-2026.pdf">PDF-rendered version</a> | <a href="JMWG-Benchmark-Meeting-report-2026.docx">MS Word version</a></div>
 <div class="paper-title">JMWG Benchmark Meeting Report 2026</div>
 <div class="no-para-number" style="text-align: center; margin-top: 0.75rem; margin-bottom: 1rem;">
-<p>26 May 2026<br> 18:35 PDT</p>
+<p>05 June 2026<br> 21:06 PDT</p>
 </div>
 <section id="summary" class="level1 unnumbered">
 <h1 class="unnumbered">Summary</h1>
@@ -4400,93 +4328,28 @@ border-bottom: 4px solid #1b4576;
 <p><strong>16.</strong> For the north-central Chile acoustic survey programme, the meeting requested a summary table giving, by year where possible, the number of transects, area covered, number of trawls or biological samples used to interpret backscatter, available length-frequency information, and how biological samples were expanded. This table is needed to compare the 2024-2026 surveys against earlier years and to distinguish changes in abundance from changes in survey extent or data support. Members also requested clarification of the table presented for the 2026 survey, particularly the distinction between total survey area, area containing jack mackerel, NASC density, and biomass-related quantities.</p>
 <p><strong>17.</strong> The historical review of hydroacoustic surveys in north-central Chile emphasized large interannual changes in jack mackerel distribution. Participants discussed whether the recent decline and distribution in 2026 resembled earlier periods, including 1997 and the years when jack mackerel were not detected in one or more surveys. The meeting noted that the 2003-2004 period involved movement away from the survey area and that 2010 marked a return of fish to the survey area. The 2026 information suggested a different recent pattern, with limited movement from the open ocean towards the coast and an increased presence of juveniles in northern coastal areas relative to recent years.</p>
 <p><strong>18.</strong> The preliminary 2026 Chile acoustic results raised questions about vertical distribution, detectability near the surface, and school structure. The meeting noted that a high proportion of individuals was observed in the upper 30 m in 2025 and 2026, but that participants did not identify a survey dead-zone issue for these observations. Participants discussed whether fish close to the surface or more dispersed schools could affect detectability. The presentation indicated that the distribution of fish in 2026 compared to 2025 was more patchy, which may render it largely undetectable by acoustics, and that acoustic-trawl operations were most effective around dawn, when jack mackerel tended to concentrate.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Zenteno comment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>19.</strong> Chile noted that substantial effort was made to provide preliminary results from the north-central Chile acoustic survey conducted during March-April 2026 in time for the benchmark workshop. The acoustic and biological information presented at the workshop was preliminary, final survey results may change, and oceanographic samples collected during the survey were still being processed in laboratories.</p>
-</div>
-</div>
-<p><strong>20.</strong> The working group had a long discussion about whether to include the most recent 2026 acoustic survey data point in the assessment runs, noting that the survey biomass estimate had declined from more than 3 million t in 2025 to a preliminary value just over 0.64 million t in 2026. Members also noted that the Chilean fleet’s year-to-date catch was about 30% of the comparable catch level from the previous year. The Chair requested that members provide their best estimate of the most likely 2026 catch so that at least some indication of the apparent stock trend could be relayed before the MSE meeting and Scientific Committee review. Part of the difficulty was that the benchmark had two related but distinct goals: to improve future assessment modelling, and to generate appropriate scenarios for MSE testing. If the benchmark were being used only to improve the assessment, there would be less immediate need to resolve the 2026 treatment because the issue could be taken up at the Scientific Committee meeting later in the year. However, the need to define plausible MSE scenarios made the question more time-sensitive. One member was reluctant to conduct that model run, citing too much uncertainty in estimating 2026 catch levels, even as a sensitivity. The group noted the awkwardness of proposing an MSE under conditions that appear to be exceptional, given the apparent dispersion of jack mackerel and pending El Nino conditions.</p>
-<p><strong>21.</strong> The oceanographic presentation proposed that large jack mackerel may have moved offshore and dispersed in response to reduced coastal food concentration associated with ENSO-related inhibition of coastal upwelling. The meeting noted that this hypothesis should be compared directly with the acoustic observations, because some survey evidence appeared to suggest coastal or near-coastal concentrations rather than offshore displacement. The report should therefore treat the oceanographic explanation as a working hypothesis that requires reconciliation with the acoustic distribution, chlorophyll-a information, and fishery-dependent observations.</p>
-<p><strong>22.</strong> Two spatio-temporal acoustic standardization approaches for northern Chile were reviewed. The <code>sdmTMB</code> acoustic-density analysis based on NASC used zero-included spatio-temporal modelling and was presented as a complementary index. The meeting discussed whether the Tweedie model adequately captured the very high proportion of zeros, whether the survey design and spatial mesh could absorb abundance signal, and how uncertainty in extrapolated areas should be carried through to the final index. Participants cautioned that summing median predictions across areas may understate uncertainty if spatially extrapolated cells are weakly informed. The second northern Chile analysis also used <code>sdmTMB</code>, with acoustic information converted to biomass using biological data, and participants discussed the roles of occurrence, positive density, anisotropy, and environmental covariates. The meeting noted that these two acoustic products use related data and should be compared for complementarity, redundancy, uncertainty, and sensitivity to survey coverage. The meeting also noted that there would be an advantage to developing a synoptic acoustic survey design that covers the northern to southern parts of Chile, so that future survey information can better distinguish changes in abundance from shifts in distribution and availability.</p>
-<p><strong>23.</strong> On Day 3, the meeting revisited the Chile Acoustic North survey treatment. Participants noted that the spatio-temporal modelling work by INPESCA is a substantial contribution and should be acknowledged in the report. The group noted that spatio-temporal modelling of acoustic data is generally less common than spatio-temporal standardization of CPUE. The latter time series is largely affected by fishers’ choice, which often disguises changes in population densities. The Chile Acoustic North survey, however, follows a design-based approach with pre-determined transects that are largely comparable across years and hence do not suffer from fisheries behaviour in the same way. It is assumed that the survey observes all relevant fish densities in the area and hence does not require interpolation or extrapolation to other areas such as those used for the CPUE standardization. The Day 3 decision was to retain the raw or design-based acoustic biomass treatment for assessment use at this stage, while using the spatio-temporal acoustic modelling as research and diagnostic information rather than as a replacement base-model index.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Zenteno comment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>24.</strong> Chile noted that the north-central Chile acoustic survey has undergone substantial design changes over its history as jack mackerel distribution shifted between coastal and more oceanic areas. The early part of the series used a more stable coastal transect design, whereas later years required annual changes in survey footprint and some years were affected by operational or administrative constraints. These changes raise concerns about comparability of raw design-based biomass estimates and constant catchability assumptions. Chile therefore noted that spatio-temporal modelling can be used to develop an alternative acoustic index that is more robust to methodological changes, and that a Chilean project is underway to improve survey design, estimate acoustic density and uncertainty, and standardize historical survey time series for future Scientific Committee review.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Last-day model-run note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>25.</strong> The final-day discussion noted that earlier model configurations included two catchability breaks for the Chile Acoustic North survey that were no longer present in the current runs. The group identified this as a candidate model-run check, including whether those breaks should be restored or otherwise tested given the large apparent change in Chile Acoustic North catchability.</p>
-</div>
-</div>
-<p><strong>26.</strong> The fishery-dependent acoustic presentation for south-central Chile was viewed as potentially useful but not yet ready for direct assessment use without further work. Participants noted the high temporal resolution and lower cost of commercial-vessel acoustic information, but also discussed preferential sampling, changes in fishing behaviour, and seasonal shifts. The meeting discussed whether fishery-dependent and fishery-independent acoustic data could eventually be combined, but noted that the fishery-dependent product may be more appropriate as a diagnostic or future sensitivity until the effects of seasonality, vessel coverage, and fleet behaviour are better understood.</p>
-<p><strong>27.</strong> For the Chile South-Central acoustic survey time series, participants noted that significant changes in acoustic survey sampling designs have been necessary to track shifts in Chilean jack mackerel distribution. During the early part of the series, from 1997-2003, survey cruises maintained a relatively stable transect design focused on the coastal zone, approximately the first 100 nmi from Valparaiso (33 degrees S) to Corral (40 degrees S). This was followed by an extended period from 2004-2017 characterized by annual changes to transect design, driven primarily by offshore movement of jack mackerel into oceanic waters. This spatial shift is supported by commercial fleet catch distributions, which show vessels operating up to 800 nmi from the coast in search of fishing grounds. In some years the survey could not operate, while in other years operational and administrative issues may have resulted in false negatives in the acoustic data, particularly during 2009-2015.</p>
-<p><strong>28.</strong> These methodological changes raised concerns about comparability of survey results over time, including changes in the number of transects, longitudinal extent, latitudinal extent, and overall study area. Consequently, only a restricted period of the time series, 2001-2009, has historically been used for jack mackerel stock assessments, consistent with the SCW14 benchmark agreement. Participants noted that modifying acoustic survey design is essential for highly mobile pelagic stocks whose spatial distributions shift with changing oceanographic conditions. Fixed historical grids can bias abundance estimates when fish move beyond the original sampling frame, while adaptive sampling protocols that track density boundaries can reduce these errors. However, fluctuating survey areas also challenge the assumption of constant catchability, making raw design-based indices difficult to use directly in population models without additional standardization. Spatio-temporal standardization approaches, including methods such as VAST, were identified as tools that could account for the varying survey footprint and generate a more robust continuous biomass index for modern assessments. Chile noted that a project is underway to improve jack mackerel hydroacoustic surveys through optimized survey design, estimation of mean acoustic density and associated uncertainty, and standardization of historical survey time series using Bayesian and/or classical approaches. The project also aims to propose standardized abundance and biomass indices derived from jack mackerel acoustic surveys, with results expected to be presented at a future SPRFMO Scientific Committee meeting for consideration in the jack mackerel stock assessment model.</p>
-<p><strong>29.</strong> The Peruvian acoustic discussion emphasized that the acoustic survey programme was primarily designed for anchovy, and that jack mackerel may occur outside the surveyed area in some years. Participants discussed the large decline after the 1997/1998 El Nino event, possible ecological regime changes, changes in spatial distribution from nearshore to more offshore areas, and whether the existing Peru acoustic series in the assessment adequately reflects those changes. The meeting requested Peruvian acoustic survey backscatter data and associated length composition data, including survey timing, spatial extent, transect coverage, biological sampling, length type, and uncertainty. For the new acoustic surveys in the Peruvian zone, the length-composition effective sample size was scaled to the number of survey tows that included jack mackerel. For scaling, large numbers of tows were capped at 30, and the survey vector was then rescaled to an average effective sample size of 15, consistent with other surveys of this type. The meeting also noted that summer and winter surveys may need to be treated separately because seasonal differences and contrasting within-year values may contain useful information. Day 3 follow-up items included checking that the average survey month and seasonal assignment were implemented correctly in the model runs, reviewing fits to zero observations, and obtaining survey length frequencies as soon as possible.</p>
-<p><strong>30.</strong> The sonar and fishing-vessel acoustic presentations provided methodological context rather than immediate assessment inputs. Sonar may improve information on presence, school behaviour, swimming direction, and fish outside the echosounder beam, but was not considered ready to provide quantitative biomass estimates for jack mackerel. Fishing-vessel acoustic data in Peru may provide useful context, but additional work is needed to understand juvenile avoidance, vessel behaviour, calibration, and how fishery-dependent acoustic observations relate to fishery-independent survey information.</p>
-<p><strong>31.</strong> The meeting identified a need for a dedicated analysis that compares acoustic survey extent, backscatter, biological sampling, length-frequency data, and numbers-at-age across years and regions. This analysis should include northern Chile, central-south Chile, Peru, and fishery-dependent acoustic products where available. The objective is to determine which acoustic information is suitable for direct assessment likelihood use, which is suitable for operating-model conditioning or management-procedure diagnostics, and which should remain supporting context.</p>
+<p><strong>19.</strong> The working group had a long discussion about whether to include the most recent 2026 acoustic survey data point in the assessment runs, noting that the survey biomass estimate had declined from more than 3 million t in 2025 to a preliminary value just over 0.64 million t in 2026. Members also noted that the Chilean fleet’s year-to-date catch was about 30% of the comparable catch level from the previous year. The Chair requested that members provide their best estimate of the most likely 2026 catch so that at least some indication of the apparent stock trend could be relayed before the MSE meeting and Scientific Committee review. Part of the difficulty was that the benchmark had two related but distinct goals: to improve future assessment modelling, and to generate appropriate scenarios for MSE testing. If the benchmark were being used only to improve the assessment, there would be less immediate need to resolve the 2026 treatment because the issue could be taken up at the Scientific Committee meeting later in the year. However, the need to define plausible MSE scenarios made the question more time-sensitive. One member was reluctant to conduct that model run, citing too much uncertainty in estimating 2026 catch levels, even as a sensitivity. The group noted the awkwardness of proposing an MSE under conditions that appear to be exceptional, given the apparent dispersion of jack mackerel and pending El Nino conditions.</p>
+<p><strong>20.</strong> The oceanographic presentation proposed that large jack mackerel may have moved offshore and dispersed in response to reduced coastal food concentration associated with ENSO-related inhibition of coastal upwelling. The meeting noted that this hypothesis should be compared directly with the acoustic observations, because some survey evidence appeared to suggest coastal or near-coastal concentrations rather than offshore displacement. The report should therefore treat the oceanographic explanation as a working hypothesis that requires reconciliation with the acoustic distribution, chlorophyll-a information, and fishery-dependent observations.</p>
+<p><strong>21.</strong> Two spatio-temporal acoustic standardization approaches for northern Chile were reviewed. The <code>sdmTMB</code> acoustic-density analysis based on NASC used zero-included spatio-temporal modelling and was presented as a complementary index. The meeting discussed whether the Tweedie model adequately captured the very high proportion of zeros, whether the survey design and spatial mesh could absorb abundance signal, and how uncertainty in extrapolated areas should be carried through to the final index. Participants cautioned that summing median predictions across areas may understate uncertainty if spatially extrapolated cells are weakly informed. The second northern Chile analysis also used <code>sdmTMB</code>, with acoustic information converted to biomass using biological data, and participants discussed the roles of occurrence, positive density, anisotropy, and environmental covariates. The meeting noted that these two acoustic products use related data and should be compared for complementarity, redundancy, uncertainty, and sensitivity to survey coverage. The meeting also noted that there would be an advantage to developing a synoptic acoustic survey design that covers the northern to southern parts of Chile, so that future survey information can better distinguish changes in abundance from shifts in distribution and availability.</p>
+<p><strong>22.</strong> On Day 3, the meeting revisited the Chile Acoustic North survey treatment. Participants noted that the spatio-temporal modelling work by INPESCA is a substantial contribution and should be acknowledged in the report. The group noted that spatio-temporal modelling of acoustic data is generally less common than spatio-temporal standardization of CPUE. The latter time series is largely affected by fishers’ choice, which often disguises changes in population densities. The Chile Acoustic North survey, however, follows a design-based approach with pre-determined transects that are largely comparable across years and hence do not suffer from fisheries behaviour in the same way. It is assumed that the survey observes all relevant fish densities in the area and hence does not require interpolation or extrapolation to other areas such as those used for the CPUE standardization. The Day 3 decision was to retain the raw or design-based acoustic biomass treatment for assessment use at this stage, while using the spatio-temporal acoustic modelling as research and diagnostic information rather than as a replacement base-model index.</p>
+<p><strong>23.</strong> The fishery-dependent acoustic presentation for south-central Chile was viewed as potentially useful but not yet ready for direct assessment use without further work. Participants noted the high temporal resolution and lower cost of commercial-vessel acoustic information, but also discussed preferential sampling, changes in fishing behaviour, and seasonal shifts. The meeting discussed whether fishery-dependent and fishery-independent acoustic data could eventually be combined, but noted that the fishery-dependent product may be more appropriate as a diagnostic or future sensitivity until the effects of seasonality, vessel coverage, and fleet behaviour are better understood.</p>
+<p><strong>24.</strong> For the Chile South-Central acoustic survey time series, participants noted that significant changes in acoustic survey sampling designs have been necessary to track shifts in Chilean jack mackerel distribution. During the early part of the series, from 1997-2003, survey cruises maintained a relatively stable transect design focused on the coastal zone, approximately the first 100 nmi from Valparaiso (33 degrees S) to Corral (40 degrees S). This was followed by an extended period from 2004-2017 characterized by annual changes to transect design, driven primarily by offshore movement of jack mackerel into oceanic waters. This spatial shift is supported by commercial fleet catch distributions, which show vessels operating up to 800 nmi from the coast in search of fishing grounds. In some years the survey could not operate, while in other years operational and administrative issues may have resulted in false negatives in the acoustic data, particularly during 2009-2015.</p>
+<p><strong>25.</strong> These methodological changes raised concerns about comparability of survey results over time, including changes in the number of transects, longitudinal extent, latitudinal extent, and overall study area. Consequently, only a restricted period of the time series, 2001-2009, has historically been used for jack mackerel stock assessments, consistent with the SCW14 benchmark agreement. Participants noted that modifying acoustic survey design is essential for highly mobile pelagic stocks whose spatial distributions shift with changing oceanographic conditions. Fixed historical grids can bias abundance estimates when fish move beyond the original sampling frame, while adaptive sampling protocols that track density boundaries can reduce these errors. However, fluctuating survey areas also challenge the assumption of constant catchability, making raw design-based indices difficult to use directly in population models without additional standardization. Spatio-temporal standardization approaches, including methods such as VAST, were identified as tools that could account for the varying survey footprint and generate a more robust continuous biomass index for modern assessments. Chile noted that a project is underway to improve jack mackerel hydroacoustic surveys through optimized survey design, estimation of mean acoustic density and associated uncertainty, and standardization of historical survey time series using Bayesian and/or classical approaches. The project also aims to propose standardized abundance and biomass indices derived from jack mackerel acoustic surveys, with results expected to be presented at a future SPRFMO Scientific Committee meeting for consideration in the jack mackerel stock assessment model.</p>
+<p><strong>26.</strong> The Peruvian acoustic discussion emphasized that the acoustic survey programme was primarily designed for anchovy, and that jack mackerel may occur outside the surveyed area in some years. Participants discussed the large decline after the 1997/1998 El Nino event, possible ecological regime changes, changes in spatial distribution from nearshore to more offshore areas, and whether the existing Peru acoustic series in the assessment adequately reflects those changes. The meeting requested Peruvian acoustic survey backscatter data and associated length composition data, including survey timing, spatial extent, transect coverage, biological sampling, length type, and uncertainty. For the new acoustic surveys in the Peruvian zone, the length-composition effective sample size was scaled to the number of survey tows that included jack mackerel. For scaling, large numbers of tows were capped at 30, and the survey vector was then rescaled to an average effective sample size of 15, consistent with other surveys of this type. The meeting also noted that summer and winter surveys may need to be treated separately because seasonal differences and contrasting within-year values may contain useful information. Day 3 follow-up items included checking that the average survey month and seasonal assignment were implemented correctly in the model runs, reviewing fits to zero observations, and obtaining survey length frequencies as soon as possible.</p>
+<p><strong>27.</strong> The sonar and fishing-vessel acoustic presentations provided methodological context rather than immediate assessment inputs. Sonar may improve information on presence, school behaviour, swimming direction, and fish outside the echosounder beam, but was not considered ready to provide quantitative biomass estimates for jack mackerel. Fishing-vessel acoustic data in Peru may provide useful context, but additional work is needed to understand juvenile avoidance, vessel behaviour, calibration, and how fishery-dependent acoustic observations relate to fishery-independent survey information.</p>
+<p><strong>28.</strong> The meeting identified a need for a dedicated analysis that compares acoustic survey extent, backscatter, biological sampling, length-frequency data, and numbers-at-age across years and regions. This analysis should include northern Chile, central-south Chile, Peru, and fishery-dependent acoustic products where available. The objective is to determine which acoustic information is suitable for direct assessment likelihood use, which is suitable for operating-model conditioning or management-procedure diagnostics, and which should remain supporting context.</p>
 </section>
 <section id="cpue-indices" class="level2">
 <h2 class="anchored" data-anchor-id="cpue-indices">CPUE Indices</h2>
-<p><strong>32.</strong> The Day 2 CPUE session reviewed catch and fishery data quality checks, Chilean effort-creep correction, spatio-temporal Chilean CPUE standardization using <code>sdmTMB</code> and INLA-based approaches, Peruvian CPUE standardization, and offshore CPUE treatment. The discussion focused on whether candidate CPUE products are ready for assessment use, what additional diagnostics are needed, and how to document any change from the current assessment CPUE treatment.</p>
-<p><strong>33.</strong> During the evaluation of the modelling procedure for the Chilean South-Central (SC) fleet abundance index, benchmark participants deliberated on the most robust method to account for effort creep. Initial positions diverged, with Chile proposing to apply an informed correction factor from 2005 onwards, whereas the EU advocated for maintaining a fixed 1% compounded factor across the entire time series. Arguments suggesting continuous improvement in efficiency focused on development in gear technology, improved online communication between skippers via WhatsApp, improved echosounders and sonars, and newly available AI-derived predictions of resource density via providers such as Greenfish. Industry representatives from several member countries corroborated that these innovations increased fishing efficiency. After extensive discussion, it was agreed to proceed with Chile’s proposal and apply a 1% compounded increase creep factor up to 2004, followed by a transition to the p10 correction factor from 2005 onward, where a fixed multiplicative factor of 0.669 is applied to the abundance index, as proposed by Zenteno and Paya (2026). The EU objected and the Chair noted that it could be raised again at SC but should not have a large effect on making progress with the MSE.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Zenteno comment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>34.</strong> Chile noted that the rationale for this effort-creep treatment was grounded in both empirical data and historical fleet dynamics. The approach incorporated operational feedback from Chilean south-central fleet captains, who identified 2005 as an inflection point in fishing efficiency. On that basis, applying a continuously increasing efficiency correction after 2005 was unnecessary. Retaining the 1% factor before 2005 was also viewed as a way to anchor the early time series and avoid a large historical efficiency jump.</p>
-</div>
-</div>
-<p><strong>35.</strong> Participants also discussed whether applying the creep factor as an effort correction is equivalent to imposing a catchability change, and whether the survey/interview information used to estimate creep can be maintained regularly. The meeting noted that the artisanal fleet now accounts for a larger share of Chilean catch and may need to be considered in future effort-creep work. As a diagnostic, the meeting requested a model run with no creep correction but with a catchability step change in 2005, to evaluate whether the assessment estimates a large catchability shift without imposing the creep correction directly.</p>
-<p><strong>36.</strong> Chile agreed to continue surveying industry on innovations that may trigger effort-creep corrections in the future.</p>
-<p><strong>37.</strong> For the Chilean <code>sdmTMB</code> CPUE analysis, the meeting noted that the index was updated through 2026 and is based on set-level data. Discussion focused on haul capacity treatment, the use of a spline smoother versus vessel categories, the large imbalance in early-year data coverage, and whether true zero catches are available and should be incorporated. Participants noted that the early part of the set-level data may represent a very small fraction of total catch, raising questions about representativeness before about 2001. The meeting requested that the data table include the number and proportion of sets by year, and that the authors provide a clear explanation for why the new set-based CPUE series gives lower CPUE in earlier years with high catches than the current trip-based assessment series.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Zenteno comment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>38.</strong> Chile noted that, because jack mackerel availability in Chilean fisheries declined strongly during 2026, substantial work was done to obtain official e-logbook data through April 2026 and fit the spatio-temporal CPUE models for presentation at the workshop. The e-logbook data do not include vessels that did not fish and remained in port, which was estimated to represent approximately 70-80% of the fleet.</p>
-</div>
-</div>
-<p><strong>39.</strong> The INLA-based Chilean CPUE analysis provided a complementary spatio-temporal standardization. Participants discussed mesh resolution, the treatment of northern fishing activity, whether assessment fleets should be defined primarily by area or vessel behaviour, and whether CPUE weighting should be based on catch rates rather than catch. The meeting noted that the model appeared sensitive to data updates, with inclusion of 2026 data changing specifically the 2021 estimate, and that this sensitivity needs to be explained before replacing the existing assessment index, for example through an analytical retrospective. Participants also discussed fixed versus random year effects, AR(1) versus independent year effects, and the interpretation of the days-at-sea or DFP coefficient. Movement of the resource further offshore could lead to increases in days at sea, which hence may not suggest a decrease in stock size although it does result in a decline in CPUE. As such, including days at sea in a CPUE standardization may bias the outcomes. Since the INLA approach accounts for annual spatial shifts by explicitly fitting an annual spatial random field, this concern is alleviated. Previous versions of the INLA model submitted to SC12 and SC13 were compared to the updated 2026 configuration. The introduction of annual spatial random fields changed the perception of the resource dynamics, with less profound increases and decreases over the time series.</p>
-<p><strong>40.</strong> Comparisons between the CPUE index model based on <code>sdmTMB</code> (Paya 2026) and INLA (Vasquez and Sepulveda 2026) were presented and discussed (<a href="#fig-glmm-index-inla-2026" class="quarto-xref">Figure 1</a>). There were no significant differences between model outputs. For benchmark purposes, the INLA model (Vasquez and Sepulveda 2026) was selected. For the update of the indices for the next stock assessment, which should include data up to June 2026, the group agreed on a common model configuration:</p>
-<p><strong>41.</strong> <code>C = Year + Quarter + DAS + s(hc, 5) + s</code></p>
-<p><strong>42.</strong> where <code>DAS</code> is days at sea, <code>hc</code> is holding capacity, and <code>s</code> represents spatio-temporal random effects independent of software platform.</p>
+<p><strong>29.</strong> The Day 2 CPUE session reviewed catch and fishery data quality checks, Chilean effort-creep correction, spatio-temporal Chilean CPUE standardization using <code>sdmTMB</code> and INLA-based approaches, Peruvian CPUE standardization, and offshore CPUE treatment. The discussion focused on whether candidate CPUE products are ready for assessment use, what additional diagnostics are needed, and how to document any change from the current assessment CPUE treatment.</p>
+<p><strong>30.</strong> During the evaluation of the modelling procedure for the Chilean South-Central (SC) fleet abundance index, benchmark participants deliberated on the most robust method to account for effort creep. Initial positions diverged, with Chile proposing to apply an informed correction factor from 2005 onwards, whereas the EU advocated for maintaining a fixed 1% compounded factor across the entire time series. Arguments suggesting continuous improvement in efficiency focused on development in gear technology, improved online communication between skippers via WhatsApp, improved echosounders and sonars, and newly available AI-derived predictions of resource density via providers such as Greenfish. Industry representatives from several member countries corroborated that these innovations increased fishing efficiency. After extensive discussion, it was agreed to proceed with Chile’s proposal and apply a 1% compounded increase creep factor up to 2004, followed by a transition to the p10 correction factor from 2005 onward, where a fixed multiplicative factor of 0.669 is applied to the abundance index, as proposed by Zenteno and Paya (2026). The EU objected and the Chair noted that it could be raised again at SC but should not have a large effect on making progress with the MSE.</p>
+<p><strong>31.</strong> Participants also discussed whether applying the creep factor as an effort correction is equivalent to imposing a catchability change, and whether the survey/interview information used to estimate creep can be maintained regularly. The meeting noted that the artisanal fleet now accounts for a larger share of Chilean catch and may need to be considered in future effort-creep work. As a diagnostic, the meeting requested a model run with no creep correction but with a catchability step change in 2005, to evaluate whether the assessment estimates a large catchability shift without imposing the creep correction directly.</p>
+<p><strong>32.</strong> Chile agreed to continue surveying industry on innovations that may trigger effort-creep corrections in the future.</p>
+<p><strong>33.</strong> For the Chilean <code>sdmTMB</code> CPUE analysis, the meeting noted that the index was updated through 2026 and is based on set-level data. Discussion focused on haul capacity treatment, the use of a spline smoother versus vessel categories, the large imbalance in early-year data coverage, and whether true zero catches are available and should be incorporated. Participants noted that the early part of the set-level data may represent a very small fraction of total catch, raising questions about representativeness before about 2001. The meeting requested that the data table include the number and proportion of sets by year, and that the authors provide a clear explanation for why the new set-based CPUE series gives lower CPUE in earlier years with high catches than the current trip-based assessment series.</p>
+<p><strong>34.</strong> The INLA-based Chilean CPUE analysis provided a complementary spatio-temporal standardization. Participants discussed mesh resolution, the treatment of northern fishing activity, whether assessment fleets should be defined primarily by area or vessel behaviour, and whether CPUE weighting should be based on catch rates rather than catch. The meeting noted that the model appeared sensitive to data updates, with inclusion of 2026 data changing specifically the 2021 estimate, and that this sensitivity needs to be explained before replacing the existing assessment index, for example through an analytical retrospective. Participants also discussed fixed versus random year effects, AR(1) versus independent year effects, and the interpretation of the days-at-sea or DFP coefficient. Movement of the resource further offshore could lead to increases in days at sea, which hence may not suggest a decrease in stock size although it does result in a decline in CPUE. As such, including days at sea in a CPUE standardization may bias the outcomes. Since the INLA approach accounts for annual spatial shifts by explicitly fitting an annual spatial random field, this concern is alleviated. Previous versions of the INLA model submitted to SC12 and SC13 were compared to the updated 2026 configuration. The introduction of annual spatial random fields changed the perception of the resource dynamics, with less profound increases and decreases over the time series.</p>
+<p><strong>35.</strong> Comparisons between the CPUE index model based on <code>sdmTMB</code> (Paya 2026) and INLA (Vasquez and Sepulveda 2026) were presented and discussed (<a href="#fig-glmm-index-inla-2026" class="quarto-xref">Figure 1</a>). There were no significant differences between model outputs. For benchmark purposes, the INLA model (Vasquez and Sepulveda 2026) was selected. For the update of the indices for the next stock assessment, which should include data up to June 2026, the group agreed on a common model configuration:</p>
+<p><strong>36.</strong> <code>C = Year + Quarter + DAS + s(hc, 5) + s</code></p>
+<p><strong>37.</strong> where <code>DAS</code> is days at sea, <code>hc</code> is holding capacity, and <code>s</code> represents spatio-temporal random effects independent of software platform.</p>
 <div id="fig-glmm-index-inla-2026" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-glmm-index-inla-2026-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -4497,43 +4360,30 @@ Figure 1: CPUE indices normalized as z-scores and estimated using <code>sdmTMB<
 </figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Zenteno comment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>43.</strong> Chile noted that future work will focus on standardizing the Chilean CPUE database so that a single common and complete database is used in the modelling procedure.</p>
-</div>
-</div>
-<p><strong>44.</strong> The updated INLA-based Chilean CPUE retrospective analysis was reviewed using six peels. The resulting Mohn’s rho was 0.0254, and participants considered the diagnostic performance favourable for assessment use.</p>
-<p><strong>45.</strong> The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment starting in 1998, using the agreed effort-creep treatment described above. Annual CVs should be weighted by percentage coverage and should incorporate standard errors from the INLA analysis. The previous Chilean CPUE index should be removed from the base model. A sensitivity run should replace the new Chilean CPUE series with the SC13 CPUE series to evaluate the effect of removing the old CPUE treatment on historical biomass.</p>
-<p><strong>46.</strong> The 1998 start year was selected because earlier set-level coverage was poor and may not be representative of the fishery, particularly in years when catches were large but the proportion of catch represented in the CPUE data was low. The meeting noted that the behaviour of the fleet and the amount of data collected changed substantially after 1997, coincident with the major 1997/1998 El Nino event. For the benchmark, the base model should therefore use the new INLA set-based Chilean CPUE series truncated to start in 1998. Future updates to this index should be documented carefully, because substantial changes to CPUE treatment between the benchmark and MSE implementation could affect perceptions of the MSE results.</p>
-<p><strong>47.</strong> The agreed uncertainty treatment for the new Chilean South-Central CPUE series is summarized in <a href="#tbl-chile-cpue-cv-weighting" class="quarto-xref">Table 1</a>. The CV weight is calculated as the square-root of annual coverage relative to the maximum coverage in the series; equivalently, the table reports the inverse multiplier (<code>1/CV_wt</code>) used to inflate the annual CV. The assessment model uses the 1998-2025 rows and the weighted (<code>wtd</code>) CV column. The <code>0.06 CPUE index (CPUE+creep)</code> column is the effort-creep-adjusted Chilean CPUE vector used as <code>Chile_CPUE</code> in the 0.06 model input file. It applies the agreed 1% compounded fishing-power correction through 2004 and the 0.669 multiplicative adjustment from 2005 onward.</p>
+<p><strong>38.</strong> The updated INLA-based Chilean CPUE retrospective analysis was reviewed using six peels. The resulting Mohn’s rho was 0.0254, and participants considered the diagnostic performance favourable for assessment use.</p>
+<p><strong>39.</strong> The Day 3 discussion agreed to move forward with a new Chilean CPUE treatment starting in 1998, using the agreed effort-creep treatment described above. Annual CVs should be weighted by percentage coverage and should incorporate standard errors from the INLA analysis. The previous Chilean CPUE index should be removed from the base model. A sensitivity run should replace the new Chilean CPUE series with the SC13 CPUE series to evaluate the effect of removing the old CPUE treatment on historical biomass.</p>
+<p><strong>40.</strong> The 1998 start year was selected because earlier set-level coverage was poor and may not be representative of the fishery, particularly in years when catches were large but the proportion of catch represented in the CPUE data was low. The meeting noted that the behaviour of the fleet and the amount of data collected changed substantially after 1997, coincident with the major 1997/1998 El Nino event. For the benchmark, the base model should therefore use the new INLA set-based Chilean CPUE series truncated to start in 1998. Future updates to this index should be documented carefully, because substantial changes to CPUE treatment between the benchmark and MSE implementation could affect perceptions of the MSE results.</p>
+<p><strong>41.</strong> The agreed uncertainty treatment for the new Chilean South-Central CPUE series is summarized in <a href="#tbl-chile-cpue-cv-weighting" class="quarto-xref">Table 1</a>. The CV weight is calculated as the square-root of annual coverage relative to the maximum coverage in the series; equivalently, the table reports the inverse multiplier (<code>1/CV_wt</code>) used to inflate the annual CV. The assessment model uses the 1998-2025 rows and the weighted (<code>wtd</code>) CV column. The <code>0.06 CPUE index (CPUE+creep)</code> column is the effort-creep-adjusted Chilean CPUE vector used as <code>Chile_CPUE</code> in the 0.06 model input file. It applies the agreed 1% compounded fishing-power correction through 2004 and the 0.669 multiplicative adjustment from 2005 onward.</p>
 <div id="tbl-chile-cpue-cv-weighting" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chile-cpue-cv-weighting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table 1: Chilean South-Central CPUE uncertainty and 0.06 input-index table. The 1998-2025 rows were selected for the assessment-model input; the 0.06 CPUE index (<code>CPUE+creep</code>) column is the Chile_CPUE vector used in the 0.06 model, and the weighted (<code>wtd</code>) CV is the CV used for the assessment model.
 </figcaption>
 <div aria-describedby="tbl-chile-cpue-cv-weighting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="wnnlfistem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wnnlfistem table {
+<div id="txyeupjijw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#txyeupjijw table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#wnnlfistem thead, #wnnlfistem tbody, #wnnlfistem tfoot, #wnnlfistem tr, #wnnlfistem td, #wnnlfistem th {
+#txyeupjijw thead, #txyeupjijw tbody, #txyeupjijw tfoot, #txyeupjijw tr, #txyeupjijw td, #txyeupjijw th {
 border-style: none;
 }
-#wnnlfistem p {
+#txyeupjijw p {
 margin: 0;
 padding: 0;
 }
-#wnnlfistem .gt_table {
+#txyeupjijw .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4558,11 +4408,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#wnnlfistem .gt_caption {
+#txyeupjijw .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#wnnlfistem .gt_title {
+#txyeupjijw .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4573,7 +4423,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#wnnlfistem .gt_subtitle {
+#txyeupjijw .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4584,7 +4434,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#wnnlfistem .gt_heading {
+#txyeupjijw .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4595,12 +4445,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#wnnlfistem .gt_bottom_border {
+#txyeupjijw .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#wnnlfistem .gt_col_headings {
+#txyeupjijw .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4614,7 +4464,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#wnnlfistem .gt_col_heading {
+#txyeupjijw .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4633,7 +4483,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#wnnlfistem .gt_column_spanner_outer {
+#txyeupjijw .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4644,13 +4494,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#wnnlfistem .gt_column_spanner_outer:first-child {
+#txyeupjijw .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#wnnlfistem .gt_column_spanner_outer:last-child {
+#txyeupjijw .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#wnnlfistem .gt_column_spanner {
+#txyeupjijw .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4661,10 +4511,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#wnnlfistem .gt_spanner_row {
+#txyeupjijw .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#wnnlfistem .gt_group_heading {
+#txyeupjijw .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4689,7 +4539,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#wnnlfistem .gt_empty_group_heading {
+#txyeupjijw .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4703,13 +4553,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#wnnlfistem .gt_from_md > :first-child {
+#txyeupjijw .gt_from_md > :first-child {
 margin-top: 0;
 }
-#wnnlfistem .gt_from_md > :last-child {
+#txyeupjijw .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#wnnlfistem .gt_row {
+#txyeupjijw .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4727,7 +4577,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#wnnlfistem .gt_stub {
+#txyeupjijw .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4739,7 +4589,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#wnnlfistem .gt_stub_row_group {
+#txyeupjijw .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4752,13 +4602,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#wnnlfistem .gt_row_group_first td {
+#txyeupjijw .gt_row_group_first td {
 border-top-width: 2px;
 }
-#wnnlfistem .gt_row_group_first th {
+#txyeupjijw .gt_row_group_first th {
 border-top-width: 2px;
 }
-#wnnlfistem .gt_summary_row {
+#txyeupjijw .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4767,14 +4617,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#wnnlfistem .gt_first_summary_row {
+#txyeupjijw .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#wnnlfistem .gt_first_summary_row.thick {
+#txyeupjijw .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#wnnlfistem .gt_last_summary_row {
+#txyeupjijw .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4783,7 +4633,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#wnnlfistem .gt_grand_summary_row {
+#txyeupjijw .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4792,7 +4642,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#wnnlfistem .gt_first_grand_summary_row {
+#txyeupjijw .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4801,7 +4651,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#wnnlfistem .gt_last_grand_summary_row_top {
+#txyeupjijw .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4810,10 +4660,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#wnnlfistem .gt_striped {
+#txyeupjijw .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#wnnlfistem .gt_table_body {
+#txyeupjijw .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4821,7 +4671,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#wnnlfistem .gt_footnotes {
+#txyeupjijw .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4834,7 +4684,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#wnnlfistem .gt_footnote {
+#txyeupjijw .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4842,7 +4692,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#wnnlfistem .gt_sourcenotes {
+#txyeupjijw .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4855,64 +4705,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#wnnlfistem .gt_sourcenote {
+#txyeupjijw .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#wnnlfistem .gt_left {
+#txyeupjijw .gt_left {
 text-align: left;
 }
-#wnnlfistem .gt_center {
+#txyeupjijw .gt_center {
 text-align: center;
 }
-#wnnlfistem .gt_right {
+#txyeupjijw .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#wnnlfistem .gt_font_normal {
+#txyeupjijw .gt_font_normal {
 font-weight: normal;
 }
-#wnnlfistem .gt_font_bold {
+#txyeupjijw .gt_font_bold {
 font-weight: bold;
 }
-#wnnlfistem .gt_font_italic {
+#txyeupjijw .gt_font_italic {
 font-style: italic;
 }
-#wnnlfistem .gt_super {
+#txyeupjijw .gt_super {
 font-size: 65%;
 }
-#wnnlfistem .gt_footnote_marks {
+#txyeupjijw .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#wnnlfistem .gt_asterisk {
+#txyeupjijw .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#wnnlfistem .gt_indent_1 {
+#txyeupjijw .gt_indent_1 {
 text-indent: 5px;
 }
-#wnnlfistem .gt_indent_2 {
+#txyeupjijw .gt_indent_2 {
 text-indent: 10px;
 }
-#wnnlfistem .gt_indent_3 {
+#txyeupjijw .gt_indent_3 {
 text-indent: 15px;
 }
-#wnnlfistem .gt_indent_4 {
+#txyeupjijw .gt_indent_4 {
 text-indent: 20px;
 }
-#wnnlfistem .gt_indent_5 {
+#txyeupjijw .gt_indent_5 {
 text-indent: 25px;
 }
-#wnnlfistem .katex-display {
+#txyeupjijw .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#wnnlfistem div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#txyeupjijw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -5290,35 +5140,9 @@ height: 0px !important;
 </div>
 </figure>
 </div>
-<p><strong>48.</strong> The Peruvian CPUE presentation covered a standardized CPUE series for 2015-2025 that combines industrial and artisanal fleets. The meeting noted this combined fleet treatment as a strength, but also discussed the interpretation of trip locations, haul-capacity and distance-to-coast smoothers, possible differences between industrial and artisanal fleet effects, and changes in Peruvian fishing operations. Members noted that jack mackerel has been used for direct human consumption in Peru since 2002, and that the artisanal fishery has accounted for a larger share of the quota since 2019. These changes, in combination with environmental impacts on the distribution of jack mackerel, led to a marked shift of the resource over the CPUE time series. This shift is currently untreated in the CPUE standardization, as efforts to account for it were unsuccessful. The Day 3 discussion agreed that the new, shorter Peruvian CPUE series provides better information and should be preferred for the base model. The previous Peru CPUE index should therefore be removed from the base configuration, while a sensitivity that also includes the old Peru CPUE series can be considered.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Zenteno comment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>49.</strong> Peru noted that the new Peruvian CPUE series can be extended to be completed by November 2026.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Last-day model-run note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>50.</strong> The final-day discussion also identified a Peruvian CPUE catchability-break run as a candidate sensitivity, to evaluate whether an explicit break improves interpretation of the new short Peruvian CPUE series and its relationship to the historical assessment treatment.</p>
-</div>
-</div>
-<p><strong>51.</strong> The offshore CPUE discussion included the treatment of a catchability break in 2021 associated with movement of the offshore fleet to the north, and discussion of how El Nino effects were represented relative to annual effects. The report should document the rationale for any offshore catchability break and whether environmental effects are interpreted as catchability effects, availability effects, or residual year effects.</p>
-<p><strong>52.</strong> As part of the meeting request to better understand patterns in data collection and fishing-set coverage for the Chilean CPUE series, Chile provided a summary table of annual fleet and coverage characteristics (<a href="#tbl-chile-cpue-fishing-trip-summary" class="quarto-xref">Table 2</a>). The table includes distance from port, trip duration, catch per set, vessel hold capacity, the proportion of catch referenced by the set-level data, and the number of fishing sets available by year. This table was reviewed during a lengthy discussion about the period over which the modeled CPUE series presented by Vasquez should be used. A critical concern was low data coverage in the early period and the counter-intuitive result that the CPUE standardization model indicated low abundance during years when the largest catches were made. The Chair also considered a diagnostic figure based on the mean catch per set divided by hold capacity times the number of sets, and suggested omitting 1994, 2006, and 2026 from that diagnostic as outlying observations. The resulting normalized catch-rate pattern (<a href="#fig-chile-cpue-normalized-catch-rate" class="quarto-xref">Figure 2</a>) provides a simple nominal check on the annual information in the table rather than a replacement for the CPUE standardization. The diagnostic declines from the high early values toward lower values in the early 2000s, increases through the mid- to late 2010s, and then declines in the most recent retained years. From this analysis, as well as from other statistical analyses, such as PCA, evaluated during the meeting, starting the time series in 1998 was considered most suitable given that sampling coverage was similar across years from that time point onwards.</p>
+<p><strong>42.</strong> The Peruvian CPUE presentation covered a standardized CPUE series for 2015-2025 that combines industrial and artisanal fleets. The meeting noted this combined fleet treatment as a strength, but also discussed the interpretation of trip locations, haul-capacity and distance-to-coast smoothers, possible differences between industrial and artisanal fleet effects, and changes in Peruvian fishing operations. Members noted that jack mackerel has been used for direct human consumption in Peru since 2002, and that the artisanal fishery has accounted for a larger share of the quota since 2019. These changes, in combination with environmental impacts on the distribution of jack mackerel, led to a marked shift of the resource over the CPUE time series. This shift is currently untreated in the CPUE standardization, as efforts to account for it were unsuccessful. The Day 3 discussion agreed that the new, shorter Peruvian CPUE series provides better information and should be preferred for the base model. The previous Peru CPUE index should therefore be removed from the base configuration, while a sensitivity that also includes the old Peru CPUE series can be considered.</p>
+<p><strong>43.</strong> The offshore CPUE discussion included the treatment of a catchability break in 2021 associated with movement of the offshore fleet to the north, and discussion of how El Nino effects were represented relative to annual effects. The report should document the rationale for any offshore catchability break and whether environmental effects are interpreted as catchability effects, availability effects, or residual year effects.</p>
+<p><strong>44.</strong> As part of the meeting request to better understand patterns in data collection and fishing-set coverage for the Chilean CPUE series, Chile provided a summary table of annual fleet and coverage characteristics (<a href="#tbl-chile-cpue-fishing-trip-summary" class="quarto-xref">Table 2</a>). The table includes distance from port, trip duration, catch per set, vessel hold capacity, the proportion of catch referenced by the set-level data, and the number of fishing sets available by year. This table was reviewed during a lengthy discussion about the period over which the modeled CPUE series presented by Vasquez should be used. A critical concern was low data coverage in the early period and the counter-intuitive result that the CPUE standardization model indicated low abundance during years when the largest catches were made. The Chair also considered a diagnostic figure based on the mean catch per set divided by hold capacity times the number of sets, and suggested omitting 1994, 2006, and 2026 from that diagnostic as outlying observations. The resulting normalized catch-rate pattern (<a href="#fig-chile-cpue-normalized-catch-rate" class="quarto-xref">Figure 2</a>) provides a simple nominal check on the annual information in the table rather than a replacement for the CPUE standardization. The diagnostic declines from the high early values toward lower values in the early 2000s, increases through the mid- to late 2010s, and then declines in the most recent retained years. From this analysis, as well as from other statistical analyses, such as PCA, evaluated during the meeting, starting the time series in 1998 was considered most suitable given that sampling coverage was similar across years from that time point onwards.</p>
 <div id="fig-chile-cpue-normalized-catch-rate" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chile-cpue-normalized-catch-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -5329,27 +5153,27 @@ Figure 2: Normalized annual catch-rate diagnostic calculated as mean catch per 
 </figcaption>
 </figure>
 </div>
-<p><strong>53.</strong> The broader pairwise diagnostic summary is shown in <a href="#fig-chile-cpue-fishing-trip-pairs" class="quarto-xref">Figure 3</a>.</p>
+<p><strong>45.</strong> The broader pairwise diagnostic summary is shown in <a href="#fig-chile-cpue-fishing-trip-pairs" class="quarto-xref">Figure 3</a>.</p>
 <div id="tbl-chile-cpue-fishing-trip-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chile-cpue-fishing-trip-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table 2: Annual Chilean South-Central fleet and fishing-set summary used to evaluate CPUE data coverage.
 </figcaption>
 <div aria-describedby="tbl-chile-cpue-fishing-trip-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="fjdpwfylad" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fjdpwfylad table {
+<div id="ktytgxdsuy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ktytgxdsuy table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#fjdpwfylad thead, #fjdpwfylad tbody, #fjdpwfylad tfoot, #fjdpwfylad tr, #fjdpwfylad td, #fjdpwfylad th {
+#ktytgxdsuy thead, #ktytgxdsuy tbody, #ktytgxdsuy tfoot, #ktytgxdsuy tr, #ktytgxdsuy td, #ktytgxdsuy th {
 border-style: none;
 }
-#fjdpwfylad p {
+#ktytgxdsuy p {
 margin: 0;
 padding: 0;
 }
-#fjdpwfylad .gt_table {
+#ktytgxdsuy .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -5374,11 +5198,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#fjdpwfylad .gt_caption {
+#ktytgxdsuy .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#fjdpwfylad .gt_title {
+#ktytgxdsuy .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -5389,7 +5213,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#fjdpwfylad .gt_subtitle {
+#ktytgxdsuy .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -5400,7 +5224,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#fjdpwfylad .gt_heading {
+#ktytgxdsuy .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -5411,12 +5235,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#fjdpwfylad .gt_bottom_border {
+#ktytgxdsuy .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fjdpwfylad .gt_col_headings {
+#ktytgxdsuy .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5430,7 +5254,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#fjdpwfylad .gt_col_heading {
+#ktytgxdsuy .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5449,7 +5273,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#fjdpwfylad .gt_column_spanner_outer {
+#ktytgxdsuy .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5460,13 +5284,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#fjdpwfylad .gt_column_spanner_outer:first-child {
+#ktytgxdsuy .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#fjdpwfylad .gt_column_spanner_outer:last-child {
+#ktytgxdsuy .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#fjdpwfylad .gt_column_spanner {
+#ktytgxdsuy .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -5477,10 +5301,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#fjdpwfylad .gt_spanner_row {
+#ktytgxdsuy .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#fjdpwfylad .gt_group_heading {
+#ktytgxdsuy .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5505,7 +5329,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#fjdpwfylad .gt_empty_group_heading {
+#ktytgxdsuy .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -5519,13 +5343,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#fjdpwfylad .gt_from_md > :first-child {
+#ktytgxdsuy .gt_from_md > :first-child {
 margin-top: 0;
 }
-#fjdpwfylad .gt_from_md > :last-child {
+#ktytgxdsuy .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#fjdpwfylad .gt_row {
+#ktytgxdsuy .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5543,7 +5367,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#fjdpwfylad .gt_stub {
+#ktytgxdsuy .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5555,7 +5379,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fjdpwfylad .gt_stub_row_group {
+#ktytgxdsuy .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5568,13 +5392,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#fjdpwfylad .gt_row_group_first td {
+#ktytgxdsuy .gt_row_group_first td {
 border-top-width: 2px;
 }
-#fjdpwfylad .gt_row_group_first th {
+#ktytgxdsuy .gt_row_group_first th {
 border-top-width: 2px;
 }
-#fjdpwfylad .gt_summary_row {
+#ktytgxdsuy .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5583,14 +5407,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fjdpwfylad .gt_first_summary_row {
+#ktytgxdsuy .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#fjdpwfylad .gt_first_summary_row.thick {
+#ktytgxdsuy .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#fjdpwfylad .gt_last_summary_row {
+#ktytgxdsuy .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5599,7 +5423,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fjdpwfylad .gt_grand_summary_row {
+#ktytgxdsuy .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5608,7 +5432,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fjdpwfylad .gt_first_grand_summary_row {
+#ktytgxdsuy .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5617,7 +5441,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#fjdpwfylad .gt_last_grand_summary_row_top {
+#ktytgxdsuy .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -5626,10 +5450,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#fjdpwfylad .gt_striped {
+#ktytgxdsuy .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#fjdpwfylad .gt_table_body {
+#ktytgxdsuy .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5637,7 +5461,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#fjdpwfylad .gt_footnotes {
+#ktytgxdsuy .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5650,7 +5474,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#fjdpwfylad .gt_footnote {
+#ktytgxdsuy .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -5658,7 +5482,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fjdpwfylad .gt_sourcenotes {
+#ktytgxdsuy .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5671,64 +5495,64 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#fjdpwfylad .gt_sourcenote {
+#ktytgxdsuy .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#fjdpwfylad .gt_left {
+#ktytgxdsuy .gt_left {
 text-align: left;
 }
-#fjdpwfylad .gt_center {
+#ktytgxdsuy .gt_center {
 text-align: center;
 }
-#fjdpwfylad .gt_right {
+#ktytgxdsuy .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#fjdpwfylad .gt_font_normal {
+#ktytgxdsuy .gt_font_normal {
 font-weight: normal;
 }
-#fjdpwfylad .gt_font_bold {
+#ktytgxdsuy .gt_font_bold {
 font-weight: bold;
 }
-#fjdpwfylad .gt_font_italic {
+#ktytgxdsuy .gt_font_italic {
 font-style: italic;
 }
-#fjdpwfylad .gt_super {
+#ktytgxdsuy .gt_super {
 font-size: 65%;
 }
-#fjdpwfylad .gt_footnote_marks {
+#ktytgxdsuy .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#fjdpwfylad .gt_asterisk {
+#ktytgxdsuy .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#fjdpwfylad .gt_indent_1 {
+#ktytgxdsuy .gt_indent_1 {
 text-indent: 5px;
 }
-#fjdpwfylad .gt_indent_2 {
+#ktytgxdsuy .gt_indent_2 {
 text-indent: 10px;
 }
-#fjdpwfylad .gt_indent_3 {
+#ktytgxdsuy .gt_indent_3 {
 text-indent: 15px;
 }
-#fjdpwfylad .gt_indent_4 {
+#ktytgxdsuy .gt_indent_4 {
 text-indent: 20px;
 }
-#fjdpwfylad .gt_indent_5 {
+#ktytgxdsuy .gt_indent_5 {
 text-indent: 25px;
 }
-#fjdpwfylad .katex-display {
+#ktytgxdsuy .katex-display {
 display: inline-flex !important;
 margin-bottom: 0.75em !important;
 }
-#fjdpwfylad div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ktytgxdsuy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
 height: 0px !important;
 }
 </style>
@@ -6073,27 +5897,14 @@ Figure 3: Pairs plot of annual Chilean South-Central fishing-trip and set-cover
 </section>
 <section id="biological-inputs" class="level2">
 <h2 class="anchored" data-anchor-id="biological-inputs">Biological Inputs</h2>
-<p><strong>54.</strong> The Day 3 biological-input discussion reviewed the Peruvian length-weight and length-frequency material and agreed that the Peruvian length frequencies should be treated as fork length. Growth parameters used with those data should therefore also be in fork length. Members noted the SPRFMO convention that length information should be reported in fork length rather than total length. The group agreed to leave the length-composition plus group at 50 cm so the Peruvian length-frequency information and growth assumptions are handled consistently in the model.</p>
-<p><strong>55.</strong> The meeting also requested that Peru provide sample-size information for the composition data in a form that can be translated into assessment input sample sizes. Members noted that the number of fish measured would be useful in addition to the current reporting of sampling events such as boxes or trips. The group also discussed whether the SPRFMO length-bin range should be expanded to match the Peruvian 5-90 cm length bins.</p>
-<p><strong>56.</strong> Jim presented model runs using the updated Peruvian length-composition data. Members requested additional checks on the resulting selectivity patterns, particularly that selectivity should not become dome-shaped after 2020. The Peruvian length-weight presentation also noted that the allometric parameter <code>b</code> fluctuates and tends to decline sharply during El Nino events, which should be considered when interpreting biological inputs from years affected by environmental anomalies.</p>
+<p><strong>46.</strong> The Day 3 biological-input discussion reviewed the Peruvian length-weight and length-frequency material and agreed that the Peruvian length frequencies should be treated as fork length. Growth parameters used with those data should therefore also be in fork length. Members noted the SPRFMO convention that length information should be reported in fork length rather than total length. The group agreed to leave the length-composition plus group at 50 cm so the Peruvian length-frequency information and growth assumptions are handled consistently in the model.</p>
+<p><strong>47.</strong> The meeting also requested that Peru provide sample-size information for the composition data in a form that can be translated into assessment input sample sizes. Members noted that the number of fish measured would be useful in addition to the current reporting of sampling events such as boxes or trips. The group also discussed whether the SPRFMO length-bin range should be expanded to match the Peruvian 5-90 cm length bins.</p>
+<p><strong>48.</strong> Jim presented model runs using the updated Peruvian length-composition data. Members requested additional checks on the resulting selectivity patterns, particularly that selectivity should not become dome-shaped after 2020. The Peruvian length-weight presentation also noted that the allometric parameter <code>b</code> fluctuates and tends to decline sharply during El Nino events, which should be considered when interpreting biological inputs from years affected by environmental anomalies.</p>
 <section id="far-north-length-composition-binning-and-data-specification" class="level3">
 <h3 class="anchored" data-anchor-id="far-north-length-composition-binning-and-data-specification">Far North length-composition binning and data specification</h3>
-<p><strong>57.</strong> The updated Far North length-composition information was provided in annual rows for 1972-2025 with centimetre bins from 5 to 90 cm. The assessment input currently uses 10-50 cm length bins. The meeting reviewed cumulative length distributions and annual length-composition shapes to evaluate whether expanding the model length-bin range was necessary for the benchmark configuration.</p>
-<p><strong>58.</strong> The diagnostic plots show that the retained 10-50 cm interval captures nearly all of the observed length-composition mass in most years (<a href="#fig-farnorth-length-cumulative-all" class="quarto-xref">Figure 4</a>; <a href="#fig-farnorth-length-cumulative" class="quarto-xref">Figure 5</a>; <a href="#fig-farnorth-length-ridges" class="quarto-xref">Figure 6</a>). Across the annual rows, the median proportion within 10-50 cm was 0.9998, and the minimum was 0.895. When the length compositions were summed across all years, 0.9986 of the total was within the retained 10-50 cm interval. The lower annual coverage years were mainly early observations and the most recent 2024 row. On this basis, the practical benchmark decision was to retain the existing 10-50 cm assessment bins for the Far North length-composition treatment rather than expanding the JJM length-bin range to 5-90 cm at this stage.</p>
-<p><strong>59.</strong> The annual length-composition sample-size plot was digitized from the provided figure for 1972-2025. The digitized values were treated as relative sample-size weights. The meeting noted that rescaling the Far North length-frequency sample sizes to have a maximum value of 100 would not preserve the scale used previously in the assessment. Instead, the effective sample-size vector should maintain the same mean as in the past. Consequently, the vector was rescaled to have a mean effective sample size of 30. The scaled input vector is archived in <code>doc/data/farnorth_sample_sizes_scaled_for_mod0.5.csv</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Last-day diagnostics note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>60.</strong> The final-day diagnostics discussion noted that the previous cap of 100 for Far North length-composition sample sizes was arbitrary and that the mean-30 rescaling was preferred for the benchmark runs. Participants also supported continued development of annually varying effective sample sizes for Far North composition data. As a future improvement, the group noted that survey effective sample sizes could be weighted by the number of trawls or equivalent biological sampling units.</p>
-</div>
-</div>
+<p><strong>49.</strong> The updated Far North length-composition information was provided in annual rows for 1972-2025 with centimetre bins from 5 to 90 cm. The assessment input currently uses 10-50 cm length bins. The meeting reviewed cumulative length distributions and annual length-composition shapes to evaluate whether expanding the model length-bin range was necessary for the benchmark configuration.</p>
+<p><strong>50.</strong> The diagnostic plots show that the retained 10-50 cm interval captures nearly all of the observed length-composition mass in most years (<a href="#fig-farnorth-length-cumulative-all" class="quarto-xref">Figure 4</a>; <a href="#fig-farnorth-length-cumulative" class="quarto-xref">Figure 5</a>; <a href="#fig-farnorth-length-ridges" class="quarto-xref">Figure 6</a>). Across the annual rows, the median proportion within 10-50 cm was 0.9998, and the minimum was 0.895. When the length compositions were summed across all years, 0.9986 of the total was within the retained 10-50 cm interval. The lower annual coverage years were mainly early observations and the most recent 2024 row. On this basis, the practical benchmark decision was to retain the existing 10-50 cm assessment bins for the Far North length-composition treatment rather than expanding the JJM length-bin range to 5-90 cm at this stage.</p>
+<p><strong>51.</strong> The annual length-composition sample-size plot was digitized from the provided figure for 1972-2025. The digitized values were treated as relative sample-size weights. The meeting noted that rescaling the Far North length-frequency sample sizes to have a maximum value of 100 would not preserve the scale used previously in the assessment. Instead, the effective sample-size vector should maintain the same mean as in the past. Consequently, the vector was rescaled to have a mean effective sample size of 30. The scaled input vector is archived in <code>doc/data/farnorth_sample_sizes_scaled_for_mod0.5.csv</code>.</p>
 <div id="fig-farnorth-length-cumulative-all" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-farnorth-length-cumulative-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -6124,7 +5935,7 @@ Figure 6: Annual Far North length-composition shapes by year. Each ridge is sca
 </figcaption>
 </figure>
 </div>
-<p><strong>61.</strong> The Season 1 and Season 2 Far North length-composition rows used in <code>mod0.5.dat</code> were also reviewed against the retained 10-50 cm assessment bins (<a href="#fig-farnorth-mod05-season1-ridges" class="quarto-xref">Figure 7</a>; <a href="#fig-farnorth-mod05-season2-ridges" class="quarto-xref">Figure 8</a>). The ridge plots preserve gaps for missing years so the temporal coverage of each seasonal series is explicit.</p>
+<p><strong>52.</strong> The Season 1 and Season 2 Far North length-composition rows used in <code>mod0.5.dat</code> were also reviewed against the retained 10-50 cm assessment bins (<a href="#fig-farnorth-mod05-season1-ridges" class="quarto-xref">Figure 7</a>; <a href="#fig-farnorth-mod05-season2-ridges" class="quarto-xref">Figure 8</a>). The ridge plots preserve gaps for missing years so the temporal coverage of each seasonal series is explicit.</p>
 <div id="fig-farnorth-mod05-season1-ridges" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-farnorth-mod05-season1-ridges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -6145,66 +5956,27 @@ Figure 8: Season 2 Far North length-composition shapes from <code>mod0.5.dat</c
 </figcaption>
 </figure>
 </div>
-<p><strong>62.</strong> After discussions regarding the representativeness of the jack mackerel (JM) abundance estimates off Peru, given that the coverage of the Peruvian acoustic surveys, which are primarily designed to assess Peruvian anchovy, does not fully match the distribution of JM, the meeting agreed to move to the new Peruvian acoustic indices as indices of availability and remove the previous Peru acoustic index from the base configuration. The associated Peruvian length-frequency information should be carried forward with the new acoustic treatment. No new Chilean Acoustic North or Chilean Acoustic South-Central index treatment was selected for the base model at this stage.</p>
+<p><strong>53.</strong> After discussions regarding the representativeness of the jack mackerel (JM) abundance estimates off Peru, given that the coverage of the Peruvian acoustic surveys, which are primarily designed to assess Peruvian anchovy, does not fully match the distribution of JM, the meeting agreed to move to the new Peruvian acoustic indices as indices of availability and remove the previous Peru acoustic index from the base configuration. The associated Peruvian length-frequency information should be carried forward with the new acoustic treatment. No new Chilean Acoustic North or Chilean Acoustic South-Central index treatment was selected for the base model at this stage.</p>
 </section>
 </section>
 <section id="assessment-model-development" class="level2">
 <h2 class="anchored" data-anchor-id="assessment-model-development">Assessment Model Development</h2>
-<p><strong>63.</strong> The meeting reviewed Paper 01 (<a href="SCW16-Doc01.html">SCW16-Doc01</a>), which evaluated and updated the previous assessment model from SC13. Participants noted that the paper covered a broad set of model alternatives, including single-stock and two-stock configurations, reduced-index options, selectivity alternatives, and other candidate simplifications intended to improve benchmark and MSE tractability.</p>
-<p><strong>64.</strong> The group also noted that several simplification suggestions in Paper 01 should be interpreted in light of the data updates agreed during the benchmark meeting. Because several abundance-index and composition series were updated or replaced during the meeting, some simplifications that were informative under the SC13 data configuration may no longer apply directly to the updated benchmark configuration. The final candidate model set should therefore reassess those simplification options after the updated input series are implemented, rather than carrying all earlier simplification conclusions forward unchanged.</p>
-<p><strong>65.</strong> Participants also discussed whether 2026 information should be included in the benchmark or MSE model runs. One suggested approach was to estimate total 2026 catch from year-to-date Chilean catch information and use that estimate in a sensitivity run. The group also reviewed options for Chile Acoustic South-Central data treatment, including dropping the series, retaining it as currently used, updating CVs based on geostatistical spatial coverage, transect design, and operational reliability, or retaining the series with heavier downweighting. The practical proposal carried forward was to retain the series as currently configured unless a later sensitivity is requested.</p>
-<p><strong>66.</strong> The group discussed diagnostics of the 0.06 model, noting that sample sizes for the Far North fleet were high. It was agreed to rescale these sample sizes to have an average of 30 over the time series. New diagnostic plots, including one-step-ahead residuals, were created and deemed valuable for model-performance evaluation. Several iterations are still needed to improve model fit. The Chair suggested allowing until Wednesday 27 May 2026 to improve model fit and double-check data inputs and model settings. The group agreed to this approach.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Last-day model-development note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>67.</strong> The final-day diagnostics discussion also noted that Season 2 was missing from one index plot and should be checked. Participants discussed the difference between allowing time-varying selectivity for the Far North fleet in the single-stock hypothesis and not applying the same treatment in the two-stock hypothesis. Peru indicated openness to considering time-varying selectivity for the two-stock Far North component so that the h1 and h2 configurations can be compared more consistently.</p>
-</div>
-</div>
+<p><strong>54.</strong> The meeting reviewed Paper 01 (<a href="SCW16-Doc01.html">SCW16-Doc01</a>), which evaluated and updated the previous assessment model from SC13. Participants noted that the paper covered a broad set of model alternatives, including single-stock and two-stock configurations, reduced-index options, selectivity alternatives, and other candidate simplifications intended to improve benchmark and MSE tractability.</p>
+<p><strong>55.</strong> The group also noted that several simplification suggestions in Paper 01 should be interpreted in light of the data updates agreed during the benchmark meeting. Because several abundance-index and composition series were updated or replaced during the meeting, some simplifications that were informative under the SC13 data configuration may no longer apply directly to the updated benchmark configuration. The final candidate model set should therefore reassess those simplification options after the updated input series are implemented, rather than carrying all earlier simplification conclusions forward unchanged.</p>
+<p><strong>56.</strong> Participants also discussed whether 2026 information should be included in the benchmark or MSE model runs. One suggested approach was to estimate total 2026 catch from year-to-date Chilean catch information and use that estimate in a sensitivity run. The group also reviewed options for Chile Acoustic South-Central data treatment, including dropping the series, retaining it as currently used, updating CVs based on geostatistical spatial coverage, transect design, and operational reliability, or retaining the series with heavier downweighting. The practical proposal carried forward was to retain the series as currently configured unless a later sensitivity is requested.</p>
+<p><strong>57.</strong> The group discussed diagnostics of the 0.06 model, noting that sample sizes for the Far North fleet were high. It was agreed to rescale these sample sizes to have an average of 30 over the time series. New diagnostic plots, including one-step-ahead residuals, were created and deemed valuable for model-performance evaluation. Several iterations are still needed to improve model fit. The Chair suggested allowing until Wednesday 27 May 2026 to improve model fit and double-check data inputs and model settings. The group agreed to this approach.</p>
 </section>
 <section id="operating-models-and-mse-linkages" class="level2">
 <h2 class="anchored" data-anchor-id="operating-models-and-mse-linkages">Operating Models and MSE Linkages</h2>
-<p><strong>68.</strong> The working group conferred with the MSE contractor on details of the projection and scenario specifications needed to link the benchmark assessment work to the MSE process. Discussion focused in particular on how recruitment process errors would be developed for the projection runs. The contractor clarified that an ARIMA-based treatment may be preferable, with both the autocorrelation parameter (<code>rho</code>) and residual scale (<code>sigma</code>) estimated from that process. Under that treatment, <code>sigma</code> is interpreted as the innovation standard deviation: the remaining recruitment variability after accounting for autocorrelation. The working group agreed in principle with the proposed base-model configuration runs, noting that the final base-model set used for MSE conditioning will arise from the benchmark decisions.</p>
-<p><strong>69.</strong> The group reviewed the operating-model grid paper presented by I. Mosquiera and discussed how the benchmark model set would condition the South Pacific jack mackerel MSE. Participants noted that, although preliminary 2025 information has been presented as best available science, the conditioning model uses abundance information from the beginning of 2025 and should not be interpreted as using 2025 as a complete year. Discussion of projection selectivity and reference-point assumptions accepted at the previous Scientific Committee was tabled until supporting documentation is available. The group identified an urgent need to specify transition assumptions for selectivity and weight-at-age in projections, given the strong mandate to have an MSE ready during 2026. The group recognized that these specifications are prerequisites for the contractor to advance the MSE work. The group acknowledged that any delay in providing these specifications would directly affect the contractor’s ability to deliver against the agreed timeline, and that progress on the MSE is contingent on timely decisions by the group.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Last-day MSE workplan note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>70.</strong> The final-day discussion emphasized that the benchmark model set provides a foundation for operating-model conditioning, but should not be interpreted as the complete operating-model set for MSE testing. Additional work before the MSE workshop should evaluate block-pattern changes and other projection specifications that are not fully resolved by the benchmark model selection alone.</p>
-</div>
-</div>
-<p><strong>71.</strong> Participants also discussed projected recruitment deviations and whether terminal-year uncertainty should be propagated directly into future recruitment. The group noted the need to separate estimation uncertainty from prediction and requested that Iago examine the distribution of values for <code>sigma_R</code>, which had not been revisited since the September model. Future recruitment variability should consider whether to exclude the extremely high 1986 and 1987 recruitment events or use a more recent recruitment period. The group also noted that exceptional circumstances, including the apparent 2026 dispersion of jack mackerel, need to be considered when framing MSE scenarios and subsequent advice. Day 5 discussions revisited the estimation of recruitment deviations, as the contractor had simulated deviates in an alternative manner, including autocorrelation correction for recruitment deviates. This resulted in substantially narrower ranges of deviates, in line with recent and long-term observations. Since autocorrelation was estimated at around 0.68, it was assumed that this parameter was reliably estimated and hence the newly developed approach seemed appropriate. The group considered recent recruitment deviations most suitable for the MSE simulations.</p>
-<p><strong>72.</strong> The group discussed management-procedure implementation questions, including how to rank indices for management-procedure input versus assessment and conditioning use, and whether MSE scenarios should include banking and borrowing provisions approved at the previous Commission meeting. The current MSE setup can represent banking and borrowing across all fleets, rather than by fleet, and the specific TAC-change bounds should be checked against the Commission report.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Last-day MSE implementation note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>73.</strong> The group discussed avoiding an annual <span class="math inline">F_{MSY}</span> calculation for the MSE, with a preference to fix <span class="math inline">F_{MSY}</span> so that projections do not require additional assumptions about future selectivity patterns. Participants also discussed whether alternative productivity regimes should be used in the operating models. The preferred approach was to use recent productivity patterns for the main MSE simulations and treat alternative productivity regimes as sensitivities rather than adopting them as the primary basis for MSE use. Hindcast-style projections from earlier years, such as 2018, were identified as useful diagnostics because the MSE should test management-procedure robustness across a range of stock conditions rather than depend only on the current stock state. This was framed partly as a communication issue, including how to explain exceptional circumstances and robustness testing to stakeholders.</p>
-</div>
-</div>
+<p><strong>58.</strong> The working group conferred with the MSE contractor on details of the projection and scenario specifications needed to link the benchmark assessment work to the MSE process. Discussion focused in particular on how recruitment process errors would be developed for the projection runs. The contractor clarified that an ARIMA-based treatment may be preferable, with both the autocorrelation parameter (<code>rho</code>) and residual scale (<code>sigma</code>) estimated from that process. Under that treatment, <code>sigma</code> is interpreted as the innovation standard deviation: the remaining recruitment variability after accounting for autocorrelation. The working group agreed in principle with the proposed base-model configuration runs, noting that the final base-model set used for MSE conditioning will arise from the benchmark decisions.</p>
+<p><strong>59.</strong> The group reviewed the operating-model grid paper presented by I. Mosquiera and discussed how the benchmark model set would condition the South Pacific jack mackerel MSE. Participants noted that, although preliminary 2025 information has been presented as best available science, the conditioning model uses abundance information from the beginning of 2025 and should not be interpreted as using 2025 as a complete year. Discussion of projection selectivity and reference-point assumptions accepted at the previous Scientific Committee was tabled until supporting documentation is available. The group identified an urgent need to specify transition assumptions for selectivity and weight-at-age in projections, given the strong mandate to have an MSE ready during 2026. The group recognized that these specifications are prerequisites for the contractor to advance the MSE work. The group acknowledged that any delay in providing these specifications would directly affect the contractor’s ability to deliver against the agreed timeline, and that progress on the MSE is contingent on timely decisions by the group.</p>
+<p><strong>60.</strong> Participants also discussed projected recruitment deviations and whether terminal-year uncertainty should be propagated directly into future recruitment. The group noted the need to separate estimation uncertainty from prediction and requested that Iago examine the distribution of values for <code>sigma_R</code>, which had not been revisited since the September model. Future recruitment variability should consider whether to exclude the extremely high 1986 and 1987 recruitment events or use a more recent recruitment period. The group also noted that exceptional circumstances, including the apparent 2026 dispersion of jack mackerel, need to be considered when framing MSE scenarios and subsequent advice. Day 5 discussions revisited the estimation of recruitment deviations, as the contractor had simulated deviates in an alternative manner, including autocorrelation correction for recruitment deviates. This resulted in substantially narrower ranges of deviates, in line with recent and long-term observations. Since autocorrelation was estimated at around 0.68, it was assumed that this parameter was reliably estimated and hence the newly developed approach seemed appropriate. The group considered recent recruitment deviations most suitable for the MSE simulations.</p>
+<p><strong>61.</strong> The group discussed management-procedure implementation questions, including how to rank indices for management-procedure input versus assessment and conditioning use, and whether MSE scenarios should include banking and borrowing provisions approved at the previous Commission meeting. The current MSE setup can represent banking and borrowing across all fleets, rather than by fleet, and the specific TAC-change bounds should be checked against the Commission report.</p>
 </section>
 </section>
 <section id="decisions-and-agreements" class="level1">
 <h1>Decisions and Agreements</h1>
-<p><strong>74.</strong> The table below consolidates the benchmark decisions and agreements reached during the meeting and identifies the follow-up work needed to translate them into model inputs, sensitivity runs, and final report text. Items are grouped by technical topic so that implementation checks can be tracked alongside the action-item list.</p>
+<p><strong>62.</strong> The table below consolidates the benchmark decisions and agreements reached during the meeting and identifies the follow-up work needed to translate them into model inputs, sensitivity runs, and final report text. Items are grouped by technical topic so that implementation checks can be tracked alongside the action-item list.</p>
 <div data-tbl-colwidths="[5,37,16,30,12]">
 <table class="caption-top table">
 <caption>Benchmark decisions and agreements. Numbered entries in the Status column identify the corresponding model reference.</caption>
@@ -6315,7 +6087,7 @@ Figure 8: Season 2 Far North length-composition shapes from <code>mod0.5.dat</c
 </section>
 <section id="benchmark-summary-and-recommendations" class="level1">
 <h1>Benchmark Summary and Recommendations</h1>
-<p><strong>75.</strong> Based on the 2026 benchmark workshop of the Jack Mackerel Working Group, the following points are directed to the Scientific Committee and to the upcoming MSE workshop.</p>
+<p><strong>63.</strong> Based on the 2026 benchmark workshop of the Jack Mackerel Working Group, the following points are directed to the Scientific Committee and to the upcoming MSE workshop.</p>
 <ul>
 <li><strong>Noted</strong> that the benchmark reviewed and re-evaluated multiple data streams, including acoustic surveys, Chilean and Peruvian CPUE indices, biological inputs, composition data, and candidate assessment-model configurations.</li>
 <li><strong>Noted</strong> that several abundance-index and composition series were updated or replaced during the meeting, so model simplification and MSE conditioning should be evaluated against the benchmark data configuration rather than against the previous SC13 input set.</li>
@@ -6333,7 +6105,7 @@ Figure 8: Season 2 Far North length-composition shapes from <code>mod0.5.dat</c
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
-<p><strong>76.</strong> The meeting report relied on the SCW16 working papers and supporting presentations listed below. Presentation-only material and file crosswalks are provided in Appendix D.</p>
+<p><strong>64.</strong> The meeting report relied on the SCW16 working papers and supporting presentations listed below. Presentation-only material and file crosswalks are provided in Appendix D.</p>
 <ul>
 <li>SCW16-Doc01. Developments of the base SC13 model for benchmark and MSE considerations.</li>
 <li>SCW16-Doc02. CPUE coordination priorities and working-paper plan.</li>
@@ -6612,7 +6384,7 @@ Figure 8: Season 2 Far North length-composition shapes from <code>mod0.5.dat</c
 <td>Teobaldo Dioses</td>
 <td>Peru</td>
 <td>Expert</td>
-<td>GMAIL</td>
+<td>Instituto del Mar del Peru (retired)</td>
 <td>In person</td>
 </tr>
 <tr class="even">
