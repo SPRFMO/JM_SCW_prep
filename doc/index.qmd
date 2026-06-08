@@ -11,9 +11,7 @@ format:
 <div class="paper-title">JJM Assessment Documents</div>
 ```
 
-[Draft Benchmark report](JMWG-Benchmark-Meeting-report-2026.html) ([PDF](JMWG-Benchmark-Meeting-report-2026.pdf), [DOCX](JMWG-Benchmark-Meeting-report-2026.docx)). Please add proposed report text and edits in the [shared Google Drive folder](https://drive.google.com/drive/u/1/folders/1CkFqB1tXmmIHIWddzSm7kqdZx1wfS9MX) for incorporation into the draft.
-
-[SCW16 benchmark assessment report](SCW16.html) from the `SPRFMO/jjm` repository shows the current benchmark model sequence and diagnostic results ([source QMD](https://github.com/SPRFMO/jjm/blob/main/doc/SCW16.qmd)).
+[SCW16 Benchmark report](JMWG-Benchmark-Meeting-report-2026.html) ([PDF](JMWG-Benchmark-Meeting-report-2026.pdf), [DOCX](JMWG-Benchmark-Meeting-report-2026.docx)) with supplemental model specifications from the benchmark at <https://sprfmo.github.io/JM_SCW_prep/SCW16.html>.
 
 # Overview
 
