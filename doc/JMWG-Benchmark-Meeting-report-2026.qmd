@@ -24,12 +24,12 @@ format:
         \usepackage{fancyhdr}
         \fancyhf{}
         \fancyhead[R]{\textit{Benchmark meeting report 2026}}
-        \fancyhead[L]{\textit{SCW16 Draft}}
+        \fancyhead[L]{\textit{SCW16}}
         \fancyfoot[C]{\thepage}
         \fancypagestyle{plain}{
           \fancyhf{}
           \fancyhead[R]{\textit{Benchmark meeting report 2026}}
-          \fancyhead[L]{\textit{SCW16 Draft}}
+          \fancyhead[L]{\textit{SCW16}}
           \fancyfoot[C]{\thepage}
         }
         \pagestyle{fancy}
@@ -49,7 +49,7 @@ filters:
 ---
 
 ```{r}
-date_stamp <- format(Sys.Date(), "%d %B %Y")
+date_stamp <- "07 June 2026"
 time_stamp <- format(Sys.time(), "%H:%M %Z")
 ```
 
